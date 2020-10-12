@@ -1,0 +1,117 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<div class="container">
+    <div class="content">
+   
+
+   
+
+        <div id="survey_section" >
+    
+           
+    
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12 ">
+                        <div class="alert  back-widget-set row">
+                            
+                            
+                
+                            <div class="col-md-12 col-sm-12 col-xs-12">
+                            
+    
+                                <div class="row">
+                                    <div class="col-12 ">
+                                        <div class="alert ">
+                                            <div class="col-sm-12">
+                                                <span class="btn btn-info" id="add_question">Add Question</span>
+                                               
+                                            </div>
+        
+                                          
+                                            </div>
+                                            </div>
+                                </div>
+                               
+                                   
+                                        
+                                    
+                               
+                                <div id="questions">
+                                
+    
+                                    
+                                  </div>
+                                  <div>
+                                  
+                                  </div>
+                                 </div>
+                          </div>
+                      </div>
+                </div>
+        </div>
+       
+    
+    
+    
+      </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    <script>
+        $("#add_question").click(function(){
+            console.log($('.question_list').length+1);
+            var question_count = $('.question_list').length+1;
+            $("#questions").append('<div class="survey_question" id="question_'+question_count+'"><div class="question_list input-group mt-3 mb-3"><input id="input_'+question_count+'"type="text" class="form-control " placeholder="Enter question..."><div class="input-group-prepend"><button type="button" class="btn btn-outline-secondary dropdown-toggle justify-content-center" data-toggle="dropdown"><span id="qt_'+question_count+'">Question Type</span></button><div class="dropdown-menu"><span id="t_'+question_count+'" onclick="question_type(this.id)" class="dropdown-item text-center justify-content-center" >Text</span><span id="mc_'+question_count+'" onclick="question_type(this.id)" class="dropdown-item text-center justify-content-center" >Multiple Choice</span></div></div><button id="button_'+question_count+'" type="button" onclick="remove_question(this.id)" class="btn btn-danger">x</button></div></div>');
+    });
+    </script>
+    <script>
+        function remove_question(id){
+            
+            var divv = id.substr(7)
+            $("#question_"+divv).remove();
+        }
+    </script>
+    
+    <script>
+        function question_type(id){
+            var before_character = id.split('_')[0];
+            var after_character=id.split('_')[1];
+          
+            if(before_character == 't'){
+                var mc_count = $('.mc'+after_character).length+1;
+               
+                if(mc_count > 0){
+                    $('#question_' + after_character+' .option_count').remove();
+                }
+                $("#qt_"+after_character).html('Text'); 
+            }
+            else{
+                var mc_count = $('.question_list').length+1;
+                if(mc_count > 0){
+    
+                }
+                $("#qt_"+after_character).html('Multiple Choice'); 
+                $("#question_"+after_character).append('<div class="container mc'+after_character+' option_count"><div class="row"><div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">Option</span></div><input type="text" class="form-control option_'+after_character+'" placeholder="Username"><span class="material-icons" id="add_option_'+(parseInt(after_character))+'" onclick="add_option(this.id)">add_circle_outline</span></div></div></div>')
+                
+            }
+        }
+    </script>
+    
+    <script>
+        function add_option(id){
+            var after_special_character=id.split('_')[2];
+            var option_count = $('#question_' + after_special_character+' .option_count').length+1;
+       
+            $("#question_"+after_special_character).append('<div class="container option_count mc'+after_special_character+'_'+option_count+'"><div class="row"><div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">Option</span></div><input type="text" class="form-control" placeholder="Username"></div><span class="material-icons" id="add_option_'+(parseInt(after_special_character))+'" onclick="add_option(this.id)">add_circle_outline</span></div></div>')
+        }
+    </script>
+    
+</div>
+{% endblock content %}

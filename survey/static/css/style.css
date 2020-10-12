@@ -1,0 +1,17 @@
+.form_border{
+    border-left: 3px;border-right: 0px;
+    border-top: 0px;
+    border-bottom: 0px;
+    border-color: orange;
+    border-style:solid
+}
+
+
+.step_border{
+    
+    border-width:3px;
+    border-color: orange;
+    border-style:solid;
+    height:100px;
+
+}

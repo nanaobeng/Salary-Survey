@@ -1,0 +1,689 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<script>
+  $(document).ready(function(){
+    $( ".industry_card" ).addClass( "active" );
+     $(".mailing").css("display", "none");
+     $(".street").css("display", "none");
+     $(".company").css("display", "none");
+     $(".contact").css("display", "none");
+ 
+     $('.industry_status').html("(active)")
+     $('.submit_button').css("display","none")
+     
+
+  });
+
+</script>
+<div class="container table_list">
+  <div class="row">
+    <div class="col-12 text-right">
+      <br/>
+      <br/>
+      <span class="btn btn-info add"> Add Client</span>
+    </div>
+  </div>
+  <div class="row justify-content-center p-4">
+    <div class="col-12 text-center">
+      <b><u>Client List</u></b>
+      <br/>
+    </div>
+    <div class="col-8">
+      <table class="table">
+        <thead class="thead-dark">
+          <tr>
+            <th>Client</th>
+            <th>Sector</th>
+            <th>Industry</th>
+            <th>Contact Person</th>
+          
+            
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Deloitte</td>
+            <td>Private</td>
+            <td>Finance</td>
+            <td>Timothy Osei</td>
+            
+          
+          </tr>
+          <tr>
+            <td>VRA</td>
+            <td>Public</td>
+            <td>Energy</td>
+            <td>Priscilla Bonsu</td>
+         
+            
+          </tr>
+        
+        </tbody>
+      </table>
+    </div>
+  
+
+  </div>
+</div>
+<div class="container list_form" style="display: none;">
+  <div class="row">
+    <div class="col-12 p-4">
+
+
+
+      <div class="row">
+        <div class="col-12">
+          <div class="progress">
+            <div class="progress-bar bg-info" style="width:40%"></div>
+         </div>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-4  " >
+          <b>Client Registration</b><br/>
+          Kindly select each compononet and fill in the required fields
+          </div>
+          <div class="col-8 p-4">
+            <h5><b>Client Registration Form</b></h5>
+          </div>
+       
+      </div>
+
+      <div class="row pt-4">
+
+     
+        
+
+
+        <div class="col-12 pt-4">
+          <div class="card">
+            <div class="card-body p-4">
+              <div class="row">
+                <div class="col-12">
+                  <ul class="progress-indicator">
+                    <li class="industry_card ">
+                        <span class="bubble"></span>
+                        Industry Details. <br><small class="industry_status"></small>
+                    </li>
+                    <li class=" mailing_card ">
+                        <span class="bubble"></span>
+                        Mailing Address. <br><small class="mailing_status"></small>
+                    </li>
+                    <li class="street_card">
+                        <span class="bubble"></span>
+                        Street Address. <br><small class="street_status"></small>
+                    </li>
+                    <li class="company_card">
+                        <span class="bubble"></span>
+                        Company Details.<br><small class="company_status"></small>
+                    </li>
+                    <li class=" contact_card">
+                      <span class="bubble"></span>
+                      Contact Person.<br><small class="contact_status"></small>
+                  </li>
+                    
+                </ul>
+                </div>
+              </div>
+              <form method="POST" action="">
+                {{ form.hidden_tag() }}
+               <div class="row industry">
+                 <div class="col-12">
+                    <div class="form-group">
+                        {{ form.name.label(class="form-control-label") }}
+            
+                        {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.name(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    <div class="row">
+                    <div class="col-6">
+                      <div class="form-group">
+                        {{ form.sector.label(class="form-control-label") }}
+            
+                        {% if form.sector.errors %}
+                        {{ form.sector(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.sector.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.sector(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        {{ form.industry.label(class="form-control-label") }}
+            
+                        {% if form.industry.errors %}
+                        {{ form.industry(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.industry.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.industry(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                  </div>
+               </div>
+               <div class="row ">
+              </br>
+                <div class="col-12 p-2">
+                </br>
+                  <span class="btn btn-outline-info " id="industry" onclick="switch_wizard(this.id)">Next</span>
+                </div>
+              </div>
+                </div>
+                  <div class="row mailing">
+                    <div class="col-12">
+                    <div class="row">
+                      <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <b>Mailing Address</b>
+                          <hr/>
+                          <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              {{ form.mailing_building.label(class="form-control-label") }}
+                  
+                              {% if form.mailing_building.errors %}
+                              {{ form.mailing_building(class="form-control form-control-lg is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.mailing_building.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.mailing_building(class="form-control form-control-lg") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              {{ form.mailing_street.label(class="form-control-label") }}
+                  
+                              {% if form.mailing_street.errors %}
+                              {{ form.mailing_street(class="form-control form-control-lg is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.mailing_street.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.mailing_street(class="form-control form-control-lg") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              {{ form.mailing_city.label(class="form-control-label") }}
+                  
+                              {% if form.mailing_city.errors %}
+                              {{ form.mailing_city(class="form-control form-control-lg is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.mailing_city.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.mailing_city(class="form-control form-control-lg") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              {{ form.mailing_country.label(class="form-control-label") }}
+                  
+                              {% if form.mailing_country.errors %}
+                              {{ form.mailing_country(class="form-control form-control-lg is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.mailing_country.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.mailing_country(class="form-control form-control-lg") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                  </br>
+                    <div class="col-12 p-2">
+                      <br/>
+                      <span class="btn btn-outline-info " id="mailing" onclick="switch_wizard(this.id)" >Next</span>
+                    </div>
+                  </div>
+                </div>
+
+                  <div class="row street">
+                    <div class="col-12">
+                 
+                    <div class="row">
+                      <div class="col-12">
+                        <br/>
+                      
+                      <div class="card">
+                        <div class="card-body">
+                          <b>Street Address</b>
+                          <hr/>
+                          <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                              {{ form.street_building.label(class="form-control-label") }}
+                  
+                              {% if form.street_building.errors %}
+                              {{ form.street_building(class="form-control form-control-lg is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.street_building.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.street_building(class="form-control form-control-lg") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              {{ form.street_street.label(class="form-control-label") }}
+                  
+                              {% if form.street_street.errors %}
+                              {{ form.street_street(class="form-control form-control-lg is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.street_street.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.street_street(class="form-control form-control-lg") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              {{ form.street_city.label(class="form-control-label") }}
+                  
+                              {% if form.street_city.errors %}
+                              {{ form.street_city(class="form-control form-control-lg is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.street_city.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.street_city(class="form-control form-control-lg") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                              {{ form.street_country.label(class="form-control-label") }}
+                  
+                              {% if form.street_country.errors %}
+                              {{ form.street_country(class="form-control form-control-lg is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.street_country.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.street_country(class="form-control form-control-lg") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row ">
+                  </br>
+                    <div class="col-12 p-2">
+                      <br/>
+                      <span class="btn btn-outline-info "  id="street" onclick="switch_wizard(this.id)">Next</span>
+                    </div>
+                  </div>
+                </div>
+                
+                  <div class="row company">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                    <div class="row">
+                      
+
+                      <div class="col-6">
+                        <div class="form-group">
+                          {{ form.registration.label(class="form-control-label") }}
+              
+                          {% if form.registration.errors %}
+                          {{ form.registration(class="form-control form-control-lg is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.registration.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.registration(class="form-control form-control-lg") }}
+                          {% endif %}
+              
+                          
+                      </div>
+                      </div>
+
+                      <div class="col-6">
+                      
+                        <div class="form-group">
+                          {{ form.tax_id.label(class="form-control-label") }}
+              
+                          {% if form.tax_id.errors %}
+                          {{ form.tax_id(class="form-control form-control-lg is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.tax_id.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.tax_id(class="form-control form-control-lg") }}
+                          {% endif %}
+              
+                          
+                      </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="row ">
+                  </br>
+                    <div class="col-12 p-2">
+                      <br/>
+                      <span class="btn btn-outline-info rah" id="company" onclick="switch_wizard(this.id)">Next</span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row contact">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.contact_firstname.label(class="form-control-label") }}
+            
+                        {% if form.contact_firstname.errors %}
+                        {{ form.contact_firstname(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.contact_firstname.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.contact_firstname(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    </div>
+
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.contact_middlename.label(class="form-control-label") }}
+            
+                        {% if form.contact_middlename.errors %}
+                        {{ form.contact_middlename(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.contact_middlename.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.contact_middlename(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    </div>
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        {{ form.contact_lastname.label(class="form-control-label") }}
+            
+                        {% if form.contact_lastname.errors %}
+                        {{ form.contact_lastname(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.contact_lastname.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.contact_lastname(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    </div>
+
+
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        {{ form.job.label(class="form-control-label") }}
+            
+                        {% if form.job.errors %}
+                        {{ form.job(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.job.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.job(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    </div>
+
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        {{ form.email.label(class="form-control-label") }}
+            
+                        {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.email(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    </div>
+
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        {{ form.phone.label(class="form-control-label") }}
+            
+                        {% if form.phone.errors %}
+                        {{ form.phone(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.phone.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.phone(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                </div>
+                
+              </div>
+                   
+                    <div class="form-group submit_button p-2">
+                      <br/>
+                      {{ form.submit(class="btn btn-outline-info") }}
+                  </div>
+              
+                    </form>
+              
+            </div>
+          </div>
+          
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+</div>
+<input type="hidden" id="state"  value="industry">
+
+<script>
+  $(document).ready(function(){
+$(".add").click(function(){
+
+$('.table_list').css("display", "none");
+$('.list_form').css("display", "block");
+
+
+
+
+
+})
+});
+
+</script>
+
+
+
+<script>
+  function switch_wizard(id){
+    if(id == 'industry'){
+    $('.industry_status').html("(completed)")
+    $( ".industry_card" ).removeClass( "active" );
+    $( ".industry_card" ).addClass( "completed" );
+    $( ".mailing_card" ).addClass( "active" );
+    $('.mailing_status').html("(active)")
+     $(".industry").css("display", "none");
+    $(".mailing").css("display", "block");
+    
+      
+ 
+  }
+
+  if(id == 'mailing'){
+    $('.mailing_status').html("(completed)")
+    $( ".mailing_card" ).removeClass( "active" );
+    $( ".mailing_card" ).addClass( "completed" );
+    $( ".street_card" ).addClass( "active" );
+    $('.street_status').html("(active)")
+     $(".mailing").css("display", "none");
+    $(".street").css("display", "block");
+    
+      
+ 
+  }
+
+  if(id == 'street'){
+    $('.street_status').html("(completed)")
+    $( ".street_card" ).removeClass( "active" );
+    $( ".street_card" ).addClass( "completed" );
+    $( ".company_card" ).addClass( "active" );
+    $('.company_status').html("(active)")
+     $(".street").css("display", "none");
+    $(".company").css("display", "block");
+    
+      
+ 
+  }
+
+  if(id == 'company'){
+    $('.company_status').html("(completed)")
+    $( ".company_card" ).removeClass( "active" );
+    $( ".company_card" ).addClass( "completed" );
+    $( ".contact_card" ).addClass( "active" );
+    $('.contact_status').html("(active)")
+     $(".company").css("display", "none");
+    $(".contact").css("display", "block");
+    $(".submit_button").css("display", "block");
+    
+      
+ 
+  }
+ 
+
+  }
+</script>
+
+{% endblock content %}

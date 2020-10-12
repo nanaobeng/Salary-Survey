@@ -1,0 +1,128 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-12 p-4">
+
+
+
+      <div class="row">
+        <div class="col-12">
+          <div class="progress">
+            <div class="progress-bar bg-info" style="width:40%"></div>
+         </div>
+        </div>
+      </div>
+      <div class="row pt-4">
+        <div class="col-12  " >
+          <b>Admin Registration</b><br/>
+          Kindly select each compononet and fill in the required fields
+          </div>
+          
+       
+      </div>
+
+      <div class="row pt-4">
+
+     
+        
+
+
+        <div class="col-12 pt-4">
+          <div class="card">
+            <div class="card-body p-4">
+              <form >
+                <div class="row">
+                  <div class="col-12">
+                    <div class="form-group">
+                      <label for="usr">Name:</label>
+                      <input type="text" class="form-control" id="usr" name="username">
+                    </div>
+
+                  </div>
+
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="sel1">Select Sector</label>
+                        <select class="form-control" id="sel1">
+                          <option>Private</option>
+                          <option>Public</option>
+                         
+                        </select>
+                    </div>
+
+                  </div>
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="sel1">Select Industry:</label>
+                      <select class="form-control" id="sel1">
+                        <option>Finance</option>
+                        <option>Mining</option>
+                        
+                      </select>
+                    </div>
+
+                  </div>
+
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="sel1">Contact Person:</label>
+                      <select class="form-control" id="sel1">
+                        <option>Rei Van</option>
+                        <option>Nyan Perry</option>
+                        
+                      </select>
+                    </div>
+
+                  </div>
+
+
+                  
+
+                  
+
+
+
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="usr">Password:</label>
+                      <input type="password" class="form-control" id="usr" name="username">
+                    </div>
+
+                  </div>
+                 
+                  <div class="col-6">
+                    <div class="form-group">
+                      <label for="usr"> Confirm Password:</label>
+                      <input type="password" class="form-control" id="usr" name="username">
+                    </div>
+
+                  </div>
+
+                 
+
+
+                 
+
+                </div>
+              <div class="col-12">
+                <br>
+                <button type="submit" class="btn btn-info float-right">Submit</button>
+              </div>
+    
+              </form>
+            </div>
+          </div>
+          
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}
