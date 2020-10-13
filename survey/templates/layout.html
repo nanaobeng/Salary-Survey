@@ -83,14 +83,14 @@
               </li>
               {% else %}
               <li class="nav-item">
-                <a class="nav-link" href="{{  url_for('users.login')}}" style="color:#fff">login</a>
+                <a class="nav-link" href="{{  url_for('users.login')}}" style="color:#fff">Login</a>
               </li>
              
               {% endif %}
               
               
             </ul>
-          
+          <br/>
           </nav>
           {% with messages = get_flashed_messages(with_categories=true) %}
             {%if messages %}
