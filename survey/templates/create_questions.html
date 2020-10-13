@@ -1,61 +1,385 @@
 {% extends "layout.html" %}
 
 {% block content %}
-
 <div class="container">
-    <div class="content">
-   
-
-   
-
-        <div id="survey_section" >
-    
-           
-    
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12 ">
-                        <div class="alert  back-widget-set row">
-                            
-                            
-                
-                            <div class="col-md-12 col-sm-12 col-xs-12">
-                            
-    
-                                <div class="row">
-                                    <div class="col-12 ">
-                                        <div class="alert ">
-                                            <div class="col-sm-12">
-                                                <span class="btn btn-info" id="add_question">Add Question</span>
-                                               
-                                            </div>
-        
-                                          
-                                            </div>
-                                            </div>
-                                </div>
+    <div class="row p-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row pt-4">
+                                <div class="col-12 " >
+                                  <div class="row">
+                                    <div class="col-12">
+                                      <div class="container">
                                
-                                   
-                                        
-                                    
-                               
-                                <div id="questions">
+                                        <ul class="progress-indicator">
+                                            <li class="basic_card ">
+                                                <span class="bubble"></span>
+                                                Base Salary. <br><small class="basic_status"></small>
+                                            </li>
+                                            <li class=" bonus_card ">
+                                                <span class="bubble"></span>
+                                                Bonus. <br><small class="bonus_status"></small>
+                                            </li>
+                                            <li class="benefit_card">
+                                                <span class="bubble"></span>
+                                                Benefit. <br><small class="benefit_status"></small>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+                                       
                                 
-    
+                                       
+                                       
+                                
+                                       
+                                        
+                                        
+                                        
+                                
+                                        
+                                        </div>
+                                    </div>
+                                     
+                        
+                        
+                        
+                                 
+                        
+                        
+                        
+                        
+                        
                                     
                                   </div>
-                                  <div>
-                                  
-                                  </div>
-                                 </div>
-                          </div>
-                      </div>
+                                 
+                               
+                              </div>
+                            </div>
+                            <div class="row pt-4 pb-4">
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body p-4">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <div class="row general_a" >
+                                                        <div class="col-6">
+                                                            <div class="card general_contact">
+                                                                <div class="card-body text-center">
+                                                                    <b>Contact Overview</b>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-6">
+                                                            <div class="card general_organization">
+                                                                <div class="card-body text-center">
+                                                                    <b>Organization Overview</b>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                    
+                                                    </div>
+                                                    <div class="row pt-4 pb-4">
+                                                        <div class="col-12">
+                                                            <div class="card">
+                                                                <div class="card=body p-4">
+                                                                    <form action="/action_page.php">
+                                                                        <div class="row general_information">
+                                                                            <div class="col-12">
+                                                                                <div class="row general_contact_view">
+                                                                                        <div class="col-12 ">
+                                                                                            <span class="btn btn-outline-info" id="add_question">Add Question</span>
+                                                                                        </div>
+                                                                                         <div class="col-12">
+                                                                                             <br/>
+                                                                                <div class="form-group">
+                                                                                    <label for="usr">Organization:</label>
+                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                  </div>
+    
+                                                                            </div>
+                                                                            
+                                                                                <div class="col-12">
+                                                                                    <div class="card">
+                                                                                        <div class="card-body">
+                                                                                            <div class="row">
+                                                                                            <div class="col-9">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Name:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+    
+                                                                                            <div class="col-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Title:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+    
+                                                                                            <div class="col-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Address:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+    
+                                                                                            <div class="col-4">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr"> Phone:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+                                                                                            <div class="col-4">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Email:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+                                                                                            <div class="col-4">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Date Completed:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+                                                                                            <div class="col-12" id="questions">
+
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <span id="general_information" class="btn btn-outline-info" onclick="switchView(this.id)">Next</span>
+                                                                                            </div>
+                                                                                        </div>
+
+                                                                                        
+                                                                                        
+    
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            
+                                                                           
+                                                                               
+                                                                           
+                                                                            </div>
+    
+    
+    
+                                                                            <div class="row general_organization_view" style="display:none">
+                                                                                <div class="col-12">
+                                                                                    <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <div class="row justify-content-center">
+                                                                                        <div class="col-12">
+                                                                                            Sector
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label" for="radio1">
+                                                                                                  <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Publicly listed financial
+                                                                                                  institution
+                                                                                                </label>
+                                                                                              </div>
+    
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label" for="radio2">
+                                                                                                  <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Publicly listed non-financial
+                                                                                                  institution
+                                                                                                </label>
+                                                                                              </div>
+    
+                                                                                        </div>
+    
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label">
+                                                                                                  <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3">Non publicly list financial
+                                                                                                  institution
+                                                                                                </label>
+                                                                                              </div>
+                                                                                            
+                                                                                        </div>
+    
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label">
+                                                                                                  <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option4"> Other
+                                                                                                  
+                                                                                                </label>
+                                                                                              </div>
+                                                                                            
+                                                                                        </div>
+                                                                                    
+                                                                                      
+                                                                                      
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <br/>
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">When was your organisation established/incorporated in Ghana?</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                
+    
+                                                                                <div class="col-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Registration Number</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                <div class="col-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Area of Operation</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                <div class="col-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Total number of employees</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="row ">
+                                                                                        <div class="col-12">
+                                                                                            Employment Type
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label" for="radio1">
+                                                                                                  <input type="radio" class="form-check-input" id="radio11" name="optradio1" value="option11" checked>
+                                                                                                  Full time
+                                                                                                </label>
+                                                                                              </div>
+    
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label" for="radio2">
+                                                                                                  <input type="radio" class="form-check-input" id="radio12" name="optradio1" value="option12">Temporary
+                                                                                                
+                                                                                                </label>
+                                                                                              </div>
+    
+                                                                                        </div>
+    
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label">
+                                                                                                  <input type="radio" class="form-check-input" id="radio13" name="optradio1" value="option13">Other
+                                                                                                  
+                                                                                                </label>
+                                                                                              </div>
+                                                                                            
+                                                                                        </div>
+    
+                                                                                       
+                                                                                    
+                                                                                      
+                                                                                      
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <br/>
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">No. of working hours in a week</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Can you describe your overtime policy? Eligibility, Payments, Approvals?</label>
+                                                                                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                                                      </div>
+        
+                                                                                </div>
+    
+                                                                                
+                                                                                
+                                                                                    
+                                                                                
+                                                                             
+                                                                                   <div class="col-12">
+                                                                                       <span id="general_organization" class="btn btn-outline-info" onclick="switchView(this.id)">Next ..</span>
+                                                                                   </div>
+                                                                             
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                                                                        </div>
+                                                                        </div>
+                                                                        
+                                                                       
+                                                                        
+                                                                      </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+    
+    
+                            
+    
+    
+    
+    
+    
+                            
+    
+    
+    
+    
+    
+    
+                        </div>
+                    </div>
                 </div>
+            </div>
         </div>
-       
-    
-    
-    
-      </div>
+    </div>
+</div>
+
+
+
+   
+
+   
+
     
     
     
@@ -112,6 +436,16 @@
             $("#question_"+after_special_character).append('<div class="container option_count mc'+after_special_character+'_'+option_count+'"><div class="row"><div class="input-group mb-3"><div class="input-group-prepend"><span class="input-group-text">Option</span></div><input type="text" class="form-control" placeholder="Username"></div><span class="material-icons" id="add_option_'+(parseInt(after_special_character))+'" onclick="add_option(this.id)">add_circle_outline</span></div></div>')
         }
     </script>
+    <script>
+        function switchView(id){
+            if(id == "general_information"){
+                $('.general_contact_view').css("display","none")
+                $('.general_organization_view').css("display","block")
+                $('.general_organization').css("background-color","blue")
+            }
     
-</div>
+        }
+    </script>
+    
+
 {% endblock content %}
