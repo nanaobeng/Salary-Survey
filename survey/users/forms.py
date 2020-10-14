@@ -13,7 +13,7 @@ class RegistrationForm(FlaskForm):
 
     role =  SelectField(
         'Role',
-        choices=[('admin', 'Admin'), ('user', 'User')] , validators=[DataRequired()]
+        choices=[('admin', 'Admin'), ('client', 'Client'), ('comparator', 'Comparator')] , validators=[DataRequired()]
     )
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
