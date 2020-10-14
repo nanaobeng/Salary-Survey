@@ -14,6 +14,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fontawesome.css')}}">
 <style>
   .list :hover {
     background-color: rgb(65, 124, 6);
@@ -33,66 +34,9 @@
             <title>Salary Survey</title>
         {% endif %}
     </head>
-    <body>
-      <div class="row">
-        <div class="col-12" style="height: 100px;background-color: black  ;">
-          <div class="row">
-            <div class="col-4">
-              <img class="img-fluid" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQLMxDOPAHR4DRiLt29InQaFCOH0nf9JiCDeQ&usqp=CAU" style="width:60%;height:100px" />
-            </div>
-          </div>
+    <body data-spy="scroll" data-target=".fixed-top">
+  
         
-        </div>
-      </div>
-        <nav class="navbar navbar-expand-sm " style="background-color: cornflowerblue;" >
-
-            <!-- Links -->
-            <ul class="navbar-nav">
-              {% if current_user.is_authenticated %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{  url_for('users.logout')}}" style="color:#fff">Logout</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{  url_for('main.index')}}" style="color:#fff">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{{  url_for('users.survey')}}" style="color:#fff">Survey</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" style="color:#fff">
-                  Reports
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="#">Survey Reports</a>
-                  <a class="dropdown-item" href="#">Audit Logs</a>
-                  
-                </div>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#"  style="color:#fff" data-toggle="dropdown">
-                  Setup
-                </a>
-                <div class="dropdown-menu">
-                  <a class="dropdown-item" href="{{  url_for('users.register')}}" style="color:cornflowerblue">User</a>
-                  <a class="dropdown-item" href="{{ url_for('users.create_client')}}" style="color:cornflowerblue">Client</a>
-                  <a class="dropdown-item"  href="{{ url_for('users.create_industry')}}" style="color:cornflowerblue">Industry</a>
-                  <a class="dropdown-item"   href="{{ url_for('users.create_sector')}}" style="color:cornflowerblue">Sector</a>
-                  <a class="dropdown-item"  href="{{ url_for('users.create_job')}}" style="color:cornflowerblue">Job Title</a>
-                  <a class="dropdown-item"  href="{{ url_for('users.questions')}}" style="color:cornflowerblue">Questions</a>
-                  
-                </div>
-              </li>
-              {% else %}
-              <li class="nav-item">
-                <a class="nav-link" href="{{  url_for('users.login')}}" style="color:#fff">Login</a>
-              </li>
-             
-              {% endif %}
-              
-              
-            </ul>
-          <br/>
-          </nav>
           {% with messages = get_flashed_messages(with_categories=true) %}
             {%if messages %}
             {% for category, message in messages %}
@@ -108,49 +52,17 @@
             {% endif %}
 
           {% endwith %}
-          <br/>
         {% block content %}{% endblock content%}
 <br/>
-        <div class="row text-center justify-content-center">
-          <div class="col-12 text-center justify-content-center" style="height: 200px;background-color: black ;color: white">
-            Footer Information
-          
-          </div>
-        </div>
+       
        <!--JavaScript at end of body for optimized loading-->
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script>
-          /* Navbar Scripts */
-        // jQuery to collapse the navbar on scroll
-          $(window).on('scroll load', function() {
-          if ($(".navbar").offset().top > 60) {
-            $(".fixed-top").addClass("top-nav-collapse");
-          } else {
-            $(".fixed-top").removeClass("top-nav-collapse");
-          }
-          });
-      
-        // jQuery for page scrolling feature - requires jQuery Easing plugin
-        $(function() {
-          $(document).on('click', 'a.page-scroll', function(event) {
-            var $anchor = $(this);
-            $('html, body').stop().animate({
-              scrollTop: $($anchor.attr('href')).offset().top
-            }, 600, 'easeInOutExpo');
-            event.preventDefault();
-          });
-        });
-      
-          // closes the responsive menu on menu item click
-          $(".navbar-nav li a").on("click", function(event) {
-          if (!$(this).parent().hasClass('dropdown'))
-              $(".navbar-collapse").collapse('hide');
-          });
-      </script>
+        <script href="{{ url_for('static', filename='js/jquery.easing.min.js')}}"></script>
+        <script href="{{ url_for('static', filename='js/jquery.magnific-popup.js')}}"></script>
         
    
       

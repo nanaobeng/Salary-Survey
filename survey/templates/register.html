@@ -2,6 +2,7 @@
 {% block content %}
 <div class="container">
 <form method="POST" action="">
+    <br/>
     {{ form.hidden_tag() }}
     <fieldset class="form-group">
         <legend class="border-bottom mb-4"> Create User</legend>
@@ -89,11 +90,6 @@
 
 
 </form>
-<div class="pt-3">
-    <small class="text-muted">
-        Already Have an Account? <a class="ml-2" href="{{ url_for('users.login') }}">Sign in</a>
 
-    </small>
-</div>
 </div>
 {% endblock content %}
