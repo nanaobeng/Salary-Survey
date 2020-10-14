@@ -89,6 +89,26 @@ class JobForm(FlaskForm):
         'Industry',
         choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
     )
+    area =  SelectField(
+        'Area of Operation',
+        choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
+    )
+   
+
+    submit = SubmitField('Submit')
+
+class AreaForm(FlaskForm):
+   
+    name = StringField('Title', validators=[DataRequired()])
+    sector =  SelectField(
+        'Sector',
+        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
+    )
+    industry =  SelectField(
+        'Industry',
+        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
+    )
+    
    
 
     submit = SubmitField('Submit')
@@ -97,7 +117,7 @@ class JobForm(FlaskForm):
 
 class ClientForm(FlaskForm):
    
-    name = StringField('Industry Name', validators=[DataRequired()])
+    name = StringField('Client Name', validators=[DataRequired()])
     sector =  SelectField(
         'Sector',
         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
@@ -105,6 +125,10 @@ class ClientForm(FlaskForm):
     industry =  SelectField(
         'Industry',
         choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
+    )
+    area =  SelectField(
+        'Area of Operation',
+        choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
     )
     mailing_building = StringField('Building', validators=[DataRequired()])
     mailing_street = StringField('Street', validators=[DataRequired()])

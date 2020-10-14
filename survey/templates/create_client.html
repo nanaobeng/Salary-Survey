@@ -118,7 +118,7 @@
                   <ul class="progress-indicator">
                     <li class="industry_card ">
                         <span class="bubble"></span>
-                        Industry Details. <br><small class="industry_status"></small>
+                        Company Details. <br><small class="industry_status"></small>
                     </li>
                     <li class=" mailing_card ">
                         <span class="bubble"></span>
@@ -161,7 +161,7 @@
                         
                     </div>
                     <div class="row">
-                    <div class="col-6">
+                    <div class="col-4">
                       <div class="form-group">
                         {{ form.sector.label(class="form-control-label") }}
             
@@ -180,7 +180,7 @@
                     </div>
 
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                       <div class="form-group">
                         {{ form.industry.label(class="form-control-label") }}
             
@@ -193,6 +193,25 @@
                         </div>
                         {% else %}
                         {{ form.industry(class="form-control form-control-lg") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.area.label(class="form-control-label") }}
+            
+                        {% if form.area.errors %}
+                        {{ form.area(class="form-control form-control-lg is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.area.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.area(class="form-control form-control-lg") }}
                         {% endif %}
             
                         

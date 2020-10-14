@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint
 from survey import db,bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm,AreaForm
 from survey.models import User
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -110,6 +110,11 @@ def create_sector():
 def create_job():
     form = JobForm()
     return render_template("create_job_title.html",form=form,title="Create Job Title")
+
+@users.route("/area_of_operation")
+def create_area():
+    form = AreaForm()
+    return render_template("operation_area.html",form=form,title="Create Area of Operation")
 
 
 @users.route("/create_industry")
