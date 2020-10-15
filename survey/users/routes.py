@@ -152,9 +152,13 @@ def survey_home():
 
 
 @users.route("/create_survey")
-
 def create_survey():
     return render_template("create_survey.html")
+
+@users.route("/add_comparator")
+
+def add_comparators():
+    return render_template("add_comparator.html")
 
 
 
