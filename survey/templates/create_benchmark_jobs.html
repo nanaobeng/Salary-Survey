@@ -1,0 +1,121 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="container p-4">
+    <div class="row p-4">
+        <div class="col-12">
+            <br>
+            <form action="/action_page.php">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="sel1">Salary Name:</label>
+                            <select class="form-control" id="sel1">
+                              <option>VanBush Insurance Ltd Salary Survey 2019</option>
+                              <option>2</option>
+                              
+                            </select>
+                          </div>
+
+                    </div>
+                    
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="sel1">Industry:</label>
+                            <select class="form-control" id="sel1">
+                              <option>Banking</option>
+                              <option>Legal</option>
+                              
+                            </select>
+                          </div>
+
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="sel1">Area of Operation:</label>
+                            <select class="form-control" id="sel1">
+                              <option>Insurance</option>
+                              <option>Legal</option>
+                              
+                            </select>
+                          </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="sel1">Job Title:</label>
+                            <select class="form-control" id="sel1">
+                              <option>Assistant Technology Manager</option>
+                              <option>Senior Finance Associate</option>
+                              
+                            </select>
+                          </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="sel1">Job Grade:</label>
+                            <select class="form-control" id="sel1">
+                              <option>Assistant  Manager</option>
+                              <option>Director</option>
+                              
+                            </select>
+                          </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="sel1">Reporting Relationship:</label>
+                            <select class="form-control" id="sel1">
+                              <option>Technology Director</option>
+                              <option>Finance Partner</option>
+                              
+                            </select>
+                          </div>
+
+                    </div>
+                   
+                  <div class="col-12">
+                    <div class="form-group">
+                        <label for="comment">Generic Job Description:</label>
+                        <textarea class="form-control" rows="3" id="comment"></textarea>
+                      </div>
+                  </div>
+
+
+                  <div class="col-12">
+                    <div class="form-group">
+                        <label for="comment">Key Duties and Responsibilities:</label>
+                        <textarea class="form-control" rows="3" id="comment"></textarea>
+                      </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group">
+                        <label for="comment">Financial Responsibilities:</label>
+                        <textarea class="form-control" rows="3" id="comment"></textarea>
+                      </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="form-group">
+                        <label for="comment">Technical Responsibilities:</label>
+                        <textarea class="form-control" rows="3" id="comment"></textarea>
+                      </div>
+                  </div>
+
+                  <div class="col-12">
+                    <div class="form-group">
+                        <label for="comment">Minimum Years of Experience:</label>
+                        <input type="text" value="2"/>
+                      </div>
+                  </div>
+                </div>
+               
+                <br/>
+                <button type="submit" class="btn btn-primary">Add</button>
+              </form>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}

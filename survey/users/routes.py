@@ -161,6 +161,17 @@ def add_comparators():
     return render_template("add_comparator.html")
 
 
+@users.route("/add_benchmark_jobs")
+
+def add_benchmark_job():
+    return render_template("create_benchmark_jobs.html")
+
+@users.route("/survey_history")
+
+def survey_history():
+    return render_template("survey_history.html")
+
+
 
 
 

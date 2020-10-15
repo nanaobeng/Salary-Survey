@@ -1,0 +1,171 @@
+{% extends "layout.html" %}
+{% block content %}
+<div class="container p-4">
+<div class="row justify-content-center p-4" >
+  <div class="col-4">
+    <div class="card">
+      <div class="card-body">
+        <br/>
+        <div class="row">
+          <div class="col-12 p-4">
+
+            <b>Filter By Financial Year</b>
+            <hr/>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">FY20
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">FY19
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">FY17
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+
+          </div>
+          <div class="col-12 p-4">
+
+            <b>Filter By client</b>
+            <hr/>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Suhum Bank
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">CCJitters
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Nissan Motors
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Cynergy Investment Group
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+
+          </div>
+          <div class="col-12 p-4">
+
+            <b>Filter By Stats</b>
+            <hr/>
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Completed
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Opened
+                  </label>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="form-check-inline">
+                  <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Closed
+                  </label>
+                </div>
+              </div>
+            </div>
+            
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+    <div class="col-8 card p-4">
+        <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>Survey Name</th>
+                <th>Fiscal Year</th>
+                <th>Survey Client</th>
+                <th>Status</th>
+                <th>Start Date</th>
+                <th>End Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Suhum Bank Salary Survey 2020</td>
+                <td>FY20</td>
+                <td>Suhum Bank </td>
+                <td>Completed</td>
+                <td>2/05/2020</td>
+                <td>15/05/2020</td>
+                
+              </tr>
+              <tr>
+                <td>CCJiter Salary Survey 2017</td>
+                <td>FY17</td>
+                <td>CCJitter </td>
+                <td>Completed</td>
+                <td>21/05/2017</td>
+                <td>5/08/2017</td>
+                
+              </tr>
+              <tr>
+                <td>Nissan Motors Salary Survey 2020</td>
+                <td>FY20</td>
+                <td>Nissan Motors </td>
+                <td>Opened</td>
+                <td>8/02/2020</td>
+                <td></td>
+                
+              </tr>
+
+              <tr>
+                <td>Cynergy Investment Group Salary Survey 2019</td>
+                <td>FY19</td>
+                <td>Cynergy Investment Group </td>
+                <td>Closed</td>
+                <td>29/08/2019</td>
+                <td></td>
+                
+              </tr>
+            </tbody>
+          </table>
+
+    </div>
+</div>
+
+</div>
+{% endblock content %}

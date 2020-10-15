@@ -4243,7 +4243,7 @@ input[type=button].btn-block {
     display: none;
   }
   .white_logo{
-    content:url("../assets/img/Deloitte-white.png") !important;
+    content:url("../img/Deloitte-white.png") !important;
     height: 30px !important;
   }
 }
