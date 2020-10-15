@@ -145,6 +145,12 @@ def questions():
     return render_template("create_questions.html",title="Set Questions")
 
 
+@users.route("/survey_actions")
+@login_required
+def survey_home():
+    return render_template("survey_dash.html")
+
+
 
 
 
