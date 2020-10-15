@@ -1,418 +1,90 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<style>
-    body{
-        background-color: #EAEDED
-    }
-
- .quick_nav:hover{
-   
-        border-color: cornflowerblue;
-    }
-</style>
-<div class="row">
-    <div class="col-12" style="height:30vh;background-color: cornflowerblue;">
-        <div class="row p-4">
-            <div class="col-12 text-center" style="color:#fff">
-                Search for Client
-
-            </div>
-
-            
-        </div>
-
-        <div class="row justify-content-center">
-            <div class="col-5 " style="color:#fff">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Client Name.....">
-                    <div class="input-group-append">
-                      <button class="btn btn-success" type="submit">Search</button>
-                    </div>
-                  </div>
-
-            </div>
-
-            
-        </div>
-
-
-       
-
-    </div>
-</div>
-<div class="container " >
+<div class="container p-4">
     <div class="row p-4">
-        <div class="col-12 p-4">
-            <div class="row">
-                <div class="col-12 text-center p-4">
-                    <span style="color:black">Select section you are interested in</span>
-
-                </div>
-
-            </div>
-
-            <div class="row">
-                <div class="col-12 text-center p-4">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="row ">
-                                <div class="col-4  " >
-                                    <div class="quick_nav card shadow-lg p-3 mb-5 bg-white rounded"  style="border-width: 3px;border-style: solid;">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12" >
-                                                <img class="img-fluid" src="https://cdn3.iconfinder.com/data/icons/redmoon-google/512/google_home-512.png" style="height:50px"  />
-                                            </div>
-                                            <div class="col-12 p-2 text-center">
-                                                Job Templates
-                                            </div>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-                                <div class="col-4  " >
-                                    <div class=" quick_nav card shadow-lg p-3 mb-5 bg-white rounded" style="border-width: 3px;border-style: solid;" >
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12" >
-                                                <img class="img-fluid" src="https://www.pinclipart.com/picdir/big/66-662356_report-vector-check-list-clipart.png" style="height:50px"  />
-                                            </div>
-                                            <div class="col-12 p-2 text-center">
-                                                Benchmark Jobs
-                                            </div>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-4  " >
-                                    <div class=" quick_nav card shadow-lg p-3 mb-5 bg-white rounded"  style="border-width: 3px;border-style: solid;">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12" >
-                                                <img class="img-fluid" src="https://cdn4.iconfinder.com/data/icons/business-bicolor-1/512/checklist-512.png" style="height:50px"  />
-                                            </div>
-                                            <div class="col-12 p-2 text-center">
-                                               Survey History
-                                            </div>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="col-4  " >
-                                    <div class=" quick_nav card shadow-lg p-3 mb-5 bg-white rounded"  style="border-width: 3px;border-style: solid;">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12" >
-                                                <img class="img-fluid" src="https://cdn4.iconfinder.com/data/icons/business-bicolor-1/512/checklist-512.png" style="height:50px"  />
-                                            </div>
-                                            <div class="col-12 p-2 text-center">
-                                               Comparator Jobs
-                                            </div>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="col-4  " >
-                                    <div class="quick_nav card shadow-lg p-3 mb-5 bg-white rounded"  style="border-width: 3px;border-style: solid;">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12" >
-                                                <img class="img-fluid" src="https://webstockreview.net/images/group-clipart-group-activity-10.png" style="height:50px"  />
-                                            </div>
-                                            <div class="col-12 p-2 text-center">
-                                                Qualitative Data
-                                            </div>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-                                <div class="col-4  " >
-                                    <div class="quick_nav card shadow-lg p-3 mb-5 bg-white rounded" style="border-width: 3px;border-style: solid;" >
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-12" >
-                                                <img class="img-fluid" src="https://www.iconfinder.com/data/icons/gray-user-toolbar/512/oficcial-512.png" style="height:50px"  />
-                                            </div>
-                                            <div class="col-12 p-2 text-center">
-                                                Comparators
-                                            </div>
-                                            </div>
-                                          
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-                              
-        
-                              
-                            </div>
-                </div>
-                    </div>
-
-                </div>
-
-            </div>
-   
-        </div>
-    </div>
- 
-</div>
-<div class="container" style="display:none">
-
-    <div class="col-12">
-        <div class="row ">
-            <div class="col-6 " >
-                <div class="card " style="height:120px;background-color: rgb(0, 172, 14);" >
-                    <div class="card-body">
-               <div class="row justify-content-center">
-                   <div class="col-6 text-center">
-                       <div class="row">
-                           <div class="col-12">
-                            <span class="material-icons" style="font-size: 50px;">
-                                alarm_on
-                                </span>
-
-                           </div>
-                           <div class="col-12">
-                            <b>5 uncompleted Surveys</b>
-                               
-                        </div>
-                       </div>
-                    
-                        
-                   </div>
-                   
-               </div>
-                        </div>
-                        
-                </div>
-            </div>
-
-            <div class="col-6 " >
-                <div class="card " style="height:120px;">
-                    <div class="card-body">
-                        <div class="row justify-content-center">
-                            <div class="col-6 text-center">
-                                <div class="row">
-                                    <div class="col-12">
-                                     <span class="material-icons" style="font-size: 50px;">
-                                         analytics
-                                         </span>
-         
-                                    </div>
-                                    <div class="col-12">
-                                     <b>12 completed Surveys</b>
-                                        
-                                 </div>
-                                
-                                </div>
-                             
-                                 
-                            </div>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </div>
-
-         
-        </div>
-    </div>
-    <div class="row">
         <div class="col-12">
-            <br/>
-            <div class="row">
-            <div class="col-6">
-                
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class=" col-12 text-center">
-                                <b><u>Procurement Officer Base Salary Analysis</u></b>
-                            </div>
-                        </div>
-                        <canvas id="myChart" width="500" height="350"></canvas>
+            <br>
+            <form action="/action_page.php">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="usr">Survey Code:</label>
+                            <input type="text" class="form-control" id="usr" name="username">
+                          </div>
+
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="usr">Fiscal Year:</label>
+                            <input type="text" class="form-control" id="usr" name="username">
+                          </div>
+
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="usr">Survey Name:</label>
+                            <input type="text" class="form-control" id="usr" name="username">
+                          </div>
+
+                    </div>
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="usr">Client Full Name:</label>
+                            <input type="text" class="form-control" id="usr" name="username">
+                          </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="usr">Client Short Name:</label>
+                            <input type="text" class="form-control" id="usr" name="username">
+                          </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="sel1">Industry:</label>
+                            <select class="form-control" id="sel1">
+                              <option>1</option>
+                              <option>2</option>
+                              
+                            </select>
+                          </div>
+
+                    </div>
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="sel1">Area of Operation:</label>
+                            <select class="form-control" id="sel1">
+                              <option>1</option>
+                              <option>2</option>
+                            
+                            </select>
+                          </div>
+
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="usr">Start Date:</label>
+                            <input type="text" class="form-control" id="usr" name="username">
+                          </div>
+
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="usr">End Date:</label>
+                            <input type="text" class="form-control" id="usr" name="username">
+                          </div>
 
                     </div>
                 </div>
-                
-
-            </div>
-            <div class="col-6">
-                
-                <div class="card">
-                    <div class="card-body">
-                        <div class="row">
-                            <div class=" col-12 text-center">
-                                <b><u>Big 4 Salary Comparison</u></b>
-                            </div>
-                        </div>
-                        <canvas id="myChartt" width="500" height="350"></canvas>
-
-                    </div>
-                </div>
-                
-
-            </div>
+               
+               
+                <button type="submit" class="btn btn-primary">Create</button>
+              </form>
         </div>
-        </div>
+
     </div>
 </div>
-
-
-<script>
-    var ctx = document.getElementById("myChart");
-
-var data = {
-    labels: ["Kempinski", "Movenpick", "Erata", "Alisa", "Novotel", "Mensvic", "Nobel House"],
-    datasets: [
-        {
-            label: "Base Salary (GHS)",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
-            pointBackgroundColor: "#fff",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
-            pointHoverBorderColor: "rgba(220,220,220,1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [6500, 5900, 8000, 8100, 5006, 5405, 4000],
-        }
-    ]
-};
-
-var myLineChart = new Chart(ctx, {
-    type: 'line',
-    data: data,
-});
-</script>
-
-<script>
-    aDatasets1 = [6050,5009,8000,8010];  
-aDatasets2 = [2000,3000,4000,5000];
-aDatasets3 = [3400,2024,2355,6335];
-var ctx = document.getElementById("myChartt");
-var myChart = new Chart(ctx, {
-    type: 'bar',
-    data: {
-        labels: ["EY", "Deloitte", "KPMG", "PwC"],
-        
-        datasets: [ {
-              label: 'Associate 1',
-              fill:false,
-            data: aDatasets1,
-            backgroundColor: '#E91E63',
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-            ],
-            borderWidth: 1
-        },
-        
-        {
-            label: 'Assistant Manager',
-              fill:false,
-            data: aDatasets2,
-            backgroundColor: 
-                '#3F51B5'
-            ,
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-            ],
-            borderWidth: 1
-        },
-        {
-            label: [
-            'Partner'
-            ],
-            data: aDatasets3,
-              fill:false,
-           backgroundColor:  '#004D40',
-            borderColor: [
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-                'rgba(255,99,132,1)',
-            ],
-            borderWidth: 1
-        }
-        ]
-    },
-    options: {
-        scales: {
-            yAxes: [{
-                ticks: {
-                    beginAtZero:true
-                }
-            }]
-        },
-        title: {
-            display: true,
-            text: 'Updated June 2020 (GHS)'
-        },
-        responsive: true,
-        
-       tooltips: {
-            callbacks: {
-                labelColor: function(tooltipItem, chart) {
-                    return {
-                        borderColor: 'rgb(255, 0, 20)',
-                        backgroundColor: 'rgb(255,20, 0)'
-                    }
-                }
-            }
-        },
-        legend: {
-            labels: {
-                // This more specific font property overrides the global property
-                fontColor: 'red',
-               
-            }
-        }
-    }
-});
-</script>
 {% endblock content %}

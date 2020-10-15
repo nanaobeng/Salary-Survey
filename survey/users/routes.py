@@ -151,6 +151,12 @@ def survey_home():
     return render_template("survey_dash.html")
 
 
+@users.route("/create_survey")
+
+def create_survey():
+    return render_template("create_survey.html")
+
+
 
 
 
