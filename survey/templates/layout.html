@@ -13,7 +13,11 @@
 <!-- Compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css')}}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/landing.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/istyles.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/font-1.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/font-2.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.min.css')}}">
 <style>
   .list :hover {
     background-color: rgb(65, 124, 6);
@@ -124,7 +128,15 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript"
+        src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+        <script type="text/javascript"
+        src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+        <script type="text/javascript"
+        src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        
         <script>
+          
           /* Navbar Scripts */
         // jQuery to collapse the navbar on scroll
           $(window).on('scroll load', function() {
