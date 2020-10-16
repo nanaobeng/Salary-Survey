@@ -61,12 +61,13 @@ article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
 body {
   margin: 0;
   font-family: "Merriweather", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
   text-align: left;
   background-color: #fff;
+  min-height: 100%;
 }
 
 [tabindex="-1"]:focus:not(:focus-visible) {
@@ -164,7 +165,7 @@ a {
   background-color: transparent;
 }
 a:hover {
-  color: #d6370c;
+  color: #0f330a;
   text-decoration: underline;
 }
 
@@ -1995,7 +1996,7 @@ pre code {
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
@@ -2097,7 +2098,7 @@ select.form-control:focus::-ms-value {
   width: 100%;
   padding: 0.375rem 0;
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.5;
   color: #212529;
   background-color: transparent;
@@ -2440,7 +2441,7 @@ textarea.form-control {
   background-color: transparent;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 14px;
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
@@ -3016,11 +3017,11 @@ input[type=button].btn-block {
   min-width: 10rem;
   padding: 0.5rem 0;
   margin: 0.125rem 0 0;
-  font-size: 1rem;
+  font-size: 14px;
   color: #212529;
   text-align: left;
   list-style: none;
-  background-color: #fff;
+  background-color: rgb(43, 143, 59);
   background-clip: padding-box;
   border: 1px solid rgba(0, 0, 0, 0.15);
   border-radius: 0.25rem;
@@ -3174,7 +3175,7 @@ input[type=button].btn-block {
   padding: 0.25rem 1.5rem;
   clear: both;
   font-weight: 400;
-  color: #212529;
+  color: #ffffff;
   text-align: inherit;
   white-space: nowrap;
   background-color: transparent;
@@ -3418,7 +3419,7 @@ input[type=button].btn-block {
   align-items: center;
   padding: 0.375rem 0.75rem;
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
@@ -3629,7 +3630,7 @@ input[type=button].btn-block {
   width: 100%;
   height: calc(1.5em + 0.75rem + 2px);
   padding: 0.375rem 1.75rem 0.375rem 0.75rem;
-  font-size: 1rem;
+  font-size: 14px;
   font-weight: 400;
   line-height: 1.5;
   color: #495057;
@@ -3908,6 +3909,7 @@ input[type=button].btn-block {
 .nav-link {
   display: block;
   padding: 0.5rem 1rem;
+  cursor: pointer;
 }
 .nav-link:hover, .nav-link:focus {
   text-decoration: none;
@@ -4069,7 +4071,7 @@ input[type=button].btn-block {
     padding-left: 0;
   }
   .white_logo{
-    content:url("../img/Deloitte-black.png") !important;
+    content:url("../assets/img/Deloitte-black.png") !important;
     height: 30px !important;
   }
 }
@@ -4104,7 +4106,7 @@ input[type=button].btn-block {
     display: none;
   }
   .white_logo{
-    content:url("../img/Deloitte-black.png") !important;
+    content:url("../assets/img/Deloitte-black.png") !important;
     height: 30px !important;
   }
   
@@ -4151,7 +4153,7 @@ input[type=button].btn-block {
     display: none;
   }
   .white_logo{
-    content:url("../img/Deloitte-black.png") !important;
+    content:url("../assets/img/Deloitte-black.png") !important;
     height: 30px !important;
   }
 }
@@ -4197,7 +4199,7 @@ input[type=button].btn-block {
     display: none;
   }
   .white_logo{
-    content:url("../img/Deloitte-white.png") !important;
+    content:url("../assets/img/Deloitte-white.png") !important;
     height: 30px !important;
   }
 }
@@ -4243,7 +4245,7 @@ input[type=button].btn-block {
     display: none;
   }
   .white_logo{
-    content:url("../img/Deloitte-white.png") !important;
+    content:url("../assets/img/Deloitte-white.png") !important;
     height: 30px !important;
   }
 }
@@ -5832,7 +5834,7 @@ a.close.disabled {
 .popover-header {
   padding: 0.5rem 0.75rem;
   margin-bottom: 0;
-  font-size: 1rem;
+  font-size: 14px;
   background-color: #f7f7f7;
   border-bottom: 1px solid #ebebeb;
   border-top-left-radius: calc(0.3rem - 1px);
@@ -10112,12 +10114,79 @@ hr.light {
   #mainNav.navbar-scrolled .navbar-nav .nav-item .nav-link:hover {
     color: rgb(134, 242, 0);
   }
+  
 }
+
+
+
+#mainNav-user {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  background-color: #343a40 ;
+  transition: background-color 0.2s ease;
+}
+#mainNav-user .navbar-brand {
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  color: #212529;
+}
+#mainNav-user .navbar-nav .nav-item .nav-link {
+  color: #ffffff;
+  font-family: "Merriweather Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.75rem 0;
+}
+#mainNav-user .navbar-nav .nav-item .nav-link:hover, #mainNav-user .navbar-nav .nav-item .nav-link:active {
+  color: rgb(134, 242, 0);
+}
+#mainNav-user .navbar-nav .nav-item .nav-link.active {
+  color: rgb(134, 242, 0) !important;
+}
+@media (min-width: 992px) {
+  #mainNav-user {
+    box-shadow: none;
+    background-color: transparent;
+  }
+  #mainNav-user .navbar-brand {
+    color: rgb(252, 252, 252);
+  }
+  #mainNav-user .navbar-brand:hover {
+    color: #fff;
+  }
+  #mainNav-user .navbar-nav .nav-item .nav-link {
+    color: rgb(255, 255, 255);
+    padding: 0 1rem;
+  }
+  #mainNav-user .navbar-nav .nav-item .nav-link:hover {
+    color: #fff;
+  }
+  #mainNav-user .navbar-nav .nav-item:last-child .nav-link {
+    padding-right: 0;
+  }
+  #mainNav-user.navbar-scrolled {
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    background-color: #343a40 ;
+  }
+  #mainNav-user.navbar-scrolled .navbar-brand {
+    color: #ffffff;
+  }
+  #mainNav-user.navbar-scrolled .navbar-brand:hover {
+    color: rgb(134, 242, 0);
+  }
+  #mainNav-user.navbar-scrolled .navbar-nav .nav-item .nav-link {
+    color: #ffffff;
+  }
+  #mainNav-user.navbar-scrolled .navbar-nav .nav-item .nav-link:hover {
+    color: rgb(134, 242, 0);
+  }
+  
+}
+
 
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(to bottom, rgba(66, 84, 92, 0.8) 0%, rgba(66, 90, 92, 0.8) 100%), url("../assets/img/home.jpg");
+  background: linear-gradient(to bottom, rgba(66, 84, 92, 0.8) 0%, rgba(66, 90, 92, 0.8) 100%), url("{{url_for('static', filename='img/home.jpg')}}");
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -10150,13 +10219,33 @@ header.masthead h1 {
   color: rgba(255, 255, 255, 0.75);
 }
 
-.black_logo{
+/* .black_logo{
   content:url("../assets/img/Deloitte-black.png");
   height: 30px !important;
 }
 
 .white_logo{
   content:url("../assets/img/Deloitte-white.png");
+  height: 30px !important;
+} */
+
+.black_logo{
+  content:url("{{url_for('static', filename='img/Deloitte-white.png')}}");
+  height: 30px !important;
+}
+
+.white_logo{
+  content:url("{{url_for('static', filename='img/Deloitte-white.png')}}");
+  height: 30px !important;
+}
+
+/* Set logo for main application navigation */
+.white_logo_{
+  content:url("{{url_for('static', filename='img/Deloitte-white.png')}}");
+  height: 30px !important;
+}
+
+.login_logo{
   height: 30px !important;
 }
 
@@ -10167,3 +10256,72 @@ header.masthead h1 {
   padding-left: 20px; 
   color:rgb(113, 204, 2);
 }
+
+.main-section{
+  position: inherit;
+  min-height: 100%;
+}
+
+
+.card-icon{
+  border-radius: 50px;
+  width: 40px;
+  height: 40px;
+  font-size: 25px;
+  vertical-align: middle;
+  text-align: center;
+  color: black;
+  float: left;
+  background-color: #95fc4173;
+  border: 3px solid #57fc41; 
+
+}
+
+.survey-card-header{
+  font-size: 23px;
+  float: right;
+  vertical-align: middle;
+  height: 100%;
+}
+
+
+.login{
+  width: 100%;
+  height: 100vh;
+  color: #fff;
+  background: linear-gradient(-45deg, #d5dadb, #0d0e0d);
+  background-size: 400% 400%;
+  position: relative;
+  animation: change 10s ease-in-out infinite;
+}
+
+.login-main {
+  background-color: #fffffff6;
+  width: 400px;
+  height: 400px;
+  margin: 7em auto;
+  border-radius: 1.5em;
+  box-shadow: 0px 11px 35px 2px rgba(0, 0, 0, 0.14);
+}
+
+.login-header{
+  font-size: 26px;
+  text-align: center;
+  padding: 20px;
+  font-weight: bold;
+  color: rgb(134, 242, 0);
+}
+
+.login-app-name{
+  color: rgb(113, 204, 2);
+  font-size: 30px;
+  font-weight: bold;
+  float: right;
+}
+
+.btn-max{
+  width: 100%;
+}
+
+
+
