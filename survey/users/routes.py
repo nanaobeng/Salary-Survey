@@ -172,6 +172,20 @@ def survey_history():
     return render_template("survey_history.html")
 
 
+@users.route("/benchmark_jobs")
+
+def benchmark_jobs():
+    return render_template("benchmark_jobs.html")@users.route("/benchmark_jobs")
+
+
+@users.route("/comparators")
+def comparators():
+    return render_template("comparators.html")
+
+
+
+
+
 
 
 
