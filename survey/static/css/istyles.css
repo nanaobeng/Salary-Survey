@@ -4068,10 +4068,10 @@ input[type=button].btn-block {
     padding-right: 0;
     padding-left: 0;
   }
-  .white_logo{
+  /* .white_logo{
     content:url("../assets/img/Deloitte-black.png") !important;
     height: 30px !important;
-  }
+  } */
 }
 @media (min-width: 576px) {
   .navbar-expand-sm {
@@ -4103,10 +4103,10 @@ input[type=button].btn-block {
   .navbar-expand-sm .navbar-toggler {
     display: none;
   }
-  .white_logo{
+  /* .white_logo{
     content:url("../assets/img/Deloitte-black.png") !important;
     height: 30px !important;
-  }
+  } */
   
 }
 @media (max-width: 767.98px) {
@@ -4150,10 +4150,10 @@ input[type=button].btn-block {
   .navbar-expand-md .navbar-toggler {
     display: none;
   }
-  .white_logo{
+  /* .white_logo{
     content:url("../assets/img/Deloitte-black.png") !important;
     height: 30px !important;
-  }
+  } */
 }
 @media (max-width: 991.98px) {
   .navbar-expand-lg > .container,
@@ -4196,10 +4196,10 @@ input[type=button].btn-block {
   .navbar-expand-lg .navbar-toggler {
     display: none;
   }
-  .white_logo{
+  /* .white_logo{
     content:url("../assets/img/Deloitte-white.png") !important;
     height: 30px !important;
-  }
+  } */
 }
 @media (max-width: 1199.98px) {
   .navbar-expand-xl > .container,
@@ -4242,10 +4242,10 @@ input[type=button].btn-block {
   .navbar-expand-xl .navbar-toggler {
     display: none;
   }
-  .white_logo{
+  /* .white_logo{
     content:url("../assets/img/Deloitte-white.png") !important;
     height: 30px !important;
-  }
+  } */
 }
 .navbar-expand {
   flex-flow: row nowrap;
@@ -10117,7 +10117,7 @@ hr.light {
 header.masthead {
   padding-top: 10rem;
   padding-bottom: calc(10rem - 4.5rem);
-  background: linear-gradient(to bottom, rgba(66, 84, 92, 0.8) 0%, rgba(66, 90, 92, 0.8) 100%), url("../assets/img/home.jpg");
+  /* background: linear-gradient(to bottom, rgba(66, 84, 92, 0.8) 0%, rgba(66, 90, 92, 0.8) 100%), url("../assets/img/home.jpg"); */
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -10150,15 +10150,15 @@ header.masthead h1 {
   color: rgba(255, 255, 255, 0.75);
 }
 
-.black_logo{
+/* .black_logo{
   content:url("../assets/img/Deloitte-black.png");
   height: 30px !important;
-}
+} */
 
-.white_logo{
+/* .white_logo{
   content:url("../assets/img/Deloitte-white.png");
   height: 30px !important;
-}
+} */
 
 .navbar-title{
   margin-left: 20px; 

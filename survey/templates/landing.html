@@ -20,6 +20,52 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.min.css')}}">
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+
+        <!-- this style is here because jinja refernce to images dows not work in external css files -->
+        <style>
+            .masthead{
+                background: linear-gradient(to bottom, rgba(66, 84, 92, 0.8) 0%, rgba(66, 90, 92, 0.8) 100%), url("{{ url_for('static', filename='img/home.jpg')}} ");
+            }
+            .black_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+    
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-white.png')}}");
+                height: 30px !important;
+            }
+            @media (max-width: 575.98px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+            }
+            @media (min-width: 576px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+            }
+            @media (min-width: 768px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+            }
+            @media (min-width: 992px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+            }
+            @media (min-width: 1200px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+            }
+            </style>
     </head>
     <body id="page-top">
         <!-- Navigation-->
@@ -44,6 +90,7 @@
                 </div>
             </div>
         </nav>
+       
         <!-- Masthead-->
         <header class="masthead">
             <div class="container h-100">

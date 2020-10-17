@@ -1,18 +1,38 @@
-{% extends "layout.html" %}
-{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Deloitte Salary Survey</title>
+        <!-- Favicon-->
 
-
-
-<section class="login">
+        <link rel="icon"  type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico')}}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+  
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-1.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-2.css')}}">
+        <!-- Third party plugin CSS-->
+     
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.min.css')}}">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+    </head>
+<body class="login">
+    
+<section >
     <div class="container pt-4 " >
-        
+        <img src="{{ url_for('static', filename='img/Deloitte-white.png')}}" alt="Deloitte" class="login_logo">
         <span class="login-app-name">
             Salary Survey
         </span>
     </div>
     
     <div class="container">
-        <div class="login-main">
+        <div class="login-main bg-white">
             <p class="login-header mb-0">Sign in</p>
 
             <form method="POST" action="">
@@ -31,7 +51,7 @@
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
+                        {{ form.email(class="form-control form-control") }}
                         {% endif %}
                     </div>
                 </div>
@@ -43,14 +63,14 @@
                        
             
                         {% if form.password.errors %}
-                        {{ form.password(class="form-control form-control-lg is-invalid")}}
+                        {{ form.password(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.password.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.password(class="form-control form-control-lg") }}
+                        {{ form.password(class="form-control form-control") }}
                         {% endif %}
                     </div>
                 </div>
@@ -135,4 +155,6 @@
 </form> -->
 
 </div>
-{% endblock content %}
+</body>
+
+</html>
