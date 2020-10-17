@@ -182,7 +182,14 @@ def benchmark_jobs():
 def comparators():
     return render_template("comparators.html")
 
+# this route will have to be modified
+@users.route("/survey/view_survey")
+def view_survey():
+    return render_template("view_survey.html")
 
+@users.route("/my_surveys")
+def my_surveys():
+    return render_template("my_surveys.html")
 
 
 
