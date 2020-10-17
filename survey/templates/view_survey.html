@@ -12,10 +12,12 @@ Survey Title 1
     <div class="col-lg-6 col-md-12 text-center">
         <center>
             <div class="survey-area">
-                <img src="{{ url_for('static', filename='img/quantitative.png')}}" alt="Quantitative Survey" class="survey-area-image"/>
-                <div class="fadedbox">
-                  <div class="title text"> The quantitative data description comes here </div>
-                </div>
+                <a href="{{  url_for('users.survey')}}">
+                    <img src="{{ url_for('static', filename='img/quantitative.png')}}" alt="Quantitative Survey" class="survey-area-image"/>
+                    <div class="fadedbox">
+                      <div class="title text"> The quantitative data description comes here </div>
+                    </div>
+                </a>
               </div>
               <div class="survey-area-foot">
                   Quantitative Survey
@@ -26,10 +28,13 @@ Survey Title 1
         <div class="col-lg-6 col-md-12 text-center">
             <center>
             <div class="survey-area">
-                <img src="{{ url_for('static', filename='img/qualitative.png')}}" alt="Qualitative Survey" class="survey-area-image"/>
-                <div class="fadedbox">
-                  <div class="title text"> The qualitative data description comes here </div>
-                </div>
+
+                <a href="{{  url_for('users.survey')}}">
+                    <img src="{{ url_for('static', filename='img/qualitative.png')}}" alt="Qualitative Survey" class="survey-area-image"/>
+                    <div class="fadedbox">
+                      <div class="title text"> The qualitative data description comes here </div>
+                    </div>
+                </a>
               </div>
               <div class="survey-area-foot">
                 Qualitative Survey
@@ -52,7 +57,19 @@ Survey Title 1
           </button>
         </div>
         <div class="modal-body">
-          <p>Instruction to survey comparators</p>
+            <p>
+                <b>Welcome to the Deloitte Salary Survey </b><br>
+                This survey is tailored at helping organizations gain an understand of compensations paid to employees.
+                This survey entails the following 2 sections:                                                         
+                  <ul>
+                      <li>
+                          Quantitative Survey where jobs in your organization would be matched against the benchmark jobs  
+                      </li>
+                      <li>
+                          Quanlitative Survey which collects information about employee practices and policies
+                      </li>
+                  </ul>
+            </p>
         </div>
         <div class="modal-footer">
         
@@ -127,7 +144,7 @@ transform: translateY(0px);
 <script type="text/javascript">
 //show survey instruction on page load
     $(window).on('load',function(){
-        $('#instruction').modal('showx');
+        $('#instruction').modal('show');
     });
 </script>
 {% endblock content %}
