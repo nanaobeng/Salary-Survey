@@ -1,79 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
-<script>
-    $(document).ready(function(){
-      $( ".basic_card" ).addClass( "active" );
-       $(".bonus").css("display", "none");
-       $(".benefit_vehicle").css("display", "none");
-       $(".benefit_health").css("display", "none");
-       $(".benefit_personal").css("display", "none");
-       $(".allowance").css("display", "none");
-       $(".allowance_vehicle").css("display", "none");
-       $(".allowance_health").css("display", "none");
-       $(".allowance_personal").css("display", "none");
-       $('.basic_status').html("(active)")
-       $('.submit_button').css("display","none")
-       
-
-    });
 
 </script>
-<div class="container intro">
 
-  <div class="row p-4">
-    <div class="col-12 p-4">
-      <div class="row p-2 justify-content-center">
-        <div class="col-8 card">
-
-        <div class="row p-4">
-          <div class="col-12 text-center">
-            <img class="img-fluid" src="https://cdn.pixabay.com/photo/2017/05/15/23/48/survey-2316468_960_720.png" style="height:100px;width:100px"/>
-
-          </div>
-        </div>
-
-        <div class="row p-1">
-          <div class="col-12 text-center" style="color:#1E7BD6"> 
-         <b class="text-center">Welcome to the Deloitte Salary Survey </b>
-
-          </div>
-        </div>
-
-        <div class="row p-2">
-          <div class="col-12 " style="color:#1E7BD6"> 
-            This survey is tailored at helping organizations gain an understand of compensations paid to employees.
-
-          </div>
-        </div>
-
-        <div class="row ">
-          <div class="col-12 " style="color:#1E7BD6"> 
-            <b>This survey entails the following 2 sections: </b>                          
-              <ul>                             
-              <li>Quantitative Survey where jobs in your organization would be matched against the benchmark jobs</li>  
-              <li>Quanlitative Survey which collects information about employee practices and policies</li>                           
-             </ul>
-
-          </div>
-        </div>
-
-
-        <div class="row justify-content-center">
-          <div class="col-6 p-4 justify-content-center text-center">
-            <span id="main" class="btn btn-outline-info" onclick="view(this.id)">Start Survey</span>
-          </div>
-        </div>
-
-
-       
-        </div>
-      </div>
-
-    </div>
-  </div>
-</div>
-<div class="container qualitative" style="display:none">
+<div class="container qualitative" >
   <div class="row p-4">
       <div class="col-12">
           <div class="card">
@@ -87,17 +18,17 @@
                                     <div class="container">
                              
                                       <ul class="progress-indicator">
-                                          <li class="basic_card ">
+                                          <li class="gi_card ">
                                               <span class="bubble"></span>
-                                              Base Salary. <br><small class="basic_status"></small>
+                                              General Information. <br><small class="gi_status"></small>
                                           </li>
-                                          <li class=" bonus_card ">
+                                          <li class=" dc_card ">
                                               <span class="bubble"></span>
-                                              Bonus. <br><small class="bonus_status"></small>
+                                              DIRECT COMPENSATION. <br><small class="dc_status"></small>
                                           </li>
-                                          <li class="benefit_card">
+                                          <li class="bonus_card">
                                               <span class="bubble"></span>
-                                              Benefit. <br><small class="benefit_status"></small>
+                                              BONUS OR INCENTIVE PLANS. <br><small class="bonus_status"></small>
                                           </li>
                                           
                                           
@@ -131,37 +62,61 @@
                              
                             </div>
                           </div>
-                          <div class="row pt-4 pb-4">
+                          <div class="row pt-4 pb-4" >
                               <div class="col-12">
                                   <div class="card">
                                       <div class="card-body p-4">
-                                          <div class="row">
+                                          <div class="row" >
                                               <div class="col-12">
-                                                  <div class="row general_a" >
-                                                      <div class="col-6">
-                                                          <div class="card general_contact">
-                                                              <div class="card-body text-center">
-                                                                  <b>Contact Overview</b>
-                                                              </div>
-                                                          </div>
-                                                      </div>
-                                                      <div class="col-6">
-                                                          <div class="card general_organization">
-                                                              <div class="card-body text-center">
-                                                                  <b>Organization Overview</b>
-                                                              </div>
-                                                          </div>
-                                                      </div>
+                                                <div class="row ga_wizards">
+                                                  <div class="col-12">
+                                                    <div class="container">
+                                             
+                                                      <ul class="progress-indicator">
+                                                          <li class="co_card ">
+                                                              <span class="bubble"></span>
+                                                              Contact Overview. <br><small class="co_status"></small>
+                                                          </li>
+                                                          <li class=" oo_card ">
+                                                              <span class="bubble"></span>
+                                                              Organization Overview. <br><small class="oo_status"></small>
+                                                          </li>
+                                                          
+                                                          
+                                                          
+                                                      </ul>
+                                                     
+                                              
+                                                     
+                                                     
+                                              
+                                                     
                                                       
-                                                  
+                                                      
+                                                      
+                                              
+                                                      
+                                                      </div>
                                                   </div>
+                                                   
+                                      
+                                      
+                                      
+                                               
+                                      
+                                      
+                                      
+                                      
+                                      
+                                                  
+                                                </div>
                                                   <div class="row pt-4 pb-4">
                                                       <div class="col-12">
-                                                          <div class="card">
-                                                              <div class="card=body p-4">
-                                                                  <form action="/action_page.php">
-                                                                      <div class="row general_information">
-                                                                          <div class="col-12">
+                                                          <div >
+                                                              <div class=" p-4">
+                                                                  <form >
+                                                                      <div class="row "  >
+                                                                          <div class="col-12 general_information" >
                                                                               <div class="row general_contact_view">
                                                                                       
                                                                                        <div class="col-12">
@@ -174,8 +129,8 @@
                                                                           </div>
                                                                           
                                                                               <div class="col-12">
-                                                                                  <div class="card">
-                                                                                      <div class="card-body">
+                                                                                  <div >
+                                                                                      <div >
                                                                                           <div class="row">
                                                                                           <div class="col-9">
                                                                                               <div class="form-group">
@@ -394,6 +349,385 @@
                                                                               </div>
                                                                           </div>
                                                                       </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+
+
+                                                                      <div class="row direct_compensation pt-1" style="display:none" >
+
+                                                                        <div class="col-12">
+                                                                          <div class="row ">
+                                                                              <div class="col-12">
+                                                                                Does your organisation have a formal salary structure for staff ?
+                                                                              </div>
+                                                                              <div class="col-3">
+                                                                                  <div class="form-check">
+                                                                                      <label class="form-check-label" for="radio1">
+                                                                                        <input type="radio" class="form-check-input" id="radio111" name="optradio1a" value="option11" checked>
+                                                                                        Yes
+                                                                                      </label>
+                                                                                    </div>
+
+                                                                              </div>
+                                                                              <div class="col-3">
+                                                                                  <div class="form-check">
+                                                                                      <label class="form-check-label" for="radio2">
+                                                                                        <input type="radio" class="form-check-input" id="radio121" name="optradio1a" value="option12">No
+                                                                                      
+                                                                                      </label>
+                                                                                    </div>
+
+                                                                              </div>
+
+                                                                             
+
+                                                                             
+                                                                          
+                                                                            
+                                                                            
+                                                                          </div>
+                                                                      </div>
+
+                                                                      <div class="col-12">
+                                                                        <br/>
+                                                                        <div class="form-group">
+                                                                            <label for="usr">If NO, how are salary level(s) established?</label>
+                                                                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                                          </div>
+
+                                                                    </div>
+
+                                                                    <div class="col-12">
+                                                                      <b>Information on salary adjustments</b>
+                                                                      <br/>
+                                                                      <div class="row">
+                                                                        <div class="col-6">
+                                                                          <br/>
+                                                                          <div class="form-group">
+                                                                              <label for="usr">How often is salary structure(s) adjusted?</label>
+                                                                              <input type="text" class="form-control" id="usr" name="username">
+                                                                            </div>
+
+                                                                      </div>
+                                                                      <div class="col-6">
+                                                                        <br/>
+                                                                        <div class="form-group">
+                                                                            <label for="usr">Date of last adjustment</label>
+                                                                            <input type="text" class="form-control" id="usr" name="username">
+                                                                          </div>
+
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                      <br/>
+                                                                      <div class="form-group">
+                                                                          <label for="usr">Average percentage increase in last reviews</label>
+                                                                          <input type="text" class="form-control" id="usr" name="username">
+                                                                        </div>
+
+                                                                  </div>
+                                                                  <div class="col-6">
+                                                                    <br/>
+                                                                    <div class="form-group">
+                                                                        <label for="usr">Basis of adjustment:</label>
+                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                      </div>
+
+                                                                </div>
+                                                                      </div>
+                                                                    </div>
+
+
+                                                                    <div class="col-12">
+                                                                      <b>Indicators</b>
+                                                                      <br/>
+                                                                      <div class="row">
+                                                                        <div class="col-6">
+                                                                          <br/>
+                                                                          <div class="form-group">
+                                                                              <label for="usr">Cost of living changes/inflation</label>
+                                                                              <input type="text" class="form-control" id="usr" name="username">
+                                                                            </div>
+
+                                                                      </div>
+                                                                      <div class="col-6">
+                                                                        <br/>
+                                                                        <div class="form-group">
+                                                                            <label for="usr">Business conditions</label>
+                                                                            <input type="text" class="form-control" id="usr" name="username">
+                                                                          </div>
+
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                      <br/>
+                                                                      <div class="form-group">
+                                                                          <label for="usr">Salary levels of other organisation/ market
+                                                                            survey results</label>
+                                                                          <input type="text" class="form-control" id="usr" name="username">
+                                                                        </div>
+
+                                                                  </div>
+                                                                  <div class="col-6">
+                                                                    <br/>
+                                                                    <div class="form-group">
+                                                                        <label for="usr">Other (please specify)</label>
+                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                      </div>
+
+                                                                </div>
+                                                                      </div>
+                                                                    </div>
+
+                                                                    <div class="col-4">
+                                                                      <div class="form-group">
+                                                                        <label>Are all grades adjusted by the same Percentage?</label>
+                                                                        <input type="text" class="form-control"/>
+                                                                      </div>
+                                                                    </div>
+
+                                                                    <div class="col-8">
+                                                                      <div class="form-group">
+                                                                        <label>If NO, how are adjustments made?</label>
+                                                                        <input type="text" class="form-control"/>
+                                                                      </div>
+                                                                    </div>
+
+
+                                                                    <div class="col-12">
+                                                                      <br/>
+                                                                      <div class="form-group">
+                                                                          <label for="usr">Please specify if your organisation uses a formal Job Evaluation System. What method of job
+                                                                            evaluation is used?</label>
+                                                                          <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                                        </div>
+
+                                                                  </div>
+
+
+                                                                  <div class="col-12">
+                                                                    <div class="form-check-inline">
+                                                                      <label class="form-check-label" for="check1">
+                                                                        <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Performance/Merit increases
+                                                                      </label>
+                                                                    </div>
+                                                                    <div class="form-check-inline">
+                                                                      <label class="form-check-label" for="check2">
+                                                                        <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">General increases (across board)
+                                                                      </label>
+                                                                    </div>
+                                                                    <div class="form-check-inline">
+                                                                      <label class="form-check-label">
+                                                                        <input type="checkbox" class="form-check-input" >Cost of living increases
+                                                                      </label>
+                                                                    </div>
+                                                                    <div class="form-check-inline">
+                                                                      <label class="form-check-label">
+                                                                        <input type="checkbox" class="form-check-input" >Other
+                                                                      </label>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="col-12">
+                                                                    <div class="row ">
+                                                                      <br/>
+                                                                        <div class="col-12">
+                                                                          Do your staff receive automatic cost of living salary adjustments at periodic intervals?
+                                                                        </div>
+                                                                        <div class="col-3">
+                                                                            <div class="form-check">
+                                                                                <label class="form-check-label" for="radio1">
+                                                                                  <input type="radio" class="form-check-input" id="radio111" name="optradio1ab" value="option11" checked>
+                                                                                  Yes
+                                                                                </label>
+                                                                              </div>
+
+                                                                        </div>
+                                                                        <div class="col-3">
+                                                                            <div class="form-check">
+                                                                                <label class="form-check-label" for="radio2">
+                                                                                  <input type="radio" class="form-check-input" id="radio121" name="optradio1ab" value="option12">No
+                                                                                
+                                                                                </label>
+                                                                              </div>
+
+                                                                        </div>
+
+                                                                       
+
+                                                                       
+                                                                    
+                                                                      
+                                                                      
+                                                                    </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                  <br/>
+                                                                  <div class="form-group">
+                                                                    <label>If YES, on what basis are increments computed and what are the normal intervals?</label>
+                                                                    <textarea cols="5" class="form-control"></textarea>
+                                                                    
+                                                                  </div>
+                                                                </div>
+
+                                                                <div class="col-6">
+                                                                  <div class="form-group">
+                                                                    <label>How many grade levels do you have?</label>
+                                                                    <input type="text" class="form-control"/>
+                                                                  </div>
+                                                                </div>
+
+                                                                <div class="col-6">
+                                                                  <div class="form-group">
+                                                                    <label>What is the percentage difference in salary between the notches within a grade?</label>
+                                                                    <input type="text" class="form-control"/>
+                                                                  </div>
+                                                                </div>
+
+                                                                <div class="col-12">
+                                                                  <div class="row ">
+                                                                    <br/>
+                                                                      <div class="col-12">
+                                                                        Are salary increments in the same grade based on
+                                                                      </div>
+                                                                      <div class="col-3">
+                                                                          <div class="form-check">
+                                                                              <label class="form-check-label" for="radio1">
+                                                                                <input type="radio" class="form-check-input" id="radio111" name="optradio1abc" value="option11" checked>
+                                                                                Notches
+                                                                              </label>
+                                                                            </div>
+
+                                                                      </div>
+                                                                      <div class="col-3">
+                                                                          <div class="form-check">
+                                                                              <label class="form-check-label" for="radio2">
+                                                                                <input type="radio" class="form-check-input" id="radio121" name="optradio1abc" value="option12">Percentages
+                                                                              
+                                                                              </label>
+                                                                            </div>
+
+                                                                      </div>
+
+                                                                     
+
+                                                                     
+                                                                  
+                                                                    
+                                                                    
+                                                                  </div>
+                                                              </div>
+
+                                                              <div class="col-12">
+                                                                <div class="row ">
+                                                                  <br/>
+                                                                    <div class="col-12">
+                                                                      How do your staff progress through the steps?
+                                                                    </div>
+                                                                    <div class="col-3">
+                                                                        <div class="form-check">
+                                                                            <label class="form-check-label" for="radio1">
+                                                                              <input type="radio" class="form-check-input" id="radio111" name="optradio1abcd" value="option11" checked>
+                                                                              Automatic annual salary increments
+                                                                            </label>
+                                                                          </div>
+
+                                                                    </div>
+                                                                    <div class="col-3">
+                                                                        <div class="form-check">
+                                                                            <label class="form-check-label" for="radio2">
+                                                                              <input type="radio" class="form-check-input" id="radio121" name="optradio1abcd" value="option12">Performance/ Merit
+                                                                            
+                                                                            </label>
+                                                                          </div>
+
+                                                                    </div>
+
+                                                                   
+
+                                                                   
+                                                                
+                                                                  
+                                                                  
+                                                                </div>
+                                                                
+                                                              </div>
+
+                                                              <div class="col-12">
+                                                                <div class="row">
+                                                                  <div class="col-12">
+                                                                    In order of importance, what factors are considered in placing your new staff on your salary
+scale (please rank as 1st, 2nd, 3rd, etc)?
+
+                                                                  </div>
+                                                                  <div class="col-4">
+                                                                    <div class="form-group">
+                                                                      <label>Eductation</label>
+                                                                      <input type="text" class="form-control" />
+
+                                                                    </div>
+                                                                  </div>
+
+                                                                  <div class="col-4">
+                                                                    <div class="form-group">
+                                                                      <label>Experience</label>
+                                                                      <input type="text" class="form-control" />
+                                                                      
+                                                                    </div>
+                                                                  </div>
+
+                                                                  <div class="col-4">
+                                                                    <div class="form-group">
+                                                                      <label>Previous Salary</label>
+                                                                      <input type="text" class="form-control" />
+                                                                      
+                                                                    </div>
+                                                                  </div>
+
+
+                                                                </div>
+                                                              </div>
+
+                                                              <div class="col-12">
+                                                                <div class="form-group">
+                                                                  <label>Is there a hiring rate for each grade or job which differs from the minimum of the scale?</label>
+                                                                  <textarea cols="5" class="form-control"></textarea>
+                                                                  
+                                                                </div>
+                                                              </div>
+
+                                                              <div class="col-6">
+                                                                <div class="form-group">
+                                                                  <label>Is there a maximum salary for each grade which cannot be exceeded? Yes/No?</label>
+                                                                  <input type="text" class="form-control" />
+                                                                  
+                                                                </div>
+                                                              </div>
+
+                                                              <div class="col-6">
+                                                                <div class="form-group">
+                                                                  <label>Are there instances where the maximum salary for a grade has been exceeded? Yes/No</label>
+                                                                  <input type="text" class="form-control" />
+                                                                  
+                                                                </div>
+                                                              </div>
+
+                                                              <div class="col-12">
+                                                                <div class="form-group">
+                                                                  <label>If YES, please explain</label>
+                                                                  <textarea cols="5" class="form-control"></textarea>
+                                                                  
+                                                                </div>
+                                                              </div>
+
+
+                                                              <div class="col-12">
+                                                                <br/>
+                                                                <span id="bonus" class="btn btn-outline-info" onclick="switchView(this.id)">Next ..</span>
+                                                            </div>
+
+
+                                                                        
+
+                                                                      </div>
   
   
   
@@ -403,6 +737,256 @@
   
   
   
+                                                                      </div>
+
+
+                                                                      <div class="col-12">
+                                                                        <div class="row bonus" style="display: none;">
+
+                                                                          <div class="col-12">
+                                                                            <div class="row ">
+                                                                              <br/>
+                                                                                <div class="col-12">
+                                                                                  Does the organisation provide an annual cash bonus or other short term incentive plan (excluding
+13th month pay) for employees?
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio1">
+                                                                                          <input type="radio" class="form-check-input" id="radio111" name="optradio1abcde" value="option11" checked>
+                                                                                          Yes
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio2">
+                                                                                          <input type="radio" class="form-check-input" id="radio121" name="optradio1abcde" value="option12">No
+                                                                                        
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+            
+                                                                               
+            
+                                                                               
+                                                                            
+                                                                              
+                                                                              
+                                                                            </div>
+                                                                            
+                                                                          </div>
+
+
+                                                                          <div class="col-12">
+                                                                            <br/>
+                                                                            <div class="form-group">
+                                                                              <label>Please list and describe these plans (provide copy of the plan or policy)</label>
+                                                                              <textarea cols="5" class="form-control"></textarea>
+                                                                            </div>
+                                                                          </div>
+
+                                                                          <div class="col-12">
+                                                                            <div class="row ">
+                                                                              <br/>
+                                                                                <div class="col-12">
+                                                                                  Are all staff including executives eligible for C1?
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio1">
+                                                                                          <input type="radio" class="form-check-input" id="radio1fd11" name="optradio1abcde" value="option11" checked>
+                                                                                          Yes
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio2">
+                                                                                          <input type="radio" class="form-check-input" id="radio1df321" name="optradio1abcde" value="option12">No
+                                                                                        
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+            
+                                                                               
+            
+                                                                               
+                                                                            
+                                                                              
+                                                                              
+                                                                            </div>
+                                                                            
+                                                                          </div>
+
+
+
+
+                                                                          <div class="col-12">
+                                                                            <br/>
+                                                                            <div class="form-group">
+                                                                              <label>If No, explain:</label>
+                                                                              <textarea cols="5" class="form-control"></textarea>
+                                                                            </div>
+                                                                          </div>
+
+
+                                                                          <div class="col-12">
+                                                                            <div class="row ">
+                                                                              <br/>
+                                                                                <div class="col-12">
+                                                                                  When does your company pay the bonuses listed in C1?
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio1">
+                                                                                          <input type="radio" class="form-check-input" id="radio11df1" name="optradio1abcdef" value="option11" checked>
+                                                                                          At the end of the year as a lump sum
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio2">
+                                                                                          <input type="radio" class="form-check-input" id="radio12ff1" name="optradio1abcdef" value="option12">At completion of appraisal
+                                                                                        
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+
+                                                                                <div class="col-3">
+                                                                                  <div class="form-check">
+                                                                                      <label class="form-check-label" for="radio2">
+                                                                                        <input type="radio" class="form-check-input" id="radio12fffd1" name="optradio1abcdef" value="option12">Monthly as part of the salary
+                                                                                      
+                                                                                      </label>
+                                                                                    </div>
+          
+                                                                              </div>
+            
+                                                                               
+            
+                                                                               
+                                                                            
+                                                                              
+                                                                              
+                                                                            </div>
+                                                                            
+                                                                          </div>
+
+
+                                                                          <div class="col-12">
+                                                                            <div class="row ">
+                                                                              <br/>
+                                                                                <div class="col-12">
+                                                                                  Does your company pay 13th month bonus?
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio1">
+                                                                                          <input type="radio" class="form-check-input" id="radio11dfdgf1" name="optradio1abcdefg" value="option11" checked>
+                                                                                          Yes
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio2">
+                                                                                          <input type="radio" class="form-check-input" id="radio12ggff1" name="optradio1abcdefg" value="option12">No
+                                                                                        
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+
+            
+                                                                               
+            
+                                                                               
+                                                                            
+                                                                              
+                                                                              
+                                                                            </div>
+                                                                            
+                                                                          </div>
+
+                                                                          <div class="col-12">
+
+                                                                            <div class="row ">
+                                                                              <br/>
+                                                                                <div class="col-12">
+                                                                                  When is the 13th month bonus paid?
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio1">
+                                                                                          <input type="radio" class="form-check-input" id="radio11dfdgffdf1" name="optradio1abcdefgh" value="option11" checked>
+                                                                                          At the end of the year as a lump sum
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio2">
+                                                                                          <input type="radio" class="form-check-input" id="radio12gssgff1" name="optradio1abcdefgh" value="option12">At completion of appraisal
+                                                                                        
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+
+                                                                                <div class="col-3">
+                                                                                  <br/>
+                                                                                  <div class="form-check">
+                                                                                      <label class="form-check-label" for="radio2">
+                                                                                        <input type="radio" class="form-check-input" id="raddio1d2gssgff1" name="optradio1abcdefgh" value="option12">Monthly as part of the salary
+                                                                                      
+                                                                                      </label>
+                                                                                    </div>
+          
+                                                                              </div>
+
+            
+                                                                               
+            
+                                                                               
+                                                                            
+                                                                              
+                                                                              
+                                                                            </div>
+
+                                                                          </div>
+
+                                                                          <div class="col-12">
+                                                                            <div class="form-group">
+                                                                              <label>Are there restrictions on paying out the 13th month?</label>
+                                                                              <textarea cols="5" class="form-control"></textarea>
+                                                                            </div>
+                                                                          </div>
+
+                                                                          <div class="col-12">
+                                                                            <div class="form-group">
+                                                                              <label>Apart from the direct compensations above (sections B&C) (and excluding employee benefits,
+                                                                                perquisites and in-kind allowances, which are reviewed in other sections of this
+                                                                                questionnaire), what other forms of direct compensation are available to employees? (Please
+                                                                                describe in detail)</label>
+                                                                              <textarea cols="8" class="form-control"></textarea>
+                                                                            </div>
+                                                                          </div>
+
+
+                                                                          
+
+
+                                                                        </div>
                                                                       </div>
                                                                       </div>
                                                                       
@@ -443,1328 +1027,59 @@
       </div>
   </div>
 </div>
-<div class="container navigation justify-content-center p-4" style="height:80vh;display: none;">
-  <div class="row justify-content-center p-4" >
-    <div class="col-6 justify-content-center text-center">
-      <div class="row" style="padding-top:20vh">
-        <div class="col-6"  onclick="view('qual')" >
-            <span class="btn btn-outline-info text-center p-4" style="height:100px">
-              <div class="row">
-                <div class="col-12">
-                  <span class="material-icons">
-                    filter_3
-                    </span>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  Qualitative Survey
-                  </div>
-                  </div>
-             
-            </span>
-        </div>
-        <div class="col-6" onclick="view('quant')">
-          
-          <span class="btn btn-outline-info p-4" style="height:100px">
-            <div class="row">
-              <div class="col-12">
-                <span class="material-icons">
-                  article
-                  </span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-12">
-                Quantitative Survey
-                </div>
-                </div>
-          
-          </span>
-      </div>
 
-      </div>
-
-    </div>
-  </div>
-</div>
-
-<div class="container survey" style="display:none">
-  <div class="row">
-    <div class="col-12 p-4">
-
-
-
-      <div class="row">
-        <div class="col-12">
-          <div class="progress">
-            <div class="progress-bar bg-info" style="width:50%"></div>
-         </div>
-        </div>
-      </div>
-      <div class="row pt-4">
-        <div class="col-12 " >
-          <div class="row">
-            <div class="col-12">
-              <div class="container">
-       
-                <ul class="progress-indicator">
-                    <li class="basic_card ">
-                        <span class="bubble"></span>
-                        Base Salary. <br><small class="basic_status"></small>
-                    </li>
-                    <li class=" bonus_card ">
-                        <span class="bubble"></span>
-                        Bonus. <br><small class="bonus_status"></small>
-                    </li>
-                    <li class="benefit_card">
-                        <span class="bubble"></span>
-                        Benefit. <br><small class="benefit_status"></small>
-                    </li>
-                    <li class="allowance_card">
-                        <span class="bubble"></span>
-                        Allowance.<br><small class="allowance_status"></small>
-                    </li>
-                    
-                </ul>
-               
-        
-               
-               
-        
-               
-                
-                
-                
-        
-                
-                </div>
-            </div>
-             
-
-
-
-         
-
-
-
-
-
-            
-          </div>
-         
-       
-      </div>
-    </div>
-
-      <div class="row pt-4">
-        <div class="col-12 pt-4">
-          <div class="card">
-            <div class="card-body p-4">
-<div class="row">
-  <div class="col-12">
-        <form method="POST" action="">
-          {{ form.hidden_tag() }}
-
-
-
-        <div class="col-12 basic_salary">
-              <div class="form-group">
-                  {{ form.base_salary.label(class="form-control-label") }}
-      
-                  {% if form.base_salary.errors %}
-                  {{ form.base_salary(class="form-control form-control-lg is-invalid")}}
-                  <div class="invalid-feedback">
-                      {% for error in form.base_salary.errors %}
-                      <span> {{ error}}</span>
-                      {% endfor %}
-                  </div>
-                  {% else %}
-                  {{ form.base_salary(class="form-control form-control-lg") }}
-                  {% endif %}
-      
-                  
-              </div>
-            </div>
-
-
-
-              <!-- start of bonus questions-->
-                  <div class="row">
-              <div class="col-6 bonus">
-                <div class="form-group">
-                  {{ form.company_bonus_performance.label(class="form-control-label") }}
-      
-                  {% if form.company_bonus_performance.errors %}
-                  {{ form.company_bonus_performance(class="form-control form-control-lg is-invalid")}}
-                  <div class="invalid-feedback">
-                      {% for error in form.company_bonus_performance.errors %}
-                      <span> {{ error}}</span>
-                      {% endfor %}
-                  </div>
-                  {% else %}
-                  {{ form.company_bonus_performance(class="form-control form-control-lg") }}
-                  {% endif %}
-      
-                  
-              </div>
-
-              </div>
-              <div class="col-6 bonus">
-                <div class="form-group">
-                  {{ form.individual_bonus_performance.label(class="form-control-label") }}
-      
-                  {% if form.individual_bonus_performance.errors %}
-                  {{ form.individual_bonus_performance(class="form-control form-control-lg is-invalid")}}
-                  <div class="invalid-feedback">
-                      {% for error in form.individual_bonus_performance.errors %}
-                      <span> {{ error}}</span>
-                      {% endfor %}
-                  </div>
-                  {% else %}
-                  {{ form.individual_bonus_performance(class="form-control form-control-lg") }}
-                  {% endif %}
-      
-                  
-              </div>
-
-                </div>
-
-                <div class="col-4 bonus">
-                  <div class="form-group">
-                    {{ form.annual_bonus.label(class="form-control-label") }}
-        
-                    {% if form.annual_bonus.errors %}
-                    {{ form.annual_bonus(class="form-control form-control-lg is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.annual_bonus.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.annual_bonus(class="form-control form-control-lg") }}
-                    {% endif %}
-        
-                    
-                </div>
-
-                </div>
-
-
-                <div class="col-4 bonus">
-                  <div class="form-group">
-                    {{ form.incentive_bonus.label(class="form-control-label") }}
-        
-                    {% if form.incentive_bonus.errors %}
-                    {{ form.incentive_bonus(class="form-control form-control-lg is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.incentive_bonus.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.incentive_bonus(class="form-control form-control-lg") }}
-                    {% endif %}
-        
-                    
-                </div>
-
-                </div>
-
-
-                <div class="col-4 bonus">
-                  <div class="form-group">
-                    {{ form.other_bonus.label(class="form-control-label") }}
-        
-                    {% if form.other_bonus.errors %}
-                    {{ form.other_bonus(class="form-control form-control-lg is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.other_bonus.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.other_bonus(class="form-control form-control-lg") }}
-                    {% endif %}
-        
-                    
-                </div>
-
-                </div>
-              </div>
-
-          
-
-             <!-- end of bonus -->
-             <div class="row">
-               <!-- start of benefit questions-->
-               <div class="row">
-                <div class="col-12">
-                    <div class="row ">
-                        <div class="col-4 " >
-                            <div class="card vehicle_nav" style="height:15px;display:none" >
-                                <div class="card-body">
-                                  
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-4 " >
-                            <div class="card health_nav" style="height:15px;display:none">
-                                <div class="card-body">
-                                    
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-4 " >
-                            <div class="card personal_nav" style="height:15px;display:none">
-                                <div class="card-body">
-                                  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-12 benefit_vehicle">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-4 benefit">
-                                          <div class="form-group">
-                                            {{ form.staff_bus.label(class="form-control-label") }}
-                                
-                                            {% if form.staff_bus.errors %}
-                                            {{ form.staff_bus(class="form-control form-control-lg is-invalid")}}
-                                            <div class="invalid-feedback">
-                                                {% for error in form.staff_bus.errors %}
-                                                <span> {{ error}}</span>
-                                                {% endfor %}
-                                            </div>
-                                            {% else %}
-                                            {{ form.staff_bus(class="form-control form-control-lg") }}
-                                            {% endif %}
-                                
-                                            
-                                        </div>
-                        
-                                          </div>
-                                          <div class="col-4 benefit">
-                                            <div class="form-group">
-                                              {{ form.company_car.label(class="form-control-label") }}
-                                  
-                                              {% if form.company_car.errors %}
-                                              {{ form.company_car(class="form-control form-control-lg is-invalid")}}
-                                              <div class="invalid-feedback">
-                                                  {% for error in form.company_car.errors %}
-                                                  <span> {{ error}}</span>
-                                                  {% endfor %}
-                                              </div>
-                                              {% else %}
-                                              {{ form.company_car(class="form-control form-control-lg") }}
-                                              {% endif %}
-                                  
-                                              
-                                          </div>
-                          
-                                            </div>
-
-                                            <div class="col-4 benefit">
-                                              <div class="form-group">
-                                                {{ form.personal_travel.label(class="form-control-label") }}
-                                    
-                                                {% if form.personal_travel.errors %}
-                                                {{ form.personal_travel(class="form-control form-control-lg is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.personal_travel.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.personal_travel(class="form-control form-control-lg") }}
-                                                {% endif %}
-                                    
-                                                
-                                            </div>
-                            
-                                              </div>
-
-
-                                              <div class="col-4 benefit">
-                                                <div class="form-group">
-                                                  {{ form.petrol.label(class="form-control-label") }}
-                                      
-                                                  {% if form.petrol.errors %}
-                                                  {{ form.petrol(class="form-control form-control-lg is-invalid")}}
-                                                  <div class="invalid-feedback">
-                                                      {% for error in form.petrol.errors %}
-                                                      <span> {{ error}}</span>
-                                                      {% endfor %}
-                                                  </div>
-                                                  {% else %}
-                                                  {{ form.petrol(class="form-control form-control-lg") }}
-                                                  {% endif %}
-                                      
-                                                  
-                                              </div>
-                            
-                                              </div>
-                    
-                    
-                                              <div class="col-4 benefit">
-                                                <div class="form-group">
-                                                  {{ form.vehicle.label(class="form-control-label") }}
-                                      
-                                                  {% if form.vehicle.errors %}
-                                                  {{ form.vehicle(class="form-control form-control-lg is-invalid")}}
-                                                  <div class="invalid-feedback">
-                                                      {% for error in form.vehicle.errors %}
-                                                      <span> {{ error}}</span>
-                                                      {% endfor %}
-                                                  </div>
-                                                  {% else %}
-                                                  {{ form.vehicle(class="form-control form-control-lg") }}
-                                                  {% endif %}
-                                      
-                                                  
-                                              </div>
-                            
-                                              </div>
-
-                                              <div class="col-4 benefit">
-                                                <div class="form-group">
-                                                  {{ form.driver.label(class="form-control-label") }}
-                                      
-                                                  {% if form.driver.errors %}
-                                                  {{ form.driver(class="form-control form-control-lg is-invalid")}}
-                                                  <div class="invalid-feedback">
-                                                      {% for error in form.driver.errors %}
-                                                      <span> {{ error}}</span>
-                                                      {% endfor %}
-                                                  </div>
-                                                  {% else %}
-                                                  {{ form.driver(class="form-control form-control-lg") }}
-                                                  {% endif %}
-                                      
-                                                  
-                                              </div>
-                            
-                                              </div>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 benefit_health">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                            <div class="col-4 benefit">
-                              <div class="form-group">
-                                {{ form.health_insurance.label(class="form-control-label") }}
-                    
-                                {% if form.health_insurance.errors %}
-                                {{ form.health_insurance(class="form-control form-control-lg is-invalid")}}
-                                <div class="invalid-feedback">
-                                    {% for error in form.health_insurance.errors %}
-                                    <span> {{ error}}</span>
-                                    {% endfor %}
-                                </div>
-                                {% else %}
-                                {{ form.health_insurance(class="form-control form-control-lg") }}
-                                {% endif %}
-                    
-                                
-                            </div>
-            
-                              </div>
-    
-    
-                              <div class="col-4 benefit">
-                                <div class="form-group">
-                                  {{ form.medical_assistance.label(class="form-control-label") }}
-                      
-                                  {% if form.medical_assistance.errors %}
-                                  {{ form.medical_assistance(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.medical_assistance.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.medical_assistance(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-    
-    
-                              <div class="col-4 benefit">
-                                <div class="form-group">
-                                  {{ form.funeral_assistance.label(class="form-control-label") }}
-                      
-                                  {% if form.funeral_assistance.errors %}
-                                  {{ form.funeral_assistance(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.funeral_assistance.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.funeral_assistance(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-    
-    
-                              <div class="col-6 benefit">
-                                <div class="form-group">
-                                  {{ form.life_insurance.label(class="form-control-label") }}
-                      
-                                  {% if form.life_insurance.errors %}
-                                  {{ form.life_insurance(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.life_insurance.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.life_insurance(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-    
-                              <div class="col-6 benefit">
-                                <div class="form-group">
-                                  {{ form.group_accident.label(class="form-control-label") }}
-                      
-                                  {% if form.group_accident.errors %}
-                                  {{ form.group_accident(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.group_accident.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.group_accident(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-                              </div>
-                              </div>
-                              </div>
-
-                        </div>
-                        <div class="col-12 benefit_personal">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-
-                            <div class="col-4 benefit">
-                              <div class="form-group">
-                                {{ form.club_membership.label(class="form-control-label") }}
-                    
-                                {% if form.club_membership.errors %}
-                                {{ form.club_membership(class="form-control form-control-lg is-invalid")}}
-                                <div class="invalid-feedback">
-                                    {% for error in form.club_membership.errors %}
-                                    <span> {{ error}}</span>
-                                    {% endfor %}
-                                </div>
-                                {% else %}
-                                {{ form.club_membership(class="form-control form-control-lg") }}
-                                {% endif %}
-                    
-                                
-                            </div>
-            
-                              </div>
-                              <div class="col-4 benefit">
-                                <div class="form-group">
-                                  {{ form.school_fees.label(class="form-control-label") }}
-                      
-                                  {% if form.school_fees.errors %}
-                                  {{ form.school_fees(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.school_fees.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.school_fees(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-    
-                             
-    
-                              <div class="col-4 benefit">
-                                <div class="form-group">
-                                  {{ form.vacation.label(class="form-control-label") }}
-                      
-                                  {% if form.vacation.errors %}
-                                  {{ form.vacation(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.vacation.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.vacation(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-    
-                             
-    
-                              <div class="col-4 benefit">
-                                <div class="form-group">
-                                  {{ form.housing.label(class="form-control-label") }}
-                      
-                                  {% if form.housing.errors %}
-                                  {{ form.housing(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.housing.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.housing(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-    
-                              <div class="col-4 benefit">
-                                <div class="form-group">
-                                  {{ form.telephone.label(class="form-control-label") }}
-                      
-                                  {% if form.telephone.errors %}
-                                  {{ form.telephone(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.telephone.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.telephone(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-    
-                             
-    
-                              <div class="col-4 benefit">
-                                <div class="form-group">
-                                  {{ form.security.label(class="form-control-label") }}
-                      
-                                  {% if form.security.errors %}
-                                  {{ form.security(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.security.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.security(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-
-                              <div class="col-6 benefit">
-                                <div class="form-group">
-                                  {{ form.other_benefits.label(class="form-control-label") }}
-                      
-                                  {% if form.other_benefits.errors %}
-                                  {{ form.other_benefits(class="form-control form-control-lg is-invalid")}}
-                                  <div class="invalid-feedback">
-                                      {% for error in form.other_benefits.errors %}
-                                      <span> {{ error}}</span>
-                                      {% endfor %}
-                                  </div>
-                                  {% else %}
-                                  {{ form.other_benefits(class="form-control form-control-lg") }}
-                                  {% endif %}
-                      
-                                  
-                              </div>
-            
-                              </div>
-                              </div>
-                              </div>
-                            </div>
-                        
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-                
-                 
-
-
-                 
-
-
-                
-
-               <!-- end of benefit -->
-             </div>
-
-
-             <div class="row">
-
-               <!-- start of allowance questions-->
-
-               <div class="row">
-                <div class="col-12">
-                    <div class="row ">
-                      <div class="col-4 " >
-                        <div class="card vehicle_allowance" style="height:15px;display:none">
-                            <div class="card-body">
-                               
-                            </div>
-                        </div>
-                    </div>
-
-                        <div class="col-4 " >
-                            <div class="card health_allowance" style="height:15px;display:none">
-                                <div class="card-body">
-                                
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-4 " >
-                            <div class="card personal_allowance" style="height:15px;display:none">
-                                <div class="card-body">
-                                  
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <br/>
-                    <div class="row">
-                        <div class="col-12 allowance_vehicle">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                                      <div class="col-4 allowance_vehicle">
-                                        <div class="form-group">
-                                          {{ form.vehicle_maintenance.label(class="form-control-label") }}
-                              
-                                          {% if form.vehicle_maintenance.errors %}
-                                          {{ form.vehicle_maintenance(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.vehicle_maintenance.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.vehicle_maintenance(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-                                      <div class="col-4 allowance_vehicle">
-                                        <div class="form-group">
-                                          {{ form.allowance_vehicle.label(class="form-control-label") }}
-                              
-                                          {% if form.allowance_vehicle.errors %}
-                                          {{ form.allowance_vehicle(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.allowance_vehicle.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.allowance_vehicle(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-                                      <div class="col-4 allowance_vehicle">
-                                        <div class="form-group">
-                                          {{ form.transport.label(class="form-control-label") }}
-                              
-                                          {% if form.transport.errors %}
-                                          {{ form.transport(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.transport.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.transport(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-
-                                      <div class="col-4 allowance_vehicle">
-                                        <div class="form-group">
-                                          {{ form.fuel.label(class="form-control-label") }}
-                              
-                                          {% if form.fuel.errors %}
-                                          {{ form.fuel(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.fuel.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.fuel(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-
-                                      <div class="col-4 allowance_vehicle">
-                                        <div class="form-group">
-                                          {{ form.car.label(class="form-control-label") }}
-                              
-                                          {% if form.car.errors %}
-                                          {{ form.car(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.car.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.car(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-
-                                      <div class="col-4 allowance_vehicle">
-                                        <div class="form-group">
-                                          {{ form.allowance_driver.label(class="form-control-label") }}
-                              
-                                          {% if form.allowance_driver.errors %}
-                                          {{ form.allowance_driver(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.allowance_driver.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.allowance_driver(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-
-                                             
-
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12 allowance_health">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-                           <div class="col-4 allowance_health">
-                            <div class="form-group">
-                              {{ form.domestic.label(class="form-control-label") }}
-                  
-                              {% if form.domestic.errors %}
-                              {{ form.domestic(class="form-control form-control-lg is-invalid")}}
-                              <div class="invalid-feedback">
-                                  {% for error in form.domestic.errors %}
-                                  <span> {{ error}}</span>
-                                  {% endfor %}
-                              </div>
-                              {% else %}
-                              {{ form.domestic(class="form-control form-control-lg") }}
-                              {% endif %}
-                  
-                              
-                          </div>
-
-                  </div>
-
-                  <div class="col-4 allowance_health">
-                    <div class="form-group">
-                      {{ form.allowance_housing.label(class="form-control-label") }}
-          
-                      {% if form.allowance_housing.errors %}
-                      {{ form.allowance_housing(class="form-control form-control-lg is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.allowance_housing.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.allowance_housing(class="form-control form-control-lg") }}
-                      {% endif %}
-          
-                      
-                  </div>
-
-                  </div>
-
-                  <div class="col-4 allowance_health">
-                    <div class="form-group">
-                      {{ form.utilities.label(class="form-control-label") }}
-          
-                      {% if form.utilities.errors %}
-                      {{ form.utilities(class="form-control form-control-lg is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.utilities.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.utilities(class="form-control form-control-lg") }}
-                      {% endif %}
-          
-                      
-                  </div>
-
-                  </div>
-
-                  <div class="col-6 allowance_health">
-                    <div class="form-group">
-                      {{ form.meal.label(class="form-control-label") }}
-          
-                      {% if form.meal.errors %}
-                      {{ form.meal(class="form-control form-control-lg is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.meal.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.meal(class="form-control form-control-lg") }}
-                      {% endif %}
-          
-                      
-                  </div>
-
-                  </div>
-
-                  <div class="col-6 allowance_health">
-                    <div class="form-group">
-                      {{ form.allowance_telephone.label(class="form-control-label") }}
-          
-                      {% if form.allowance_telephone.errors %}
-                      {{ form.allowance_telephone(class="form-control form-control-lg is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.allowance_telephone.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.allowance_telephone(class="form-control form-control-lg") }}
-                      {% endif %}
-          
-                      
-                  </div>
-
-                  </div>
-
-    
-    
-                              
-    
-                            
-    
-                              </div>
-                              </div>
-                              </div>
-
-                        </div>
-                        <div class="col-12 allowance_personal">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row">
-
-                                      <div class="col-6 allowance_personal">
-                                        <div class="form-group">
-                                          {{ form.entertainment.label(class="form-control-label") }}
-                              
-                                          {% if form.entertainment.errors %}
-                                          {{ form.entertainment(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.entertainment.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.entertainment(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-                                      <div class="col-6 allowance_personal">
-                                        <div class="form-group">
-                                          {{ form.education.label(class="form-control-label") }}
-                              
-                                          {% if form.education.errors %}
-                                          {{ form.education(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.education.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.education(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-            
-                                      <div class="col-4 allowance_personal">
-                                        <div class="form-group">
-                                          {{ form.vacation.label(class="form-control-label") }}
-                              
-                                          {% if form.vacation.errors %}
-                                          {{ form.vacation(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.vacation.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.vacation(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-                                      <div class="col-4 allowance_personal">
-                                        <div class="form-group">
-                                          {{ form.uniform.label(class="form-control-label") }}
-                              
-                                          {% if form.uniform.errors %}
-                                          {{ form.uniform(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.uniform.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.uniform(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                    
-                                      </div>
-
-                                      <div class="col-4 allowance_personal">
-                                        <div class="form-group">
-                                          {{ form.mobile_money.label(class="form-control-label") }}
-                              
-                                          {% if form.mobile_money.errors %}
-                                          {{ form.mobile_money(class="form-control form-control-lg is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.mobile_money.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.mobile_money(class="form-control form-control-lg") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                  
-                                    </div>
-    
-                                    <div class="col-6 allowance_personal">
-                                      <div class="form-group">
-                                        {{ form.misc.label(class="form-control-label") }}
-                            
-                                        {% if form.misc.errors %}
-                                        {{ form.misc(class="form-control form-control-lg is-invalid")}}
-                                        <div class="invalid-feedback">
-                                            {% for error in form.misc.errors %}
-                                            <span> {{ error}}</span>
-                                            {% endfor %}
-                                        </div>
-                                        {% else %}
-                                        {{ form.misc(class="form-control form-control-lg") }}
-                                        {% endif %}
-                            
-                                        
-                                    </div>
-                  
-                                    </div>
-    
-                             
-    
-                             
-    
-                             
-    
-                             
-    
-                           
-                              </div>
-                              </div>
-                            </div>
-                        
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-          
-        
-
-             <!-- end of allowance -->
-
-             </div>
-
-            
-             <div class="row">
-               <div class="col-12">
-                 <div class="col-12 pull-right">
-                   <br/>
-                  <div class="form-group submit_button pull-right">
-                    {{ form.submit(class="btn btn-outline-info") }}
-                </div>
-
-                 </div>
-                 <div class="col-12 next_button pull-right">
-                   <div class="col-12 pull-right">
-                   <span class="btn btn-info rah" style="color:#fff"> Next</span>
-                  </div>
-                   
-                </div>
-               </div>
-             </div>
-            
-
-              </form>
-              
-            </div>
-            </div>
-            </div>
-            </div>
-        </div>
-
-     
-        
-
-
-        
-        
-
-      </div>
-    </div>
-  </div>
-</div>
-<input type="hidden" id="state"  value="basic">
-<input type="hidden" id="benefit_state"  value="vehicle">
 
 <script>
-    $(document).ready(function(){
-  $(".rah").click(function(){
-    var state = $('#state').val()
-    var bstate = $('#benefit_state').val()
-    if(state == 'basic'){
-      $('.basic_status').html("(completed)")
-      $( ".basic_card" ).removeClass( "active" );
-      $( ".basic_card" ).addClass( "completed" );
-      $( ".bonus_card" ).addClass( "active" );
-        $('#state').val('bonus')
-        $(".basic_salary").css("display", "none");
-        $(".bonus").css("display", "block");
-        $('.bonus_status').html("(active)")
-     
-   
-    }
-    if(state == 'bonus'){
-      $('.bonus_status').html("(Completed)")
-      $('.benefit_status').html("(active)")
-   
-      $( ".bonus_card" ).removeClass( "active" );
-      $( ".bonus_card" ).addClass( "completed" );
-      $( ".benefit_card" ).addClass( "active" );
-      
-     
-        if(bstate == "vehicle"){
-          
-            $('#benefit_state').val('health')
-            $(".bonus").css("display", "none");
-            $(".benefit_vehicle").css("display", "block");
-            $(".vehicle_nav").css("display", "block");
-            $(".vehicle_nav").css("borderColor", "cornflowerblue");
-
-      
-
-        }
-        if(bstate == "health"){
-          $( ".benefit_card" ).addClass( "active" );
-            $('#benefit_state').val('personal')
-            $(".benefit_vehicle").css("display", "none");
-            $(".benefit_health").css("display", "block");
-            $(".vehicle_nav").css("display", "none");
-            $(".health_nav").css("display", "block");
-            $(".health_nav").css("borderColor", "cornflowerblue");
-         
-
-
-        }
-
-        if(bstate == "personal"){
-          $('.bonus_status').html("(completed)")
-          
-          
-            $('#state').val('allowance')
-            $('#benefit_state').val('vehicle')
-            $(".benefit_health").css("display", "none");
-        $(".benefit_personal").css("display", "block");
-        $(".health_nav").css("display", "none");
-            $(".personal_nav").css("display", "block");
-            $(".personal_nav").css("borderColor", "cornflowerblue");
-        
-        
-       
-
-
-        }
-
-        
-        
-        
-    }
-
-    
-
-        if(state == 'allowance'){
-          $('.benefit_status').html("(Completed)")
-          $('.allowance_status').html("(active)")
-          $(".benefit_personal").css("display", "none");
-          $(".personal_nav").css("display", "none");
-          
-          $( ".benefit_card" ).removeClass( "active" );
-              $( ".benefit_card" ).addClass( "completed" );
-          $( ".allowance_card" ).addClass( "active" );
-                
-                
-            $(".benefit_personal").css("display", "none");
-    
-     
-        if(bstate == "vehicle"){
-          
-            $('#benefit_state').val('health')
-         
-            $(".allowance_vehicle").css("display", "block");
-            $(".vehicle_allowance").css("display", "block");
-            $(".vehicle_allowance").css("borderColor", "cornflowerblue");
-
-      
-
-        }
-        if(bstate == "health"){
-          $(".vehicle_allowance").css("display", "none");
-          $(".allowance_vehicle").css("display", "none");
-   
-            $('#benefit_state').val('personal')
-            $(".allowance_health").css("display", "block");
-            $(".health_allowance").css("display", "block");
-            $(".health_allowance").css("borderColor", "cornflowerblue");
-        
-         
-
-
-        }
-
-        if(bstate == "personal"){
-          $(".allowance_health").css("display", "none");
-          $(".health_allowance").css("display", "none");
-          
-            $('#state').val('allowance')
-            $(".allowance_personal").css("display", "block");
-            $(".personal_allowance").css("display", "block");
-            $(".personal_allowance").css("borderColor", "cornflowerblue");
-            $(".next_button").css("display", "none");
-            $(".submit_button").css("display", "block");
-        
-        
-       
-
-
-        }
-
-        
-        
-        
-    }
-
-
-
-   
-
-    
-  });
-});
+  $('.gi_card').addClass('active')
+  $('.gi_status').html('( active )')
+  $('.co_card').addClass('active')
 </script>
+
+
 <script>
-  function view(id){
-    if(id == 'qual'){
-      $('.navigation').css("display","none")
-      $('.qualitative').css("display","block")
+    function switchView(id){
+        if(id == "general_information"){
+            $('.general_contact_view').css("display","none")
+            $('.general_organization_view').css("display","block")
+          
+            $('.co_card').removeClass('active')
+            $('.co_card').addClass('completed')
+           $('.co_status').html('( completed )')
+           $('.oo_card').addClass('active')
+           $('.oo_status').html('( active )')
+        }
+        if(id == "general_organization"){
+          
+          $('.ga_wizards').css("display","none")
+          $('.direct_compensation').css("display","block")
+            $('.general_organization_view').css("display","none")
+          
+            $('.oo_card').removeClass('active')
+            $('.oo_card').addClass('completed')
+           $('.oo_status').html('( completed )')
+           $('.dc_card').addClass('active')
+           $('.dc_status').html('( active )')
+           $('.gi_card').removeClass('active')
+           $('.gi_card').addClass('completed')
+          $('.gi_status').html('( completed )')
+        }
+
+        if(id == "bonus"){
+          
+
+          $('.direct_compensation').css("display","none")
+            $('.bonus').css("display","block")
+          
+            $('.dc_card').removeClass('active')
+            $('.dc_card').addClass('completed')
+           $('.dc_status').html('( completed )')
+           $('.bonus_card').addClass('active')
+           $('.bonus_status').html('( active )')
+        
+        }
+        
+
     }
-    if(id == 'quant'){
-      $('.navigation').css("display","none")
-      $('.survey').css("display","block")
-    }
-    if(id == 'main'){
-      $('.intro').css("display","none")
-      $('.navigation').css("display","block")
-    }
-  }
 </script>
+
 {% endblock content %}

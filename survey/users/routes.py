@@ -202,6 +202,12 @@ def qualitative_survey():
 
 
 
+@users.route("/quantitative")
+def quant():
+    form = SurveyForm()
+    return render_template("quantitative_survey.html",form=form)
+
+
 
 
 
