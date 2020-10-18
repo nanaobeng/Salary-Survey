@@ -192,18 +192,18 @@ def my_surveys():
     return render_template("my_surveys.html")
 
 @users.route("/my_surveys/view_survey/quantitative")
-def quantitative_survey():
+def quantitative_overview():
     return render_template("quantitative_survey_overview.html")
 
 @users.route("/my_surveys/view_survey/qualitative")
-def qualitative_survey():
+def qualitative_overview():
     return render_template("qualitative_survey_overview.html")
 
 
 
 
-@users.route("/quantitative")
-def quant():
+@users.route("/survey/quantitative")
+def quantitative_survey():
     form = SurveyForm()
     return render_template("quantitative_survey.html",form=form)
 
