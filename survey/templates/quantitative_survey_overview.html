@@ -1,0 +1,158 @@
+{% extends "layout.html" %}
+
+{% block header %} 
+Survey 1 - Quantitative Survey
+{% endblock header %}
+{% block content %}
+
+<p>
+    In this section, you will be required to provide the monetary value of compensation offered fo staff. 
+    For each job titles below, please provide compensation information which is categorised into:
+    
+    <ul>
+        <li>Base Salary</li>
+        <li>Bonuses</li>
+        <li>Benefits</li>
+        <li>Allowances</li>
+    </ul>
+</p>
+
+<div class="row">
+    <div class="col-12">
+      <div class="list-group" id="list-tab" role="tablist">
+        <span class="list-group-item list-group-item-action active badge-info" id="" style="background-color: rgb(99, 88, 88); color: white; border-color:rgb(99, 88, 88) ;" >Benchmark Job Titles</span>
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="" data-toggle="modal" data-target="#job_detail" >Job Title 1 <span class="badge badge-success badge-pill badge-lg">Completed</span></a>
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="" data-toggle="modal" data-target="#job_detail">Job Title 2 <span class="badge badge-info badge-pill badge-lg">Not Applicable</span></a>
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="" data-toggle="modal" data-target="#job_detail">Job Title 3 <span class="badge badge-warning badge-pill badge-lg">Not Completed</span></a>
+        <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" id="" data-toggle="modal" data-target="#job_detail">Job Title 4 <span class="badge badge-warning badge-pill badge-lg">Not Completed</span></a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal to display details of a job -->
+ <div class="modal fade " id="job_detail" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Finance Manager</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <p>
+                <b>Job Title</b>
+                <br>
+                Finance Manager
+            </p>
+            <p>
+                <b>Job Grade</b>
+                <br>
+                 Manager
+            </p>
+            <p>
+                <b>Reporting Relationship</b>
+                <br>
+                Finance Director
+            </p>
+            <p>
+                <b>Generic Job Description</b>
+                <br>
+                To manage financial accounting and reporting systems for the company
+            </p>
+            <p>
+                <b>Key Duties & Responsibilities</b>
+                <br>
+                	<ul>
+                    
+                      <li>
+                        Ensure that staff capture all data onto Insurance Pro Software on a daily basis and generate report.
+                      </li>
+                      <li>
+                        Prepare annual departmental plan and budget for the company
+                      </li>
+                      
+                      <li>
+                        Build tactical business relationships with clients and maintain them
+                      </li>
+                      <li>
+                        Coordinate revenue collection by the credit team and submit reports
+                      </li>
+                      
+                      <li>
+                        Supervise payroll functions
+                      </li>
+                  </ul>
+
+            </p>
+            <p>
+                <b>Financial Responsibilities</b>
+                <br>
+                <ul>
+                  <li>
+                    Prepare financial management reports for management’s decision making
+                  </li>
+                  <li>
+                    Formulate financial strategies, policies, procedures and action plans to achieve maximum growth and profitability of the company
+                  </li>
+                  <li>
+                    Supervise preparation of statutory financial reports
+                  </li>
+                    <li>
+                      Supervise and implement financial policies and procedures
+                    </li>
+                </ul>
+            </p>
+            <p>
+                <b>Technical Qualifications</b>
+                <br>
+                <ul>
+                  <li>
+                    Knowledge in financial accounting
+                  </li>
+                  <li>
+                    Ability to prepare and interpret balance sheet, income statements, cash flow statements etc
+                  </li>
+                  <li>
+                    Knowledge in Computer
+                  </li>
+
+                </ul>
+            </p>
+            <p>
+                <b>Minimum Years of Experience</b>
+                <br>
+              N/A
+            </p>
+            <br>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="not_applicable">
+              <label class="custom-control-label" for="job_not_applicable">This job is not applicable to my organisation</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+         
+          <button class="btn btn-outline-success" id="save_btn">Save</button>
+          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="window.location.replace('')">Proceed</button>
+        </div>
+      </div>
+    </div>
+  </div>
+<script>
+
+    
+    $('#job_not_applicable').change(function() {
+        if($(this).is(":checked")) {
+          $('#proceed_btn').hide();     
+           $('#save_btn').show(); 
+        }
+        else{
+          $('#proceed_btn').show();     
+        $('#save_btn').hide(); 
+        }
+            
+    });
+</script>
+
+
+{% endblock content %}

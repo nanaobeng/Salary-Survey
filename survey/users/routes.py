@@ -191,6 +191,16 @@ def view_survey():
 def my_surveys():
     return render_template("my_surveys.html")
 
+@users.route("/my_surveys/view_survey/quantitative")
+def quantitative_survey():
+    return render_template("quantitative_survey_overview.html")
+
+@users.route("/my_surveys/view_survey/qualitative")
+def qualitative_survey():
+    return render_template("qualitative_survey_overview.html")
+
+
+
 
 
 
