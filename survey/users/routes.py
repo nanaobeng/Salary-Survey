@@ -192,6 +192,11 @@ def my_surveys():
     return render_template("my_surveys.html")
 
 
+@users.route("/quantitative")
+def quant():
+    return render_template("quantitative_survey.html")
+
+
 
 
 
