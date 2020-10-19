@@ -224,6 +224,9 @@
                 </div>
 
                 </div>
+                <div class="col-6 bonus" >
+                    <span class="btn btn-outline-info" id="bonus" onclick="switchBack(this.id)">Back</span>
+                </div>
               </div>
 
           
@@ -667,7 +670,9 @@
                  
 
 
-                
+            <div class="col-6 bonus" >
+                <span class="btn btn-outline-info" id="benefit" onclick="switchBack(this.id)">Back</span>
+            </div>
 
                <!-- end of benefit -->
              </div>
@@ -1283,6 +1288,35 @@
     
   });
 });
+</script>
+
+<script>
+    function switchBack(id){
+        if(id == 'bonus'){
+            $('.basic_status').html("(active)")
+      $( ".basic_card" ).removeClass( "completed" );
+      $( ".basic_card" ).addClass( "active" );
+      $( ".bonus_card" ).removeClass( "active" );
+        $('#state').val('basic')
+        $(".basic_salary").css("display", "block");
+  
+        $(".bonus").css("display", "none");
+        $('.bonus_status').html("")
+
+        }
+        if(id == 'benefit'){
+            $( ".benefit_card" ).removeClass( "active" );
+            $( ".bonus_card" ).removeClass( "completed" );
+            $( ".bonus_card" ).addClass( "active" );
+            $('#benefit_state').val('health')
+            $(".bonus").css("display", "block");
+            $(".benefit_vehicle").css("display", "none");
+            $(".vehicle_nav").css("display", "none");
+            $('.benefit_status').html("")
+            
+
+        }
+    }
 </script>
 
 {% endblock content %}
