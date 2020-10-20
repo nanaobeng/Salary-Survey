@@ -28,6 +28,7 @@ Create Client
         <div class="col-12">
           <div class="">
             <div class="card-body p-4">
+              
               <div class="row">
                 <div class="col-12">
                   <ul class="progress-indicator">
@@ -138,8 +139,8 @@ Create Client
                </div>
                <div class="row ">
               </br>
-                <div class="col-12 p-2">
-                </br>
+                <div class="col-12 text-right">
+               
                   <span class="btn btn-outline-info " id="industry" onclick="switch_wizard(this.id)">Next</span>
                 </div>
               </div>
@@ -229,19 +230,32 @@ Create Client
                           </div>
       
                           </div>
+
+                          
+
+
+
+
                           </div>
                         </div>
                       </div>
                       </div>
                     </div>
                   </div>
+                  <div class="col-12">
                   <div class="row">
-                  </br>
-                    <div class="col-12 p-2">
-                      <br/>
+                 
+                    <div class="col-6 ">
+                      
+                      <span class="btn btn-outline-info " id="mailing" onclick="switchBack(this.id)" >Back</span>
+                    </div>
+                    <div class="col-6 ">
+                      
                       <span class="btn btn-outline-info " id="mailing" onclick="switch_wizard(this.id)" >Next</span>
                     </div>
                   </div>
+                  </div>
+                
                 </div>
 
                   <div class="row street">
@@ -340,8 +354,12 @@ Create Client
                   </div>
                   <div class="row ">
                   </br>
+                  <div class="col-6 ">
+                      
+                    <span class="btn btn-outline-info " id="street" onclick="switchBack(this.id)" >Back</span>
+                  </div>
                     <div class="col-12 p-2">
-                      <br/>
+                      
                       <span class="btn btn-outline-info "  id="street" onclick="switch_wizard(this.id)">Next</span>
                     </div>
                   </div>
@@ -398,7 +416,12 @@ Create Client
                   </div>
                   <div class="row ">
                   </br>
-                    <div class="col-12 p-2">
+                  <div class="col-6 ">
+                      
+                    <span class="btn btn-outline-info " id="company" onclick="switchBack(this.id)" >Back</span>
+                  </div>
+                 
+                    <div class="col-6 text-right">
                       <br/>
                       <span class="btn btn-outline-info rah" id="company" onclick="switch_wizard(this.id)">Next</span>
                     </div>
@@ -538,7 +561,10 @@ Create Client
                 </div>
                 
               </div>
-                   
+              <div class="col-6 ">
+                      
+                <span class="btn btn-outline-info submit_button" id="contact" onclick="switchBack(this.id)" >Back</span>
+              </div>
                     <div class="form-group submit_button p-2">
                       <br/>
                       {{ form.submit(class="btn btn-outline-info") }}
@@ -615,6 +641,54 @@ Create Client
  
   }
  
+
+  }
+</script>
+<script>
+  function switchBack(id){
+
+    if(id == 'mailing'){
+      $('.mailing_status').html("")
+    $( ".mailing_card" ).removeClass( "active" );
+    $( ".industry_card" ).removeClass( "completed" );
+    $( ".industry_card" ).addClass( "active" );
+    $('.industry_status').html("(active)")
+     $(".mailing").css("display", "none");
+    $(".industry").css("display", "block");
+
+    }
+
+    if(id == 'street'){
+      $('.street_status').html("")
+    $( ".street_card" ).removeClass( "active" );
+    $( ".mailing_card" ).removeClass( "completed" );
+    $( ".mailing_card" ).addClass( "active" );
+    $('.mailing_status').html("(active)")
+     $(".street").css("display", "none");
+    $(".mailing").css("display", "block");
+
+    }
+
+    if(id == 'company'){
+      $('.company_status').html("")
+    $( ".company_card" ).removeClass( "active" );
+    $( ".street_card" ).removeClass( "completed" );
+    $( ".street_card" ).addClass( "active" );
+    $('.street_status').html("(active)")
+     $(".company").css("display", "none");
+    $(".street").css("display", "block");
+
+    }
+    if(id == 'contanct'){
+      $('.contact_status').html("")
+    $( ".contact_card" ).removeClass( "active" );
+    $( ".company_card" ).removeClass( "completed" );
+    $( ".company_card" ).addClass( "active" );
+    $('.company_status').html("(active)")
+     $(".contact").css("display", "none");
+    $(".company").css("display", "block");
+
+    }
 
   }
 </script>
