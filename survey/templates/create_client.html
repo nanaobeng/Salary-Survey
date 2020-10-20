@@ -1,5 +1,7 @@
-{% extends "layout.html" %}
-
+{% extends "admin_layout.html" %}
+{% block header %} 
+Create Client
+{% endblock header %}
 {% block content %}
 <script>
   $(document).ready(function(){
@@ -16,102 +18,15 @@
   });
 
 </script>
-<div class="container table_list">
-  <div class="row">
-    <div class="col-12 text-right">
-      <br/>
-      <br/>
-      <span class="btn btn-info add"> Add Client</span>
-    </div>
-  </div>
-  <div class="row justify-content-center p-4">
-    <div class="col-12 text-center">
-      <b><u>Client List</u></b>
-      <br/>
-    </div>
-    <div class="col-8">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th>Client</th>
-            <th>Sector</th>
-            <th>Industry</th>
-            <th>Contact Person</th>
-            <th></th>
-            <th></th>
-          
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Deloitte</td>
-            <td>Private</td>
-            <td>Finance</td>
-            <td>Timothy Osei</td>
-            <td><span class="material-icons" style="color:green">
-              create
-              </span></td>
-              <td><span class="material-icons" style="color:red">
-                person_remove
-                </span></td>
-            
-          
-          </tr>
-          <tr>
-            <td>VRA</td>
-            <td>Public</td>
-            <td>Energy</td>
-            <td>Priscilla Bonsu</td>
-            <td><span class="material-icons" style="color:green">
-              create
-              </span></td>
-              <td><span class="material-icons" style="color:red">
-                person_remove
-                </span></td>
-         
-            
-          </tr>
-        
-        </tbody>
-      </table>
-    </div>
-  
 
-  </div>
-</div>
-<div class="container list_form" style="display: none;">
+<div class="container list_form" >
   <div class="row">
     <div class="col-12 p-4">
 
-
-
       <div class="row">
+
         <div class="col-12">
-          <div class="progress">
-            <div class="progress-bar bg-info" style="width:40%"></div>
-         </div>
-        </div>
-      </div>
-      <div class="row pt-4">
-        <div class="col-4  " >
-          <b>Client Registration</b><br/>
-          Kindly select each compononet and fill in the required fields
-          </div>
-          <div class="col-8 p-4">
-            <h5><b>Client Registration Form</b></h5>
-          </div>
-       
-      </div>
-
-      <div class="row pt-4">
-
-     
-        
-
-
-        <div class="col-12 pt-4">
-          <div class="card">
+          <div class="">
             <div class="card-body p-4">
               <div class="row">
                 <div class="col-12">
@@ -140,6 +55,7 @@
                 </ul>
                 </div>
               </div>
+              <br>
               <form method="POST" action="">
                 {{ form.hidden_tag() }}
                <div class="row industry">
@@ -148,14 +64,14 @@
                         {{ form.name.label(class="form-control-label") }}
             
                         {% if form.name.errors %}
-                        {{ form.name(class="form-control form-control-lg is-invalid")}}
+                        {{ form.name(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.name.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.name(class="form-control form-control-lg") }}
+                        {{ form.name(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -166,14 +82,14 @@
                         {{ form.sector.label(class="form-control-label") }}
             
                         {% if form.sector.errors %}
-                        {{ form.sector(class="form-control form-control-lg is-invalid")}}
+                        {{ form.sector(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.sector.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.sector(class="form-control form-control-lg") }}
+                        {{ form.sector(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -185,14 +101,14 @@
                         {{ form.industry.label(class="form-control-label") }}
             
                         {% if form.industry.errors %}
-                        {{ form.industry(class="form-control form-control-lg is-invalid")}}
+                        {{ form.industry(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.industry.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.industry(class="form-control form-control-lg") }}
+                        {{ form.industry(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -204,14 +120,14 @@
                         {{ form.area.label(class="form-control-label") }}
             
                         {% if form.area.errors %}
-                        {{ form.area(class="form-control form-control-lg is-invalid")}}
+                        {{ form.area(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.area.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.area(class="form-control form-control-lg") }}
+                        {{ form.area(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -242,14 +158,14 @@
                               {{ form.mailing_building.label(class="form-control-label") }}
                   
                               {% if form.mailing_building.errors %}
-                              {{ form.mailing_building(class="form-control form-control-lg is-invalid")}}
+                              {{ form.mailing_building(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.mailing_building.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.mailing_building(class="form-control form-control-lg") }}
+                              {{ form.mailing_building(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -261,14 +177,14 @@
                               {{ form.mailing_street.label(class="form-control-label") }}
                   
                               {% if form.mailing_street.errors %}
-                              {{ form.mailing_street(class="form-control form-control-lg is-invalid")}}
+                              {{ form.mailing_street(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.mailing_street.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.mailing_street(class="form-control form-control-lg") }}
+                              {{ form.mailing_street(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -280,14 +196,14 @@
                               {{ form.mailing_city.label(class="form-control-label") }}
                   
                               {% if form.mailing_city.errors %}
-                              {{ form.mailing_city(class="form-control form-control-lg is-invalid")}}
+                              {{ form.mailing_city(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.mailing_city.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.mailing_city(class="form-control form-control-lg") }}
+                              {{ form.mailing_city(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -299,14 +215,14 @@
                               {{ form.mailing_country.label(class="form-control-label") }}
                   
                               {% if form.mailing_country.errors %}
-                              {{ form.mailing_country(class="form-control form-control-lg is-invalid")}}
+                              {{ form.mailing_country(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.mailing_country.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.mailing_country(class="form-control form-control-lg") }}
+                              {{ form.mailing_country(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -345,14 +261,14 @@
                               {{ form.street_building.label(class="form-control-label") }}
                   
                               {% if form.street_building.errors %}
-                              {{ form.street_building(class="form-control form-control-lg is-invalid")}}
+                              {{ form.street_building(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.street_building.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.street_building(class="form-control form-control-lg") }}
+                              {{ form.street_building(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -364,14 +280,14 @@
                               {{ form.street_street.label(class="form-control-label") }}
                   
                               {% if form.street_street.errors %}
-                              {{ form.street_street(class="form-control form-control-lg is-invalid")}}
+                              {{ form.street_street(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.street_street.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.street_street(class="form-control form-control-lg") }}
+                              {{ form.street_street(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -383,14 +299,14 @@
                               {{ form.street_city.label(class="form-control-label") }}
                   
                               {% if form.street_city.errors %}
-                              {{ form.street_city(class="form-control form-control-lg is-invalid")}}
+                              {{ form.street_city(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.street_city.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.street_city(class="form-control form-control-lg") }}
+                              {{ form.street_city(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -402,14 +318,14 @@
                               {{ form.street_country.label(class="form-control-label") }}
                   
                               {% if form.street_country.errors %}
-                              {{ form.street_country(class="form-control form-control-lg is-invalid")}}
+                              {{ form.street_country(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.street_country.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.street_country(class="form-control form-control-lg") }}
+                              {{ form.street_country(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -443,14 +359,14 @@
                           {{ form.registration.label(class="form-control-label") }}
               
                           {% if form.registration.errors %}
-                          {{ form.registration(class="form-control form-control-lg is-invalid")}}
+                          {{ form.registration(class="form-control form-control is-invalid")}}
                           <div class="invalid-feedback">
                               {% for error in form.registration.errors %}
                               <span> {{ error}}</span>
                               {% endfor %}
                           </div>
                           {% else %}
-                          {{ form.registration(class="form-control form-control-lg") }}
+                          {{ form.registration(class="form-control form-control") }}
                           {% endif %}
               
                           
@@ -463,14 +379,14 @@
                           {{ form.tax_id.label(class="form-control-label") }}
               
                           {% if form.tax_id.errors %}
-                          {{ form.tax_id(class="form-control form-control-lg is-invalid")}}
+                          {{ form.tax_id(class="form-control form-control is-invalid")}}
                           <div class="invalid-feedback">
                               {% for error in form.tax_id.errors %}
                               <span> {{ error}}</span>
                               {% endfor %}
                           </div>
                           {% else %}
-                          {{ form.tax_id(class="form-control form-control-lg") }}
+                          {{ form.tax_id(class="form-control form-control") }}
                           {% endif %}
               
                           
@@ -500,14 +416,14 @@
                         {{ form.contact_firstname.label(class="form-control-label") }}
             
                         {% if form.contact_firstname.errors %}
-                        {{ form.contact_firstname(class="form-control form-control-lg is-invalid")}}
+                        {{ form.contact_firstname(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.contact_firstname.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.contact_firstname(class="form-control form-control-lg") }}
+                        {{ form.contact_firstname(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -519,14 +435,14 @@
                         {{ form.contact_middlename.label(class="form-control-label") }}
             
                         {% if form.contact_middlename.errors %}
-                        {{ form.contact_middlename(class="form-control form-control-lg is-invalid")}}
+                        {{ form.contact_middlename(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.contact_middlename.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.contact_middlename(class="form-control form-control-lg") }}
+                        {{ form.contact_middlename(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -539,14 +455,14 @@
                         {{ form.contact_lastname.label(class="form-control-label") }}
             
                         {% if form.contact_lastname.errors %}
-                        {{ form.contact_lastname(class="form-control form-control-lg is-invalid")}}
+                        {{ form.contact_lastname(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.contact_lastname.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.contact_lastname(class="form-control form-control-lg") }}
+                        {{ form.contact_lastname(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -561,14 +477,14 @@
                         {{ form.job.label(class="form-control-label") }}
             
                         {% if form.job.errors %}
-                        {{ form.job(class="form-control form-control-lg is-invalid")}}
+                        {{ form.job(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.job.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.job(class="form-control form-control-lg") }}
+                        {{ form.job(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -582,14 +498,14 @@
                         {{ form.email.label(class="form-control-label") }}
             
                         {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control-lg is-invalid")}}
+                        {{ form.email(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.email.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.email(class="form-control form-control-lg") }}
+                        {{ form.email(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -603,14 +519,14 @@
                         {{ form.phone.label(class="form-control-label") }}
             
                         {% if form.phone.errors %}
-                        {{ form.phone(class="form-control form-control-lg is-invalid")}}
+                        {{ form.phone(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.phone.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.phone(class="form-control form-control-lg") }}
+                        {{ form.phone(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -641,22 +557,6 @@
   </div>
 </div>
 <input type="hidden" id="state"  value="industry">
-
-<script>
-  $(document).ready(function(){
-$(".add").click(function(){
-
-$('.table_list').css("display", "none");
-$('.list_form').css("display", "block");
-
-
-
-
-
-})
-});
-
-</script>
 
 
 

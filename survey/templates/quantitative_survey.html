@@ -85,7 +85,11 @@ Quantitative Survey - Finance Manager
                   {% endif %}
       
                   
-              </div>
+              </div><div class="col-12 basic_salary text-right">
+                <span class="btn btn-info rah" style="color:#fff"> Next</span>
+
+            </div>
+
             </div>
 
 
@@ -190,6 +194,13 @@ Quantitative Survey - Finance Manager
         
                     
                 </div>
+
+                </div>
+                <div class="col-6 bonus" >
+                    <span class="btn btn-outline-info" id="bonus" onclick="switchBack(this.id)">Back</span>
+                </div>
+                <div class="col-6 bonus text-right">
+                    <span class="btn btn-info rah" style="color:#fff"> Next</span>
 
                 </div>
               </div>
@@ -634,8 +645,32 @@ Quantitative Survey - Finance Manager
 
                  
 
-
                 
+                </div>
+                <div class="row pt-4">
+                    <br/>
+                    <div class="col-6 benefit_vehicle" >
+                        <span class="btn btn-outline-info" id="benefit_vehicle" onclick="switchBack(this.id)">Back</span>
+                    </div>
+                    <div class="col-6 benefit_vehicle text-right">
+                        <span class="btn btn-info rah" style="color:#fff"> Next</span>
+    
+                    </div>
+                    <div class="col-6 benefit_health" >
+                        <span class="btn btn-outline-info" id="benefit_health" onclick="switchBack(this.id)">Back</span>
+                    </div>
+                    <div class="col-6 benefit_health text-right">
+                        <span class="btn btn-info rah" style="color:#fff"> Next</span>
+    
+                    </div>
+                    <div class="col-6 benefit_personal" >
+                        <span class="btn btn-outline-info" id="benefit_personal" onclick="switchBack(this.id)">Back</span>
+                    </div>
+                    <div class="col-6 benefit_personal text-right">
+                        <span class="btn btn-info rah" style="color:#fff"> Next</span>
+    
+                    </div>
+</div>
 
                <!-- end of benefit -->
              </div>
@@ -644,7 +679,7 @@ Quantitative Survey - Finance Manager
              <div class="row">
 
                <!-- start of allowance questions-->
-
+<div class="col-12">
                <div class="row">
                 <div class="col-12">
                     <div class="row ">
@@ -1061,29 +1096,45 @@ Quantitative Survey - Finance Manager
             </div>
           
         
-
+            
              <!-- end of allowance -->
+            </div>
+            <div class="col-12">
+                <div class="row pt-4">
+                    <div class="col-6 allowance_vehicle" >
+                        <span class="btn btn-outline-info" id="allowance_vehicle" onclick="switchBack(this.id)">Back</span>
+                    </div>
+                    <div class="col-6 allowance_vehicle text-right">
+                        <span class="btn btn-info rah" style="color:#fff"> Next</span>
+    
+                    </div>
+                    
+                    <div class="col-6 allowance_health" >
+                        <span class="btn btn-outline-info" id="allowance_health" onclick="switchBack(this.id)">Back</span>
+                    </div>
+                    <div class="col-6 allowance_health text-right">
+                        <span class="btn btn-info rah" style="color:#fff"> Next</span>
+    
+                    </div>
+                    <div class="col-6 allowance_personal" >
+                        <span class="btn btn-outline-info" id="allowance_personal" onclick="switchBack(this.id)">Back</span>
+                    </div>
 
+                    <div class="col-6 submit_button text-right" >
+                        {{ form.submit(class="btn btn-outline-info") }}
+                    </div>
+                    
+
+       
+                    
+    
+                </div>
+            </div>
              </div>
+             
 
             
-             <div class="row">
-               <div class="col-12">
-                 <div class="col-12 pull-right">
-                   <br/>
-                  <div class="form-group submit_button pull-right">
-                    {{ form.submit(class="btn btn-outline-info") }}
-                </div>
-
-                 </div>
-                 <div class="col-12 next_button pull-right">
-                   <div class="col-12 pull-right">
-                   <span class="btn btn-info rah" style="color:#fff"> Next</span>
-                  </div>
-                   
-                </div>
-               </div>
-             </div>
+            
             
 
               </form>
@@ -1128,7 +1179,8 @@ Quantitative Survey - Finance Manager
     if(state == 'bonus'){
       $('.bonus_status').html("(Completed)")
       $('.benefit_status').html("(active)")
-   
+      $(".benefit_vehicle").css("display", "none");
+      $(".vehicle_nav").css("display", "none");
       $( ".bonus_card" ).removeClass( "active" );
       $( ".bonus_card" ).addClass( "completed" );
       $( ".benefit_card" ).addClass( "active" );
@@ -1251,6 +1303,132 @@ Quantitative Survey - Finance Manager
     
   });
 });
+</script>
+
+<script>
+    function switchBack(id){
+        if(id == 'bonus'){
+            $('.basic_status').html("(active)")
+      $( ".basic_card" ).removeClass( "completed" );
+      $( ".basic_card" ).addClass( "active" );
+      $( ".bonus_card" ).removeClass( "active" );
+        $('#state').val('basic')
+        $(".basic_salary").css("display", "block");
+  
+        $(".bonus").css("display", "none");
+        $('.bonus_status').html("")
+
+        }
+        if(id == 'benefit_vehicle'){
+            $( ".benefit_card" ).removeClass( "active" );
+            $( ".bonus_card" ).removeClass( "completed" );
+            $( ".bonus_card" ).addClass( "active" );
+            $('#benefit_state').val('vehicle')
+            $(".bonus").css("display", "block");
+            $('#state').val('bonus')
+            $(".benefit_vehicle").css("display", "none");
+            $(".vehicle_nav").css("display", "none");
+           
+            $('.benefit_status').html("")
+            
+
+        }
+        if(id == 'benefit_health'){
+        
+        
+            $('#benefit_state').val('health')
+            $(".benefit_vehicle").css("display", "block");
+            $('#state').val('bonus')
+            $(".benefit_health").css("display", "none");
+            $(".health_nav").css("display", "none");
+            $(".vehicle_nav").css("display", "block");
+           
+        
+            
+
+        }
+        if(id == 'benefit_personal'){
+        
+        
+        $('#benefit_state').val('personal')
+        $(".benefit_health").css("display", "block");
+        $('#state').val('bonus')
+        $(".benefit_personal").css("display", "none");
+        $(".personal_nav").css("display", "none");
+        $(".health_nav").css("display", "block");
+       
+    
+        
+
+    }
+
+    if(id == 'benefit_personal'){
+        
+        
+        $('#benefit_state').val('personal')
+        $(".benefit_health").css("display", "block");
+        $('#state').val('bonus')
+        $(".benefit_personal").css("display", "none");
+        $(".personal_nav").css("display", "none");
+        $(".health_nav").css("display", "block");
+       
+    
+        
+
+    }
+    
+    if(id == 'allowance_vehicle'){
+            $( ".benefit_card" ).removeClass( "completed" );
+            $( ".allowance_card" ).removeClass( "active" );
+            $( ".benefit_card" ).addClass( "active" );
+            $('#benefit_state').val('vehicle')
+            $(".benefit_personal").css("display", "block");
+            $('#state').val('allowance')
+            $(".allowance_vehicle").css("display", "none");
+          
+            $(".vehicle_allowance").css("display", "none");
+            $(".personal_nav").css("display", "block");
+           
+            $('.benefit_status').html("(Active)")
+            
+
+        }
+
+
+        if(id == 'allowance_health'){
+        
+        
+        $('#benefit_state').val('health')
+        $(".allowance_vehicle").css("display", "block");
+        $(".allowance_health").css("display", "none");
+        $('#state').val('allowance')
+       
+        $(".health_allowance").css("display", "none");
+        $(".vehicle_allowance").css("display", "block");
+       
+       
+    
+        
+
+    }
+    if(id == 'allowance_personal'){
+        
+        
+        $('#benefit_state').val('personal')
+        $(".allowance_health").css("display", "block");
+        $(".allowance_personal").css("display", "none");
+        $('#state').val('allowance')
+       
+        $(".personal_allowance").css("display", "none");
+        $(".health_allowance").css("display", "block");
+       
+       
+    
+        
+
+    }
+
+    }
 </script>
 
 {% endblock content %}
