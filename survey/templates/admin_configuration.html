@@ -1,0 +1,73 @@
+{% extends "admin_layout.html" %}
+
+{% block header %} 
+Configuration
+{% endblock header %}
+{% block content %}
+
+
+
+<div class="row" style="text-align: center;">
+    <div class="col-lg-3 col-md-6  col-sm-12 ">
+        <a href="{{  url_for('users.register')}}">
+            <div class="admin-config d-flex justify-content-center">
+                <div class="admin-config-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+            </div>
+        </a>
+        <div class="row justify-content-center admin-config-icon-label">
+            <p>Users</p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6  col-sm-12 ">
+        <a href="{{ url_for('users.create_sector')}}">
+            <div class="admin-config d-flex justify-content-center">
+                <div class="admin-config-icon">
+                    <i class="fas fa-file"></i>
+                </div>
+            </div>
+        </a>
+        <div class="row justify-content-center admin-config-icon-label">
+            <p>Sector</p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6  col-sm-12 ">
+        <a href="{{ url_for('users.create_industry')}}">
+            <div class="admin-config d-flex justify-content-center">
+                <div class="admin-config-icon">
+                    <i class="fas fa-industry"></i>
+                </div>
+            </div>
+        </a>
+        <div class="row justify-content-center admin-config-icon-label">
+            <p>Industry</p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6  col-sm-12 ">
+        <div class="admin-config d-flex justify-content-center">
+            <a href="{{ url_for('users.create_area')}}">
+                <div class="admin-config-icon">
+                    <i class="fas fa-pallet"></i>
+                </div>
+            </a>
+        </div>
+        <div class="row justify-content-center admin-config-icon-label">
+            <p>Area of Operation</p>
+        </div>
+    </div>
+    <div class="col-lg-3 col-md-6  col-sm-12 ">
+        <a href="{{ url_for('users.create_job')}}">
+            <div class="admin-config d-flex justify-content-center">
+                <div class="admin-config-icon">
+                    <i class="fas fa-briefcase"></i>
+                </div>
+            </div>
+        </a>
+        <div class="row justify-content-center admin-config-icon-label">
+            <p>Job Titles</p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

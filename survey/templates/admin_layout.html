@@ -25,16 +25,8 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stylex.css')}}">
-<style>
-  .list :hover {
-    background-color: rgb(65, 124, 6);
-    color:white
-  }
 
-</style>
-<style>
-  .flexer,.progress-indicator{display:-webkit-box;display:-moz-box;display:-ms-flexbox;display:-webkit-flex;display:flex}.no-flexer,.progress-indicator.stacked{display:block}.no-flexer-element{-ms-flex:0;-webkit-flex:0;-moz-flex:0;flex:0}.flexer-element,.progress-indicator>li{-ms-flex:1;-webkit-flex:1;-moz-flex:1;flex:1}.progress-indicator{margin:0 0 1em;padding:0;font-size:80%;text-transform:uppercase}.progress-indicator>li{list-style:none;text-align:center;width:auto;padding:0;margin:0;position:relative;text-overflow:ellipsis;color:#bbb;display:block}.progress-indicator>li:hover{color:#6f6f6f}.progress-indicator>li.completed,.progress-indicator>li.completed .bubble{color:#65d074}.progress-indicator>li .bubble{border-radius:1000px;width:20px;height:20px;background-color:#bbb;display:block;margin:0 auto .5em;border-bottom:1px solid #888}.progress-indicator>li .bubble:after,.progress-indicator>li .bubble:before{display:block;position:absolute;top:9px;width:100%;height:3px;content:'';background-color:#bbb}.progress-indicator>li.completed .bubble,.progress-indicator>li.completed .bubble:after,.progress-indicator>li.completed .bubble:before{background-color:#65d074;border-color:#247830}.progress-indicator>li .bubble:before{left:0}.progress-indicator>li .bubble:after{right:0}.progress-indicator>li:first-child .bubble:after,.progress-indicator>li:first-child .bubble:before{width:50%;margin-left:50%}.progress-indicator>li:last-child .bubble:after,.progress-indicator>li:last-child .bubble:before{width:50%;margin-right:50%}.progress-indicator>li.active,.progress-indicator>li.active .bubble{color:#337AB7}.progress-indicator>li.active .bubble,.progress-indicator>li.active .bubble:after,.progress-indicator>li.active .bubble:before{background-color:#337AB7;border-color:#122a3f}.progress-indicator>li a:hover .bubble,.progress-indicator>li a:hover .bubble:after,.progress-indicator>li a:hover .bubble:before{background-color:#5671d0;border-color:#1f306e}.progress-indicator>li a:hover .bubble{color:#5671d0}.progress-indicator>li.danger .bubble,.progress-indicator>li.danger .bubble:after,.progress-indicator>li.danger .bubble:before{background-color:#d3140f;border-color:#440605}.progress-indicator>li.danger .bubble{color:#d3140f}.progress-indicator>li.warning .bubble,.progress-indicator>li.warning .bubble:after,.progress-indicator>li.warning .bubble:before{background-color:#edb10a;border-color:#5a4304}.progress-indicator>li.warning .bubble{color:#edb10a}.progress-indicator>li.info .bubble,.progress-indicator>li.info .bubble:after,.progress-indicator>li.info .bubble:before{background-color:#5b32d6;border-color:#25135d}.progress-indicator>li.info .bubble{color:#5b32d6}.progress-indicator.stacked>li{text-indent:-10px;text-align:center;display:block}.progress-indicator.stacked>li .bubble:after,.progress-indicator.stacked>li .bubble:before{left:50%;margin-left:-1.5px;width:3px;height:100%}.progress-indicator.stacked .stacked-text{position:relative;z-index:10;top:0;margin-left:60%!important;width:45%!important;display:inline-block;text-align:left;line-height:1.2em}.progress-indicator.stacked>li a{border:none}.progress-indicator.stacked.nocenter>li .bubble{margin-left:0;margin-right:0}.progress-indicator.stacked.nocenter>li .bubble:after,.progress-indicator.stacked.nocenter>li .bubble:before{left:10px}.progress-indicator.stacked.nocenter .stacked-text{width:auto!important;display:block;margin-left:40px!important}@media handheld,screen and (max-width:400px){.progress-indicator{font-size:60%}}
-</style>
+
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
  
@@ -63,16 +55,18 @@
               <ul class="navbar-nav ml-auto my-2 my-lg-0">
                 {% if current_user.is_authenticated %}
                
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('main.index')}}">Home</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_surveys')}}">Surveys</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_reports')}}">Reports</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_home')}}">Home</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_surveys')}}">Surveys</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_reports')}}">Reports</a></li>
                 <div class="btn-group nav-item">
-                  <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">About</i></li>
-                  <div class="dropdown-menu dropdown-menu-right bg-secondary ">
-                      <a class="dropdown-item" href="#">About</a>
-                      <a class="dropdown-item" href="#">Contact Us</a>
-                  </div>
-              </div>
+                    <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Clients</li>
+                    <div class="dropdown-menu dropdown-menu-right bg-secondary ">
+                        <a class="dropdown-item" href="{{  url_for('users.admin_clients')}}">Client List</a>
+                        <a class="dropdown-item" href="{{  url_for('users.admin_service_requests')}}">Service Requests</a>
+                    </div>
+                </div>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_configuration')}}">Configuration</a></li>
+                
               <div class="btn-group nav-item">
                   <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><i class="fas fa-user"></i></li>
                   <div class="dropdown-menu dropdown-menu-right bg-secondary ">
@@ -81,16 +75,15 @@
                   </div>
               </div>
 
-<!--  These navigations are for administrator. We need to create a new layout for admin
 
-                <li class="nav-item">
-                  <a class="nav-link" href="{{  url_for('main.index')}}" style="color:green">Home</a>
+                <!-- <li class="nav-item">
+                  <a class="nav-link" href="{{  url_for('main.index')}}" >Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{  url_for('users.survey')}}" style="color:green">Survey</a>
+                  <a class="nav-link" href="{{  url_for('users.survey')}}" >Survey</a>
                 </li>
                 <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" style="color:green">
+                  <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" >
                     Reports
                   </a>
                   <div class="dropdown-menu">
@@ -98,29 +91,29 @@
                     <a class="dropdown-item" href="#">Audit Logs</a>
                     
                   </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#"  style="color:green" data-toggle="dropdown">
+                </li> -->
+                <!-- <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#"   data-toggle="dropdown">
                     Setup
                   </a>
                   <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{  url_for('users.register')}}" style="color:cornflowerblue">User</a>
-                    <a class="dropdown-item" href="{{ url_for('users.create_client')}}" style="color:cornflowerblue">Client</a>
-                    <a class="dropdown-item"  href="{{ url_for('users.create_industry')}}" style="color:cornflowerblue">Industry</a>
-                    <a class="dropdown-item"   href="{{ url_for('users.create_sector')}}" style="color:cornflowerblue">Sector</a>
-                    <a class="dropdown-item"  href="{{ url_for('users.create_job')}}" style="color:cornflowerblue">Job Title</a>
-                    <a class="dropdown-item"  href="{{ url_for('users.questions')}}" style="color:cornflowerblue">Questions</a>
-                    <a class="dropdown-item"  href="{{ url_for('users.create_area')}}" style="color:cornflowerblue">Area of Operation</a>
+                    <a class="dropdown-item" href="{{  url_for('users.register')}}" >User</a>
+                    <a class="dropdown-item" href="{{ url_for('users.create_client')}}" >Client</a>
+                    <a class="dropdown-item"  href="{{ url_for('users.create_industry')}}" >Industry</a>
+                    <a class="dropdown-item"   href="{{ url_for('users.create_sector')}}" >Sector</a>
+                    <a class="dropdown-item"  href="{{ url_for('users.create_job')}}" >Job Title</a>
+                    <a class="dropdown-item"  href="{{ url_for('users.questions')}}" >Questions</a>
+                    <a class="dropdown-item"  href="{{ url_for('users.create_area')}}" >Area of Operation</a>
                     
                   </div>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{  url_for('users.logout')}}" style="color:green">Logout</a>
+                  <a class="nav-link" href="{{  url_for('users.logout')}}" >Logout</a>
                 </li>
                 {% else %}
                 <li class="nav-item">
-                  <a class="nav-link" href="{{  url_for('users.login')}}" style="color:green">Login</a>
-                </li>
+                  <a class="nav-link" href="{{  url_for('users.login')}}" >Login</a>
+                </li> -->
                
                 {% endif %} -->
                 

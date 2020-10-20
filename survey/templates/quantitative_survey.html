@@ -1,5 +1,9 @@
 {% extends "layout.html" %}
 
+{% block header %} 
+Quantitative Survey - Finance Manager
+{% endblock header %}
+
 {% block content %}
 <script>
     $(document).ready(function(){
@@ -26,19 +30,8 @@
   <div class="row">
     <div class="col-12 p-4">
 
-
-
       <div class="row">
-        <div class="col-12">
-          <div class="progress">
-            <div class="progress-bar bg-info" style="width:50%"></div>
-         </div>
-        </div>
-      </div>
-      <div class="row pt-4">
         <div class="col-12 " >
-          <div class="row">
-            <div class="col-12">
               <div class="container">
        
                 <ul class="progress-indicator">
@@ -59,34 +52,9 @@
                         Allowance.<br><small class="allowance_status"></small>
                     </li>
                     
-                </ul>
-               
-        
-               
-               
-        
-               
-                
-                
-                
-        
-                
+                </ul>   
                 </div>
-            </div>
-             
 
-
-
-         
-
-
-
-
-
-            
-          </div>
-         
-       
       </div>
     </div>
 
@@ -106,14 +74,14 @@
                   {{ form.base_salary.label(class="form-control-label") }}
       
                   {% if form.base_salary.errors %}
-                  {{ form.base_salary(class="form-control form-control-lg is-invalid")}}
+                  {{ form.base_salary(class="form-control form-control is-invalid")}}
                   <div class="invalid-feedback">
                       {% for error in form.base_salary.errors %}
                       <span> {{ error}}</span>
                       {% endfor %}
                   </div>
                   {% else %}
-                  {{ form.base_salary(class="form-control form-control-lg") }}
+                  {{ form.base_salary(class="form-control form-control") }}
                   {% endif %}
       
                   
@@ -133,14 +101,14 @@
                   {{ form.company_bonus_performance.label(class="form-control-label") }}
       
                   {% if form.company_bonus_performance.errors %}
-                  {{ form.company_bonus_performance(class="form-control form-control-lg is-invalid")}}
+                  {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
                   <div class="invalid-feedback">
                       {% for error in form.company_bonus_performance.errors %}
                       <span> {{ error}}</span>
                       {% endfor %}
                   </div>
                   {% else %}
-                  {{ form.company_bonus_performance(class="form-control form-control-lg") }}
+                  {{ form.company_bonus_performance(class="form-control form-control") }}
                   {% endif %}
       
                   
@@ -152,14 +120,14 @@
                   {{ form.individual_bonus_performance.label(class="form-control-label") }}
       
                   {% if form.individual_bonus_performance.errors %}
-                  {{ form.individual_bonus_performance(class="form-control form-control-lg is-invalid")}}
+                  {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
                   <div class="invalid-feedback">
                       {% for error in form.individual_bonus_performance.errors %}
                       <span> {{ error}}</span>
                       {% endfor %}
                   </div>
                   {% else %}
-                  {{ form.individual_bonus_performance(class="form-control form-control-lg") }}
+                  {{ form.individual_bonus_performance(class="form-control form-control") }}
                   {% endif %}
       
                   
@@ -172,14 +140,14 @@
                     {{ form.annual_bonus.label(class="form-control-label") }}
         
                     {% if form.annual_bonus.errors %}
-                    {{ form.annual_bonus(class="form-control form-control-lg is-invalid")}}
+                    {{ form.annual_bonus(class="form-control form-control is-invalid")}}
                     <div class="invalid-feedback">
                         {% for error in form.annual_bonus.errors %}
                         <span> {{ error}}</span>
                         {% endfor %}
                     </div>
                     {% else %}
-                    {{ form.annual_bonus(class="form-control form-control-lg") }}
+                    {{ form.annual_bonus(class="form-control form-control") }}
                     {% endif %}
         
                     
@@ -193,14 +161,14 @@
                     {{ form.incentive_bonus.label(class="form-control-label") }}
         
                     {% if form.incentive_bonus.errors %}
-                    {{ form.incentive_bonus(class="form-control form-control-lg is-invalid")}}
+                    {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
                     <div class="invalid-feedback">
                         {% for error in form.incentive_bonus.errors %}
                         <span> {{ error}}</span>
                         {% endfor %}
                     </div>
                     {% else %}
-                    {{ form.incentive_bonus(class="form-control form-control-lg") }}
+                    {{ form.incentive_bonus(class="form-control form-control") }}
                     {% endif %}
         
                     
@@ -214,14 +182,14 @@
                     {{ form.other_bonus.label(class="form-control-label") }}
         
                     {% if form.other_bonus.errors %}
-                    {{ form.other_bonus(class="form-control form-control-lg is-invalid")}}
+                    {{ form.other_bonus(class="form-control form-control is-invalid")}}
                     <div class="invalid-feedback">
                         {% for error in form.other_bonus.errors %}
                         <span> {{ error}}</span>
                         {% endfor %}
                     </div>
                     {% else %}
-                    {{ form.other_bonus(class="form-control form-control-lg") }}
+                    {{ form.other_bonus(class="form-control form-control") }}
                     {% endif %}
         
                     
@@ -280,14 +248,14 @@
                                             {{ form.staff_bus.label(class="form-control-label") }}
                                 
                                             {% if form.staff_bus.errors %}
-                                            {{ form.staff_bus(class="form-control form-control-lg is-invalid")}}
+                                            {{ form.staff_bus(class="form-control form-control is-invalid")}}
                                             <div class="invalid-feedback">
                                                 {% for error in form.staff_bus.errors %}
                                                 <span> {{ error}}</span>
                                                 {% endfor %}
                                             </div>
                                             {% else %}
-                                            {{ form.staff_bus(class="form-control form-control-lg") }}
+                                            {{ form.staff_bus(class="form-control form-control") }}
                                             {% endif %}
                                 
                                             
@@ -299,14 +267,14 @@
                                               {{ form.company_car.label(class="form-control-label") }}
                                   
                                               {% if form.company_car.errors %}
-                                              {{ form.company_car(class="form-control form-control-lg is-invalid")}}
+                                              {{ form.company_car(class="form-control form-control is-invalid")}}
                                               <div class="invalid-feedback">
                                                   {% for error in form.company_car.errors %}
                                                   <span> {{ error}}</span>
                                                   {% endfor %}
                                               </div>
                                               {% else %}
-                                              {{ form.company_car(class="form-control form-control-lg") }}
+                                              {{ form.company_car(class="form-control form-control") }}
                                               {% endif %}
                                   
                                               
@@ -319,14 +287,14 @@
                                                 {{ form.personal_travel.label(class="form-control-label") }}
                                     
                                                 {% if form.personal_travel.errors %}
-                                                {{ form.personal_travel(class="form-control form-control-lg is-invalid")}}
+                                                {{ form.personal_travel(class="form-control form-control is-invalid")}}
                                                 <div class="invalid-feedback">
                                                     {% for error in form.personal_travel.errors %}
                                                     <span> {{ error}}</span>
                                                     {% endfor %}
                                                 </div>
                                                 {% else %}
-                                                {{ form.personal_travel(class="form-control form-control-lg") }}
+                                                {{ form.personal_travel(class="form-control form-control") }}
                                                 {% endif %}
                                     
                                                 
@@ -340,14 +308,14 @@
                                                   {{ form.petrol.label(class="form-control-label") }}
                                       
                                                   {% if form.petrol.errors %}
-                                                  {{ form.petrol(class="form-control form-control-lg is-invalid")}}
+                                                  {{ form.petrol(class="form-control form-control is-invalid")}}
                                                   <div class="invalid-feedback">
                                                       {% for error in form.petrol.errors %}
                                                       <span> {{ error}}</span>
                                                       {% endfor %}
                                                   </div>
                                                   {% else %}
-                                                  {{ form.petrol(class="form-control form-control-lg") }}
+                                                  {{ form.petrol(class="form-control form-control") }}
                                                   {% endif %}
                                       
                                                   
@@ -361,14 +329,14 @@
                                                   {{ form.vehicle.label(class="form-control-label") }}
                                       
                                                   {% if form.vehicle.errors %}
-                                                  {{ form.vehicle(class="form-control form-control-lg is-invalid")}}
+                                                  {{ form.vehicle(class="form-control form-control is-invalid")}}
                                                   <div class="invalid-feedback">
                                                       {% for error in form.vehicle.errors %}
                                                       <span> {{ error}}</span>
                                                       {% endfor %}
                                                   </div>
                                                   {% else %}
-                                                  {{ form.vehicle(class="form-control form-control-lg") }}
+                                                  {{ form.vehicle(class="form-control form-control") }}
                                                   {% endif %}
                                       
                                                   
@@ -381,14 +349,14 @@
                                                   {{ form.driver.label(class="form-control-label") }}
                                       
                                                   {% if form.driver.errors %}
-                                                  {{ form.driver(class="form-control form-control-lg is-invalid")}}
+                                                  {{ form.driver(class="form-control form-control is-invalid")}}
                                                   <div class="invalid-feedback">
                                                       {% for error in form.driver.errors %}
                                                       <span> {{ error}}</span>
                                                       {% endfor %}
                                                   </div>
                                                   {% else %}
-                                                  {{ form.driver(class="form-control form-control-lg") }}
+                                                  {{ form.driver(class="form-control form-control") }}
                                                   {% endif %}
                                       
                                                   
@@ -410,14 +378,14 @@
                                 {{ form.health_insurance.label(class="form-control-label") }}
                     
                                 {% if form.health_insurance.errors %}
-                                {{ form.health_insurance(class="form-control form-control-lg is-invalid")}}
+                                {{ form.health_insurance(class="form-control form-control is-invalid")}}
                                 <div class="invalid-feedback">
                                     {% for error in form.health_insurance.errors %}
                                     <span> {{ error}}</span>
                                     {% endfor %}
                                 </div>
                                 {% else %}
-                                {{ form.health_insurance(class="form-control form-control-lg") }}
+                                {{ form.health_insurance(class="form-control form-control") }}
                                 {% endif %}
                     
                                 
@@ -431,14 +399,14 @@
                                   {{ form.medical_assistance.label(class="form-control-label") }}
                       
                                   {% if form.medical_assistance.errors %}
-                                  {{ form.medical_assistance(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.medical_assistance(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.medical_assistance.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.medical_assistance(class="form-control form-control-lg") }}
+                                  {{ form.medical_assistance(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -452,14 +420,14 @@
                                   {{ form.funeral_assistance.label(class="form-control-label") }}
                       
                                   {% if form.funeral_assistance.errors %}
-                                  {{ form.funeral_assistance(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.funeral_assistance(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.funeral_assistance.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.funeral_assistance(class="form-control form-control-lg") }}
+                                  {{ form.funeral_assistance(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -473,14 +441,14 @@
                                   {{ form.life_insurance.label(class="form-control-label") }}
                       
                                   {% if form.life_insurance.errors %}
-                                  {{ form.life_insurance(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.life_insurance(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.life_insurance.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.life_insurance(class="form-control form-control-lg") }}
+                                  {{ form.life_insurance(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -493,14 +461,14 @@
                                   {{ form.group_accident.label(class="form-control-label") }}
                       
                                   {% if form.group_accident.errors %}
-                                  {{ form.group_accident(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.group_accident(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.group_accident.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.group_accident(class="form-control form-control-lg") }}
+                                  {{ form.group_accident(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -522,14 +490,14 @@
                                 {{ form.club_membership.label(class="form-control-label") }}
                     
                                 {% if form.club_membership.errors %}
-                                {{ form.club_membership(class="form-control form-control-lg is-invalid")}}
+                                {{ form.club_membership(class="form-control form-control is-invalid")}}
                                 <div class="invalid-feedback">
                                     {% for error in form.club_membership.errors %}
                                     <span> {{ error}}</span>
                                     {% endfor %}
                                 </div>
                                 {% else %}
-                                {{ form.club_membership(class="form-control form-control-lg") }}
+                                {{ form.club_membership(class="form-control form-control") }}
                                 {% endif %}
                     
                                 
@@ -541,14 +509,14 @@
                                   {{ form.school_fees.label(class="form-control-label") }}
                       
                                   {% if form.school_fees.errors %}
-                                  {{ form.school_fees(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.school_fees(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.school_fees.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.school_fees(class="form-control form-control-lg") }}
+                                  {{ form.school_fees(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -563,14 +531,14 @@
                                   {{ form.vacation.label(class="form-control-label") }}
                       
                                   {% if form.vacation.errors %}
-                                  {{ form.vacation(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.vacation(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.vacation.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.vacation(class="form-control form-control-lg") }}
+                                  {{ form.vacation(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -585,14 +553,14 @@
                                   {{ form.housing.label(class="form-control-label") }}
                       
                                   {% if form.housing.errors %}
-                                  {{ form.housing(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.housing(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.housing.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.housing(class="form-control form-control-lg") }}
+                                  {{ form.housing(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -605,14 +573,14 @@
                                   {{ form.telephone.label(class="form-control-label") }}
                       
                                   {% if form.telephone.errors %}
-                                  {{ form.telephone(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.telephone(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.telephone.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.telephone(class="form-control form-control-lg") }}
+                                  {{ form.telephone(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -627,14 +595,14 @@
                                   {{ form.security.label(class="form-control-label") }}
                       
                                   {% if form.security.errors %}
-                                  {{ form.security(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.security(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.security.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.security(class="form-control form-control-lg") }}
+                                  {{ form.security(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -647,14 +615,14 @@
                                   {{ form.other_benefits.label(class="form-control-label") }}
                       
                                   {% if form.other_benefits.errors %}
-                                  {{ form.other_benefits(class="form-control form-control-lg is-invalid")}}
+                                  {{ form.other_benefits(class="form-control form-control is-invalid")}}
                                   <div class="invalid-feedback">
                                       {% for error in form.other_benefits.errors %}
                                       <span> {{ error}}</span>
                                       {% endfor %}
                                   </div>
                                   {% else %}
-                                  {{ form.other_benefits(class="form-control form-control-lg") }}
+                                  {{ form.other_benefits(class="form-control form-control") }}
                                   {% endif %}
                       
                                   
@@ -750,14 +718,14 @@
                                           {{ form.vehicle_maintenance.label(class="form-control-label") }}
                               
                                           {% if form.vehicle_maintenance.errors %}
-                                          {{ form.vehicle_maintenance(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.vehicle_maintenance(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.vehicle_maintenance.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.vehicle_maintenance(class="form-control form-control-lg") }}
+                                          {{ form.vehicle_maintenance(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -769,14 +737,14 @@
                                           {{ form.allowance_vehicle.label(class="form-control-label") }}
                               
                                           {% if form.allowance_vehicle.errors %}
-                                          {{ form.allowance_vehicle(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.allowance_vehicle(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.allowance_vehicle.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.allowance_vehicle(class="form-control form-control-lg") }}
+                                          {{ form.allowance_vehicle(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -788,14 +756,14 @@
                                           {{ form.transport.label(class="form-control-label") }}
                               
                                           {% if form.transport.errors %}
-                                          {{ form.transport(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.transport(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.transport.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.transport(class="form-control form-control-lg") }}
+                                          {{ form.transport(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -808,14 +776,14 @@
                                           {{ form.fuel.label(class="form-control-label") }}
                               
                                           {% if form.fuel.errors %}
-                                          {{ form.fuel(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.fuel(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.fuel.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.fuel(class="form-control form-control-lg") }}
+                                          {{ form.fuel(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -828,14 +796,14 @@
                                           {{ form.car.label(class="form-control-label") }}
                               
                                           {% if form.car.errors %}
-                                          {{ form.car(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.car(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.car.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.car(class="form-control form-control-lg") }}
+                                          {{ form.car(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -848,14 +816,14 @@
                                           {{ form.allowance_driver.label(class="form-control-label") }}
                               
                                           {% if form.allowance_driver.errors %}
-                                          {{ form.allowance_driver(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.allowance_driver(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.allowance_driver.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.allowance_driver(class="form-control form-control-lg") }}
+                                          {{ form.allowance_driver(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -879,14 +847,14 @@
                               {{ form.domestic.label(class="form-control-label") }}
                   
                               {% if form.domestic.errors %}
-                              {{ form.domestic(class="form-control form-control-lg is-invalid")}}
+                              {{ form.domestic(class="form-control form-control is-invalid")}}
                               <div class="invalid-feedback">
                                   {% for error in form.domestic.errors %}
                                   <span> {{ error}}</span>
                                   {% endfor %}
                               </div>
                               {% else %}
-                              {{ form.domestic(class="form-control form-control-lg") }}
+                              {{ form.domestic(class="form-control form-control") }}
                               {% endif %}
                   
                               
@@ -899,14 +867,14 @@
                       {{ form.allowance_housing.label(class="form-control-label") }}
           
                       {% if form.allowance_housing.errors %}
-                      {{ form.allowance_housing(class="form-control form-control-lg is-invalid")}}
+                      {{ form.allowance_housing(class="form-control form-control is-invalid")}}
                       <div class="invalid-feedback">
                           {% for error in form.allowance_housing.errors %}
                           <span> {{ error}}</span>
                           {% endfor %}
                       </div>
                       {% else %}
-                      {{ form.allowance_housing(class="form-control form-control-lg") }}
+                      {{ form.allowance_housing(class="form-control form-control") }}
                       {% endif %}
           
                       
@@ -919,14 +887,14 @@
                       {{ form.utilities.label(class="form-control-label") }}
           
                       {% if form.utilities.errors %}
-                      {{ form.utilities(class="form-control form-control-lg is-invalid")}}
+                      {{ form.utilities(class="form-control form-control is-invalid")}}
                       <div class="invalid-feedback">
                           {% for error in form.utilities.errors %}
                           <span> {{ error}}</span>
                           {% endfor %}
                       </div>
                       {% else %}
-                      {{ form.utilities(class="form-control form-control-lg") }}
+                      {{ form.utilities(class="form-control form-control") }}
                       {% endif %}
           
                       
@@ -939,14 +907,14 @@
                       {{ form.meal.label(class="form-control-label") }}
           
                       {% if form.meal.errors %}
-                      {{ form.meal(class="form-control form-control-lg is-invalid")}}
+                      {{ form.meal(class="form-control form-control is-invalid")}}
                       <div class="invalid-feedback">
                           {% for error in form.meal.errors %}
                           <span> {{ error}}</span>
                           {% endfor %}
                       </div>
                       {% else %}
-                      {{ form.meal(class="form-control form-control-lg") }}
+                      {{ form.meal(class="form-control form-control") }}
                       {% endif %}
           
                       
@@ -959,14 +927,14 @@
                       {{ form.allowance_telephone.label(class="form-control-label") }}
           
                       {% if form.allowance_telephone.errors %}
-                      {{ form.allowance_telephone(class="form-control form-control-lg is-invalid")}}
+                      {{ form.allowance_telephone(class="form-control form-control is-invalid")}}
                       <div class="invalid-feedback">
                           {% for error in form.allowance_telephone.errors %}
                           <span> {{ error}}</span>
                           {% endfor %}
                       </div>
                       {% else %}
-                      {{ form.allowance_telephone(class="form-control form-control-lg") }}
+                      {{ form.allowance_telephone(class="form-control form-control") }}
                       {% endif %}
           
                       
@@ -995,14 +963,14 @@
                                           {{ form.entertainment.label(class="form-control-label") }}
                               
                                           {% if form.entertainment.errors %}
-                                          {{ form.entertainment(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.entertainment(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.entertainment.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.entertainment(class="form-control form-control-lg") }}
+                                          {{ form.entertainment(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -1014,14 +982,14 @@
                                           {{ form.education.label(class="form-control-label") }}
                               
                                           {% if form.education.errors %}
-                                          {{ form.education(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.education(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.education.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.education(class="form-control form-control-lg") }}
+                                          {{ form.education(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -1034,14 +1002,14 @@
                                           {{ form.vacation.label(class="form-control-label") }}
                               
                                           {% if form.vacation.errors %}
-                                          {{ form.vacation(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.vacation(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.vacation.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.vacation(class="form-control form-control-lg") }}
+                                          {{ form.vacation(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -1053,14 +1021,14 @@
                                           {{ form.uniform.label(class="form-control-label") }}
                               
                                           {% if form.uniform.errors %}
-                                          {{ form.uniform(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.uniform(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.uniform.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.uniform(class="form-control form-control-lg") }}
+                                          {{ form.uniform(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -1073,14 +1041,14 @@
                                           {{ form.mobile_money.label(class="form-control-label") }}
                               
                                           {% if form.mobile_money.errors %}
-                                          {{ form.mobile_money(class="form-control form-control-lg is-invalid")}}
+                                          {{ form.mobile_money(class="form-control form-control is-invalid")}}
                                           <div class="invalid-feedback">
                                               {% for error in form.mobile_money.errors %}
                                               <span> {{ error}}</span>
                                               {% endfor %}
                                           </div>
                                           {% else %}
-                                          {{ form.mobile_money(class="form-control form-control-lg") }}
+                                          {{ form.mobile_money(class="form-control form-control") }}
                                           {% endif %}
                               
                                           
@@ -1093,14 +1061,14 @@
                                         {{ form.misc.label(class="form-control-label") }}
                             
                                         {% if form.misc.errors %}
-                                        {{ form.misc(class="form-control form-control-lg is-invalid")}}
+                                        {{ form.misc(class="form-control form-control is-invalid")}}
                                         <div class="invalid-feedback">
                                             {% for error in form.misc.errors %}
                                             <span> {{ error}}</span>
                                             {% endfor %}
                                         </div>
                                         {% else %}
-                                        {{ form.misc(class="form-control form-control-lg") }}
+                                        {{ form.misc(class="form-control form-control") }}
                                         {% endif %}
                             
                                         
@@ -1224,7 +1192,7 @@
             $(".bonus").css("display", "none");
             $(".benefit_vehicle").css("display", "block");
             $(".vehicle_nav").css("display", "block");
-            $(".vehicle_nav").css("borderColor", "cornflowerblue");
+            $(".vehicle_nav").addClass( "bg-info" );
 
       
 
@@ -1236,7 +1204,7 @@
             $(".benefit_health").css("display", "block");
             $(".vehicle_nav").css("display", "none");
             $(".health_nav").css("display", "block");
-            $(".health_nav").css("borderColor", "cornflowerblue");
+            $(".health_nav").addClass( "bg-info" );
          
 
 
@@ -1252,7 +1220,7 @@
         $(".benefit_personal").css("display", "block");
         $(".health_nav").css("display", "none");
             $(".personal_nav").css("display", "block");
-            $(".personal_nav").css("borderColor", "cornflowerblue");
+            $(".personal_nav").addClass( "bg-info" );
         
         
        
@@ -1287,7 +1255,7 @@
          
             $(".allowance_vehicle").css("display", "block");
             $(".vehicle_allowance").css("display", "block");
-            $(".vehicle_allowance").css("borderColor", "cornflowerblue");
+            $(".vehicle_allowance").addClass( "bg-info" );
 
       
 
@@ -1299,7 +1267,7 @@
             $('#benefit_state').val('personal')
             $(".allowance_health").css("display", "block");
             $(".health_allowance").css("display", "block");
-            $(".health_allowance").css("borderColor", "cornflowerblue");
+            $(".health_allowance").addClass( "bg-info" );
         
          
 
@@ -1313,7 +1281,7 @@
             $('#state').val('allowance')
             $(".allowance_personal").css("display", "block");
             $(".personal_allowance").css("display", "block");
-            $(".personal_allowance").css("borderColor", "cornflowerblue");
+            $(".personal_allowance").addClass( "bg-info" );
             $(".next_button").css("display", "none");
             $(".submit_button").css("display", "block");
         

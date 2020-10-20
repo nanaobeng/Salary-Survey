@@ -145,11 +145,12 @@ class ClientForm(FlaskForm):
     contact_firstname = StringField('Firstname', validators=[DataRequired()])
     contact_middlename = StringField('Middlename', validators=[DataRequired()])
     contact_lastname = StringField('Lastname', validators=[DataRequired()])
+    job = StringField('Job Title', validators=[DataRequired()])
      
-    job =  SelectField(
-        'Job Title',
-        choices=[('manager', 'Manager'), ('associate', 'Associate')] , validators=[DataRequired()]
-    )
+    # job =  SelectField(
+    #     'Job Title',
+    #     choices=[('manager', 'Manager'), ('associate', 'Associate')] , validators=[DataRequired()]
+    # )
     email = StringField('Email Address', validators=[DataRequired()])
     phone = StringField('Phone', validators=[DataRequired()])
 
@@ -169,7 +170,7 @@ class ClientForm(FlaskForm):
 
 class SurveyForm(FlaskForm):
    
-    base_salary = FloatField('Annual Base Salary', validators=[DataRequired()])
+    base_salary = FloatField('Annual Base Salary (GHS)', validators=[DataRequired()])
     
     company_bonus_performance = FloatField('Company Performance Bonus', validators=[DataRequired()])
     individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[DataRequired()])

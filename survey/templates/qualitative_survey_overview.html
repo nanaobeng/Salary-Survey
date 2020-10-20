@@ -1,0 +1,1095 @@
+{% extends "layout.html" %}
+
+{% block header %} 
+Qualitative Survey
+{% endblock header %}
+{% block content %}
+
+
+<div class="container qualitative" >
+    <div class="row p-4">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row pt-4">
+                                <div class="col-12 " >
+                                  <div class="row">
+                                    <div class="col-12">
+                                      <div class="container">
+                               
+                                        <ul class="progress-indicator">
+                                            <li class="gi_card ">
+                                                <span class="bubble"></span>
+                                                General Information. <br><small class="gi_status"></small>
+                                            </li>
+                                            <li class=" dc_card ">
+                                                <span class="bubble"></span>
+                                                DIRECT COMPENSATION. <br><small class="dc_status"></small>
+                                            </li>
+                                            <li class="bonus_card">
+                                                <span class="bubble"></span>
+                                                BONUS OR INCENTIVE PLANS. <br><small class="bonus_status"></small>
+                                            </li>
+                                            
+                                            
+                                        </ul>
+                                       
+                                
+                                       
+                                       
+                                
+                                       
+                                        
+                                        
+                                        
+                                
+                                        
+                                        </div>
+                                    </div>
+                                     
+                        
+                        
+                        
+                                 
+                        
+                        
+                        
+                        
+                        
+                                    
+                                  </div>
+                                 
+                               
+                              </div>
+                            </div>
+                            <div class="row pt-4 pb-4" >
+                                <div class="col-12">
+                                    <div class="card">
+                                        <div class="card-body p-4">
+                                            <div class="row" >
+                                                <div class="col-12">
+                                                  <div class="row ga_wizards">
+                                                    <div class="col-12">
+                                                      <div class="container">
+                                               
+                                                        <ul class="progress-indicator">
+                                                            <li class="co_card ">
+                                                                <span class="bubble"></span>
+                                                                Contact Overview. <br><small class="co_status"></small>
+                                                            </li>
+                                                            <li class=" oo_card ">
+                                                                <span class="bubble"></span>
+                                                                Organization Overview. <br><small class="oo_status"></small>
+                                                            </li>
+                                                            
+                                                            
+                                                            
+                                                        </ul>
+                                                       
+                                                
+                                                       
+                                                       
+                                                
+                                                       
+                                                        
+                                                        
+                                                        
+                                                
+                                                        
+                                                        </div>
+                                                    </div>
+                                                     
+                                        
+                                        
+                                        
+                                                 
+                                        
+                                        
+                                        
+                                        
+                                        
+                                                    
+                                                  </div>
+                                                    <div class="row pt-4 pb-4">
+                                                        <div class="col-12">
+                                                            <div >
+                                                                <div class=" p-4">
+                                                                    <form >
+                                                                        <div class="row "  >
+                                                                            <div class="col-12 general_information" >
+                                                                                <div class="row general_contact_view">
+                                                                                        
+                                                                                         <div class="col-12">
+                                                                                             <br/>
+                                                                                <div class="form-group">
+                                                                                    <label for="usr">Organization:</label>
+                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                  </div>
+    
+                                                                            </div>
+                                                                            
+                                                                                <div class="col-12">
+                                                                                    <div >
+                                                                                        <div >
+                                                                                            <div class="row">
+                                                                                            <div class="col-9">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Name:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+    
+                                                                                            <div class="col-3">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Title:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+    
+                                                                                            <div class="col-12">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Address:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+    
+                                                                                            <div class="col-4">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr"> Phone:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+                                                                                            <div class="col-4">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Email:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+                                                                                            <div class="col-4">
+                                                                                                <div class="form-group">
+                                                                                                    <label for="usr">Date Completed:</label>
+                                                                                                    <input type="text" class="form-control" id="usr" name="username">
+                                                                                                  </div>
+                    
+                                                                                            </div>
+                                                                                            <div class="col-12" id="questions">
+  
+                                                                                            </div>
+                                                                                            <div class="col-12">
+                                                                                                <span id="general_information" class="btn btn-outline-info" onclick="switchView(this.id)">Next</span>
+                                                                                            </div>
+                                                                                        </div>
+  
+                                                                                        
+                                                                                        
+    
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            
+                                                                           
+                                                                               
+                                                                           
+                                                                            </div>
+    
+    
+    
+                                                                            <div class="row general_organization_view" style="display:none">
+                                                                                <div class="col-12">
+                                                                                    <div class="row">
+                                                                                <div class="col-12">
+                                                                                    <div class="row justify-content-center">
+                                                                                        <div class="col-12">
+                                                                                            Sector
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label" for="radio1">
+                                                                                                  <input type="radio" class="form-check-input" id="radio1" name="optradio" value="option1" checked>Publicly listed financial
+                                                                                                  institution
+                                                                                                </label>
+                                                                                              </div>
+    
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label" for="radio2">
+                                                                                                  <input type="radio" class="form-check-input" id="radio2" name="optradio" value="option2">Publicly listed non-financial
+                                                                                                  institution
+                                                                                                </label>
+                                                                                              </div>
+    
+                                                                                        </div>
+    
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label">
+                                                                                                  <input type="radio" class="form-check-input" id="radio3" name="optradio" value="option3">Non publicly list financial
+                                                                                                  institution
+                                                                                                </label>
+                                                                                              </div>
+                                                                                            
+                                                                                        </div>
+    
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label">
+                                                                                                  <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option4"> Other
+                                                                                                  
+                                                                                                </label>
+                                                                                              </div>
+                                                                                            
+                                                                                        </div>
+                                                                                    
+                                                                                      
+                                                                                      
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <br/>
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">When was your organisation established/incorporated in Ghana?</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                
+    
+                                                                                <div class="col-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Registration Number</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                <div class="col-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Area of Operation</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                <div class="col-4">
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Total number of employees</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="row ">
+                                                                                        <div class="col-12">
+                                                                                            Employment Type
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label" for="radio1">
+                                                                                                  <input type="radio" class="form-check-input" id="radio11" name="optradio1" value="option11" checked>
+                                                                                                  Full time
+                                                                                                </label>
+                                                                                              </div>
+    
+                                                                                        </div>
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label" for="radio2">
+                                                                                                  <input type="radio" class="form-check-input" id="radio12" name="optradio1" value="option12">Temporary
+                                                                                                
+                                                                                                </label>
+                                                                                              </div>
+    
+                                                                                        </div>
+    
+                                                                                        <div class="col-3">
+                                                                                            <div class="form-check">
+                                                                                                <label class="form-check-label">
+                                                                                                  <input type="radio" class="form-check-input" id="radio13" name="optradio1" value="option13">Other
+                                                                                                  
+                                                                                                </label>
+                                                                                              </div>
+                                                                                            
+                                                                                        </div>
+    
+                                                                                       
+                                                                                    
+                                                                                      
+                                                                                      
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <br/>
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">No. of working hours in a week</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="username">
+                                                                                      </div>
+        
+                                                                                </div>
+                                                                                <div class="col-12">
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Can you describe your overtime policy? Eligibility, Payments, Approvals?</label>
+                                                                                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                                                      </div>
+        
+                                                                                </div>
+    
+                                                                                
+                                                                                
+                                                                                    
+                                                                                
+                                                                             
+                                                                                   <div class="col-12">
+                                                                                       <span id="general_organization" class="btn btn-outline-info" onclick="switchView(this.id)">Next ..</span>
+                                                                                   </div>
+                                                                             
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                      </div>
+                                                                      <div class="col-12">
+  
+  
+                                                                        <div class="row direct_compensation pt-1" style="display:none" >
+  
+                                                                          <div class="col-12">
+                                                                            <div class="row ">
+                                                                                <div class="col-12">
+                                                                                  Does your organisation have a formal salary structure for staff ?
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio1">
+                                                                                          <input type="radio" class="form-check-input" id="radio111" name="optradio1a" value="option11" checked>
+                                                                                          Yes
+                                                                                        </label>
+                                                                                      </div>
+  
+                                                                                </div>
+                                                                                <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio2">
+                                                                                          <input type="radio" class="form-check-input" id="radio121" name="optradio1a" value="option12">No
+                                                                                        
+                                                                                        </label>
+                                                                                      </div>
+  
+                                                                                </div>
+  
+                                                                               
+  
+                                                                               
+                                                                            
+                                                                              
+                                                                              
+                                                                            </div>
+                                                                        </div>
+  
+                                                                        <div class="col-12">
+                                                                          <br/>
+                                                                          <div class="form-group">
+                                                                              <label for="usr">If NO, how are salary level(s) established?</label>
+                                                                              <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                                            </div>
+  
+                                                                      </div>
+  
+                                                                      <div class="col-12">
+                                                                        <b>Information on salary adjustments</b>
+                                                                        <br/>
+                                                                        <div class="row">
+                                                                          <div class="col-6">
+                                                                            <br/>
+                                                                            <div class="form-group">
+                                                                                <label for="usr">How often is salary structure(s) adjusted?</label>
+                                                                                <input type="text" class="form-control" id="usr" name="username">
+                                                                              </div>
+  
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                          <br/>
+                                                                          <div class="form-group">
+                                                                              <label for="usr">Date of last adjustment</label>
+                                                                              <input type="text" class="form-control" id="usr" name="username">
+                                                                            </div>
+  
+                                                                      </div>
+                                                                      <div class="col-6">
+                                                                        <br/>
+                                                                        <div class="form-group">
+                                                                            <label for="usr">Average percentage increase in last reviews</label>
+                                                                            <input type="text" class="form-control" id="usr" name="username">
+                                                                          </div>
+  
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                      <br/>
+                                                                      <div class="form-group">
+                                                                          <label for="usr">Basis of adjustment:</label>
+                                                                          <input type="text" class="form-control" id="usr" name="username">
+                                                                        </div>
+  
+                                                                  </div>
+                                                                        </div>
+                                                                      </div>
+  
+  
+                                                                      <div class="col-12">
+                                                                        <b>Indicators</b>
+                                                                        <br/>
+                                                                        <div class="row">
+                                                                          <div class="col-6">
+                                                                            <br/>
+                                                                            <div class="form-group">
+                                                                                <label for="usr">Cost of living changes/inflation</label>
+                                                                                <input type="text" class="form-control" id="usr" name="username">
+                                                                              </div>
+  
+                                                                        </div>
+                                                                        <div class="col-6">
+                                                                          <br/>
+                                                                          <div class="form-group">
+                                                                              <label for="usr">Business conditions</label>
+                                                                              <input type="text" class="form-control" id="usr" name="username">
+                                                                            </div>
+  
+                                                                      </div>
+                                                                      <div class="col-6">
+                                                                        <br/>
+                                                                        <div class="form-group">
+                                                                            <label for="usr">Salary levels of other organisation/ market
+                                                                              survey results</label>
+                                                                            <input type="text" class="form-control" id="usr" name="username">
+                                                                          </div>
+  
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                      <br/>
+                                                                      <div class="form-group">
+                                                                          <label for="usr">Other (please specify)</label>
+                                                                          <input type="text" class="form-control" id="usr" name="username">
+                                                                        </div>
+  
+                                                                  </div>
+                                                                        </div>
+                                                                      </div>
+  
+                                                                      <div class="col-4">
+                                                                        <div class="form-group">
+                                                                          <label>Are all grades adjusted by the same Percentage?</label>
+                                                                          <input type="text" class="form-control"/>
+                                                                        </div>
+                                                                      </div>
+  
+                                                                      <div class="col-8">
+                                                                        <div class="form-group">
+                                                                          <label>If NO, how are adjustments made?</label>
+                                                                          <input type="text" class="form-control"/>
+                                                                        </div>
+                                                                      </div>
+  
+  
+                                                                      <div class="col-12">
+                                                                        <br/>
+                                                                        <div class="form-group">
+                                                                            <label for="usr">Please specify if your organisation uses a formal Job Evaluation System. What method of job
+                                                                              evaluation is used?</label>
+                                                                            <textarea class="form-control" rows="5" id="comment"></textarea>
+                                                                          </div>
+  
+                                                                    </div>
+  
+  
+                                                                    <div class="col-12">
+                                                                      <div class="form-check-inline">
+                                                                        <label class="form-check-label" for="check1">
+                                                                          <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Performance/Merit increases
+                                                                        </label>
+                                                                      </div>
+                                                                      <div class="form-check-inline">
+                                                                        <label class="form-check-label" for="check2">
+                                                                          <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">General increases (across board)
+                                                                        </label>
+                                                                      </div>
+                                                                      <div class="form-check-inline">
+                                                                        <label class="form-check-label">
+                                                                          <input type="checkbox" class="form-check-input" >Cost of living increases
+                                                                        </label>
+                                                                      </div>
+                                                                      <div class="form-check-inline">
+                                                                        <label class="form-check-label">
+                                                                          <input type="checkbox" class="form-check-input" >Other
+                                                                        </label>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="col-12">
+                                                                      <div class="row ">
+                                                                        <br/>
+                                                                          <div class="col-12">
+                                                                            Do your staff receive automatic cost of living salary adjustments at periodic intervals?
+                                                                          </div>
+                                                                          <div class="col-3">
+                                                                              <div class="form-check">
+                                                                                  <label class="form-check-label" for="radio1">
+                                                                                    <input type="radio" class="form-check-input" id="radio111" name="optradio1ab" value="option11" checked>
+                                                                                    Yes
+                                                                                  </label>
+                                                                                </div>
+  
+                                                                          </div>
+                                                                          <div class="col-3">
+                                                                              <div class="form-check">
+                                                                                  <label class="form-check-label" for="radio2">
+                                                                                    <input type="radio" class="form-check-input" id="radio121" name="optradio1ab" value="option12">No
+                                                                                  
+                                                                                  </label>
+                                                                                </div>
+  
+                                                                          </div>
+  
+                                                                         
+  
+                                                                         
+                                                                      
+                                                                        
+                                                                        
+                                                                      </div>
+                                                                  </div>
+  
+                                                                  <div class="col-12">
+                                                                    <br/>
+                                                                    <div class="form-group">
+                                                                      <label>If YES, on what basis are increments computed and what are the normal intervals?</label>
+                                                                      <textarea cols="5" class="form-control"></textarea>
+                                                                      
+                                                                    </div>
+                                                                  </div>
+  
+                                                                  <div class="col-6">
+                                                                    <div class="form-group">
+                                                                      <label>How many grade levels do you have?</label>
+                                                                      <input type="text" class="form-control"/>
+                                                                    </div>
+                                                                  </div>
+  
+                                                                  <div class="col-6">
+                                                                    <div class="form-group">
+                                                                      <label>What is the percentage difference in salary between the notches within a grade?</label>
+                                                                      <input type="text" class="form-control"/>
+                                                                    </div>
+                                                                  </div>
+  
+                                                                  <div class="col-12">
+                                                                    <div class="row ">
+                                                                      <br/>
+                                                                        <div class="col-12">
+                                                                          Are salary increments in the same grade based on
+                                                                        </div>
+                                                                        <div class="col-3">
+                                                                            <div class="form-check">
+                                                                                <label class="form-check-label" for="radio1">
+                                                                                  <input type="radio" class="form-check-input" id="radio111" name="optradio1abc" value="option11" checked>
+                                                                                  Notches
+                                                                                </label>
+                                                                              </div>
+  
+                                                                        </div>
+                                                                        <div class="col-3">
+                                                                            <div class="form-check">
+                                                                                <label class="form-check-label" for="radio2">
+                                                                                  <input type="radio" class="form-check-input" id="radio121" name="optradio1abc" value="option12">Percentages
+                                                                                
+                                                                                </label>
+                                                                              </div>
+  
+                                                                        </div>
+  
+                                                                       
+  
+                                                                       
+                                                                    
+                                                                      
+                                                                      
+                                                                    </div>
+                                                                </div>
+  
+                                                                <div class="col-12">
+                                                                  <div class="row ">
+                                                                    <br/>
+                                                                      <div class="col-12">
+                                                                        How do your staff progress through the steps?
+                                                                      </div>
+                                                                      <div class="col-3">
+                                                                          <div class="form-check">
+                                                                              <label class="form-check-label" for="radio1">
+                                                                                <input type="radio" class="form-check-input" id="radio111" name="optradio1abcd" value="option11" checked>
+                                                                                Automatic annual salary increments
+                                                                              </label>
+                                                                            </div>
+  
+                                                                      </div>
+                                                                      <div class="col-3">
+                                                                          <div class="form-check">
+                                                                              <label class="form-check-label" for="radio2">
+                                                                                <input type="radio" class="form-check-input" id="radio121" name="optradio1abcd" value="option12">Performance/ Merit
+                                                                              
+                                                                              </label>
+                                                                            </div>
+  
+                                                                      </div>
+  
+                                                                     
+  
+                                                                     
+                                                                  
+                                                                    
+                                                                    
+                                                                  </div>
+                                                                  
+                                                                </div>
+  
+                                                                <div class="col-12">
+                                                                  <div class="row">
+                                                                    <div class="col-12">
+                                                                      In order of importance, what factors are considered in placing your new staff on your salary
+  scale (please rank as 1st, 2nd, 3rd, etc)?
+  
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                      <div class="form-group">
+                                                                        <label>Eductation</label>
+                                                                        <input type="text" class="form-control" />
+  
+                                                                      </div>
+                                                                    </div>
+  
+                                                                    <div class="col-4">
+                                                                      <div class="form-group">
+                                                                        <label>Experience</label>
+                                                                        <input type="text" class="form-control" />
+                                                                        
+                                                                      </div>
+                                                                    </div>
+  
+                                                                    <div class="col-4">
+                                                                      <div class="form-group">
+                                                                        <label>Previous Salary</label>
+                                                                        <input type="text" class="form-control" />
+                                                                        
+                                                                      </div>
+                                                                    </div>
+  
+  
+                                                                  </div>
+                                                                </div>
+  
+                                                                <div class="col-12">
+                                                                  <div class="form-group">
+                                                                    <label>Is there a hiring rate for each grade or job which differs from the minimum of the scale?</label>
+                                                                    <textarea cols="5" class="form-control"></textarea>
+                                                                    
+                                                                  </div>
+                                                                </div>
+  
+                                                                <div class="col-6">
+                                                                  <div class="form-group">
+                                                                    <label>Is there a maximum salary for each grade which cannot be exceeded? Yes/No?</label>
+                                                                    <input type="text" class="form-control" />
+                                                                    
+                                                                  </div>
+                                                                </div>
+  
+                                                                <div class="col-6">
+                                                                  <div class="form-group">
+                                                                    <label>Are there instances where the maximum salary for a grade has been exceeded? Yes/No</label>
+                                                                    <input type="text" class="form-control" />
+                                                                    
+                                                                  </div>
+                                                                </div>
+  
+                                                                <div class="col-12">
+                                                                  <div class="form-group">
+                                                                    <label>If YES, please explain</label>
+                                                                    <textarea cols="5" class="form-control"></textarea>
+                                                                    
+                                                                  </div>
+                                                                </div>
+  
+  
+                                                                <div class="col-12">
+                                                                  <br/>
+                                                                  <span id="bonus" class="btn btn-outline-info" onclick="switchView(this.id)">Next ..</span>
+                                                              </div>
+  
+  
+                                                                          
+  
+                                                                        </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+                                                                        </div>
+  
+  
+                                                                        <div class="col-12">
+                                                                          <div class="row bonus" style="display: none;">
+  
+                                                                            <div class="col-12">
+                                                                              <div class="row ">
+                                                                                <br/>
+                                                                                  <div class="col-12">
+                                                                                    Does the organisation provide an annual cash bonus or other short term incentive plan (excluding
+  13th month pay) for employees?
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio1">
+                                                                                            <input type="radio" class="form-check-input" id="radio111" name="optradio1abcde" value="option11" checked>
+                                                                                            Yes
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio2">
+                                                                                            <input type="radio" class="form-check-input" id="radio121" name="optradio1abcde" value="option12">No
+                                                                                          
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+              
+                                                                                 
+              
+                                                                                 
+                                                                              
+                                                                                
+                                                                                
+                                                                              </div>
+                                                                              
+                                                                            </div>
+  
+  
+                                                                            <div class="col-12">
+                                                                              <br/>
+                                                                              <div class="form-group">
+                                                                                <label>Please list and describe these plans (provide copy of the plan or policy)</label>
+                                                                                <textarea cols="5" class="form-control"></textarea>
+                                                                              </div>
+                                                                            </div>
+  
+                                                                            <div class="col-12">
+                                                                              <div class="row ">
+                                                                                <br/>
+                                                                                  <div class="col-12">
+                                                                                    Are all staff including executives eligible for C1?
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio1">
+                                                                                            <input type="radio" class="form-check-input" id="radio1fd11" name="optradio1abcde" value="option11" checked>
+                                                                                            Yes
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio2">
+                                                                                            <input type="radio" class="form-check-input" id="radio1df321" name="optradio1abcde" value="option12">No
+                                                                                          
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+              
+                                                                                 
+              
+                                                                                 
+                                                                              
+                                                                                
+                                                                                
+                                                                              </div>
+                                                                              
+                                                                            </div>
+  
+  
+  
+  
+                                                                            <div class="col-12">
+                                                                              <br/>
+                                                                              <div class="form-group">
+                                                                                <label>If No, explain:</label>
+                                                                                <textarea cols="5" class="form-control"></textarea>
+                                                                              </div>
+                                                                            </div>
+  
+  
+                                                                            <div class="col-12">
+                                                                              <div class="row ">
+                                                                                <br/>
+                                                                                  <div class="col-12">
+                                                                                    When does your company pay the bonuses listed in C1?
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio1">
+                                                                                            <input type="radio" class="form-check-input" id="radio11df1" name="optradio1abcdef" value="option11" checked>
+                                                                                            At the end of the year as a lump sum
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio2">
+                                                                                            <input type="radio" class="form-check-input" id="radio12ff1" name="optradio1abcdef" value="option12">At completion of appraisal
+                                                                                          
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+  
+                                                                                  <div class="col-3">
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio2">
+                                                                                          <input type="radio" class="form-check-input" id="radio12fffd1" name="optradio1abcdef" value="option12">Monthly as part of the salary
+                                                                                        
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+              
+                                                                                 
+              
+                                                                                 
+                                                                              
+                                                                                
+                                                                                
+                                                                              </div>
+                                                                              
+                                                                            </div>
+  
+  
+                                                                            <div class="col-12">
+                                                                              <div class="row ">
+                                                                                <br/>
+                                                                                  <div class="col-12">
+                                                                                    Does your company pay 13th month bonus?
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio1">
+                                                                                            <input type="radio" class="form-check-input" id="radio11dfdgf1" name="optradio1abcdefg" value="option11" checked>
+                                                                                            Yes
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio2">
+                                                                                            <input type="radio" class="form-check-input" id="radio12ggff1" name="optradio1abcdefg" value="option12">No
+                                                                                          
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+  
+              
+                                                                                 
+              
+                                                                                 
+                                                                              
+                                                                                
+                                                                                
+                                                                              </div>
+                                                                              
+                                                                            </div>
+  
+                                                                            <div class="col-12">
+  
+                                                                              <div class="row ">
+                                                                                <br/>
+                                                                                  <div class="col-12">
+                                                                                    When is the 13th month bonus paid?
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio1">
+                                                                                            <input type="radio" class="form-check-input" id="radio11dfdgffdf1" name="optradio1abcdefgh" value="option11" checked>
+                                                                                            At the end of the year as a lump sum
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+                                                                                  <div class="col-3">
+                                                                                      <div class="form-check">
+                                                                                          <label class="form-check-label" for="radio2">
+                                                                                            <input type="radio" class="form-check-input" id="radio12gssgff1" name="optradio1abcdefgh" value="option12">At completion of appraisal
+                                                                                          
+                                                                                          </label>
+                                                                                        </div>
+              
+                                                                                  </div>
+  
+                                                                                  <div class="col-3">
+                                                                                    <br/>
+                                                                                    <div class="form-check">
+                                                                                        <label class="form-check-label" for="radio2">
+                                                                                          <input type="radio" class="form-check-input" id="raddio1d2gssgff1" name="optradio1abcdefgh" value="option12">Monthly as part of the salary
+                                                                                        
+                                                                                        </label>
+                                                                                      </div>
+            
+                                                                                </div>
+  
+              
+                                                                                 
+              
+                                                                                 
+                                                                              
+                                                                                
+                                                                                
+                                                                              </div>
+  
+                                                                            </div>
+  
+                                                                            <div class="col-12">
+                                                                              <div class="form-group">
+                                                                                <label>Are there restrictions on paying out the 13th month?</label>
+                                                                                <textarea cols="5" class="form-control"></textarea>
+                                                                              </div>
+                                                                            </div>
+  
+                                                                            <div class="col-12">
+                                                                              <div class="form-group">
+                                                                                <label>Apart from the direct compensations above (sections B&C) (and excluding employee benefits,
+                                                                                  perquisites and in-kind allowances, which are reviewed in other sections of this
+                                                                                  questionnaire), what other forms of direct compensation are available to employees? (Please
+                                                                                  describe in detail)</label>
+                                                                                <textarea cols="8" class="form-control"></textarea>
+                                                                              </div>
+                                                                            </div>
+  
+  
+  
+                                                                <div class="col-12">
+                                                                  <br/>
+                                                                  <span  class="btn btn-outline-info">Submit</span>
+                                                              </div>
+  
+  
+                                                                            
+  
+  
+                                                                          </div>
+                                                                        </div>
+                                                                        </div>
+                                                                        
+                                                                       
+                                                                        
+                                                                      </form>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+    
+    
+    
+    
+                            
+    
+    
+    
+    
+    
+                            
+    
+    
+    
+    
+    
+    
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  </div>
+  
+  
+  <script>
+    $('.gi_card').addClass('active')
+    $('.gi_status').html('( active )')
+    $('.co_card').addClass('active')
+  </script>
+  
+  
+  <script>
+      function switchView(id){
+          if(id == "general_information"){
+              $('.general_contact_view').css("display","none")
+              $('.general_organization_view').css("display","block")
+            
+              $('.co_card').removeClass('active')
+              $('.co_card').addClass('completed')
+             $('.co_status').html('( completed )')
+             $('.oo_card').addClass('active')
+             $('.oo_status').html('( active )')
+          }
+          if(id == "general_organization"){
+            
+            $('.ga_wizards').css("display","none")
+            $('.direct_compensation').css("display","block")
+              $('.general_organization_view').css("display","none")
+            
+              $('.oo_card').removeClass('active')
+              $('.oo_card').addClass('completed')
+             $('.oo_status').html('( completed )')
+             $('.dc_card').addClass('active')
+             $('.dc_status').html('( active )')
+             $('.gi_card').removeClass('active')
+             $('.gi_card').addClass('completed')
+            $('.gi_status').html('( completed )')
+          }
+  
+          if(id == "bonus"){
+            
+  
+            $('.direct_compensation').css("display","none")
+              $('.bonus').css("display","block")
+            
+              $('.dc_card').removeClass('active')
+              $('.dc_card').addClass('completed')
+             $('.dc_status').html('( completed )')
+             $('.bonus_card').addClass('active')
+             $('.bonus_status').html('( active )')
+          
+          }
+          
+  
+      }
+  </script>
+  
+
+{% endblock content %}
