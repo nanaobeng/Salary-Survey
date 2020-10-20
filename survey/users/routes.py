@@ -228,6 +228,10 @@ def admin_reports():
 def admin_configuration():
     return render_template("admin_configuration.html")
 
+@users.route("/administration/config/users")
+def admin_users():
+    return render_template("admin_users.html")
+
 
 @users.route("/survey/quantitative")
 def quantitative_survey():
