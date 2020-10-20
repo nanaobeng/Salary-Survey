@@ -34,6 +34,8 @@ Create Survey
                   <br/>
                   <br/>
                 <div class="row survey">
+                    <div class="col-12">
+                        <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="usr">Survey Name:</label>
@@ -98,9 +100,19 @@ Create Survey
                         </div>
 
                   </div>
-                  <div class="col-12 text-right">
-                      <span class="survey btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
-                  </div>
+                  
+                  <div class="col-12 ">
+                      <div class="row">
+                          <div class="col-12 text-right">
+                            <span class=" btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
+
+                          </div>
+                      </div>
+                   
+                </div>
+                </div>
+            </div>
+                  
                 </div>
 
 
@@ -172,14 +184,24 @@ Create Survey
         </ul>
       </div>
     </div>
-<div class="row">
-    <div class="col-6 ">
-        <span class="benchmark btn btn-outline-info" id="benchmark" onclick="switchBack(this.id)">Back</span>
-    </div>
-    <div class="col-6 text-right">
-        <span class="benchmark btn btn-outline-info" id="benchmark" onclick="switchView(this.id)">Next</span>
-    </div>
-    </div>
+
+
+    <div class="col-12 ">
+        <br/>
+        <div class="row">
+            <div class="col-6 ">
+                <span class="benchmark btn btn-outline-info" id="benchmark" onclick="switchBack(this.id)">Back</span>
+            </div>
+            <div class="col-6 text-right">
+                <span class="benchmark btn btn-outline-info" id="benchmark" onclick="switchView(this.id)">Next</span>
+            </div>
+        </div>
+     
+  </div>
+
+  
+  
+    
   </div>
   <!-- end of selection of benchmark job titles -->
   <!-- this begins the assignment of comparators -->
@@ -246,17 +268,23 @@ Create Survey
         </ul>
       </div>
     </div>
-    <div class="col-12">
+  
+    <div class="col-12 ">
+        <br/>
         <div class="row">
             <div class="col-6 ">
-                <span class="comparator btn btn-outline-info" id="comparator" onclick="switchBack(this.id)">Back</span>
+                <span class="comparator btn btn-outline-info" id="comparaot" onclick="switchBack(this.id)">Back</span>
             </div>
+            <div class="col-6 ">
+                <span  class="text-right sub btn btn-primary">Create Survey</span>
             </div>
-    </div>
+        </div>
+     
+  </div>
   </div>
                
                
-                <button type="submit" class="btn btn-primary">Create Survey</button>
+                
               </form>
         </div>
 
@@ -422,6 +450,7 @@ $("#add_benchmark").click(function(){
     $('.comparator_status').html("(active)")
      $(".benchmark").css("display", "none");
     $(".comparator").css("display", "block");
+    $(".sub").css("display", "block");
     
       
  
@@ -453,6 +482,7 @@ $("#add_benchmark").click(function(){
     $('.benchmark_status').html("(active)")
      $(".comparator").css("display", "none");
     $(".benchmark").css("display", "block");
+    $(".sub").css("display", "none");
     
       
  
