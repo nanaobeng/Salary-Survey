@@ -26,8 +26,13 @@ def register():
 
 @users.route("/login",methods=['POST','GET'])
 def login():
-    if current_user.is_authenticated:
+    if current_user.is_authenticated and current_user.role == 'admin':
+        
+        return redirect(url_for('users.admin_home'))
+    if current_user.is_authenticated and current_user.role != 'admin':
         return redirect(url_for('main.index'))
+
+    
     form = LoginForm()
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
@@ -55,7 +60,8 @@ def logout():
 @users.route("/account")
 @login_required
 def account():
-    return render_template('account.html')
+    test = current_user.role
+    return render_template('account.html',test=test)
 
 
 @users.route("/reset_password",methods=['POST','GET'])

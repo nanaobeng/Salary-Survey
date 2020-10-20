@@ -9,7 +9,33 @@ Create Survey
     <div class="row p-4">
         <div class="col-12">
             <form action="/action_page.php">
-                <div class="row">
+         
+                <div class="row ">
+                    <div class="col-12">
+                      <ul class="progress-indicator">
+                        <li class="survey_card ">
+                            <span class="bubble"></span>
+                            Survey Details. <br><small class="survey_status"></small>
+                        </li>
+                        <li class=" benchmark_card ">
+                            <span class="bubble"></span>
+                            Add Benchmark Jobs. <br><small class="benchmark_status"></small>
+                        </li>
+                        <li class="comparator_card">
+                            <span class="bubble"></span>
+                            Assign Comparators. <br><small class="comparator_status"></small>
+                        </li>
+                    
+                        
+                    </ul>
+                    </div>
+                  </div>
+
+                  <br/>
+                  <br/>
+                <div class="row survey">
+                    <div class="col-12">
+                        <div class="row">
                     <div class="col-6">
                         <div class="form-group">
                             <label for="usr">Survey Name:</label>
@@ -74,149 +100,200 @@ Create Survey
                         </div>
 
                   </div>
+                  
+                  <div class="col-12 ">
+                      <div class="row">
+                          <div class="col-12 text-right">
+                            <span class=" btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
+
+                          </div>
+                      </div>
+                   
                 </div>
+                </div>
+            </div>
+                  
+                </div>
+
+
+                <!-- thia begins the selection of benchmark job titles -->
+<div class="row benchmark" style="display:none">
+
+    <div class="col-12">
+     <table class="table">
+        <thead class="bg-secondary text-white">
+          <tr>
+            <div class="input-group" >
+              <input type="text" class="form-control" placeholder="Search Job">
+              <div class="input-group-append">
+                <button class="btn btn-secondary" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </tr>
+          <tr>
+            <td>Job Title</td>
+            <td>Industry</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Procurement Manager</td>
+            <td>Banking</td>
+            <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
+          </tr>
+          <tr>
+            <td>Sales Executive</td>
+            <td>Manufacturing</td>
+            <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
+          </tr>
+          <tr>
+            <td>Marketing Officer</td>
+            <td>Oil and Gas</td>
+            <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
+          </tr>
+        </tbody>
+      </table>
+      <br/>
+    </div>
+
+    <div class="col-12">
+      <div class="list-group">
+        <span class="list-group-item list-group-item-action  bg-secondary text-white">
+          Selected Benchmark Jobs
+        </span>
+        <ul class="list-group" id="selected_benchmark">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            HR Officer
+            <i class="fas fa-trash benchmark-trash"></i>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Assistant IT Manager
+            <i class="fas fa-trash benchmark-trash"></i>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Operations Director
+            <i class="fas fa-trash benchmark-trash"></i>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            Internal Auditor
+            <i class="fas fa-trash benchmark-trash"></i>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+
+    <div class="col-12 ">
+        <br/>
+        <div class="row">
+            <div class="col-6 ">
+                <span class="benchmark btn btn-outline-info" id="benchmark" onclick="switchBack(this.id)">Back</span>
+            </div>
+            <div class="col-6 text-right">
+                <span class="benchmark btn btn-outline-info" id="benchmark" onclick="switchView(this.id)">Next</span>
+            </div>
+        </div>
+     
+  </div>
+
+  
+  
+    
+  </div>
+  <!-- end of selection of benchmark job titles -->
+  <!-- this begins the assignment of comparators -->
+<div class="row comparator" style="display:none">
+    <div class="col-12">
+     
+      <table class="table">
+        <thead class="bg-secondary text-white">
+          <tr>
+            <div class="input-group" >
+              <input type="text" class="form-control" placeholder="Search Job">
+              <div class="input-group-append">
+                <button class="btn btn-secondary" type="button">
+                  <i class="fa fa-search"></i>
+                </button>
+              </div>
+            </div>
+          </tr>
+          <tr>
+            <td>Comparator Name</td>
+            <td>Industry</td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>XYZ Bank</td>
+            <td>Banking</td>
+            <td><i class="fas fa-plus benchmark-eye" rel="tooltip" title="Add Comparator"></i></td>
+          </tr>
+          <tr>
+            <td>JKL Textiles</td>
+            <td>Manufacturing</td>
+            <td><i class="fas fa-plus benchmark-eye" rel="tooltip" title="Add Comparator"></i></td>
+          </tr>
+          <tr>
+            <td>MNO Energy</td>
+            <td>Oil and Gas</td>
+            <td><i class="fas fa-plus benchmark-eye"  rel="tooltip" title="Add Comparator"></i></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-12">
+        <br/>
+      <div class="list-group">
+        <span class="list-group-item list-group-item-action  bg-secondary text-white">
+          Selected Comparators
+        </span>
+        <ul class="list-group" id="selected_benchmark">
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            RST Bank
+            <i class="fas fa-trash benchmark-trash"></i>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+            JilKs Bank
+            <i class="fas fa-trash benchmark-trash"></i>
+          </li>
+          <li class="list-group-item d-flex justify-content-between align-items-center">
+           EFG Bank
+            <i class="fas fa-trash benchmark-trash"></i>
+          </li>
+  
+        </ul>
+      </div>
+    </div>
+  
+    <div class="col-12 ">
+        <br/>
+        <div class="row">
+            <div class="col-6 ">
+                <span class="comparator btn btn-outline-info" id="comparaot" onclick="switchBack(this.id)">Back</span>
+            </div>
+            <div class="col-6 ">
+                <span  class="text-right sub btn btn-primary">Create Survey</span>
+            </div>
+        </div>
+     
+  </div>
+  </div>
                
                
-                <button type="submit" class="btn btn-primary">Create Survey</button>
+                
               </form>
         </div>
 
     </div>
 </div>
 
-<!-- thia begins the selection of benchmark job titles -->
-<div class="row">
-  <div class="col-lg-6 col-md-12">
-   
-    <table class="table">
-      <thead class="bg-secondary text-white">
-        <tr>
-          <div class="input-group" >
-            <input type="text" class="form-control" placeholder="Search Job">
-            <div class="input-group-append">
-              <button class="btn btn-secondary" type="button">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </tr>
-        <tr>
-          <td>Job Title</td>
-          <td>Industry</td>
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Procurement Manager</td>
-          <td>Banking</td>
-          <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
-        </tr>
-        <tr>
-          <td>Sales Executive</td>
-          <td>Manufacturing</td>
-          <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
-        </tr>
-        <tr>
-          <td>Marketing Officer</td>
-          <td>Oil and Gas</td>
-          <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-lg-6 col-md-12">
-    <div class="list-group">
-      <span class="list-group-item list-group-item-action  bg-secondary text-white">
-        Selected Benchmark Jobs
-      </span>
-      <ul class="list-group" id="selected_benchmark">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          HR Officer
-          <i class="fas fa-trash benchmark-trash"></i>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Assistant IT Manager
-          <i class="fas fa-trash benchmark-trash"></i>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Operations Director
-          <i class="fas fa-trash benchmark-trash"></i>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          Internal Auditor
-          <i class="fas fa-trash benchmark-trash"></i>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
-<!-- end of selection of benchmark job titles -->
 
-<!-- this begins the assignment of comparators -->
-<div class="row">
-  <div class="col-lg-6 col-md-12">
-   
-    <table class="table">
-      <thead class="bg-secondary text-white">
-        <tr>
-          <div class="input-group" >
-            <input type="text" class="form-control" placeholder="Search Job">
-            <div class="input-group-append">
-              <button class="btn btn-secondary" type="button">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </tr>
-        <tr>
-          <td>Comparator Name</td>
-          <td>Industry</td>
-          <td></td>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>XYZ Bank</td>
-          <td>Banking</td>
-          <td><i class="fas fa-plus benchmark-eye" rel="tooltip" title="Add Comparator"></i></td>
-        </tr>
-        <tr>
-          <td>JKL Textiles</td>
-          <td>Manufacturing</td>
-          <td><i class="fas fa-plus benchmark-eye" rel="tooltip" title="Add Comparator"></i></td>
-        </tr>
-        <tr>
-          <td>MNO Energy</td>
-          <td>Oil and Gas</td>
-          <td><i class="fas fa-plus benchmark-eye"  rel="tooltip" title="Add Comparator"></i></td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="col-lg-6 col-md-12">
-    <div class="list-group">
-      <span class="list-group-item list-group-item-action  bg-secondary text-white">
-        Selected Comparators
-      </span>
-      <ul class="list-group" id="selected_benchmark">
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          RST Bank
-          <i class="fas fa-trash benchmark-trash"></i>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-          JilKs Bank
-          <i class="fas fa-trash benchmark-trash"></i>
-        </li>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-         EFG Bank
-          <i class="fas fa-trash benchmark-trash"></i>
-        </li>
 
-      </ul>
-    </div>
-  </div>
-</div>
+
 <style>
 .benchmark-trash:hover{
   cursor: pointer;
@@ -349,5 +426,67 @@ $("#add_benchmark").click(function(){
         </li>`);
       
     });
+</script>
+
+<script>
+    function switchView(id){
+        if(id == 'survey'){
+    $('.survey_status').html("(completed)")
+    $( ".survey_card" ).removeClass( "active" );
+    $( ".survey_card" ).addClass( "completed" );
+    $( ".benchmark_card" ).addClass( "active" );
+    $('.benchmark_status').html("(active)")
+     $(".survey").css("display", "none");
+    $(".benchmark").css("display", "block");
+    
+      
+ 
+  }
+  if(id == 'benchmark'){
+    $('.benchmark_status').html("(completed)")
+    $( ".benchmark_card" ).removeClass( "active" );
+    $( ".benchmark_card" ).addClass( "completed" );
+    $( ".comparator_card" ).addClass( "active" );
+    $('.comparator_status').html("(active)")
+     $(".benchmark").css("display", "none");
+    $(".comparator").css("display", "block");
+    $(".sub").css("display", "block");
+    
+      
+ 
+  }
+    }
+</script>
+
+<script>
+    function switchBack(id){
+        if(id == 'benchmark'){
+    $('.benchmark_status').html("")
+    $( ".benchmark_card" ).removeClass( "active" );
+    $( ".survey_card" ).removeClass( "completed" );
+    $( ".survey_card" ).addClass( "active" );
+ 
+    $('.survey_status').html("(active)")
+     $(".benchmark").css("display", "none");
+    $(".survey").css("display", "block");
+    
+      
+ 
+  }
+  if(id == 'comparator'){
+    $('.comparator_status').html("")
+    $( ".comparator_card" ).removeClass( "active" );
+    $( ".benchmark_card" ).removeClass( "completed" );
+    $( ".benchmark_card" ).addClass( "active" );
+ 
+    $('.benchmark_status').html("(active)")
+     $(".comparator").css("display", "none");
+    $(".benchmark").css("display", "block");
+    $(".sub").css("display", "none");
+    
+      
+ 
+  }
+    }
 </script>
 {% endblock content %}
