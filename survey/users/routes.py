@@ -60,7 +60,7 @@ def logout():
 @users.route("/account")
 @login_required
 def account():
-   
+    test = current_user.role
     return render_template('account.html',test=test)
 
 
