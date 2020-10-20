@@ -187,6 +187,10 @@ def comparators():
 def view_survey():
     return render_template("view_survey.html")
 
+@users.route("/my_reports")
+def my_reports():
+    return render_template("my_reports.html")
+
 @users.route("/my_surveys")
 def my_surveys():
     return render_template("my_surveys.html")
@@ -199,7 +203,30 @@ def quantitative_overview():
 def qualitative_overview():
     return render_template("qualitative_survey_overview.html")
 
+@users.route("/administration")
+def admin_home():
+    return render_template("admin_home.html")
 
+@users.route("/administration/surveys")
+def admin_surveys():
+    return render_template("admin_surveys.html")
+
+@users.route("/administration/clients")
+def admin_clients():
+    return render_template("admin_clients.html")
+
+@users.route("/administration/service_requests")
+def admin_service_requests():
+    return render_template("admin_service_requests.html")
+
+
+@users.route("/administration/reports")
+def admin_reports():
+    return render_template("admin_reports.html")
+
+@users.route("/administration/configuration")
+def admin_configuration():
+    return render_template("admin_configuration.html")
 
 
 @users.route("/survey/quantitative")

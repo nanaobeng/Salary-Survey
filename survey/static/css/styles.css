@@ -10446,3 +10446,38 @@ transform: translateY(0px);
 .progress-indicator>li.danger .bubble,.progress-indicator>li.danger .bubble:after,.progress-indicator>li.danger .bubble:before{
   background-color:#d3140f;border-color:#440605}
   .progress-indicator>li.danger .bubble{color:#d3140f}.progress-indicator>li.warning .bubble,.progress-indicator>li.warning .bubble:after,.progress-indicator>li.warning .bubble:before{background-color:#edb10a;border-color:#5a4304}.progress-indicator>li.warning .bubble{color:#edb10a}.progress-indicator>li.info .bubble,.progress-indicator>li.info .bubble:after,.progress-indicator>li.info .bubble:before{background-color:#5b32d6;border-color:#25135d}.progress-indicator>li.info .bubble{color:#5b32d6}.progress-indicator.stacked>li{text-indent:-10px;text-align:center;display:block}.progress-indicator.stacked>li .bubble:after,.progress-indicator.stacked>li .bubble:before{left:50%;margin-left:-1.5px;width:3px;height:100%}.progress-indicator.stacked .stacked-text{position:relative;z-index:10;top:0;margin-left:60%!important;width:45%!important;display:inline-block;text-align:left;line-height:1.2em}.progress-indicator.stacked>li a{border:none}.progress-indicator.stacked.nocenter>li .bubble{margin-left:0;margin-right:0}.progress-indicator.stacked.nocenter>li .bubble:after,.progress-indicator.stacked.nocenter>li .bubble:before{left:10px}.progress-indicator.stacked.nocenter .stacked-text{width:auto!important;display:block;margin-left:40px!important}@media handheld,screen and (max-width:400px){.progress-indicator{font-size:60%}}
+
+  .benchmark-trash:hover{
+    cursor: pointer;
+    color: red;
+  }
+  .benchmark-eye:hover{
+    cursor: pointer;
+    color: green;
+  }
+
+  .admin-config-icon{
+    height: 140px;
+    width: 140px;
+    background-color: rgba(217, 240, 163, 0.404) ;
+    vertical-align: middle;
+    border-radius: 80px;
+    color: rgba(97, 102, 92, 0.87);
+    font-size: 80px;
+    border: 2px solid rgba(131, 218, 49, 0.637);
+    margin-top: 40px;
+}
+
+.admin-config-icon:hover{
+    cursor: pointer;
+    border: solid rgba(0, 0, 0, 0.356);
+    color: rgb(155, 172, 128);
+    background-color: white;
+}
+.admin-config-icon-label{
+font-size: 20px;
+
+}
+.job-list{
+  cursor: pointer;
+}

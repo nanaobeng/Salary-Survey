@@ -169,7 +169,7 @@ class ClientForm(FlaskForm):
 
 class SurveyForm(FlaskForm):
    
-    base_salary = FloatField('Annual Base Salary', validators=[DataRequired()])
+    base_salary = FloatField('Annual Base Salary (GHS)', validators=[DataRequired()])
     
     company_bonus_performance = FloatField('Company Performance Bonus', validators=[DataRequired()])
     individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[DataRequired()])
