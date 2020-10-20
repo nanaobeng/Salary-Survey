@@ -669,10 +669,19 @@
 
                  
 
+                <div class="row pt-4">
+                    <div class="col-6 benefit_vehicle" >
+                        <span class="btn btn-outline-info" id="benefit_vehicle" onclick="switchBack(this.id)">Back</span>
+                    </div>
+                    <div class="col-6 benefit_health" >
+                        <span class="btn btn-outline-info" id="benefit_health" onclick="switchBack(this.id)">Back</span>
+                    </div>
+                    <div class="col-6 benefit_personal" >
+                        <span class="btn btn-outline-info" id="benefit_personal" onclick="switchBack(this.id)">Back</span>
+                    </div>
 
-            <div class="col-6 bonus" >
-                <span class="btn btn-outline-info" id="benefit" onclick="switchBack(this.id)">Back</span>
-            </div>
+                </div>
+           
 
                <!-- end of benefit -->
              </div>
@@ -1165,7 +1174,8 @@
     if(state == 'bonus'){
       $('.bonus_status').html("(Completed)")
       $('.benefit_status').html("(active)")
-   
+      $(".benefit_vehicle").css("display", "none");
+      $(".vehicle_nav").css("display", "none");
       $( ".bonus_card" ).removeClass( "active" );
       $( ".bonus_card" ).addClass( "completed" );
       $( ".benefit_card" ).addClass( "active" );
@@ -1304,15 +1314,31 @@
         $('.bonus_status').html("")
 
         }
-        if(id == 'benefit'){
+        if(id == 'benefit_vehicle'){
             $( ".benefit_card" ).removeClass( "active" );
             $( ".bonus_card" ).removeClass( "completed" );
             $( ".bonus_card" ).addClass( "active" );
-            $('#benefit_state').val('health')
+            $('#benefit_state').val('vehicle')
             $(".bonus").css("display", "block");
+            $('#state').val('bonus')
             $(".benefit_vehicle").css("display", "none");
             $(".vehicle_nav").css("display", "none");
+           
             $('.benefit_status').html("")
+            
+
+        }
+        if(id == 'benefit_health'){
+        
+        
+            $('#benefit_state').val('health')
+            $(".benefit_vehicle").css("display", "block");
+            $('#state').val('bonus')
+            $(".benefit_health").css("display", "none");
+            $(".health_nav").css("display", "none");
+            $(".vehicle_nav").css("display", "block");
+           
+        
             
 
         }
