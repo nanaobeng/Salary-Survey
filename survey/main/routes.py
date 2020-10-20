@@ -8,7 +8,13 @@ main = Blueprint('main', __name__)
 @main.route("/home")
 @login_required
 def index():
-    return render_template("index.html")
+    if current_user.role == 'admin':
+
+        
+        return redirect(url_for('users.admin_home'))
+    if current_user.is_authenticated and current_user.role != 'admin':
+        return redirect(url_for('main.index'))
+ 
 
 
 
