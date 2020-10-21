@@ -13,12 +13,12 @@ class RegistrationForm(FlaskForm):
 
     role =  SelectField(
         'Role',
-        choices=[('admin', 'Admin'), ('client', 'Client'), ('comparator', 'Comparator')] , validators=[DataRequired()]
+        choices=[('admin', 'Admin'), ('client', 'Client')] , validators=[DataRequired()]
     )
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
 
-    submit = SubmitField('Sign Up')
+    submit = SubmitField('Save')
 
     def validate_username(self,username):
         user = User.query.filter_by(username = username.data).first()
@@ -63,7 +63,7 @@ class ResetPasswordForm(FlaskForm):
 
 class SectorForm(FlaskForm):
    
-    name = StringField('Name', validators=[DataRequired()])
+    name = StringField('Sector', validators=[DataRequired()])
 
     submit = SubmitField('Submit')
 
@@ -99,7 +99,7 @@ class JobForm(FlaskForm):
 
 class AreaForm(FlaskForm):
    
-    name = StringField('Title', validators=[DataRequired()])
+    name = StringField('Area of Operation', validators=[DataRequired()])
     sector =  SelectField(
         'Sector',
         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]

@@ -1,207 +1,123 @@
-{% extends "layout.html" %}
+{% extends "admin_layout.html" %}
 
+{% block header %} 
+Areas of Operation
+{% endblock header %}
 {% block content %}
-<div class="container table_list">
-  <div class="row">
-    <div class="col-12 text-right">
-      <span class="btn btn-info add"> Add Area of Operation</span>
-    </div>
-  </div>
-  <div class="row justify-content-center p-4">
-    <div class="col-12 text-center">
-      <b><u>Area of Operation List</u></b>
-      <br/>
-    </div>
-    <div class="col-8">
-      <table class="table">
-        <thead class="thead-dark">
-          <tr>
-            <th>Title</th>
-            <th>Sector</th>
-            <th>Industry</th>
-            <th></th>
-            <th></th>
-            
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Area 1</td>
-            <td>Private</td>
-            <td>Banking</td>
-            <td><span class="material-icons" style="color:green">
-              create
-              </span></td>
-              <td><span class="material-icons" style="color:red">
-                person_remove
-                </span></td>
-          
-          </tr>
-          <tr>
-            <td>Area 2</td>
-            <td>Public</td>
-            <td>Finance</td>
-            <td><span class="material-icons" style="color:green">
-              create
-              </span></td>
-              <td><span class="material-icons" style="color:red">
-                person_remove
-                </span></td>
-            
-          </tr>
-        
-        </tbody>
-      </table>
-    </div>
-  
 
-  </div>
+<table class="table table-hover">
+  <thead class="bg-secondary text-white">
+    <td>Area of operation</td>
+      <td>Industry</td>
+      <td>Sector</td>
+      <td></td>
+  </thead>
+  <tbody>
+      <tr>
+        <td>Insurance</td>
+          <td>Banking</td>
+          <td>Private</td>
+          <td><i class="fas fa-eye"></i></td>
+      </tr>
+      <tr>
+        <td>Food and Beverage</td>
+          <td>Manufacturing</td>
+          <td>Privare</td>
+          <td><i class="fas fa-eye"></i></td>
+      </tr>
+  </tbody>
+</table>
+<div class="row justify-content-center">
+  <button class="btn btn-info" data-toggle="modal" data-target="#area_of_operation" >New Area</button>
 </div>
 
 
-<div class="container list_form" style="display: none;">
-  <div class="row">
-    <div class="col-12 p-4">
-
-
-
-      <div class="row">
-        <div class="col-12">
-          <div class="progress">
-            <div class="progress-bar bg-info" style="width:40%"></div>
-         </div>
-        </div>
+<!-- Modal for creating new area_of_operation -->
+<div class="modal fade " id="area_of_operation" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Area of Operation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="row pt-4">
-        <div class="col-12 " >
-          <b>Create Area of Operation</b><br/>
-          Kindly select each compononet and fill in the required fields
-          </div>
-         
-       
-      </div>
-
-      <div class="row pt-4">
-
-     
-        
-
-
-        <div class="col-12 pt-4">
-          <div class="card">
-            <div class="card-body p-4">
-              <form >
-                <div class="row">
-                  <div class="col-12">
-
-                    <form method="POST" action="">
-    {{ form.hidden_tag() }}
-   <div class="row">
-     <div class="col-12">
-        <div class="form-group">
-            {{ form.name.label(class="form-control-label") }}
-
-            {% if form.name.errors %}
-            {{ form.name(class="form-control form-control-lg is-invalid")}}
-            <div class="invalid-feedback">
-                {% for error in form.name.errors %}
-                <span> {{ error}}</span>
-                {% endfor %}
-            </div>
-            {% else %}
-            {{ form.name(class="form-control form-control-lg") }}
-            {% endif %}
-
+      <div class="modal-body">
+          <div class="row">
+            <form method="POST" action="" class="col-12">
+              {{ form.hidden_tag() }}
+             
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="form-group">
+                        {{ form.name.label(class="form-control-label") }}
             
-        </div>
-      </div>
-      <div class="col-6">
-        <div class="form-group">
-          {{ form.sector.label(class="form-control-label") }}
-
-          {% if form.sector.errors %}
-          {{ form.sector(class="form-control form-control-lg is-invalid")}}
-          <div class="invalid-feedback">
-              {% for error in form.sector.errors %}
-              <span> {{ error}}</span>
-              {% endfor %}
-          </div>
-          {% else %}
-          {{ form.sector(class="form-control form-control-lg") }}
-          {% endif %}
-
-          
-      </div>
-      </div>
-      <div class="col-6">
-      <div class="form-group">
-        {{ form.industry.label(class="form-control-label") }}
-
-        {% if form.industry.errors %}
-        {{ form.industry(class="form-control form-control-lg is-invalid")}}
-        <div class="invalid-feedback">
-            {% for error in form.industry.errors %}
-            <span> {{ error}}</span>
-            {% endfor %}
-        </div>
-        {% else %}
-        {{ form.industry(class="form-control form-control-lg") }}
-        {% endif %}
-
-        
-    </div>
-  </div>
- 
-  </div>
-
-
+                        {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.name(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                      </div>
+                      <div class="col-lg-6 col-md-12">
+                        <div class="form-group">
+                          {{ form.sector.label(class="form-control-label") }}
+                
+                          {% if form.sector.errors %}
+                          {{ form.sector(class="form-control form-control is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.sector.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.sector(class="form-control form-control") }}
+                          {% endif %}
+                
+                          
+                      </div>
+                      </div>
+                      <div class="col-lg-6 col-md-12">
+                        <div class="form-group">
+                          {{ form.industry.label(class="form-control-label") }}
+                  
+                          {% if form.industry.errors %}
+                          {{ form.industry(class="form-control form-control is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.industry.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.industry(class="form-control form-control") }}
+                          {% endif %}
+                  
+                          
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+               
+            
+                  </form>
+              </div>
+      <div class="modal-footer">
         <div class="form-group">
           {{ form.submit(class="btn btn-outline-info") }}
       </div>
-  
-        </form>
-
-
-                   
-
-                  </div>
-                 
-
-                 
-
-
-                 
-                 
-                
-                
-
-                </div>
-              
-    
-              </form>
-            </div>
-          </div>
-          
-        </div>
-        
-
-      </div>
     </div>
   </div>
 </div>
-<script>
-      $(document).ready(function(){
-  $(".add").click(function(){
-
-    $('.table_list').css("display", "none");
-    $('.list_form').css("display", "block");
 
 
 
 
-
-  })
-  });
-  
-</script>
 {% endblock content %}
+

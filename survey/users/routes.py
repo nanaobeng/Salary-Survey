@@ -238,6 +238,13 @@ def admin_configuration():
 def admin_users():
     return render_template("admin_users.html")
 
+@users.route("/administration/config/benchmark_jobs")
+def admin_benchmark_jobs():
+    return render_template("admin_benchmark_jobs.html")
+
+@users.route("/administration/config/create_benchmark_job")
+def create_benchmark_job():
+    return render_template("create_benchmark_job.html")
 
 @users.route("/survey/quantitative")
 def quantitative_survey():

@@ -1,0 +1,102 @@
+{% extends "admin_layout.html" %}
+
+{% block header %} 
+Create Benchmark Job
+{% endblock header %}
+{% block content %}
+
+<form action="">
+    <div class="row">
+        <div class="col-lg-6 md-12">
+            <div class="form-group">
+                <label for="job_title">Job Title</label>
+                <input type="text" name="job_title" id="" class="form-control">
+            </div>
+        </div>
+        <div class="col-lg-6 md-12">
+            <div class="form-group">
+                <label for="job_grade">Job Grade</label>
+                <input type="text" name="job_grade" id="" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 md-12">
+            <div class="form-group">
+                <label for="sector">Sector</label>
+                <input type="text" name="sector" id="" class="form-control">
+            </div>
+        </div>
+ 
+    
+        <div class="col-lg-4 md-12">
+            <div class="form-group">
+                <label for="industry">Industry</label>
+                <input type="text" name="industry" id="" class="form-control">
+            </div>
+        </div>
+        <div class="col-lg-4 md-12">
+            <div class="form-group">
+                <label for="area_of_operation">Area of Operation</label>
+                <input type="text" name="area_of_operation" id="" class="form-control">
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 md-12">
+            <div class="form-group">
+                <label for="reporting_relationship">Reporting Relationship</label>
+                <input type="text" name="reporting_relationship" id="" class="form-control">
+            </div>
+        </div>
+    </div>  
+        <div class="row">
+            <div class="col-lg-12 md-12">
+                <div class="form-group">
+                    <label for="description">Generic Job Description</label>
+                    <textarea name="description" id="" cols="" rows="4" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 md-12">
+                <div class="form-group">
+                    <label for="responsibility">Key Duties & Responsibilities</label>
+                    <textarea name="responsibility" id="" cols="" rows="4" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 md-12">
+                <div class="form-group">
+                    <label for="Financial">Financial Responsibilities</label>
+                    <textarea name="Financial" id="" cols="" rows="4" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 md-12">
+                <div class="form-group">
+                    <label for="technical">Technical Qualifications</label>
+                    <textarea name="technical" id="" cols="" rows="4" class="form-control"></textarea>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 md-12">
+                <div class="form-group">
+                    <label for="years_of_experience">Years of Experience</label>
+                    <input type="text" name="years_of_experience" id="" class="form-control">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 md-12">
+                <div class="form-group">
+                   <button class="btn btn-success">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+{% endblock content %}
