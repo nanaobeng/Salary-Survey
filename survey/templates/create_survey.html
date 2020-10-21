@@ -8,7 +8,7 @@ Create Survey
 <div class="container p-4">
     <div class="row p-4">
         <div class="col-12">
-            <form action="/action_page.php">
+            <form class="testdiv">
          
                 <div class="row ">
                     <div class="col-12">
@@ -33,41 +33,41 @@ Create Survey
 
                   <br/>
                   <br/>
-                <div class="row survey">
+                <div class="row  survey">
                     <div class="col-12">
                         <div class="row">
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="usr">Survey Name:</label>
-                            <input type="text" class="form-control" id="usr" name="username">
+                            <label class="td">Survey Name:</label>
+                            <input type="text" class="form-control" id="survey_name" name="Survey Name">
                           </div>
 
                     </div>
                     <div class="col-6">
                         <div class="form-group">
-                            <label for="usr">Fiscal Year:</label>
-                            <input type="text" class="form-control" id="usr" name="username">
+                            <label class="td">Fiscal Year:</label>
+                            <input type="text" class="form-control" id="fiscal_year" name="Fiscal Year">
                           </div>
 
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label for="usr">Client:</label>
-                            <input type="text" class="form-control" id="usr" name="username">
+                            <input type="text" class="form-control" id="client" name="Client">
                           </div>
 
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label for="usr">Industry</label>
-                            <input type="text" class="form-control" id="usr" name="username" readonly>
+                            <input type="text" class="form-control" id="industry" name="Industry" readonly>
                           </div>
 
                     </div>
                     <div class="col-4">
                         <div class="form-group">
-                            <label for="usr">Area of Operation</label>
-                            <input type="text" class="form-control" id="usr" name="username" readonly>
+                            <label class="td">Area of Operation</label>
+                            <input type="text" class="form-control" id="area_of_operation" name="Area of Operation" readonly>
                           </div>
 
                     </div>
@@ -76,21 +76,21 @@ Create Survey
                     <div class="col-4">
                         <div class="form-group">
                             <label for="usr">Start Date:</label>
-                            <input type="date" class="form-control" id="usr" name="username">
+                            <input type="date" class="form-control" id="start_date" name="Start Date">
                           </div>
 
                     </div>
                     <div class="col-4">
                         <div class="form-group">
                             <label for="usr">End Date:</label>
-                            <input type="date" class="form-control" id="usr" name="username">
+                            <input type="date" class="form-control" id="end_date" name="End Date">
                           </div>
 
                     </div>
                     <div class="col-4">
                       <div class="form-group">
-                          <label for="sel1">Status:</label>
-                          <select class="form-control" id="">
+                          <label class="td">Status:</label>
+                          <select class="form-control" id="status" name="Status">
                             <option>Not Started</option>
                             <option>Data Collection</option>
                             <option>Data Analysis</option>
@@ -124,7 +124,8 @@ Create Survey
         <thead class="bg-secondary text-white">
           <tr>
             <div class="input-group" >
-              <input type="text" class="form-control" placeholder="Search Job">
+              <input type="text" name="Job Title" 
+              class="form-control" placeholder="Search Job">
               <div class="input-group-append">
                 <button class="btn btn-secondary" type="button">
                   <i class="fa fa-search"></i>
@@ -213,7 +214,7 @@ Create Survey
         <thead class="bg-secondary text-white">
           <tr>
             <div class="input-group" >
-              <input type="text" class="form-control" placeholder="Search Job">
+              <input type="text" name="Selected Comparator" class="form-control" placeholder="Search Job">
               <div class="input-group-append">
                 <button class="btn btn-secondary" type="button">
                   <i class="fa fa-search"></i>
@@ -276,8 +277,10 @@ Create Survey
             <div class="col-6 ">
                 <span class="comparator btn btn-outline-info" style="width: 70px;" id="comparator" onclick="switchBack(this.id)">Back</span>
             </div>
-            <div class="col-6 " style="text-align: right;">
-                <span  class="text-right sub btn btn-info" style="width: 120px;float: right;">Create Survey</span>
+            <div class="col-6 text-center justify-content-center" style="text-align: right;">
+             
+           
+                <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#myModal"  style="width: 120px;float: right;">Review</span>
             </div>
         </div>
      
@@ -414,6 +417,40 @@ Create Survey
     </div>
   </div>
 
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+        
+          <!-- Modal Header -->
+          <div class="modal-header">
+            <h4 class="modal-title">Review Form</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          
+          <!-- Modal body -->
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-12 review">
+               
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <span  class="text-center sub btn btn-info" style="width: 120px;">Create Survey</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Modal footer -->
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+
 <script>
 $("ul").on("click", "svg", function(e) {
   
@@ -439,6 +476,8 @@ $("#add_benchmark").click(function(){
     $('.benchmark_status').html("(active)")
      $(".survey").css("display", "none");
     $(".benchmark").css("display", "block");
+
+   
     
       
  
@@ -452,6 +491,15 @@ $("#add_benchmark").click(function(){
      $(".benchmark").css("display", "none");
     $(".comparator").css("display", "block");
     $(".sub").css("display", "block");
+
+    $(".testdiv").find('input:text, select, textarea')
+        .each(function() {
+
+          var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br/> <hr/>"
+   
+          $('.review').append(line)
+       
+        });
     
       
  

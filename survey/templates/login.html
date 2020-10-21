@@ -34,10 +34,28 @@
     <div class="container">
         <div class="login-main bg-white">
             <p class="login-header mb-0">Sign in</p>
+            <div class="row pl-2 pr-2">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {%if messages %}
+                {% for category, message in messages %}
+                <div class="container">
+                <div class="alert alert-{{ category}}">
+                    {{message}}
+                </div>
+            </div>
+            
+    
+                {% endfor %}
+    
+                {% endif %}
+    
+              {% endwith %}
+
+            </div>
 
             <form method="POST" action="">
                 {{ form.hidden_tag() }}
-           <div class="container p-4 text-dark">
+           <div class="container p-2 text-dark">
             <div class="row">
                 <div class="col">
                     <div class="form-group">
@@ -91,6 +109,7 @@
                     </div>
                 </div>
             </div>
+            
             <div class="row">
                 <div class="col">
                     <a href="{{ url_for('users.reset_request') }}"><b>Forgot Password?</b></a>

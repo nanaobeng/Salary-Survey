@@ -28,9 +28,9 @@ Create Client
   <div class="row">
     <div class="col-12 p-4">
 
-      <div class="row">
+      <div class="row testdiv">
 
-        <div class="col-12">
+        <div class="col-12 ">
           <div class="">
             <div class="card-body p-4">
               
@@ -592,6 +592,45 @@ Create Client
     </div>
   </div>
 </div>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Review Form</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12 review">
+             
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <span  class="text-center sub btn btn-info" style="width: 120px;">Create Survey</span>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <div class="col-6 text-center justify-content-center" style="text-align: right;">
+             
+           
+    <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#myModal"  style="width: 120px;float: right;">Review</span>
+</div>
 <input type="hidden" id="state"  value="industry">
 
 
@@ -646,6 +685,16 @@ Create Client
      $(".company").css("display", "none");
     $(".contact").css("display", "block");
     $(".submit_button").css("display", "block");
+
+
+    $(".testdiv").find('input:text, select, textarea')
+        .each(function() {
+
+          var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br/> <hr/>"
+   
+          $('.review').append(line)
+       
+        });
     
       
  
