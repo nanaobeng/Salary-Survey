@@ -64,15 +64,9 @@
                 {% if current_user.is_authenticated %}
                
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('main.index')}}">Home</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_surveys')}}">Surveys</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_surveys')}}">Complete Survey</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_reports')}}">Reports</a></li>
-                <div class="btn-group nav-item">
-                  <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">About</i></li>
-                  <div class="dropdown-menu dropdown-menu-right bg-secondary ">
-                      <a class="dropdown-item" href="#">About</a>
-                      <a class="dropdown-item" href="#">Contact Us</a>
-                  </div>
-              </div>
+
               <div class="btn-group nav-item">
                   <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"><i class="fas fa-user"></i></li>
                   <div class="dropdown-menu dropdown-menu-right bg-secondary ">
@@ -159,12 +153,42 @@
       </div>
         
      
-         
+         <style>
+         .footer-link{
+           color: white;
+           text-decoration: underline;
+           font-size: 12px;
+         }
+         .footer-link:hover{
+           color: greenyellow;
+         }
+         </style>
        
 
         <!-- Footer-->
         <footer class="bg-dark py-3 main-footer">
-          <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Deloitte and Touche</div></div>
+          <div class="container">
+            <div class="row mb-4">
+              <div class="col-lg-2 col-md-3 col-sm-6">
+                <a href="#" class="footer-link">About Deloitte</a>
+              </div>
+              <div class="col-lg-2 col-md-3 col-sm-6">
+                <a href="#" class="footer-link">Our Services</a>
+              </div>
+              <div class="col-lg-2 col-md-3 col-sm-6">
+                <a href="#" class="footer-link">Contact Us</a>
+              </div>
+              <div class="col-lg-2 col-md-3 col-sm-6">
+                <a href="#" class="footer-link">Terms of Use</a>
+              </div>
+              <div class="col-lg-2 col-md-3 col-sm-6">
+                <a href="#" class="footer-link">Privacy</a>
+              </div>
+            </div>
+          </div>
+          <div class="container"><div class="small text-white">Copyright © 2020 - Deloitte and Touche <br>
+            Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited, a UK private company limited by guarantee (“DTTL”), its network of member firms, and their related entities. DTTL and each of its member firms are legally separate and independent entities. DTTL (also referred to as “Deloitte Global”) does not provide services to clients. Please see www.deloitte.com/about for a detailed description of DTTL and its member firms.
+          </div></div>
       </footer>
        <!--JavaScript at end of body for optimized loading-->
        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
