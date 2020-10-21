@@ -15,7 +15,7 @@ Qualitative Survey
                       <div class="col-12">
                           <div class="row pt-4">
                               <div class="col-12 " >
-                                <div class="row">
+                                <div class="row testdiv">
                                   <div class="col-12">
                                     <div class="container">
                              
@@ -3171,10 +3171,9 @@ not covered in this questionnaire may be:
                                                         <span id="general" class="btn btn-outline-info" onclick="switchBack(this.id)">Back</span>
                                                     </div>
 
-                                                    <div class="col-6 text-right">
-                                                      
-                                                      <span  class="btn btn-outline-info">Submit</span>
-                                                  </div>
+                                                    <div class="col-6 submit_button text-right" >
+                                                      <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#myModal"  >Review</span>
+                                                    </div>
 
 
                                                     </div>
@@ -3231,7 +3230,39 @@ not covered in this questionnaire may be:
       </div>
   </div>
 </div>
-
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">Review Form</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <!-- Modal body -->
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-12 review">
+           
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-12">
+            <span  class="text-center sub btn btn-info" style="width: 120px;">Submit</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
 
 <script>
   $('.gi_card').addClass('active')
@@ -3295,6 +3326,16 @@ not covered in this questionnaire may be:
            $('.bonus_status').html('( completed )')
            $('.general_card').addClass('active')
            $('.general_status').html('( active )')
+
+
+           $(".testdiv").find('input:text, select, textarea')
+        .each(function() {
+
+          var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br/> <hr/>"
+   
+          $('.review').append(line)
+       
+        });
         
         }
         
