@@ -575,9 +575,11 @@ Create Client
                       <div class="col-6 move-right">
                         <div class="form-group submit_button p-2">
                           <br/>
-                          {{ form.submit(class="btn btn-outline-info") }}
+                          <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#myModal"  >Review</span>
                       </div>
                       </div>
+
+                     
               </div>
               
                     </form>
@@ -612,9 +614,11 @@ Create Client
             </div>
           </div>
           <div class="row">
-            <div class="col-12">
-              <span  class="text-center sub btn btn-info" style="width: 120px;">Create Survey</span>
-            </div>
+            <div class="col-6 text-center justify-content-center" style="text-align: right;">
+             
+              {{ form.submit(class="btn btn-outline-info") }
+              
+          </div>
           </div>
         </div>
         
@@ -626,11 +630,7 @@ Create Client
       </div>
     </div>
   </div>
-  <div class="col-6 text-center justify-content-center" style="text-align: right;">
-             
-           
-    <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#myModal"  style="width: 120px;float: right;">Review</span>
-</div>
+
 <input type="hidden" id="state"  value="industry">
 
 
