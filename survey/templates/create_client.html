@@ -197,7 +197,7 @@ Create Client
                           </div>
       
                           </div>
-                          <div class="col-6">
+                          <div class="col-4">
                             <div class="form-group">
                               {{ form.mailing_city.label(class="form-control-label") }}
                   
@@ -216,7 +216,26 @@ Create Client
                           </div>
       
                           </div>
-                          <div class="col-6">
+                          <div class="col-4">
+                            <div class="form-group">
+                              {{ form.mailing_region.label(class="form-control-label") }}
+                  
+                              {% if form.mailing_region.errors %}
+                              {{ form.mailing_region(class="form-control form-control is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.mailing_region.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.mailing_region(class="form-control form-control") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-4">
                             <div class="form-group">
                               {{ form.mailing_country.label(class="form-control-label") }}
                   

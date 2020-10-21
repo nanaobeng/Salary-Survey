@@ -130,15 +130,16 @@ class ClientForm(FlaskForm):
         'Area of Operation',
         choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
     )
-    mailing_building = StringField('Building', validators=[DataRequired()])
-    mailing_street = StringField('Street', validators=[DataRequired()])
-    mailing_city = StringField('City', validators=[DataRequired()])
+    mailing_building = StringField('Street Line 1', validators=[DataRequired()])
+    mailing_street = StringField('Street Line 2', validators=[DataRequired()])
+    mailing_city = StringField('City/Town', validators=[DataRequired()])
+    mailing_region = StringField('Region', validators=[DataRequired()])
     mailing_country = StringField('Country', validators=[DataRequired()])
 
 
     street_building = StringField('Building', validators=[DataRequired()])
     street_street = StringField('Street', validators=[DataRequired()])
-    street_city = StringField('City', validators=[DataRequired()])
+    street_city = StringField('City/Town', validators=[DataRequired()])
     street_country = StringField('Country', validators=[DataRequired()])
 
 
