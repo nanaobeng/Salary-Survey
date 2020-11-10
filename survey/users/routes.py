@@ -147,7 +147,7 @@ def survey():
 
 @users.route("/create_questions")
 def questions():
-    form = SurveyForm()
+
     return render_template("create_questions.html",title="Set Questions")
 
 
