@@ -251,7 +251,10 @@ def quantitative_survey():
     form = SurveyForm()
     return render_template("quantitative_survey.html",form=form)
 
-
+@users.route("/requests/corporate")
+def corporate_requests():
+    
+    return render_template("corporate_request.html")
 
 
 
