@@ -256,6 +256,11 @@ def corporate_requests():
     
     return render_template("corporate_request.html")
 
+@users.route("/user/profile")
+def update_profile():
+    
+    return render_template("update_profile.html")
+
 
 
 
