@@ -58,12 +58,22 @@
                 {% if current_user.is_authenticated %}
                
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_home')}}">Home</a></li>
-                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_surveys')}}">Surveys</a></li>
+                
+               
+                <div class="btn-group nav-item">
+                  <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Surveys</li>
+                  <div class="dropdown-menu dropdown-menu-right bg-secondary ">
+                      <a class="dropdown-item" href="{{  url_for('users.admin_surveys')}}">View Surveys</a>
+                      <a class="dropdown-item" href="{{  url_for('users.create_survey')}}">Create Survey</a>
+                  </div>
+              </div>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_reports')}}">Reports</a></li>
                 <div class="btn-group nav-item">
                     <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Clients</li>
                     <div class="dropdown-menu dropdown-menu-right bg-secondary ">
-                        <a class="dropdown-item" href="{{  url_for('users.admin_clients')}}">Client List</a>
+                        <a class="dropdown-item" href="{{  url_for('users.admin_clients')}}">View Clients</a>
+                        <a class="dropdown-item" href="{{  url_for('users.create_client')}}">Client List</a>
+                       
                         <a class="dropdown-item" href="{{  url_for('users.admin_service_requests')}}">Service Requests</a>
                     </div>
                 </div>
