@@ -125,71 +125,282 @@
             <div class="container">
                 <h2 class="text-center mt-0">Request Service</h2>
                 <hr class="divider my-4" />
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label for="firstname" class="label">First Name</label>
-                            <input type="text" name="firstname" id="firstname" class="form-control">
+                
+               
+              
+                <div class="row justify-content-center">
+                    <div class="col-3  " >
+                        <a onclick="requestModal('indiviudal')">
+                        <div class=" quick_nav card shadow-lg p-3 mb-5 bg-white rounded" style="border-width: 3px;border-style: solid;" >
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 text-center" >
+                                    <img class="img-fluid" src="https://www.pinclipart.com/picdir/big/66-662356_report-vector-check-list-clipart.png" style="height:50px"  />
+                                </div>
+                                <div class="col-12 p-2 text-center">
+                                   Individual Request
+                                </div>
+                                </div>
+                              
+                            </div>
                         </div>
+                    </a>
                     </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label for="firstname" class="label">Last Name</label>
-                            <input type="text" name="firstname" id="firstname" class="form-control">
+
+                    <div class="col-3  " >
+                        <a onclick="requestModal('corporate')">
+                        <div class=" quick_nav card shadow-lg p-3 mb-5 bg-white rounded" style="border-width: 3px;border-style: solid;" >
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-12 text-center" >
+                                    <img class="img-fluid" src="https://www.pinclipart.com/picdir/big/66-662356_report-vector-check-list-clipart.png" style="height:50px"  />
+                                </div>
+                                <div class="col-12 p-2 text-center">
+                                   Corporate Request
+                                </div>
+                                </div>
+                              
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label for="email" class="label">Email</label>
-                            <input type="email" name="email" id="email" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label for="mobile_number" class="label">Mobile Number</label>
-                            <input type="text" name="mobile_number" id="mobile_number" class="form-control">
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label for="organisation" class="label">Organisation</label>
-                            <input type="text" name="organisation" id="organisation" class="form-control">
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-12">
-                        <div class="form-group">
-                            <label for="job_title" class="label">Job Title</label>
-                            <input type="text" name="job_title" id="job_title" class="form-control">
-                        </div>
+                    </a>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="form-group">
-                            <label for="organisation" class="label">Description of Request</label>
-                            <textarea name="description" id="description" cols="30" rows="10" class="form-control"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 col-md-12">
-                        <div class="form-group">
-                            <input type="submit" value="Submit" class="btn btn-primary">
-                        </div>
-                    </div>
-                </div>
+                <br/>
+
             </div>
         </section>
 
-    
+    <!-- Request Modal -->
+
+    <div class="modal" id="requestModal" >
+        <div class="modal-dialog">
+          <div class="modal-content">
+          
+            <!-- Modal Header -->
+            <div class="modal-header">
+              <h4 class="modal-title" id="request_header"></h4>
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            
+            <!-- Modal body -->
+            <div class="modal-body" >
+            <div class="row">
+                <div class="col-12" id="requestBody">
+
+                </div>
+            </div>
+            </div>
+            
+            <!-- Modal footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+
+
+
+
         <!-- Footer-->
         <footer class="bg-light py-5">
             <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Deloitte and Touche</div></div>
         </footer>
+
+
+
+
+
+
+    <!-- requestModal script -->
+    <script>
+         function requestModal(id){
+            if(id == 'indiviudal'){
+
+                $('#request_header').html('Individual Request')
+                $('#requestBody').html(
+                    `
+<div class="row">
+<div class="col-6">
+                            <label for="usr">Firstname:</label>
+                                 <div class="form-group">
+                                 <input type="text" class="form-control" id="usr" name="username">
+                                </div>
+</div>
+
+
+
+<div class="col-6">
+                            <label for="usr">Lastname:</label>
+                                 <div class="form-group">
+                                 <input type="text" class="form-control" id="usr" name="username">
+                                </div>
+</div>
+</div>
+
+
+                    
+      
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                                <label for="usr">Other Names:</label>
+                                 <div class="form-group">
+                                 <input type="text" class="form-control" id="usr" name="username">
+                                </div>
+
+                        
+                                    </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                                <label for="usr">Nationality:</label>
+                                 <div class="form-group">
+                                 <input type="text" class="form-control" id="usr" name="username">
+                                </div>
+
+                        
+                                    </div>
+        </div>
+        
+        
+    </div>
+
+
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group">
+                                <label for="usr">Email:</label>
+                                 <div class="form-group">
+                                 <input type="email" class="form-control" id="usr" name="username">
+                                </div>
+
+                        
+                                    </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                                <label for="usr">Phone Number:</label>
+                                 <div class="form-group">
+                                 <input type="number" class="form-control" id="usr" name="username">
+                                </div>
+
+                        
+                                    </div>
+        </div>
+        
+        
+    </div>
+
+    <div class="row">
+        <div class="col-12">
+            <div class="form-group">
+                                <label for="usr">Address:</label>
+                                 <div class="form-group">
+                                 <textarea class="form-control" rows="5" cols="3"></textarea>
+                                </div>
+
+                        
+                                    </div>
+        </div>
+
+
+        <div class="col-6">
+            <div class="form-group">
+                                <label for="usr">City:</label>
+                                 <div class="form-group">
+                                 <input type="text" class="form-control" id="usr" name="username">
+                                </div>
+
+                        
+                                    </div>
+        </div>
+
+        <div class="col-6">
+            <div class="form-group">
+                                <label for="usr">Country:</label>
+                                 <div class="form-group">
+                                 <input type="text" class="form-control" id="usr" name="username">
+                                </div>
+
+                        
+                                    </div>
+        </div>
+        
+        
+    </div>
+    <hr/>
+
+    <div class="row">
+    <div class="col-12 text-center">
+    <b>Service Requested</b>
+    </div>
+    </div>
+
+    <div class="row">
+    <div class="col-12 ">
+        <div class="form-group">
+  <label for="sel1">Select Service:</label>
+  <select class="form-control" id="sel1">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+  </select>
+</div>
+    </div>
+    </div>
+  
+
+  <div class="row">
+  <div class="col-12 text-right">
+
+  <span class="btn btn-outline-success">
+  Submit
+  </span>
+
+  </div>
+  </div>
+
+
+                    
+                    
+                    
+                    `
+                )
+
+                $('#requestModal').modal('show'); 
+            }
+
+
+            if(id == 'corporate'){
+
+$('#request_header').html('Corporate Request')
+$('#requestBody').html(
+
+
+    `
+
+
+`
+)
+
+$('#requestModal').modal('show'); 
+}
+            
+         }
+    </script>
+
+
+
+
+
+
         <!-- Bootstrap core JS-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script type="text/javascript"

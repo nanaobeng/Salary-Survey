@@ -147,7 +147,7 @@ def survey():
 
 @users.route("/create_questions")
 def questions():
-    form = SurveyForm()
+
     return render_template("create_questions.html",title="Set Questions")
 
 
@@ -251,7 +251,15 @@ def quantitative_survey():
     form = SurveyForm()
     return render_template("quantitative_survey.html",form=form)
 
+@users.route("/requests/corporate")
+def corporate_requests():
+    
+    return render_template("corporate_request.html")
 
+@users.route("/user/profile")
+def update_profile():
+    
+    return render_template("update_profile.html")
 
 
 
