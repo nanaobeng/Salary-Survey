@@ -10481,3 +10481,15 @@ font-size: 20px;
 .job-list{
   cursor: pointer;
 }
+.request-filter-active{
+  display: block;
+}
+.request-filter-inactive{
+  display: none;
+}
+.filter{
+  width: 20px;
+  height: 20px;
+  margin: 30px;
+  color: red;
+}

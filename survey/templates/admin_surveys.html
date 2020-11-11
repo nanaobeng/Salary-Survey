@@ -4,9 +4,24 @@
 Surveys
 {% endblock header %}
 {% block content %}
+<style>
+.sorting_asc:before{
+    content: '\1F851';
+    color: greenyellow;
+}
+
+.sorting_desc:before{
+    content: '\1F853';
+    color: greenyellow;
+}
+.sorting:before{
+    content: '\2B83';
+    color: greenyellow;
+}
+</style>
 <div class="col d-flex justify-content-center">
     <div class="input-group" style="max-width: 400px;">
-        <input type="text" class="form-control" placeholder="Search survey">
+        <input type="search" id="search_survey" class="form-control" placeholder="Search survey">
         <div class="input-group-append">
           <button class="btn btn-secondary" type="button">
             <i class="fa fa-search"></i>
@@ -15,7 +30,7 @@ Surveys
       </div>
 </div>
 <br>
-<table class="table table-hover">
+<table class="table table-hover" id="surveys">
     <thead class="bg-secondary text-white">
         <td>Survey Name</td>
         <td>Client</td>
@@ -72,4 +87,13 @@ Surveys
 <div class="row justify-content-center">
     <a href="{{ url_for('users.create_survey')}}"><button class="btn btn-info">New Survey</button></a>
 </div>
+<script>
+ $(document).ready(function() {
+    surveysTable =  $('#surveys').DataTable({sDom: 'lrtip', 'bLengthChange': false});
+} );
+$('#search_survey').keyup(function(){
+      surveysTable.search($(this).val()).draw() ;
+})
+
+</script>
 {% endblock content %}
