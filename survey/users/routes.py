@@ -270,3 +270,12 @@ def review_corporate():
 
 
 
+@users.route("/administration/individual-request-review")
+def review_individual():
+    
+    
+    return render_template("individual_review.html")
+
+
+
+
