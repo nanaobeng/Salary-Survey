@@ -262,5 +262,11 @@ def update_profile():
     return render_template("update_profile.html")
 
 
+@users.route("/administration/corporate-request-review")
+def review_corporate():
+    
+    return render_template("corporate_review.html")
+
+
 
 
