@@ -107,51 +107,9 @@ Service Requests
 	        </tbody>
 	    </thead>
 	</table>
-</div>
-<div class="tab-content request-filter-inactive" id="requests_corporate">
-	<table class="table table-striped" id="corporate_requests_table">
-	    <thead class="bg-secondary text-white">
-	        <tr>
-	            <td>#</td>
-	            <td>Name</td>
-	            <td>Organisation</td>
-	            <td>Job Title</td>
-	            <td>Email</td>
-	            <td>Status</td>
-	            <td></td>
-	        </tr>
-	        <tbody>
-	            <tr>
-	                <td>1</td>
-	                <td>John Doe</td>
-	                <td>Kohl Cosmetics</td>
-	                <td>HR Officer</td>
-	                <td>johndoe@kohlcosmetics.com</td>
-	                <td>Opened</td>
-	                <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#request_detail" ></i></td>
-	            </tr>
-	            <tr>
-	                <td>2</td>
-	                <td>Mark Hart</td>
-	                <td>Wikk Trucks</td>
-	                <td>HR Manager</td>
-	                <td>jmarkhart@wikkTrucks.com</td>
-	                <td>Closed</td>
-	                <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#request_detail" ></i></td>
-	            </tr>
-	            <tr>
-	                <td>3</td>
-	                <td>Paul Cook</td>
-	                <td>NALM Foods</td>
-	                <td>HR Manager</td>
-	                <td>paulcook@nalmfoods.com</td>
-	                <td>Closed</td>
-	                <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#request_detail" ></i></td>    
-	            </tr>
-	        </tbody>
-	    </thead>
-	</table>
-</div>
+</div><br>
+<div class="col text-center"><button class="btn btn-info">Export to Excel</button></div>
+
 
 <!-- Modal to display details of a request -->
 <div class="modal fade " id="request_detail" tabindex="-1" role="dialog">
@@ -246,25 +204,11 @@ Service Requests
     </div>
   </div>
 
-  <style>
+ 
 
 
-    
-    .request-filter-active{
-        display: block;
-    }
-    .request-filter-inactive{
-        display: none;
-    }
-    .filter{
-        width: 20px;
-        height: 20px;
-        margin: 30px;
-        color: red;
-    }
-    </style>
 <script>
-        var filtered = [];
+    var filtered = [];
    $(document).ready(function() {
   
     $.fn.dataTable.ext.search.push(
@@ -276,29 +220,7 @@ Service Requests
         return false ;
     }
 );
-  
-  var requestsTable = $('#all_requests_table').DataTable({sDom: 'lrtip', 'bLengthChange': false});
-  
-  $('.filter').on('change', function() {
-
-    var val = $(this).val();
-    var checked = $(this).prop('checked');
-    var index = filtered.indexOf( val );
-    
-    if (checked && index === -1) {
-      filtered.push(val);
-    } else if (!checked && index > -1) {
-      filtered.splice(index, 1);
-    }
-    requestsTable.draw();
-  });
-  $('#filter_corporate').prop('checked', true)
-  $('#filter_corporate').trigger('change')
-  $('#filter_individual').prop('checked', true)
-  $('#filter_individual').trigger('change')
-    $('#search_request').keyup(function(){
-        requestsTable.search($(this).val()).draw() ;
-    })
+ 
 } );
 
 

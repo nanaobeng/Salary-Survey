@@ -10493,3 +10493,27 @@ font-size: 20px;
   margin: 30px;
   color: red;
 }
+.sorting_asc:before{
+  content: '\1F851';
+  color: greenyellow;
+}
+
+.sorting_desc:before{
+  content: '\1F853';
+  color: greenyellow;
+}
+.sorting:before{
+  content: '\2B83';
+  color: greenyellow;
+}
+
+.textarea_compress{
+  height: 20px !important;
+}
+.textarea_expand{
+  height: 160px !important;
+}
+.upload-icon{
+  font-size: 50px; 
+  color: lightgray;
+}

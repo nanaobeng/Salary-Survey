@@ -9,7 +9,6 @@
 <!--Import materialize.css-->
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="css/progress-wizard.min.css" rel="stylesheet">
 <!-- Compiled and minified CSS -->
 
 <link rel="icon"  type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico')}}" />
@@ -25,6 +24,7 @@
 <!-- Core theme CSS (includes Bootstrap)-->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/stylex.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.min.css')}}">
 <style>
   .list :hover {
     background-color: rgb(65, 124, 6);
@@ -64,6 +64,7 @@
                 {% if current_user.is_authenticated %}
                
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('main.index')}}">Home</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_benchmark_jobs')}}">My Benchmark Jobs</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_surveys')}}">Complete Survey</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_reports')}}">Reports</a></li>
 
@@ -202,7 +203,8 @@
         src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
         <script type="text/javascript"
         src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-        
+        <script type="text/javascript"
+        src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
        
         
    

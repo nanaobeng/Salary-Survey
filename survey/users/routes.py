@@ -197,6 +197,14 @@ def view_survey():
 def my_reports():
     return render_template("my_reports.html")
 
+@users.route("/my_benchmark_jobs")
+def my_benchmark_jobs():
+    return render_template("client_benchmark_jobs.html")
+
+@users.route("/my_benchmark_jobs/new")
+def my_benchmark_jobs_create():
+    return render_template("client_create_benchmark_job.html")
+
 @users.route("/my_surveys")
 def my_surveys():
     return render_template("my_surveys.html")
