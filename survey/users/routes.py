@@ -264,6 +264,12 @@ def corporate_requests():
     
     return render_template("corporate_request.html")
 
+
+@users.route("/requests/individual")
+def individual_requests():
+    
+    return render_template("individual_request.html")
+
 @users.route("/user/profile")
 def update_profile():
     

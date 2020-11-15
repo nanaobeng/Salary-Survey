@@ -25,6 +25,11 @@ Create Survey
                             <span class="bubble"></span>
                             Assign Comparators. <br><small class="comparator_status"></small>
                         </li>
+
+                        <li class="review_card">
+                          <span class="bubble"></span>
+                          Review. <br><small class="review_status"></small>
+                      </li>
                     
                         
                     </ul>
@@ -288,14 +293,39 @@ Create Survey
             <div class="col-6 ">
                 <span class="comparator btn btn-outline-info" style="width: 70px;" id="comparator" onclick="switchBack(this.id)">Back</span>
             </div>
-            <div class="col-6 text-center justify-content-center" style="text-align: right;">
-             
-           
-                <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#myModal"  style="width: 120px;float: right;">Review</span>
-            </div>
+            <div class="col-6" style="text-align: right;">
+              <span class="comparator btn btn-outline-info" style="width: 70px; float: right;" id="comparator" onclick="switchView(this.id)">Next</span>
+          </div>
         </div>
      
   </div>
+  </div>
+
+  <div class="row review" style="display:none">
+<div class="row">
+  <div class="col-12 text-center">
+   <u><b>Review Form</b></u> 
+
+  </div>
+</div>
+<div class="row ">
+  <div class="col-12 reviewform">
+
+  </div>
+
+</div>
+    <div class="row">
+      <div class="col-6 text-left">
+        <span class=" btn btn-outline-info" style="width: 70px;" id="review" onclick="switchBack(this.id)">Back</span>
+
+
+      </div>
+      <div class="col-6 text-right">
+        <span class="btn  btn-success" style="width: 70px;" >Submit</span>
+
+      </div>
+  </div>
+
   </div>
                
                
@@ -493,6 +523,11 @@ $("#add_benchmark").click(function(){
       
  
   }
+
+
+ 
+
+
   if(id == 'benchmark'){
     $('.benchmark_status').html("(completed)")
     $( ".benchmark_card" ).removeClass( "active" );
@@ -503,18 +538,33 @@ $("#add_benchmark").click(function(){
     $(".comparator").css("display", "block");
     $(".sub").css("display", "block");
 
+    
+      
+ 
+  }
+
+
+  if(id == 'comparator'){
+    $('.comparator_status').html("(completed)")
+    $( ".comparator_card" ).removeClass( "active" );
+    $( ".comparator_card" ).addClass( "completed" );
+    $( ".review_card" ).addClass( "active" );
+    $('.review_status').html("(active)")
+     $(".comparator").css("display", "none");
+    $(".review").css("display", "block");
+
+
     $(".testdiv").find('input:text, select, textarea')
         .each(function() {
 
           var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br/> <hr/>"
    
-          $('.review').append(line)
+          $('.reviewform').append(line)
        
         });
-    
-      
+
  
-  }
+  } 
     }
 </script>
 
@@ -542,6 +592,21 @@ $("#add_benchmark").click(function(){
     $('.benchmark_status').html("(active)")
      $(".comparator").css("display", "none");
     $(".benchmark").css("display", "block");
+    $(".sub").css("display", "none");
+    
+      
+ 
+  }
+
+  if(id == 'review'){
+    $('.review_status').html("")
+    $( ".review_card" ).removeClass( "active" );
+    $( ".comparator_card" ).removeClass( "completed" );
+    $( ".comparator_card" ).addClass( "active" );
+ 
+    $('.comparator_status').html("(active)")
+     $(".review").css("display", "none");
+    $(".comparator").css("display", "block");
     $(".sub").css("display", "none");
     
       
