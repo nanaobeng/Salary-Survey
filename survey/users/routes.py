@@ -290,6 +290,17 @@ def review_individual():
     
     return render_template("individual_review.html")
 
+@users.route("/user/update-client")
+def update_client():
+    
+    
+    return render_template("update_client.html")
 
+
+@users.route("/user/client-benchmark")
+def client_benchmark():
+    
+    form = SurveyForm()
+    return render_template("client_create_benchmark_job.html",form=form)
 
 
