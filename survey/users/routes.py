@@ -225,6 +225,10 @@ def admin_home():
 def admin_surveys():
     return render_template("admin_surveys.html")
 
+@users.route("/administration/benchmark-jobs")
+def admin_benchmarl():
+    return render_template("admin_benchmark.html")
+
 @users.route("/administration/clients")
 def admin_clients():
     return render_template("admin_clients.html")
@@ -302,5 +306,12 @@ def client_benchmark():
     
     form = SurveyForm()
     return render_template("client_create_benchmark_job.html",form=form)
+
+
+@users.route("/administration/review_benchmark")
+def review_benchmark():
+    
+
+    return render_template("review_benchmark.html")
 
 
