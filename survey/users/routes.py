@@ -229,6 +229,10 @@ def admin_home():
 def admin_surveys():
     return render_template("admin_surveys.html")
 
+@users.route("/administration/benchmark-jobs")
+def admin_benchmarl():
+    return render_template("admin_benchmark.html")
+
 @users.route("/administration/clients")
 def admin_clients():
     return render_template("admin_clients.html")
@@ -268,6 +272,12 @@ def corporate_requests():
     
     return render_template("corporate_request.html")
 
+
+@users.route("/requests/individual")
+def individual_requests():
+    
+    return render_template("individual_request.html")
+
 @users.route("/user/profile")
 def update_profile():
     
@@ -288,6 +298,24 @@ def review_individual():
     
     return render_template("individual_review.html")
 
+@users.route("/user/update-client")
+def update_client():
+    
+    
+    return render_template("update_client.html")
 
+
+@users.route("/user/client-benchmark")
+def client_benchmark():
+    
+    form = SurveyForm()
+    return render_template("client_create_benchmark_job.html",form=form)
+
+
+@users.route("/administration/review_benchmark")
+def review_benchmark():
+    
+
+    return render_template("review_benchmark.html")
 
 

@@ -25,6 +25,11 @@ Create Survey
                             <span class="bubble"></span>
                             Assign Comparators. <br><small class="comparator_status"></small>
                         </li>
+
+                        <li class="review_card">
+                          <span class="bubble"></span>
+                          Review. <br><small class="review_status"></small>
+                      </li>
                     
                         
                     </ul>
@@ -256,17 +261,81 @@ Create Survey
     <div class="col-12 ">
         <br/>
         <div class="row">
+          
             <div class="col-6 ">
                 <span class="comparator btn btn-outline-info" style="width: 70px;" id="comparator" onclick="switchBack(this.id)">Back</span>
             </div>
-            <div class="col-6 text-center justify-content-center" style="text-align: right;">
-             
-           
-                <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#review_survey_modal" id="review_survey_btn"  style="width: 120px;float: right;">Review</span>
-            </div>
+            <div class="col-6" style="text-align: right;">
+              <span class="comparator btn btn-outline-info review_survey_btn" style="width: 70px; float: right;" id="comparator" onclick="switchView(this.id)">Next</span>
+          </div>
         </div>
      
   </div>
+  </div>
+
+  <div class="row review" style="display:none">
+<div class="row">
+  <div class="col-12 text-center">
+  
+
+  </div>
+</div>
+<div class="row ">
+  <div class="col-12 reviewform">
+    <div class="row">
+      <div class="col-lg-6 col-md-12 mb-2">
+        <b>Survey Name: </b> <span id="review_survey_name"></span>
+      </div>
+      <div class="col-lg-6 col-md-12 mb-2">
+        <b>Client: </b> <span id="review_client_name"></span>
+      </div>
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-6 col-md-12 mb-2">
+        <b>Industry: </b> <span id="review_industry"></span>
+      </div>
+      <div class="col-lg-6 col-md-12 mb-2">
+        <b>Area of Operation: </b><span id="review_area_of_operation"></span>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-12 mb-2">
+        <b>Start Date: </b><span id="review_start_date"></span>
+      </div>
+     
+    </div>
+    <div class="row mb-2">
+      <div class="col-lg-6 col-md-12">
+        <b>Benchmark Jobs</b><br>
+        <ul id="review_benchmark_jobs">
+   
+        </ul>
+        
+      </div>
+      <div class="col-lg-6 col-md-12">
+        <b>Comparators</b><br>
+        <ul id="review_comparators">
+   
+        </ul>
+        
+      </div>
+     
+    </div>
+  </div>
+
+</div>
+    <div class="row">
+      <div class="col-6 text-left">
+        <span class=" btn btn-outline-info" style="width: 70px;" id="review" onclick="switchBack(this.id)">Back</span>
+
+
+      </div>
+      <div class="col-6 text-right">
+        <span class="btn  btn-success" style="width: 70px;" >Submit</span>
+
+      </div>
+  </div>
+
   </div>
                
                
@@ -404,45 +473,7 @@ Create Survey
           
           <!-- Modal body -->
           <div class="modal-body">
-            <div class="row">
-              <div class="col-lg-6 col-md-12 mb-2">
-                <b>Survey Name: </b> <span id="review_survey_name"></span>
-              </div>
-              <div class="col-lg-6 col-md-12 mb-2">
-                <b>Client: </b> <span id="review_client_name"></span>
-              </div>
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-6 col-md-12 mb-2">
-                <b>Industry: </b> <span id="review_industry"></span>
-              </div>
-              <div class="col-lg-6 col-md-12 mb-2">
-                <b>Area of Operation: </b><span id="review_area_of_operation"></span>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-lg-6 col-md-12 mb-2">
-                <b>Start Date: </b><span id="review_start_date"></span>
-              </div>
-             
-            </div>
-            <div class="row mb-2">
-              <div class="col-lg-6 col-md-12">
-                <b>Benchmark Jobs</b><br>
-                <ul id="review_benchmark_jobs">
-           
-                </ul>
-                
-              </div>
-              <div class="col-lg-6 col-md-12">
-                <b>Comparators</b><br>
-                <ul id="review_comparators">
-           
-                </ul>
-                
-              </div>
-             
-            </div>
+            
 
           </div>
           
@@ -498,7 +529,7 @@ $("#add_benchmark").click(function(){
         </li>`);
       
     });
-  $("#review_survey_btn").click(function(){
+  $(".review_survey_btn").click(function(){
     
     $("#review_survey_name").html($("#survey_name").val())
     $("#review_client_name").html($("#client").val())
@@ -507,12 +538,14 @@ $("#add_benchmark").click(function(){
     $("#review_start_date").html($("#start_date").val())
     //append selected benchmark jobs to modal
     var selected_jobs = $('#selected_benchmark').children('li');
+    $('#review_benchmark_jobs').empty()
     selected_jobs.each(function(){
       var item = $(this)[0].firstChild     
      $('#review_benchmark_jobs').append('<li>'+item.nodeValue+'</li>');
     })
     //Append selected comparators to modal
     var selected_comparators = $('#selected_comparators').children('li');
+    $('#review_comparators').empty()
     selected_comparators.each(function(){
       var item = $(this)[0].firstChild     
      $('#review_comparators').append('<li>'+item.nodeValue+'</li>');
@@ -541,6 +574,11 @@ $("#add_benchmark").click(function(){
       
  
   }
+
+
+ 
+
+
   if(id == 'benchmark'){
     $('.benchmark_status').html("(completed)")
     $( ".benchmark_card" ).removeClass( "active" );
@@ -551,8 +589,23 @@ $("#add_benchmark").click(function(){
     $(".comparator").css("display", "block");
     $(".sub").css("display", "block");
 
+    
+      
  
   }
+
+
+  if(id == 'comparator'){
+    $('.comparator_status').html("(completed)")
+    $( ".comparator_card" ).removeClass( "active" );
+    $( ".comparator_card" ).addClass( "completed" );
+    $( ".review_card" ).addClass( "active" );
+    $('.review_status').html("(active)")
+     $(".comparator").css("display", "none");
+    $(".review").css("display", "block");
+
+ 
+  } 
     }
 </script>
 
@@ -581,6 +634,21 @@ $("#add_benchmark").click(function(){
     $('.benchmark_status').html("(active)")
      $(".comparator").css("display", "none");
     $(".benchmark").css("display", "block");
+    $(".sub").css("display", "none");
+    
+      
+ 
+  }
+
+  if(id == 'review'){
+    $('.review_status').html("")
+    $( ".review_card" ).removeClass( "active" );
+    $( ".comparator_card" ).removeClass( "completed" );
+    $( ".comparator_card" ).addClass( "active" );
+ 
+    $('.comparator_status').html("(active)")
+     $(".review").css("display", "none");
+    $(".comparator").css("display", "block");
     $(".sub").css("display", "none");
     
       

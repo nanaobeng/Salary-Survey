@@ -57,6 +57,12 @@ Create Client
                       <span class="bubble"></span>
                       Contact Person.<br><small class="contact_status"></small>
                   </li>
+
+                  <li class=" review_card">
+                    <span class="bubble"></span>
+                    Review.<br><small class="review_status"></small>
+                </li>
+                  
                     
                 </ul>
                 </div>
@@ -586,20 +592,52 @@ Create Client
                 </div>
                 
               </div>
-              <div class="row">
-                <div class="col-6 pt-4">
+
+            
+
+
+              <div class="row pt-4">
+                <div class="col-6 ">
                   
-                  <span class="btn btn-outline-info submit_button" id="contact" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
+                  <span class="btn btn-outline-info contact submit_button" id="contact" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
                 </div>
-                      <div class="col-6 move-right">
-                        <div class="form-group submit_button p-2">
-                          <br/>
-                          <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#myModal"  >Review</span>
-                      </div>
+                <div class="col-6 move-right">  
+                   
+                  <span class="btn btn-outline-info contact rah" id="contact" onclick="switch_wizard(this.id)" style="width: 80px;">Next</span>
+                </div>
                       </div>
 
                      
               </div>
+
+              <div class="row review" style="display: none;">
+                <div class="col-12">
+                <div class="row ">
+                  <div class=" col-12 reviewForm">
+  
+                  </div>
+  
+  
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-6 pt-4">
+                    
+                    <span class="btn btn-outline-info submit_button" id="review" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
+                  </div>
+                        <div class="col-6 move-right">
+                          <div class="form-group submit_button p-2">
+                            <br/>
+                            <span  class="text-center sub btn btn-success"
+                              >Submit</span>
+                        </div>
+                        </div>
+  
+                       
+                </div>
+              </div>
+            </div>
               
                     </form>
               
@@ -706,12 +744,31 @@ Create Client
     $(".submit_button").css("display", "block");
 
 
+  
+    
+      
+ 
+  }
+
+
+
+  if(id == 'contact'){
+    $('.contact_status').html("(completed)")
+    $( ".contact_card" ).removeClass( "active" );
+    $( ".contact_card" ).addClass( "completed" );
+    $( ".review_card" ).addClass( "active" );
+    $('.review_status').html("(active)")
+     $(".contact").css("display", "none");
+    $(".review").css("display", "block");
+
+
+    $('.reviewForm').empty()
     $(".testdiv").find('input:text, select, textarea')
         .each(function() {
 
           var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br/> <hr/>"
    
-          $('.review').append(line)
+          $('.reviewForm').append(line)
        
         });
     
@@ -766,6 +823,18 @@ Create Client
      $(".contact").css("display", "none");
     $(".company").css("display", "block");
     $(".submit_button").css("display", "none");
+
+
+    }
+    if(id == 'review'){
+      $('.review_status').html("")
+    $( ".review_card" ).removeClass( "active" );
+    $( ".contact_card" ).removeClass( "completed" );
+    $( ".contact_card" ).addClass( "active" );
+    $('.contact_status').html("(active)")
+     $(".review").css("display", "none");
+    $(".contact").css("display", "block");
+
 
 
     }
