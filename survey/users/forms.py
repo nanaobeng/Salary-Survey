@@ -117,7 +117,17 @@ class AreaForm(FlaskForm):
 
 class ClientForm(FlaskForm):
    
-    name = StringField('Client Name', validators=[DataRequired()])
+    name = StringField('Registered Company Name', validators=[DataRequired()])
+    reg = StringField('Company Registration Number', validators=[DataRequired()])
+    financial_year_end = StringField('Financial Year End', validators=[DataRequired()])
+    company_type = StringField('Company Type', validators=[DataRequired()])
+    vat = StringField('VAT Number', validators=[DataRequired()])
+    telephone = StringField('Telephone Number', validators=[DataRequired()])
+    fax = StringField('Fax Number', validators=[DataRequired()])
+    email = StringField('Email Address', validators=[DataRequired()])
+    website = StringField('Website Address', validators=[DataRequired()])
+    date_of_incorporation = StringField('Date of Incorporation', validators=[DataRequired()])
+    country_of_incorporation = StringField('Country of Incorporation', validators=[DataRequired()])
     sector =  SelectField(
         'Sector',
         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
