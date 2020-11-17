@@ -41,6 +41,10 @@ Create Client
                         <span class="bubble"></span>
                         Company Details. <br><small class="industry_status"></small>
                     </li>
+                    <li class="industry2_card ">
+                      <span class="bubble"></span>
+                      Management Details. <br><small class="industry2_status"></small>
+                  </li>
                     <li class=" mailing_card ">
                         <span class="bubble"></span>
                         Mailing Address. <br><small class="mailing_status"></small>
@@ -318,6 +322,8 @@ Create Client
 
                     </div>
 
+                    
+
                     </div>
                   </div>
                </div>
@@ -327,6 +333,425 @@ Create Client
                
                   <span class="btn btn-outline-info " id="industry" onclick="switch_wizard(this.id)">Next</span>
                 </div>
+              </div>
+                </div>
+                <div class="row industry2" style="display:none">
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                         
+                              <div class="col-12 text-center">
+                                <b>Chairman of Board</b>
+                                <hr/>
+                              </div>
+                                <div class="col-4">
+                                  <div class="form-group">
+                                    {{ form.chairman_firstname.label(class="form-control-label") }}
+                        
+                                    {% if form.chairman_firstname.errors %}
+                                    {{ form.chairman_firstname(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.chairman_firstname.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.chairman_firstname(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+            
+                                </div>
+
+                                <div class="col-4">
+                                  <div class="form-group">
+                                    {{ form.chairman_lastname.label(class="form-control-label") }}
+                        
+                                    {% if form.chairman_lastname.errors %}
+                                    {{ form.chairman_lastname(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.chairman_lastname.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.chairman_lastname(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+            
+                                </div>
+
+                                <div class="col-4">
+                                  <div class="form-group">
+                                    {{ form.chairman_other_names.label(class="form-control-label") }}
+                        
+                                    {% if form.chairman_other_names.errors %}
+                                    {{ form.chairman_other_names(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.chairman_other_names.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.chairman_other_names(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+            
+                                
+                                
+                              </div>
+
+                              <div class="col-4">
+                                <div class="form-group">
+                                  {{ form.chairman_email.label(class="form-control-label") }}
+                      
+                                  {% if form.chairman_email.errors %}
+                                  {{ form.chairman_email(class="form-control form-control is-invalid")}}
+                                  <div class="invalid-feedback">
+                                      {% for error in form.chairman_email.errors %}
+                                      <span> {{ error}}</span>
+                                      {% endfor %}
+                                  </div>
+                                  {% else %}
+                                  {{ form.chairman_email(class="form-control form-control") }}
+                                  {% endif %}
+                      
+                                  
+                              </div>
+          
+                              
+                              
+                            </div>
+
+                            <div class="col-4">
+                              <div class="form-group">
+                                {{ form.chairman_nationality.label(class="form-control-label") }}
+                    
+                                {% if form.chairman_nationality.errors %}
+                                {{ form.chairman_nationality(class="form-control form-control is-invalid")}}
+                                <div class="invalid-feedback">
+                                    {% for error in form.chairman_nationality.errors %}
+                                    <span> {{ error}}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.chairman_nationality(class="form-control form-control") }}
+                                {% endif %}
+                    
+                                
+                            </div>
+        
+                            
+                            
+                          </div>
+
+                          <div class="col-4">
+                            <div class="form-group">
+                              {{ form.chairman_phone.label(class="form-control-label") }}
+                  
+                              {% if form.chairman_phone.errors %}
+                              {{ form.chairman_phone(class="form-control form-control is-invalid")}}
+                              <div class="invalid-feedback">
+                                  {% for error in form.chairman_phone.errors %}
+                                  <span> {{ error}}</span>
+                                  {% endfor %}
+                              </div>
+                              {% else %}
+                              {{ form.chairman_phone(class="form-control form-control") }}
+                              {% endif %}
+                  
+                              
+                          </div>
+      
+                          
+                          
+                        </div>
+
+                        <div class="col-12 text-center">
+                          <br/>
+                          <b>Chief Executive Officer</b>
+                          <hr/>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            {{ form.ceo_firstname.label(class="form-control-label") }}
+                
+                            {% if form.ceo_firstname.errors %}
+                            {{ form.ceo_firstname(class="form-control form-control is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.ceo_firstname.errors %}
+                                <span> {{ error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.ceo_firstname(class="form-control form-control") }}
+                            {% endif %}
+                
+                            
+                        </div>
+    
+                        </div>
+
+                        <div class="col-4">
+                          <div class="form-group">
+                            {{ form.ceo_lastname.label(class="form-control-label") }}
+                
+                            {% if form.ceo_lastname.errors %}
+                            {{ form.ceo_lastname(class="form-control form-control is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.ceo_lastname.errors %}
+                                <span> {{ error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.ceo_lastname(class="form-control form-control") }}
+                            {% endif %}
+                
+                            
+                        </div>
+    
+                        </div>
+
+                        <div class="col-4">
+                          <div class="form-group">
+                            {{ form.ceo_other_names.label(class="form-control-label") }}
+                
+                            {% if form.ceo_other_names.errors %}
+                            {{ form.ceo_other_names(class="form-control form-control is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.ceo_other_names.errors %}
+                                <span> {{ error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.ceo_other_names(class="form-control form-control") }}
+                            {% endif %}
+                
+                            
+                        </div>
+    
+                        
+                        
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                          {{ form.ceo_email.label(class="form-control-label") }}
+              
+                          {% if form.ceo_email.errors %}
+                          {{ form.ceo_email(class="form-control form-control is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.ceo_email.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.ceo_email(class="form-control form-control") }}
+                          {% endif %}
+              
+                          
+                      </div>
+  
+                      
+                      
+                    </div>
+
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.ceo_nationality.label(class="form-control-label") }}
+            
+                        {% if form.ceo_nationality.errors %}
+                        {{ form.ceo_nationality(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.ceo_nationality.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.ceo_nationality(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    
+                    
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-group">
+                      {{ form.ceo_phone.label(class="form-control-label") }}
+          
+                      {% if form.ceo_phone.errors %}
+                      {{ form.ceo_phone(class="form-control form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in form.ceo_phone.errors %}
+                          <span> {{ error}}</span>
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.ceo_phone(class="form-control form-control") }}
+                      {% endif %}
+          
+                      
+                  </div>
+
+                  
+                  
+                </div>
+
+                <div class="col-12 text-center">
+                  <br/>
+                  <b>Key Management Personnel</b>
+                  <hr/>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    {{ form.key_firstname.label(class="form-control-label") }}
+        
+                    {% if form.key_firstname.errors %}
+                    {{ form.key_firstname(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.key_firstname.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.key_firstname(class="form-control form-control") }}
+                    {% endif %}
+        
+                    
+                </div>
+
+                </div>
+
+                <div class="col-4">
+                  <div class="form-group">
+                    {{ form.key_lastname.label(class="form-control-label") }}
+        
+                    {% if form.key_lastname.errors %}
+                    {{ form.key_lastname(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.key_lastname.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.key_lastname(class="form-control form-control") }}
+                    {% endif %}
+        
+                    
+                </div>
+
+                </div>
+
+                <div class="col-4">
+                  <div class="form-group">
+                    {{ form.key_other_names.label(class="form-control-label") }}
+        
+                    {% if form.key_other_names.errors %}
+                    {{ form.key_other_names(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.key_other_names.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.key_other_names(class="form-control form-control") }}
+                    {% endif %}
+        
+                    
+                </div>
+
+                
+                
+              </div>
+
+              <div class="col-4">
+                <div class="form-group">
+                  {{ form.key_email.label(class="form-control-label") }}
+      
+                  {% if form.key_email.errors %}
+                  {{ form.key_email(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.key_email.errors %}
+                      <span> {{ error}}</span>
+                      {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.key_email(class="form-control form-control") }}
+                  {% endif %}
+      
+                  
+              </div>
+
+              
+              
+            </div>
+
+            <div class="col-4">
+              <div class="form-group">
+                {{ form.key_nationality.label(class="form-control-label") }}
+    
+                {% if form.key_nationality.errors %}
+                {{ form.key_nationality(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.key_nationality.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.key_nationality(class="form-control form-control") }}
+                {% endif %}
+    
+                
+            </div>
+
+            
+            
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+              {{ form.key_phone.label(class="form-control-label") }}
+  
+              {% if form.key_phone.errors %}
+              {{ form.key_phone(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.key_phone.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.key_phone(class="form-control form-control") }}
+              {% endif %}
+  
+              
+          </div>
+
+          
+          
+        </div>
+                            
+                            </div>
+                          </div>
+
+                          </div>
+                          </div>
+                  </div>
+                </div>
+              </br>
+              <div class="col-12 text-right">
+             
+                <span class="btn btn-outline-info " id="industry2" onclick="switch_wizard(this.id)">Next</span>
               </div>
                 </div>
                   <div class="row mailing">
@@ -867,14 +1292,27 @@ Create Client
 
 <script>
   function switch_wizard(id){
-    if(id == 'industry'){
+    if(id == 'industry2'){
+    $('.industry2_status').html("(completed)")
+    $( ".industry2_card" ).removeClass( "active" );
+    $( ".industry2_card" ).addClass( "completed" );
+    $( ".mailing_card" ).addClass( "active" );
+    $('.mailing_status').html("(active)")
+     $(".industry2").css("display", "none");
+    $(".mailing").css("display", "block");
+    
+      
+ 
+  }
+
+  if(id == 'industry'){
     $('.industry_status').html("(completed)")
     $( ".industry_card" ).removeClass( "active" );
     $( ".industry_card" ).addClass( "completed" );
-    $( ".mailing_card" ).addClass( "active" );
-    $('.mailing_status').html("(active)")
+    $( ".industry2_card" ).addClass( "active" );
+    $('.industry2_status').html("(active)")
      $(".industry").css("display", "none");
-    $(".mailing").css("display", "block");
+    $(".industry2").css("display", "block");
     
       
  

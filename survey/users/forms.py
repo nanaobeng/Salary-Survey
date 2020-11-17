@@ -128,6 +128,25 @@ class ClientForm(FlaskForm):
     website = StringField('Website Address', validators=[DataRequired()])
     date_of_incorporation = StringField('Date of Incorporation', validators=[DataRequired()])
     country_of_incorporation = StringField('Country of Incorporation', validators=[DataRequired()])
+    chairman_firstname = StringField(" Firstname", validators=[DataRequired()])
+    chairman_lastname = StringField(" Lastname", validators=[DataRequired()])
+    chairman_other_names = StringField(" Other Name", validators=[DataRequired()])
+    chairman_email = StringField(" Email Address", validators=[DataRequired()])
+    chairman_nationality = StringField(" Nationality", validators=[DataRequired()])
+    chairman_phone = StringField(" Phone ", validators=[DataRequired()])
+    key_firstname = StringField("Firstname", validators=[DataRequired()])
+    key_lastname = StringField("Lastname", validators=[DataRequired()])
+    key_other_names = StringField(" Other Name", validators=[DataRequired()])
+    key_email = StringField(" Email Address", validators=[DataRequired()])
+    key_nationality = StringField(" Nationality", validators=[DataRequired()])
+    key_phone = StringField(" Phone Number", validators=[DataRequired()])
+    ceo_firstname = StringField("Firstname", validators=[DataRequired()])
+    ceo_lastname = StringField("Lastname", validators=[DataRequired()])
+    ceo_other_names = StringField(" Other Name", validators=[DataRequired()])
+    ceo_email = StringField(" Email Address", validators=[DataRequired()])
+    ceo_nationality = StringField(" Nationality", validators=[DataRequired()])
+    ceo_phone = StringField(" Phone Number", validators=[DataRequired()])
+    
     sector =  SelectField(
         'Sector',
         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
