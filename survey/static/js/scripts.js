@@ -105,19 +105,24 @@
     
   }
 
-   //datatable for client_benchmark_jobs
+   //datatable for client_benchmark_jobs and clients
 
    try {
-     console.log('toa');
-     
+    
     $(document).ready(function() {
-      console.log('ops');
-      
+     
       var surveysTable =  $('#my_benchmark_jobs').DataTable({sDom: 'lrtip', 'bLengthChange': false});
       $('#search_job').keyup(function(){
         surveysTable.search($(this).val()).draw() ;
   })
-
+  var clientsTableCorporate =  $('#admin_all_clients_corporate').DataTable({sDom: 'lrtip', 'bLengthChange': false});
+      $('#search_client').keyup(function(){
+        clientsTableCorporate.search($(this).val()).draw() ;
+      })
+      var clientsTableIndividual =  $('#admin_all_clients_individual').DataTable({sDom: 'lrtip', 'bLengthChange': false});
+      $('#search_client').keyup(function(){
+        clientsTableIndividual.search($(this).val()).draw() ;
+      })
 } );
   } catch (error) {
     

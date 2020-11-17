@@ -7,7 +7,7 @@ Clients
 
 <div class="col d-flex justify-content-center">
     <div class="input-group" style="max-width: 400px;">
-        <input type="text" class="form-control" placeholder="Search Client">
+        <input type="text" class="form-control" placeholder="Search Client" id="search_client">
         <div class="input-group-append">
           <button class="btn btn-secondary" type="button">
             <i class="fa fa-search"></i>
@@ -16,45 +16,106 @@ Clients
       </div>
 </div>
 <br>
-<table class="table table-striped">
-    <thead class="bg-secondary text-white">
-        <tr>
-            <td>#</td>
-            <td>Name</td>
-            <td>Industry</td>
-            <td>Area of Operation</td>
-            <td>Contact Person</td>
-            <td></td>
-        </tr>
-        <tbody>
+<div class="col">
+ 
+    <div class="form-check form-check-inline">
+        <input class="filter" type="radio" id="filter_corporate" name="client_type" value="Corporate" >
+        <label class="form-check-label " for="filter_corporate">Corporate Clients</label>
+      </div>
+      <div class="form-check form-check-inline">
+        <input class="filter" type="radio" id="filter_individual" name="client_type" value="Individual" >
+        <label class="form-check-label" for="filter_individual">Individual Clients</label>
+      </div>
+      
+</div>
+<div id="corporate_clients_div" style="display: none;">
+    <table class="table table-striped" id="admin_all_clients_corporate" style="width: 100%;">
+        <thead class="bg-secondary text-white">
             <tr>
-                <td>1</td>
-                <td>Kohl Cosmetics</td>
-                <td>Manufacturing</td>
-                <td>Consumer Goods</td>
-                <td>Robert Williams</td>
-                <td><i class="fas fa-edit benchmark-eye"></i></td>
+                <td>#</td>
+                <td>Name</td>
+                <td>Industry</td>
+                <td>Area of Operation</td>
+                <td>Contact Person</td>
+                <td></td>
             </tr>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Kohl Cosmetics</td>
+                    <td>Manufacturing</td>
+                    <td>Consumer Goods</td>
+                    <td>Robert Williams</td>
+                    <td><i class="fas fa-edit benchmark-eye"></i></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Wikk Trucks</td>
+                    <td>Manufacturing</td>
+                    <td>Automobile</td>
+                    <td>Mark Hart</td>
+                    <td><i class="fas fa-edit benchmark-eye"  ></i></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Hash Savings and Loans</td>
+                    <td>Financial Services</td>
+                    <td>Savings and Loans</td>
+                    <td>Harry Twum</td>
+                    <td><i class="fas fa-edit benchmark-eye"></i></td>    
+                </tr>
+            </tbody>
+        </thead>
+    </table>
+</div>
+<div id="individual_clients_div" >
+    <table class="table table-striped" id="admin_all_clients_individual" >
+        <thead class="bg-secondary text-white">
             <tr>
-                <td>2</td>
-                <td>Wikk Trucks</td>
-                <td>Manufacturing</td>
-                <td>Automobile</td>
-                <td>Mark Hart</td>
-                <td><i class="fas fa-edit benchmark-eye"  ></i></td>
+                <td>#</td>
+                <td>Name</td>
+                <td>Email</td>
+                <td>Mobile Number</td>
+                <td>Status</td>
+                <td></td>
             </tr>
-            <tr>
-                <td>3</td>
-                <td>Hash Savings and Loans</td>
-                <td>Financial Services</td>
-                <td>Savings and Loans</td>
-                <td>Harry Twum</td>
-                <td><i class="fas fa-edit benchmark-eye"></i></td>    
-            </tr>
-        </tbody>
-    </thead>
-</table>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>Kohl Cosmetics</td>
+                    <td>Manufacturing</td>
+                    <td>Consumer Goods</td>
+                    <td>Robert Williams</td>
+                    <td><i class="fas fa-edit benchmark-eye"></i></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Wikk Trucks</td>
+                    <td>Manufacturing</td>
+                    <td>Automobile</td>
+                    <td>Mark Hart</td>
+                    <td><i class="fas fa-edit benchmark-eye"  ></i></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Hash Savings and Loans</td>
+                    <td>Financial Services</td>
+                    <td>Savings and Loans</td>
+                    <td>Harry Twum</td>
+                    <td><i class="fas fa-edit benchmark-eye"></i></td>    
+                </tr>
+            </tbody>
+        </thead>
+    </table>
+</div>
 <br>
 
+<script>
+$('input[name="client_type"').change(function(){
+    $('#individual_clients_div').toggle()
+    $('#corporate_clients_div').toggle()
+    
+})
+</script>
 
 {% endblock content %}

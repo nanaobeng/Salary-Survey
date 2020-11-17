@@ -25,7 +25,7 @@ Surveys
         <td>Start Date</td>
         <td>End Date</td>
         <td>Status</td>
-        <td></td>
+        <td style="min-width: 50px;"></td>
     </thead>
     <tbody>
         <tr>
@@ -36,7 +36,11 @@ Surveys
             <td>12/4/2020</td>
             <td>N/A</td>
             <td>In Progress</td>
-            <td><i class="fas fa-eye"></i></td>
+            <td>
+                
+                <i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#view_survey_modal" data-toggle="tooltip" data-placement="bottom" title="View Survey"></i>&nbsp;
+                <a href="{{ url_for('users.edit_survey')}}"><i class="fas fa-edit edit-icon" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"></i></a>
+            </td>
         </tr>
         <tr>
             <td>JKL Support Survey</td>
@@ -46,7 +50,11 @@ Surveys
             <td>4/9/2020</td>
             <td>N/A</td>
             <td>In Progress</td>
-            <td><i class="fas fa-eye"></i></td>
+            <td>
+              
+                <i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#view_survey_modal" data-toggle="tooltip" data-placement="bottom" title="View Survey"></i>&nbsp;
+                <a href="{{ url_for('users.edit_survey')}}"><i class="fas fa-edit edit-icon" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"></i></a>
+            </td>
         </tr>
         <tr>
             <td>ABC Mining Company Survey</td>
@@ -56,7 +64,10 @@ Surveys
             <td>1/5/2020</td>
             <td>16/8/2020</td>
             <td>Completed</td>
-            <td><i class="fas fa-eye"></i></td>
+            <td>
+                <i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#view_survey_modal" data-toggle="tooltip" data-placement="bottom" title="View Survey"></i>&nbsp;
+                <a href="{{ url_for('users.edit_survey')}}"><i class="fas fa-edit edit-icon" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"></i></a>
+            </td>
         </tr>
         <tr>
             <td>MNO Breweries Survey</td>
@@ -66,7 +77,11 @@ Surveys
             <td>20/11/2019</td>
             <td>2/3/2020</td>
             <td>Completed</td>
-            <td><i class="fas fa-eye"></i></td>
+            <td>
+                <i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#view_survey_modal" data-toggle="tooltip" data-placement="bottom" title="View Survey"></i>&nbsp;
+                <a href="{{ url_for('users.edit_survey')}}"><i class="fas fa-edit edit-icon" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"></i></a>
+            </td>
+
         </tr>
     </tbody>
 </table><br>
@@ -74,8 +89,76 @@ Surveys
 <!-- <div class="row justify-content-center">
     <a href="{{ url_for('users.create_survey')}}"><button class="btn btn-info">New Survey</button></a>
 </div> -->
-<script>
 
+<div class="modal " id="view_survey_modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Review Survey</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Survey Name: </b> <span id="review_survey_name"></span>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Client: </b> <span id="review_client_name"></span>
+            </div>
+          </div>
+          <div class="row mb-2">
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Industry: </b> <span id="review_industry"></span>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Area of Operation: </b><span id="review_area_of_operation"></span>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Start Date: </b><span id="review_start_date"></span>
+            </div>
+           
+          </div>
+          <div class="row mb-2">
+            <div class="col-lg-6 col-md-12">
+              <b>Benchmark Jobs</b><br>
+              <ul id="review_benchmark_jobs">
+         
+              </ul>
+              
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <b>Comparators</b><br>
+              <ul id="review_comparators">
+         
+              </ul>
+              
+            </div>
+           
+          </div>
 
-</script>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+ 
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <style>
+  .edit-icon{
+      cursor: pointer;
+      color: teal;
+  }
+  .edit-icon:hover{
+      color: black;
+  }
+  </style>
 {% endblock content %}

@@ -161,6 +161,10 @@ def survey_home():
 def create_survey():
     return render_template("create_survey.html")
 
+@users.route("/edit_survey")
+def edit_survey():
+    return render_template("admin_edit_survey.html")
+
 @users.route("/add_comparator")
 
 def add_comparators():
