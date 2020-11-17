@@ -16,6 +16,7 @@ Qualitative Survey
                           <div class="row pt-4">
                               <div class="col-12 " >
                                 <div class="row ">
+                                    <form>
                                   <div class="col-12">
                                     <div class="container">
                              
@@ -124,13 +125,13 @@ Qualitative Survey
                                                       <div class="col-12">
                                                           <div >
                                                               <div class=" p-4">
-                                                                  <form >
+                                                                  
                                                                       <div class="row "  >
                                                                           <div class="col-12 general_information" >
                                                                               <div class="row general_contact_view" style="display:none">
                                                                                       
                                                                                        <div class="col-12">
-                                                                                           <br/>
+                                                                                           <br>
                                                                               <div class="form-group">
                                                                                   <label for="usr">Organization:</label>
                                                                                   <input type="text" class="form-control" id="organization" name="Organization">
@@ -213,148 +214,94 @@ Qualitative Survey
                                                                           <div class="row general_organization_view" >
                                                                               <div class="col-12">
                                                                                   <div class="row">
-                                                                              <div class="col-12">
-                                                                                  <div class="row justify-content-center">
-                                                                                      <div class="col-12 pb-3">
-                                                                                          <b>Organization Sector :</b>
-                                                                                          <br/>
-                                                                                      </div>
-                                                                                      <div class="col-3">
-                                                                                          <div class="form-check">
-                                                                                              <label class="form-check-label" for="radio1">
-                                                                                                <input type="radio" class="form-check-input" id="radio1" name="sector" value="Publicly listed financial
-                                                                                                institution" checked>Publicly listed financial
-                                                                                                institution
-                                                                                              </label>
-                                                                                            </div>
-  
-                                                                                      </div>
-                                                                                      <div class="col-3">
-                                                                                          <div class="form-check">
-                                                                                              <label class="form-check-label" for="radio2">
-                                                                                                <input type="radio" class="form-check-input" id="radio2" name="sector" value="Publicly listed non-financial
-                                                                                                institution">Publicly listed non-financial
-                                                                                                institution
-                                                                                              </label>
-                                                                                            </div>
-  
-                                                                                      </div>
-  
-                                                                                      <div class="col-3">
-                                                                                          <div class="form-check">
-                                                                                              <label class="form-check-label">
-                                                                                                <input type="radio" class="form-check-input" id="radio3" name="sector" value="Non publicly list financial
-                                                                                                institution">Non publicly list financial
-                                                                                                institution
-                                                                                              </label>
-                                                                                            </div>
-                                                                                          
-                                                                                      </div>
-  
-                                                                                      <div class="col-3">
-                                                                                          <div class="form-check">
-                                                                                              <label class="form-check-label">
-                                                                                                <input type="radio" class="form-check-input" id="radio4" name="optradio" value="option4"> Other
+                                                                          
+
+                                                                              <!-- Section: Number of Employees -->
+                                                                    
+                                                                              <section> <h5 style="text-align:center;">Organisation Overview</h5>
+
+                                                                              <div> <!-- class="col-4"> -->
+                                                                                  <div class="form-group">
+                                                                                      <div>
+                                                                                          <br>
+                                                                                          <div class="form-group">
+                                                                                              <label for="usr">Total number of employees</label>
+                                                                                              <input type="text" class="form-control" id="usr" name="Total number of employees">
+                                                                                          </div>
+                                                                                          </div>
+                                                                                          <div class="form-group">
+                                                                                              <table>
+                                                                                                  <tr style="color:green">
+                                                                                                      <th>Type </th>
+                                                                                                      <th>Full Time Employees</th>
+                                                                                                      <th>Temporary Employees</th>
+                                                                                                      <th>Other Employees</th>
+                                                                                                      <th> </th>
+                                                                                                  </tr>
                                                                                                 
-                                                                                              </label>
-                                                                                            </div>
-                                                                                          
+                                                                                                  <tr>
+                                                                                                      <th>Locally Recruited</th>
+                                                                                                      <th><input type="number" name="full local"></th>
+                                                                                                      <th><input type="number" name="temp local"></th>
+                                                                                                      <th><input type="number" name="other local"></th>
+
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <th>Expatriates</th>
+                                                                                                      <th><input type="number" name="temp expatriate"></th>
+                                                                                                      <th><input type="number" name="temp expatriate"></th>
+                                                                                                      <th><input type="number" name="other expatriate"></th>
+
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <th>Male</th>
+                                                                                                      <th><input type="number" name="full male"></th>
+                                                                                                      <th><input type="number" name="temp male"></th>
+                                                                                                      <th><input type="number" name="other male"></th>
+
+                                                                                                  </tr>
+                                                                                                  <tr>
+                                                                                                      <th>Female</th>
+                                                                                                      <th><input type="number" name="full female"></th>
+                                                                                                      <th><input type="number" name="temp female"></th>
+                                                                                                      <th><input type="number" name="other female"></th>
+
+                                                                                                  </tr>
+
+                                                                                                  <tr>
+                                                                                                      <th>Qualified for Overtime</th>
+                                                                                                      <th><input type="number" name="full overtime"></th>
+                                                                                                      <th><input type="number" name="temp overtime"></th>
+                                                                                                      <th><input type="number" name="other overtime"></th>
+
+                                                                                                  </tr>
+
+                                                                                              </table>
+
+                                                                                          </div>
                                                                                       </div>
-                                                                                  
-                                                                                    
-                                                                                    
-                                                                                  </div>
                                                                               </div>
-                                                                              <div class="col-12">
-                                                                                  <br/>
-                                                                                  <div class="form-group">
-                                                                                      <label for="usr">When was your organisation established/incorporated in Ghana?</label>
-                                                                                      <input type="text" class="form-control" id="usr" name="When was your organisation established/incorporated in Ghana?">
-                                                                                    </div>
-      
+
+                                                                             
                                                                               </div>
-                                                                              
-  
-                                                                              <div class="col-4">
-                                                                                  <div class="form-group">
-                                                                                      <label for="usr">Registration Number</label>
-                                                                                      <input type="text" class="form-control" id="usr" name="Registration Number">
-                                                                                    </div>
-      
-                                                                              </div>
-                                                                              <div class="col-4">
-                                                                                  <div class="form-group">
-                                                                                      <label for="usr">Area of Operation</label>
-                                                                                      <input type="text" class="form-control" id="usr" name="Area of Operation">
-                                                                                    </div>
-      
-                                                                              </div>
-                                                                              <div class="col-4">
-                                                                                  <div class="form-group">
-                                                                                      <label for="usr">Total number of employees</label>
-                                                                                      <input type="text" class="form-control" id="usr" name="Total number of employees">
-                                                                                    </div>
-      
-                                                                              </div>
-                                                                              <div class="col-12">
-                                                                                  <div class="row ">
-                                                                                      <div class="col-12">
-                                                                                          Employment Type
-                                                                                      </div>
-                                                                                      <div class="col-3">
-                                                                                          <div class="form-check">
-                                                                                              <label class="form-check-label" for="radio1">
-                                                                                                <input type="radio" class="form-check-input" id="radio11" name="employment_type" value="Full time" checked>
-                                                                                                Full time
-                                                                                              </label>
-                                                                                            </div>
-  
-                                                                                      </div>
-                                                                                      <div class="col-3">
-                                                                                          <div class="form-check">
-                                                                                              <label class="form-check-label" for="radio2">
-                                                                                                <input type="radio" class="form-check-input" id="radio12" name="employment_type" value="Temporary">Temporary
-                                                                                              
-                                                                                              </label>
-                                                                                            </div>
-  
-                                                                                      </div>
-  
-                                                                                      <div class="col-3">
-                                                                                          <div class="form-check">
-                                                                                              <label class="form-check-label">
-                                                                                                <input type="radio" class="form-check-input" id="radio13" name="employment_type" value="Other">Other
-                                                                                                
-                                                                                              </label>
-                                                                                            </div>
-                                                                                          
-                                                                                      </div>
-  
-                                                                                     
-                                                                                  
-                                                                                    
-                                                                                    
-                                                                                  </div>
-                                                                              </div>
-                                                                              <div class="col-12">
-                                                                                  <br/>
+                                                                              <div> <!--class="col-12" -->
+                                                                                  <br>
                                                                                   <div class="form-group">
                                                                                       <label for="usr">No. of working hours in a week</label>
                                                                                       <input type="text" class="form-control" id="usr" name="No. of working hours in a week">
                                                                                     </div>
       
                                                                               </div>
-                                                                              <div class="col-12">
+                                                                              <div> <!-- class="col-12"> -->
                                                                                   <div class="form-group">
-                                                                                      <label for="usr">Can you describe your overtime policy? Eligibility, Payments, Approvals?</label>
+                                                                                      <label for="usr">Describe your overtime policy. This includes information on eligibility, payments and approvals?</label>
                                                                                       <textarea class="form-control" rows="5" name="Can you describe your overtime policy? Eligibility, Payments, Approvals?" id="comment"></textarea>
                                                                                     </div>
-      
                                                                               </div>
   
                                                                               
                                                                               
-                                                                                  
+                                                                          
                                                                            
                                                                            
                                                                                  <div class="col-12 text-right">
@@ -365,6 +312,8 @@ Qualitative Survey
                                                                           </div>
                                                                       </div>
                                                                     </div>
+
+                                                                    <!-- Direct Compensation -->
                                                                     <div class="col-12">
 
 
@@ -372,6 +321,24 @@ Qualitative Survey
 
                                                                         <div class="col-12">
                                                                           <div class="row ">
+                                                                            <div>
+                                                                              As an organisation, where (i.e. percentile terms) do you want to position yourself on the market? <br>
+                                                                                <input type="checkbox" id="twentyfive" name="twentyfive" value="25">
+                                                                                <label for="twentyfive">25</label>
+                                                                                <input type="checkbox" id="forty" name="forty" value="40">
+                                                                                <label for="forty">40</label>
+                                                                                <input type="checkbox" id="fifty" name="fifty" value="50">
+                                                                                <label for="fifty">50</label>
+                                                                                <input type="checkbox" id="sixty" name="sixty" value="60">
+                                                                                <label for="sixty">60</label>
+                                                                                <input type="checkbox" id="seventyfive" name="seventyfive" value="75">
+                                                                                <label for="seventyfive">75</label>
+                                                                                <input type="checkbox" id="eighty" name="eighty" value="80">
+                                                                                <label for="eighty">80</label>
+                                                                                <input type="checkbox" id="ninety" name="ninety" value="90">
+                                                                                <label for="ninety">90</label><br>                                                                              
+                                                                            </div>
+
                                                                               <div class="col-12">
                                                                                 Does your organisation have a formal salary structure for staff ?
                                                                               </div>
@@ -381,6 +348,7 @@ Qualitative Survey
                                                                                         <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes" checked>
                                                                                         Yes
                                                                                       </label>
+                                                                                  
                                                                                     </div>
 
                                                                               </div>
@@ -394,122 +362,146 @@ Qualitative Survey
 
                                                                               </div>
 
-                                                                             
-
-                                                                             
-                                                                          
-                                                                            
-                                                                            
                                                                           </div>
                                                                       </div>
 
                                                                       <div class="col-12">
-                                                                        <br/>
+                                                                        <br>
                                                                         <div class="form-group">
-                                                                            <label for="usr">If NO, how are salary level(s) established?</label>
-                                                                            <textarea class="form-control" name="If NO, how are salary level(s) established?" rows="5" id="comment"></textarea>
+                                                                            <p>If Yes, please upload a copy of your current salary structure(s).</p>
+                                                                            <input type="file" id="salaryStructure" name="filename">
                                                                           </div>
-
                                                                     </div>
 
-                                                                    <div class="col-12">
-                                                                      <b>Information on salary adjustments</b>
-                                                                      <br/>
-                                                                      <div class="row">
-                                                                        <div class="col-6">
-                                                                          <br/>
-                                                                          <div class="form-group">
-                                                                              <label for="usr">How often is salary structure(s) adjusted?</label>
-                                                                              <input type="text" class="form-control" id="usr" name="How often is salary structure(s) adjusted?">
-                                                                            </div>
-
-                                                                      </div>
-                                                                      <div class="col-6">
-                                                                        <br/>
+                                                                      <div class="col-12">
+                                                                        <br>
                                                                         <div class="form-group">
-                                                                            <label for="usr">Date of last adjustment</label>
-                                                                            <input type="text" class="form-control" id="usr" name="Date of last adjustment">
+                                                                            <label for="usr">If No, how are salary level(s) established?</label>
+                                                                            <textarea class="form-control" name="If No, how are salary level(s) established?" rows="5" id="comment"></textarea>
                                                                           </div>
 
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                      <br/>
-                                                                      <div class="form-group">
-                                                                          <label for="usr">Average percentage increase in last reviews</label>
-                                                                          <input type="text" class="form-control" id="usr" name="Average percentage increase in last reviews">
-                                                                        </div>
-
-                                                                  </div>
-                                                                  <div class="col-6">
-                                                                    <br/>
-                                                                    <div class="form-group">
-                                                                        <label for="usr">Basis of adjustment:</label>
-                                                                        <input type="text" class="form-control" id="usr" name="Basis of adjustment:">
-                                                                      </div>
-
-                                                                </div>
-                                                                      </div>
                                                                     </div>
 
 
                                                                     <div class="col-12">
-                                                                      <b>Indicators</b>
-                                                                      <br/>
-                                                                      <div class="row">
-                                                                        <div class="col-6">
-                                                                          <br/>
-                                                                          <div class="form-group">
-                                                                              <label for="usr">Cost of living changes/inflation</label>
-                                                                              <input type="text" class="form-control" id="usr" name="Cost of living changes/inflation">
+                                                                        <h5 style="text-align:center;">Information on salary adjustments</h5>
+                                                                            
+                                                                            <div class="row">
+                                                                                <div class="col-6">
+                                                                                    <br>
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">How often is salary structure(s) adjusted?</label>
+                                                                                        <select id="salaryStructure Adjustment" name="adjustment">
+                                                                                            <option value="annually">Annually</option>
+                                                                                            <option value="quarterly">Quarterly</option>
+                                                                                            <option value="bimonthly">Bi-monthly</option>
+                                                                                            <option value="monthly">Monthly</option>
+                                                                                            <option value="other">Other</option>
+                                                                                        </select>
+                                                                                        <div class="form-group">
+                                                                                            <label for="usr">If other, please specify: </label>
+                                                                                            <input type="text" class="form-control" id="usr" name="How often is salary structure(s) adjusted?">
+                                                                                        </div>
+
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <br>
+                                                                                    <div class="form-group">
+                                                                                        <label for="date">Date of last adjustment:</label>
+                                                                                        <input type="date" id="adjustmentDate" name="adjustment">
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <br>
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Average percentage increase in last reviews</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="Average percentage increase in last reviews">
+                                                                                    </div>
+
+                                                                                </div>
+                                                                                <div class="col-6">
+                                                                                    <br>
+                                                                                    <div class="form-group">
+                                                                                        <label for="usr">Basis of adjustment:</label>
+                                                                                        <input type="text" class="form-control" id="usr" name="Basis of adjustment:">
+                                                                                    </div>
+
+                                                                                </div>
                                                                             </div>
+</div>
 
-                                                                      </div>
-                                                                      <div class="col-6">
-                                                                        <br/>
-                                                                        <div class="form-group">
-                                                                            <label for="usr">Business conditions</label>
-                                                                            <input type="text" class="form-control" id="usr" name="Business conditions">
-                                                                          </div>
 
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                      <br/>
-                                                                      <div class="form-group">
-                                                                          <label for="usr">Salary levels of other organisation/ market
-                                                                            survey results</label>
-                                                                          <input type="text" class="form-control" id="usr" name="Salary levels of other organisation/ market
-                                                                          survey results">
-                                                                        </div>
+                                                                    <div class="col-12">
+                                                                        <h6> Indicators</h6>
 
-                                                                  </div>
-                                                                  <div class="col-6">
-                                                                    <br/>
-                                                                    <div class="form-group">
-                                                                        <label for="usr">Other (please specify)</label>
-                                                                        <input type="text" class="form-control" id="usr" name="Other (please specify)">
-                                                                      </div>
+                                                                            <div class="row">
+                                                          
+                                                                                <div class="form-group">
+                                                                                    <table>
+                                                                                        <tr>
+                                                                                            <th>Indicator</th>
+                                                                                            <th>Percentage (%)</th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Cost of living changes/inflation</th>
+                                                                                            <th><input type="number" min="0" name="cost of living"></th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Business conditions</th>
+                                                                                            <th><input type="number" min="0" name="business conditions"></th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Salary levels of other organizations/market</th>
+                                                                                            <th><input type="number" min="0" name="salary levels"></th>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <th>Other (please specify): <input type="text"> </th>
+                                                                                            <th><input type="number" min="0" name="other" /></th>
+                                                                                        </tr>
+                                                                                    </table>
 
-                                                                </div>
-                                                                      </div>
-                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+</div>
 
                                                                     <div class="col-4">
                                                                       <div class="form-group">
-                                                                        <label>Are all grades adjusted by the same Percentage?</label>
-                                                                        <input type="text" class="form-control" name="Are all grades adjusted by the same Percentage?"/>
+                                                                        <label>Are all grades adjusted by the same percentage?</label>
+                                                                        <div class="col-3">
+                                                                          <div class="form-check">
+                                                                              <label class="form-check-label" for="radio1">
+                                                                                <input type="radio" class="form-check-input" id="radio111" name="optradio1ab" value="option11" checked>
+                                                                                Yes
+                                                                              </label>
+                                                                            </div>
+
+                                                                      </div>
+                                                                      <div class="col-3">
+                                                                          <div class="form-check">
+                                                                              <label class="form-check-label" for="radio2">
+                                                                                <input type="radio" class="form-check-input" id="radio121" name="optradio1ab" value="option12">No
+                                                                              
+                                                                              </label>
+                                                                            </div>
+
+                                                                      </div>
+
                                                                       </div>
                                                                     </div>
 
                                                                     <div class="col-8">
                                                                       <div class="form-group">
-                                                                        <label>If NO, how are adjustments made?</label>
+                                                                        <label>If No, how are adjustments made?</label>
                                                                         <input type="text" class="form-control"/>
                                                                       </div>
                                                                     </div>
 
 
                                                                     <div class="col-12">
-                                                                      <br/>
+                                                                      <br>
                                                                       <div class="form-group">
                                                                           <label for="usr">Please specify if your organisation uses a formal Job Evaluation System. What method of job
                                                                             evaluation is used?</label>
@@ -519,12 +511,18 @@ Qualitative Survey
                                                                   </div>
 
 
-                                                                  <div class="col-12">
+                                                                  <div class="row">
+                                                                    <br>
+                                                                    
+                                                                    <div class="form-group"> 
+                                                                      <label>What types of periodic salary increases are granted?</label>
+                                                                    </div>
                                                                     <div class="form-check-inline">
                                                                       <label class="form-check-label" for="check1">
-                                                                        <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something" checked>Performance/Merit increases
+                                                                        <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something">Performance/Merit increases
                                                                       </label>
                                                                     </div>
+                                                                    
                                                                     <div class="form-check-inline">
                                                                       <label class="form-check-label" for="check2">
                                                                         <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">General increases (across board)
@@ -538,12 +536,13 @@ Qualitative Survey
                                                                     <div class="form-check-inline">
                                                                       <label class="form-check-label">
                                                                         <input type="checkbox" class="form-check-input" >Other
-                                                                      </label>
+                                                                      </label> 
                                                                     </div>
                                                                   </div>
+
                                                                   <div class="col-12">
                                                                     <div class="row ">
-                                                                      <br/>
+                                                                      <br>
                                                                         <div class="col-12">
                                                                           Do your staff receive automatic cost of living salary adjustments at periodic intervals?
                                                                         </div>
@@ -576,7 +575,7 @@ Qualitative Survey
                                                                 </div>
 
                                                                 <div class="col-12">
-                                                                  <br/>
+                                                                  <br>
                                                                   <div class="form-group">
                                                                     <label>If YES, on what basis are increments computed and what are the normal intervals?</label>
                                                                     <textarea cols="5" class="form-control"></textarea>
@@ -586,8 +585,8 @@ Qualitative Survey
 
                                                                 <div class="col-6">
                                                                   <div class="form-group">
-                                                                    <label>How many grade levels do you have?</label>
-                                                                    <input type="text" class="form-control"/>
+                                                                    <label for="quantity">How many grade levels do you have?</label>
+                                                                    <input type="number" min="1" class="form-control"/>
                                                                   </div>
                                                                 </div>
 
@@ -600,7 +599,7 @@ Qualitative Survey
 
                                                                 <div class="col-12">
                                                                   <div class="row ">
-                                                                    <br/>
+                                                                    <br>
                                                                       <div class="col-12">
                                                                         Are salary increments in the same grade based on
                                                                       </div>
@@ -634,7 +633,7 @@ Qualitative Survey
 
                                                               <div class="col-12">
                                                                 <div class="row ">
-                                                                  <br/>
+                                                                  <br>
                                                                     <div class="col-12">
                                                                       How do your staff progress through the steps?
                                                                     </div>
@@ -670,65 +669,123 @@ Qualitative Survey
                                                               <div class="col-12">
                                                                 <div class="row">
                                                                   <div class="col-12">
-                                                                    In order of importance, what factors are considered in placing your new staff on your salary
-scale (please rank as 1st, 2nd, 3rd, etc)?
+                                                                    <br>
+                                                                    In order of importance, what factors are considered in placing your new staff on your salary scale (please rank as 1st, 2nd, 3rd, etc)?
+                                                                  <div>
+                                                                    <label>1st Priority:</label>
+                                                                    <select>
+                                                                      <option value="education">Education</option>
+                                                                      <option value="experience">Experience</option>
+                                                                      <option value="prev-salary">Previous Salary</option>
+                                                                    </select>
+
+                                                                    <label>2nd Priority:</label>
+                                                                    <select>
+                                                                      <option value="education">Education</option>
+                                                                      <option value="experience">Experience</option>
+                                                                      <option value="prev-salary">Previous Salary</option>
+                                                                    </select>
+
+                                                                    <label>3rd Priority:</label>
+                                                                    <select>
+                                                                      <option value="education">Education</option>
+                                                                      <option value="experience">Experience</option>
+                                                                      <option value="prev-salary">Previous Salary</option>
+                                                                    </select>
+
+                                                                    <label>Others (please specify):</label>
+                                                                    <input type="text" class="form-control">
+                                                                  </div>
+
 
                                                                   </div>
-                                                                  <div class="col-4">
-                                                                    <div class="form-group">
-                                                                      <label>Eductation</label>
-                                                                      <input type="text" class="form-control" />
-
-                                                                    </div>
-                                                                  </div>
-
-                                                                  <div class="col-4">
-                                                                    <div class="form-group">
-                                                                      <label>Experience</label>
-                                                                      <input type="text" class="form-control" />
-                                                                      
-                                                                    </div>
-                                                                  </div>
-
-                                                                  <div class="col-4">
-                                                                    <div class="form-group">
-                                                                      <label>Previous Salary</label>
-                                                                      <input type="text" class="form-control" />
-                                                                      
-                                                                    </div>
-                                                                  </div>
-
 
                                                                 </div>
                                                               </div>
 
                                                               <div class="col-12">
                                                                 <div class="form-group">
+                                                                  <br>
                                                                   <label>Is there a hiring rate for each grade or job which differs from the minimum of the scale?</label>
-                                                                  <textarea cols="5" class="form-control"></textarea>
+                                                                  <div class="col-3">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label" for="radio1">
+                                                                          <input type="radio" class="form-check-input" id="radio111" name="optradio1ab" value="option11" checked>
+                                                                          Yes
+                                                                        </label>
+                                                                      </div>
+
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label" for="radio2">
+                                                                          <input type="radio" class="form-check-input" id="radio121" name="optradio1ab" value="option12">No
+                                                                        
+                                                                        </label>
+                                                                      </div>
+                                                                </div>
+
+                                                                <label>Please explain your above response: </label>
+                                                                <textarea cols="5" class="form-control"></textarea>
                                                                   
                                                                 </div>
                                                               </div>
 
                                                               <div class="col-6">
                                                                 <div class="form-group">
-                                                                  <label>Is there a maximum salary for each grade which cannot be exceeded? Yes/No?</label>
-                                                                  <input type="text" class="form-control" />
+                                                                  <label>Is there a maximum salary for each grade which cannot be exceeded?</label>
+                                                                  <div class="col-3">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label" for="radio1">
+                                                                          <input type="radio" class="form-check-input" id="radio111" name="optradio1ab" value="option11" checked>
+                                                                          Yes
+                                                                        </label>
+                                                                      </div>
+
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label" for="radio2">
+                                                                          <input type="radio" class="form-check-input" id="radio121" name="optradio1ab" value="option12">No
+                                                                        
+                                                                        </label>
+                                                                      </div>
+
+                                                                </div>
+                                                                  <!-- <input type="text" class="form-control" /> -->
                                                                   
                                                                 </div>
                                                               </div>
 
                                                               <div class="col-6">
                                                                 <div class="form-group">
-                                                                  <label>Are there instances where the maximum salary for a grade has been exceeded? Yes/No</label>
-                                                                  <input type="text" class="form-control" />
+                                                                  <label>Are there instances where the maximum salary for a grade has been exceeded?</label>
+                                                                  <div class="col-3">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label" for="radio1">
+                                                                          <input type="radio" class="form-check-input" id="radio111" name="optradio1ab" value="option11" checked>
+                                                                          Yes
+                                                                        </label>
+                                                                      </div>
+
+                                                                </div>
+                                                                <div class="col-3">
+                                                                    <div class="form-check">
+                                                                        <label class="form-check-label" for="radio2">
+                                                                          <input type="radio" class="form-check-input" id="radio121" name="optradio1ab" value="option12">No
+                                                                        
+                                                                        </label>
+                                                                      </div>
+
+                                                                </div>
+                                                                  <!-- <input type="text" class="form-control" /> -->
                                                                   
                                                                 </div>
                                                               </div>
 
                                                               <div class="col-12">
                                                                 <div class="form-group">
-                                                                  <label>If YES, please explain</label>
+                                                                  <label>If Yes, please explain</label>
                                                                   <textarea cols="5" class="form-control"></textarea>
                                                                   
                                                                 </div>
@@ -770,7 +827,7 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
 
                                                                           <div class="col-12">
                                                                             <div class="row ">
-                                                                              <br/>
+                                                                              <br>
                                                                                 <div class="col-12">
                                                                                   Does the organisation provide an annual cash bonus or other short term incentive plan (excluding
 13th month pay) for employees?
@@ -806,16 +863,17 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
 
 
                                                                           <div class="col-12">
-                                                                            <br/>
+                                                                            <br>
                                                                             <div class="form-group">
                                                                               <label>Please list and describe these plans (provide copy of the plan or policy)</label>
                                                                               <textarea cols="5" class="form-control"></textarea>
+                                                                              <input type="file" id="plan_file" name="plan_file">
                                                                             </div>
                                                                           </div>
 
                                                                           <div class="col-12">
                                                                             <div class="row ">
-                                                                              <br/>
+                                                                              <br>
                                                                                 <div class="col-12">
                                                                                   Are all staff including executives eligible for C1?
                                                                                 </div>
@@ -852,7 +910,7 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
 
 
                                                                           <div class="col-12">
-                                                                            <br/>
+                                                                            <br>
                                                                             <div class="form-group">
                                                                               <label>If No, explain:</label>
                                                                               <textarea cols="5" class="form-control"></textarea>
@@ -862,7 +920,7 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
 
                                                                           <div class="col-12">
                                                                             <div class="row ">
-                                                                              <br/>
+                                                                              <br>
                                                                                 <div class="col-12">
                                                                                   When does your company pay the bonuses listed in C1?
                                                                                 </div>
@@ -893,7 +951,16 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                                       </label>
                                                                                     </div>
           
-                                                                              </div>
+                                                                                </div>
+
+                                                                                <div>
+                                                                                  <div class="form-check">
+                                                                                    <label class="form-check-label" for="radio2">
+                                                                                      <input type="radio" class="form-check-input" id="raddio1d2gssgff1" name="optradio1abcdefgh" value="option12">Other (please sepcify)
+                                                                                      <input type="text">
+                                                                                    </label>
+                                                                                  </div>
+                                                                                </div>
             
                                                                                
             
@@ -908,7 +975,7 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
 
                                                                           <div class="col-12">
                                                                             <div class="row ">
-                                                                              <br/>
+                                                                              <br>
                                                                                 <div class="col-12">
                                                                                   Does your company pay 13th month bonus?
                                                                                 </div>
@@ -945,7 +1012,7 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                           <div class="col-12">
 
                                                                             <div class="row ">
-                                                                              <br/>
+                                                                              <br>
                                                                                 <div class="col-12">
                                                                                   When is the 13th month bonus paid?
                                                                                 </div>
@@ -969,15 +1036,23 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                                 </div>
 
                                                                                 <div class="col-3">
-                                                                                  <br/>
+                                                                                  <br>
                                                                                   <div class="form-check">
                                                                                       <label class="form-check-label" for="radio2">
                                                                                         <input type="radio" class="form-check-input" id="raddio1d2gssgff1" name="optradio1abcdefgh" value="option12">Monthly as part of the salary
                                                                                       
                                                                                       </label>
-                                                                                    </div>
+                                                                                  </div>
           
-                                                                              </div>
+                                                                                </div>
+                                                                                <div>
+                                                                                  <div class="form-check">
+                                                                                    <label class="form-check-label" for="radio2">
+                                                                                      <input type="radio" class="form-check-input" id="raddio1d2gssgff1" name="optradio1abcdefgh" value="option12">Other (please sepcify)
+                                                                                      <input type="text">
+                                                                                    </label>
+                                                                                  </div>
+                                                                                </div>
 
             
                                                                                
@@ -992,7 +1067,7 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
 
                                                                           <div class="col-12">
                                                                             <div class="form-group">
-                                                                              <label>Are there restrictions on paying out the 13th month?</label>
+                                                                              <label>List any restrictions on paying out the 13th month.</label>
                                                                               <textarea cols="5" class="form-control"></textarea>
                                                                             </div>
                                                                           </div>
@@ -1040,7 +1115,8 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                           <div class="col-6">
                                                                             <div class="form-group">
                                                                               <label>What is the number of leave days granted to staff annually?</label>
-                                                                              <input type="text" class="form-control" />
+                                                                              <!-- <input type="text" class="form-control" /> -->
+                                                                              <input type="number" min="0" class="form-control"/>
                                                                             </div>
 
                                                                           </div>
@@ -1048,37 +1124,69 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
 
                                                                           <div class="col-6">
                                                                             <div class="form-group">
-                                                                              <label>does this
-                                                                                increase per employee tenure?</label>
-                                                                              <input type="text" class="form-control" />
+                                                                              <label> Does the number of leave days increase per employee tenure?</label>
+                                                                              <div class="col-3">
+                                                                                <div class="form-check">
+                                                                                    <label class="form-check-label" for="radio1">
+                                                                                      <input type="radio" class="form-check-input" id="radio111" name="optradio1aa" value="option11" checked>
+                                                                                      Yes
+                                                                                    </label>
+                                                                                  </div>
+
+                                                                            </div>
+                                                                            <div class="col-3">
+                                                                                <div class="form-check">
+                                                                                    <label class="form-check-label" for="radio2">
+                                                                                      <input type="radio" class="form-check-input" id="radio121" name="optradio1aa" value="option12">No
+                                                                                    
+                                                                                    </label>
+                                                                                  </div>
+                                                                            </div>
+                                                                              <!-- <input type="text" class="form-control" /> -->
                                                                             </div>
 
                                                                           </div>
 
                                                                           <div class="col-12">
                                                                             <div class="form-group">
-                                                                              <br/>
+                                                                              <br>
                                                                               <table class="table ">
-                                                                                <thead style="background-color: limegreen;color:#fff">
+                                                                                <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                                                                   <tr>
-                                                                                    <th>Staff Category</th>
-                                                                                    <th>Number of Leave Days</th>
+                                                                                      <th> Staff Category</th>
+                                                                                      <th>Number of Leave Days</th>
                                                                                  
                                                                                   </tr>
                                                                                 </thead>
                                                                                 <tbody>
+                                                                                    <tr>
+                                                                                        <td>
+                                                                                         
+                                                                                          <!--  <label for="category">Staff Category</label>-->
+                                                                                            <select name="category" id="category">
+                                                                                                <option value="cat1">Category 1</option>
+                                                                                                <option value="cat2">Category 2</option>
+                                                                                                <option value="cat3">Category 3</option>
+                                                                                            </select>
+                                                                                        </td>
+                                                                                        <td><input type="text" class="form-control" /></td>
+
+                                                                                    </tr>
                                                                                   <tr>
-                                                                                    <td><input type="text" class="form-control"/></td>
-                                                                                    <td><input type="text" class="form-control"/></td>
-                                                                                    
-                                                                                  </tr>
-                                                                                  <tr>
-                                                                                    <td><input type="text" class="form-control"/></td>
+                                                                                    <td><select name="category" id="category">
+                                                                                            <option value="cat1">Category 1</option>
+                                                                                            <option value="cat2">Category 2</option>
+                                                                                            <option value="cat3">Category 3</option>
+                                                                                        </select></td>
                                                                                     <td><input type="text" class="form-control"/></td>
                                                                                    
                                                                                   </tr>
                                                                                   <tr>
-                                                                                    <td><input type="text" class="form-control"/></td>
+                                                                                    <td><select name="category" id="category">
+                                                                                            <option value="cat1">Category 1</option>
+                                                                                            <option value="cat2">Category 2</option>
+                                                                                            <option value="cat3">Category 3</option>
+                                                                                        </select></td>
                                                                                     <td><input type="text" class="form-control"/></td>
                                                                                     
                                                                                   </tr>
@@ -1095,32 +1203,32 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                           </div>
                                                                           <div class="col-12 pb-2">
                                                                             <div class="form-group">
-                                                                              <br/>
+                                                                              <br>
                                                                               <label><b>What is the number of leave days granted for?</b></label>
                                                                               <div class="row">
                                                                                 <div class="col-6">
                                                                                   <label>Sickness</label>
-                                                                                  <input type="text" class="form-control"/>
+                                                                                  <input type="number" class="form-control"/>
 
                                                                                 </div>
                                                                                 <div class="col-6">
                                                                                   <label>Accident</label>
-                                                                                  <input type="text" class="form-control"/>
+                                                                                  <input type="number" class="form-control"/>
 
                                                                                 </div>
                                                                                 <div class="col-6">
                                                                                   <label>Maternity</label>
-                                                                                  <input type="text" class="form-control"/>
+                                                                                  <input type="number" class="form-control"/>
 
                                                                                 </div>
                                                                                 <div class="col-6">
                                                                                   <label>Paternity</label>
-                                                                                  <input type="text" class="form-control"/>
+                                                                                  <input type="number" class="form-control"/>
 
                                                                                 </div>
                                                                                 <div class="col-6">
-                                                                                  <label>Emergency/compassionate</label>
-                                                                                  <input type="text" class="form-control"/>
+                                                                                  <label>Emergency/Compassionate</label>
+                                                                                  <input type="number" class="form-control"/>
 
                                                                                 </div>
                                                                               </div>
@@ -1131,10 +1239,10 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                             <div class="row">
                                                                               <div class="col-12 card pb-2">
                                                                             <div class="form-group">
-                                                                              <br/>
+                                                                              <br>
                                                                               <label><b>What is the over time entitlements/rates in the following instances?</b></label>
                                                                               <table class="table ">
-                                                                                <thead style="background-color: limegreen;color:#fff">
+                                                                                <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                                   <tr>
                                                                                     <th>Employee Grade</th>
                                                                                     <th>Options</th>
@@ -1171,22 +1279,22 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                                 </tbody>
                                                                               </table>
                                                                             </div>
-                                                                            <br/>
+                                                                            <br>
                                                                           </div>
                                                                         </div>
                                                                           </div>
 
                                                                           <div class="col-12 ">
-                                                                            <br/>
+                                                                            <br>
                                                                             <div class="row">
                                                              
                                                                               <div class="col-12 card p-2">
                                                                             <div class="form-group">
-                                                                              <br/>
+                                                                              <br>
                                                                               <label><b>What policy provisions do you have for staff with respect to the following and how much?
                                                                                 (Please provide policy as attachment if different for various staff grades/categories)</b></label>
                                                                               <table class="table ">
-                                                                                <thead style="background-color: limegreen;color:#fff">
+                                                                                <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                                                                   <tr>
                                                                                     <th>Grade</th>
                                                                                     <th>Policy description
@@ -1262,14 +1370,14 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                                 </tbody>
                                                                               </table>
                                                                             </div>
-                                                                            <br/>
+                                                                            <br>
                                                                           </div>
                                                                         </div>
                                                                       </div>
 
                                                                           <div class="col-12">
                                                                             <div class="form-group">
-                                                                              <br/>
+                                                                              <br>
 
                                                                               <label>When was the last time you undertook redundancy exercises?</label>
                                                                               <input type="text" class="form-control" />
@@ -1280,10 +1388,10 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
 
                                                                           <div class="col-12 card">
                                                                             <div class="form-group">
-                                                                              <br/>
+                                                                              <br>
                                                                               <label><b>What did you pay the exiting staff?</b></label>
                                                                               <table class="table ">
-                                                                                <thead style="background-color: limegreen;color:#fff">
+                                                                                <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                                   <tr>
                                                                                     <th>Staff Category</th>
                                                                                     <th>Package Paid?</th>
@@ -1326,13 +1434,13 @@ scale (please rank as 1st, 2nd, 3rd, etc)?
                                                                                 </tbody>
                                                                               </table>
                                                                             </div>
-                                                                            <br/>
+                                                                            <br>
                                                                           </div>
 
                                                                           <div class="col-12">
-                                                                            <br/>
+                                                                            <br>
                                                                             <div class="row ">
-                                                                              <br/>
+                                                                              <br>
                                                                                 <div class="col-12">
                                                                                   Does the organisation subsidise/provide transportation to and from work (includes vehicle
 type, fuel, personal driver)?
@@ -1360,20 +1468,20 @@ type, fuel, personal driver)?
                                                                                
   
                                                                                
-                                                                            <br/>
+                                                                            <br>
                                                                               
                                                                               
                                                                             </div>
-                                                                            <br/>
+                                                                            <br>
                                                                         </div>
 
 
                                                                         <div class="col-12 card">
                                                                           <div class="form-group">
-                                                                            <br/>
+                                                                            <br>
                                                                             <label><b>If YES, provide details below</b></label>
                                                                             <table class="table ">
-                                                                              <thead style="background-color: limegreen;color:#fff">
+                                                                              <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                                 <tr>
                                                                                   <th>Policy (indicate separate if
                                                                                     different for various grades)</th>
@@ -1464,13 +1572,13 @@ type, fuel, personal driver)?
                                                                               </tbody>
                                                                             </table>
                                                                           </div>
-                                                                          <br/>
+                                                                          <br>
                                                                         </div>
 
                                                                         <div class="col-12">
-                                                                          <br/>
+                                                                          <br>
                                                                           <div class="row ">
-                                                                            <br/>
+                                                                            <br>
                                                                               <div class="col-12">
                                                                                 Do you have a car scheme in which an employee uses a company car and after some years,
 the car is sold to the employee at a discounted rate?
@@ -1501,7 +1609,7 @@ the car is sold to the employee at a discounted rate?
                                                                            
                                                                             
                                                                           </div>
-                                                                          <br/>
+                                                                          <br>
                                                                       </div>
 
                                                                       <div class="col-4">
@@ -1527,9 +1635,9 @@ the car is sold to the employee at a discounted rate?
                                                                       </div>
 
                                                                       <div class="col-12">
-                                                                        <br/>
+                                                                        <br>
                                                                         <div class="row ">
-                                                                          <br/>
+                                                                          <br>
                                                                             <div class="col-12">
                                                                               Does the organisation subsidise meal costs for senior management staff/executives (includes
 meal allowance as cash benefit and cafeteria service as kind benefit)?
@@ -1560,15 +1668,15 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                          
                                                                           
                                                                         </div>
-                                                                        <br/>
+                                                                        <br>
                                                                     </div>
 
                                                                     <div class="col-12 card">
                                                                       <div class="form-group">
-                                                                        <br/>
+                                                                        <br>
                                                                         <label><b>If YES, provide details below</b></label>
                                                                         <table class="table ">
-                                                                          <thead style="background-color: limegreen;color:#fff">
+                                                                          <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                                                             <tr>
                                                                               <th>Employee Grade</th>
                                                                               <th>Cash
@@ -1638,13 +1746,13 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                           </tbody>
                                                                         </table>
                                                                       </div>
-                                                                      <br/>
+                                                                      <br>
                                                                     </div>
 
                                                                     <div class="col-12">
-                                                                      <br/>
+                                                                      <br>
                                                                       <div class="row ">
-                                                                        <br/>
+                                                                        <br>
                                                                           <div class="col-12">
                                                                             Does the organisation subsidise/provide clothing allowance for staff?
                                                                           </div>
@@ -1674,7 +1782,7 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                        
                                                                         
                                                                       </div>
-                                                                      <br/>
+                                                                      <br>
                                                                   </div>
 
 
@@ -1699,7 +1807,7 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                         
                                                                     </div>
                                                                     <div class="col-12">
-                                                                      <br/>
+                                                                      <br>
                                                                       <div class="form-group">
                                                                         <label>Overseas rates: (please specify separately if different for various grades)</label>
                                                                         <textarea class="form-control" cols="5"></textarea>
@@ -1707,7 +1815,7 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                     </div>
 
                                                                     <div class="col-12">
-                                                                      <br/>
+                                                                      <br>
                                                                       <div class="form-group">
                                                                         <label>Out of location allowance (in country):</label>
                                                                         <textarea class="form-control" cols="5"></textarea>
@@ -1717,9 +1825,9 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                     </div>
 
                                                                     <div class="col-12">
-                                                                      <br/>
+                                                                      <br>
                                                                       <div class="row ">
-                                                                        <br/>
+                                                                        <br>
                                                                           <div class="col-12">
                                                                             Does the organisation provide interest free or low interest bearing loans (including
                                                                             salary advances) to employees for personal effects?
@@ -1750,15 +1858,15 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                        
                                                                         
                                                                       </div>
-                                                                      <br/>
+                                                                      <br>
                                                                   </div>
 
                                                                   <div class="col-12 card">
                                                                     <div class="form-group">
-                                                                      <br/>
+                                                                      <br>
                                                                       <label><b>If YES, provide details below</b></label>
                                                                       <table class="table ">
-                                                                        <thead style="background-color: limegreen;color:#fff">
+                                                                        <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                                                           <tr>
                                                                             <th>Employee Grade</th>
                                                                             <th>Type of loan</th>
@@ -1837,21 +1945,21 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                         </tbody>
                                                                       </table>
                                                                     </div>
-                                                                    <br/>
+                                                                    <br>
                                                                   </div>
 
 
                                                                   <div class="col-12 ">
-                                                                    <br/>
+                                                                    <br>
                                                                     <div class="row">
                                                                      
                                                                       <div class="col-12 card">
                                                                     <div class="form-group">
-                                                                      <br/>
+                                                                      <br>
                                                                       <label><b>Does the organisation provide housing benefits to staff (includes house allowance as cash
                                                                         benefit and accommodation, furnishing, residence utilities, etc,)?</b></label>
                                                                       <table class="table ">
-                                                                        <thead style="background-color: limegreen;color:#fff">
+                                                                        <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                           <tr>
                                                                             <th>Employee Grade</th>
                                                                             <th>Type of Facility</th>
@@ -1933,30 +2041,30 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                         </tbody>
                                                                       </table>
                                                                     </div>
-                                                                    <br/>
+                                                                    <br>
                                                                   </div>
                                                                 </div>
                                                                     <div class="row">
-                                                                      <br/>
+                                                                      <br>
                                                                       <div class="col-12">
                                                                         <label>Household benefits (e.g. Security, Cook, House-help, etc)</label>
                                                                         <textarea class="form-control" cols="10"></textarea>
 
                                                                       </div>
-                                                                      <br/>
+                                                                      <br>
                                                                     </div>
-                                                                    <br/>
+                                                                    <br>
                                                                   </div>
 
                                                                   <div class="col-12 ">
                                                                     <div class="row">
                                                                       <div class="col-12 card">
                                                                     <div class="form-group">
-                                                                      <br/>
+                                                                      <br>
                                                                       <label><b>Do you provide education subsidy for staff and/or their dependents? YES/NO. Please
                                                                         provide details below.</b></label>
                                                                       <table class="table ">
-                                                                        <thead style="background-color: limegreen;color:#fff">
+                                                                        <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                           <tr>
                                                                             <th>Employee Grade</th>
                                                                             <th></th>
@@ -2009,23 +2117,23 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                         </tbody>
                                                                       </table>
                                                                     </div>
-                                                                    <br/>
+                                                                    <br>
                                                                   </div>
                                                                 </div>
                                                                    
-                                                                    <br/>
+                                                                    <br>
                                                                   </div>
 
 
                                                                   <div class="col-12 ">
-                                                                    <br/>
+                                                                    <br>
                                                                     <div class="row">
                                                                       <div class="col-12 card">
                                                                     <div class="form-group">
-                                                                      <br/>
+                                                                      <br>
                                                                       <label><b>What provisions does the organisation make for the following?</b></label>
                                                                       <table class="table ">
-                                                                        <thead style="background-color: limegreen;color:#fff">
+                                                                        <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                                                           <tr>
                                                                             <th>Employee Grade</th>
                                                                           
@@ -2106,11 +2214,11 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                         </tbody>
                                                                       </table>
                                                                     </div>
-                                                                    <br/>
+                                                                    <br>
                                                                   </div>
                                                                 </div>
                                                                    
-                                                                    <br/>
+                                                                    <br>
                                                                   </div>
 
                                                                   <div class="col-12">
@@ -2124,9 +2232,9 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                   </div>
 
                                                                   <div class="col-12">
-                                                                    <br/>
+                                                                    <br>
                                                                     <div class="row ">
-                                                                      <br/>
+                                                                      <br>
                                                                         <div class="col-12">
                                                                           Are vacation related benefits offered to senior management staff?
                                                                         </div>
@@ -2156,21 +2264,21 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                      
                                                                       
                                                                     </div>
-                                                                    <br/>
+                                                                    <br>
                                                                 </div>
 
                                                                 <div class="col-12">
-                                                                  <br/>
+                                                                  <br>
                                                                   <div class="row ">
                                                                 <div class="col-12 card">
                                                                   <div class="row">
                                                                     <div class="col-12">
                                                                   <div class="form-group">
-                                                                    <br/>
+                                                                    <br>
                                                                     <label><b>Please describe entitlement and value of vacation benefits. Various components of this benefit might
                                                                       include:</b></label>
                                                                     <table class="table ">
-                                                                      <thead style="background-color: limegreen;color:#fff">
+                                                                      <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                         <tr>
 
                                                                           <th>Examples</th>
@@ -2311,18 +2419,18 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                       </tbody>
                                                                     </table>
                                                                   </div>
-                                                                  <br/>
+                                                                  <br>
                                                                 </div>
                                                               </div>
                                                                  
-                                                                  <br/>
+                                                                  <br>
                                                                 </div>
-                                                                <br/>
+                                                                <br>
                                                                 </div>
                                                                 </div>
 
                                                                 <div class="col-12">
-                                                                  <br/>
+                                                                  <br>
                                                                   <div class="row ">
                                                                    
                                                                 <div class="col-12 card">
@@ -2330,11 +2438,11 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                   
                                                                     <div class="col-12">
                                                                   <div class="form-group">
-                                                                    <br/>
+                                                                    <br>
                                                                     <label><b>Please describe your company’s medical scheme and how it is administered (i.e. .who is
                                                                       covered under the plan).</b></label>
                                                                     <table class="table ">
-                                                                      <thead style="background-color: limegreen;color:#fff">
+                                                                      <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                                                         <tr>
 
                                                                           <th>Policy Description</th>
@@ -2406,7 +2514,7 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                          
                                                                         </tr>
                                                                      <tr>
-                                                                       <td style="background-color: limegreen;color:#fff"><b>Dependents</b></td>
+                                                                       <td style="background-color: rgb(18, 143, 18);color:#fff"><b>Dependents</b></td>
                                                                      </tr>
                                                                      <tr>
                                                                       <td>Spouse:</td>
@@ -2469,19 +2577,19 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                       </tbody>
                                                                     </table>
                                                                   </div>
-                                                                  <br/>
+                                                                  <br>
                                                                 </div>
                                                               </div>
                                                                  
-                                                                  <br/>
+                                                                  <br>
                                                                 </div>
                                                                 </div>
                                                                 </div>
 
                                                                 <div class="col-12">
-                                                                  <br/>
+                                                                  <br>
                                                                   <div class="row ">
-                                                                    <br/>
+                                                                    <br>
                                                                       <div class="col-12">
                                                                         Does the medical scheme cover overseas treatment?
                                                                       </div>
@@ -2511,7 +2619,7 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                    
                                                                     
                                                                   </div>
-                                                                  <br/>
+                                                                  <br>
                                                               </div>
 
                                                              
@@ -2523,9 +2631,9 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                               
                                                               <div class="row">
                                                                 <div class="col-12">
-                                                                  <br/>
+                                                                  <br>
                                                                   <div class="row ">
-                                                                    <br/>
+                                                                    <br>
                                                                       <div class="col-12">
                                                                         Do you have a funeral assistance/ death benefits arrangement for your staff and family
   members?
@@ -2556,18 +2664,18 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                    
                                                                     
                                                                   </div>
-                                                                  <br/>
+                                                                  <br>
                                                               </div>
     
                                                               </div>
-                                                              <br/>
+                                                              <br>
                                                               <div class="row">
                                                                 <div class="col-12">
                                                               <div class="form-group">
-                                                                <br/>
+                                                                <br>
                                                                 <label><b>If yes, please specify the benefits below (e.g. transport, coffin, food, etc.)</b></label>
                                                                 <table class="table ">
-                                                                  <thead style="background-color: limegreen;color:#fff">
+                                                                  <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                                                     <tr>
 
                                                                       <th></th>
@@ -2677,25 +2785,25 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                                   </tbody>
                                                                 </table>
                                                               </div>
-                                                              <br/>
+                                                              <br>
                                                             </div>
                                                           </div>
                                                          
                                                              
-                                                              <br/>
+                                                              <br>
                                                             </div>
                                                             </div>
                                                             </div>
 
                                                             <div class="col-12 ">
-                                                              <br/>
+                                                              <br>
                                                               <div class="row">
                                                                 <div class="col-12 card">
                                                               <div class="form-group">
-                                                                <br/>
+                                                                <br>
                                                                 <label><b>Does your organisation operate any of the following schemes?</b></label>
                                                                 <table class="table ">
-                                                                  <thead style="background-color: limegreen;color:#fff">
+                                                                  <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                     <tr>
 
                                                                       <th>Employee Grade</th>
@@ -2770,10 +2878,10 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
                                                             <div class="row">
                                                               <div class="col-12">
                                                                 <div class="form-group">
-                                                                  <br/>
+                                                                  <br>
                                                                   <label><b>What provisions does the organisation make for the following?</b></label>
                                                                   <table class="table ">
-                                                                    <thead style="background-color: limegreen;color:#fff">
+                                                                    <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                       <tr>
   
                                                                         <th>Employee Grade</th>
@@ -2875,17 +2983,17 @@ meal allowance as cash benefit and cafeteria service as kind benefit)?
 
                                                               </div>
                                                             </div>
-                                                              <br/>
+                                                              <br>
                                                             </div>
                                                             
                                                             
                                                             <div class="col-12">
-                                                              <br/>
+                                                              <br>
                                                               <div class="row">
                                                                 <div class="col-12 card">
-                                                                  <br/>
+                                                                  <br>
                                                                   <div class="row ">
-                                                                    <br/>
+                                                                    <br>
                                                                       <div class="col-12">
                                                                         Are there any other benefits provided to senior management staff/executives not mentioned in
 this questionnaire?
@@ -2917,11 +3025,11 @@ this questionnaire?
                                                                    
                                                                     
                                                                   </div>
-                                                                  <br/>
+                                                                  <br>
                                                             
 
                                                             
-                                                              <br/>
+                                                              <br>
                                                               <div class="row">
                                                                 <div class="col-12">
                                                                   Please describe these benefit items using a separate sheet if needed. Probable benefit items
@@ -2979,7 +3087,7 @@ not covered in this questionnaire may be:
   </div>
 </div>
 <div class="row">
-  <br/>
+  <br>
   <div class="col-12">
     <div class="form-group">
       <textarea cols="5" class="form-control"></textarea>
@@ -3003,13 +3111,13 @@ not covered in this questionnaire may be:
                                                            
                                                             
                                                             <div class="col-12  ">
-                                                              <br/>
+                                                              <br>
                                                               <div class="row">
-                                                                <br/>
+                                                                <br>
                                                                 <div class="col-12 p-4 card">
-                                                                  <br/>
+                                                                  <br>
                                                                   <div class="row ">
-                                                                    <br/>
+                                                                    <br>
                                                                       <div class="col-12">
                                                                         Are any of the Direct reports to the Managing Director on contract?
                                                                       </div>
@@ -3039,22 +3147,22 @@ not covered in this questionnaire may be:
                                                                    
                                                                     
                                                                   </div>
-                                                                  <br/>
+                                                                  <br>
                                                               </div>
 
                                                               </div>
-                                                              <br/>
+                                                              <br>
                                                              
                                                             </div>
 
                                                           
                                                             <div class="col-12 ">
-                                                              <br/>
+                                                              <br>
                                                               <div class="row">
                                                                 <div class="col-12 card p-4">
-                                                                  <br/>
+                                                                  <br>
                                                                   <div class="row ">
-                                                                    <br/>
+                                                                    <br>
                                                                       <div class="col-12">
                                                                         Are there expertise/skills you find difficult to recruit from the Ghanaian labour market?
                                                                       </div>
@@ -3084,17 +3192,17 @@ not covered in this questionnaire may be:
                                                                    
                                                                     
                                                                   </div>
-                                                                  <br/>
+                                                                  <br>
                                                               
 
                                                               
-                                                              <br/>
+                                                              <br>
                                                               <div class="row">
                                                                 <div class="col-12">
                                                                   If yes, please list them below:
 
 <div class="row">
-  <br/>
+  <br>
   <div class="col-12">
     <div class="form-group">
       <textarea cols="5" class="form-control"></textarea>
@@ -3114,7 +3222,7 @@ not covered in this questionnaire may be:
 
                                                     <div class="col-12">
                                                       <div class="form-group">
-                                                        <br/>
+                                                        <br>
                                                         <label>Please indicate frequent reasons for employee turnover.</label>
                                                         <textarea type="text" class="form-control"></textarea>
                                                       </div>
@@ -3124,7 +3232,7 @@ not covered in this questionnaire may be:
                                                       <div class="row">
                                                         <div class="col-12">
                                                           <div class="row ">
-                                                            <br/>
+                                                            <br>
                                                               <div class="col-12">
                                                                 As an organisation, do you have a separate salary scale for local employees who have regional
                                                                 responsibilities within Africa?
@@ -3155,7 +3263,7 @@ not covered in this questionnaire may be:
                                                            
                                                             
                                                           </div>
-                                                          <br/>
+                                                          <br>
 
                                                         </div>
                                                       </div>
@@ -3163,7 +3271,7 @@ not covered in this questionnaire may be:
                                                       <div class="row">
                                                         <div class="col-12">
                                                           <div class="form-group">
-                                                            <label >If yes, could you please provide reasons for a having a separate scale</label>
+                                                            <label >If yes, please provide reasons for a having a separate scale: </label>
                                                             <textarea cols="5" class="form-control"></textarea>
                                                           </div>
                                                           
@@ -3337,7 +3445,7 @@ not covered in this questionnaire may be:
            $(".testdiv").find('input:text, select, textarea')
         .each(function() {
             if($(this).attr("name") != null || $(this).attr("name") != undefined ){
-              var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br/> <hr/>"
+              var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br> <hr/>"
    
           $('.review').append(line)
 
