@@ -146,6 +146,179 @@ Create Client
                     </div>
 
                     </div>
+
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.financial_year_end.label(class="form-control-label") }}
+            
+                        {% if form.financial_year_end.errors %}
+                        {{ form.financial_year_end(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.financial_year_end.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.financial_year_end(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.company_type.label(class="form-control-label") }}
+            
+                        {% if form.company_type.errors %}
+                        {{ form.company_type(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.company_type.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.company_type(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.vat.label(class="form-control-label") }}
+            
+                        {% if form.vat.errors %}
+                        {{ form.vat(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.vat.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.vat(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        {{ form.telephone.label(class="form-control-label") }}
+            
+                        {% if form.telephone.errors %}
+                        {{ form.telephone(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.telephone.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.telephone(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        {{ form.fax.label(class="form-control-label") }}
+            
+                        {% if form.fax.errors %}
+                        {{ form.fax(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.fax.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.fax(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.email.label(class="form-control-label") }}
+            
+                        {% if form.email.errors %}
+                        {{ form.email(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.email.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.email(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                  </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.website.label(class="form-control-label") }}
+            
+                        {% if form.website.errors %}
+                        {{ form.website(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.website.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.website(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.date_of_incorporation.label(class="form-control-label") }}
+            
+                        {% if form.date_of_incorporation.errors %}
+                        {{ form.date_of_incorporation(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.date_of_incorporation.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.date_of_incorporation(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        {{ form.country_of_incorporation.label(class="form-control-label") }}
+            
+                        {% if form.country_of_incorporation.errors %}
+                        {{ form.country_of_incorporation(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.country_of_incorporation.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.country_of_incorporation(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+
+                    </div>
+
+                    </div>
                   </div>
                </div>
                <div class="col ">
