@@ -69,30 +69,30 @@ Qualitative Survey
                 <div class="col-12 ">
                   <div class="row ">
                     <div class="col-12">
-                        <div class="container">
+                      <div class="container">
 
-                          <ul class="progress-indicator">
-                            <li class="gi_card ">
-                              <span class="bubble"></span>
-                              General Information. <br><small class="gi_status"></small>
-                            </li>
-                            <li class=" dc_card ">
-                              <span class="bubble"></span>
-                              DIRECT COMPENSATION. <br><small class="dc_status"></small>
-                            </li>
-                            <li class="bonus_card">
-                              <span class="bubble"></span>
-                              BONUS OR INCENTIVE PLANS. <br><small class="bonus_status"></small>
-                            </li>
+                        <ul class="progress-indicator">
+                          <li class="gi_card ">
+                            <span class="bubble"></span>
+                            General Information. <br><small class="gi_status"></small>
+                          </li>
+                          <li class=" dc_card ">
+                            <span class="bubble"></span>
+                            DIRECT COMPENSATION. <br><small class="dc_status"></small>
+                          </li>
+                          <li class="bonus_card">
+                            <span class="bubble"></span>
+                            BONUS OR INCENTIVE PLANS. <br><small class="bonus_status"></small>
+                          </li>
 
-                            <li class="general_card">
-                              <span class="bubble"></span>
-                              GENERAL PERSONNEL PRACTICES. <br><small class="general_status"></small>
-                            </li>
-                          </ul>
+                          <li class="general_card">
+                            <span class="bubble"></span>
+                            GENERAL PERSONNEL PRACTICES. <br><small class="general_status"></small>
+                          </li>
+                        </ul>
 
-                        </div>
                       </div>
+                    </div>
 
                     <!-- Stepper -->
                     <!-- <div class="col-12">
@@ -280,7 +280,7 @@ Qualitative Survey
 
                                             <!-- <h6 style="text-align:center;">A.Organisation Overview</h6> -->
 
-                                            <div>
+                                            <div class="col-12">
                                               <div class="form-group">
                                                 <div>
                                                   <br>
@@ -295,13 +295,15 @@ Qualitative Survey
                                                   <label for="usr">2. Fill in the number of employees for each category
                                                     below: </label>
                                                   <table>
-                                                    <tr style="color:green">
-                                                      <th>Type </th>
-                                                      <th>Full Time Employees</th>
-                                                      <th>Temporary Employees</th>
-                                                      <th>Other Employees</th>
-                                                      <th> </th>
-                                                    </tr>
+                                                    <thead style="background-color: rgb(18, 143, 18);color:#fff">
+                                                      <tr>
+                                                        <th>Type </th>
+                                                        <th>Full Time Employees</th>
+                                                        <th>Temporary Employees</th>
+                                                        <th>Other Employees</th>
+                                                        <th> </th>
+                                                      </tr>
+                                                    </thead>
 
                                                     <tr>
                                                       <th>Locally Recruited</th>
@@ -348,8 +350,7 @@ Qualitative Survey
 
 
                                           </div>
-                                          <div>
-                                            <!--class="col-12" -->
+                                          <div class="col-12">
                                             <br>
                                             <div class="form-group">
                                               <label for="usr">3. Number of working hours in a week: </label>
@@ -358,8 +359,7 @@ Qualitative Survey
                                             </div>
 
                                           </div>
-                                          <div>
-                                            <!-- class="col-12"> -->
+                                          <div class="col-12">
                                             <div class="form-group">
                                               <label for="usr">4. Describe your overtime policy. This includes
                                                 information
@@ -529,10 +529,12 @@ Qualitative Survey
 
                                           <div class="form-group">
                                             <table>
-                                              <tr>
-                                                <th>Indicator</th>
-                                                <th>Percentage (%)</th>
-                                              </tr>
+                                              <thead style="background-color: rgb(18, 143, 18);color:#fff">
+                                                <tr>
+                                                  <th>Indicator</th>
+                                                  <th>Percentage (%)</th>
+                                                </tr>
+                                              </thead>
                                               <tr>
                                                 <th>Cost of living changes/inflation</th>
                                                 <th><input type="number" min="0" name="cost of living"></th>
@@ -592,11 +594,29 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <hr>
+                                        <h6 style="text-align:center;">Allowance Reviews</h6>
+                                        <br>
+
+                                        <div class="form-group">
+                                          <label for="usr">9. When are allowance offerings reviewed?</label>
+                                          <input type="text">
+                                        </div>
+
+                                        <div class="form-group">
+                                          <label for="usr">9b. What is the typical effective date once reviewed (i.e.
+                                            back to January 1 of that year or the first date of the month in which they
+                                            are reviewed)? </label>
+                                          <input type="text">
+                                        </div>
+                                      </div>
+
+                                      <div class="col-12">
+                                        <hr>
                                         <h6 style="text-align:center;">Job Evaluations</h6>
 
                                         <br>
                                         <div class="form-group">
-                                          <label for="usr">9. Does your organisation use a formal Job
+                                          <label for="usr">10. Does your organisation use a formal Job
                                             Evaluation System?</label>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -621,12 +641,12 @@ Qualitative Survey
                                         </div>
                                       </div>
 
-                                        <div class="col-12">
-                                          <label for="usr">9b. If Yes, what method of job evaluation is used?</label>
-                                          <textarea class="form-control" rows="5" id="comment"></textarea>
-                                        </div>
+                                      <div class="col-12">
+                                        <label for="usr">10b. If Yes, what method of job evaluation is used?</label>
+                                        <textarea class="form-control" rows="5" id="comment"></textarea>
+                                      </div>
 
-                                      
+
 
 
                                       <div class="col-12">
@@ -634,7 +654,7 @@ Qualitative Survey
                                         <h6 style="text-align:center;">Salary Increments</h6>
                                         <br>
                                         <div class="form-group">
-                                          <label>10. What types of periodic salary increases are granted?</label>
+                                          <label>11. What types of periodic salary increases are granted?</label>
                                         </div>
                                         <div class="form-check-inline">
                                           <label class="form-check-label" for="check1">
@@ -665,7 +685,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <div class="col-12">
-                                            11. Do your staff receive automatic cost of living salary adjustments at
+                                            12. Do your staff receive automatic cost of living salary adjustments at
                                             periodic intervals?
                                           </div>
                                           <div class="col-3">
@@ -701,7 +721,8 @@ Qualitative Survey
                                       <div class="col-12">
                                         <br>
                                         <div class="form-group">
-                                          <label>11b. If Yes, on what basis are increments computed and what are the normal
+                                          <label>12b. If Yes, on what basis are increments computed and what are the
+                                            normal
                                             intervals?</label>
                                           <textarea cols="5" class="form-control"></textarea>
 
@@ -710,14 +731,15 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <div class="form-group">
-                                          <label for="quantity">12. How many grade levels do you have?</label>
+                                          <label for="quantity">13. How many grade levels do you have?</label>
                                           <input type="number" min="1" class="form-control" />
                                         </div>
                                       </div>
 
                                       <div class="col-12">
                                         <div class="form-group">
-                                          <label>13. What is the percentage difference in salary between the notches within
+                                          <label>14. What is the percentage difference in salary between the notches
+                                            within
                                             a grade?</label>
                                           <input type="text" class="form-control" />
                                         </div>
@@ -727,7 +749,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <div class="col-12">
-                                            14. Salary increments in the same grade are based on:
+                                            15. Salary increments in the same grade are based on:
                                           </div>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -763,7 +785,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <div class="col-12">
-                                            15. How do your staff progress through the steps?
+                                            16. How do your staff progress through the steps?
                                           </div>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -800,7 +822,7 @@ Qualitative Survey
                                         <div class="row">
                                           <div class="col-12">
                                             <br>
-                                            16. In order of importance, what factors are considered in placing your new
+                                            17. In order of importance, what factors are considered in placing your new
                                             staff on your salary scale (please rank as 1st, 2nd, 3rd, etc)?
                                             <div>
                                               <label>1st Priority:</label>
@@ -837,7 +859,7 @@ Qualitative Survey
                                       <div class="col-12">
                                         <div class="form-group">
                                           <br>
-                                          <label>17. Is there a hiring rate for each grade or job which differs from the
+                                          <label>18. Is there a hiring rate for each grade or job which differs from the
                                             minimum of the scale?</label>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -859,7 +881,7 @@ Qualitative Survey
                                             </div>
                                           </div>
 
-                                          <label>17b. Please explain your above response: </label>
+                                          <label>18b. Please explain your above response: </label>
                                           <textarea cols="5" class="form-control"></textarea>
 
                                         </div>
@@ -867,7 +889,7 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <div class="form-group">
-                                          <label>18. Is there a maximum salary for each grade which cannot be
+                                          <label>19. Is there a maximum salary for each grade which cannot be
                                             exceeded?</label>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -896,7 +918,7 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <div class="form-group">
-                                          <label>19. Are there instances where the maximum salary for a grade has been
+                                          <label>20. Are there instances where the maximum salary for a grade has been
                                             exceeded?</label>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -924,7 +946,7 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <div class="form-group">
-                                          <label>19b. If Yes, please explain</label>
+                                          <label>20b. If Yes, please explain</label>
                                           <textarea cols="5" class="form-control"></textarea>
 
                                         </div>
@@ -968,7 +990,7 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <div class="row ">
-                  
+
                                           <br>
                                           <div class="col-12">
                                             1. Does the organisation provide an annual cash bonus or other short term
@@ -1233,7 +1255,8 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <div class="form-group">
-                                          <label>7. Apart from the direct compensations above (sections B&C) (and excluding
+                                          <label>7. Apart from the direct compensations above (sections B&C) (and
+                                            excluding
                                             employee benefits,
                                             perquisites and in-kind allowances, which are reviewed in other sections of
                                             this
@@ -1317,7 +1340,8 @@ Qualitative Survey
                                       <div class="col-12">
                                         <div class="form-group">
                                           <br>
-                                          <label for="usr">3. Choose the staff categories and the number of leave days granted: </label>
+                                          <label for="usr">3. Choose the staff categories and the number of leave days
+                                            granted: </label>
                                           <table class="table ">
                                             <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                               <tr>
@@ -1469,7 +1493,8 @@ Qualitative Survey
                                           <div class="col-12 card p-2">
                                             <div class="form-group">
                                               <br>
-                                              <label><b>7. What policy provisions do you have for staff with respect to the
+                                              <label><b>7. What policy provisions do you have for staff with respect to
+                                                  the
                                                   following and how much?
                                                   (Please provide policy as attachment if different for various staff
                                                   grades/categories)</b></label>
@@ -1773,7 +1798,8 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <div class="col-12">
-                                            11. Do you have a car scheme in which an employee uses a company car and after
+                                            11. Do you have a car scheme in which an employee uses a company car and
+                                            after
                                             some years,
                                             the car is sold to the employee at a discounted rate?
                                           </div>
@@ -2019,7 +2045,8 @@ Qualitative Survey
                                           <div class="col-12">
                                             <br>
                                             <div class="form-group">
-                                              <label>14a. Overseas rates: (please specify separately if different for various
+                                              <label>14a. Overseas rates: (please specify separately if different for
+                                                various
                                                 grades)</label>
                                               <textarea class="form-control" cols="5"></textarea>
                                             </div>
@@ -2042,7 +2069,8 @@ Qualitative Survey
                                           <hr>
                                           <h6 style="text-align:center;">Loans</h6>
                                           <div class="col-12">
-                                            15. Does the organisation provide interest free or low interest bearing loans
+                                            15. Does the organisation provide interest free or low interest bearing
+                                            loans
                                             (including
                                             salary advances) to employees for personal effects?
                                           </div>
@@ -2270,7 +2298,8 @@ Qualitative Survey
                                         <div class="row">
                                           <br>
                                           <div class="col-12">
-                                            <label>17. List all household benefits provided, if any (e.g. Security, Cook, House-help, etc): </label>
+                                            <label>17. List all household benefits provided, if any (e.g. Security,
+                                              Cook, House-help, etc): </label>
                                             <textarea class="form-control" cols="10"></textarea>
 
                                           </div>
@@ -2287,7 +2316,8 @@ Qualitative Survey
                                             <div class="form-group">
                                               <br>
                                               <label><b>18. Do you provide education subsidy for staff and/or their
-                                                  dependents? YES/NO. <!-- add radio buttons --> 19. Please
+                                                  dependents? YES/NO.
+                                                  <!-- add radio buttons --> 19. Please
                                                   provide details below.</b></label>
                                               <table class="table ">
                                                 <thead style="background-color: rgb(18, 143, 18);color:#fff"">
@@ -2506,7 +2536,8 @@ Qualitative Survey
                                               <div class="col-12">
                                                 <div class="form-group">
                                                   <br>
-                                                  <label><b>23. Please describe entitlement and value of vacation benefits.
+                                                  <label><b>23. Please describe entitlement and value of vacation
+                                                      benefits.
                                                       Various components of this benefit might
                                                       include:</b></label>
                                                   <table class="table ">
@@ -2673,7 +2704,8 @@ Qualitative Survey
                                               <div class="col-12">
                                                 <div class="form-group">
                                                   <br>
-                                                  <label><b>24. Please describe your company’s medical scheme and how it is
+                                                  <label><b>24. Please describe your company’s medical scheme and how it
+                                                      is
                                                       administered (i.e. .who is
                                                       covered under the plan).</b></label>
                                                   <table class="table ">
@@ -2914,7 +2946,8 @@ Qualitative Survey
                                               <div class="col-12">
                                                 <div class="form-group">
                                                   <br>
-                                                  <label><b>26b. If Yes, please specify the benefits below (e.g. transport,
+                                                  <label><b>26b. If Yes, please specify the benefits below (e.g.
+                                                      transport,
                                                       coffin, food, etc.)</b></label>
                                                   <table class="table ">
                                                     <thead style="background-color: rgb(18, 143, 18);color:#fff">
@@ -3126,39 +3159,39 @@ Qualitative Survey
                                               <label><b>28. What provisions does the organisation make for the
                                                   following?</b></label>
                                               <table class="table ">
-                                                <thead style="background-color: rgb(18, 143, 18);color:#fff"">
-                                                                      <tr>
-  
-                                                                        <th>Employee Grade</th>
-                                                                        <th>Electricity</th>
-                                                                      
-                                                                          <th>Water</th>
-                                                                          <th>Telephone and
-                                                                            mobile phone</th>
-                                                                          <th>Other (please
-                                                                            specify )</th>
-                                                                        
-                                                                         
-                                                                          
-                                                                        
-                                                                          
-                                                                        
-                                                                      
-                                                                     
-                                                                      </tr>
-                                                                    </thead>
-                                                                    <tbody>
-                                                                      <tr>
-                                                                 
-                                                                       
-                                                                       
-                                                                    
-                                                                        <td><input type=" text" class="form-control" />
-                                                </td>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
-                                                <td><input type="text" class="form-control" /></td>
+                                                <thead style="background-color: rgb(18, 143, 18);color:#fff">
+                                                  <tr>
+
+                                                    <th>Employee Grade</th>
+                                                    <th>Electricity</th>
+
+                                                    <th>Water</th>
+                                                    <th>Telephone and
+                                                      mobile phone</th>
+                                                    <th>Other (please
+                                                      specify )</th>
+
+
+
+
+
+
+
+
+                                                  </tr>
+                                                </thead>
+                                                <tbody>
+                                                  <tr>
+
+
+
+
+                                                    <td><input type=" text" class="form-control" />
+                                                    </td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
 
 
 
@@ -3169,35 +3202,16 @@ Qualitative Survey
 
 
 
-                                                </tr>
-                                                <tr>
+                                                  </tr>
+                                                  <tr>
 
 
 
-                                                  <td><input type="text" class="form-control" /></td>
-                                                  <td><input type="text" class="form-control" /></td>
-                                                  <td><input type="text" class="form-control" /></td>
-                                                  <td><input type="text" class="form-control" /></td>
-                                                  <td><input type="text" class="form-control" /></td>
-
-
-
-
-
-
-
-
-
-                                                </tr>
-                                                <tr>
-
-
-
-                                                  <td><input type="text" class="form-control" /></td>
-                                                  <td><input type="text" class="form-control" /></td>
-                                                  <td><input type="text" class="form-control" /></td>
-                                                  <td><input type="text" class="form-control" /></td>
-                                                  <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
 
 
 
@@ -3207,7 +3221,26 @@ Qualitative Survey
 
 
 
-                                                </tr>
+                                                  </tr>
+                                                  <tr>
+
+
+
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+                                                    <td><input type="text" class="form-control" /></td>
+
+
+
+
+
+
+
+
+
+                                                  </tr>
 
 
 
