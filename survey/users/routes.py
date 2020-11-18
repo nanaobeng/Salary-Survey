@@ -314,4 +314,11 @@ def review_benchmark():
 
     return render_template("review_benchmark.html")
 
+@users.route("/administration/view_client")
+def view_client():
+    
+
+    return render_template("view_client.html")
+
+
 

@@ -1,0 +1,1187 @@
+{% extends "admin_layout.html" %}
+{% block header %} 
+Client Information
+{% endblock header %}
+{% block content %}
+<script>
+  $(document).ready(function(){
+    $( ".industry_card" ).addClass( "active" );
+     $(".mailing").css("display", "none");
+     $(".street").css("display", "none");
+     $(".company").css("display", "none");
+     $(".contact").css("display", "none");
+ 
+     $('.industry_status').html("(active)")
+     $('.submit_button').css("display","none")
+     
+
+  });
+
+</script>
+
+<style>
+.move-right{
+  text-align: right !important;
+}
+</style>
+<div class="container list_form" >
+  <div class="row">
+    <div class="col-12 p-4">
+
+      <div class="row testdiv">
+
+        <div class="col-12 ">
+          <div class="">
+            <div class="card-body p-4">
+              
+              <div class="row">
+                <div class="col-12">
+                  <ul class="progress-indicator">
+                    <li class="industry_card ">
+                        <span class="bubble"></span>
+                        Company Details. <br><small class="industry_status"></small>
+                    </li>
+                    <li class="industry2_card ">
+                      <span class="bubble"></span>
+                      Management Details. <br><small class="industry2_status"></small>
+                  </li>
+                    <li class=" mailing_card ">
+                        <span class="bubble"></span>
+                        Mailing Address. <br><small class="mailing_status"></small>
+                    </li>
+                    <li class="street_card">
+                        <span class="bubble"></span>
+                        Street Address. <br><small class="street_status"></small>
+                    </li>
+                    <li class="company_card">
+                        <span class="bubble"></span>
+                        Registration Details.<br><small class="company_status"></small>
+                    </li>
+                    <li class=" contact_card">
+                      <span class="bubble"></span>
+                      Contact Person.<br><small class="contact_status"></small>
+                  </li>
+
+               
+                  
+                    
+                </ul>
+                </div>
+              </div>
+              <br>
+              <form method="POST" action="">
+            
+            
+               <div class="row industry">
+                 <div class="col-12">
+                    <div class="form-group">
+            <label>Registered Company Name</label>
+            <input class="form-control" type="text" readonly/>
+            
+                        
+                    </div>
+                    <div class="row">
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Sector</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Industry</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Area</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+            
+                        
+                    </div>
+
+                    </div>
+
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Financial Year End</label>
+            <input class="form-control" type="text" readonly/>
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Company Type</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>VAT Number</label>
+            <input class="form-control" type="text" readonly/>
+            
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label>Telephone number</label>
+            <input class="form-control" type="text" readonly/>
+            
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-6">
+                      <div class="form-group">
+                        <label>Fax Number</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Email Address</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+            
+                        
+                    </div>
+                  </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Website Address</label>
+            <input class="form-control" type="text" readonly/>
+            
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Date of Incorporation</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+            
+                        
+                    </div>
+
+                    </div>
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Country of Incorporation</label>
+            <input class="form-control" type="text" readonly/>
+            
+            
+                        
+                    </div>
+
+                    </div>
+
+                    
+
+                    </div>
+                  </div>
+               </div>
+               <div class="col ">
+              <div class="row">
+                <div class="col-12 text-right">
+               
+                  <span class="btn btn-outline-info industry" id="industry" onclick="switch_wizard(this.id)">Next</span>
+                </div>
+            </div>
+              </div>
+                </div>
+                <div class="row industry2" style="display:none">
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                         
+                              <div class="col-12 text-center">
+                                <b>Chairman of Board</b>
+                                <hr/>
+                              </div>
+                                <div class="col-4">
+                                  <div class="form-group">
+                                    <label>Firstname</label>
+                                    <input class="form-control" type="text" readonly/>
+                                    
+                        
+                                    
+                                </div>
+            
+                                </div>
+
+                                <div class="col-4">
+                                  <div class="form-group">
+                                    <label>Lastname</label>
+                                    <input class="form-control" type="text" readonly/>
+                                    
+                        
+                                    
+                                </div>
+            
+                                </div>
+
+                                <div class="col-4">
+                                  <div class="form-group">
+                                    <label>Other Names</label>
+            <input class="form-control" type="text" readonly/>
+            
+                        
+                                    
+                                </div>
+            
+                                
+                                
+                              </div>
+
+                              <div class="col-4">
+                                <div class="form-group">
+                                    <label>Email Address</label>
+                                    <input class="form-control" type="text" readonly/>
+                                    
+                      
+                                  
+                              </div>
+          
+                              
+                              
+                            </div>
+
+                            <div class="col-4">
+                              <div class="form-group">
+                                <label>Nationality</label>
+            <input class="form-control" type="text" readonly/>
+            
+                    
+                                
+                            </div>
+        
+                            
+                            
+                          </div>
+
+                          <div class="col-4">
+                            <div class="form-group">
+                                <label>Phone Number</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          
+                          
+                        </div>
+
+                        <div class="col-12 text-center">
+                          <br/>
+                          <b>Chief Executive Officer</b>
+                          <hr/>
+                        </div>
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label>Firstname</label>
+            <input class="form-control" type="text" readonly/>
+            
+                
+                            
+                        </div>
+    
+                        </div>
+
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label>Lastname</label>
+                            <input class="form-control" type="text" readonly/>
+                            
+                
+                            
+                        </div>
+    
+                        </div>
+
+                        <div class="col-4">
+                          <div class="form-group">
+                            <label>Other Names</label>
+                            <input class="form-control" type="text" readonly/>
+                            
+                
+                            
+                        </div>
+    
+                        
+                        
+                      </div>
+
+                      <div class="col-4">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input class="form-control" type="text" readonly/>
+                            
+              
+                          
+                      </div>
+  
+                      
+                      
+                    </div>
+
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Nationality</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+            
+                        
+                    </div>
+
+                    
+                    
+                  </div>
+
+                  <div class="col-4">
+                    <div class="form-group">
+                        <label>Phone Number</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+          
+                      
+                  </div>
+
+                  
+                  
+                </div>
+
+                <div class="col-12 text-center">
+                  <br/>
+                  <b>Key Management Personnel</b>
+                  <hr/>
+                </div>
+                <div class="col-4">
+                  <div class="form-group">
+                    <label>Firstname</label>
+            <input class="form-control" type="text" readonly/>
+            
+        
+                    
+                </div>
+
+                </div>
+
+                <div class="col-4">
+                  <div class="form-group">
+                    <label>Lastname</label>
+                    <input class="form-control" type="text" readonly/>
+                    
+                    
+                </div>
+
+                </div>
+
+                <div class="col-4">
+                  <div class="form-group">
+                    <label>Other Names</label>
+            <input class="form-control" type="text" readonly/>
+            
+        
+                    
+                </div>
+
+                
+                
+              </div>
+
+              <div class="col-4">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input class="form-control" type="text" readonly/>
+                    
+      
+                  
+              </div>
+
+              
+              
+            </div>
+
+            <div class="col-4">
+              <div class="form-group">
+                <label>Nationality</label>
+                <input class="form-control" type="text" readonly/>
+                
+    
+                
+            </div>
+
+            
+            
+          </div>
+
+          <div class="col-4">
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input class="form-control" type="text" readonly/>
+                
+  
+              
+          </div>
+
+          
+          
+        </div>
+
+        <div class="col-12 text-center">
+          <br/>
+          <b>Current Auditor</b>
+          <hr/>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            <label>Name</label>
+            <input class="form-control" type="text" readonly/>
+            
+
+            
+        </div>
+
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            <label>Address</label>
+            <input class="form-control" type="text" readonly/>
+            
+
+            
+        </div>
+
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            <label>City</label>
+            <input class="form-control" type="text" readonly/>
+            
+
+            
+        </div>
+
+        
+        
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+            <label>Country</label>
+            <input class="form-control" type="text" readonly/>
+            
+
+          
+      </div>
+
+      
+      
+    </div>
+
+
+    <div class="col-12 text-center">
+      <br/>
+      <b>Previous Auditor</b>
+      <hr/>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        <label>Name</label>
+        <input class="form-control" type="text" readonly/>
+        
+
+        
+    </div>
+
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <label>Address</label>
+        <input class="form-control" type="text" readonly/>
+        
+        
+    </div>
+
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        <label>City</label>
+            <input class="form-control" type="text" readonly/>
+            
+
+        
+    </div>
+
+    
+    
+  </div>
+
+  <div class="col-6">
+    <div class="form-group">
+        <label>Country</label>
+        <input class="form-control" type="text" readonly/>
+        
+
+      
+  </div>
+
+  
+  
+</div>
+
+
+<div class="col-12 text-center">
+  <br/>
+  <b>Company Secretary</b>
+  <hr/>
+</div>
+<div class="col-6">
+  <div class="form-group">
+    <label>Fullname</label>
+            <input class="form-control" type="text" readonly/>
+            
+
+    
+</div>
+
+</div>
+
+<div class="col-6">
+  <div class="form-group">
+    <label>Address</label>
+    <input class="form-control" type="text" readonly/>
+    
+
+    
+</div>
+
+</div>
+
+<div class="col-6">
+  <div class="form-group">
+    <label>City</label>
+            <input class="form-control" type="text" readonly/>
+            
+
+    
+</div>
+
+
+
+</div>
+
+<div class="col-6">
+<div class="form-group">
+    <label>Address</label>
+    <input class="form-control" type="text" readonly/>
+    
+
+  
+</div>
+
+
+
+</div>
+
+
+
+
+
+                            
+                            </div>
+                          </div>
+
+                          </div>
+                          </div>
+                  </div>
+                </div>
+              </br>
+              <div class="col-12">
+                <div class="row">
+               
+                    <div class="col-6 ">
+                      
+                        <span class="btn btn-outline-info " id="industry2" onclick="switchBack(this.id)" >Back</span>
+                      </div>
+                     
+                        <div class="col-6 move-right">  
+                       
+                          <span class="btn btn-outline-info rah" id="industry2" onclick="switch_wizard(this.id)">Next</span>
+                        </div>
+                </div>
+                </div>
+                </div>
+                  <div class="row mailing">
+                    <div class="col-12">
+                    <div class="row">
+                      <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                          <b>Mailing Address</b>
+                          <hr/>
+                          <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                                <label>Building</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                                <label>Street</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-4">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-4">
+                            <div class="form-group">
+                                <label>Region</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-4">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          </div>
+
+                          
+
+
+
+
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div class="col-12">
+                  <div class="row">
+                 
+                    <div class="col-6 ">
+                      
+                      <span class="btn btn-outline-info " id="mailing" onclick="switchBack(this.id)" >Back</span>
+                    </div>
+                    <div class="col-6 move-right">
+                      
+                      <span class="btn btn-outline-info" id="mailing" onclick="switch_wizard(this.id)" >Next</span>
+                    </div>
+                  </div>
+                  </div>
+                
+                </div>
+
+                  <div class="row street">
+                    <div class="col-12">
+                 
+                    <div class="row">
+                      <div class="col-12">
+                        <br/>
+                      
+                      <div class="card">
+                        <div class="card-body">
+                          <b>Street Address</b>
+                          <hr/>
+                          <div class="row">
+                          <div class="col-6">
+                            <div class="form-group">
+                                <label>Building</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                                <label>Street</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                  
+                              
+                          </div>
+      
+                          </div>
+                          <div class="col-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+                              
+                          </div>
+      
+                          </div>
+                          </div>
+                        </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row pt-4">
+                   
+                  <div class="col-6 ">
+                      
+                    <span class="btn btn-outline-info " id="street" onclick="switchBack(this.id)" >Back</span>
+                  </div>
+                    <div class="col-6 move-right">
+                      
+                      <span class="btn btn-outline-info "  id="street" onclick="switch_wizard(this.id)">Next</span>
+                    </div>
+                  </div>
+                </div>
+                
+                  <div class="row company">
+                    <div class="col-12">
+                      <div class="card">
+                        <div class="card-body">
+                    <div class="row">
+                      
+
+                      <div class="col-6">
+                        <div class="form-group">
+                            <label>Registration Number</label>
+                            <input class="form-control" type="text" readonly/>
+                            
+              
+                          
+                      </div>
+                      </div>
+
+                      <div class="col-6">
+                      
+                        <div class="form-group">
+                            <label>Tax ID</label>
+                            <input class="form-control" type="text" readonly/>
+                            
+              
+                          
+                      </div>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                  </div>
+                  <div class="row pt-4">
+                  </br>
+                  <div class="col-6 ">
+                      
+                    <span class="btn btn-outline-info " id="company" onclick="switchBack(this.id)" >Back</span>
+                  </div>
+                 
+                    <div class="col-6 move-right">  
+                   
+                      <span class="btn btn-outline-info rah" id="company" onclick="switch_wizard(this.id)">Next</span>
+                    </div>
+                  </div>
+                </div>
+
+
+                <div class="row contact">
+                  <div class="col-12">
+                    <div class="card">
+                      <div class="card-body">
+                  <div class="row">
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Firstname</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+            
+                        
+                    </div>
+                    </div>
+
+                    <div class="col-4">
+                      <div class="form-group">
+                        <label>Middlename</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+            
+                        
+                    </div>
+                    </div>
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        <label>Lastname</label>
+                                <input class="form-control" type="text" readonly/>
+                                
+            
+                        
+                    </div>
+                    </div>
+
+
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        <label>Job Title</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+                        
+                    </div>
+                    </div>
+
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        <label>Email Address</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+            
+                        
+                    </div>
+                    </div>
+
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        <label>Phone Number</label>
+                        <input class="form-control" type="text" readonly/>
+                        
+            
+                        
+                    </div>
+                    </div>
+
+                    
+                  </div>
+                
+                </div>
+              </div>
+           
+               
+              
+                </div>
+                <br/>
+                <div class="row">
+
+                <div class="col-6 text-left">
+                    <div class="btn-group contact">
+                        <span class="btn btn-outline-info contact" id="contact" onclick="switchBack(this.id)" >Back.</span>
+                    </div>
+                    
+                  </div>
+                 
+                    <div class="col-6 text-right">  
+                   
+                        <div class="btn-group contact">
+                            <span  class="btn btn-outline-danger">Close</span>
+                            <span  class="btn btn-danger">Reject</span>
+                            <span  class="btn btn-success">Approve</span>
+                          </div>
+                    </div>
+                </div>
+                
+              </div>
+
+            
+
+
+         
+              
+                      
+
+                     
+              </div>
+
+              <div class="row review" style="display: none;">
+                <div class="col-12">
+                <div class="row ">
+                  <div class=" col-12 reviewForm">
+  
+                  </div>
+  
+  
+  
+                </div>
+  
+                <div class="row">
+                  <div class="col-6 pt-4">
+                    
+                    <span class="btn btn-outline-info submit_button" id="review" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
+                  </div>
+                        <div class="col-6 move-right">
+                          <div class="form-group submit_button p-2">
+                            <br/>
+                            <span  class="text-center sub btn btn-success"
+                              >Submit</span>
+                        </div>
+                        </div>
+  
+                       
+                </div>
+              </div>
+            </div>
+              
+                    </form>
+              
+            </div>
+          </div>
+          
+        </div>
+        
+
+      </div>
+    </div>
+  </div>
+</div>
+
+  <!-- The Modal -->
+  <div class="modal" id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Review Form</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-12 review">
+             
+            </div>
+          </div>
+          <div class="row text-left">
+            <div class="col-6  justify-content-center" style="text-align: left;">
+             
+            <span class="btn btn-success">Submit</span>
+              
+          </div>
+          </div>
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+
+<input type="hidden" id="state"  value="industry">
+
+
+
+<script>
+  function switch_wizard(id){
+    if(id == 'industry2'){
+    $('.industry2_status').html("(completed)")
+    $( ".industry2_card" ).removeClass( "active" );
+    $( ".industry2_card" ).addClass( "completed" );
+    $( ".mailing_card" ).addClass( "active" );
+    $('.mailing_status').html("(active)")
+     $(".industry2").css("display", "none");
+    $(".mailing").css("display", "block");
+    
+      
+ 
+  }
+
+  if(id == 'industry'){
+    $('.industry_status').html("(completed)")
+    $( ".industry_card" ).removeClass( "active" );
+    $( ".industry_card" ).addClass( "completed" );
+    $( ".industry2_card" ).addClass( "active" );
+    $('.industry2_status').html("(active)")
+     $(".industry").css("display", "none");
+    $(".industry2").css("display", "block");
+    
+      
+ 
+  }
+
+  if(id == 'mailing'){
+    $('.mailing_status').html("(completed)")
+    $( ".mailing_card" ).removeClass( "active" );
+    $( ".mailing_card" ).addClass( "completed" );
+    $( ".street_card" ).addClass( "active" );
+    $('.street_status').html("(active)")
+     $(".mailing").css("display", "none");
+    $(".street").css("display", "block");
+    
+      
+ 
+  }
+
+  if(id == 'street'){
+    $('.street_status').html("(completed)")
+    $( ".street_card" ).removeClass( "active" );
+    $( ".street_card" ).addClass( "completed" );
+    $( ".company_card" ).addClass( "active" );
+    $('.company_status').html("(active)")
+     $(".street").css("display", "none");
+    $(".company").css("display", "block");
+    
+      
+ 
+  }
+
+  if(id == 'company'){
+    $('.company_status').html("(completed)")
+    $( ".company_card" ).removeClass( "active" );
+    $( ".company_card" ).addClass( "completed" );
+    $( ".contact_card" ).addClass( "active" );
+    $('.contact_status').html("(active)")
+     $(".company").css("display", "none");
+    $(".contact").css("display", "block");
+    $(".submit_button").css("display", "block");
+
+
+  
+    
+      
+ 
+  }
+
+
+
+  
+ 
+
+  }
+</script>
+<script>
+  function switchBack(id){
+
+    if(id == 'industry2'){
+      $('.industry2_status').html("")
+    $( ".industry2_card" ).removeClass( "active" );
+    $( ".industry_card" ).removeClass( "completed" );
+    $( ".industry_card" ).addClass( "active" );
+    $('.industry_status').html("(active)")
+     $(".industry2").css("display", "none");
+    $(".industry").css("display", "block");
+
+    }
+
+    if(id == 'mailing'){
+      $('.mailing_status').html("")
+    $( ".mailing_card" ).removeClass( "active" );
+    $( ".industry2_card" ).removeClass( "completed" );
+    $( ".industry2_card" ).addClass( "active" );
+    $('.industry2_status').html("(active)")
+     $(".mailing").css("display", "none");
+    $(".industry2").css("display", "block");
+
+    }
+
+    if(id == 'street'){
+      $('.street_status').html("")
+    $( ".street_card" ).removeClass( "active" );
+    $( ".mailing_card" ).removeClass( "completed" );
+    $( ".mailing_card" ).addClass( "active" );
+    $('.mailing_status').html("(active)")
+     $(".street").css("display", "none");
+    $(".mailing").css("display", "block");
+
+    }
+
+    if(id == 'company'){
+      $('.company_status').html("")
+    $( ".company_card" ).removeClass( "active" );
+    $( ".street_card" ).removeClass( "completed" );
+    $( ".street_card" ).addClass( "active" );
+    $('.street_status').html("(active)")
+     $(".company").css("display", "none");
+    $(".street").css("display", "block");
+
+    }
+    if(id == 'contact'){
+      $('.contact_status').html("")
+    $( ".contact_card" ).removeClass( "active" );
+    $( ".company_card" ).removeClass( "completed" );
+    $( ".company_card" ).addClass( "active" );
+    $('.company_status').html("(active)")
+     $(".contact").css("display", "none");
+    $(".company").css("display", "block");
+    $(".submit_button").css("display", "none");
+
+
+    }
+
+
+  }
+</script>
+
+{% endblock content %}
