@@ -278,7 +278,7 @@ Qualitative Survey
                                         <div class="col-12">
                                           <div class="row">
 
-                                            <!-- <h5 style="text-align:center;">A.Organisation Overview</h5> -->
+                                            <!-- <h6 style="text-align:center;">A.Organisation Overview</h6> -->
 
                                             <div>
                                               <div class="form-group">
@@ -392,7 +392,7 @@ Qualitative Survey
                                       <div class="col-12">
 
                                         <hr>
-                                        <h5 style="text-align:center;">Salary Structure</h5>
+                                        <h6 style="text-align:center;">Salary Structure</h6>
 
                                         <div class="row ">
 
@@ -469,7 +469,7 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <hr>
-                                        <h5 style="text-align:center;">Salary Adjustments</h5>
+                                        <h6 style="text-align:center;">Salary Adjustments</h6>
 
                                         <div class="row">
                                           <div class="col-6">
@@ -592,7 +592,7 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <hr>
-                                        <h5 style="text-align:center;">Job Evaluations</h5>
+                                        <h6 style="text-align:center;">Job Evaluations</h6>
 
                                         <br>
                                         <div class="form-group">
@@ -631,7 +631,7 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <hr>
-                                        <h5 style="text-align:center;">Salary Increments</h5>
+                                        <h6 style="text-align:center;">Salary Increments</h6>
                                         <br>
                                         <div class="form-group">
                                           <label>10. What types of periodic salary increases are granted?</label>
@@ -918,14 +918,13 @@ Qualitative Survey
                                             </div>
 
                                           </div>
-                                          <!-- <input type="text" class="form-control" /> -->
 
                                         </div>
                                       </div>
 
                                       <div class="col-12">
                                         <div class="form-group">
-                                          <label>If Yes, please explain</label>
+                                          <label>19b. If Yes, please explain</label>
                                           <textarea cols="5" class="form-control"></textarea>
 
                                         </div>
@@ -1277,19 +1276,21 @@ Qualitative Survey
 
                                   <div class="col-12">
                                     <div class="row general" style="display:none">
-                                      <div class="col-6">
+                                      <hr>
+                                      <h6 style="text-align:center;">Leave Days</h6>
+
+                                      <div class="col-12">
                                         <div class="form-group">
-                                          <label>What is the number of leave days granted to staff annually?</label>
-                                          <!-- <input type="text" class="form-control" /> -->
+                                          <label>1. What is the number of leave days granted to staff annually?</label>
                                           <input type="number" min="0" class="form-control" />
                                         </div>
 
                                       </div>
 
 
-                                      <div class="col-6">
+                                      <div class="col-12">
                                         <div class="form-group">
-                                          <label> Does the number of leave days increase per employee tenure?</label>
+                                          <label> 2. Does the number of leave days increase per employee tenure?</label>
                                           <div class="col-3">
                                             <div class="form-check">
                                               <label class="form-check-label" for="radio1">
@@ -1309,7 +1310,6 @@ Qualitative Survey
                                               </label>
                                             </div>
                                           </div>
-                                          <!-- <input type="text" class="form-control" /> -->
                                         </div>
 
                                       </div>
@@ -1317,6 +1317,7 @@ Qualitative Survey
                                       <div class="col-12">
                                         <div class="form-group">
                                           <br>
+                                          <label for="usr">3. Choose the staff categories and the number of leave days granted: </label>
                                           <table class="table ">
                                             <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                               <tr>
@@ -1364,39 +1365,43 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <div class="form-group">
-                                          <label>What is the number of paid holidays granted to staff?</label>
+                                          <label>4. What is the number of paid holidays granted to staff?</label>
                                           <input type="text" class="form-control" />
                                         </div>
                                       </div>
                                       <div class="col-12 pb-2">
                                         <div class="form-group">
                                           <br>
-                                          <label><b>What is the number of leave days granted for?</b></label>
+                                          <label>5. What is the number of leave days granted for: </label>
                                           <div class="row">
                                             <div class="col-6">
                                               <label>Sickness</label>
-                                              <input type="number" class="form-control" />
+                                              <input type="number" min="0" class="form-control" />
 
                                             </div>
                                             <div class="col-6">
                                               <label>Accident</label>
-                                              <input type="number" class="form-control" />
+                                              <input type="number" min="0" class="form-control" />
 
                                             </div>
                                             <div class="col-6">
                                               <label>Maternity</label>
-                                              <input type="number" class="form-control" />
+                                              <input type="number" min="0" class="form-control" />
 
                                             </div>
                                             <div class="col-6">
                                               <label>Paternity</label>
-                                              <input type="number" class="form-control" />
+                                              <input type="number" min="0" class="form-control" />
 
                                             </div>
                                             <div class="col-6">
                                               <label>Emergency/Compassionate</label>
-                                              <input type="number" class="form-control" />
+                                              <input type="number" min="0" class="form-control" />
 
+                                            </div>
+                                            <div class="col-6">
+                                              <label>Other <input type="text"> </label>
+                                              <input type="number" min="0" class="form-control" />
                                             </div>
                                           </div>
 
@@ -1407,7 +1412,7 @@ Qualitative Survey
                                           <div class="col-12 card pb-2">
                                             <div class="form-group">
                                               <br>
-                                              <label><b>What is the over time entitlements/rates in the following
+                                              <label><b>6. What is the over time entitlements/rates in the following
                                                   instances?</b></label>
                                               <table class="table ">
                                                 <thead style="background-color: rgb(18, 143, 18);color:#fff"">
@@ -1458,10 +1463,13 @@ Qualitative Survey
                                         <br>
                                         <div class="row">
 
+                                          <hr>
+                                          <h5 style="text-align:center;">Entitlements</h5>
+
                                           <div class="col-12 card p-2">
                                             <div class="form-group">
                                               <br>
-                                              <label><b>What policy provisions do you have for staff with respect to the
+                                              <label><b>7. What policy provisions do you have for staff with respect to the
                                                   following and how much?
                                                   (Please provide policy as attachment if different for various staff
                                                   grades/categories)</b></label>
@@ -1548,10 +1556,13 @@ Qualitative Survey
                                       </div>
 
                                       <div class="col-12">
+                                        <hr>
+                                        <h5 style="text-align:center;">Redundancy</h5>
+
                                         <div class="form-group">
                                           <br>
 
-                                          <label>When was the last time you undertook redundancy exercises?</label>
+                                          <label>8. When was the last time you undertook redundancy exercises?</label>
                                           <input type="text" class="form-control" />
 
                                         </div>
@@ -1561,7 +1572,7 @@ Qualitative Survey
                                       <div class="col-12 card">
                                         <div class="form-group">
                                           <br>
-                                          <label><b>What did you pay the exiting staff?</b></label>
+                                          <label><b>9. What did you pay the exiting staff?</b></label>
                                           <table class="table ">
                                             <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                                   <tr>
@@ -1615,8 +1626,11 @@ Qualitative Survey
                                         <br>
                                         <div class="row ">
                                           <br>
+                                          <hr>
+                                          <h5 style="text-align:center;">Transportation</h5>
+
                                           <div class="col-12">
-                                            Does the organisation subsidise/provide transportation to and from work
+                                            10. Does the organisation subsidise/provide transportation to and from work
                                             (includes vehicle
                                             type, fuel, personal driver)?
 
@@ -1656,7 +1670,7 @@ Qualitative Survey
                                       <div class="col-12 card">
                                         <div class="form-group">
                                           <br>
-                                          <label><b>If YES, provide details below</b></label>
+                                          <label><b>10b. If Yes, provide details below</b></label>
                                           <table class="table ">
                                             <thead style="background-color: rgb(18, 143, 18);color:#fff"">
                                                                                 <tr>
@@ -1759,7 +1773,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <div class="col-12">
-                                            Do you have a car scheme in which an employee uses a company car and after
+                                            11. Do you have a car scheme in which an employee uses a company car and after
                                             some years,
                                             the car is sold to the employee at a discounted rate?
                                           </div>
@@ -1794,24 +1808,24 @@ Qualitative Survey
                                         <br>
                                       </div>
 
-                                      <div class="col-4">
+                                      <div class="col-12">
                                         <div class="form-group">
-                                          <label>If yes, after how many years of use is the car sold?</label>
+                                          <label>11b. If Yes, after how many years of use is the car sold?</label>
                                           <input type="text" class="form-control" />
                                         </div>
                                       </div>
 
 
-                                      <div class="col-4">
+                                      <div class="col-12">
                                         <div class="form-group">
-                                          <label>At what percentage of market value is the car sold?</label>
+                                          <label>11c. At what percentage of market value is the car sold?</label>
                                           <input type="text" class="form-control" />
                                         </div>
                                       </div>
 
-                                      <div class="col-4">
+                                      <div class="col-12">
                                         <div class="form-group">
-                                          <label>Based on the scheme you have described, how do you deal with tax
+                                          <label>11d. Based on the scheme you have described, how do you deal with tax
                                             issues?</label>
                                           <input type="text" class="form-control" />
                                         </div>
@@ -1821,8 +1835,10 @@ Qualitative Survey
                                         <br>
                                         <div class="row ">
                                           <br>
+                                          <hr>
+                                          <h5 style="text-align:center;">Meals</h5>
                                           <div class="col-12">
-                                            Does the organisation subsidise meal costs for senior management
+                                            12. Does the organisation subsidise meal costs for senior management
                                             staff/executives (includes
                                             meal allowance as cash benefit and cafeteria service as kind benefit)?
                                           </div>
@@ -1860,7 +1876,7 @@ Qualitative Survey
                                       <div class="col-12 card">
                                         <div class="form-group">
                                           <br>
-                                          <label><b>If YES, provide details below</b></label>
+                                          <label><b>12b. If Yes, provide details below</b></label>
                                           <table class="table ">
                                             <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                               <tr>
@@ -1939,8 +1955,10 @@ Qualitative Survey
                                         <br>
                                         <div class="row ">
                                           <br>
+                                          <hr>
+                                          <h5 style="text-align:center;">Clothing</h5>
                                           <div class="col-12">
-                                            Does the organisation subsidise/provide clothing allowance for staff?
+                                            13. Does the organisation subsidise/provide clothing allowance for staff?
                                           </div>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -1974,31 +1992,34 @@ Qualitative Survey
                                       </div>
 
 
-                                      <div class="col-6">
+                                      <div class="col-12">
                                         <div class="form-group">
-                                          <label>How much (years)</label>
-                                          <input type="text" class="form-control" />
+                                          <label>13b. How much (years)</label>
+                                          <input type="number" min="0" class="form-control" />
                                         </div>
                                       </div>
 
-                                      <div class="col-6">
+                                      <div class="col-12">
                                         <div class="form-group">
-                                          <label>Which grades qualify for the clothing allowance?</label>
-                                          <input type="text" class="form-control" />
+                                          <label>13c. Which grades qualify for the clothing allowance?</label>
+                                          <textarea class="form-control" cols="5"></textarea>
                                         </div>
                                       </div>
+
+                                      <hr>
+                                      <h5 style="text-align:center;">Travel</h5>
                                       <div class="col-12 card p-4">
                                         <div class="row">
                                           <div class="col-12">
-                                            <b>What is the travel policy (including per diem, lodging, meals, air
+                                            <b>14. Travel policy (including per diem, lodging, meals, air
                                               tickets, excess baggage, etc)
-                                              for outside location?</b>
+                                              for outside location</b>
 
                                           </div>
                                           <div class="col-12">
                                             <br>
                                             <div class="form-group">
-                                              <label>Overseas rates: (please specify separately if different for various
+                                              <label>14a. Overseas rates: (please specify separately if different for various
                                                 grades)</label>
                                               <textarea class="form-control" cols="5"></textarea>
                                             </div>
@@ -2007,7 +2028,7 @@ Qualitative Survey
                                           <div class="col-12">
                                             <br>
                                             <div class="form-group">
-                                              <label>Out of location allowance (in country):</label>
+                                              <label>14b. Out of location allowance (in country):</label>
                                               <textarea class="form-control" cols="5"></textarea>
                                             </div>
                                           </div>
@@ -2018,8 +2039,10 @@ Qualitative Survey
                                         <br>
                                         <div class="row ">
                                           <br>
+                                          <hr>
+                                          <h5 style="text-align:center;">Loans</h5>
                                           <div class="col-12">
-                                            Does the organisation provide interest free or low interest bearing loans
+                                            15. Does the organisation provide interest free or low interest bearing loans
                                             (including
                                             salary advances) to employees for personal effects?
                                           </div>
@@ -2057,7 +2080,7 @@ Qualitative Survey
                                       <div class="col-12 card">
                                         <div class="form-group">
                                           <br>
-                                          <label><b>If YES, provide details below</b></label>
+                                          <label><b>15b. If Yes, provide details below</b></label>
                                           <table class="table ">
                                             <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                               <tr>
@@ -2146,10 +2169,13 @@ Qualitative Survey
                                         <br>
                                         <div class="row">
 
+                                          <hr>
+                                          <h5 style="text-align:center;">Housing</h5>
+
                                           <div class="col-12 card">
                                             <div class="form-group">
                                               <br>
-                                              <label><b>Does the organisation provide housing benefits to staff
+                                              <label><b>16. Does the organisation provide housing benefits to staff
                                                   (includes house allowance as cash
                                                   benefit and accommodation, furnishing, residence utilities,
                                                   etc,)?</b></label>
@@ -2244,7 +2270,7 @@ Qualitative Survey
                                         <div class="row">
                                           <br>
                                           <div class="col-12">
-                                            <label>Household benefits (e.g. Security, Cook, House-help, etc)</label>
+                                            <label>17. List all household benefits provided, if any (e.g. Security, Cook, House-help, etc): </label>
                                             <textarea class="form-control" cols="10"></textarea>
 
                                           </div>
@@ -2255,11 +2281,13 @@ Qualitative Survey
 
                                       <div class="col-12 ">
                                         <div class="row">
+                                          <hr>
+                                          <h5 style="text-align:center;">Education</h5>
                                           <div class="col-12 card">
                                             <div class="form-group">
                                               <br>
-                                              <label><b>Do you provide education subsidy for staff and/or their
-                                                  dependents? YES/NO. Please
+                                              <label><b>18. Do you provide education subsidy for staff and/or their
+                                                  dependents? YES/NO. <!-- add radio buttons --> 19. Please
                                                   provide details below.</b></label>
                                               <table class="table ">
                                                 <thead style="background-color: rgb(18, 143, 18);color:#fff"">
@@ -2331,8 +2359,8 @@ Qualitative Survey
                                           <div class="col-12 card">
                                             <div class="form-group">
                                               <br>
-                                              <label><b>What provisions does the organisation make for the
-                                                  following?</b></label>
+                                              <label><b>20. What provisions does the organisation make for the
+                                                  following: </b></label>
                                               <table class="table ">
                                                 <thead style="background-color: rgb(18, 143, 18);color:#fff">
                                                   <tr>
@@ -2423,12 +2451,12 @@ Qualitative Survey
                                       </div>
 
                                       <div class="col-12">
-                                        <label>Do you provide entertainment allowance for staff?</label>
-                                        <input type="text" class="form-control" />
+                                        <label>21. Do you provide entertainment allowance for staff?</label>
+                                        <input type="text" class="form-control" /> <!-- change to radio button -->
                                       </div>
 
                                       <div class="col-12">
-                                        <label>Please provide details</label>
+                                        <label>21b. Please provide details</label>
                                         <textarea class="form-control" cols="5"></textarea>
                                       </div>
 
@@ -2437,7 +2465,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <div class="col-12">
-                                            Are vacation related benefits offered to senior management staff?
+                                            22. Are vacation related benefits offered to senior management staff?
                                           </div>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -2478,7 +2506,7 @@ Qualitative Survey
                                               <div class="col-12">
                                                 <div class="form-group">
                                                   <br>
-                                                  <label><b>Please describe entitlement and value of vacation benefits.
+                                                  <label><b>23. Please describe entitlement and value of vacation benefits.
                                                       Various components of this benefit might
                                                       include:</b></label>
                                                   <table class="table ">
@@ -2645,7 +2673,7 @@ Qualitative Survey
                                               <div class="col-12">
                                                 <div class="form-group">
                                                   <br>
-                                                  <label><b>Please describe your company’s medical scheme and how it is
+                                                  <label><b>24. Please describe your company’s medical scheme and how it is
                                                       administered (i.e. .who is
                                                       covered under the plan).</b></label>
                                                   <table class="table ">
@@ -2799,7 +2827,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <div class="col-12">
-                                            Does the medical scheme cover overseas treatment?
+                                            25. Does the medical scheme cover overseas treatment?
                                           </div>
                                           <div class="col-3">
                                             <div class="form-check">
@@ -2845,7 +2873,7 @@ Qualitative Survey
                                                 <div class="row ">
                                                   <br>
                                                   <div class="col-12">
-                                                    Do you have a funeral assistance/ death benefits arrangement for
+                                                    26. Do you have a funeral assistance/ death benefits arrangement for
                                                     your staff and family
                                                     members?
                                                   </div>
@@ -2886,7 +2914,7 @@ Qualitative Survey
                                               <div class="col-12">
                                                 <div class="form-group">
                                                   <br>
-                                                  <label><b>If yes, please specify the benefits below (e.g. transport,
+                                                  <label><b>26b. If yes, please specify the benefits below (e.g. transport,
                                                       coffin, food, etc.)</b></label>
                                                   <table class="table ">
                                                     <thead style="background-color: rgb(18, 143, 18);color:#fff">
@@ -3015,7 +3043,7 @@ Qualitative Survey
                                           <div class="col-12 card">
                                             <div class="form-group">
                                               <br>
-                                              <label><b>Does your organisation operate any of the following
+                                              <label><b>27. Does your organisation operate any of the following
                                                   schemes?</b></label>
                                               <table class="table ">
                                                 <thead style="background-color: rgb(18, 143, 18);color:#fff"">
@@ -3095,7 +3123,7 @@ Qualitative Survey
                                           <div class="col-12">
                                             <div class="form-group">
                                               <br>
-                                              <label><b>What provisions does the organisation make for the
+                                              <label><b>28. What provisions does the organisation make for the
                                                   following?</b></label>
                                               <table class="table ">
                                                 <thead style="background-color: rgb(18, 143, 18);color:#fff"">
@@ -3213,7 +3241,7 @@ Qualitative Survey
                                             <div class="row ">
                                               <br>
                                               <div class="col-12">
-                                                Are there any other benefits provided to senior management
+                                                29. Are there any other benefits provided to senior management
                                                 staff/executives not mentioned in
                                                 this questionnaire?
                                                 members?
@@ -3253,7 +3281,7 @@ Qualitative Survey
                                             <br>
                                             <div class="row">
                                               <div class="col-12">
-                                                Please describe these benefit items using a separate sheet if needed.
+                                                30. Please describe these benefit items (upload as a file if needed).
                                                 Probable benefit items
                                                 not covered in this questionnaire may be:
                                                 <div class="row">
@@ -3317,7 +3345,7 @@ Qualitative Survey
                                                   </div>
                                                 </div>
 
-
+                                                <input type=file>
 
                                               </div>
 
@@ -3341,7 +3369,7 @@ Qualitative Survey
                                             <div class="row ">
                                               <br>
                                               <div class="col-12">
-                                                Are any of the Direct reports to the Managing Director on contract?
+                                                31. Are any of the Direct reports to the Managing Director on contract?
                                               </div>
                                               <div class="col-3">
                                                 <div class="form-check">
@@ -3388,7 +3416,7 @@ Qualitative Survey
                                             <div class="row ">
                                               <br>
                                               <div class="col-12">
-                                                Are there expertise/skills you find difficult to recruit from the
+                                                32. Are there expertise/skills you find difficult to recruit from the
                                                 Ghanaian labour market?
                                               </div>
                                               <div class="col-3">
@@ -3426,7 +3454,7 @@ Qualitative Survey
                                             <br>
                                             <div class="row">
                                               <div class="col-12">
-                                                If yes, please list them below:
+                                                32b. If yes, please list them below:
 
                                                 <div class="row">
                                                   <br>
@@ -3450,7 +3478,7 @@ Qualitative Survey
                                       <div class="col-12">
                                         <div class="form-group">
                                           <br>
-                                          <label>Please indicate frequent reasons for employee turnover.</label>
+                                          <label>33. Please indicate the frequent reasons for employee turnover.</label>
                                           <textarea type="text" class="form-control"></textarea>
                                         </div>
                                       </div>
@@ -3461,7 +3489,7 @@ Qualitative Survey
                                             <div class="row ">
                                               <br>
                                               <div class="col-12">
-                                                As an organisation, do you have a separate salary scale for local
+                                                34. As an organisation, do you have a separate salary scale for local
                                                 employees who have regional
                                                 responsibilities within Africa?
                                               </div>
@@ -3501,7 +3529,7 @@ Qualitative Survey
                                         <div class="row">
                                           <div class="col-12">
                                             <div class="form-group">
-                                              <label>If yes, please provide reasons for a having a separate scale:
+                                              <label>34b. If yes, please provide reasons for a having a separate scale:
                                               </label>
                                               <textarea cols="5" class="form-control"></textarea>
                                             </div>
