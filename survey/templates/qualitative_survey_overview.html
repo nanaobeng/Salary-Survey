@@ -5,7 +5,7 @@ Qualitative Survey
 {% endblock header %}
 {% block content %}
 
-<style>
+<!-- <style>
   .steps-step {
     font-size: small;
   }
@@ -55,7 +55,7 @@ Qualitative Survey
     border-radius: 15px;
     margin-top: 0;
   }
-</style>
+</style> -->
 
 
 <div class="container qualitative">
@@ -68,7 +68,7 @@ Qualitative Survey
               <div class="row pt-4">
                 <div class="col-12 ">
                   <div class="row ">
-                    <!-- <div class="col-12">
+                    <div class="col-12">
                         <div class="container">
 
                           <ul class="progress-indicator">
@@ -92,10 +92,10 @@ Qualitative Survey
                           </ul>
 
                         </div>
-                      </div> -->
+                      </div>
 
                     <!-- Stepper -->
-                    <div class="col-12">
+                    <!-- <div class="col-12">
                       <div class="container">
                         <div class="steps-form">
                           <div class="steps-row setup-panel">
@@ -121,7 +121,7 @@ Qualitative Survey
                           </div>
                         </div>
                       </div>
-                    </div>
+                    </div> -->
 
                   </div>
                 </div>
@@ -1464,7 +1464,7 @@ Qualitative Survey
                                         <div class="row">
 
                                           <hr>
-                                          <h5 style="text-align:center;">Entitlements</h5>
+                                          <h6 style="text-align:center;">Entitlements</h6>
 
                                           <div class="col-12 card p-2">
                                             <div class="form-group">
@@ -1557,7 +1557,7 @@ Qualitative Survey
 
                                       <div class="col-12">
                                         <hr>
-                                        <h5 style="text-align:center;">Redundancy</h5>
+                                        <h6 style="text-align:center;">Redundancy</h6>
 
                                         <div class="form-group">
                                           <br>
@@ -1627,7 +1627,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <hr>
-                                          <h5 style="text-align:center;">Transportation</h5>
+                                          <h6 style="text-align:center;">Transportation</h6>
 
                                           <div class="col-12">
                                             10. Does the organisation subsidise/provide transportation to and from work
@@ -1836,7 +1836,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <hr>
-                                          <h5 style="text-align:center;">Meals</h5>
+                                          <h6 style="text-align:center;">Meals</h6>
                                           <div class="col-12">
                                             12. Does the organisation subsidise meal costs for senior management
                                             staff/executives (includes
@@ -1956,7 +1956,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <hr>
-                                          <h5 style="text-align:center;">Clothing</h5>
+                                          <h6 style="text-align:center;">Clothing</h6>
                                           <div class="col-12">
                                             13. Does the organisation subsidise/provide clothing allowance for staff?
                                           </div>
@@ -2007,7 +2007,7 @@ Qualitative Survey
                                       </div>
 
                                       <hr>
-                                      <h5 style="text-align:center;">Travel</h5>
+                                      <h6 style="text-align:center;">Travel</h6>
                                       <div class="col-12 card p-4">
                                         <div class="row">
                                           <div class="col-12">
@@ -2040,7 +2040,7 @@ Qualitative Survey
                                         <div class="row ">
                                           <br>
                                           <hr>
-                                          <h5 style="text-align:center;">Loans</h5>
+                                          <h6 style="text-align:center;">Loans</h6>
                                           <div class="col-12">
                                             15. Does the organisation provide interest free or low interest bearing loans
                                             (including
@@ -2170,7 +2170,7 @@ Qualitative Survey
                                         <div class="row">
 
                                           <hr>
-                                          <h5 style="text-align:center;">Housing</h5>
+                                          <h6 style="text-align:center;">Housing</h6>
 
                                           <div class="col-12 card">
                                             <div class="form-group">
@@ -2282,7 +2282,7 @@ Qualitative Survey
                                       <div class="col-12 ">
                                         <div class="row">
                                           <hr>
-                                          <h5 style="text-align:center;">Education</h5>
+                                          <h6 style="text-align:center;">Education</h6>
                                           <div class="col-12 card">
                                             <div class="form-group">
                                               <br>
@@ -2914,7 +2914,7 @@ Qualitative Survey
                                               <div class="col-12">
                                                 <div class="form-group">
                                                   <br>
-                                                  <label><b>26b. If yes, please specify the benefits below (e.g. transport,
+                                                  <label><b>26b. If Yes, please specify the benefits below (e.g. transport,
                                                       coffin, food, etc.)</b></label>
                                                   <table class="table ">
                                                     <thead style="background-color: rgb(18, 143, 18);color:#fff">
@@ -3454,7 +3454,7 @@ Qualitative Survey
                                             <br>
                                             <div class="row">
                                               <div class="col-12">
-                                                32b. If yes, please list them below:
+                                                32b. If Yes, please list them below:
 
                                                 <div class="row">
                                                   <br>
@@ -3529,7 +3529,7 @@ Qualitative Survey
                                         <div class="row">
                                           <div class="col-12">
                                             <div class="form-group">
-                                              <label>34b. If yes, please provide reasons for a having a separate scale:
+                                              <label>34b. If Yes, please provide reasons for a having a separate scale:
                                               </label>
                                               <textarea cols="5" class="form-control"></textarea>
                                             </div>
@@ -3826,6 +3826,60 @@ Qualitative Survey
 
 
 </script>
+
+<!-- <script>
+  $(document).ready(function () {
+    var navListItems = $('div.setup-panel div a'),
+        allWells = $('.setup-content'),
+        allNextBtn = $('.nextBtn'),
+        allPrevBtn = $('.prevBtn');
+
+    allWells.hide();
+
+    navListItems.click(function (e) {
+        e.preventDefault();
+        var $target = $($(this).attr('href')),
+            $item = $(this);
+
+        if (!$item.hasClass('disabled')) {
+            navListItems.removeClass('btn-primary').addClass('btn-secondary');
+            $item.addClass('btn-primary');
+            allWells.hide();
+            $target.show();
+            $target.find('input:eq(0)').focus();
+        }
+    });
+
+    allPrevBtn.click(function(){
+        var curStep = $(this).closest(".setup-content"),
+            curStepBtn = curStep.attr("id"),
+            prevStepSteps = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
+
+            prevStepSteps.removeAttr('disabled').trigger('click');
+    });
+
+    allNextBtn.click(function(){
+        var curStep = $(this).closest(".setup-content"),
+            curStepBtn = curStep.attr("id"),
+            nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+            curInputs = curStep.find("input[type='text'],input[type='url']"),
+            isValid = true;
+
+        $(".form-group").removeClass("has-error");
+        for(var i=0; i< curInputs.length; i++){
+            if (!curInputs[i].validity.valid){
+                isValid = false;
+                $(curInputs[i]).closest(".form-group").addClass("has-error");
+            }
+        }
+
+        if (isValid)
+            nextStepWizard.removeAttr('disabled').trigger('click');
+    });
+
+    $('div.setup-panel div a.btn-primary').trigger('click');
+});
+</script> -->
 
 
 
