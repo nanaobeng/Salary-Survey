@@ -146,6 +146,23 @@ class ClientForm(FlaskForm):
     ceo_email = StringField(" Email Address", validators=[DataRequired()])
     ceo_nationality = StringField(" Nationality", validators=[DataRequired()])
     ceo_phone = StringField(" Phone Number", validators=[DataRequired()])
+
+    current_auditor_name = StringField("Name", validators=[DataRequired()])
+    current_auditor_address = StringField("Address", validators=[DataRequired()])
+    current_auditor_city = StringField(" City", validators=[DataRequired()])
+    current_auditor_country = StringField(" Country", validators=[DataRequired()])
+
+    previous_auditor_name = StringField("Name", validators=[DataRequired()])
+    previous_auditor_address = StringField("Address", validators=[DataRequired()])
+    previous_auditor_city = StringField(" City", validators=[DataRequired()])
+    previous_auditor_country = StringField(" Country", validators=[DataRequired()])
+
+
+    company_secretary_name = StringField("Name", validators=[DataRequired()])
+    company_secretary_address = StringField("Address", validators=[DataRequired()])
+    company_secretary_city = StringField(" City", validators=[DataRequired()])
+    company_secretary_country = StringField(" Country", validators=[DataRequired()])
+
     
     sector =  SelectField(
         'Sector',

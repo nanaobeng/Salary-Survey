@@ -55,7 +55,7 @@ Create Client
                     </li>
                     <li class="company_card">
                         <span class="bubble"></span>
-                        Company Details.<br><small class="company_status"></small>
+                        Registration Details.<br><small class="company_status"></small>
                     </li>
                     <li class=" contact_card">
                       <span class="bubble"></span>
@@ -331,7 +331,7 @@ Create Client
               </br>
                 <div class="col-12 text-right">
                
-                  <span class="btn btn-outline-info " id="industry" onclick="switch_wizard(this.id)">Next</span>
+                  <span class="btn btn-outline-info industry " id="industry" onclick="switch_wizard(this.id)">Next</span>
                 </div>
               </div>
                 </div>
@@ -740,6 +740,280 @@ Create Client
           
           
         </div>
+
+        <div class="col-12 text-center">
+          <br/>
+          <b>Current Auditor</b>
+          <hr/>
+        </div>
+        <div class="col-6">
+          <div class="form-group">
+            {{ form.current_auditor_name.label(class="form-control-label") }}
+
+            {% if form.current_auditor_name.errors %}
+            {{ form.current_auditor_name(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+                {% for error in form.current_auditor_name.errors %}
+                <span> {{ error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.current_auditor_name(class="form-control form-control") }}
+            {% endif %}
+
+            
+        </div>
+
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            {{ form.current_auditor_address.label(class="form-control-label") }}
+
+            {% if form.current_auditor_address.errors %}
+            {{ form.current_auditor_address(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+                {% for error in form.current_auditor_address.errors %}
+                <span> {{ error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.current_auditor_address(class="form-control form-control") }}
+            {% endif %}
+
+            
+        </div>
+
+        </div>
+
+        <div class="col-6">
+          <div class="form-group">
+            {{ form.current_auditor_city.label(class="form-control-label") }}
+
+            {% if form.current_auditor_city.errors %}
+            {{ form.current_auditor_city(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+                {% for error in form.current_auditor_city.errors %}
+                <span> {{ error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.current_auditor_city(class="form-control form-control") }}
+            {% endif %}
+
+            
+        </div>
+
+        
+        
+      </div>
+
+      <div class="col-6">
+        <div class="form-group">
+          {{ form.current_auditor_country.label(class="form-control-label") }}
+
+          {% if form.current_auditor_country.errors %}
+          {{ form.current_auditor_country(class="form-control form-control is-invalid")}}
+          <div class="invalid-feedback">
+              {% for error in form.current_auditor_country.errors %}
+              <span> {{ error}}</span>
+              {% endfor %}
+          </div>
+          {% else %}
+          {{ form.current_auditor_country(class="form-control form-control") }}
+          {% endif %}
+
+          
+      </div>
+
+      
+      
+    </div>
+
+
+    <div class="col-12 text-center">
+      <br/>
+      <b>Previous Auditor</b>
+      <hr/>
+    </div>
+    <div class="col-6">
+      <div class="form-group">
+        {{ form.previous_auditor_name.label(class="form-control-label") }}
+
+        {% if form.previous_auditor_name.errors %}
+        {{ form.previous_auditor_name(class="form-control form-control is-invalid")}}
+        <div class="invalid-feedback">
+            {% for error in form.previous_auditor_name.errors %}
+            <span> {{ error}}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.previous_auditor_name(class="form-control form-control") }}
+        {% endif %}
+
+        
+    </div>
+
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        {{ form.previous_auditor_address.label(class="form-control-label") }}
+
+        {% if form.previous_auditor_address.errors %}
+        {{ form.previous_auditor_address(class="form-control form-control is-invalid")}}
+        <div class="invalid-feedback">
+            {% for error in form.previous_auditor_address.errors %}
+            <span> {{ error}}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.previous_auditor_address(class="form-control form-control") }}
+        {% endif %}
+
+        
+    </div>
+
+    </div>
+
+    <div class="col-6">
+      <div class="form-group">
+        {{ form.previous_auditor_city.label(class="form-control-label") }}
+
+        {% if form.previous_auditor_city.errors %}
+        {{ form.previous_auditor_city(class="form-control form-control is-invalid")}}
+        <div class="invalid-feedback">
+            {% for error in form.previous_auditor_city.errors %}
+            <span> {{ error}}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        {{ form.previous_auditor_city(class="form-control form-control") }}
+        {% endif %}
+
+        
+    </div>
+
+    
+    
+  </div>
+
+  <div class="col-6">
+    <div class="form-group">
+      {{ form.previous_auditor_country.label(class="form-control-label") }}
+
+      {% if form.previous_auditor_country.errors %}
+      {{ form.previous_auditor_country(class="form-control form-control is-invalid")}}
+      <div class="invalid-feedback">
+          {% for error in form.previous_auditor_country.errors %}
+          <span> {{ error}}</span>
+          {% endfor %}
+      </div>
+      {% else %}
+      {{ form.previous_auditor_country(class="form-control form-control") }}
+      {% endif %}
+
+      
+  </div>
+
+  
+  
+</div>
+
+
+<div class="col-12 text-center">
+  <br/>
+  <b>Company Secretary</b>
+  <hr/>
+</div>
+<div class="col-6">
+  <div class="form-group">
+    {{ form.company_secretary_name.label(class="form-control-label") }}
+
+    {% if form.company_secretary_name.errors %}
+    {{ form.company_secretary_name(class="form-control form-control is-invalid")}}
+    <div class="invalid-feedback">
+        {% for error in form.company_secretary_name.errors %}
+        <span> {{ error}}</span>
+        {% endfor %}
+    </div>
+    {% else %}
+    {{ form.company_secretary_name(class="form-control form-control") }}
+    {% endif %}
+
+    
+</div>
+
+</div>
+
+<div class="col-6">
+  <div class="form-group">
+    {{ form.company_secretary_address.label(class="form-control-label") }}
+
+    {% if form.company_secretary_address.errors %}
+    {{ form.company_secretary_address(class="form-control form-control is-invalid")}}
+    <div class="invalid-feedback">
+        {% for error in form.company_secretary_address.errors %}
+        <span> {{ error}}</span>
+        {% endfor %}
+    </div>
+    {% else %}
+    {{ form.company_secretary_address(class="form-control form-control") }}
+    {% endif %}
+
+    
+</div>
+
+</div>
+
+<div class="col-6">
+  <div class="form-group">
+    {{ form.company_secretary_city.label(class="form-control-label") }}
+
+    {% if form.company_secretary_city.errors %}
+    {{ form.company_secretary_city(class="form-control form-control is-invalid")}}
+    <div class="invalid-feedback">
+        {% for error in form.companyy_secretary_city.errors %}
+        <span> {{ error}}</span>
+        {% endfor %}
+    </div>
+    {% else %}
+    {{ form.company_secretary_city(class="form-control form-control") }}
+    {% endif %}
+
+    
+</div>
+
+
+
+</div>
+
+<div class="col-6">
+<div class="form-group">
+  {{ form.company_secretary_country.label(class="form-control-label") }}
+
+  {% if form.company_secretary_country.errors %}
+  {{ form.company_secretary_country(class="form-control form-control is-invalid")}}
+  <div class="invalid-feedback">
+      {% for error in form.company_secretary_country.errors %}
+      <span> {{ error}}</span>
+      {% endfor %}
+  </div>
+  {% else %}
+  {{ form.company_secretary_country(class="form-control form-control") }}
+  {% endif %}
+
+  
+</div>
+
+
+
+</div>
+
+
+
+
+
                             
                             </div>
                           </div>
@@ -749,10 +1023,21 @@ Create Client
                   </div>
                 </div>
               </br>
-              <div class="col-12 text-right">
+              <br>
+              <div class="col-12">
+              <div class="row">
              
-                <span class="btn btn-outline-info " id="industry2" onclick="switch_wizard(this.id)">Next</span>
+                <div class="col-6 ">
+                  
+                  <span class="btn btn-outline-info " id="industry2" onclick="switchBack(this.id)" >Back</span>
+                </div>
+                <div class="col-6 move-right">
+                  
+                  <span class="btn btn-outline-info " id="industry2" onclick="switch_wizard(this.id)">Next</span>
+                </div>
               </div>
+              </div>
+              
                 </div>
                   <div class="row mailing">
                     <div class="col-12">
@@ -1191,17 +1476,30 @@ Create Client
                 
               </div>
 
-            
+              <div class="row ">
+             
+                
+              <div class="col-6 text-left ">
+                  
+                <span class="btn btn-outline-info contact submit_button" id="contact" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
+              </div>
+             
+                <div class="col-6 text-right">  
+               
+                  <span class="btn btn-outline-info contact rah" id="contact" onclick="switch_wizard(this.id)" style="width: 80px;">Next</span>
+                  
+                </div>
+              </div>
 
 
               <div class="row pt-4">
                 <div class="col-6 ">
                   
-                  <span class="btn btn-outline-info contact submit_button" id="contact" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
+                  
                 </div>
                 <div class="col-6 move-right">  
                    
-                  <span class="btn btn-outline-info contact rah" id="contact" onclick="switch_wizard(this.id)" style="width: 80px;">Next</span>
+                  
                 </div>
                       </div>
 
@@ -1393,14 +1691,25 @@ Create Client
 <script>
   function switchBack(id){
 
-    if(id == 'mailing'){
-      $('.mailing_status').html("")
-    $( ".mailing_card" ).removeClass( "active" );
+    if(id == 'industry2'){
+      $('.industry2_status').html("")
+    $( ".industry2_card" ).removeClass( "active" );
     $( ".industry_card" ).removeClass( "completed" );
     $( ".industry_card" ).addClass( "active" );
     $('.industry_status').html("(active)")
-     $(".mailing").css("display", "none");
+     $(".industry2").css("display", "none");
     $(".industry").css("display", "block");
+
+    }
+
+    if(id == 'mailing'){
+      $('.mailing_status').html("")
+    $( ".mailing_card" ).removeClass( "active" );
+    $( ".industry2_card" ).removeClass( "completed" );
+    $( ".industry2_card" ).addClass( "active" );
+    $('.industry2_status').html("(active)")
+     $(".mailing").css("display", "none");
+    $(".industry2").css("display", "block");
 
     }
 
