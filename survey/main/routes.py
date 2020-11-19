@@ -37,6 +37,12 @@ def contact():
     return render_template("contact.html")
 
 
+@main.route("/terms")
+def terms():
+    
+    return render_template("terms.html")
+
+
 
 
 
