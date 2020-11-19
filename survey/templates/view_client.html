@@ -207,8 +207,11 @@ Client Information
                <div class="col ">
               <div class="row">
                 <div class="col-12 text-right">
-               
-                  <span class="btn btn-outline-info industry" id="industry" onclick="switch_wizard(this.id)">Next</span>
+                  <div class="btn-group industry ">
+                    <a href="/administration/clients"><span  class="btn btn-outline-danger">Close</span></a>
+                    <span class="btn btn-outline-info industry" id="industry" onclick="switch_wizard(this.id)">Next</span>
+                  </div>
+                  
                 </div>
             </div>
               </div>
@@ -633,8 +636,12 @@ Client Information
                 <div class="row">
                
                     <div class="col-6 ">
-                      
+                      <div class="btn-group industry2">
+                        <a href="/administration/clients"><span  class="btn btn-outline-danger">Close</span></a>
                         <span class="btn btn-outline-info " id="industry2" onclick="switchBack(this.id)" >Back</span>
+                      </div>
+                      
+                        
                       </div>
                      
                         <div class="col-6 move-right">  
@@ -720,8 +727,11 @@ Client Information
                   <div class="row">
                  
                     <div class="col-6 ">
-                      
-                      <span class="btn btn-outline-info " id="mailing" onclick="switchBack(this.id)" >Back</span>
+                      <div class="btn-group mailing">
+                        <a href="/administration/clients"><span  class="btn btn-outline-danger">Close</span></a>
+                        <span class="btn btn-outline-info " id="mailing" onclick="switchBack(this.id)" >Back</span>
+                      </div>
+                
                     </div>
                     <div class="col-6 move-right">
                       
@@ -792,8 +802,11 @@ Client Information
                   <div class="row pt-4">
                    
                   <div class="col-6 ">
-                      
-                    <span class="btn btn-outline-info " id="street" onclick="switchBack(this.id)" >Back</span>
+                    <div class="btn-group street">
+                      <a href="/administration/clients"><span  class="btn btn-outline-danger">Close</span></a>
+                      <span class="btn btn-outline-info " id="street" onclick="switchBack(this.id)" >Back</span>
+                    </div>
+                    
                   </div>
                     <div class="col-6 move-right">
                       
@@ -836,8 +849,11 @@ Client Information
                   <div class="row pt-4">
                   </br>
                   <div class="col-6 ">
-                      
-                    <span class="btn btn-outline-info " id="company" onclick="switchBack(this.id)" >Back</span>
+                    <div class="btn-group company">
+                      <a href="/administration/clients"><span  class="btn btn-outline-danger">Close</span></a>
+                      <span class="btn btn-outline-info " id="company" onclick="switchBack(this.id)" >Back</span>
+                    </div>
+                  
                   </div>
                  
                     <div class="col-6 move-right">  
@@ -942,7 +958,7 @@ Client Information
                     <div class="col-6 text-right">  
                    
                         <div class="btn-group contact">
-                            <span  class="btn btn-outline-danger">Close</span>
+                            <a href="/administration/clients"><span  class="btn btn-outline-danger">Close</span></a>
                             <span  class="btn btn-danger">Reject</span>
                             <span  class="btn btn-success">Approve</span>
                           </div>
