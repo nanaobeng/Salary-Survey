@@ -1,0 +1,334 @@
+{% extends "qualitative_form_layout.html" %}
+
+
+<!-- Direct Compensation Page -->
+
+{% block body %}
+
+<style>
+  legend {
+    width: auto;
+    font-size: medium;
+    font-style: italic;
+    color: rgb(107, 117, 126);
+    /* color: limegreen; */
+    /* margin-left: auto; */
+    margin-left: 1em;
+    margin-right: auto;
+  }
+
+  fieldset {
+    border-top: 1px solid grey;
+  }
+</style>
+
+<form>
+  <div class="row direct_compensation_view p-4">
+    <div class="col-12">
+
+      <fieldset>
+        <legend>Salary Structure</legend>
+
+        <!-- Question B1 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <div>
+                <label for="percentiles"> <b>B1. &nbsp; </b>As an organisation, where (i.e. percentile terms) do you
+                  want to position yourself on the market for (please tick)?</label>
+                <br>
+                <div class="row justify-content-center">
+                  <div class="col-6 text-center">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
+                      <label class="form-check-label" for="inlineCheckbox1">25</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
+                      <label class="form-check-label" for="inlineCheckbox2">40</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
+                      <label class="form-check-label" for="inlineCheckbox3">50</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option1">
+                      <label class="form-check-label" for="inlineCheckbox1">60</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option2">
+                      <label class="form-check-label" for="inlineCheckbox2">75</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option3">
+                      <label class="form-check-label" for="inlineCheckbox3">80</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option3">
+                      <label class="form-check-label" for="inlineCheckbox3">90</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B2 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <b>B2. &nbsp; </b> Does your organisation have a formal salary structure
+                for
+                staff ?</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Question B2b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <b>B2(b). &nbsp; </b> If Yes, please upload a copy of your current salary
+                structure(s).</label>
+              <input type="file" id="salaryStructure" name="filename">
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B2c -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B2(c). &nbsp;</b> If No, how are salary level(s) established?</label>
+              <textarea class="form-control" name="If No, how are salary level(s) established?" rows="5"
+                id="comment"></textarea>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Salary Adjustments</legend>
+        <!-- Question B3 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <div class="form-group">
+                <label for="usr"><b>B3. &nbsp;</b>How often is salary structure(s) adjusted?</label>
+                <select id="salaryStructure Adjustment" name="adjustment">
+                  <option value="annually">Annually</option>
+                  <option value="quarterly">Quarterly</option>
+                  <option value="bimonthly">Bi-monthly</option>
+                  <option value="monthly">Monthly</option>
+                  <option value="other">Other</option>
+                </select>
+                <div class="form-group">
+                  <label for="usr">If other, please specify: </label>
+                  <input type="text" class="form-control" id="usr" name="How often is salary structure(s) adjusted?">
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B4 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="date"><b>B4. &nbsp;</b>Date of last adjustment:</label>
+              <input type="date" id="adjustmentDate" name="adjustment">
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B5 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B5. &nbsp;</b> Average percentage increase in last reviews: </label>
+              <input type="text" class="form-control" id="usr" name="Average percentage increase in last reviews">
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B6 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B6. &nbsp;</b> Basis of adjustment:</label>
+              <input type="text" class="form-control" id="usr" name="Basis of adjustment:">
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B7 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B7. &nbsp;</b> Give the percentage adjustment for the following indicators:</label>
+              <table>
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th>Indicator</th>
+                    <th>Percentage (%)</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <th>Cost of living changes/inflation</th>
+                  <th><input class="form-control" type="number" min="0" name="cost of living"></th>
+                </tr>
+                <tr>
+                  <th>Business conditions</th>
+                  <th><input class="form-control" type="number" min="0" name="business conditions"></th>
+                </tr>
+                <tr>
+                  <th>Salary levels of other organizations/market</th>
+                  <th><input class="form-control" type="number" min="0" name="salary levels"></th>
+                </tr>
+                <tr>
+                  <th>Other (please specify): <input class="form-control-inline" type="text"> </th>
+                  <th><input class="form-control" type="number" min="0" name="other" /></th>
+                </tr>
+              </table>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B8 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B8. &nbsp;</b> Are all grades adjusted by the same percentage?</label>
+              <div class="col-12">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio1">
+                    <input type="radio" class="form-check-input form-check-inline" id="radio111" name="optradio1ab"
+                      value="option11" checked>
+                    Yes
+                  </label>
+                </div>
+
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="radio" class="form-check-input form-check-inline" id="radio121" name="optradio1ab"
+                      value="option12">No
+
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Question B8b -->
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-group">
+                <label><b>B8(b). &nbsp;</b>If No, how are adjustments made?</label>
+                <input type="text" class="form-control" id="usr" name="How adjustments are made">
+              </div>
+            </div>
+          </div>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Allowance Reviews</legend>
+
+        <!-- Question B9 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B9. &nbsp;</b> When are allowance offerings reviewed?</label>
+              <input type="text" class="form-control" id="usr" name="When allowance offerings are reviewed">
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B9b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B9(b). &nbsp;</b> What is the typical effective date once reviewed (i.e.
+                back to January 1 of that year or the first date of the month in which they
+                are reviewed)? </label>
+              <input type="text" class="form-control" id="usr" name="Typical effective date once reviewed">
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset>
+        <legend>Job Evaluations</legend>
+
+        <!-- Question B10 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B10. &nbsp;</b> Does your organisation use a formal Job
+                Evaluation System? </label>
+              <div class="col-12">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio1">
+                    <input type="radio" class="form-check-input form-check-inline" id="radio111" name="optradio1ab"
+                      value="option11" checked>
+                    Yes
+                  </label>
+                </div>
+
+              </div>
+              <div class="col-12">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="radio" class="form-check-input form-check-inline" id="radio121" name="optradio1ab"
+                      value="option12">No
+
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+
+
+
+
+      <!-- Next Button -->
+      <div class="col-12 text-right">
+        <span id="direct_compensation" class="btn btn-outline-info" onclick="switchView(this.id)">Next</span>
+      </div>
+
+    </div>
+  </div>
+</form>
+
+
+
+{% endblock %}

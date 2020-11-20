@@ -1,0 +1,341 @@
+{% extends "layout.html" %}
+
+{% block header %}
+Qualitative Survey
+{% endblock header %}
+{% block content %}
+
+<style>
+    .steps-form {
+        display: table;
+        width: 100%;
+        position: relative;
+    }
+
+    .steps-form .steps-row {
+        display: table-row;
+    }
+
+    .steps-form .steps-row:before {
+        top: 14px;
+        bottom: 0;
+        position: absolute;
+        content: " ";
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+    }
+
+    .steps-form .steps-row .steps-step {
+        display: table-cell;
+        text-align: center;
+        position: relative;
+    }
+
+    .steps-form .steps-row .steps-step p {
+        margin-top: 0.5rem;
+    }
+
+    .steps-form .steps-row .steps-step button[disabled] {
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important;
+    }
+
+    .steps-form .steps-row .steps-step .btn-circle {
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        padding: 6px 0;
+        font-size: 12px;
+        line-height: 1.428571429;
+        border-radius: 15px;
+        margin-top: 0;
+
+    }
+
+    p {
+        font-style: italic;
+    }
+</style>
+
+<div class="container">
+    <div class="row p-4">
+        <div class="col-12">
+
+            <!-- Progress Bar -->
+            <div class="steps-form">
+                <div class="steps-row setup-panel">
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_overview') }}" type="button"
+                            class="btn btn-primary btn-circle">1</a>
+                        <p>General Information</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_survey_dc') }}" type="button"
+                            class="btn btn-secondary btn-circle" disabled="disabled">2</a>
+                        <p>Direct Compensation</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="#step-11" type="button" class="btn btn-secondary btn-circle" disabled="disabled">3</a>
+                        <p>Bonus / Incentive Plans</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="#step-12" type="button" class="btn btn-secondary btn-circle" disabled="disabled">4</a>
+                        <p>General Personnel Practices</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+
+<body>
+    {% block body %}
+    {% endblock %}
+</body>
+
+<script>
+    $('.gi_card').addClass('active')
+    $('.gi_status').html('( active )')
+    $('.co_card').addClass('active')
+</script>
+
+
+<script>
+    function switchView(id) {
+        if (id == "general_information") {
+            $('.general_contact_view').css("display", "none")
+            $('.general_organization_view').css("display", "block")
+
+            $('.co_card').removeClass('active')
+            $('.co_card').addClass('completed')
+            $('.co_status').html('( completed )')
+            $('.oo_card').addClass('active')
+            $('.oo_status').html('( active )')
+        }
+        if (id == "general_organization") {
+
+
+            $('.ga_wizards').css("display", "none")
+            $('.direct_compensation').css("display", "block")
+            $('.general_organization_view').css("display", "none")
+
+            $('.oo_card').removeClass('active')
+            $('.oo_card').addClass('completed')
+            $('.oo_status').html('( completed )')
+            $('.dc_card').addClass('active')
+            $('.dc_status').html('( active )')
+            $('.gi_card').removeClass('active')
+            $('.gi_card').addClass('completed')
+            $('.gi_status').html('( completed )')
+        }
+
+        if (id == "bc") {
+            $('.general_contact_view').css("display", "none")
+
+            $('.direct_compensation').css("display", "none")
+            $('.bonus').css("display", "block")
+
+            $('.dc_card').removeClass('active')
+            $('.dc_card').addClass('completed')
+            $('.dc_status').html('( completed )')
+            $('.bonus_card').addClass('active')
+            $('.bonus_status').html('( active )')
+
+        }
+
+
+        if (id == "bonus") {
+            $('.bonus').css("display", "none")
+
+            $('.general_contact_view').css("display", "none")
+            $('.general').css("display", "block")
+
+            $('.bonus_card').removeClass('active')
+            $('.bonus_card').addClass('completed')
+            $('.bonus_status').html('( completed )')
+            $('.general_card').addClass('active')
+            $('.general_status').html('( active )')
+
+
+            $(".testdiv").find('input:text, select, textarea')
+                .each(function () {
+                    if ($(this).attr("name") != null || $(this).attr("name") != undefined) {
+                        var line = "<b>" + $(this).attr("name") + "</b> : " + $(this).val() + "<br> <hr/>"
+
+                        $('.review').append(line)
+
+                    }
+
+
+                });
+
+        }
+
+
+    }
+</script>
+<script>
+    function switchBack(id) {
+
+        if (id == "general_organization") {
+            $('.general_contact_view').css("display", "block")
+
+            $('.ga_wizards').css("display", "block")
+            $('.direct_compensation').css("display", "none")
+            $('.general_organization_view').css("display", "none")
+
+
+            $('.gi_card').removeClass('completed')
+            $('.gi_card').addClass('active')
+            $('.gi_status').html('( active )')
+
+            $('.oo_card').removeClass('active')
+
+            $('.oo_status').html('')
+
+            $('.co_card').removeClass('completed')
+            $('.co_card').addClass('active')
+
+            $('.oo_status').html('')
+            $('.co_status').html('( active )')
+        }
+
+
+        if (id == "bc") {
+            $('.general_contact_view').css("display", "none")
+
+            $('.ga_wizards').css("display", "block")
+            $('.direct_compensation').css("display", "none")
+            $('.general_organization_view').css("display", "block")
+
+
+            $('.gi_card').removeClass('completed')
+            $('.gi_card').addClass('active')
+            $('.gi_status').html('( active )')
+
+            $('.oo_card').removeClass('completed')
+            $('.oo_card').addClass('active')
+
+            $('.oo_status').html('( active )')
+
+            $('.dc_card').removeClass('active')
+
+
+            $('.dc_status').html('')
+
+
+        }
+
+
+        if (id == "bonus") {
+            $('.general_contact_view').css("display", "none")
+
+            $('.ga_wizards').css("display", "none")
+            $('.direct_compensation').css("display", "block")
+
+            $('.bonus').css("display", "none")
+            $('.general_organization_view').css("display", "none")
+
+
+            $('.bonus_card').removeClass('active')
+            $('.dc_card').removeClass('completed')
+            $('.dc_card').addClass('active')
+            $('.dc_status').html('( active )')
+            $('.bonus_status').html('')
+
+
+
+
+
+
+
+        }
+
+        if (id == "general") {
+            $('.general').css("display", "none")
+
+            $('.ga_wizards').css("display", "none")
+            $('.bonus').css("display", "block")
+
+
+            $('.general_organization_view').css("display", "none")
+
+
+            $('.bonus_card').removeClass('completed')
+            $('.general_card').removeClass('active')
+            $('.bonus_card').addClass('active')
+            $('.bonus_status').html('( active )')
+            $('.general_status').html('')
+
+
+
+
+
+
+
+        }
+    }
+
+
+
+</script>
+<!-- 
+<script>
+    $(document).ready(function () {
+        var navListItems = $('div.setup-panel div a'),
+            allWells = $('.setup-content'),
+            allNextBtn = $('.nextBtn'),
+            allPrevBtn = $('.prevBtn');
+
+        allWells.hide();
+
+        navListItems.click(function (e) {
+            e.preventDefault();
+            var $target = $($(this).attr('href')),
+                $item = $(this);
+
+            if (!$item.hasClass('disabled')) {
+                navListItems.removeClass('btn-primary').addClass('btn-secondary');
+                $item.addClass('btn-primary');
+                allWells.hide();
+                $target.show();
+                $target.find('input:eq(0)').focus();
+            }
+        });
+
+        allPrevBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                prevStepSteps = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().prev().children("a");
+
+            prevStepSteps.removeAttr('disabled').trigger('click');
+        });
+
+        allNextBtn.click(function () {
+            var curStep = $(this).closest(".setup-content"),
+                curStepBtn = curStep.attr("id"),
+                nextStepWizard = $('div.setup-panel div a[href="#' + curStepBtn + '"]').parent().next().children("a"),
+                curInputs = curStep.find("input[type='text'],input[type='url']"),
+                isValid = true;
+
+            $(".form-group").removeClass("has-error");
+            for (var i = 0; i < curInputs.length; i++) {
+                if (!curInputs[i].validity.valid) {
+                    isValid = false;
+                    $(curInputs[i]).closest(".form-group").addClass("has-error");
+                }
+            }
+
+            if (isValid)
+                nextStepWizard.removeAttr('disabled').trigger('click');
+        });
+
+        $('div.setup-panel div a.btn-primary').trigger('click');
+    });
+</script> -->
+
+
+{% endblock content %}
