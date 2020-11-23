@@ -23,6 +23,8 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(120), unique=True, nullable=False)
     role = db.Column(db.String(120),  nullable=False)
     password = db.Column(db.String(60),  nullable=False)
+    client = db.relationship('Client', backref='client' , lazy=True)
+    audit_log = db.relationship('Audit_log', backref='log' , lazy=True)
 
 
     def get_reset_token(self,expires_sec=1800):
