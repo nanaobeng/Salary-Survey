@@ -38,7 +38,7 @@
                   want to position yourself on the market for (please tick)?</label>
                 <br>
                 <div class="row justify-content-center">
-                  <div class="col-6 text-center">
+                  <div class="col-12 text-center">
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                       <label class="form-check-label" for="inlineCheckbox1">25</label>
@@ -187,7 +187,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="usr"><b>B7. &nbsp;</b> Give the percentage adjustment for the following indicators:</label>
-              <table>
+              <table class="col-12">
                 <thead style="background-color: rgb(107, 117, 126);color:#fff">
                   <tr>
                     <th>Indicator</th>
@@ -207,7 +207,7 @@
                   <th><input class="form-control" type="number" min="0" name="salary levels"></th>
                 </tr>
                 <tr>
-                  <th>Other (please specify): <input class="form-control-inline" type="text"> </th>
+                  <th>Other (please specify): <input class="form-control form-control-inline" type="text"> </th>
                   <th><input class="form-control" type="number" min="0" name="other" /></th>
                 </tr>
               </table>
@@ -221,7 +221,7 @@
           <div class="col-12">
             <div class="form-group">
               <label><b>B8. &nbsp;</b> Are all grades adjusted by the same percentage?</label>
-              <div class="col-12">
+              <div class="col-6">
                 <div class="form-check">
                   <label class="form-check-label" for="radio1">
                     <input type="radio" class="form-check-input form-check-inline" id="radio111" name="optradio1ab"
@@ -231,7 +231,7 @@
                 </div>
 
               </div>
-              <div class="col-12">
+              <div class="col-6">
                 <div class="form-check">
                   <label class="form-check-label" for="radio2">
                     <input type="radio" class="form-check-input form-check-inline" id="radio121" name="optradio1ab"
@@ -291,7 +291,7 @@
             <div class="form-group">
               <label for="usr"><b>B10. &nbsp;</b> Does your organisation use a formal Job
                 Evaluation System? </label>
-              <div class="col-12">
+              <div class="col-6">
                 <div class="form-check">
                   <label class="form-check-label" for="radio1">
                     <input type="radio" class="form-check-input form-check-inline" id="radio111" name="optradio1ab"
@@ -301,7 +301,7 @@
                 </div>
 
               </div>
-              <div class="col-12">
+              <div class="col-6">
                 <div class="form-check">
                   <label class="form-check-label" for="radio2">
                     <input type="radio" class="form-check-input form-check-inline" id="radio121" name="optradio1ab"
@@ -314,6 +314,331 @@
           </div>
         </div>
 
+        <!-- Question B10b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B10(b). &nbsp;</b>If Yes, what method of job evaluation is used?</label>
+              <textarea class="form-control" rows="5" id="comment"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+
+      <fieldset>
+        <legend>Salary Increments</legend>
+
+        <!-- Question B11 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B11. &nbsp;</b>What types of periodic salary increases are granted?</label>
+              <div class="form-check">
+                <label class="form-check-label" for="check1">
+                  <input type="checkbox" class="form-check-input" id="check1" name="option1"
+                    value="something">Performance/Merit increases
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label" for="check2">
+                  <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">General
+                  increases (across board)
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input">Cost of living increases
+                </label>
+              </div>
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="checkbox" class="form-check-input">Other (please specify) <input type=text
+                    class="form-control form-control-inline">
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B12 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B12. &nbsp;</b> Do your staff receive automatic cost of living salary adjustments at
+                periodic intervals? </label>
+              <div class="col-6">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio1">
+                    <input type="radio" class="form-check-input form-check-inline" id="radio111" name="optradio1ab"
+                      value="option11" checked>
+                    Yes
+                  </label>
+                </div>
+
+              </div>
+              <div class="col-6">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="radio" class="form-check-input form-check-inline" id="radio121" name="optradio1ab"
+                      value="option12">No
+
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B12b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><b>B12(b). &nbsp;</b>If Yes, on what basis are increments computed and what are the
+                normal intervals?</label>
+              <textarea class="form-control" rows="5" id="comment"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B13 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="quantity"><b>B13. &nbsp;</b> How many grade levels do you have?</label>
+              <input type="number" min="1" class="form-control col-3" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B14 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B14. &nbsp;</b> What is the percentage difference in salary between the notches
+                within
+                a grade?</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B15 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B15. &nbsp;</b> Salary increments in the same grade are based on:</label>
+              <div class="col-3">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio1">
+                    <input type="radio" class="form-check-input" id="radio111" name="optradio1abc" value="option11"
+                      checked>
+                    Notches
+                  </label>
+                </div>
+
+              </div>
+              <div class="col-3">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="radio" class="form-check-input" id="radio121" name="optradio1abc"
+                      value="option12">Percentages
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B16 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B16. &nbsp;</b> How do your staff progress through the steps? </label>
+              <div class="col-9">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio1">
+                    <input type="checkbox" class="form-check-input" id="radio111" name="optradio1abc" value="option11">
+                    Automatic annual salary increments
+                  </label>
+                </div>
+
+              </div>
+              <div class="col-9">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="checkbox" class="form-check-input" id="radio121" name="optradio1abc"
+                      value="option12">Performance/Merit
+                  </label>
+                </div>
+              </div>
+              <div class="col-9">
+                <div class="form-check">
+                  <label class="form-check-label" for="radio2">
+                    <input type="checkbox" class="form-check-input" id="radio121" name="optradio1abc"
+                      value="option12">Other (please specify) <input type="text" class="form-check form-check-inline">
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B17 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B17. &nbsp;</b> In order of importance, what factors are considered in placing your new
+                staff on your salary scale (please rank as 1st, 2nd, 3rd, etc)?</label>
+              <div>
+                <label>1st Priority:</label>
+                <select>
+                  <option value="education">Education</option>
+                  <option value="experience">Experience</option>
+                  <option value="prev-salary">Previous Salary</option>
+                </select>
+
+                <label>2nd Priority:</label>
+                <select>
+                  <option value="education">Education</option>
+                  <option value="experience">Experience</option>
+                  <option value="prev-salary">Previous Salary</option>
+                </select>
+
+                <label>3rd Priority:</label>
+                <select>
+                  <option value="education">Education</option>
+                  <option value="experience">Experience</option>
+                  <option value="prev-salary">Previous Salary</option>
+                </select>
+
+                <label>Others (please specify):</label>
+                <input type="text" class="form-control">
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B18 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <b>B18. &nbsp; </b> Is there a hiring rate for each grade or job which
+                differs from the
+                minimum of the scale?</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B18b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B18(b). &nbsp;</b>Please explain your above response: </label>
+              <textarea cols="5" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B19 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <b>B19. &nbsp; </b> Is there a Is there a maximum salary for each grade
+                which cannot be
+                exceeded??</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B19b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B19(b). &nbsp;</b>Please explain your above response: </label>
+              <textarea cols="5" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B20 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <b>B20. &nbsp; </b> Are there instances where the maximum salary for a grade has been
+                exceeded?</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B20b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><b>B20(b). &nbsp;</b>If Yes, please explain: </label>
+              <textarea cols="5" class="form-control"></textarea>
+            </div>
+          </div>
+        </div>
+
+
+
       </fieldset>
 
 
@@ -321,8 +646,9 @@
 
 
       <!-- Next Button -->
+      <!-- TODO: fix onclick action -->
       <div class="col-12 text-right">
-        <span id="direct_compensation" class="btn btn-outline-info" onclick="switchView(this.id)">Next</span>
+        <span id="direct_compensation" class="btn btn-outline-info" onclick="switchView(this.id)">Next</b>
       </div>
 
     </div>

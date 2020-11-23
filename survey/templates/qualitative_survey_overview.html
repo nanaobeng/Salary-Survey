@@ -16,12 +16,12 @@
 
       <!-- Question A1 -->
       <div class="form-row">
-        <div class="col-6">
+        <div class="col-12">
           <div class="form-group">
             <div>
               <label for="num_employees"> <span class="question_number">A1. &nbsp; </span>What is the total number of employees in the
                 company?</label>
-              <input type="number" min="1" class="form-control" id="num_employees">
+              <input type="number" min="1" class="form-control col-3" id="num_employees">
             </div>
           </div>
         </div>
@@ -33,7 +33,7 @@
           <div class="form-group">
             <label for="usr"><span class="question_number">A2. &nbsp; </span>Fill in the number of employees for each category
               below: </label>
-            <table class="table-responsive">
+            <table class="col-12">
               <tr style="background-color: rgb(107, 117, 126);color:#fff">
                 <th>Type </th>
                 <th>Full Time Employees</th>
@@ -113,6 +113,7 @@
       </div>
 
       <!-- Next Button -->
+      <!-- TODO: fix onclick action -->
       <div class="col-12 text-right">
         <span id="general_organization" class="btn btn-outline-info" onclick="switchView(this.id)">Next</span>
       </div>
@@ -123,4 +124,4 @@
 
 
 
-{% endblock %}<span class="question_number"><span class="question_number"></span></span>
+{% endblock %}
