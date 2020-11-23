@@ -11,16 +11,16 @@ def load_user(user_id):
 
 class Administrator(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    username = db.Column(db.String(50), unique=True)
+    email = db.Column(db.String(120), unique=True)
     role = db.Column(db.String(120),  nullable=False)
     password = db.Column(db.String(60),  nullable=False)
 
 
 class User(db.Model,UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(50), unique=True, nullable=False)
-    email = db.Column(db.String(120), unique=True, nullable=False)
+    username = db.Column(db.String(50), unique=True)
+    email = db.Column(db.String(120), unique=True)
     role = db.Column(db.String(120),  nullable=False)
     password = db.Column(db.String(60),  nullable=False)
     client = db.relationship('Client', backref='client' , lazy=True)
@@ -47,27 +47,27 @@ class User(db.Model,UserMixin):
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    registered_name = db.Column(db.String(100), unique=True, nullable=False)
-    trading_name = db.Column(db.String(100), unique=True, nullable=False)
-    sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'), nullable=False)
-    sub_industry_id = db.Column(db.Integer, db.ForeignKey('sub_industry.id'),  nullable=False)
-    financial_year_end = db.Column(db.String(50),  nullable=False)
-    company_type = db.Column(db.String(50),  nullable=False)
-    vat_number = db.Column(db.String(11),  nullable=False)
-    telephone = db.Column(db.String(10),  nullable=False)
-    fax = db.Column(db.String(10),  nullable=False)
-    email = db.Column(db.String(100),  nullable=False)
-    website = db.Column(db.String(200),  nullable=False)
-    date_of_inception = db.Column(db.DateTime,  nullable=False)
-    country_of_inception = db.Column(db.String(70),  nullable=False)
-    contact_person_id = db.Column(db.Integer,  db.ForeignKey('contact_person.id'), nullable=False)
-    postal_address_id = db.Column(db.Integer,  db.ForeignKey('address.id'), nullable=False)
-    street_address_id = db.Column(db.Integer,   db.ForeignKey('address.id'),nullable=False)
-    company_history = db.Column(db.Text,  nullable=False)
-    user_id = db.Column(db.Integer,  db.ForeignKey('user.id'), nullable=False)
-    client_type = db.Column(db.String(50),  nullable=False)
-    registration_number = db.Column(db.String(50),  nullable=False)
-    tax_id = db.Column(db.String(20),  nullable=False)
+    registered_name = db.Column(db.String(100), unique=True)
+    trading_name = db.Column(db.String(100), unique=True)
+    sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
+    sub_industry_id = db.Column(db.Integer, db.ForeignKey('sub_industry.id'))
+    financial_year_end = db.Column(db.String(50))
+    company_type = db.Column(db.String(50))
+    vat_number = db.Column(db.String(11))
+    telephone = db.Column(db.String(10))
+    fax = db.Column(db.String(10))
+    email = db.Column(db.String(100))
+    website = db.Column(db.String(200))
+    date_of_inception = db.Column(db.DateTime)
+    country_of_inception = db.Column(db.String(70))
+    contact_person_id = db.Column(db.Integer,  db.ForeignKey('contact_person.id'))
+    postal_address_id = db.Column(db.Integer,  db.ForeignKey('address.id'))
+    street_address_id = db.Column(db.Integer,   db.ForeignKey('address.id'))
+    company_history = db.Column(db.Text)
+    user_id = db.Column(db.Integer,  db.ForeignKey('user.id'))
+    client_type = db.Column(db.String(50))
+    registration_number = db.Column(db.String(50))
+    tax_id = db.Column(db.String(20))
     board_chairman_id = db.Column(db.Integer,  db.ForeignKey('client_governace.id'))
     ceo_id = db.Column(db.Integer ,  db.ForeignKey('client_governace.id') )
     key_management_id = db.Column(db.Integer  ,  db.ForeignKey('client_governace.id'))
@@ -80,6 +80,7 @@ class Client(db.Model):
     auditor = db.relationship('Auditor', backref='audit' , lazy=True)
     survey = db.relationship('Survey', backref='survey_info' , lazy=True)
     benchmark = db.relationship('Benchmark_job', backref='benchmark' , lazy=True)
+    comparator = db.relationship('Survey_comparator', backref='client' , lazy=True)
     
 
 
@@ -97,7 +98,7 @@ class Audit_log(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     activity = db.Column(db.String(100))
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
-    timestamp = db.Column(db.DateTime, nullable=False , default=datetime.utcnow)
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
 
     def __repr__(self):
         return '<Audit_log %r>' % self.id
@@ -105,8 +106,8 @@ class Audit_log(db.Model):
 
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    street_line1 = db.Column(db.String(100),nullable=False)
-    street_line2 = db.Column(db.String(100) ,nullable=False)
+    street_line1 = db.Column(db.String(100))
+    street_line2 = db.Column(db.String(100) )
     city = db.Column(db.String(100))
     region = db.Column(db.String(50))
     country = db.Column(db.String(100))
@@ -119,7 +120,7 @@ class Address(db.Model):
 
 class Sector(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    sector = db.Column(db.String(100),nullable=False)
+    sector = db.Column(db.String(100))
     client = db.relationship('Client', backref='client' , lazy=True)
 
    
@@ -130,8 +131,8 @@ class Sector(db.Model):
 
 class Contact_person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50),nullable=False)
-    last_name = db.Column(db.String(100),nullable=False)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(100))
     other_names = db.Column(db.String(100))
     email = db.Column(db.String(100))
     mobile_number = db.Column(db.String(20))
@@ -148,7 +149,7 @@ class Contact_person(db.Model):
 
 class Sub_industry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    sub_industry = db.Column(db.String(100),nullable=False)
+    sub_industry = db.Column(db.String(100))
     industry = db.Column(db.Integer, db.ForeignKey('industry.id'))
     client = db.relationship('Client', backref='client' , lazy=True)
     
@@ -159,7 +160,7 @@ class Sub_industry(db.Model):
 
 class Industry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    industry = db.Column(db.String(100),nullable=False)
+    industry = db.Column(db.String(100))
     sub_industry = db.relationship('Sub_industry', backref='sub' , lazy=True)
     
 
@@ -172,8 +173,8 @@ class Industry(db.Model):
 
 class Client_governace(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    first_name = db.Column(db.String(50),nullable=False)
-    last_name = db.Column(db.String(100),nullable=False)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(100))
     other_names = db.Column(db.String(100))
     email = db.Column(db.String(100))
     mobile_number = db.Column(db.String(20))
@@ -194,9 +195,9 @@ class Client_governace(db.Model):
 
 class Service_request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    date_of_request = db.Column(db.DateTime, nullable=False, default=datetime.utcnow )
-    type_of_request = db.Column(db.String(100), nullable=False)
-    status = db.Column(db.String(50), nullable=False)
+    date_of_request = db.Column(db.DateTime, default=datetime.utcnow )
+    type_of_request = db.Column(db.String(100))
+    status = db.Column(db.String(50))
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
 
@@ -210,7 +211,7 @@ class Service_request(db.Model):
 
 class Auditor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100))
     address = db.Column(db.String(200))
     city = db.Column(db.String(100))
     country = db.Column(db.String(100))
@@ -229,10 +230,10 @@ class Auditor(db.Model):
 
 class Survey(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
+    name = db.Column(db.String(100))
     start_date = db.Column(db.DateTime)
     end_date = db.Column(db.DateTime)
-    status = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(100))
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
     comparator = db.relationship('Survey_comparator', backref='comparator' , lazy=True)
@@ -250,7 +251,7 @@ class Survey(db.Model):
 class Survey_comparator(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     survey_id = db.Column(db.Integer, db.ForeignKey('survey.id'))
-    comparator_id = db.Column(db.Integer, db.ForeignKey('comparator.id'))
+    comparator_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
 
     allowance = db.relationship('Allowance', backref='allowance_comparator' , lazy=True)
