@@ -145,4 +145,52 @@
     $('#upload_jobs_btn').on('click', function(){
       $('#upload_jobs_file').trigger('click')
     })
+
+    //Modal events for client job benchmarking
+
+    $('#job_not_applicable').change(function() {
+        if($(this).is(":checked")) {
+          $('#proceed_btn').hide();     
+           $('#save_btn').show(); 
+        }
+        else{
+          $('#proceed_btn').show();     
+        $('#save_btn').hide(); 
+        }
+            
+    });
+
+    // Events for admin create survey form
+
+    $("#add_benchmark").click(function(){
+      $("#selected_benchmark").append(`<li class="list-group-item d-flex justify-content-between align-items-center">
+        Finance Manager
+        <i class="fas fa-trash benchmark-trash"></i>
+      </li>`);
+    
+  });
+$(".review_survey_btn").click(function(){
+  
+  $("#review_survey_name").html($("#survey_name").val())
+  $("#review_client_name").html($("#client").val())
+  $("#review_industry").html($("#industry").val())
+  $("#review_area_of_operation").html($("#area_of_operation").val())
+  $("#review_start_date").html($("#start_date").val())
+  //append selected benchmark jobs to modal
+  var selected_jobs = $('#selected_benchmark').children('li');
+  $('#review_benchmark_jobs').empty()
+  selected_jobs.each(function(){
+    var item = $(this)[0].firstChild     
+   $('#review_benchmark_jobs').append('<li>'+item.nodeValue+'</li>');
+  })
+  //Append selected comparators to modal
+  var selected_comparators = $('#selected_comparators').children('li');
+  $('#review_comparators').empty()
+  selected_comparators.each(function(){
+    var item = $(this)[0].firstChild     
+   $('#review_comparators').append('<li>'+item.nodeValue+'</li>');
+  })
+
+})
+    
 })(jQuery); // End of use strict

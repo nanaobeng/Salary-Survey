@@ -211,7 +211,7 @@ def my_benchmark_jobs_create():
 
 @users.route("/my_surveys")
 def my_surveys():
-    return render_template("my_surveys.html")
+    return render_template("quantitative_survey_overview.html")
 
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():

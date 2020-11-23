@@ -5,50 +5,11 @@ Complete Survey
 {% endblock header %}
 {% block content %}
 <div class="col-12 text-right">
-  <span class="">Proceed to Questionnaire</span>
+  <a class="btn btn-outline-info" href="">Proceed to Questionnaire &nbsp;<i class="fas fa-arrow-right"></i></a>
 </div>
 <h5>Outstanding Jobs Benchmarking</h5>
 <br>
-  
-<style>
-.round-prefix{
-  height: 40px;
-  width: 40px;
-  text-align: center;
-  vertical-align: middle;
-  font-size: 16px;
-  color: white;
-  font-weight: bold;
-  border-top-right-radius: 25px;
-  border-bottom-right-radius: 25px;
-  border-right: solid white;
-  padding-top: 5px;
-}
-.job-card-content{
-  background-color: rgba(148, 190, 145, 0.226);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top: solid 1px lightgreen;
-  border-bottom: solid 1px lightgreen;
-  border-right: solid 1px lightgreen;
-}
-.job-card-content:hover{
-  border-color: rgb(0, 90, 23);
-  cursor: pointer;
-}
-.job-card-content-completed{
-  background-color: rgba(34, 36, 34, 0.226);
-  border-top-right-radius: 5px;
-  border-bottom-right-radius: 5px;
-  border-top: solid 1px darkgrey;
-  border-bottom: solid 1px darkgrey;
-  border-right: solid 1px darkgrey;
-}
-.job-card-content-completed:hover{
-  border-color: rgb(0, 90, 23);
-  cursor: pointer;
-}
-</style>
+
 
 <div class="row">
   <div class="col-lg-6 col-md-12 pl-4 pr-4 pb-4">
@@ -270,17 +231,6 @@ Complete Survey
       window.location.href ='{{  url_for("users.quantitative_survey")}}'
     });
 
-    $('#job_not_applicable').change(function() {
-        if($(this).is(":checked")) {
-          $('#proceed_btn').hide();     
-           $('#save_btn').show(); 
-        }
-        else{
-          $('#proceed_btn').show();     
-        $('#save_btn').hide(); 
-        }
-            
-    });
     $('document').ready(function(){
       $('#instruction').modal('show');
     })
