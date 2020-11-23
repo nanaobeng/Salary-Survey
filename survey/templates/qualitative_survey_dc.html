@@ -5,22 +5,6 @@
 
 {% block body %}
 
-<style>
-  legend {
-    width: auto;
-    font-size: medium;
-    font-style: italic;
-    color: rgb(107, 117, 126);
-    /* color: limegreen; */
-    /* margin-left: auto; */
-    margin-left: 1em;
-    margin-right: auto;
-  }
-
-  fieldset {
-    border-top: 1px solid grey;
-  }
-</style>
 
 <form>
   <div class="row direct_compensation_view p-4">
@@ -341,7 +325,6 @@
                     value="something">Performance/Merit increases
                 </label>
               </div>
-
               <div class="form-check">
                 <label class="form-check-label" for="check2">
                   <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">General
@@ -603,7 +586,8 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <b>B20. &nbsp; </b> Are there instances where the maximum salary for a grade has been
+              <label for="formal_sal_struct"> <b>B20. &nbsp; </b> Are there instances where the maximum salary for a
+                grade has been
                 exceeded?</label>
               <div class="row">
                 <div class="col-6">
@@ -645,10 +629,16 @@
 
 
 
-      <!-- Next Button -->
+      <!-- Next and Previous Button -->
       <!-- TODO: fix onclick action -->
-      <div class="col-12 text-right">
-        <span id="direct_compensation" class="btn btn-outline-info" onclick="switchView(this.id)">Next</b>
+      <div class="row">
+        <div class="col-6">
+          <span id="bonus" class="btn btn-outline-info" onclick="switchBack(this.id)">Back</span>
+        </div>
+
+        <div class="col-6 text-right">
+          <span id="bonus" class="btn btn-outline-info" onclick="switchView(this.id)">Next </span>
+        </div>
       </div>
 
     </div>

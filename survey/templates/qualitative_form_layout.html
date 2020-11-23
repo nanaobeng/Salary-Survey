@@ -56,6 +56,22 @@ Qualitative Survey
     p {
         font-style: italic;
     }
+
+
+    legend {
+        width: auto;
+        font-size: medium;
+        font-style: italic;
+        color: rgb(107, 117, 126);
+        /* color: limegreen; */
+        /* margin-left: auto; */
+        margin-left: 1em;
+        margin-right: auto;
+    }
+
+    fieldset {
+        border-top: 1px solid grey;
+    }
 </style>
 
 <div class="container">
@@ -76,11 +92,12 @@ Qualitative Survey
                         <p>Direct Compensation</p>
                     </div>
                     <div class="steps-step">
-                        <a href="{{ url_for('users.qualitative_survey_bip') }}" type="button" class="btn btn-secondary btn-circle" disabled="disabled">3</a>
+                        <a href="{{ url_for('users.qualitative_survey_bip') }}" type="button"
+                            class="btn btn-secondary btn-circle" disabled="disabled">3</a>
                         <p>Bonus / Incentive Plans</p>
                     </div>
                     <div class="steps-step">
-                        <a href="#step-12" type="button" class="btn btn-secondary btn-circle" disabled="disabled">4</a>
+                        <a href="{{ url_for('users.qualitative_survey_gpp') }}" type="button" class="btn btn-secondary btn-circle" disabled="disabled">4</a>
                         <p>General Personnel Practices</p>
                     </div>
                 </div>
