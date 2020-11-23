@@ -147,4 +147,243 @@ class Industry(db.Model):
 
 
 
+class Client_governace(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50),nullable=False)
+    last_name = db.Column(db.String(100),nullable=False)
+    other_names = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    mobile_number = db.Column(db.String(20))
+    nationality = db.Column(db.String(100))
+    position = db.Column(db.String(100))
+    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Client_governance %r>' % self.id
+
+
+class Service_request(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_of_request = db.Column(db.DateTime, nullable=False, default=datetime.utcnow )
+    type_of_request = db.Column(db.String(100), nullable=False)
+    status = db.Column(db.String(50), nullable=False)
+    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Service_request %r>' % self.id
+
+
+class Auditor(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    address = db.Column(db.String(200))
+    city = db.Column(db.String(100))
+    country = db.Column(db.String(100))
+    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Auditor %r>' % self.id
+
+
+
+class Survey(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    start_date = db.Column(db.DateTime)
+    end_date = db.Column(db.DateTime)
+    status = db.Column(db.String(100), nullable=False)
+    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Survey %r>' % self.id
+
+
+class Survey_comparator(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    survey_id = db.Column(db.Integer, db.ForeignKey('survey.id'))
+    comparator_id = db.Column(db.Integer, db.ForeignKey('comparator.id'))
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Survey_comparator %r>' % self.id
+
+
+class Department(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    department = db.Column(db.String(100))
     
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Department %r>' % self.id
+
+class Benchmark_job(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    job_title = db.Column(db.String(100))
+    grade = db.Column(db.String(50))
+    department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
+    reporting_relationship = db.Column(db.String(100))
+    job_description = db.Column(db.Text)
+    duties_and_responsibility = db.Column(db.Text)
+    financial_responsibilities = db.Column(db.Text)
+    technical_qualification = db.Column(db.Text)
+    minimum_years_of_experience = db.Column(db.Text)
+    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    survey_id = db.Column(db.Integer, db.ForeignKey('survey.id'))
+    
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Benchmark_job %r>' % self.id
+
+class Allowance(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    vehicle_maintenance = db.Column(db.Float)
+    housing = db.Column(db.Float)
+    vehicle = db.Column(db.Float)
+    transport = db.Column(db.Float)
+    utilities = db.Column(db.Float)
+    domestic_safety = db.Column(db.Float)
+    fuel = db.Column(db.Float)
+    entertainment = db.Column(db.Float)
+    car = db.Column(db.Float)
+    meal = db.Column(db.Float)
+    education_support = db.Column(db.Float)
+    vacation = db.Column(db.Float)
+    uniform = db.Column(db.Float)
+    mobile_money = db.Column(db.Float)
+    telephone = db.Column(db.Float)
+    miscellaenous = db.Column(db.Float)
+    driver = db.Column(db.Float)
+    rent = db.Column(db.Float)
+  
+
+    survey_comparator_id = db.Column(db.Integer, db.ForeignKey('survey_comparator.id'))
+    benchmark_job_id = db.Column(db.Integer, db.ForeignKey('benchmark_job.id'))
+    
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Allowance %r>' % self.id
+
+
+class Incentive(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    monthly_base_salary = db.Column(db.Float)
+    work_month = db.Column(db.Float)
+    job_value_adjustment = db.Column(db.Float)
+    company_performance = db.Column(db.Float)
+    individual_performance = db.Column(db.Float)
+    annual_incentive = db.Column(db.Float)
+    stock_options = db.Column(db.Float)
+    incentive = db.Column(db.Float)
+    other_cash = db.Column(db.Float)
+ 
+  
+
+    survey_comparator_id = db.Column(db.Integer, db.ForeignKey('survey_comparator.id'))
+    benchmark_job_id = db.Column(db.Integer, db.ForeignKey('benchmark_job.id'))
+    
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Incentive %r>' % self.id
+
+
+
+class Benefit(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    staff_bus = db.Column(db.Float)
+    company_car = db.Column(db.Float)
+    club_membership = db.Column(db.Float)
+    school_fees = db.Column(db.Float)
+    health_insurance = db.Column(db.Float)
+    medical_assistance = db.Column(db.Float)
+    life_insurance = db.Column(db.Float)
+    vacation = db.Column(db.Float)
+    personal_travel = db.Column(db.Float)
+    housing = db.Column(db.Float)
+    telephone = db.Column(db.Float)
+    driver = db.Column(db.Float)
+    security = db.Column(db.Float)
+    petrol = db.Column(db.Float)
+    vehicle_maintenance = db.Column(db.Float)
+    other_benefits = db.Column(db.Float)
+  
+  
+
+    survey_comparator_id = db.Column(db.Integer, db.ForeignKey('survey_comparator.id'))
+    benchmark_job_id = db.Column(db.Integer, db.ForeignKey('benchmark_job.id'))
+    
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Benefit %r>' % self.id
+
+
+class Comparator_job(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    job_title = db.Column(db.String(100))
+    department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
+    grade = db.Column(db.String(50))
+    reporting_relationship = db.Column(db.Text)
+    job_match = db.Column(db.Text)
+    comment = db.Column(db.Text)
+ 
+  
+
+    survey_comparator_id = db.Column(db.Integer, db.ForeignKey('survey_comparator.id'))
+    benchmark_job_id = db.Column(db.Integer, db.ForeignKey('benchmark_job.id'))
+    
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Comparator_job %r>' % self.id
