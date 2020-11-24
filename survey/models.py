@@ -25,6 +25,7 @@ class User(db.Model,UserMixin):
     password = db.Column(db.String(60),  nullable=False)
     client = db.relationship('Client', backref='client' , lazy=True)
     audit_log = db.relationship('Audit_log', backref='log' , lazy=True)
+    
 
 
     
