@@ -61,7 +61,7 @@ class Client(db.Model):
     date_of_inception = db.Column(db.DateTime)
     country_of_inception = db.Column(db.String(70))
     contact_person_id = db.Column(db.Integer,  db.ForeignKey('contact_person.id'))
-    postal_address_id = db.Column(db.Integer,  db.ForeignKey('address.id'))
+    # postal_address_id = db.Column(db.Integer,  db.ForeignKey('address.id'))
     street_address_id = db.Column(db.Integer,   db.ForeignKey('address.id'))
     company_history = db.Column(db.Text)
     user_id = db.Column(db.Integer,  db.ForeignKey('user.id'))
@@ -69,18 +69,18 @@ class Client(db.Model):
     registration_number = db.Column(db.String(50))
     tax_id = db.Column(db.String(20))
     board_chairman_id = db.Column(db.Integer,  db.ForeignKey('client_governace.id'))
-    ceo_id = db.Column(db.Integer ,  db.ForeignKey('client_governace.id') )
-    key_management_id = db.Column(db.Integer  ,  db.ForeignKey('client_governace.id'))
-    current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('auditor.id'))
+    # ceo_id = db.Column(db.Integer ,  db.ForeignKey('client_governace.id') )
+    # key_management_id = db.Column(db.Integer  ,  db.ForeignKey('client_governace.id'))
+    # current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('auditor.id'))
     previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('auditor.id'))
-    client_address = db.relationship('Address', backref='client_address' , lazy=True)
-    contact_person = db.relationship('Contact_person', backref='contact' , lazy=True)
-    governance = db.relationship('Client_governace', backref='governance' , lazy=True)
-    service_request = db.relationship('Service_request', backref='request' , lazy=True)
-    auditor = db.relationship('Auditor', backref='audit' , lazy=True)
-    survey = db.relationship('Survey', backref='survey_info' , lazy=True)
-    benchmark = db.relationship('Benchmark_job', backref='benchmark' , lazy=True)
-    comparator = db.relationship('Survey_comparator', backref='client' , lazy=True)
+    # client_address = db.relationship('Address', backref='client_address' , lazy=True)
+    # contact_person = db.relationship('Contact_person', backref='contact' , lazy=True)
+    # governance = db.relationship('Client_governace', backref='governance' , lazy=True)
+    # service_request = db.relationship('Service_request', backref='request' , lazy=True)
+    # auditor = db.relationship('Auditor', backref='audit' , lazy=True)
+    # survey = db.relationship('Survey', backref='survey_info' , lazy=True)
+    # benchmark = db.relationship('Benchmark_job', backref='benchmark' , lazy=True)
+    # comparator = db.relationship('Survey_comparator', backref='client' , lazy=True)
     
 
 
@@ -111,8 +111,8 @@ class Address(db.Model):
     city = db.Column(db.String(100))
     region = db.Column(db.String(50))
     country = db.Column(db.String(100))
-    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
-    client = db.relationship('Client', backref='client' , lazy=True)
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    client = db.relationship('Client', backref='address' , lazy=True)
    
 
     def __repr__(self):
@@ -121,7 +121,7 @@ class Address(db.Model):
 class Sector(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sector = db.Column(db.String(100))
-    client = db.relationship('Client', backref='client' , lazy=True)
+    client = db.relationship('Client', backref='sector' , lazy=True)
 
    
 
@@ -138,8 +138,8 @@ class Contact_person(db.Model):
     mobile_number = db.Column(db.String(20))
     date_of_birth = db.Column(db.DateTime)
     nationality = db.Column(db.String(100))
-    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
-    client = db.relationship('Client', backref='client' , lazy=True)
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    client = db.relationship('Client', backref='contact_person' , lazy=True)
     
    
 
@@ -151,7 +151,7 @@ class Sub_industry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sub_industry = db.Column(db.String(100))
     industry = db.Column(db.Integer, db.ForeignKey('industry.id'))
-    client = db.relationship('Client', backref='client' , lazy=True)
+    client = db.relationship('Client', backref='sub_industry' , lazy=True)
     
    
 
@@ -161,7 +161,7 @@ class Sub_industry(db.Model):
 class Industry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     industry = db.Column(db.String(100))
-    sub_industry = db.relationship('Sub_industry', backref='sub' , lazy=True)
+    # sub_industry = db.relationship('Sub_industry', backref='industry' , lazy=True)
     
 
    
@@ -180,9 +180,9 @@ class Client_governace(db.Model):
     mobile_number = db.Column(db.String(20))
     nationality = db.Column(db.String(100))
     position = db.Column(db.String(100))
-    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
-    client = db.relationship('Client', backref='client' , lazy=True)
+    client = db.relationship('Client', backref='client_governance' , lazy=True)
 
 
 
@@ -215,13 +215,9 @@ class Auditor(db.Model):
     address = db.Column(db.String(200))
     city = db.Column(db.String(100))
     country = db.Column(db.String(100))
-    client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
-    client = db.relationship('Client', backref='client' , lazy=True)
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    client = db.relationship('Client', backref='auditor' , lazy=True)
 
-
-
-
-   
 
     def __repr__(self):
         return '<Auditor %r>' % self.id
@@ -274,7 +270,7 @@ class Survey_comparator(db.Model):
 class Department(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     department = db.Column(db.String(100))
-    benchmark = db.relationship('Benchmark_job', backref='benchmark' , lazy=True)
+    benchmark = db.relationship('Benchmark_job', backref='department' , lazy=True)
     job = db.relationship('Comparator_job', backref='department' , lazy=True)
 
 
