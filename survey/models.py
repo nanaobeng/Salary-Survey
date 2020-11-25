@@ -25,6 +25,7 @@ class User(db.Model,UserMixin):
     password = db.Column(db.String(60),  nullable=False)
     client = db.relationship('Client', backref='client' , lazy=True)
     audit_log = db.relationship('Audit_log', backref='log' , lazy=True)
+    
 
 
     
@@ -65,18 +66,19 @@ class Client(db.Model):
     date_of_inception = db.Column(db.DateTime)
     country_of_inception = db.Column(db.String(70))
     contact_person_id = db.Column(db.Integer,  db.ForeignKey('contact_person.id'))
-    # postal_address_id = db.Column(db.Integer,  db.ForeignKey('address.id'))
-    street_address_id = db.Column(db.Integer,   db.ForeignKey('address.id'))
+    postal_address_id = db.Column(db.Integer,  db.ForeignKey('postal_address.id'))
+    street_address_id = db.Column(db.Integer,   db.ForeignKey('street_address.id'))
     company_history = db.Column(db.Text)
     user_id = db.Column(db.Integer,  db.ForeignKey('user.id'))
     client_type = db.Column(db.String(50))
     registration_number = db.Column(db.String(50))
     tax_id = db.Column(db.String(20))
-    board_chairman_id = db.Column(db.Integer,  db.ForeignKey('client_governace.id'))
-    # ceo_id = db.Column(db.Integer ,  db.ForeignKey('client_governace.id') )
-    # key_management_id = db.Column(db.Integer  ,  db.ForeignKey('client_governace.id'))
-    # current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('auditor.id'))
-    previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('auditor.id'))
+    board_chairman_id = db.Column(db.Integer,  db.ForeignKey('board_chairman.id'))
+    ceo_id = db.Column(db.Integer ,  db.ForeignKey('ceo.id') )
+    key_management_id = db.Column(db.Integer  ,  db.ForeignKey('key_management.id'))
+    current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('current_auditor.id'))
+    previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('previous_auditor.id'))
+
     # client_address = db.relationship('Address', backref='client_address' , lazy=True)
     # contact_person = db.relationship('Contact_person', backref='contact' , lazy=True)
     # governance = db.relationship('Client_governace', backref='governance' , lazy=True)
@@ -108,7 +110,7 @@ class Audit_log(db.Model):
         return '<Audit_log %r>' % self.id
 
 
-class Address(db.Model):
+class Street_address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     street_line1 = db.Column(db.String(100))
     street_line2 = db.Column(db.String(100) )
@@ -116,7 +118,21 @@ class Address(db.Model):
     region = db.Column(db.String(50))
     country = db.Column(db.String(100))
     # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
-    client = db.relationship('Client', backref='address' , lazy=True)
+    client = db.relationship('Client', backref='street_address' , lazy=True)
+   
+
+    def __repr__(self):
+        return '<Address %r>' % self.id
+
+class Postal_address(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    street_line1 = db.Column(db.String(100))
+    street_line2 = db.Column(db.String(100) )
+    city = db.Column(db.String(100))
+    region = db.Column(db.String(50))
+    country = db.Column(db.String(100))
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    client = db.relationship('Client', backref='postal_address' , lazy=True)
    
 
     def __repr__(self):
@@ -175,7 +191,7 @@ class Industry(db.Model):
 
 
 
-class Client_governace(db.Model):
+class Key_management(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50))
     last_name = db.Column(db.String(100))
@@ -186,7 +202,7 @@ class Client_governace(db.Model):
     position = db.Column(db.String(100))
     # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
-    client = db.relationship('Client', backref='client_governance' , lazy=True)
+    client = db.relationship('Client', backref='key_management' , lazy=True)
 
 
 
@@ -194,7 +210,51 @@ class Client_governace(db.Model):
    
 
     def __repr__(self):
-        return '<Client_governance %r>' % self.id
+        return '<Key_management %r>' % self.id
+
+
+class Ceo(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(100))
+    other_names = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    mobile_number = db.Column(db.String(20))
+    nationality = db.Column(db.String(100))
+    position = db.Column(db.String(100))
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+
+    client = db.relationship('Client', backref='ceo' , lazy=True)
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Ceo %r>' % self.id
+
+
+class Board_chairman(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    first_name = db.Column(db.String(50))
+    last_name = db.Column(db.String(100))
+    other_names = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    mobile_number = db.Column(db.String(20))
+    nationality = db.Column(db.String(100))
+    position = db.Column(db.String(100))
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+
+    client = db.relationship('Client', backref='board_chairman' , lazy=True)
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Board_chairman %r>' % self.id
 
 
 class Service_request(db.Model):
@@ -213,18 +273,32 @@ class Service_request(db.Model):
         return '<Service_request %r>' % self.id
 
 
-class Auditor(db.Model):
+class Current_auditor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
     address = db.Column(db.String(200))
     city = db.Column(db.String(100))
     country = db.Column(db.String(100))
     # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
-    client = db.relationship('Client', backref='auditor' , lazy=True)
+    client = db.relationship('Client', backref='current_auditor' , lazy=True)
 
 
     def __repr__(self):
-        return '<Auditor %r>' % self.id
+        return '<Current_Auditor %r>' % self.id
+
+
+class Previous_auditor(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    address = db.Column(db.String(200))
+    city = db.Column(db.String(100))
+    country = db.Column(db.String(100))
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    client = db.relationship('Client', backref='previous_auditor' , lazy=True)
+
+
+    def __repr__(self):
+        return '<Previous_uditor %r>' % self.id
 
 
 
