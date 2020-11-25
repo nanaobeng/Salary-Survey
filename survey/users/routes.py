@@ -309,7 +309,14 @@ def update_client():
 def client_benchmark():
     
     form = SurveyForm()
-    return render_template("client_create_benchmark_job.html",form=form)
+    return render_template("client_create_benchmark_job.html", form=form)
+
+
+@users.route("/user/view-benchmark")
+def client_view_benchmark():
+    
+    form = SurveyForm()
+    return render_template("client_view_benchmark_job.html", form=form)
 
 
 @users.route("/administration/review_benchmark")

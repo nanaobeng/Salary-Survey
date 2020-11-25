@@ -1,0 +1,1676 @@
+{% extends "layout.html" %}
+
+{% block header %} 
+View Benchmark Job
+{% endblock header %}
+{% block content %}
+
+<script>
+    $(document).ready(function(){
+      $( ".job_card" ).addClass( "active" );
+       $(".bonus").css("display", "none");
+       $(".benefit_vehicle").css("display", "none");
+       $(".benefit_health").css("display", "none");
+       $(".benefit_personal").css("display", "none");
+       $(".allowance").css("display", "none");
+       $(".allowance_vehicle").css("display", "none");
+       $(".allowance_health").css("display", "none");
+       $(".allowance_personal").css("display", "none");
+       $('.basic_status').html("(active)")
+       $('.submit_button').css("display","none")
+       
+
+    });
+
+</script>
+
+<div class="container survey" >
+    <div class="row">
+      <div class="col-12 p-4">
+  
+        <div class="row">
+          <div class="col-12 " >
+                <div class="container">
+         
+                  <ul class="progress-indicator">
+                    <li class="job_card ">
+                        <span class="bubble"></span>
+                        Job Details. <br><small class="job_status"></small>
+                    </li>
+                      <li class="basic_card ">
+                          <span class="bubble"></span>
+                          Base Salary. <br><small class="basic_status"></small>
+                      </li>
+                      <li class=" bonus_card ">
+                          <span class="bubble"></span>
+                          Bonus. <br><small class="bonus_status"></small>
+                      </li>
+                      <li class="benefit_card">
+                          <span class="bubble"></span>
+                          Benefit. <br><small class="benefit_status"></small>
+                      </li>
+                      <li class="allowance_card">
+                          <span class="bubble"></span>
+                          Allowance.<br><small class="allowance_status"></small>
+                      </li>
+                      <li class="review_card">
+                        <span class="bubble"></span>
+                        Review.<br><small class="review_status"></small>
+                    </li>
+                      
+                  </ul>   
+                  </div>
+  
+        </div>
+      </div>
+  
+        <div class="row pt-4">
+          <div class="col-12 pt-4">
+            <div class="card">
+              <div class="card-body p-4">
+  <div class=" testdiv">
+    <div class="col-12">
+          <form method="POST" action="">
+            {{ form.hidden_tag() }}
+
+            <div class="col-12 job">
+
+                <div class="container">
+
+                    <br>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="job_title">Job Title</label>
+                                <input type="text" name="job_title" id="job_title" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="department">Department</label>
+                                <input type="text" name="department" id="department" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="grade">Grade</label>
+                                <input type="text" name="grade" id="grade" class="form-control" readonly>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="reporting_relationship">Reporting Relationship</label>
+                                <input type="text" name="reporting_relationship" id="reporting_relationship" class="form-control" readonly>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="job_description">Job Description</label>
+                                <textarea name="job_description" class="form-control benchmark_job_textarea" id="job_description" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="key_duties">Key Duties and Scope of Responsibility</label>
+                                <textarea name="key_duties" class="form-control benchmark_job_textarea" id="key_duties" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="financial_responsibilities">Financial Responsibilities</label>
+                                <textarea name="financial_responsibilities" class="form-control benchmark_job_textarea" id="financial_responsibilities" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label for="technical_qualification">Technical/Professional Qualification</label>
+                                <textarea name="technical_qualification" class="form-control benchmark_job_textarea" id="technical_qualification" readonly></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6 col-md-12">
+                            <div class="form-group">
+                                <label for="years_of_experience">Minimum Years of Experience</label>
+                                <input type="number" class="form-control" readonly name="years_of_experience" id="years_of_experience">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 text-right">
+                            <span class="btn btn-info rah " style="color:#fff"> Next</span>
+                        </div>
+                        
+                    </div>
+                    <br/>
+                
+                </div>
+
+
+
+            </div>
+  
+  
+  
+          <div class="col-12 basic_salary" style="display:none">
+                <div class="form-group">
+                    {{ form.base_salary.label(class="form-control-label") }}
+        
+                    {% if form.base_salary.errors %}
+                    {{ form.base_salary(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.base_salary.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.base_salary(class="form-control form-control") }}
+                    {% endif %}
+        
+                    
+                </div>
+                
+                <div class="row">
+                    <div class="col-6 basic_salary ">
+                        <span class="btn btn-outline-info" id="basic" onclick="switchBack(this.id)">Back</span>
+        
+                    </div>
+        
+                    
+                    <div class="col-6 basic_salary text-right">
+                      <span class="btn btn-info rah" style="color:#fff"> Next</span>
+      
+                  </div>
+                </div>
+  
+              </div>
+  
+  
+  
+                <!-- start of bonus questions-->
+                    <div class="row  bonus" style="display:none">
+                <div class="col-6 bonus" style="display:none">
+                  <div class="form-group">
+                    {{ form.company_bonus_performance.label(class="form-control-label") }}
+        
+                    {% if form.company_bonus_performance.errors %}
+                    {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.company_bonus_performance.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.company_bonus_performance(class="form-control form-control") }}
+                    {% endif %}
+        
+                    
+                </div>
+  
+                </div>
+                <div class="col-6 bonus">
+                  <div class="form-group">
+                    {{ form.individual_bonus_performance.label(class="form-control-label") }}
+        
+                    {% if form.individual_bonus_performance.errors %}
+                    {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.individual_bonus_performance.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.individual_bonus_performance(class="form-control form-control") }}
+                    {% endif %}
+        
+                    
+                </div>
+  
+                  </div>
+  
+                  <div class="col-4 bonus">
+                    <div class="form-group">
+                      {{ form.annual_bonus.label(class="form-control-label") }}
+          
+                      {% if form.annual_bonus.errors %}
+                      {{ form.annual_bonus(class="form-control form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in form.annual_bonus.errors %}
+                          <span> {{ error}}</span>
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.annual_bonus(class="form-control form-control") }}
+                      {% endif %}
+          
+                      
+                  </div>
+  
+                  </div>
+  
+  
+                  <div class="col-4 bonus">
+                    <div class="form-group">
+                      {{ form.incentive_bonus.label(class="form-control-label") }}
+          
+                      {% if form.incentive_bonus.errors %}
+                      {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in form.incentive_bonus.errors %}
+                          <span> {{ error}}</span>
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.incentive_bonus(class="form-control form-control") }}
+                      {% endif %}
+          
+                      
+                  </div>
+  
+                  </div>
+  
+  
+                  <div class="col-4 bonus">
+                    <div class="form-group">
+                      {{ form.other_bonus.label(class="form-control-label") }}
+          
+                      {% if form.other_bonus.errors %}
+                      {{ form.other_bonus(class="form-control form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in form.other_bonus.errors %}
+                          <span> {{ error}}</span>
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.other_bonus(class="form-control form-control") }}
+                      {% endif %}
+          
+                      
+                  </div>
+  
+                  </div>
+                  <div class="col-6 bonus" >
+                      <span class="btn btn-outline-info" id="bonus" onclick="switchBack(this.id)">Back</span>
+                  </div>
+                  <div class="col-6 bonus text-right">
+                      <span class="btn btn-info rah" style="color:#fff"> Next</span>
+  
+                  </div>
+                </div>
+  
+            
+  
+               <!-- end of bonus -->
+               <div class="row" >
+                 <!-- start of benefit questions-->
+                 <div class="row">
+                  <div class="col-12">
+                      <div class="row ">
+                          <div class="col-4 " >
+                              <div class="card vehicle_nav" style="height:15px;display:none" >
+                                  <div class="card-body">
+                                    
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-4 " >
+                              <div class="card health_nav" style="height:15px;display:none">
+                                  <div class="card-body">
+                                      
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-4 " >
+                              <div class="card personal_nav" style="height:15px;display:none">
+                                  <div class="card-body">
+                                    
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                          <div class="col-12 benefit_vehicle">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <div class="row">
+                                          <div class="col-4 benefit">
+                                            <div class="form-group">
+                                              {{ form.staff_bus.label(class="form-control-label") }}
+                                  
+                                              {% if form.staff_bus.errors %}
+                                              {{ form.staff_bus(class="form-control form-control is-invalid")}}
+                                              <div class="invalid-feedback">
+                                                  {% for error in form.staff_bus.errors %}
+                                                  <span> {{ error}}</span>
+                                                  {% endfor %}
+                                              </div>
+                                              {% else %}
+                                              {{ form.staff_bus(class="form-control form-control") }}
+                                              {% endif %}
+                                  
+                                              
+                                          </div>
+                          
+                                            </div>
+                                            <div class="col-4 benefit">
+                                              <div class="form-group">
+                                                {{ form.company_car.label(class="form-control-label") }}
+                                    
+                                                {% if form.company_car.errors %}
+                                                {{ form.company_car(class="form-control form-control is-invalid")}}
+                                                <div class="invalid-feedback">
+                                                    {% for error in form.company_car.errors %}
+                                                    <span> {{ error}}</span>
+                                                    {% endfor %}
+                                                </div>
+                                                {% else %}
+                                                {{ form.company_car(class="form-control form-control") }}
+                                                {% endif %}
+                                    
+                                                
+                                            </div>
+                            
+                                              </div>
+  
+                                              <div class="col-4 benefit">
+                                                <div class="form-group">
+                                                  {{ form.personal_travel.label(class="form-control-label") }}
+                                      
+                                                  {% if form.personal_travel.errors %}
+                                                  {{ form.personal_travel(class="form-control form-control is-invalid")}}
+                                                  <div class="invalid-feedback">
+                                                      {% for error in form.personal_travel.errors %}
+                                                      <span> {{ error}}</span>
+                                                      {% endfor %}
+                                                  </div>
+                                                  {% else %}
+                                                  {{ form.personal_travel(class="form-control form-control") }}
+                                                  {% endif %}
+                                      
+                                                  
+                                              </div>
+                              
+                                                </div>
+  
+  
+                                                <div class="col-4 benefit">
+                                                  <div class="form-group">
+                                                    {{ form.petrol.label(class="form-control-label") }}
+                                        
+                                                    {% if form.petrol.errors %}
+                                                    {{ form.petrol(class="form-control form-control is-invalid")}}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.petrol.errors %}
+                                                        <span> {{ error}}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form.petrol(class="form-control form-control") }}
+                                                    {% endif %}
+                                        
+                                                    
+                                                </div>
+                              
+                                                </div>
+                      
+                      
+                                                <div class="col-4 benefit">
+                                                  <div class="form-group">
+                                                    {{ form.vehicle.label(class="form-control-label") }}
+                                        
+                                                    {% if form.vehicle.errors %}
+                                                    {{ form.vehicle(class="form-control form-control is-invalid")}}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.vehicle.errors %}
+                                                        <span> {{ error}}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form.vehicle(class="form-control form-control") }}
+                                                    {% endif %}
+                                        
+                                                    
+                                                </div>
+                              
+                                                </div>
+  
+                                                <div class="col-4 benefit">
+                                                  <div class="form-group">
+                                                    {{ form.driver.label(class="form-control-label") }}
+                                        
+                                                    {% if form.driver.errors %}
+                                                    {{ form.driver(class="form-control form-control is-invalid")}}
+                                                    <div class="invalid-feedback">
+                                                        {% for error in form.driver.errors %}
+                                                        <span> {{ error}}</span>
+                                                        {% endfor %}
+                                                    </div>
+                                                    {% else %}
+                                                    {{ form.driver(class="form-control form-control") }}
+                                                    {% endif %}
+                                        
+                                                    
+                                                </div>
+                              
+                                                </div>
+  
+                                      </div>
+  
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-12 benefit_health">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <div class="row">
+                              <div class="col-4 benefit">
+                                <div class="form-group">
+                                  {{ form.health_insurance.label(class="form-control-label") }}
+                      
+                                  {% if form.health_insurance.errors %}
+                                  {{ form.health_insurance(class="form-control form-control is-invalid")}}
+                                  <div class="invalid-feedback">
+                                      {% for error in form.health_insurance.errors %}
+                                      <span> {{ error}}</span>
+                                      {% endfor %}
+                                  </div>
+                                  {% else %}
+                                  {{ form.health_insurance(class="form-control form-control") }}
+                                  {% endif %}
+                      
+                                  
+                              </div>
+              
+                                </div>
+      
+      
+                                <div class="col-4 benefit">
+                                  <div class="form-group">
+                                    {{ form.medical_assistance.label(class="form-control-label") }}
+                        
+                                    {% if form.medical_assistance.errors %}
+                                    {{ form.medical_assistance(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.medical_assistance.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.medical_assistance(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+      
+      
+                                <div class="col-4 benefit">
+                                  <div class="form-group">
+                                    {{ form.funeral_assistance.label(class="form-control-label") }}
+                        
+                                    {% if form.funeral_assistance.errors %}
+                                    {{ form.funeral_assistance(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.funeral_assistance.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.funeral_assistance(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+      
+      
+                                <div class="col-6 benefit">
+                                  <div class="form-group">
+                                    {{ form.life_insurance.label(class="form-control-label") }}
+                        
+                                    {% if form.life_insurance.errors %}
+                                    {{ form.life_insurance(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.life_insurance.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.life_insurance(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+      
+                                <div class="col-6 benefit">
+                                  <div class="form-group">
+                                    {{ form.group_accident.label(class="form-control-label") }}
+                        
+                                    {% if form.group_accident.errors %}
+                                    {{ form.group_accident(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.group_accident.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.group_accident(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+                                </div>
+                                </div>
+                                </div>
+  
+                          </div>
+                          <div class="col-12 benefit_personal">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <div class="row">
+  
+                              <div class="col-4 benefit">
+                                <div class="form-group">
+                                  {{ form.club_membership.label(class="form-control-label") }}
+                      
+                                  {% if form.club_membership.errors %}
+                                  {{ form.club_membership(class="form-control form-control is-invalid")}}
+                                  <div class="invalid-feedback">
+                                      {% for error in form.club_membership.errors %}
+                                      <span> {{ error}}</span>
+                                      {% endfor %}
+                                  </div>
+                                  {% else %}
+                                  {{ form.club_membership(class="form-control form-control") }}
+                                  {% endif %}
+                      
+                                  
+                              </div>
+              
+                                </div>
+                                <div class="col-4 benefit">
+                                  <div class="form-group">
+                                    {{ form.school_fees.label(class="form-control-label") }}
+                        
+                                    {% if form.school_fees.errors %}
+                                    {{ form.school_fees(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.school_fees.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.school_fees(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+      
+                               
+      
+                                <div class="col-4 benefit">
+                                  <div class="form-group">
+                                    {{ form.vacation.label(class="form-control-label") }}
+                        
+                                    {% if form.vacation.errors %}
+                                    {{ form.vacation(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.vacation.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.vacation(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+      
+                               
+      
+                                <div class="col-4 benefit">
+                                  <div class="form-group">
+                                    {{ form.housing.label(class="form-control-label") }}
+                        
+                                    {% if form.housing.errors %}
+                                    {{ form.housing(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.housing.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.housing(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+      
+                                <div class="col-4 benefit">
+                                  <div class="form-group">
+                                    {{ form.telephone.label(class="form-control-label") }}
+                        
+                                    {% if form.telephone.errors %}
+                                    {{ form.telephone(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.telephone.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.telephone(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+      
+                               
+      
+                                <div class="col-4 benefit">
+                                  <div class="form-group">
+                                    {{ form.security.label(class="form-control-label") }}
+                        
+                                    {% if form.security.errors %}
+                                    {{ form.security(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.security.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.security(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+  
+                                <div class="col-6 benefit">
+                                  <div class="form-group">
+                                    {{ form.other_benefits.label(class="form-control-label") }}
+                        
+                                    {% if form.other_benefits.errors %}
+                                    {{ form.other_benefits(class="form-control form-control is-invalid")}}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.other_benefits.errors %}
+                                        <span> {{ error}}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.other_benefits(class="form-control form-control") }}
+                                    {% endif %}
+                        
+                                    
+                                </div>
+              
+                                </div>
+                                </div>
+                                </div>
+                              </div>
+                          
+  
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              
+                  
+                   
+  
+  
+                   
+  
+                  
+                  </div>
+                  <div class="row pt-4">
+                      <br/>
+                      <div class="col-6 benefit_vehicle" >
+                          <span class="btn btn-outline-info" id="benefit_vehicle" onclick="switchBack(this.id)">Back</span>
+                      </div>
+                      <div class="col-6 benefit_vehicle text-right">
+                          <span class="btn btn-info rah" style="color:#fff"> Next</span>
+      
+                      </div>
+                      <div class="col-6 benefit_health" >
+                          <span class="btn btn-outline-info" id="benefit_health" onclick="switchBack(this.id)">Back</span>
+                      </div>
+                      <div class="col-6 benefit_health text-right">
+                          <span class="btn btn-info rah" style="color:#fff"> Next</span>
+      
+                      </div>
+                      <div class="col-6 benefit_personal" >
+                          <span class="btn btn-outline-info" id="benefit_personal" onclick="switchBack(this.id)">Back</span>
+                      </div>
+                      <div class="col-6 benefit_personal text-right">
+                          <span class="btn btn-info rah" style="color:#fff"> Next</span>
+      
+                      </div>
+  </div>
+  
+                 <!-- end of benefit -->
+               </div>
+  
+  
+               <div class="row">
+  
+                 <!-- start of allowance questions-->
+  <div class="col-12">
+                 <div class="row">
+                  <div class="col-12">
+                      <div class="row ">
+                        <div class="col-4 " >
+                          <div class="card vehicle_allowance" style="height:15px;display:none">
+                              <div class="card-body">
+                                 
+                              </div>
+                          </div>
+                      </div>
+  
+                          <div class="col-4 " >
+                              <div class="card health_allowance" style="height:15px;display:none">
+                                  <div class="card-body">
+                                  
+                                  </div>
+                              </div>
+                          </div>
+  
+                          <div class="col-4 " >
+                              <div class="card personal_allowance" style="height:15px;display:none">
+                                  <div class="card-body">
+                                    
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                      <br/>
+                      <div class="row">
+                          <div class="col-12 allowance_vehicle">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <div class="row">
+                                        <div class="col-4 allowance_vehicle">
+                                          <div class="form-group">
+                                            {{ form.vehicle_maintenance.label(class="form-control-label") }}
+                                
+                                            {% if form.vehicle_maintenance.errors %}
+                                            {{ form.vehicle_maintenance(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.vehicle_maintenance.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.vehicle_maintenance(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+                                        <div class="col-4 allowance_vehicle">
+                                          <div class="form-group">
+                                            {{ form.allowance_vehicle.label(class="form-control-label") }}
+                                
+                                            {% if form.allowance_vehicle.errors %}
+                                            {{ form.allowance_vehicle(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.allowance_vehicle.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.allowance_vehicle(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+                                        <div class="col-4 allowance_vehicle">
+                                          <div class="form-group">
+                                            {{ form.transport.label(class="form-control-label") }}
+                                
+                                            {% if form.transport.errors %}
+                                            {{ form.transport(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.transport.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.transport(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+  
+                                        <div class="col-4 allowance_vehicle">
+                                          <div class="form-group">
+                                            {{ form.fuel.label(class="form-control-label") }}
+                                
+                                            {% if form.fuel.errors %}
+                                            {{ form.fuel(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.fuel.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.fuel(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+  
+                                        <div class="col-4 allowance_vehicle">
+                                          <div class="form-group">
+                                            {{ form.car.label(class="form-control-label") }}
+                                
+                                            {% if form.car.errors %}
+                                            {{ form.car(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.car.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.car(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+  
+                                        <div class="col-4 allowance_vehicle">
+                                          <div class="form-group">
+                                            {{ form.allowance_driver.label(class="form-control-label") }}
+                                
+                                            {% if form.allowance_driver.errors %}
+                                            {{ form.allowance_driver(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.allowance_driver.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.allowance_driver(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+  
+                                               
+  
+                                      </div>
+  
+                                  </div>
+                              </div>
+                          </div>
+                          <div class="col-12 allowance_health">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <div class="row">
+                             <div class="col-4 allowance_health">
+                              <div class="form-group">
+                                {{ form.domestic.label(class="form-control-label") }}
+                    
+                                {% if form.domestic.errors %}
+                                {{ form.domestic(class="form-control form-control is-invalid")}}
+                                <div class="invalid-feedback">
+                                    {% for error in form.domestic.errors %}
+                                    <span> {{ error}}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.domestic(class="form-control form-control") }}
+                                {% endif %}
+                    
+                                
+                            </div>
+  
+                    </div>
+  
+                    <div class="col-4 allowance_health">
+                      <div class="form-group">
+                        {{ form.allowance_housing.label(class="form-control-label") }}
+            
+                        {% if form.allowance_housing.errors %}
+                        {{ form.allowance_housing(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.allowance_housing.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.allowance_housing(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+  
+                    </div>
+  
+                    <div class="col-4 allowance_health">
+                      <div class="form-group">
+                        {{ form.utilities.label(class="form-control-label") }}
+            
+                        {% if form.utilities.errors %}
+                        {{ form.utilities(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.utilities.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.utilities(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+  
+                    </div>
+  
+                    <div class="col-6 allowance_health">
+                      <div class="form-group">
+                        {{ form.meal.label(class="form-control-label") }}
+            
+                        {% if form.meal.errors %}
+                        {{ form.meal(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.meal.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.meal(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+  
+                    </div>
+  
+                    <div class="col-6 allowance_health">
+                      <div class="form-group">
+                        {{ form.allowance_telephone.label(class="form-control-label") }}
+            
+                        {% if form.allowance_telephone.errors %}
+                        {{ form.allowance_telephone(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.allowance_telephone.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.allowance_telephone(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+  
+                    </div>
+  
+      
+      
+                                
+      
+                              
+      
+                                </div>
+                                </div>
+                                </div>
+  
+                          </div>
+                          <div class="col-12 allowance_personal">
+                              <div class="card">
+                                  <div class="card-body">
+                                      <div class="row">
+  
+                                        <div class="col-6 allowance_personal">
+                                          <div class="form-group">
+                                            {{ form.entertainment.label(class="form-control-label") }}
+                                
+                                            {% if form.entertainment.errors %}
+                                            {{ form.entertainment(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.entertainment.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.entertainment(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+                                        <div class="col-6 allowance_personal">
+                                          <div class="form-group">
+                                            {{ form.education.label(class="form-control-label") }}
+                                
+                                            {% if form.education.errors %}
+                                            {{ form.education(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.education.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.education(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+              
+                                        <div class="col-4 allowance_personal">
+                                          <div class="form-group">
+                                            {{ form.vacation.label(class="form-control-label") }}
+                                
+                                            {% if form.vacation.errors %}
+                                            {{ form.vacation(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.vacation.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.vacation(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+                                        <div class="col-4 allowance_personal">
+                                          <div class="form-group">
+                                            {{ form.uniform.label(class="form-control-label") }}
+                                
+                                            {% if form.uniform.errors %}
+                                            {{ form.uniform(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.uniform.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.uniform(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                      
+                                        </div>
+  
+                                        <div class="col-4 allowance_personal">
+                                          <div class="form-group">
+                                            {{ form.mobile_money.label(class="form-control-label") }}
+                                
+                                            {% if form.mobile_money.errors %}
+                                            {{ form.mobile_money(class="form-control form-control is-invalid")}}
+                                            <div class="invalid-feedback">
+                                                {% for error in form.mobile_money.errors %}
+                                                <span> {{ error}}</span>
+                                                {% endfor %}
+                                            </div>
+                                            {% else %}
+                                            {{ form.mobile_money(class="form-control form-control") }}
+                                            {% endif %}
+                                
+                                            
+                                        </div>
+                    
+                                      </div>
+      
+                                      <div class="col-6 allowance_personal">
+                                        <div class="form-group">
+                                          {{ form.misc.label(class="form-control-label") }}
+                              
+                                          {% if form.misc.errors %}
+                                          {{ form.misc(class="form-control form-control is-invalid")}}
+                                          <div class="invalid-feedback">
+                                              {% for error in form.misc.errors %}
+                                              <span> {{ error}}</span>
+                                              {% endfor %}
+                                          </div>
+                                          {% else %}
+                                          {{ form.misc(class="form-control form-control") }}
+                                          {% endif %}
+                              
+                                          
+                                      </div>
+                    
+                                      </div>
+      
+                               
+      
+                               
+      
+                               
+      
+                               
+      
+                             
+                                </div>
+                                </div>
+                              </div>
+                          
+  
+                          </div>
+                      </div>
+                  </div>
+              </div>
+            
+          
+              
+               <!-- end of allowance -->
+              </div>
+              <div class="col-12">
+                  <div class="row pt-4">
+                      <div class="col-6 allowance_vehicle" >
+                          <span class="btn btn-outline-info" id="allowance_vehicle" onclick="switchBack(this.id)">Back</span>
+                      </div>
+                      <div class="col-6 allowance_vehicle text-right">
+                          <span class="btn btn-info rah" style="color:#fff"> Next</span>
+      
+                      </div>
+                      
+                      <div class="col-6 allowance_health" >
+                          <span class="btn btn-outline-info" id="allowance_health" onclick="switchBack(this.id)">Back</span>
+                      </div>
+                      <div class="col-6 allowance_health text-right">
+                          <span class="btn btn-info rah" style="color:#fff"> Next</span>
+      
+                      </div>
+                      <div class="col-6 allowance_personal" >
+                          <span class="btn btn-outline-info" id="allowance_personal" onclick="switchBack(this.id)">Back</span>
+                      </div>
+  
+                      <div class="col-6 allowance_personal text-right" >
+                        <span class="btn btn-info rah" style="color:#fff"> Next</span>
+                      </div>
+                      
+  
+         
+                      
+      
+                  </div>
+              </div>
+               </div>
+               
+  
+              <div class=" review" style="display: none;">
+                  <div class="col-12">
+                      <div class="row">
+                          <div class="col-12 reviewForm">
+                            
+                          </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-6 ">
+                            
+                            <span class="btn btn-outline-info" id="review" onclick="switchBack(this.id)">Back</span>
+                        </div>
+                   
+                    </div>
+                  </div>
+              </div>
+              
+              
+  
+                </form>
+                
+              </div>
+              </div>
+              </div>
+              </div>
+          </div>
+  
+       
+          
+  
+  
+          
+          
+  
+        </div>
+      </div>
+    </div>
+
+
+
+<div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-sm" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Submit Benchmark Job</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p class="text-center">Submit benchmark job for verification?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success btn-sm" >Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <input type="hidden" id="state"  value="job">
+  <input type="hidden" id="benefit_state"  value="vehicle">
+  
+  <script>
+      $(document).ready(function(){
+    $(".rah").click(function(){
+      var state = $('#state').val()
+      var bstate = $('#benefit_state').val()
+
+      if(state == 'job'){
+        $('.job_status').html("(completed)")
+        $( ".job_card" ).removeClass( "active" );
+        $( ".job_card" ).addClass( "completed" );
+        $( ".basic_card" ).addClass( "active" );
+          $('#state').val('basic')
+          $(".job").css("display", "none");
+          $(".basic_salary").css("display", "");
+          $('.basic_status').html("(active)")
+       
+     
+      }
+      if(state == 'basic'){
+        $('.basic_status').html("(completed)")
+        $( ".basic_card" ).removeClass( "active" );
+        $( ".basic_card" ).addClass( "completed" );
+        $( ".bonus_card" ).addClass( "active" );
+          $('#state').val('bonus')
+          $(".basic_salary").css("display", "none");
+          $(".bonus").css("display", "");
+          $('.bonus_status').html("(active)")
+       
+     
+      }
+      if(state == 'bonus'){
+        $('.bonus_status').html("(Completed)")
+        $('.benefit_status').html("(active)")
+        $(".benefit_vehicle").css("display", "none");
+        $(".vehicle_nav").css("display", "none");
+        $( ".bonus_card" ).removeClass( "active" );
+        $( ".bonus_card" ).addClass( "completed" );
+        $( ".benefit_card" ).addClass( "active" );
+        
+       
+          if(bstate == "vehicle"){
+            
+              $('#benefit_state').val('health')
+              $(".bonus").css("display", "none");
+              $(".benefit_vehicle").css("display", "");
+              $(".vehicle_nav").css("display", "");
+              $(".vehicle_nav").addClass( "bg-info" );
+  
+        
+  
+          }
+          if(bstate == "health"){
+            $( ".benefit_card" ).addClass( "active" );
+              $('#benefit_state').val('personal')
+              $(".benefit_vehicle").css("display", "none");
+              $(".benefit_health").css("display", "");
+              $(".vehicle_nav").css("display", "none");
+              $(".health_nav").css("display", "");
+              $(".health_nav").addClass( "bg-info" );
+           
+  
+  
+          }
+  
+          if(bstate == "personal"){
+            $('.bonus_status').html("(completed)")
+            
+            
+              $('#state').val('allowance')
+              $('#benefit_state').val('vehicle')
+              $(".benefit_health").css("display", "none");
+          $(".benefit_personal").css("display", "");
+          $(".health_nav").css("display", "none");
+              $(".personal_nav").css("display", "");
+              $(".personal_nav").addClass( "bg-info" );
+          
+          
+         
+  
+  
+          }
+  
+          
+          
+          
+      }
+  
+      
+  
+          if(state == 'allowance'){
+            $('.benefit_status').html("(Completed)")
+            $('.allowance_status').html("(active)")
+            $(".benefit_personal").css("display", "none");
+            $(".personal_nav").css("display", "none");
+            
+            $( ".benefit_card" ).removeClass( "active" );
+                $( ".benefit_card" ).addClass( "completed" );
+            $( ".allowance_card" ).addClass( "active" );
+                  
+                  
+              $(".benefit_personal").css("display", "none");
+      
+       
+          if(bstate == "vehicle"){
+            
+              $('#benefit_state').val('health')
+           
+              $(".allowance_vehicle").css("display", "");
+              $(".vehicle_allowance").css("display", "");
+              $(".vehicle_allowance").addClass( "bg-info" );
+  
+        
+  
+          }
+          if(bstate == "health"){
+            $(".vehicle_allowance").css("display", "none");
+            $(".allowance_vehicle").css("display", "none");
+     
+              $('#benefit_state').val('personal')
+              $(".allowance_health").css("display", "");
+              $(".health_allowance").css("display", "");
+              $(".health_allowance").addClass( "bg-info" );
+          
+           
+  
+  
+          }
+  
+          if(bstate == "personal"){
+             
+            $(".allowance_health").css("display", "none");
+            $(".health_allowance").css("display", "none");
+            
+              $('#benefit_state').val('review')
+              $(".allowance_personal").css("display", "");
+              $(".personal_allowance").css("display", "");
+              $(".personal_allowance").addClass( "bg-info" );
+              $(".next_button").css("display", "none");
+              $('.reviewForm').empty()
+              $(".testdiv").find('input:text, select, textarea')
+          .each(function() {
+  
+            var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br/> <hr/>"
+           
+            $('.reviewForm').append(line)
+         
+          });
+           
+            
+  
+  
+  
+          }
+
+
+          if(bstate == "review"){
+
+            $('.allowance_status').html("(Completed)")
+            $('.review_status').html("(active)")
+            $(".allowance_personal").css("display", "none");
+            $(".personal_nav").css("display", "none");
+            
+            $( ".allowance_card" ).removeClass( "active" );
+                $( ".allowance_card" ).addClass( "completed" );
+            $( ".review_card" ).addClass( "active" );
+                  
+                  
+              $(".allowance_personal").css("display", "none");
+              
+              
+            $(".allowance_personal").css("display", "none");
+            $(".personal_allowance").css("display", "none");
+            
+              
+           
+              $(".review").css("display", "");
+
+              $(".next_button").css("display", "none");
+     
+          
+           
+        
+  
+  
+  
+          }
+
+      
+          
+          
+          
+      }
+  
+  
+  
+     
+  
+      
+    });
+  });
+  </script>
+  
+  <script>
+      function switchBack(id){
+
+
+        if(id == 'basic'){
+              $('.job_status').html("(active)")
+        $( ".job_card" ).removeClass( "completed" );
+        $( ".job_card" ).addClass( "active" );
+        $( ".basic_card" ).removeClass( "active" );
+          $('#state').val('job')
+          $(".basic_salary").css("display", "none");
+    
+          $(".job").css("display", "");
+          $('.basic_status').html("")
+  
+          }
+
+
+          if(id == 'bonus'){
+              $('.basic_status').html("(active)")
+        $( ".basic_card" ).removeClass( "completed" );
+        $( ".basic_card" ).addClass( "active" );
+        $( ".bonus_card" ).removeClass( "active" );
+          $('#state').val('basic')
+          $(".basic_salary").css("display", "");
+    
+          $(".bonus").css("display", "none");
+          $('.bonus_status').html("")
+  
+          }
+          if(id == 'benefit_vehicle'){
+              $( ".benefit_card" ).removeClass( "active" );
+              $( ".bonus_card" ).removeClass( "completed" );
+              $( ".bonus_card" ).addClass( "active" );
+              $('#benefit_state').val('vehicle')
+              $(".bonus").css("display", "");
+              $('#state').val('bonus')
+              $(".benefit_vehicle").css("display", "none");
+              $(".vehicle_nav").css("display", "none");
+             
+              $('.benefit_status').html("")
+              
+  
+          }
+          if(id == 'benefit_health'){
+          
+          
+              $('#benefit_state').val('health')
+              $(".benefit_vehicle").css("display", "");
+              $('#state').val('bonus')
+              $(".benefit_health").css("display", "none");
+              $(".health_nav").css("display", "none");
+              $(".vehicle_nav").css("display", "");
+             
+          
+              
+  
+          }
+          if(id == 'benefit_personal'){
+          
+          
+          $('#benefit_state').val('personal')
+          $(".benefit_health").css("display", "");
+          $('#state').val('bonus')
+          $(".benefit_personal").css("display", "none");
+          $(".personal_nav").css("display", "none");
+          $(".health_nav").css("display", "");
+         
+      
+          
+  
+      }
+  
+      if(id == 'benefit_personal'){
+          
+          
+          $('#benefit_state').val('personal')
+          $(".benefit_health").css("display", "");
+          $('#state').val('bonus')
+          $(".benefit_personal").css("display", "none");
+          $(".personal_nav").css("display", "none");
+          $(".health_nav").css("display", "");
+         
+      
+          
+  
+      }
+      
+      if(id == 'allowance_vehicle'){
+              $( ".benefit_card" ).removeClass( "completed" );
+              $( ".allowance_card" ).removeClass( "active" );
+              $( ".benefit_card" ).addClass( "active" );
+              $('#benefit_state').val('vehicle')
+              $(".benefit_personal").css("display", "");
+              $('#state').val('allowance')
+              $(".allowance_vehicle").css("display", "none");
+            
+              $(".vehicle_allowance").css("display", "none");
+              $(".personal_nav").css("display", "");
+             
+              $('.benefit_status').html("(Active)")
+              
+  
+          }
+  
+  
+          if(id == 'allowance_health'){
+          
+          
+          $('#benefit_state').val('health')
+          $(".allowance_vehicle").css("display", "");
+          $(".allowance_health").css("display", "none");
+          $('#state').val('allowance')
+         
+          $(".health_allowance").css("display", "none");
+          $(".vehicle_allowance").css("display", "");
+         
+         
+      
+          
+  
+      }
+      if(id == 'allowance_personal'){
+          
+          
+          $('#benefit_state').val('personal')
+          $(".allowance_health").css("display", "");
+          $(".allowance_personal").css("display", "none");
+          $('#state').val('allowance')
+         
+          $(".personal_allowance").css("display", "none");
+          $(".health_allowance").css("display", "");
+         
+         
+      
+          
+  
+      }
+
+      if(id == 'review'){
+
+    
+            $('.allowance_status').html("(active)")
+            $('.review_status').html("")
+            $(".review").css("display", "none");
+         
+            
+            $( ".review_card" ).removeClass( "active" );
+                $( ".allowance_card" ).removeClass( "completed" );
+            $( ".allowance_card" ).addClass( "active" );
+                  
+                  
+           
+          
+          
+        $('#benefit_state').val('review')
+          $(".allowance_personal").css("display", "");
+          $(".review").css("display", "none");
+          $('#state').val('allowance')
+         
+          $(".review").css("display", "none");
+          $(".personal_allowance").css("display", "");
+         
+         
+      
+          
+  
+      }
+  
+      }
+  </script>
+
+{% endblock content %}
