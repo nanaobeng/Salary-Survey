@@ -67,7 +67,7 @@ class Client(db.Model):
     country_of_inception = db.Column(db.String(70))
     contact_person_id = db.Column(db.Integer,  db.ForeignKey('contact_person.id'))
     postal_address_id = db.Column(db.Integer,  db.ForeignKey('postal_address.id'))
-    street_address_id = db.Column(db.Integer,   db.ForeignKey('client_address.id'))
+    street_address_id = db.Column(db.Integer,   db.ForeignKey('street_address.id'))
     company_history = db.Column(db.Text)
     user_id = db.Column(db.Integer,  db.ForeignKey('user.id'))
     client_type = db.Column(db.String(50))
@@ -78,7 +78,7 @@ class Client(db.Model):
     key_management_id = db.Column(db.Integer  ,  db.ForeignKey('key_management.id'))
     current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('current_auditor.id'))
     previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('previous_auditor.id'))
-    previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('auditor.id'))
+
     # client_address = db.relationship('Address', backref='client_address' , lazy=True)
     # contact_person = db.relationship('Contact_person', backref='contact' , lazy=True)
     # governance = db.relationship('Client_governace', backref='governance' , lazy=True)
