@@ -60,8 +60,8 @@
                 <label for="percentiles"> <span class="question_number">B1. &nbsp; </span>As an organisation, where (i.e. percentile terms) do you
                   want to position yourself on the market for (please tick)?</label>
                 <br>
-                <div class="row justify-content-center">
-                  <div class="col-12 text-center">
+                <div class="row justify-content-center  pl-4">
+                  <div class="col-12 text-left ">
                     <div class="form-check form-check-inline">
                       <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
                       <label class="form-check-label" for="inlineCheckbox1">25</label>
@@ -158,14 +158,15 @@
             <div class="form-group">
               <div class="form-group">
                 <label for="usr"><span class="question_number">B3. &nbsp;</span>How often is salary structure(s) adjusted?</label>
-                <select id="salaryStructure Adjustment" name="adjustment">
+                <select id="salaryStructure Adjustment"  class="form-control"name="adjustment">
                   <option value="annually">Annually</option>
                   <option value="quarterly">Quarterly</option>
                   <option value="bimonthly">Bi-monthly</option>
                   <option value="monthly">Monthly</option>
                   <option value="other">Other</option>
                 </select>
-                <div class="form-group">
+                <br/>
+                <div class="form-group ">
                   <label for="usr">If other, please specify: </label>
                   <input type="text" class="form-control" id="usr" name="How often is salary structure(s) adjusted?">
                 </div>
@@ -231,6 +232,7 @@
                 </tr>
                 <tr>
                   <th>Other (please specify): <input class="form-control form-control-inline" type="text"> </th>
+               
                   <th><input class="form-control" type="number" min="0" name="other" /></th>
                 </tr>
               </table>
@@ -244,6 +246,7 @@
           <div class="col-12">
             <div class="form-group">
               <label><span class="question_number">B8. &nbsp;</span> Are all grades adjusted by the same percentage?</label>
+              <div class="row">
               <div class="col-6">
                 <div class="form-check">
                   <label class="form-check-label" for="radio1">
@@ -262,6 +265,7 @@
 
                   </label>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -314,6 +318,7 @@
             <div class="form-group">
               <label for="usr"><span class="question_number">B10. &nbsp;</span> Does your organisation use a formal Job
                 Evaluation System? </label>
+                <div class="row">
               <div class="col-6">
                 <div class="form-check">
                   <label class="form-check-label" for="radio1">
@@ -332,6 +337,7 @@
 
                   </label>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -391,6 +397,7 @@
             <div class="form-group">
               <label for="usr"><span class="question_number">B12. &nbsp;</span> Do your staff receive automatic cost of living salary adjustments at
                 periodic intervals? </label>
+                <div class="row">
               <div class="col-6">
                 <div class="form-check">
                   <label class="form-check-label" for="radio1">
@@ -409,6 +416,7 @@
 
                   </label>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -430,7 +438,7 @@
           <div class="col-12">
             <div class="form-group">
               <label for="quantity"><span class="question_number">B13. &nbsp;</span> How many grade levels do you have?</label>
-              <input type="number" min="1" class="form-control col-3" />
+              <input type="number" min="1" class="form-control " />
             </div>
           </div>
         </div>
@@ -452,6 +460,7 @@
           <div class="col-12">
             <div class="form-group">
               <label><span class="question_number">B15. &nbsp;</span> Salary increments in the same grade are based on:</label>
+              <div class="row">
               <div class="col-3">
                 <div class="form-check">
                   <label class="form-check-label" for="radio1">
@@ -469,6 +478,7 @@
                       value="option12">Percentages
                   </label>
                 </div>
+              </div>
               </div>
             </div>
           </div>
@@ -515,6 +525,7 @@
               <label><span class="question_number">B17. &nbsp;</span> In order of importance, what factors are considered in placing your new
                 staff on your salary scale (please rank as 1st, 2nd, 3rd, etc)?</label>
               <div>
+                <br/>
                 <label>1st Priority:</label>
                 <select>
                   <option value="education">Education</option>
