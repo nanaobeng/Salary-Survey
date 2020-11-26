@@ -331,5 +331,11 @@ def view_client():
 
     return render_template("view_client.html")
 
+@users.route("/administration/edit_client")
+def edit_client():
+    
+
+    return render_template("edit_client.html")
+
 
 
