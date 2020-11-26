@@ -36,6 +36,19 @@ Edit Survey
                 <div class="row  survey">
                     <div class="col-12">
                         <div class="row">
+                          <div class="col-12 ">
+                            <div class="row">
+                              <div class="col-6">
+                                <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+                              </div>
+                                <div class="col-6 text-right">
+                                  <span class=" btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
+      
+                                </div>
+                            </div>
+                            <br/>
+                      </div>
+                      
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
                             <label class="td">Survey Name:</label>
@@ -98,6 +111,20 @@ Edit Survey
 
                 <!-- this begins the selection of benchmark job titles -->
 <div class=" benchmark" style="display:none">
+  <div class="col-12 ">
+    <br/>
+    <div class="row">
+        <div class="col-6">
+          <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+        </div>
+        <div class="col-6" style="text-align: right;">
+          <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchBack(this.id)">Back</span>
+
+            <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchView(this.id)">Next</span>
+        </div>
+    </div>
+ <br/>
+</div>
   <div class="col text-right">
     <span class="btn btn-outline-secondary" data-toggle="modal" data-target="#upload_jobs">Upload Jobs</span>
     <br><br>

@@ -75,6 +75,15 @@ Create Client
               <form method="POST" action="">
                 {{ form.hidden_tag() }}
                <div class="row industry">
+              
+                
+                  </br>
+                    <div class="col-12 text-right industry">
+                   
+                      <span class="btn btn-outline-info  " id="industry" onclick="switch_wizard(this.id)">Next</span>
+                    </div>
+                  
+             
                  <div class="col-12">
                     <div class="form-group">
                         {{ form.name.label(class="form-control-label") }}
@@ -152,6 +161,8 @@ Create Client
                     </div>
 
                     <div class="col-4">
+
+                    
                       <div class="form-group">
                         {{ form.financial_year_end.label(class="form-control-label") }}
             
@@ -327,15 +338,28 @@ Create Client
                     </div>
                   </div>
                </div>
-               <div class="col ">
-              </br>
-                <div class="col-12 text-right">
+             
+                <div class="col-12 text-right industry">
                
-                  <span class="btn btn-outline-info industry " id="industry" onclick="switch_wizard(this.id)">Next</span>
+                  <span class="btn btn-outline-info  " id="industry" onclick="switch_wizard(this.id)">Next</span>
                 </div>
-              </div>
+              
                 </div>
                 <div class="row industry2" style="display:none">
+                  <div class="col-12">
+                    <div class="row">
+                   
+                      <div class="col-6 ">
+                        
+                        <span class="btn btn-outline-info " id="industry2" onclick="switchBack(this.id)" >Back</span>
+                      </div>
+                      <div class="col-6 move-right">
+                        
+                        <span class="btn btn-outline-info " id="industry2" onclick="switch_wizard(this.id)">Next</span>
+                      </div>
+                    </div>
+                    <br/>
+                    </div>
                   <div class="col-12">
                     <div class="row">
                       <div class="col-12">
@@ -1040,6 +1064,21 @@ Create Client
               
                 </div>
                   <div class="row mailing">
+
+                    <div class="col-12">
+                      <div class="row">
+                     
+                        <div class="col-6 ">
+                          
+                          <span class="btn btn-outline-info " id="mailing" onclick="switchBack(this.id)" >Back</span>
+                        </div>
+                        <div class="col-6 move-right">
+                          
+                          <span class="btn btn-outline-info" id="mailing" onclick="switch_wizard(this.id)" >Next</span>
+                        </div>
+                      </div>
+                      <br/>
+                      </div>
                     <div class="col-12">
                     <div class="row">
                       <div class="col-12">
@@ -1174,6 +1213,19 @@ Create Client
 
                   <div class="row street">
                     <div class="col-12">
+                    <div class="row pt-4">
+                   
+                      <div class="col-6 ">
+                          
+                        <span class="btn btn-outline-info " id="street" onclick="switchBack(this.id)" >Back</span>
+                      </div>
+                        <div class="col-6 move-right">
+                          
+                          <span class="btn btn-outline-info "  id="street" onclick="switch_wizard(this.id)">Next</span>
+                        </div>
+                      </div>
+                  </div>
+                    <div class="col-12">
                  
                     <div class="row">
                       <div class="col-12">
@@ -1281,6 +1333,21 @@ Create Client
                 
                   <div class="row company">
                     <div class="col-12">
+                      <div class="row pt-4">
+                      </br>
+                      <div class="col-6 ">
+                          
+                        <span class="btn btn-outline-info " id="company" onclick="switchBack(this.id)" >Back</span>
+                      </div>
+                     
+                        <div class="col-6 move-right">  
+                       
+                          <span class="btn btn-outline-info rah" id="company" onclick="switch_wizard(this.id)">Next</span>
+                        </div>
+                      </div>
+                    </br>
+                    </div>
+                    <div class="col-12">
                       <div class="card">
                         <div class="card-body">
                     <div class="row">
@@ -1344,6 +1411,21 @@ Create Client
 
 
                 <div class="row contact">
+                  
+                 <div class="col-12">
+                   <div class="row">
+                   <div class="col-6 ">
+                     <span class="btn btn-outline-info " id="contact" onclick="switchBack(this.id)" >Back</span>
+                   </div>
+                   <div class="col-6 text-right">
+                    <span class="btn btn-outline-info " id="contact" onclick="switch_wizard(this.id)" >Next</span>
+                  </div>
+                 </div>
+                 <br/>
+                </div>
+                    
+                    
+                    
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
@@ -1472,41 +1554,51 @@ Create Client
                   </div>
                 </div>
               </div>
-                </div>
-                
-              </div>
-
               <div class="row ">
              
                 
-              <div class="col-6 text-left ">
-                  
-                <span class="btn btn-outline-info contact submit_button" id="contact" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
-              </div>
-             
-                <div class="col-6 text-right">  
+                <div class="col-6 text-left ">
+                    
+                  <span class="btn btn-outline-info " id="contact" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
+                </div>
                
-                  <span class="btn btn-outline-info contact rah" id="contact" onclick="switch_wizard(this.id)" style="width: 80px;">Next</span>
-                  
+                  <div class="col-6 text-right">  
+                 
+                    <span class="btn btn-outline-info " id="contact" onclick="switch_wizard(this.id)" style="width: 80px;">Next</span>
+                    
+                  </div>
                 </div>
+                </div>
+                
+               
+                
+                
               </div>
 
+            
 
-              <div class="row pt-4">
-                <div class="col-6 ">
-                  
-                  
-                </div>
-                <div class="col-6 move-right">  
-                   
-                  
-                </div>
-                      </div>
 
                      
               </div>
 
               <div class="row review" style="display: none;">
+                <div class="col-12">
+                <div class="row">
+                  <div class="col-6 pt-4">
+                    
+                    <span class="btn btn-outline-info submit_button" id="review" onclick="switchBack(this.id)" style="width: 80px;">Back</span>
+                  </div>
+                        <div class="col-6 move-right">
+                          <div class="form-group submit_button p-2">
+                            <br/>
+                            <span  class="text-center sub btn btn-success"
+                              >Submit</span>
+                        </div>
+                        </div>
+  
+                       
+                </div>
+              </div>
                 <div class="col-12">
                 <div class="row ">
                   <div class=" col-12 reviewForm">
