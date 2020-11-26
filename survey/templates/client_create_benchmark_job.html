@@ -76,14 +76,8 @@ Create Benchmark Job
             <div class="col-12 job">
 
                 <div class="container">
-                    <div class="row">
-                        <div class="col text-right">
-                            <a href="{{ url_for('users.my_benchmark_jobs')}}" class="btn btn-outline-danger">Back</a>
-                            <button class="btn btn-outline-success">Save</button>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#confirm_modal">Submit</button>
-                        </div>
-                    </div>
-                    <hr>
+                 
+            
                     <br>
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
@@ -160,13 +154,7 @@ Create Benchmark Job
                         
                     </div>
                     <br/>
-                    <div class="row">
-                        <div class="col text-right">
-                            <a href="{{ url_for('users.my_benchmark_jobs')}}" class="btn btn-outline-danger">Back</a>
-                            <button class="btn btn-outline-success">Save</button>
-                            <button class="btn btn-success" data-toggle="modal" data-target="#confirm_modal">Submit</button>
-                        </div>
-                    </div>
+                   
                 </div>
 
 
@@ -176,148 +164,190 @@ Create Benchmark Job
   
   
           <div class="col-12 basic_salary" style="display:none">
-                <div class="form-group">
-                    {{ form.base_salary.label(class="form-control-label") }}
-        
-                    {% if form.base_salary.errors %}
-                    {{ form.base_salary(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.base_salary.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="form-group">
+                        {{ form.base_salary.label(class="form-control-label") }}
+            
+                        {% if form.base_salary.errors %}
+                        {{ form.base_salary(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.base_salary.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.base_salary(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
                     </div>
-                    {% else %}
-                    {{ form.base_salary(class="form-control form-control") }}
-                    {% endif %}
-        
-                    
+
                 </div>
-                
-                <div class="col-6 basic_salary ">
-                    <span class="btn btn-outline-info" id="basic" onclick="switchBack(this.id)">Back</span>
-    
+
+                <div class="col-12">
+                    <div class="row">
+                        <div class="col-6 basic_salary ">
+                            <span class="btn btn-outline-info" id="basic" onclick="switchBack(this.id)">Back</span>
+            
+                        </div>
+            
+                        
+                        <div class="col-6 basic_salary text-right">
+                          <span class="btn btn-info rah" style="color:#fff"> Next</span>
+          
+                      </div>
+          
+
+                    </div>
                 </div>
-    
+            </div>
                 
-                <div class="col-6 basic_salary text-right">
-                  <span class="btn btn-info rah" style="color:#fff"> Next</span>
-  
-              </div>
-  
+               
+                
+               
               </div>
   
   
   
                 <!-- start of bonus questions-->
                     <div class="row  bonus" style="display:none">
-                <div class="col-6 bonus" style="display:none">
-                  <div class="form-group">
-                    {{ form.company_bonus_performance.label(class="form-control-label") }}
-        
-                    {% if form.company_bonus_performance.errors %}
-                    {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.company_bonus_performance.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.company_bonus_performance(class="form-control form-control") }}
-                    {% endif %}
-        
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6 " >
+                                    <div class="form-group">
+                                      {{ form.company_bonus_performance.label(class="form-control-label") }}
+                          
+                                      {% if form.company_bonus_performance.errors %}
+                                      {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
+                                      <div class="invalid-feedback">
+                                          {% for error in form.company_bonus_performance.errors %}
+                                          <span> {{ error}}</span>
+                                          {% endfor %}
+                                      </div>
+                                      {% else %}
+                                      {{ form.company_bonus_performance(class="form-control form-control") }}
+                                      {% endif %}
+                          
+                                      
+                                  </div>
+                                </div>
+
+                                  <div class="col-6 ">
+                                    <div class="form-group">
+                                      {{ form.individual_bonus_performance.label(class="form-control-label") }}
+                          
+                                      {% if form.individual_bonus_performance.errors %}
+                                      {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
+                                      <div class="invalid-feedback">
+                                          {% for error in form.individual_bonus_performance.errors %}
+                                          <span> {{ error}}</span>
+                                          {% endfor %}
+                                      </div>
+                                      {% else %}
+                                      {{ form.individual_bonus_performance(class="form-control form-control") }}
+                                      {% endif %}
+                          
+                                      
+                                  </div>
                     
-                </div>
-  
-                </div>
-                <div class="col-6 bonus">
-                  <div class="form-group">
-                    {{ form.individual_bonus_performance.label(class="form-control-label") }}
-        
-                    {% if form.individual_bonus_performance.errors %}
-                    {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.individual_bonus_performance.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.individual_bonus_performance(class="form-control form-control") }}
-                    {% endif %}
-        
-                    
-                </div>
-  
-                  </div>
-  
-                  <div class="col-4 bonus">
-                    <div class="form-group">
-                      {{ form.annual_bonus.label(class="form-control-label") }}
-          
-                      {% if form.annual_bonus.errors %}
-                      {{ form.annual_bonus(class="form-control form-control is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.annual_bonus.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.annual_bonus(class="form-control form-control") }}
-                      {% endif %}
-          
+                                    </div>
+
+
+                                    <div class="col-4 bonus">
+                                        <div class="form-group">
+                                          {{ form.annual_bonus.label(class="form-control-label") }}
+                              
+                                          {% if form.annual_bonus.errors %}
+                                          {{ form.annual_bonus(class="form-control form-control is-invalid")}}
+                                          <div class="invalid-feedback">
+                                              {% for error in form.annual_bonus.errors %}
+                                              <span> {{ error}}</span>
+                                              {% endfor %}
+                                          </div>
+                                          {% else %}
+                                          {{ form.annual_bonus(class="form-control form-control") }}
+                                          {% endif %}
+                              
+                                          
+                                      </div>
                       
-                  </div>
-  
-                  </div>
-  
-  
-                  <div class="col-4 bonus">
-                    <div class="form-group">
-                      {{ form.incentive_bonus.label(class="form-control-label") }}
-          
-                      {% if form.incentive_bonus.errors %}
-                      {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.incentive_bonus.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.incentive_bonus(class="form-control form-control") }}
-                      {% endif %}
-          
+                                      </div>
                       
-                  </div>
-  
-                  </div>
-  
-  
-                  <div class="col-4 bonus">
-                    <div class="form-group">
-                      {{ form.other_bonus.label(class="form-control-label") }}
-          
-                      {% if form.other_bonus.errors %}
-                      {{ form.other_bonus(class="form-control form-control is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.other_bonus.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.other_bonus(class="form-control form-control") }}
-                      {% endif %}
-          
                       
-                  </div>
+                                      <div class="col-4 bonus">
+                                        <div class="form-group">
+                                          {{ form.incentive_bonus.label(class="form-control-label") }}
+                              
+                                          {% if form.incentive_bonus.errors %}
+                                          {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
+                                          <div class="invalid-feedback">
+                                              {% for error in form.incentive_bonus.errors %}
+                                              <span> {{ error}}</span>
+                                              {% endfor %}
+                                          </div>
+                                          {% else %}
+                                          {{ form.incentive_bonus(class="form-control form-control") }}
+                                          {% endif %}
+                              
+                                          
+                                      </div>
+                      
+                                      </div>
+                      
+                      
+                                      <div class="col-4 bonus">
+                                        <div class="form-group">
+                                          {{ form.other_bonus.label(class="form-control-label") }}
+                              
+                                          {% if form.other_bonus.errors %}
+                                          {{ form.other_bonus(class="form-control form-control is-invalid")}}
+                                          <div class="invalid-feedback">
+                                              {% for error in form.other_bonus.errors %}
+                                              <span> {{ error}}</span>
+                                              {% endfor %}
+                                          </div>
+                                          {% else %}
+                                          {{ form.other_bonus(class="form-control form-control") }}
+                                          {% endif %}
+                              
+                                          
+                                      </div>
+                      
+                                      </div>
+
+                                      <div class="col-12">
+
+                                        <div class="row">
+                                            <div class="col-6 bonus" >
+                                                <span class="btn btn-outline-info" id="bonus" onclick="switchBack(this.id)">Back</span>
+                                            </div>
+                                            <div class="col-6 bonus text-right">
+                                                <span class="btn btn-info rah" style="color:#fff"> Next</span>
+                            
+                                            </div>
+
+                                        </div>
+                                      </div>
+
+
+
+
+                                  </div>
+
+
+
+
+                            </div>
+                
   
-                  </div>
-                  <div class="col-6 bonus" >
-                      <span class="btn btn-outline-info" id="bonus" onclick="switchBack(this.id)">Back</span>
-                  </div>
-                  <div class="col-6 bonus text-right">
-                      <span class="btn btn-info rah" style="color:#fff"> Next</span>
+             
+               
   
+                  
+                  
                   </div>
-                </div>
+                
   
             
   
@@ -1248,13 +1278,8 @@ Create Benchmark Job
                
   
               <div class="row review" style="display: none;">
-                  <div class="col-12">
-                      <div class="row">
-                          <div class="col-12 reviewForm">
-                            
-                          </div>
-                      </div>
-                      <div class="row">
+                <div class="col-12">
+                    <div class="row">
                         <div class="col-6 ">
                             
                             <span class="btn btn-outline-info" id="review" onclick="switchBack(this.id)">Back</span>
@@ -1264,6 +1289,29 @@ Create Benchmark Job
                             <span class="btn btn-success">Submit</span>
                         </div>
                     </div>
+                    <br/>
+                </div>
+                  <div class="col-12">
+                      <div class="row">
+                          <div class="col-12 reviewForm">
+                            
+                          </div>
+                          <div class="col-12">
+                            <div class="row">
+                                <div class="col-6 ">
+                                    
+                                    <span class="btn btn-outline-info" id="review" onclick="switchBack(this.id)">Back</span>
+                                </div>
+                                <div class="col-6 text-right">
+                                    
+                                    <span class="btn btn-success">Submit</span>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                  </div>
+                  
+                      
                   </div>
               </div>
               
