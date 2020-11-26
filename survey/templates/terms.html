@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Deloitte Salary Survey</title>
+        <!-- Favicon-->
+
+        <link rel="icon"  type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico')}}" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+  
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-1.css')}}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/font-2.css')}}">
+        <!-- Third party plugin CSS-->
+     
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.min.css')}}">
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
+
+        <!-- this style is here because jinja refernce to images dows not work in external css files -->
+        <style>
+            .masthead{
+                background: linear-gradient(to bottom, rgba(66, 84, 92, 0.8) 0%, rgba(66, 90, 92, 0.8) 100%), url("{{ url_for('static', filename='img/home.jpg')}} ");
+            }
+            .black_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+    
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-white.png')}}");
+                height: 30px !important;
+            }
+            @media (max-width: 575.98px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+            }
+            @media (min-width: 576px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+            }
+            @media (min-width: 768px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-black.png')}}");
+                height: 30px !important;
+            }
+            }
+            @media (min-width: 992px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-white.png')}}");
+                height: 30px !important;
+            }
+            }
+            @media (min-width: 1200px) {
+                .white_logo{
+                content:url("{{ url_for('static', filename='img/Deloitte-white.png')}}");
+                height: 30px !important;
+            }
+            }
+            </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container">
+                <div style="height: 30px !important;" id="logo">
+                    
+                </div>
+                <div class="navbar-header navbar-title js-scroll-trigger">
+                    Salary Survey
+                </div>
+                
+                <a class="navbar-brand js-scroll-trigger" href="#page-top"></a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#request_services">Request Service</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/contact">Contact Us</a></li>
+                        <li class="nav-item"><a class="nav-link js-scroll-trigger" href="/login">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+       <div class="container">
+        <br/>
+        <br/>
+        <br/>
+    <br/>
+    <br/>
+    <br/>
+    <br/>
+<br/>
+         
+     
+          
+       <div class="row p-4">
+     
+        <div class="col-12" style="height: 10px;background-color: grey;">
+           
+        </div>
+           <div class="col-12 p-4">
+            
+        <br/>
+            <p><strong>Terms of Use</strong></p>
+            <h1>Terms of Use</h1>
+            <p>Last updated: 25 November 2014</p>
+            <p>Deloitte.com is comprised of various individual global, country, regional, or practice specific websites.&nbsp; Any such individual website is designated after the word "Location" in the <strong>upper right hand corner</strong> of the webpage that you are viewing at any point during your use of deloitte.com. &nbsp;<br>
+            </p>
+            <p>These Terms of Use apply to the specific global, country, regional, or practice specific website that you were viewing within deloitte.com before clicking on these Terms of Use.&nbsp; Such individual website is referred to in these Terms of Use as “<strong>this Website.</strong>”<br>
+            </p>
+            <p><strong>By using this Website, you are agreeing to these Terms of Use.&nbsp; If you do not agree to these Terms of Use, then you are not allowed to use this Website and should immediately terminate such usage.</strong><br>
+            </p>
+            <p>The “<strong>Deloitte Network</strong>” refers to Deloitte Touche Tohmatsu Limited (“DTTL”), the member firms of DTTL, and their related entities.&nbsp; Each individual global, country, regional, or practice specific website within deloitte.com (as designated in the upper right hand corner of the webpage) is provided by an individual entity within the Deloitte Network.&nbsp;&nbsp; &nbsp;<br>
+            </p>
+            <p>Deloitte &amp; Touche, which is the DTTL member firm in Ghana, is the entity within the Deloitte Network that is providing this Website and is referred to in these Terms of Use as “we”, “us”, or “our”.&nbsp;&nbsp; Although parts of these Terms of Use may reference other entities in the Deloitte Network, these Terms of Use are only between you and us and not with any of those other entities. &nbsp;<br>
+            </p>
+            <p><u><strong>Use of Content; Restrictions; Privacy Statement</strong></u><br>
+            </p>
+            <p>Unless otherwise indicated in the relevant content, and on the condition that you comply with all of your obligations under these Terms of Use, you are authorized to view, copy, print, and distribute (but not modify) the content on this Website; provided that (i) such use is for informational, noncommercial purposes only, and (ii) any copy of the content that you make must include the copyright notice or other attribution associated with the content.<br>
+            </p>
+            <p>You are not authorized to&nbsp;copy or use any&nbsp;software, proprietary processes, or&nbsp;technology embodied or described in this Website. &nbsp;<br>
+            </p>
+            <p>You will comply with all applicable laws in accessing and using this Website.<br>
+            </p>
+            <p>You acknowledge that we may use your personal information and data according to our <a href="https://www2.deloitte.com/gh/en/legal/privacy.html">Privacy Statement</a> and <a href="https://www2.deloitte.com/gh/en/legal/cookies.html">Cookie Notice</a>, which are incorporated herein by this reference.&nbsp; You hereby agree to the terms of our Privacy Statement and Cookie Notice, including any obligations imposed on you therein.<br>
+            </p>
+            <p><u><strong>Intellectual Property Rights; No use of Deloitte names or logos</strong></u><br>
+            <br>
+            Unless otherwise indicated, the content on this Website is provided by us or another entity within the Deloitte Network. &nbsp;<br>
+            </p>
+            <p>This Website and its contents are protected by copyright, trademark, and other laws of the United States and/or foreign countries.&nbsp; We and our licensors reserve all rights not expressly granted in these Terms of Use.<br>
+            </p>
+            <p>“Deloitte”, “Touche”, “Tohmatsu”, “Deloitte Touche Tohmatsu”, “Deloitte &amp; Touche”, the Deloitte logo, and local language variants of the foregoing trademarks, and certain product names that appear on this Website (collectively, the "Deloitte Marks"), are trademarks or registered trademarks&nbsp;of entities within the Deloitte Network.&nbsp; Except as expressly provided in these Terms of Use, or as expressly authorized in writing by the relevant trademark owner, you shall not use any Deloitte Marks either alone or in combination with other words or design elements, including in any press release, advertisement, or other promotional or marketing material or media, whether in written, oral, electronic, visual or any other form.<br>
+            </p>
+            <p>References to other parties’ trademarks on this Website are for identification purposes only and do not indicate that such parties have approved this Website or any of its contents. These Terms of Use do not grant you any right to use the trademarks of other parties.<br>
+            </p>
+            <p><u><strong>Disclaimers and Limitations of Liability</strong></u><br>
+            </p>
+            <p>THIS WEBSITE (INCLUDING WITHOUT LIMITATION ANY CONTENT OR OTHER PART THEREOF) CONTAINS GENERAL INFORMATION ONLY, AND WE ARE NOT, BY MEANS OF THIS WEBSITE, RENDERING PROFESSIONAL ADVICE OR SERVICES.&nbsp; BEFORE MAKING ANY DECISION OR TAKING ANY ACTION THAT MIGHT AFFECT YOUR FINANCES OR BUSINESS, YOU SHOULD CONSULT A QUALIFIED PROFESSIONAL ADVISOR.<br>
+            </p>
+            <p>THIS WEBSITE IS PROVIDED AS IS, AND WE MAKE NO EXPRESS OR IMPLIED REPRESENTATIONS OR WARRANTIES REGARDING IT.&nbsp; WITHOUT LIMITING THE FOREGOING, WE DO NOT WARRANT THAT THIS WEBSITE WILL BE SECURE, ERROR-FREE, FREE FROM VIRUSES OR MALICIOUS CODE, OR WILL MEET ANY PARTICULAR CRITERIA OF PERFORMANCE OR QUALITY.&nbsp; WE EXPRESSLY DISCLAIM ALL IMPLIED WARRANTIES, INCLUDING, WITHOUT LIMITATION, WARRANTIES OF MERCHANTABILITY, TITLE, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, COMPATIBILITY, SECURITY, AND ACCURACY.<br>
+            </p>
+            <p>YOUR USE OF THIS WEBSITE IS AT YOUR OWN RISK AND YOU ASSUME FULL RESPONSIBILITY AND RISK OF LOSS RESULTING FROM YOUR USAGE, INCLUDING, WITHOUT LIMITATION, WITH RESPECT TO LOSS OF SERVICE OR DATA.&nbsp; WE WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL, INCIDENTAL, CONSEQUENTIAL, OR PUNITIVE DAMAGES OR ANY OTHER DAMAGES WHATSOEVER, WHETHER IN AN ACTION OF CONTRACT, STATUTE, TORT (INCLUDING, WITHOUT LIMITATION, NEGLIGENCE), OR OTHERWISE, RELATING TO OR ARISING OUT OF THE USE OF THIS WEBSITE, EVEN IF WE KNEW, OR SHOULD HAVE KNOWN, OF THE POSSIBILITY OF SUCH DAMAGES.<br>
+            </p>
+            <p>CERTAIN LINKS ON THIS WEBSITE MAY LEAD TO WEBSITES, RESOURCES OR TOOLS MAINTAINED BY THIRD PARTIES OVER WHOM WE HAVE NO CONTROL, INCLUDING, WITHOUT LIMITATION, THOSE MAINTAINED BY OTHER ENTITIES WITHIN THE DELOITTE NETWORK OR INDIVIDUAL PERSONNEL OF SUCH ENTITIES.&nbsp; WITHOUT LIMITING ANY OF THE FOREGOING, WE MAKE NO EXPRESS OR IMPLIED REPRESENTATIONS OR WARRANTIES WHATSOEVER REGARDING SUCH WEBSITES, RESOURCES AND TOOLS, AND LINKS TO ANY SUCH WEBSITES, RESOURCES AND TOOLS SHOULD NOT BE CONSTRUED AS AN ENDORSEMENT OF THEM OR THEIR CONTENT BY US. &nbsp;<br>
+            </p>
+            <p>THE ABOVE DISCLAIMERS AND LIMITATIONS OF LIABILITY SHALL BE APPLICABLE NOT ONLY TO US BUT ALSO TO EACH OTHER ENTITY WITHIN THE DELOITTE NETWORK AND TO OUR AND THEIR RESPECTIVE PERSONNEL. &nbsp;<br>
+            </p>
+            <p>THE ABOVE DISCLAIMERS AND LIMITATIONS OF LIABILITY ARE APPLICABLE TO THE FULLEST EXTENT PERMITTED BY LAW, WHETHER IN CONTRACT, STATUTE, TORT (INCLUDING, WITHOUT LIMITATION, NEGLIGENCE) OR OTHERWISE.<br>
+            </p>
+            <p><u><strong>Additional Terms</strong></u><br>
+            </p>
+            <p>If any portion of these Terms of Use is invalid or unenforceable in any jurisdiction, then (i) in that jurisdiction it shall be re-construed to the maximum effect permitted by law in order to effect its intent as nearly as possible, and the remainder of these Terms of Use shall remain in full force and effect, and (ii) in every other jurisdiction, all of these Terms of Use shall remain in full force and effect.<br>
+            </p>
+            <p>We may revise these Terms of Use at any time in our sole discretion by posting such revised Terms of Use at the Terms of Use link (i.e., this webpage that you are currently viewing) or elsewhere in this Website.&nbsp; Such revisions shall be effective as to you upon posting, unless explicitly stated by us.&nbsp; It is your responsibility to be aware of any such revised Terms of Use by checking this webpage.&nbsp; Your continued use of this Website following changes to these Terms of Use constitutes your agreement to the revised Terms of Use.<br>
+            </p>
+           </div>
+       </div>
+    </div>
+
+
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container"><div class="small text-center text-muted">Copyright © 2020 - Deloitte and Touche</div></div>
+        </footer>
+
+
+
+
+
+
+    <!-- requestModal script -->
+    <script>
+         function requestModal(id){
+            if(id == 'indiviudal'){
+
+                $('#request_header').html('Individual Request')
+                $('#requestBody').html(
+                    `
+                    
+                    `
+                )
+
+                $('#requestModal').modal('show'); 
+            }
+
+
+            if(id == 'corporate'){
+
+$('#request_header').html('Corporate Request')
+$('#requestBody').html(
+
+
+    `
+
+
+`
+)
+
+$('#requestModal').modal('show'); 
+}
+            
+         }
+    </script>
+
+
+
+
+
+
+        <!-- Bootstrap core JS-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script type="text/javascript"
+        src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+        <script type="text/javascript"
+        src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script type="text/javascript"
+        src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+        <script type="text/javascript"
+        src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+    </body>
+</html>
+
