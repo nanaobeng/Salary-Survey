@@ -207,7 +207,8 @@ def my_benchmark_jobs():
 
 @users.route("/my_benchmark_jobs/new")
 def my_benchmark_jobs_create():
-    return render_template("client_create_benchmark_job.html")
+    form = SurveyForm()
+    return render_template("client_create_benchmark_job.html",form=form)
 
 @users.route("/my_surveys")
 def my_surveys():
