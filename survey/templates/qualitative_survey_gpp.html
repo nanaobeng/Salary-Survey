@@ -1,6 +1,46 @@
 {% extends "qualitative_form_layout.html" %}
 
 <!-- General Personnel Practices Page -->
+{% block progressbar %}
+<div class="container">
+    <div class="row p-4">
+        <div class="col-12">
+
+            <!-- Progress Bar -->
+            <div class="steps-form">
+                <div class="steps-row setup-panel">
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_overview') }}" type="button"
+                            class="btn btn-secondary btn-circle" id="gi_button" onclick="changeButtonColour()">1</a>
+                        <p>General Information</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_survey_dc') }}" type="button"
+                            class="btn btn-secondary btn-circle" id="dc_button" onclick="changeButtonColour()"
+                            disabled="disabled">2</a>
+                        <p>Direct Compensation</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_survey_bip') }}" type="button"
+                            class="btn btn-secondary btn-circle" id="bip_button" onclick="changeButtonColour()"
+                            disabled="disabled">3</a>
+                        <p>Bonus / Incentive Plans</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_survey_gpp') }}" type="button"
+                            class="btn btn-primary btn-circle" id="gpp_button" onclick="changeButtonColour()"
+                            disabled="disabled">4</a>
+                        <p>General Personnel Practices</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock progressbar %}
+
 {% block body %}
 
 <style>
@@ -1638,11 +1678,11 @@
             <!-- TODO: fix onclick action -->
             <div class="row">
                 <div class="col-6">
-                    <span id="bonus" class="btn btn-outline-info" onclick="switchBack(this.id)">Back</span>
+                    <a href="{{ url_for('users.qualitative_survey_bip') }}"><span id="bonus" class="btn btn-outline-info">Back</span></a>
                 </div>
 
                 <div class="col-6 text-right">
-                    <span id="bonus" class="btn btn-outline-info" onclick="switchView(this.id)">Next </span>
+                    <span id="bonus" class="btn btn-outline-info">Submit</span>
                 </div>
             </div>
         </div>
