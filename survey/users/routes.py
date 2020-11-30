@@ -207,7 +207,8 @@ def my_benchmark_jobs():
 
 @users.route("/my_benchmark_jobs/new")
 def my_benchmark_jobs_create():
-    return render_template("client_create_benchmark_job.html")
+    form = SurveyForm()
+    return render_template("client_create_benchmark_job.html",form=form)
 
 @users.route("/my_surveys")
 def my_surveys():
@@ -220,6 +221,18 @@ def quantitative_overview():
 @users.route("/my_surveys/view_survey/qualitative")
 def qualitative_overview():
     return render_template("qualitative_survey_overview.html")
+
+@users.route("/my_surveys/view_survey/qualitative_survey_dc")
+def qualitative_survey_dc():
+    return render_template("qualitative_survey_dc.html")
+
+@users.route("/my_surveys/view_survey/qualitative_survey_bip")
+def qualitative_survey_bip():
+    return render_template("qualitative_survey_bip.html")
+
+@users.route("/my_surveys/view_survey/qualitative_survey_gpp")
+def qualitative_survey_gpp():
+    return render_template("qualitative_survey_gpp.html")
 
 @users.route("/administration")
 def admin_home():
@@ -309,7 +322,14 @@ def update_client():
 def client_benchmark():
     
     form = SurveyForm()
-    return render_template("client_create_benchmark_job.html",form=form)
+    return render_template("client_create_benchmark_job.html", form=form)
+
+
+@users.route("/user/view-benchmark")
+def client_view_benchmark():
+    
+    form = SurveyForm()
+    return render_template("client_view_benchmark_job.html", form=form)
 
 
 @users.route("/administration/review_benchmark")
@@ -323,6 +343,12 @@ def view_client():
     
 
     return render_template("view_client.html")
+
+@users.route("/administration/edit_client")
+def edit_client():
+    
+
+    return render_template("edit_client.html")
 
 
 

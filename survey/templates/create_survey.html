@@ -41,6 +41,15 @@ Create Survey
                 <div class="row  survey">
                     <div class="col-12">
                         <div class="row">
+                          <div class="col-12 ">
+                            <div class="row">
+                                <div class="col-12 text-right">
+                                  <span class=" btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
+      
+                                </div>
+                            </div>
+                         
+                      </div>
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
                             <label class="td">Survey Name:</label>
@@ -100,6 +109,20 @@ Create Survey
 
                 <!-- thia begins the selection of benchmark job titles -->
 <div class=" benchmark" style="display:none">
+
+  <div class="col-12 ">
+    <br/>
+    <div class="row">
+        <div class="col-6">
+            <span class="benchmark btn btn-outline-info" style="width: 70px;" id="benchmark" onclick="switchBack(this.id)">Back</span>
+        </div>
+        <div class="col-6" style="text-align: right;">
+            <span class="benchmark btn btn-outline-info" style="width: 70px; float: right;" id="benchmark" onclick="switchView(this.id)">Next</span>
+        </div>
+    </div>
+    <br/>
+ 
+</div>
   <div class="col text-right">
     <span class="btn btn-outline-secondary" data-toggle="modal" data-target="#upload_jobs">Upload Jobs</span>
     <br><br>
@@ -195,6 +218,21 @@ Create Survey
 <div class=" comparator" style="display:none">
   
   <div class="row">
+
+    <div class="col-12 ">
+      <br/>
+      <div class="row">
+        
+          <div class="col-6 ">
+              <span class="comparator btn btn-outline-info" style="width: 70px;" id="comparator" onclick="switchBack(this.id)">Back</span>
+          </div>
+          <div class="col-6" style="text-align: right;">
+            <span class="comparator btn btn-outline-info review_survey_btn" style="width: 70px; float: right;" id="comparator" onclick="switchView(this.id)">Next</span>
+        </div>
+      </div>
+      <br/>
+   
+</div>
     <div class="col-lg-6 col-md-12">
      
       <table class="table">
@@ -260,6 +298,8 @@ Create Survey
   </div>
     <div class="col-12 ">
         <br/>
+  
+      <br/>
         <div class="row">
           
             <div class="col-6 ">
@@ -328,7 +368,7 @@ Create Survey
   </div>
 
 </div>
-    <div class="row">
+    <div class="row ">
       <div class="col-6 text-left">
         <span class=" btn btn-outline-info" style="width: 70px;" id="review" onclick="switchBack(this.id)">Back</span>
 
@@ -577,7 +617,7 @@ $("ul").on("click", "svg", function(e) {
     $('.comparator_status').html("(active)")
      $(".benchmark").css("display", "none");
     $(".comparator").css("display", "block");
-    $(".sub").css("display", "block");
+  
 
   }
 

@@ -36,6 +36,19 @@ Edit Survey
                 <div class="row  survey">
                     <div class="col-12">
                         <div class="row">
+                          <div class="col-12 ">
+                            <div class="row">
+                              <div class="col-6">
+                                <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+                              </div>
+                                <div class="col-6 text-right">
+                                  <span class=" btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
+      
+                                </div>
+                            </div>
+                            <br/>
+                      </div>
+                      
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
                             <label class="td">Survey Name:</label>
@@ -80,7 +93,10 @@ Edit Survey
                   
                   <div class="col-12 ">
                       <div class="row">
-                          <div class="col-12 text-right">
+                        <div class="col-6">
+                          <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+                        </div>
+                          <div class="col-6 text-right">
                             <span class=" btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
 
                           </div>
@@ -95,6 +111,20 @@ Edit Survey
 
                 <!-- this begins the selection of benchmark job titles -->
 <div class=" benchmark" style="display:none">
+  <div class="col-12 ">
+    <br/>
+    <div class="row">
+        <div class="col-6">
+          <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+        </div>
+        <div class="col-6" style="text-align: right;">
+          <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchBack(this.id)">Back</span>
+
+            <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchView(this.id)">Next</span>
+        </div>
+    </div>
+ <br/>
+</div>
   <div class="col text-right">
     <span class="btn btn-outline-secondary" data-toggle="modal" data-target="#upload_jobs">Upload Jobs</span>
     <br><br>
@@ -172,10 +202,12 @@ Edit Survey
         <br/>
         <div class="row">
             <div class="col-6">
-                <span class="benchmark btn btn-outline-info" style="width: 70px;" id="benchmark" onclick="switchBack(this.id)">Back</span>
+              <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
             </div>
             <div class="col-6" style="text-align: right;">
-                <span class="benchmark btn btn-outline-info" style="width: 70px; float: right;" id="benchmark" onclick="switchView(this.id)">Next</span>
+              <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchBack(this.id)">Back</span>
+
+                <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchView(this.id)">Next</span>
             </div>
         </div>
      
@@ -257,20 +289,20 @@ Edit Survey
         <br/>
         <div class="row">
             <div class="col-6 ">
-                <span class="comparator btn btn-outline-info" style="width: 70px;" id="comparator" onclick="switchBack(this.id)">Back</span>
+              <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+                
             </div>
-            <div class="col-6 text-center justify-content-center" style="text-align: right;">
-             
-           
-                <span  class="text-center sub btn btn-info"data-toggle="modal" data-target="#review_survey_modal" id="review_survey_btn"  style="width: 120px;float: right;">Review</span>
+            <div class="col-6" style="text-align: right;">
+              <span class="comparator btn btn-outline-info"  id="comparator" onclick="switchBack(this.id)">Back</span>
+                <span  class="sub btn btn-info"data-toggle="modal" data-target="#review_survey_modal" id="review_survey_btn"  >Review</span>
             </div>
         </div>
      
   </div>
   </div>
-<div class="col text-center pt-4">
+<!-- <div class="col text-center pt-4">
     <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
-</div>
+</div> -->
         </div>
 
     </div>
@@ -536,7 +568,7 @@ $("#add_benchmark").click(function(){
     $( ".benchmark_card" ).addClass( "active" );
     $('.benchmark_status').html("(active)")
      $(".survey").css("display", "none");
-    $(".benchmark").css("display", "block");
+    $(".benchmark").css("display", "");
 
    
     
@@ -550,8 +582,8 @@ $("#add_benchmark").click(function(){
     $( ".comparator_card" ).addClass( "active" );
     $('.comparator_status').html("(active)")
      $(".benchmark").css("display", "none");
-    $(".comparator").css("display", "block");
-    $(".sub").css("display", "block");
+    $(".comparator").css("display", "");
+    $(".sub").css("display", "");
 
  
   }
@@ -569,7 +601,7 @@ $("#add_benchmark").click(function(){
  
     $('.survey_status').html("(active)")
      $(".benchmark").css("display", "none");
-    $(".survey").css("display", "block");
+    $(".survey").css("display", "");
     
       
  
@@ -582,7 +614,7 @@ $("#add_benchmark").click(function(){
  
     $('.benchmark_status').html("(active)")
      $(".comparator").css("display", "none");
-    $(".benchmark").css("display", "block");
+    $(".benchmark").css("display", "");
     $(".sub").css("display", "none");
     
       

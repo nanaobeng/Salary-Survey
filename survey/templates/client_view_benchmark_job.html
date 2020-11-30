@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block header %} 
-Create Benchmark Job
+View Benchmark Job
 {% endblock header %}
 {% block content %}
 
@@ -68,7 +68,7 @@ Create Benchmark Job
           <div class="col-12 pt-4">
             <div class="card">
               <div class="card-body p-4">
-  <div class="row testdiv">
+  <div class=" testdiv">
     <div class="col-12">
           <form method="POST" action="">
             {{ form.hidden_tag() }}
@@ -76,20 +76,19 @@ Create Benchmark Job
             <div class="col-12 job">
 
                 <div class="container">
-                 
-            
+
                     <br>
                     <div class="row">
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label for="job_title">Job Title</label>
-                                <input type="text" name="job_title" id="job_title" class="form-control">
+                                <input type="text" name="job_title" id="job_title" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label for="department">Department</label>
-                                <input type="text" name="department" id="department" class="form-control">
+                                <input type="text" name="department" id="department" class="form-control" readonly>
                             </div>
                         </div>
                     </div>
@@ -97,13 +96,13 @@ Create Benchmark Job
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label for="grade">Grade</label>
-                                <input type="text" name="grade" id="grade" class="form-control">
+                                <input type="text" name="grade" id="grade" class="form-control" readonly>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label for="reporting_relationship">Reporting Relationship</label>
-                                <input type="text" name="reporting_relationship" id="reporting_relationship" class="form-control">
+                                <input type="text" name="reporting_relationship" id="reporting_relationship" class="form-control" readonly>
                             </div>
                         </div>
                     </div>
@@ -111,7 +110,7 @@ Create Benchmark Job
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="job_description">Job Description</label>
-                                <textarea name="job_description" class="form-control benchmark_job_textarea" id="job_description" ></textarea>
+                                <textarea name="job_description" class="form-control benchmark_job_textarea" id="job_description" readonly></textarea>
                             </div>
                         </div>
                     </div>
@@ -119,7 +118,7 @@ Create Benchmark Job
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="key_duties">Key Duties and Scope of Responsibility</label>
-                                <textarea name="key_duties" class="form-control benchmark_job_textarea" id="key_duties" ></textarea>
+                                <textarea name="key_duties" class="form-control benchmark_job_textarea" id="key_duties" readonly></textarea>
                             </div>
                         </div>
                     </div>
@@ -127,7 +126,7 @@ Create Benchmark Job
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="financial_responsibilities">Financial Responsibilities</label>
-                                <textarea name="financial_responsibilities" class="form-control benchmark_job_textarea" id="financial_responsibilities" ></textarea>
+                                <textarea name="financial_responsibilities" class="form-control benchmark_job_textarea" id="financial_responsibilities" readonly></textarea>
                             </div>
                         </div>
                     </div>
@@ -135,7 +134,7 @@ Create Benchmark Job
                         <div class="col-12">
                             <div class="form-group">
                                 <label for="technical_qualification">Technical/Professional Qualification</label>
-                                <textarea name="technical_qualification" class="form-control benchmark_job_textarea" id="technical_qualification" ></textarea>
+                                <textarea name="technical_qualification" class="form-control benchmark_job_textarea" id="technical_qualification" readonly></textarea>
                             </div>
                         </div>
                     </div>
@@ -143,7 +142,7 @@ Create Benchmark Job
                         <div class="col-lg-6 col-md-12">
                             <div class="form-group">
                                 <label for="years_of_experience">Minimum Years of Experience</label>
-                                <input type="number" class="form-control" name="years_of_experience" id="years_of_experience">
+                                <input type="number" class="form-control" readonly name="years_of_experience" id="years_of_experience">
                             </div>
                         </div>
                     </div>
@@ -154,7 +153,7 @@ Create Benchmark Job
                         
                     </div>
                     <br/>
-                   
+                
                 </div>
 
 
@@ -164,190 +163,150 @@ Create Benchmark Job
   
   
           <div class="col-12 basic_salary" style="display:none">
-            <div class="row">
-                <div class="col-12">
-                    <div class="form-group">
-                        {{ form.base_salary.label(class="form-control-label") }}
-            
-                        {% if form.base_salary.errors %}
-                        {{ form.base_salary(class="form-control form-control is-invalid")}}
-                        <div class="invalid-feedback">
-                            {% for error in form.base_salary.errors %}
-                            <span> {{ error}}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.base_salary(class="form-control form-control") }}
-                        {% endif %}
-            
-                        
+                <div class="form-group">
+                    {{ form.base_salary.label(class="form-control-label") }}
+        
+                    {% if form.base_salary.errors %}
+                    {{ form.base_salary(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.base_salary.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
                     </div>
-
+                    {% else %}
+                    {{ form.base_salary(class="form-control form-control") }}
+                    {% endif %}
+        
+                    
                 </div>
-
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-6 basic_salary ">
-                            <span class="btn btn-outline-info" id="basic" onclick="switchBack(this.id)">Back</span>
-            
-                        </div>
-            
-                        
-                        <div class="col-6 basic_salary text-right">
-                          <span class="btn btn-info rah" style="color:#fff"> Next</span>
-          
-                      </div>
-          
-
+                
+                <div class="row">
+                    <div class="col-6 basic_salary ">
+                        <span class="btn btn-outline-info" id="basic" onclick="switchBack(this.id)">Back</span>
+        
                     </div>
+        
+                    
+                    <div class="col-6 basic_salary text-right">
+                      <span class="btn btn-info rah" style="color:#fff"> Next</span>
+      
+                  </div>
                 </div>
-            </div>
-                
-               
-                
-               
+  
               </div>
   
   
   
                 <!-- start of bonus questions-->
                     <div class="row  bonus" style="display:none">
-                        <div class="col-12">
-                            <div class="row">
-                                <div class="col-6 " >
-                                    <div class="form-group">
-                                      {{ form.company_bonus_performance.label(class="form-control-label") }}
-                          
-                                      {% if form.company_bonus_performance.errors %}
-                                      {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
-                                      <div class="invalid-feedback">
-                                          {% for error in form.company_bonus_performance.errors %}
-                                          <span> {{ error}}</span>
-                                          {% endfor %}
-                                      </div>
-                                      {% else %}
-                                      {{ form.company_bonus_performance(class="form-control form-control") }}
-                                      {% endif %}
-                          
-                                      
-                                  </div>
-                                </div>
-
-                                  <div class="col-6 ">
-                                    <div class="form-group">
-                                      {{ form.individual_bonus_performance.label(class="form-control-label") }}
-                          
-                                      {% if form.individual_bonus_performance.errors %}
-                                      {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
-                                      <div class="invalid-feedback">
-                                          {% for error in form.individual_bonus_performance.errors %}
-                                          <span> {{ error}}</span>
-                                          {% endfor %}
-                                      </div>
-                                      {% else %}
-                                      {{ form.individual_bonus_performance(class="form-control form-control") }}
-                                      {% endif %}
-                          
-                                      
-                                  </div>
+                <div class="col-6 bonus" style="display:none">
+                  <div class="form-group">
+                    {{ form.company_bonus_performance.label(class="form-control-label") }}
+        
+                    {% if form.company_bonus_performance.errors %}
+                    {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.company_bonus_performance.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.company_bonus_performance(class="form-control form-control") }}
+                    {% endif %}
+        
                     
-                                    </div>
-
-
-                                    <div class="col-4 bonus">
-                                        <div class="form-group">
-                                          {{ form.annual_bonus.label(class="form-control-label") }}
-                              
-                                          {% if form.annual_bonus.errors %}
-                                          {{ form.annual_bonus(class="form-control form-control is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.annual_bonus.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.annual_bonus(class="form-control form-control") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                      
-                                      </div>
-                      
-                      
-                                      <div class="col-4 bonus">
-                                        <div class="form-group">
-                                          {{ form.incentive_bonus.label(class="form-control-label") }}
-                              
-                                          {% if form.incentive_bonus.errors %}
-                                          {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.incentive_bonus.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.incentive_bonus(class="form-control form-control") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                      
-                                      </div>
-                      
-                      
-                                      <div class="col-4 bonus">
-                                        <div class="form-group">
-                                          {{ form.other_bonus.label(class="form-control-label") }}
-                              
-                                          {% if form.other_bonus.errors %}
-                                          {{ form.other_bonus(class="form-control form-control is-invalid")}}
-                                          <div class="invalid-feedback">
-                                              {% for error in form.other_bonus.errors %}
-                                              <span> {{ error}}</span>
-                                              {% endfor %}
-                                          </div>
-                                          {% else %}
-                                          {{ form.other_bonus(class="form-control form-control") }}
-                                          {% endif %}
-                              
-                                          
-                                      </div>
-                      
-                                      </div>
-
-                                      <div class="col-12">
-
-                                        <div class="row">
-                                            <div class="col-6 bonus" >
-                                                <span class="btn btn-outline-info" id="bonus" onclick="switchBack(this.id)">Back</span>
-                                            </div>
-                                            <div class="col-6 bonus text-right">
-                                                <span class="btn btn-info rah" style="color:#fff"> Next</span>
-                            
-                                            </div>
-
-                                        </div>
-                                      </div>
-
-
-
-
-                                  </div>
-
-
-
-
-                            </div>
-                
+                </div>
   
-             
-               
+                </div>
+                <div class="col-6 bonus">
+                  <div class="form-group">
+                    {{ form.individual_bonus_performance.label(class="form-control-label") }}
+        
+                    {% if form.individual_bonus_performance.errors %}
+                    {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in form.individual_bonus_performance.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.individual_bonus_performance(class="form-control form-control") }}
+                    {% endif %}
+        
+                    
+                </div>
   
-                  
-                  
                   </div>
-                
+  
+                  <div class="col-4 bonus">
+                    <div class="form-group">
+                      {{ form.annual_bonus.label(class="form-control-label") }}
+          
+                      {% if form.annual_bonus.errors %}
+                      {{ form.annual_bonus(class="form-control form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in form.annual_bonus.errors %}
+                          <span> {{ error}}</span>
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.annual_bonus(class="form-control form-control") }}
+                      {% endif %}
+          
+                      
+                  </div>
+  
+                  </div>
+  
+  
+                  <div class="col-4 bonus">
+                    <div class="form-group">
+                      {{ form.incentive_bonus.label(class="form-control-label") }}
+          
+                      {% if form.incentive_bonus.errors %}
+                      {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in form.incentive_bonus.errors %}
+                          <span> {{ error}}</span>
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.incentive_bonus(class="form-control form-control") }}
+                      {% endif %}
+          
+                      
+                  </div>
+  
+                  </div>
+  
+  
+                  <div class="col-4 bonus">
+                    <div class="form-group">
+                      {{ form.other_bonus.label(class="form-control-label") }}
+          
+                      {% if form.other_bonus.errors %}
+                      {{ form.other_bonus(class="form-control form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in form.other_bonus.errors %}
+                          <span> {{ error}}</span>
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.other_bonus(class="form-control form-control") }}
+                      {% endif %}
+          
+                      
+                  </div>
+  
+                  </div>
+                  <div class="col-6 bonus" >
+                      <span class="btn btn-outline-info" id="bonus" onclick="switchBack(this.id)">Back</span>
+                  </div>
+                  <div class="col-6 bonus text-right">
+                      <span class="btn btn-info rah" style="color:#fff"> Next</span>
+  
+                  </div>
+                </div>
   
             
   
@@ -1277,41 +1236,20 @@ Create Benchmark Job
                </div>
                
   
-              <div class="row review" style="display: none;">
-                <div class="col-12">
-                    <div class="row">
-                        <div class="col-6 ">
-                            
-                            <span class="btn btn-outline-info" id="review" onclick="switchBack(this.id)">Back</span>
-                        </div>
-                        <div class="col-6 text-right">
-                            
-                            <span class="btn btn-success">Submit</span>
-                        </div>
-                    </div>
-                    <br/>
-                </div>
+              <div class=" review" style="display: none;">
                   <div class="col-12">
                       <div class="row">
                           <div class="col-12 reviewForm">
                             
                           </div>
-                          <div class="col-12">
-                            <div class="row">
-                                <div class="col-6 ">
-                                    
-                                    <span class="btn btn-outline-info" id="review" onclick="switchBack(this.id)">Back</span>
-                                </div>
-                                <div class="col-6 text-right">
-                                    
-                                    <span class="btn btn-success">Submit</span>
-                                </div>
-                            </div>
-                        </div>
                       </div>
-                  </div>
-                  
-                      
+                      <div class="row">
+                        <div class="col-6 ">
+                            
+                            <span class="btn btn-outline-info" id="review" onclick="switchBack(this.id)">Back</span>
+                        </div>
+                   
+                    </div>
                   </div>
               </div>
               
@@ -1374,7 +1312,7 @@ Create Benchmark Job
         $( ".basic_card" ).addClass( "active" );
           $('#state').val('basic')
           $(".job").css("display", "none");
-          $(".basic_salary").css("display", "block");
+          $(".basic_salary").css("display", "");
           $('.basic_status').html("(active)")
        
      
@@ -1386,7 +1324,7 @@ Create Benchmark Job
         $( ".bonus_card" ).addClass( "active" );
           $('#state').val('bonus')
           $(".basic_salary").css("display", "none");
-          $(".bonus").css("display", "block");
+          $(".bonus").css("display", "");
           $('.bonus_status').html("(active)")
        
      
@@ -1405,8 +1343,8 @@ Create Benchmark Job
             
               $('#benefit_state').val('health')
               $(".bonus").css("display", "none");
-              $(".benefit_vehicle").css("display", "block");
-              $(".vehicle_nav").css("display", "block");
+              $(".benefit_vehicle").css("display", "");
+              $(".vehicle_nav").css("display", "");
               $(".vehicle_nav").addClass( "bg-info" );
   
         
@@ -1416,9 +1354,9 @@ Create Benchmark Job
             $( ".benefit_card" ).addClass( "active" );
               $('#benefit_state').val('personal')
               $(".benefit_vehicle").css("display", "none");
-              $(".benefit_health").css("display", "block");
+              $(".benefit_health").css("display", "");
               $(".vehicle_nav").css("display", "none");
-              $(".health_nav").css("display", "block");
+              $(".health_nav").css("display", "");
               $(".health_nav").addClass( "bg-info" );
            
   
@@ -1432,9 +1370,9 @@ Create Benchmark Job
               $('#state').val('allowance')
               $('#benefit_state').val('vehicle')
               $(".benefit_health").css("display", "none");
-          $(".benefit_personal").css("display", "block");
+          $(".benefit_personal").css("display", "");
           $(".health_nav").css("display", "none");
-              $(".personal_nav").css("display", "block");
+              $(".personal_nav").css("display", "");
               $(".personal_nav").addClass( "bg-info" );
           
           
@@ -1468,8 +1406,8 @@ Create Benchmark Job
             
               $('#benefit_state').val('health')
            
-              $(".allowance_vehicle").css("display", "block");
-              $(".vehicle_allowance").css("display", "block");
+              $(".allowance_vehicle").css("display", "");
+              $(".vehicle_allowance").css("display", "");
               $(".vehicle_allowance").addClass( "bg-info" );
   
         
@@ -1480,8 +1418,8 @@ Create Benchmark Job
             $(".allowance_vehicle").css("display", "none");
      
               $('#benefit_state').val('personal')
-              $(".allowance_health").css("display", "block");
-              $(".health_allowance").css("display", "block");
+              $(".allowance_health").css("display", "");
+              $(".health_allowance").css("display", "");
               $(".health_allowance").addClass( "bg-info" );
           
            
@@ -1495,8 +1433,8 @@ Create Benchmark Job
             $(".health_allowance").css("display", "none");
             
               $('#benefit_state').val('review')
-              $(".allowance_personal").css("display", "block");
-              $(".personal_allowance").css("display", "block");
+              $(".allowance_personal").css("display", "");
+              $(".personal_allowance").css("display", "");
               $(".personal_allowance").addClass( "bg-info" );
               $(".next_button").css("display", "none");
               $('.reviewForm').empty()
@@ -1536,7 +1474,7 @@ Create Benchmark Job
             
               
            
-              $(".review").css("display", "block");
+              $(".review").css("display", "");
 
               $(".next_button").css("display", "none");
      
@@ -1575,7 +1513,7 @@ Create Benchmark Job
           $('#state').val('job')
           $(".basic_salary").css("display", "none");
     
-          $(".job").css("display", "block");
+          $(".job").css("display", "");
           $('.basic_status').html("")
   
           }
@@ -1587,7 +1525,7 @@ Create Benchmark Job
         $( ".basic_card" ).addClass( "active" );
         $( ".bonus_card" ).removeClass( "active" );
           $('#state').val('basic')
-          $(".basic_salary").css("display", "block");
+          $(".basic_salary").css("display", "");
     
           $(".bonus").css("display", "none");
           $('.bonus_status').html("")
@@ -1598,7 +1536,7 @@ Create Benchmark Job
               $( ".bonus_card" ).removeClass( "completed" );
               $( ".bonus_card" ).addClass( "active" );
               $('#benefit_state').val('vehicle')
-              $(".bonus").css("display", "block");
+              $(".bonus").css("display", "");
               $('#state').val('bonus')
               $(".benefit_vehicle").css("display", "none");
               $(".vehicle_nav").css("display", "none");
@@ -1611,11 +1549,11 @@ Create Benchmark Job
           
           
               $('#benefit_state').val('health')
-              $(".benefit_vehicle").css("display", "block");
+              $(".benefit_vehicle").css("display", "");
               $('#state').val('bonus')
               $(".benefit_health").css("display", "none");
               $(".health_nav").css("display", "none");
-              $(".vehicle_nav").css("display", "block");
+              $(".vehicle_nav").css("display", "");
              
           
               
@@ -1625,11 +1563,11 @@ Create Benchmark Job
           
           
           $('#benefit_state').val('personal')
-          $(".benefit_health").css("display", "block");
+          $(".benefit_health").css("display", "");
           $('#state').val('bonus')
           $(".benefit_personal").css("display", "none");
           $(".personal_nav").css("display", "none");
-          $(".health_nav").css("display", "block");
+          $(".health_nav").css("display", "");
          
       
           
@@ -1640,11 +1578,11 @@ Create Benchmark Job
           
           
           $('#benefit_state').val('personal')
-          $(".benefit_health").css("display", "block");
+          $(".benefit_health").css("display", "");
           $('#state').val('bonus')
           $(".benefit_personal").css("display", "none");
           $(".personal_nav").css("display", "none");
-          $(".health_nav").css("display", "block");
+          $(".health_nav").css("display", "");
          
       
           
@@ -1656,12 +1594,12 @@ Create Benchmark Job
               $( ".allowance_card" ).removeClass( "active" );
               $( ".benefit_card" ).addClass( "active" );
               $('#benefit_state').val('vehicle')
-              $(".benefit_personal").css("display", "block");
+              $(".benefit_personal").css("display", "");
               $('#state').val('allowance')
               $(".allowance_vehicle").css("display", "none");
             
               $(".vehicle_allowance").css("display", "none");
-              $(".personal_nav").css("display", "block");
+              $(".personal_nav").css("display", "");
              
               $('.benefit_status').html("(Active)")
               
@@ -1673,12 +1611,12 @@ Create Benchmark Job
           
           
           $('#benefit_state').val('health')
-          $(".allowance_vehicle").css("display", "block");
+          $(".allowance_vehicle").css("display", "");
           $(".allowance_health").css("display", "none");
           $('#state').val('allowance')
          
           $(".health_allowance").css("display", "none");
-          $(".vehicle_allowance").css("display", "block");
+          $(".vehicle_allowance").css("display", "");
          
          
       
@@ -1689,12 +1627,12 @@ Create Benchmark Job
           
           
           $('#benefit_state').val('personal')
-          $(".allowance_health").css("display", "block");
+          $(".allowance_health").css("display", "");
           $(".allowance_personal").css("display", "none");
           $('#state').val('allowance')
          
           $(".personal_allowance").css("display", "none");
-          $(".health_allowance").css("display", "block");
+          $(".health_allowance").css("display", "");
          
          
       
@@ -1719,12 +1657,12 @@ Create Benchmark Job
           
           
         $('#benefit_state').val('review')
-          $(".allowance_personal").css("display", "block");
+          $(".allowance_personal").css("display", "");
           $(".review").css("display", "none");
           $('#state').val('allowance')
          
           $(".review").css("display", "none");
-          $(".personal_allowance").css("display", "block");
+          $(".personal_allowance").css("display", "");
          
          
       
