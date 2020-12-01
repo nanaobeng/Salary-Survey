@@ -4,21 +4,7 @@
 Surveys
 {% endblock header %}
 {% block content %}
-<style>
-.sorting_asc:before{
-    content: '\1F851';
-    color: greenyellow;
-}
 
-.sorting_desc:before{
-    content: '\1F853';
-    color: greenyellow;
-}
-.sorting:before{
-    content: '\2B83';
-    color: greenyellow;
-}
-</style>
 <div class="col d-flex justify-content-center">
     <div class="input-group" style="max-width: 400px;">
         <input type="search" id="search_survey" class="form-control" placeholder="Search survey">
@@ -39,7 +25,7 @@ Surveys
         <td>Start Date</td>
         <td>End Date</td>
         <td>Status</td>
-        <td></td>
+        <td style="min-width: 50px;"></td>
     </thead>
     <tbody>
         <tr>
@@ -50,7 +36,11 @@ Surveys
             <td>12/4/2020</td>
             <td>N/A</td>
             <td>In Progress</td>
-            <td><i class="fas fa-eye"></i></td>
+            <td>
+                
+                <i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#view_survey_modal" data-toggle="tooltip" data-placement="bottom" title="View Survey"></i>&nbsp;
+                <a href="{{ url_for('users.edit_survey')}}"><i class="fas fa-edit edit-icon" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"></i></a>
+            </td>
         </tr>
         <tr>
             <td>JKL Support Survey</td>
@@ -60,7 +50,11 @@ Surveys
             <td>4/9/2020</td>
             <td>N/A</td>
             <td>In Progress</td>
-            <td><i class="fas fa-eye"></i></td>
+            <td>
+              
+                <i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#view_survey_modal" data-toggle="tooltip" data-placement="bottom" title="View Survey"></i>&nbsp;
+                <a href="{{ url_for('users.edit_survey')}}"><i class="fas fa-edit edit-icon" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"></i></a>
+            </td>
         </tr>
         <tr>
             <td>ABC Mining Company Survey</td>
@@ -70,7 +64,10 @@ Surveys
             <td>1/5/2020</td>
             <td>16/8/2020</td>
             <td>Completed</td>
-            <td><i class="fas fa-eye"></i></td>
+            <td>
+                <i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#view_survey_modal" data-toggle="tooltip" data-placement="bottom" title="View Survey"></i>&nbsp;
+                <a href="{{ url_for('users.edit_survey')}}"><i class="fas fa-edit edit-icon" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"></i></a>
+            </td>
         </tr>
         <tr>
             <td>MNO Breweries Survey</td>
@@ -80,20 +77,100 @@ Surveys
             <td>20/11/2019</td>
             <td>2/3/2020</td>
             <td>Completed</td>
-            <td><i class="fas fa-eye"></i></td>
+            <td>
+                <i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#view_survey_modal" data-toggle="tooltip" data-placement="bottom" title="View Survey"></i>&nbsp;
+                <a href="{{ url_for('users.edit_survey')}}"><i class="fas fa-edit edit-icon" data-toggle="tooltip" data-placement="bottom" title="Edit Survey"></i></a>
+            </td>
+
         </tr>
     </tbody>
-</table>
-<div class="row justify-content-center">
+</table><br>
+<div class="col text-center"><button class="btn btn-info">Export to Excel</button></div>
+<!-- <div class="row justify-content-center">
     <a href="{{ url_for('users.create_survey')}}"><button class="btn btn-info">New Survey</button></a>
-</div>
-<script>
- $(document).ready(function() {
-    surveysTable =  $('#surveys').DataTable({sDom: 'lrtip', 'bLengthChange': false});
-} );
-$('#search_survey').keyup(function(){
-      surveysTable.search($(this).val()).draw() ;
-})
+</div> -->
 
-</script>
+<div class="modal " id="view_survey_modal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">View Survey</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Survey Name:  </b> <span id="review_survey_name">Galaxy Insurance Salary Survey</span>
+            </div> <hr>
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Client: </b> <span id="review_client_name"> Galaxy Insurance</span>
+            </div>
+          </div>
+          <hr>
+          <div class="row mb-2">
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Industry:  </b> <span id="review_industry">Financial</span>
+            </div>
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Area of Operation: </b><span id="review_area_of_operation">Insurance </span>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-lg-6 col-md-12 mb-2">
+              <b>Start Date: </b><span id="review_start_date">12/03/2020</span>
+            </div>
+           
+          </div>
+          <hr>
+          <div class="row mb-2">
+            <div class="col-lg-6 col-md-12">
+              <b>Benchmark Jobs:</b><br>
+              <ul id="review_benchmark_jobs">
+                <li>Front Desk Officer</li>
+                <li>Accounts Officer</li>
+                <li>Sales Eecutive</li>
+                <li>Marketing Officer</li>
+                <li>Procurement Manager</li>
+                <li>Internal Auditor</li>
+                <li>Compliance Manager</li>
+              </ul>
+              
+            </div>
+            <div class="col-lg-6 col-md-12">
+              <b>Comparators:</b><br>
+              <ul id="review_comparators">
+                <li>Peal Insurance Company</li>
+                <li>GTR Insurance</li>
+                <li>RZec Insurance Company Limited</li>
+                <li>Prock Insurance Company</li>
+              </ul>
+              
+            </div>
+           
+          </div>
+
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+ 
+        </div>
+        
+      </div>
+    </div>
+  </div>
+  <style>
+  .edit-icon{
+      cursor: pointer;
+      color: teal;
+  }
+  .edit-icon:hover{
+      color: black;
+  }
+  </style>
 {% endblock content %}

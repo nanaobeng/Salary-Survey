@@ -9,7 +9,6 @@
 <!--Import materialize.css-->
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="css/progress-wizard.min.css" rel="stylesheet">
 <!-- Compiled and minified CSS -->
 
 <link rel="icon"  type="image/x-icon" href="{{ url_for('static', filename='img/favicon.ico')}}" />
@@ -24,7 +23,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/magnific-popup.min.css')}}">
 <!-- Core theme CSS (includes Bootstrap)-->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
-<link rel="stylesheet" href="{{ url_for('static', filename='css/stylex.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/dataTables.min.css')}}">
 <style>
   .list :hover {
     background-color: rgb(65, 124, 6);
@@ -50,7 +49,7 @@
         <div class="container">
             <div style="height: 30px !important;" id="logo">
 
-              <img src="{{ url_for('static', filename='img/Deloitte-white.png')}}" class="img-fluid" style="height: 30px;"/>
+              <a href="{{ url_for('main.landing')}}"><img src="{{ url_for('static', filename='img/Deloitte-white.png')}}" class="img-fluid" style="height: 30px;"/></a>
                 
             </div>
             <div class="navbar-header navbar-title js-scroll-trigger">
@@ -61,9 +60,27 @@
             <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
               <ul class="navbar-nav ml-auto my-2 my-lg-0">
+                <!-- authentication for anonymous users -->
+                {% if current_user.is_anonymous %}
+               
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#">About Us</a></li>
+                <div class="btn-group nav-item">
+                  <li class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true">Request service</li>
+                  <div class="dropdown-menu dropdown-menu-right bg-secondary ">
+                      <a class="dropdown-item" href="#">Individual Request</a>
+                      <a class="dropdown-item" href="{{  url_for('users.corporate_requests')}}">Corporate Request</a>
+                  </div>
+              </div>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('main.contact')}}">Contact Us</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.login')}}">Login</a></li>
+
+
+                {% endif %}
+                <!-- navigation for authenticated users -->
                 {% if current_user.is_authenticated %}
                
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('main.index')}}">Home</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_benchmark_jobs')}}">My Benchmark Jobs</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_surveys')}}">Complete Survey</a></li>
                 <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_reports')}}">Reports</a></li>
 
@@ -75,50 +92,7 @@
                   </div>
               </div>
 
-<!--  These navigations are for administrator. We need to create a new layout for admin
-
-                <li class="nav-item">
-                  <a class="nav-link" href="{{  url_for('main.index')}}" style="color:green">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{  url_for('users.survey')}}" style="color:green">Survey</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" style="color:green">
-                    Reports
-                  </a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="#">Survey Reports</a>
-                    <a class="dropdown-item" href="#">Audit Logs</a>
-                    
-                  </div>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#"  style="color:green" data-toggle="dropdown">
-                    Setup
-                  </a>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="{{  url_for('users.register')}}" style="color:cornflowerblue">User</a>
-                    <a class="dropdown-item" href="{{ url_for('users.create_client')}}" style="color:cornflowerblue">Client</a>
-                    <a class="dropdown-item"  href="{{ url_for('users.create_industry')}}" style="color:cornflowerblue">Industry</a>
-                    <a class="dropdown-item"   href="{{ url_for('users.create_sector')}}" style="color:cornflowerblue">Sector</a>
-                    <a class="dropdown-item"  href="{{ url_for('users.create_job')}}" style="color:cornflowerblue">Job Title</a>
-                    <a class="dropdown-item"  href="{{ url_for('users.questions')}}" style="color:cornflowerblue">Questions</a>
-                    <a class="dropdown-item"  href="{{ url_for('users.create_area')}}" style="color:cornflowerblue">Area of Operation</a>
-                    
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="{{  url_for('users.logout')}}" style="color:green">Logout</a>
-                </li>
-                {% else %}
-                <li class="nav-item">
-                  <a class="nav-link" href="{{  url_for('users.login')}}" style="color:green">Login</a>
-                </li>
-               
-                {% endif %} -->
-                
-                
+                {% endif %}
               </ul>
             </div>
         </div>
@@ -191,18 +165,17 @@
           </div></div>
       </footer>
        <!--JavaScript at end of body for optimized loading-->
-       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+       <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script type="text/javascript"
-        src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
-        <script type="text/javascript"
-        src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
-        <script type="text/javascript"
-        src="{{ url_for('static', filename='js/scripts.js') }}"></script>
-        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
        
         
    

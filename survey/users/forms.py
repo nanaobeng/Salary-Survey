@@ -117,7 +117,53 @@ class AreaForm(FlaskForm):
 
 class ClientForm(FlaskForm):
    
-    name = StringField('Client Name', validators=[DataRequired()])
+    name = StringField('Registered Company Name', validators=[DataRequired()])
+    reg = StringField('Company Registration Number', validators=[DataRequired()])
+    financial_year_end = StringField('Financial Year End', validators=[DataRequired()])
+    company_type = StringField('Company Type', validators=[DataRequired()])
+    vat = StringField('VAT Number', validators=[DataRequired()])
+    telephone = StringField('Telephone Number', validators=[DataRequired()])
+    fax = StringField('Fax Number', validators=[DataRequired()])
+    email = StringField('Email Address', validators=[DataRequired()])
+    website = StringField('Website Address', validators=[DataRequired()])
+    date_of_incorporation = StringField('Date of Incorporation', validators=[DataRequired()])
+    country_of_incorporation = StringField('Country of Incorporation', validators=[DataRequired()])
+    chairman_firstname = StringField(" Firstname", validators=[DataRequired()])
+    chairman_lastname = StringField(" Lastname", validators=[DataRequired()])
+    chairman_other_names = StringField(" Other Name", validators=[DataRequired()])
+    chairman_email = StringField(" Email Address", validators=[DataRequired()])
+    chairman_nationality = StringField(" Nationality", validators=[DataRequired()])
+    chairman_phone = StringField(" Phone ", validators=[DataRequired()])
+    key_firstname = StringField("Firstname", validators=[DataRequired()])
+    key_lastname = StringField("Lastname", validators=[DataRequired()])
+    key_other_names = StringField(" Other Name", validators=[DataRequired()])
+    key_email = StringField(" Email Address", validators=[DataRequired()])
+    key_nationality = StringField(" Nationality", validators=[DataRequired()])
+    key_phone = StringField(" Phone Number", validators=[DataRequired()])
+    ceo_firstname = StringField("Firstname", validators=[DataRequired()])
+    ceo_lastname = StringField("Lastname", validators=[DataRequired()])
+    ceo_other_names = StringField(" Other Name", validators=[DataRequired()])
+    ceo_email = StringField(" Email Address", validators=[DataRequired()])
+    ceo_nationality = StringField(" Nationality", validators=[DataRequired()])
+    ceo_phone = StringField(" Phone Number", validators=[DataRequired()])
+
+    current_auditor_name = StringField("Name", validators=[DataRequired()])
+    current_auditor_address = StringField("Address", validators=[DataRequired()])
+    current_auditor_city = StringField(" City", validators=[DataRequired()])
+    current_auditor_country = StringField(" Country", validators=[DataRequired()])
+
+    previous_auditor_name = StringField("Name", validators=[DataRequired()])
+    previous_auditor_address = StringField("Address", validators=[DataRequired()])
+    previous_auditor_city = StringField(" City", validators=[DataRequired()])
+    previous_auditor_country = StringField(" Country", validators=[DataRequired()])
+
+
+    company_secretary_name = StringField("Name", validators=[DataRequired()])
+    company_secretary_address = StringField("Address", validators=[DataRequired()])
+    company_secretary_city = StringField(" City", validators=[DataRequired()])
+    company_secretary_country = StringField(" Country", validators=[DataRequired()])
+
+    
     sector =  SelectField(
         'Sector',
         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]

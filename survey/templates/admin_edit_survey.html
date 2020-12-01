@@ -1,14 +1,14 @@
 {% extends "admin_layout.html" %}
 
 {% block header %} 
-Create Survey
+Edit Survey
 {% endblock header %}
 
 {% block content %}
 <div class="container p-4">
     <div class="row p-4">
         <div class="col-12">
-            <form class="create_survey_form">
+            
          
                 <div class="row ">
                     <div class="col-12">
@@ -25,11 +25,6 @@ Create Survey
                             <span class="bubble"></span>
                             Assign Comparators. <br><small class="comparator_status"></small>
                         </li>
-
-                        <li class="review_card">
-                          <span class="bubble"></span>
-                          Review. <br><small class="review_status"></small>
-                      </li>
                     
                         
                     </ul>
@@ -43,13 +38,17 @@ Create Survey
                         <div class="row">
                           <div class="col-12 ">
                             <div class="row">
-                                <div class="col-12 text-right">
+                              <div class="col-6">
+                                <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+                              </div>
+                                <div class="col-6 text-right">
                                   <span class=" btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
       
                                 </div>
                             </div>
-                         
+                            <br/>
                       </div>
+                      
                     <div class="col-lg-6 col-md-12">
                         <div class="form-group">
                             <label class="td">Survey Name:</label>
@@ -94,7 +93,10 @@ Create Survey
                   
                   <div class="col-12 ">
                       <div class="row">
-                          <div class="col-12 text-right">
+                        <div class="col-6">
+                          <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+                        </div>
+                          <div class="col-6 text-right">
                             <span class=" btn btn-outline-info" id="survey" onclick="switchView(this.id)">Next</span>
 
                           </div>
@@ -107,21 +109,21 @@ Create Survey
                 </div>
 
 
-                <!-- thia begins the selection of benchmark job titles -->
+                <!-- this begins the selection of benchmark job titles -->
 <div class=" benchmark" style="display:none">
-
   <div class="col-12 ">
     <br/>
     <div class="row">
         <div class="col-6">
-            <span class="benchmark btn btn-outline-info" style="width: 70px;" id="benchmark" onclick="switchBack(this.id)">Back</span>
+          <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
         </div>
         <div class="col-6" style="text-align: right;">
-            <span class="benchmark btn btn-outline-info" style="width: 70px; float: right;" id="benchmark" onclick="switchView(this.id)">Next</span>
+          <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchBack(this.id)">Back</span>
+
+            <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchView(this.id)">Next</span>
         </div>
     </div>
-    <br/>
- 
+ <br/>
 </div>
   <div class="col text-right">
     <span class="btn btn-outline-secondary" data-toggle="modal" data-target="#upload_jobs">Upload Jobs</span>
@@ -200,10 +202,12 @@ Create Survey
         <br/>
         <div class="row">
             <div class="col-6">
-                <span class="benchmark btn btn-outline-info" style="width: 70px;" id="benchmark" onclick="switchBack(this.id)">Back</span>
+              <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
             </div>
             <div class="col-6" style="text-align: right;">
-                <span class="benchmark btn btn-outline-info" style="width: 70px; float: right;" id="benchmark" onclick="switchView(this.id)">Next</span>
+              <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchBack(this.id)">Back</span>
+
+                <span class="benchmark btn btn-outline-info"  id="benchmark" onclick="switchView(this.id)">Next</span>
             </div>
         </div>
      
@@ -218,21 +222,6 @@ Create Survey
 <div class=" comparator" style="display:none">
   
   <div class="row">
-
-    <div class="col-12 ">
-      <br/>
-      <div class="row">
-        
-          <div class="col-6 ">
-              <span class="comparator btn btn-outline-info" style="width: 70px;" id="comparator" onclick="switchBack(this.id)">Back</span>
-          </div>
-          <div class="col-6" style="text-align: right;">
-            <span class="comparator btn btn-outline-info review_survey_btn" style="width: 70px; float: right;" id="comparator" onclick="switchView(this.id)">Next</span>
-        </div>
-      </div>
-      <br/>
-   
-</div>
     <div class="col-lg-6 col-md-12">
      
       <table class="table">
@@ -298,93 +287,22 @@ Create Survey
   </div>
     <div class="col-12 ">
         <br/>
-  
-      <br/>
         <div class="row">
-          
             <div class="col-6 ">
-                <span class="comparator btn btn-outline-info" style="width: 70px;" id="comparator" onclick="switchBack(this.id)">Back</span>
+              <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+                
             </div>
             <div class="col-6" style="text-align: right;">
-              <span class="comparator btn btn-outline-info review_survey_btn" style="width: 70px; float: right;" id="comparator" onclick="switchView(this.id)">Next</span>
-          </div>
+              <span class="comparator btn btn-outline-info"  id="comparator" onclick="switchBack(this.id)">Back</span>
+                <span  class="sub btn btn-info"data-toggle="modal" data-target="#review_survey_modal" id="review_survey_btn"  >Review</span>
+            </div>
         </div>
      
   </div>
   </div>
-
-  <div class="row review" style="display:none">
-<div class="row">
-  <div class="col-12 text-center">
-  
-
-  </div>
-</div>
-<div class="row ">
-  <div class="col-12 reviewform">
-    <div class="row">
-      <div class="col-lg-6 col-md-12">
-        <b>Survey Name: </b> <span id="review_survey_name"></span>
-      </div>
-      <div class="col-lg-6 col-md-12">
-        <b>Client: </b> <span id="review_client_name"></span>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-lg-6 col-md-12">
-        <b>Industry: </b> <span id="review_industry"></span>
-      </div>
-      <div class="col-lg-6 col-md-12">
-        <b>Area of Operation: </b><span id="review_area_of_operation"></span>
-      </div>
-    </div>
-    <hr>
-    <div class="row">
-      <div class="col-lg-6 col-md-12">
-        <b>Start Date: </b><span id="review_start_date"></span>
-      </div>
-     
-    </div>
-    <hr>
-    <div class="row mb-2">
-      <div class="col-lg-6 col-md-12">
-        <b>Benchmark Jobs</b><br>
-        <ul id="review_benchmark_jobs">
-   
-        </ul>
-        
-      </div>
-      <div class="col-lg-6 col-md-12">
-        <b>Comparators</b><br>
-        <ul id="review_comparators">
-   
-        </ul>
-        
-      </div>
-     
-    </div>
-    <hr>
-  </div>
-
-</div>
-    <div class="row ">
-      <div class="col-6 text-left">
-        <span class=" btn btn-outline-info" style="width: 70px;" id="review" onclick="switchBack(this.id)">Back</span>
-
-
-      </div>
-      <div class="col-6 text-right">
-        <span class="btn  btn-success" style="width: 70px;" data-toggle="modal" data-target="#confirm_modal">Submit</span>
-
-      </div>
-  </div>
-
-  </div>
-               
-               
-                
-              </form>
+<!-- <div class="col text-center pt-4">
+    <a href="{{ url_for('users.admin_surveys')}}" class="btn btn-outline-danger">Cancel</a>
+</div> -->
         </div>
 
     </div>
@@ -517,13 +435,54 @@ Create Survey
           
           <!-- Modal body -->
           <div class="modal-body">
-            
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <b>Survey Name: </b> <span id="review_survey_name"></span>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <b>Client: </b> <span id="review_client_name"></span>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <b>Industry: </b> <span id="review_industry"></span>
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <b>Area of Operation: </b><span id="review_area_of_operation"></span>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-lg-6 col-md-12">
+                <b>Start Date: </b><span id="review_start_date"></span>
+              </div>
+             
+            </div>
+            <hr>
+            <div class="row mb-2">
+              <div class="col-lg-6 col-md-12">
+                <b>Benchmark Jobs</b><br>
+                <ul id="review_benchmark_jobs">
+           
+                </ul>
+                
+              </div>
+              <div class="col-lg-6 col-md-12">
+                <b>Comparators</b><br>
+                <ul id="review_comparators">
+           
+                </ul>
+                
+              </div>
+             
+            </div>
 
           </div>
           
           <!-- Modal footer -->
           <div class="modal-footer">
-            <span  class="text-center sub btn btn-info" style="width: 120px;">Create Survey</span>
+            <span  class="text-center sub btn btn-info" style="width: 120px;">Save</span>
             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
           </div>
           
@@ -559,36 +518,44 @@ Create Survey
     </div>
     <input type="file" name="upload_jobs_file" id="upload_jobs_file" hidden>
 
-    <!-- Confirm creation of survey -->
-    <div class="modal fade" id="confirm_modal" tabindex="-1" role="dialog">
-      <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Submit Survey</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <p class="text-center">Do you want to submit this survey now?</p>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-danger btn-sm" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-success btn-sm" >Submit</button>
-          </div>
-        </div>
-      </div>
-    </div>
 
 <script>
-
-//Delete selected job and comparator from list
 $("ul").on("click", "svg", function(e) {
   
     e.preventDefault();
     $(this).parent().remove();
 });
-
+$("#add_benchmark").click(function(){
+        $("#selected_benchmark").append(`<li class="list-group-item d-flex justify-content-between align-items-center">
+          Finance Manager
+          <i class="fas fa-trash benchmark-trash"></i>
+        </li>`);
+      
+    });
+  $("#review_survey_btn").click(function(){
+    
+    $("#review_survey_name").html($("#survey_name").val())
+    $("#review_client_name").html($("#client").val())
+    $("#review_industry").html($("#industry").val())
+    $("#review_area_of_operation").html($("#area_of_operation").val())
+    $("#review_start_date").html($("#start_date").val())
+    //append selected benchmark jobs to modal
+    var selected_jobs = $('#selected_benchmark').children('li');
+    selected_jobs.each(function(){
+      var item = $(this)[0].firstChild     
+     $('#review_benchmark_jobs').append('<li>'+item.nodeValue+'</li>');
+    })
+    //Append selected comparators to modal
+    var selected_comparators = $('#selected_comparators').children('li');
+    selected_comparators.each(function(){
+      var item = $(this)[0].firstChild     
+     $('#review_comparators').append('<li>'+item.nodeValue+'</li>');
+    })
+      
+    
+    
+    
+  })
 </script>
 
 <script>
@@ -601,14 +568,13 @@ $("ul").on("click", "svg", function(e) {
     $( ".benchmark_card" ).addClass( "active" );
     $('.benchmark_status').html("(active)")
      $(".survey").css("display", "none");
-    $(".benchmark").css("display", "block");
+    $(".benchmark").css("display", "");
 
-  }
-
-
+   
+    
+      
  
-
-
+  }
   if(id == 'benchmark'){
     $('.benchmark_status').html("(completed)")
     $( ".benchmark_card" ).removeClass( "active" );
@@ -616,23 +582,11 @@ $("ul").on("click", "svg", function(e) {
     $( ".comparator_card" ).addClass( "active" );
     $('.comparator_status').html("(active)")
      $(".benchmark").css("display", "none");
-    $(".comparator").css("display", "block");
-  
-
-  }
-
-
-  if(id == 'comparator'){
-    $('.comparator_status').html("(completed)")
-    $( ".comparator_card" ).removeClass( "active" );
-    $( ".comparator_card" ).addClass( "completed" );
-    $( ".review_card" ).addClass( "active" );
-    $('.review_status').html("(active)")
-     $(".comparator").css("display", "none");
-    $(".review").css("display", "block");
+    $(".comparator").css("display", "");
+    $(".sub").css("display", "");
 
  
-  } 
+  }
     }
 </script>
 
@@ -647,7 +601,7 @@ $("ul").on("click", "svg", function(e) {
  
     $('.survey_status').html("(active)")
      $(".benchmark").css("display", "none");
-    $(".survey").css("display", "block");
+    $(".survey").css("display", "");
     
       
  
@@ -660,22 +614,7 @@ $("ul").on("click", "svg", function(e) {
  
     $('.benchmark_status').html("(active)")
      $(".comparator").css("display", "none");
-    $(".benchmark").css("display", "block");
-    $(".sub").css("display", "none");
-    
-      
- 
-  }
-
-  if(id == 'review'){
-    $('.review_status').html("")
-    $( ".review_card" ).removeClass( "active" );
-    $( ".comparator_card" ).removeClass( "completed" );
-    $( ".comparator_card" ).addClass( "active" );
- 
-    $('.comparator_status').html("(active)")
-     $(".review").css("display", "none");
-    $(".comparator").css("display", "block");
+    $(".benchmark").css("display", "");
     $(".sub").css("display", "none");
     
       

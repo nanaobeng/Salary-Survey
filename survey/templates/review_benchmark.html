@@ -1,0 +1,714 @@
+{% extends "admin_layout.html" %}
+
+{% block header %} 
+Benchmark Jobs Review
+{% endblock header %}
+{% block content %}
+
+<div class="container p-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="progress">
+                <div id="task_completion" class="progress-bar" style="width:25%">1/4</div>
+              </div>
+        </div>
+    </div>
+
+    <div class="row p-4">
+        <div class="col-12 text-center">
+
+            <b>Review Information </b>
+           
+        </div>
+    </div>
+    <br/>
+    <div class="row justify-content-center">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body p-4">
+                    <div id="form_one">
+                    <div class="row">
+                        <div class="col-12 pl-2">
+                            <b>Job Details</b>
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Job Title 
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                           Department
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                          Grade 
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Reporting Relationship
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Job Description
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Key Duties and Scope of Responsibility
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Financial Responsibilities
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Technical/Professional Qualification
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Minimum Years of Experience
+                        </div>
+                       
+                    </div>
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-12 text-right">
+                                <div class="btn-group">
+                                    <span  class="btn btn-outline-danger"><a href="/administration/benchmark-jobs" style=" color:red;"> Close</a></span>
+                                    <span id="form_one_next" class="btn btn-outline-success next_button">Next</span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                    <hr style="color: black;"/>
+                    <div id="form_two" style="display: none;">
+                    <div class="row">
+                        <div class="col-12 pl-2">
+                            <b>Base Salary</b>
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Firstname
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                      
+
+
+                  
+                        
+
+                       
+                    </div>
+
+                    <hr style="color: black;"/>
+
+                    <div class="row">
+                        <div class="col-12 pl-2">
+                            <b>Bonus</b>
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Company Performance Bonus
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Individual Performance Bonus
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Annual Bonus
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Incentive Bonus
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Other bonus
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                 
+                    </div>
+
+                    <hr style="color:black" />
+
+                   
+
+                    
+
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6 text-left">
+                                <div class="btn-group">
+                                    <span  class="btn btn-outline-danger"><a href="/administration/benchmark-jobs" style=" color:red;"> Close</a></span>
+                                    <span id="form_two_back" class="btn btn-outline-success back_button">Back</span>
+                                </div>
+                             
+                            </div>
+                            <div class="col-6 text-right">
+                                <span id="form_two_next" class="btn btn-outline-success next_button">Next</span>
+                            </div>
+                        </div>
+                    </div>
+                   
+                </div>
+                <div id="form_three" style="display: none;">
+                    <div class="row">
+                        <div class="col-12 pl-2">
+                            <b>Benefit</b>
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                           Staff Bus
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Company Car
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                           Personal Travel
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Petrol
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Vehicle
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Driver
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Health
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Medical Assistance
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Funeral Assistance
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Life Insurance
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Group Personnel Accident
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                           Club Membership
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            
+School fees (Paid by employer)
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Vacation
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Housing
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Telephone
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                           Security
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Other Benefits
+                        </div>
+                        <div class="col-2 pl-4" style="color: grey;">
+                            : 
+                        </div>
+                        <div class="col-5 pl-4" style="color: grey;">
+                            Sample 
+                        </div>
+                        
+                    </div>
+
+                   
+
+                 
+
+                  
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6 text-left">
+                                <div class="btn-group">
+                                    <span  class="btn btn-outline-danger"><a href="/administration/benchmark-jobs" style=" color:red;"> Close</a></span>
+                                <span id="form_three_back" class="btn btn-outline-success back_button">Back</span>
+                                </div>
+                            </div>
+                            <div class="col-6 text-right">
+                                <span id="form_three_next" class="btn btn-outline-success next_button">Next</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                   <div id="form_four" style="display: none;">
+                    <div class="row">
+                        <div class="col-12 pl-2">
+                            <b>Allowance </b>
+                        </div>
+                       
+
+                        <div class="col-5 pl-4" style="color: grey;">
+                           Vehicle Maintenance
+                         </div>
+                         <div class="col-2 pl-4" style="color: grey;">
+                             : 
+                         </div>
+                         <div class="col-5 pl-4" style="color: grey;">
+                             Sample 
+                         </div>
+
+                         <div class="col-5 pl-4" style="color: grey;">
+                            Vehicle
+                          </div>
+                          <div class="col-2 pl-4" style="color: grey;">
+                              : 
+                          </div>
+                          <div class="col-5 pl-4" style="color: grey;">
+                              Sample 
+                          </div>
+
+                          <div class="col-5 pl-4" style="color: grey;">
+                      Transport
+                          </div>
+                          <div class="col-2 pl-4" style="color: grey;">
+                              : 
+                          </div>
+                          <div class="col-5 pl-4" style="color: grey;">
+                              Sample 
+                          </div>
+
+                          <div class="col-5 pl-4" style="color: grey;">
+                            Fuel
+                          </div>
+                          <div class="col-2 pl-4" style="color: grey;">
+                              : 
+                          </div>
+                          <div class="col-5 pl-4" style="color: grey;">
+                              Sample 
+                          </div>
+
+                          <div class="col-5 pl-4" style="color: grey;">
+                          Car
+                          </div>
+                          <div class="col-2 pl-4" style="color: grey;">
+                              : 
+                          </div>
+                          <div class="col-5 pl-4" style="color: grey;">
+                              Sample 
+                          </div>
+
+                          <div class="col-5 pl-4" style="color: grey;">
+                           Driver
+                          </div>
+                          <div class="col-2 pl-4" style="color: grey;">
+                              : 
+                          </div>
+                          <div class="col-5 pl-4" style="color: grey;">
+                              Sample 
+                          </div>
+
+                          <div class="col-5 pl-4" style="color: grey;">
+                            Domestic Safety and Security
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Housing
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Utilities
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Meal
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Telephone
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Entertainment
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Education
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Vacation
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Uniform
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Mobile Money
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+
+                           <div class="col-5 pl-4" style="color: grey;">
+                            Miscellaneous
+                           </div>
+                           <div class="col-2 pl-4" style="color: grey;">
+                               : 
+                           </div>
+                           <div class="col-5 pl-4" style="color: grey;">
+                               Sample 
+                           </div>
+                        
+
+                    </div>
+                    <div class="col-12">
+                        <div class="row">
+                            <div class="col-6 text-left">
+                                <span id="form_four_back" class="btn btn-outline-success back_button">Back</span>
+                            </div>
+                            <div class="col-6 text-right">
+                                <div class="btn-group">
+                                    <span  class="btn btn-outline-danger"><a href="/administration/benchmark-jobs" style=" color:red;"> Close</a></span>
+                                    <span  class="btn btn-danger">Reject</span>
+                                    <span  class="btn btn-success">Approve</span>
+                                   
+                                  </div>
+                            </div>
+                        </div>
+                    </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+
+
+<script>
+$(".next_button").click(function(){
+  if($(this).attr('id') == 'form_one_next'){
+      $("#form_one").css('display','none');
+      $("#form_two").css('display','block');
+      $("#task_completion").css('width','50%')
+      $("#task_completion").html('2/4')
+
+  }
+
+  if($(this).attr('id') == 'form_two_next'){
+      $("#form_two").css('display','none');
+      $("#form_three").css('display','block');
+      $("#task_completion").css('width','75%')
+      $("#task_completion").html('3/4')
+
+  }
+
+  if($(this).attr('id') == 'form_three_next'){
+      $("#form_three").css('display','none');
+      $("#form_four").css('display','block');
+      $("#task_completion").css('width','100%')
+      $("#task_completion").html('4/4')
+
+  }
+});
+
+
+$(".back_button").click(function(){
+  if($(this).attr('id') == 'form_two_back'){
+      $("#form_two").css('display','none');
+      $("#form_one").css('display','block');
+      $("#task_completion").css('width','25%')
+      $("#task_completion").html('1/4')
+
+  }
+
+  if($(this).attr('id') == 'form_three_back'){
+      $("#form_three").css('display','none');
+      $("#form_two").css('display','block');
+      $("#task_completion").css('width','50%')
+      $("#task_completion").html('2/4')
+
+  }
+
+  if($(this).attr('id') == 'form_four_back'){
+      $("#form_four").css('display','none');
+      $("#form_three").css('display','block');
+      $("#task_completion").css('width','75%')
+      $("#task_completion").html('3/4')
+
+  }
+});
+</script>
+{% endblock content %}

@@ -37,6 +37,17 @@ def contact():
     return render_template("contact.html")
 
 
+@main.route("/terms")
+def terms():
+    
+    return render_template("terms.html")
+
+
+@main.route("/privacy")
+def privacy():
+    
+    return render_template("privacy.html")
+
 
 
 

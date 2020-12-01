@@ -161,6 +161,10 @@ def survey_home():
 def create_survey():
     return render_template("create_survey.html")
 
+@users.route("/edit_survey")
+def edit_survey():
+    return render_template("admin_edit_survey.html")
+
 @users.route("/add_comparator")
 
 def add_comparators():
@@ -197,9 +201,18 @@ def view_survey():
 def my_reports():
     return render_template("my_reports.html")
 
+@users.route("/my_benchmark_jobs")
+def my_benchmark_jobs():
+    return render_template("client_benchmark_jobs.html")
+
+@users.route("/my_benchmark_jobs/new")
+def my_benchmark_jobs_create():
+    form = SurveyForm()
+    return render_template("client_create_benchmark_job.html",form=form)
+
 @users.route("/my_surveys")
 def my_surveys():
-    return render_template("my_surveys.html")
+    return render_template("quantitative_survey_overview.html")
 
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():
@@ -228,6 +241,10 @@ def admin_home():
 @users.route("/administration/surveys")
 def admin_surveys():
     return render_template("admin_surveys.html")
+
+@users.route("/administration/benchmark-jobs")
+def admin_benchmarl():
+    return render_template("admin_benchmark.html")
 
 @users.route("/administration/clients")
 def admin_clients():
@@ -268,11 +285,70 @@ def corporate_requests():
     
     return render_template("corporate_request.html")
 
+
+@users.route("/requests/individual")
+def individual_requests():
+    
+    return render_template("individual_request.html")
+
 @users.route("/user/profile")
 def update_profile():
     
     return render_template("update_profile.html")
 
+
+@users.route("/administration/corporate-request-review")
+def review_corporate():
+    
+    return render_template("corporate_review.html")
+
+
+
+
+@users.route("/administration/individual-request-review")
+def review_individual():
+    
+    
+    return render_template("individual_review.html")
+
+@users.route("/user/update-client")
+def update_client():
+    
+    
+    return render_template("update_client.html")
+
+
+@users.route("/user/client-benchmark")
+def client_benchmark():
+    
+    form = SurveyForm()
+    return render_template("client_create_benchmark_job.html", form=form)
+
+
+@users.route("/user/view-benchmark")
+def client_view_benchmark():
+    
+    form = SurveyForm()
+    return render_template("client_view_benchmark_job.html", form=form)
+
+
+@users.route("/administration/review_benchmark")
+def review_benchmark():
+    
+
+    return render_template("review_benchmark.html")
+
+@users.route("/administration/view_client")
+def view_client():
+    
+
+    return render_template("view_client.html")
+
+@users.route("/administration/edit_client")
+def edit_client():
+    
+
+    return render_template("edit_client.html")
 
 
 
