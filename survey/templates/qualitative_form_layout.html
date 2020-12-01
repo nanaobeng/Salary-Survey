@@ -62,19 +62,32 @@ Qualitative Survey
         width: auto;
         font-size: medium;
         font-style: italic;
-        color: rgb(107, 117, 126);
+        /* color: rgb(107, 117, 126); */
+        /* color: rgb(72, 255, 0); */
+        /* color: black; */
         /* color: limegreen; */
         /* margin-left: auto; */
         margin-left: 1em;
         margin-right: auto;
+        background-color: rgb(119, 244, 20);
+        border-radius: 25px;
+        padding: 5px;
+        border-color: grey;
     }
 
     fieldset {
         border-top: 1px solid grey;
+        /* border-top-color: rgb(72, 255, 0); */
     }
 
     .question_number {
         font-weight: bold;
+    }
+
+    ul {
+        columns: 3;
+        -webkit-columns: 3;
+        -moz-columns: 3;
     }
 </style>
 
@@ -146,6 +159,8 @@ Qualitative Survey
 
 
 </script>
+
+
 
 
 {% endblock content %}
