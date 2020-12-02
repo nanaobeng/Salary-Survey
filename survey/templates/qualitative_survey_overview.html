@@ -8,7 +8,7 @@
 
   <!-- General Information Page -->
 
-  <div class="row general_organization_view p-4">
+  <div class="row general_information_view p-4">
     <div class="col-12">
 
       <!-- Question A1 -->
@@ -121,8 +121,8 @@
       <!-- Next Button -->
       <!-- TODO: fix onclick action -->
       <div class="col-12 text-right">
-        <a href="{{ url_for('users.qualitative_survey_dc') }}"><span id="general_organization"
-            class="btn btn-outline-info" onclick="switchView(this.id)">Next</span></a>
+        <span id="general_information_next_button" class="btn btn-outline-info"
+          onclick="switchView(this.id)">Next</span>
       </div>
 
     </div>
@@ -132,7 +132,7 @@
 
   <!-- Direct Compensation Page -->
 
-  <div class="row direct_compensation_view p-4">
+  <div class="row direct_compensation_view p-4" style="display:none">
     <div class="col-12">
 
       <fieldset>
@@ -791,13 +791,13 @@
       <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
-          <a href="{{ url_for('users.qualitative_overview') }}"><span id="bonus"
-              class="btn btn-outline-info">Back</span></a>
+          <span id="direct_compensation_prev_button"
+              class="btn btn-outline-info" onclick="switchBack(this.id)">Back</span></a>
         </div>
 
         <div class="col-6 text-right">
-          <a href="{{ url_for('users.qualitative_survey_bip') }}"><span id="bonus" class="btn btn-outline-info">Next
-            </span></a>
+          <span id="direct_compensation_next_button" class="btn btn-outline-info" onclick="switchView(this.id)">Next
+          </span>
         </div>
       </div>
 
@@ -807,7 +807,7 @@
 
   <!-- Bonus / Incentive Plans Page -->
 
-  <div class="row bonus_incentive_plans p-4">
+  <div class="row bonus_incentive_plans_view p-4" style="display:none">
     <div class="col-12">
 
       <!-- Question C1 -->
@@ -1023,13 +1023,13 @@
       <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
-          <a href="{{ url_for('users.qualitative_survey_dc') }}"><span id="bonus"
-              class="btn btn-outline-info">Back</span></a>
+          <span id="bonus_incentive_plans_prev_button"
+              class="btn btn-outline-info" onclick="switchBack(this.id)>Back</span>
         </div>
 
         <div class="col-6 text-right">
-          <a href="{{ url_for('users.qualitative_survey_gpp') }}"><span id="bonus" class="btn btn-outline-info">Next
-            </span></a>
+          <span id="bonus_incentive_plans_next_button" class="btn btn-outline-info" onclick="switchView(this.id)">Next
+          </span>
         </div>
       </div>
 
@@ -1042,7 +1042,7 @@
   <!-- General Personnel Practices Page -->
 
 
-  <div class="row general_personnel_practices p-4">
+  <div class="row general_personnel_practices_view p-4" style="display:none">
     <div class="col-12">
 
       <fieldset>
@@ -2691,8 +2691,8 @@
       <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
-          <a href="{{ url_for('users.qualitative_survey_bip') }}"><span id="bonus"
-              class="btn btn-outline-info">Back</span></a>
+          <span id="general_personnel_practices_prev_button"
+              class="btn btn-outline-info" onclick="switchBack(this.id)">Back</span>
         </div>
 
         <div class="col-6 text-right">
@@ -2705,5 +2705,59 @@
 </form>
 
 
+
+<script>
+  // Function to switch to the next page
+  function switchView(id) {
+    if (id == "general_information_next_button") {
+      $('.general_information_view').css("display", "none");
+      $('.direct_compensation_view').css("display", "block");
+      $('#gi_button').removeClass('btn-primary').addClass('btn-secondary');
+      $('#dc_button').removeClass('btn-secondary').addClass('btn-primary');
+      $(window).scrollTop(0);
+    }
+    if (id == "direct_compensation_next_button") {
+      $('.direct_compensation_view').css("display", "none");
+      $('.bonus_incentive_plans_view').css("display", "block");
+      $('#dc_button').removeClass('btn-primary').addClass('btn-secondary');
+      $('#bip_button').removeClass('btn-secondary').addClass('btn-primary');
+      $(window).scrollTop(0);
+    }
+    if (id == "bonus_incentive_plans_next_button") {
+      $('.bonus_incentive_plans_view').css("display", "none")
+      $('.general_personnel_practices_view').css("display", "block")
+      $('#bip_button').removeClass('btn-primary').addClass('btn-secondary');
+      $('#gpp_button').removeClass('btn-secondary').addClass('btn-primary');
+      $(window).scrollTop(0)
+    }
+  }
+</script>
+
+<script>
+  // Function to switch to the previous page
+  function switchBack(id) {
+    if (id == "direct_compensation_prev_button") {
+      $('.direct_compensation_view').css("display", "none");
+      $('.general_information_view').css("display", "block");
+      $('#dc_button').removeClass('btn-primary').addClass('btn-secondary');
+      $('#gi_button').removeClass('btn-secondary').addClass('btn-primary');
+      $(window).scrollTop(0);
+    }
+    if (id == "bonus_incentive_plans_prev_button") {
+      $('.bonus_incentive_plans_view').css("display", "none");
+      $('.direct_compensation_view').css("display", "block");
+      $('#bip_button').removeClass('btn-primary').addClass('btn-secondary');
+      $('#dc_button').removeClass('btn-secondary').addClass('btn-primary');
+      $(window).scrollTop(0);
+    }
+    if (id == "general_personnel_practices_prev_button") {
+      $('.general_personnel_practices_view').css("display", "none");
+      $('.bonus_incentive_plans_view').css("display", "block");
+      $('#gpp_button').removeClass('btn-primary').addClass('btn-secondary');
+      $('#bip_button').removeClass('btn-secondary').addClass('btn-primary');
+      $(window).scrollTop(0);
+    }
+  }
+</script>
 
 {% endblock %}

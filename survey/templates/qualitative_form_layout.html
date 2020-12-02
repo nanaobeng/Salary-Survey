@@ -101,24 +101,24 @@ Qualitative Survey
                 <div class="steps-row setup-panel">
                     <div class="steps-step">
                         <a href="{{ url_for('users.qualitative_overview') }}" type="button"
-                            class="btn btn-primary btn-circle" id="gi_button" onclick="changeButtonColour()">1</a>
+                            class="btn btn-primary btn-circle" id="gi_button" onclick="switchView(this.id)">1</a>
                         <p>General Information</p>
                     </div>
                     <div class="steps-step">
                         <a href="{{ url_for('users.qualitative_survey_dc') }}" type="button"
-                            class="btn btn-secondary btn-circle" id="dc_button" onclick="changeButtonColour()"
+                            class="btn btn-secondary btn-circle" id="dc_button" onclick="switchView(this.id)"
                             disabled="disabled">2</a>
                         <p>Direct Compensation</p>
                     </div>
                     <div class="steps-step">
                         <a href="{{ url_for('users.qualitative_survey_bip') }}" type="button"
-                            class="btn btn-secondary btn-circle" id="bip_button" onclick="changeButtonColour()"
+                            class="btn btn-secondary btn-circle" id="bip_button" onclick="switchView(this.id)"
                             disabled="disabled">3</a>
                         <p>Bonus / Incentive Plans</p>
                     </div>
                     <div class="steps-step">
                         <a href="{{ url_for('users.qualitative_survey_gpp') }}" type="button"
-                            class="btn btn-secondary btn-circle" id="gpp_button" onclick="changeButtonColour()"
+                            class="btn btn-secondary btn-circle" id="gpp_button" onclick="switchView(this.id)"
                             disabled="disabled">4</a>
                         <p>General Personnel Practices</p>
                     </div>
