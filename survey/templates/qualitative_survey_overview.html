@@ -792,12 +792,13 @@
       <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
-          <span id="direct_compensation_prev_button"
-              class="btn btn-outline-info" onclick="switchFormSection(this.id)">Back</span></a>
+          <span id="direct_compensation_prev_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Back</span></a>
         </div>
 
         <div class="col-6 text-right">
-          <span id="direct_compensation_next_button" class="btn btn-outline-info" onclick="switchFormSection(this.id)">Next
+          <span id="direct_compensation_next_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Next
           </span>
         </div>
       </div>
@@ -815,7 +816,7 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label for="formal_sal_struct"> <span class="question_number">C1. &nbsp; </span> Does the organisation
+            <!-- <label for="formal_sal_struct"> <span class="question_number">C1. &nbsp; </span> Does the organisation
               provide an annual
               cash bonus or other short term incentive plan (excluding 13th month pay) for
               employees?</label>
@@ -836,7 +837,19 @@
                   </label>
                 </div>
               </div>
+            </div> -->
+            {{ form.incentive.label(class="form-control-label") }}
+
+            {% if form.incentive.errors %}
+            {{ form.incentive(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.incentive.errors %}
+              <span> {{error}}</span>
+              {% endfor %}
             </div>
+            {% else %}
+            {{ form.incentive(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -1024,12 +1037,13 @@
       <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
-          <span id="bonus_incentive_plans_prev_button"
-              class="btn btn-outline-info" onclick="switchFormSection(this.id)">Back</span>
+          <span id="bonus_incentive_plans_prev_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Back</span>
         </div>
 
         <div class="col-6 text-right">
-          <span id="bonus_incentive_plans_next_button" class="btn btn-outline-info" onclick="switchFormSection(this.id)">Next
+          <span id="bonus_incentive_plans_next_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Next
           </span>
         </div>
       </div>
@@ -2692,8 +2706,8 @@
       <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
-          <span id="general_personnel_practices_prev_button"
-              class="btn btn-outline-info" onclick="switchFormSection(this.id)">Back</span>
+          <span id="general_personnel_practices_prev_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Back</span>
         </div>
 
         <div class="col-6 text-right">
