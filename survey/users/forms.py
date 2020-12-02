@@ -12,12 +12,7 @@ from survey.models import User
 
 
 class QualForm(FlaskForm):
-    name = StringField('Name', validators=[DataRequired())
-    title = StringField('Title', validators=[DataRequired())
-    address = StringField('Address', validators=[DataRequired())
-    phone = IntegerField('Phone', validators=[DataRequired())
-    email =StringField('Email', validators=[DataRequired(), Email()])
-    date = StringField('Date Completed', validators=[DataRequired())
+    
     totalemployeenum = IntegerField('A1. Total number of employees: ')                                                
     employeenumcat = IntegerField('A2. Fill in the number of employees for each category')
     cat1 = FieldList('Type', validators=[DataRequired())
