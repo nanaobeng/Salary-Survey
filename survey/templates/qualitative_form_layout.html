@@ -5,6 +5,7 @@ Qualitative Survey
 {% endblock header %}
 {% block content %}
 
+
 <style>
     .steps-form {
         display: table;
@@ -60,19 +61,19 @@ Qualitative Survey
 
     legend {
         width: auto;
-        font-size: medium;
+        font-size: large;
         font-style: italic;
         /* color: rgb(107, 117, 126); */
-        /* color: rgb(72, 255, 0); */
+        color: rgb(72, 255, 0);
         /* color: black; */
         /* color: limegreen; */
         /* margin-left: auto; */
         margin-left: 1em;
         margin-right: auto;
-        background-color: rgb(119, 244, 20);
-        border-radius: 25px;
-        padding: 5px;
-        border-color: grey;
+        /* background-color: rgb(119, 244, 20); */
+        /* border-radius: 25px; */
+        /* padding: 5px; */
+        /* border-color: grey; */
     }
 
     fieldset {
@@ -100,26 +101,23 @@ Qualitative Survey
             <div class="steps-form">
                 <div class="steps-row setup-panel">
                     <div class="steps-step">
-                        <a href="{{ url_for('users.qualitative_overview') }}" type="button"
-                            class="btn btn-primary btn-circle" id="gi_button" onclick="switchView(this.id)">1</a>
+                        <span type="button" class="btn btn-primary btn-circle" id="gi_button"
+                            onclick="switchFormSection(this.id)">1</span>
                         <p>General Information</p>
                     </div>
                     <div class="steps-step">
-                        <a href="{{ url_for('users.qualitative_survey_dc') }}" type="button"
-                            class="btn btn-secondary btn-circle" id="dc_button" onclick="switchView(this.id)"
-                            disabled="disabled">2</a>
+                        <span type="button" class="btn btn-secondary btn-circle" id="dc_button"
+                            onclick="switchFormSection(this.id)" disabled="disabled">2</span>
                         <p>Direct Compensation</p>
                     </div>
                     <div class="steps-step">
-                        <a href="{{ url_for('users.qualitative_survey_bip') }}" type="button"
-                            class="btn btn-secondary btn-circle" id="bip_button" onclick="switchView(this.id)"
-                            disabled="disabled">3</a>
+                        <span type="button" class="btn btn-secondary btn-circle" id="bip_button"
+                            onclick="switchFormSection(this.id)" disabled="disabled">3</span>
                         <p>Bonus / Incentive Plans</p>
                     </div>
                     <div class="steps-step">
-                        <a href="{{ url_for('users.qualitative_survey_gpp') }}" type="button"
-                            class="btn btn-secondary btn-circle" id="gpp_button" onclick="switchView(this.id)"
-                            disabled="disabled">4</a>
+                        <span type="button" class="btn btn-secondary btn-circle" id="gpp_button"
+                            onclick="switchFormSection(this.id)" disabled="disabled">4</span>
                         <p>General Personnel Practices</p>
                     </div>
                 </div>
@@ -136,29 +134,6 @@ Qualitative Survey
     {% block body %}
     {% endblock %}
 </body>
-
-
-<!-- Script for Back and Next buttons, and Progress Bar buttons -->
-
-<script>
-
-    $(document).ready(function () {
-        var navListItems = $('div.setup-panel div a');
-        navListItems.click(function () {
-            var $target = $($(this).attr('href')),
-                $item = $(this);
-            if (!$item.hasClass('disabled')) {
-                navListItems.removeClass('btn-primary').addClass('btn-secondary');
-                $item.addClass('btn-primary');
-                $(window).scrollTop(0);
-                $target.show();
-            }
-        });
-        $('div.setup-panel div a.btn-primary').trigger('click');
-    });
-
-
-</script>
 
 
 

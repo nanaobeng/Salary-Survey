@@ -4,6 +4,7 @@
 
 {% block body %}
 
+
 <form>
 
   <!-- General Information Page -->
@@ -122,7 +123,7 @@
       <!-- TODO: fix onclick action -->
       <div class="col-12 text-right">
         <span id="general_information_next_button" class="btn btn-outline-info"
-          onclick="switchView(this.id)">Next</span>
+          onclick="switchFormSection(this.id)">Next</span>
       </div>
 
     </div>
@@ -135,7 +136,7 @@
   <div class="row direct_compensation_view p-4" style="display:none">
     <div class="col-12">
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Salary Structure</legend>
 
         <!-- Question B1 -->
@@ -240,7 +241,7 @@
         </div>
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Salary Adjustments</legend>
         <!-- Question B3 -->
         <div class="form-row">
@@ -376,7 +377,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Allowance Reviews</legend>
 
         <!-- Question B9 -->
@@ -405,7 +406,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Job Evaluations</legend>
 
         <!-- Question B10 -->
@@ -453,7 +454,7 @@
       </fieldset>
 
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Salary Increments</legend>
 
         <!-- Question B11 -->
@@ -792,11 +793,11 @@
       <div class="row">
         <div class="col-6">
           <span id="direct_compensation_prev_button"
-              class="btn btn-outline-info" onclick="switchBack(this.id)">Back</span></a>
+              class="btn btn-outline-info" onclick="switchFormSection(this.id)">Back</span></a>
         </div>
 
         <div class="col-6 text-right">
-          <span id="direct_compensation_next_button" class="btn btn-outline-info" onclick="switchView(this.id)">Next
+          <span id="direct_compensation_next_button" class="btn btn-outline-info" onclick="switchFormSection(this.id)">Next
           </span>
         </div>
       </div>
@@ -1024,11 +1025,11 @@
       <div class="row">
         <div class="col-6">
           <span id="bonus_incentive_plans_prev_button"
-              class="btn btn-outline-info" onclick="switchBack(this.id)>Back</span>
+              class="btn btn-outline-info" onclick="switchFormSection(this.id)">Back</span>
         </div>
 
         <div class="col-6 text-right">
-          <span id="bonus_incentive_plans_next_button" class="btn btn-outline-info" onclick="switchView(this.id)">Next
+          <span id="bonus_incentive_plans_next_button" class="btn btn-outline-info" onclick="switchFormSection(this.id)">Next
           </span>
         </div>
       </div>
@@ -1045,7 +1046,7 @@
   <div class="row general_personnel_practices_view p-4" style="display:none">
     <div class="col-12">
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Leave Days</legend>
 
         <!-- Question D1 -->
@@ -1230,7 +1231,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Entitlements</legend>
 
         <!-- Question D7 -->
@@ -1311,7 +1312,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Redundancy</legend>
 
         <!-- Question D8 -->
@@ -1376,7 +1377,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Transportation</legend>
 
         <!-- Question D10 -->
@@ -1538,7 +1539,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Meals</legend>
 
         <!-- Question 12 -->
@@ -1621,7 +1622,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Clothing</legend>
 
         <!-- Question D13 -->
@@ -1678,7 +1679,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Travel</legend>
 
         <!-- Question D14 -->
@@ -1714,7 +1715,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Loans</legend>
 
         <!-- Question D15 -->
@@ -1809,7 +1810,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Housing</legend>
 
         <!-- Question D16 -->
@@ -1915,7 +1916,7 @@
       </fieldset>
 
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Education</legend>
 
         <!-- Question D17 -->
@@ -2035,7 +2036,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Entertainment</legend>
         <!-- Question D19 -->
         <div class="form-row">
@@ -2079,7 +2080,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Vacations</legend>
 
         <!-- Question D20 -->
@@ -2181,7 +2182,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Medicals</legend>
 
         <!-- Question D21 -->
@@ -2272,7 +2273,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Funerals/Death</legend>
 
         <!-- Question D23 -->
@@ -2371,7 +2372,7 @@
       </fieldset>
 
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Schemes</legend>
 
         <!-- Question D24 -->
@@ -2413,7 +2414,7 @@
       </fieldset>
 
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Facilities</legend>
 
         <!-- Question D25 -->
@@ -2468,7 +2469,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Other Benefits</legend>
 
         <!-- Question D26 -->
@@ -2532,7 +2533,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Direct Reports</legend>
 
         <!-- Question D27 -->
@@ -2577,7 +2578,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Expertise</legend>
 
         <!-- Question D28 -->
@@ -2620,7 +2621,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Employee Turnover</legend>
 
         <!-- Question D29 -->
@@ -2636,7 +2637,7 @@
 
       </fieldset>
 
-      <fieldset>
+      <fieldset class="collapsible">
         <legend>Expertise</legend>
 
         <!-- Question D30 -->
@@ -2692,7 +2693,7 @@
       <div class="row">
         <div class="col-6">
           <span id="general_personnel_practices_prev_button"
-              class="btn btn-outline-info" onclick="switchBack(this.id)">Back</span>
+              class="btn btn-outline-info" onclick="switchFormSection(this.id)">Back</span>
         </div>
 
         <div class="col-6 text-right">
@@ -2707,57 +2708,40 @@
 
 
 <script>
-  // Function to switch to the next page
-  function switchView(id) {
-    if (id == "general_information_next_button") {
+  // Function to switch to a form section
+  function switchFormSection(id) {
+    // clear all primary buttons and make them grey (secondary or inactive)
+    $('div.setup-panel div span').removeClass('btn-primary').addClass('btn-secondary');
+    $(window).scrollTop(0);
+
+    // navigate to direct compensation section 
+    if (id == "general_information_next_button" || id == "dc_button" || id == "bonus_incentive_plans_prev_button") {
       $('.general_information_view').css("display", "none");
+      $('.bonus_incentive_plans_view').css("display", "none");
       $('.direct_compensation_view').css("display", "block");
-      $('#gi_button').removeClass('btn-primary').addClass('btn-secondary');
       $('#dc_button').removeClass('btn-secondary').addClass('btn-primary');
-      $(window).scrollTop(0);
     }
-    if (id == "direct_compensation_next_button") {
+    // navigate to bonus/incentive plans section 
+    if (id == "direct_compensation_next_button" || id == "bip_button" || id == "general_personnel_practices_prev_button") {
       $('.direct_compensation_view').css("display", "none");
+      $('.general_personnel_practices_view').css("display", "none");
       $('.bonus_incentive_plans_view').css("display", "block");
-      $('#dc_button').removeClass('btn-primary').addClass('btn-secondary');
       $('#bip_button').removeClass('btn-secondary').addClass('btn-primary');
-      $(window).scrollTop(0);
     }
-    if (id == "bonus_incentive_plans_next_button") {
+    // navigate to general personnel practices section
+    if (id == "bonus_incentive_plans_next_button" || id == "gpp_button") {
       $('.bonus_incentive_plans_view').css("display", "none")
       $('.general_personnel_practices_view').css("display", "block")
-      $('#bip_button').removeClass('btn-primary').addClass('btn-secondary');
       $('#gpp_button').removeClass('btn-secondary').addClass('btn-primary');
-      $(window).scrollTop(0)
+    }
+    // navigate to general information section
+    if (id == "direct_compensation_prev_button" || id == "gi_button") {
+      $('.direct_compensation_view').css("display", "none");
+      $('.general_information_view').css("display", "block");
+      $('#gi_button').removeClass('btn-secondary').addClass('btn-primary');
     }
   }
 </script>
 
-<script>
-  // Function to switch to the previous page
-  function switchBack(id) {
-    if (id == "direct_compensation_prev_button") {
-      $('.direct_compensation_view').css("display", "none");
-      $('.general_information_view').css("display", "block");
-      $('#dc_button').removeClass('btn-primary').addClass('btn-secondary');
-      $('#gi_button').removeClass('btn-secondary').addClass('btn-primary');
-      $(window).scrollTop(0);
-    }
-    if (id == "bonus_incentive_plans_prev_button") {
-      $('.bonus_incentive_plans_view').css("display", "none");
-      $('.direct_compensation_view').css("display", "block");
-      $('#bip_button').removeClass('btn-primary').addClass('btn-secondary');
-      $('#dc_button').removeClass('btn-secondary').addClass('btn-primary');
-      $(window).scrollTop(0);
-    }
-    if (id == "general_personnel_practices_prev_button") {
-      $('.general_personnel_practices_view').css("display", "none");
-      $('.bonus_incentive_plans_view').css("display", "block");
-      $('#gpp_button').removeClass('btn-primary').addClass('btn-secondary');
-      $('#bip_button').removeClass('btn-secondary').addClass('btn-primary');
-      $(window).scrollTop(0);
-    }
-  }
-</script>
 
 {% endblock %}
