@@ -1,0 +1,1692 @@
+{% extends "qualitative_form_layout.html" %}
+
+<!-- General Personnel Practices Page -->
+{% block progressbar %}
+<div class="container">
+    <div class="row p-4">
+        <div class="col-12">
+
+            <!-- Progress Bar -->
+            <div class="steps-form">
+                <div class="steps-row setup-panel">
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_overview') }}" type="button"
+                            class="btn btn-secondary btn-circle" id="gi_button" onclick="changeButtonColour()">1</a>
+                        <p>General Information</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_survey_dc') }}" type="button"
+                            class="btn btn-secondary btn-circle" id="dc_button" onclick="changeButtonColour()"
+                            disabled="disabled">2</a>
+                        <p>Direct Compensation</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_survey_bip') }}" type="button"
+                            class="btn btn-secondary btn-circle" id="bip_button" onclick="changeButtonColour()"
+                            disabled="disabled">3</a>
+                        <p>Bonus / Incentive Plans</p>
+                    </div>
+                    <div class="steps-step">
+                        <a href="{{ url_for('users.qualitative_survey_gpp') }}" type="button"
+                            class="btn btn-primary btn-circle" id="gpp_button" onclick="changeButtonColour()"
+                            disabled="disabled">4</a>
+                        <p>General Personnel Practices</p>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+{% endblock progressbar %}
+
+{% block body %}
+
+<style>
+    ul {
+        columns: 3;
+        -webkit-columns: 3;
+        -moz-columns: 3;
+    }
+</style>
+
+
+<form>
+    <div class="row general_personnel_practices p-4">
+        <div class="col-12">
+
+            <fieldset>
+                <legend>Leave Days</legend>
+
+                <!-- Question D1 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D1. &nbsp;</span>What is the number of leave days granted to staff annually?</label>
+                            <input type="number" min="0" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D2 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D2. &nbsp; </span> Does the number of leave days increase
+                                per employee tenure?
+                            </label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D3 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="usr"><span class="question_number">D3. &nbsp;</span> Choose the staff categories and the number of leave days
+                                granted: </label>
+                            <table class="col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th> Staff Category</th>
+                                        <th>Number of Leave Days</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select name="category" id="category">
+                                                <option value="cat1">Category 1</option>
+                                                <option value="cat2">Category 2</option>
+                                                <option value="cat3">Category 3</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><select name="category" id="category">
+                                                <option value="cat1">Category 1</option>
+                                                <option value="cat2">Category 2</option>
+                                                <option value="cat3">Category 3</option>
+                                            </select></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><select name="category" id="category">
+                                                <option value="cat1">Category 1</option>
+                                                <option value="cat2">Category 2</option>
+                                                <option value="cat3">Category 3</option>
+                                            </select></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D4 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D4. &nbsp;</span> What is the number of paid holidays granted to staff?</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D5 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D5. &nbsp;</span> What is the number of leave days granted for: </label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label>Sickness</label>
+                                    <input type="number" min="0" class="form-control" />
+                                </div>
+                                <div class="col-6">
+                                    <label>Accident</label>
+                                    <input type="number" min="0" class="form-control" />
+                                </div>
+                                <div class="col-6">
+                                    <label>Maternity</label>
+                                    <input type="number" min="0" class="form-control" />
+                                </div>
+                                <div class="col-6">
+                                    <label>Paternity</label>
+                                    <input type="number" min="0" class="form-control" />
+                                </div>
+                                <div class="col-6">
+                                    <label>Emergency/Compassionate</label>
+                                    <input type="number" min="0" class="form-control" />
+                                </div>
+                                <div class="col-6">
+                                    <label>Other (please specify) <input type="text" class="form-control"> </label>
+                                    <input type="number" min="0" class="form-control" />
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D6 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D6. &nbsp;</span> What is the over time entitlements/rates in the following
+                                instances?</label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff"">
+                                    <tr>
+                                        <th>Employee Grade</th>
+                                        <th>Options</th>
+                                        <th>Rates</th>
+                                        <th>Any Explanation</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type=" text" class="form-control">
+                                    </td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Entitlements</legend>
+
+                <!-- Question D7 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D7. &nbsp;</span> What policy provisions do you have for staff with respect to
+                                the
+                                following and how much?
+                                (Please provide policy as attachment if different for various staff
+                                grades/categories)</label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th>Grade</th>
+                                        <th>Policy description
+                                            (examples below)</th>
+                                        <th>Entitlement (Please include details if varied for
+                                            different tenures and/or staff categories)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td>Gratuity</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td>Long term service awards</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td>Severance awards/
+                                            Redundancy</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td>Severance awards/
+                                            Redundancy</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td>End of services benefits
+                                            (indicate if different
+                                            based on years of service)</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td>Termination (including
+                                            notice period)</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td>Resignation (including
+                                            notice period)</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td>Other (please specify)</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                            <input type="file">
+
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Redundancy</legend>
+
+                <!-- Question D8 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D8. &nbsp;</span> When was the last time you undertook redundancy exercises?</label>
+                            <input type="date" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D9 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="usr"><span class="question_number">D9. &nbsp;</span> Choose the staff categories and the number of leave days
+                                granted: </label>
+                            <table class="col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th>Staff Category</th>
+                                        <th>Package Paid</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <select name="category" id="category">
+                                                <option value="cat1">Category 1</option>
+                                                <option value="cat2">Category 2</option>
+                                                <option value="cat3">Category 3</option>
+                                            </select>
+                                        </td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><select name="category" id="category">
+                                                <option value="cat1">Category 1</option>
+                                                <option value="cat2">Category 2</option>
+                                                <option value="cat3">Category 3</option>
+                                            </select></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+
+                                    </tr>
+                                    <tr>
+                                        <td><select name="category" id="category">
+                                                <option value="cat1">Category 1</option>
+                                                <option value="cat2">Category 2</option>
+                                                <option value="cat3">Category 3</option>
+                                            </select></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Transportation</legend>
+
+                <!-- Question D10 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D10. &nbsp; </span> Does the organisation subsidise/provide
+                                transportation to and from work
+                                (includes vehicle
+                                type, fuel, personal driver)?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D10b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D10(b).</span> If Yes, provide details below: </label>
+                            <table class="table ">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th>Policy (indicate separate if
+                                            different for various grades)</th>
+                                        <th>Who qualifies/
+                                            Grade?</th>
+                                        <th>Cash amount/Value</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Fully maintained company car? (Indicate car type, engine capacity)</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Car maintenance allowance per what period? </td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fuel allowance per what period? </td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Transport Allowance per what
+                                            period? </td>
+                                        <td><input type="text" class="form-control" /></td>
+
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Kilometric</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Company paid driver (Yes/No)</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Others (please specify)</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D11 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D11. &nbsp; </span> Do you have a car scheme in which an
+                                employee uses a company car and
+                                after
+                                some years,
+                                the car is sold to the employee at a discounted rate?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D11b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D11(b). &nbsp; </span>If Yes, after how many years of use is the car sold?</label>
+                            <input type="number" min="0" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D11c -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D11(c). &nbsp; </span> At what percentage of market value is the car sold?</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D11d -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D11(d). &nbsp; </span> Based on the scheme you have described, how do you deal with
+                                tax
+                                issues?</label>
+                            <input type="text" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Meals</legend>
+
+                <!-- Question 12 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D12. &nbsp; </span> Does the organisation subsidise meal
+                                costs for senior management
+                                staff/executives (includes
+                                meal allowance as cash benefit and cafeteria service as kind benefit)?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D12b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D10(b).</span> If Yes, provide details below: </label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th>Employee Grade</th>
+                                        <th>Cash
+                                            amount/value</th>
+                                        <th>Period (i.e. daily, weekly,
+                                            etc)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Clothing</legend>
+
+                <!-- Question D13 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D13. &nbsp; </span> Does the organisation subsidise/provide
+                                clothing allowance for staff?
+                            </label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D13b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D13(b). &nbsp;</span>How much clothing allowance is given per year?</label>
+                            <input type="number" min="0" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D13c -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D13(c). &nbsp;</span> Which grades qualify for the clothing allowance?</label>
+                            <textarea class="form-control" cols="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Travel</legend>
+
+                <!-- Question D14 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D14. &nbsp;</span> What is the travel policy (including per diem, lodging, meals, air
+                                tickets, excess baggage, etc)
+                                for outside location?</label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th>Type of rate
+                                        <th>Policy
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Overseas rates (please specify separately if different for various grades):
+                                        </td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Out of location allowance (in country):</td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Loans</legend>
+
+                <!-- Question D15 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D15. &nbsp; </span> Does the organisation provide interest
+                                free or low interest bearing
+                                loans
+                                (including
+                                salary advances) to employees for personal effects?
+                            </label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D15b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D15(b). &nbsp;</span> If Yes, provide details below: </label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th>Employee Grade</th>
+                                        <th>Type of loan</th>
+                                        <th>Percentage of interest</th>
+                                        <th>Repayment period</th>
+                                        <th>Limit of facility</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Housing</legend>
+
+                <!-- Question D16 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D16. &nbsp;</span> Does the organisation provide housing benefits to staff
+                                (includes house allowance as cash
+                                benefit and accommodation, furnishing, residence utilities,
+                                etc)?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D16b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D16(b). &nbsp;</span> If Yes, provide details below: </label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff"">
+                                    <tr>
+                                        <th>Employee Grade</th>
+                                        <th>Type of Facility</th>
+                                        <th>Cash amount</th>
+                                        <th>If in kind
+                                        (please
+                                        indicate size of
+                                        facility)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                    <td><input type=" text" class="form-control" />
+                                </td>
+                                <td><input type="text" class="form-control" /></td>
+                                <td><input type="text" class="form-control" /></td>
+                                <td><input type="text" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                </tr>
+
+                                <tr>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D16c -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D16(c). &nbsp;</span> List all household benefits provided, if any (e.g. Security,
+                                Cook, House-help, etc): </label>
+                            <textarea class="form-control" cols="10"></textarea>
+
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Education</legend>
+
+                <!-- Question D17 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D17. &nbsp;</span>Do you provide education subsidy for staff and/or their
+                                dependents?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D17b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D17(b). &nbsp;</span> If Yes, provide details below: </label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <th>Employee Grade</th>
+                                    <th>Policy description</th>
+                                    <th>Dependents (please indicate maximum number and age limit for dependents)</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>Staff entitlements (cash/year)</td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td>Dependent/children (cash/year)</td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D18 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D18. &nbsp;</span>What provisions does the organisation make for the
+                                following:</label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th rowspan="2">Employee Grade</th>
+                                        <th colspan="4">Personnel development (indicate value per month if cash or
+                                            describe)</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Short courses</th>
+                                        <th>Professional
+                                            programmes</th>
+                                        <th>Post Graduate
+                                            programmes</th>
+                                        <th>Other (please
+                                            specify )</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <i>NB: Please provide staff educational policy if available</i>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Entertainment</legend>
+                <!-- Question D19 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D19. &nbsp; </span> Do you provide entertainment allowance
+                                for staff?
+                            </label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D19b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D19(b). &nbsp; </span> If Yes, please provide details.</label>
+                            <textarea class="form-control" cols="5"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Vacations</legend>
+
+                <!-- Question D20 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D20. &nbsp;</span>Are vacation related benefits offered to senior management
+                                staff?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D20b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D20(b). &nbsp;</span>Please describe entitlement and value of vacation benefits.
+                                Various components of this benefit might include:</label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th>Examples</th>
+                                        <th>Employee Grade</th>
+                                        <th>Yes/No
+                                            (please provide
+                                            details if Yes)</th>
+                                        <th>Please indicate
+                                            Amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Personal domestic travel?</td>
+                                        <td><input type=" text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Personal foreign travel including warm clothing and flight type?</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Hotel accommodation?</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Use of company
+                                            owned facilities for
+                                            vacation e.g.
+                                            accommodation?</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Telephone (roaming facility)?</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Other (please
+                                            specify)</td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="number" min="0" class="form-control" /></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Medicals</legend>
+
+                <!-- Question D21 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D21. &nbsp;</span>Please describe your company's medical scheme and how it is
+                                administered (i.e. who is covered under the plan):</label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th>Policy description</th>
+                                        <th>Company contribution % or Annual cash amount</th>
+                                        <th>Employee contribution % or Annual cash amount</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Employee: medical</td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Employee: prescribed glasses</td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Employee: other e.g. dentures</td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                        <td><textarea class="form-control"></textarea></td>
+                                    </tr>
+
+                                    <tr>
+                                        <th>Dependents</th>
+                                        <td colspan="2"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spouse:</td>
+                                        <td colspan="2"><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Children (number and age limit):</td>
+                                        <td colspan="2"><textarea class="form-control"></textarea></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Others:</td>
+                                        <td colspan="2"><textarea class="form-control"></textarea></td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D22 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D22. &nbsp; </span> Does the medical scheme cover
+                                overseas treatments?
+                            </label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Funerals/Death</legend>
+
+                <!-- Question D23 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D23. &nbsp; </span> Do you have a funeral assistance/ death
+                                benefits arrangement for your staff and family
+                                members?
+                            </label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D23b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D23(b). &nbsp; </span> If Yes, please specify the benefits
+                                below (e.g. transport, coffin, food, etc.)
+                            </label>
+                            <table>
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th rowspan="2">Deceased</th>
+                                        <th colspan="4">Please indicate cash amount where applicable</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Coffin?</th>
+                                        <th>Transportation?</th>
+                                        <th>Food/Drink?</th>
+                                        <th>Any other donations in kind?</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Employee</td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Spouse</td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Children</td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Parents</td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Other</td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                        <td><input type="text" class="form-control"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Schemes</legend>
+
+                <!-- Question D24 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D24. &nbsp;</span> Fill in the following information if your organisation operates
+                                any of the following
+                                schemes:</label>
+                            <table class="table ">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff"">
+                                <tr>
+                                    <th>Employee Grade</th>
+                                    <th>Employer
+                                    contribution (%)</th>
+                                    <th>Employee
+                                        contribution (%)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Provident Fund</td>
+                                    <td><input type=" text" class="form-control" />
+                                </td>
+                                <td><input type="text" class="form-control" /></td>
+                                </tr>
+                                <tr>
+                                    <td>Other schemes (please specify)</td>
+                                    <td><input type="text" class="form-control" /></td>
+                                    <td><input type="text" class="form-control" /></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+
+            <fieldset>
+                <legend>Facilities</legend>
+
+                <!-- Question D25 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D25. &nbsp;</span>What provisions does the organisation make for the
+                                following:</label>
+                            <table class="table col-12">
+                                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                                    <tr>
+                                        <th rowspan="2">Employee Grade</th>
+                                        <th colspan="4">Facility (indicate value per month if cash or describe)</th>
+                                    </tr>
+                                    <tr>
+                                        <th>Electricity</th>
+                                        <th>Water</th>
+                                        <th>Telephone and mobile phone</th>
+                                        <th>Other (please
+                                            specify )</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+
+                                    <tr>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                        <td><input type="text" class="form-control" /></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Other Benefits</legend>
+
+                <!-- Question D26 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D26. &nbsp; </span> Are there any other benefits provided to
+                                senior management staff/executives not mentioned in this questionnaire?
+                            </label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D26b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D26(b). &nbsp; </span> Please describe these benefit items
+                                using a separate sheet if needed. Probable benefit items not covered in this
+                                questionnaire may be:
+                                <ul>
+                                    <li>books and periodicals</li>
+                                    <li>festival gifts</li>
+                                    <li>company sponsored activities</li>
+                                    <li>consolidated annual benefits</li>
+                                    <li>credit card subscription</li>
+                                    <li>beverages at work</li>
+                                    <li> free parking</li>
+                                    <li> long service awards</li>
+                                    <li> stock options</li>
+                                    <li> share options</li>
+                                    <li> spouse benefits</li>
+                                </ul>
+                            </label>
+                            <textarea class="form-control"></textarea>
+                            <input type="file">
+                        </div>
+                    </div>
+                </div>
+
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Direct Reports</legend>
+
+                <!-- Question D27 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D27. &nbsp; </span> Are any of the Direct reports to the
+                                Managing Director on contract?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D27b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D27(b). &nbsp; </span>If Yes, please indicate below, the positions: </label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Expertise</legend>
+
+                <!-- Question D28 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D28. &nbsp; </span> Are there expertise/skills you find difficult to recruit from the Ghanaian labour market?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D28b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D28(b). &nbsp; </span>If Yes, please list them below: </label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+            </fieldset>
+
+            <fieldset>
+                <legend>Employee Turnover</legend>
+
+                <!-- Question D29 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D29. &nbsp; </span>Please indicate frequent reasons for employee turnover.: </label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+            </fieldset>
+
+            <fieldset>
+                <legend>Expertise</legend>
+
+                <!-- Question D30 -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label for="formal_sal_struct"> <span class="question_number">D30. &nbsp; </span> As an organisation, do you have a separate salary scale for local employees who have regional responsibilities within Africa?</label>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio1">
+                                            <input type="radio" class="form-check-input" id="radio111"
+                                                name="formal_structure" value="Yes" checked>
+                                            Yes
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-check form-check-inline">
+                                        <label class="form-check-label" for="radio2">
+                                            <input type="radio" class="form-check-input" id="radio121"
+                                                name="formal_structure" value="No">No
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Question D30b -->
+                <div class="form-row">
+                    <div class="col-12">
+                        <div class="form-group">
+                            <label><span class="question_number">D30(b). &nbsp; </span>If Yes, please provide the reasons for a having a separate scale: </label>
+                            <textarea class="form-control"></textarea>
+                        </div>
+                    </div>
+                </div>
+                
+            </fieldset>
+
+
+
+
+
+
+
+            <!-- Next and Previous Button -->
+            <!-- TODO: fix onclick action -->
+            <div class="row">
+                <div class="col-6">
+                    <a href="{{ url_for('users.qualitative_survey_bip') }}"><span id="bonus" class="btn btn-outline-info">Back</span></a>
+                </div>
+
+                <div class="col-6 text-right">
+                    <span id="bonus" class="btn btn-outline-info">Submit</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
