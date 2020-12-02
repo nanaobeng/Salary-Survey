@@ -222,18 +222,6 @@ def quantitative_overview():
 def qualitative_overview():
     return render_template("qualitative_survey_overview.html")
 
-@users.route("/my_surveys/view_survey/qualitative_survey_dc")
-def qualitative_survey_dc():
-    return render_template("qualitative_survey_dc.html")
-
-@users.route("/my_surveys/view_survey/qualitative_survey_bip")
-def qualitative_survey_bip():
-    return render_template("qualitative_survey_bip.html")
-
-@users.route("/my_surveys/view_survey/qualitative_survey_gpp")
-def qualitative_survey_gpp():
-    return render_template("qualitative_survey_gpp.html")
-
 @users.route("/administration")
 def admin_home():
     return render_template("admin_home.html")
