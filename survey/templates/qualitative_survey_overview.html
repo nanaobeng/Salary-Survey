@@ -120,7 +120,6 @@
       </div>
 
       <!-- Next Button -->
-      <!-- TODO: fix onclick action -->
       <div class="col-12 text-right">
         <span id="general_information_next_button" class="btn btn-outline-info"
           onclick="switchFormSection(this.id)">Next</span>
@@ -789,7 +788,6 @@
 
 
       <!-- Next and Previous Button -->
-      <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
           <span id="direct_compensation_prev_button" class="btn btn-outline-info"
@@ -858,12 +856,18 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label for="formal_sal_struct"> <span class="question_number">C1(b). &nbsp; </span> Please list and describe
-              these plans
-              (provide copy of the plan or
-              policy)</label>
-            <textarea cols="5" class="form-control"></textarea>
-            <input type="file" id="plan_file" name="plan_file">
+            {{ form.plans.label(class="form-control-label") }}
+
+            {% if form.plans.errors %}
+            {{ form.plans(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.plans.errors %}
+              <span> {{error}}</span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.plans(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -872,27 +876,18 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label for="formal_sal_struct"> <span class="question_number">C2. &nbsp; </span> Are all staff, including
-              executives, eligible
-              for C1? </label>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label" for="radio1">
-                    <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                      checked>
-                    Yes
-                  </label>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label" for="radio2">
-                    <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                  </label>
-                </div>
-              </div>
+            {{ form.staffC1.label(class="form-control-label") }}
+
+            {% if form.staffC1.errors %}
+            {{ form.staffC1(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.staffC1.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
             </div>
+            {% else %}
+            {{ form.staffC1(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -901,9 +896,18 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label for="formal_sal_struct"> <span class="question_number">C2(b). &nbsp; </span> If No, please explain.
-            </label>
-            <textarea cols="5" class="form-control"></textarea>
+            {{ form.explainno.label(class="form-control-label") }}
+
+            {% if form.explainno.errors %}
+            {{ form.explainno(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.explainno.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.explainno(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -912,32 +916,18 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label for="bonus_payment"><span class="question_number">C3. &nbsp;</span> When does your company pay the
-              bonuses listed in
-              C1(b)?</label>
-            <div class="form-check">
-              <label class="form-check-label" for="check1">
-                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something">At the end
-                of the year as a lump sum
-              </label>
+            {{ form.bonuses.label(class="form-control-label") }}
+
+            {% if form.bonuses.errors %}
+            {{ form.bonuses(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.bonuses.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
             </div>
-            <div class="form-check">
-              <label class="form-check-label" for="check2">
-                <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">At
-                completion of appraisal
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">Monthly as part of the salary
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">Other (please specify) <input type=text
-                  class="form-control form-control-inline">
-              </label>
-            </div>
+            {% else %}
+            {{ form.bonuses(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -946,27 +936,18 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label for="formal_sal_struct"> <span class="question_number">C4. &nbsp; </span> Does your company pay 13th
-              month bonus?
-            </label>
-            <div class="row">
-              <div class="col-6">
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label" for="radio1">
-                    <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                      checked>
-                    Yes
-                  </label>
-                </div>
-              </div>
-              <div class="col-6">
-                <div class="form-check form-check-inline">
-                  <label class="form-check-label" for="radio2">
-                    <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                  </label>
-                </div>
-              </div>
+            {{ form.month13bonus.label(class="form-control-label") }}
+
+            {% if form.month13bonus.errors %}
+            {{ form.month13bonus(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.month13bonus.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
             </div>
+            {% else %}
+            {{ form.month13bonus(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -975,31 +956,18 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label for="bonus_payment"><span class="question_number">C4(b). &nbsp;</span> When is the 13th month bonus
-              paid?</label>
-            <div class="form-check">
-              <label class="form-check-label" for="check1">
-                <input type="checkbox" class="form-check-input" id="check1" name="option1" value="something">At the end
-                of the year as a lump sum
-              </label>
+            {{ form.bonustime.label(class="form-control-label") }}
+
+            {% if form.bonustime.errors %}
+            {{ form.bonustime(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.bonustime.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
             </div>
-            <div class="form-check">
-              <label class="form-check-label" for="check2">
-                <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">At
-                completion of appraisal
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">Monthly as part of the salary
-              </label>
-            </div>
-            <div class="form-check">
-              <label class="form-check-label">
-                <input type="checkbox" class="form-check-input">Other (please specify) <input type=text
-                  class="form-control form-control-inline">
-              </label>
-            </div>
+            {% else %}
+            {{ form.bonustime(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -1008,9 +976,18 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label><span class="question_number">C5. &nbsp;</span>List any restrictions on paying out the 13th
-              month.</label>
-            <textarea cols="5" class="form-control"></textarea>
+            {{ form.restrictions.label(class="form-control-label") }}
+
+            {% if form.restrictions.errors %}
+            {{ form.restrictions(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.restrictions.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.restrictions(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
@@ -1019,22 +996,23 @@
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label><span class="question_number">C6. &nbsp;</span> Apart from the direct compensations above (sections
-              B&C) (and
-              excluding
-              employee benefits,
-              perquisites and in-kind allowances, which are reviewed in other sections of
-              this
-              questionnaire), what other forms of direct compensation are available to
-              employees? (Please
-              describe in detail)</label>
-            <textarea cols="8" class="form-control"></textarea>
+            {{ form.compensations.label(class="form-control-label") }}
+
+            {% if form.compensations.errors %}
+            {{ form.compensations(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.compensations.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.compensations(class="form-control form-control") }}
+            {% endif %}
           </div>
         </div>
       </div>
 
       <!-- Next and Previous Button -->
-      <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
           <span id="bonus_incentive_plans_prev_button" class="btn btn-outline-info"
@@ -1067,9 +1045,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D1. &nbsp;</span>What is the number of leave days granted to staff
-                annually?</label>
-              <input type="number" min="0" class="form-control" />
+              {{ form.leavedays.label(class="form-control-label") }}
+
+              {% if form.leavedays.errors %}
+              {{ form.leavedays(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.leavedays.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.leavedays(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -1078,28 +1065,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">D2. &nbsp; </span> Does the number of leave
-                days increase
-                per employee tenure?
-              </label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
+              {{ form.numleavedaysincrease.label(class="form-control-label") }}
+
+              {% if form.numleavedaysincrease.errors %}
+              {{ form.numleavedaysincrease(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.numleavedaysincrease.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
               </div>
+              {% else %}
+              {{ form.numleavedaysincrease(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -1108,44 +1085,35 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">D3. &nbsp;</span> Choose the staff categories and the
-                number of leave days
-                granted: </label>
+              {{ form.staffcat.label(class="form-control-label") }}
               <table class="col-12">
                 <thead style="background-color: rgb(107, 117, 126);color:#fff">
                   <tr>
-                    <th> Staff Category</th>
-                    <th>Number of Leave Days</th>
+                    <th> {{ form.staffcatopt.label(class="form-control-label") }} </th>
+                    <th> {{ form.numleavedays.label(class="form-control-label") }}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>
-                      <select name="category" id="category">
-                        <option value="cat1">Category 1</option>
-                        <option value="cat2">Category 2</option>
-                        <option value="cat3">Category 3</option>
-                      </select>
+                      {{ form.staffcatopt(class="form-control form-control") }}
                     </td>
-                    <td><input type="number" min="0" class="form-control" /></td>
-
+                    <td>{{ form.numleavedays(class="form-control form-control") }}
+                    </td>
                   </tr>
                   <tr>
-                    <td><select name="category" id="category">
-                        <option value="cat1">Category 1</option>
-                        <option value="cat2">Category 2</option>
-                        <option value="cat3">Category 3</option>
-                      </select></td>
-                    <td><input type="number" min="0" class="form-control" /></td>
-
+                    <td>
+                      {{ form.staffcatopt(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.numleavedays(class="form-control form-control") }}
+                    </td>
                   </tr>
                   <tr>
-                    <td><select name="category" id="category">
-                        <option value="cat1">Category 1</option>
-                        <option value="cat2">Category 2</option>
-                        <option value="cat3">Category 3</option>
-                      </select></td>
-                    <td><input type="number" min="0" class="form-control" /></td>
+                    <td>
+                      {{ form.staffcatopt(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.numleavedays(class="form-control form-control") }}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -1157,9 +1125,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D4. &nbsp;</span> What is the number of paid holidays granted to
-                staff?</label>
-              <input type="text" class="form-control" />
+              {{ form.paidholidaysnum.label(class="form-control-label") }}
+
+              {% if form.paidholidaysnum.errors %}
+              {{ form.paidholidaysnum(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.paidholidaysnum.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.paidholidaysnum(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -1168,35 +1145,28 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D5. &nbsp;</span> What is the number of leave days granted for:
-              </label>
-              <div class="row">
-                <div class="col-6">
-                  <label>Sickness</label>
-                  <input type="number" min="0" class="form-control" />
-                </div>
-                <div class="col-6">
-                  <label>Accident</label>
-                  <input type="number" min="0" class="form-control" />
-                </div>
-                <div class="col-6">
-                  <label>Maternity</label>
-                  <input type="number" min="0" class="form-control" />
-                </div>
-                <div class="col-6">
-                  <label>Paternity</label>
-                  <input type="number" min="0" class="form-control" />
-                </div>
-                <div class="col-6">
-                  <label>Emergency/Compassionate</label>
-                  <input type="number" min="0" class="form-control" />
-                </div>
-                <div class="col-6">
-                  <label>Other (please specify) <input type="text" class="form-control"> </label>
-                  <input type="number" min="0" class="form-control" />
-                </div>
-              </div>
+              {{ forms.whatnumleavedays.label(class="form-control-label") }}
 
+              {{ forms.sickness.label(class="form-control-label") }}
+              {{ forms.sickness(class="form-control form-control") }}
+
+              {{ forms.accident.label(class="form-control-label") }}
+              {{ forms.accident(class="form-control form-control") }}
+
+              {{ forms.maternity.label(class="form-control-label") }}
+              {{ forms.maternity(class="form-control form-control") }}
+
+              {{ forms.paternity.label(class="form-control-label") }}
+              {{ forms.paternity(class="form-control form-control") }}
+
+              {{ forms.sickness.label(class="form-control-label") }}
+              {{ forms.sickness(class="form-control form-control") }}
+
+              {{ forms.emergency.label(class="form-control-label") }}
+              {{ forms.emergency(class="form-control form-control") }}
+
+              {{ forms.otherleavedays.label(class="form-control-label") }}
+              {{ forms.sickness(class="form-control form-control") }}
             </div>
           </div>
         </div>
@@ -1209,35 +1179,34 @@
                 following
                 instances?</label>
               <table class="table col-12">
-                <thead style="background-color: rgb(107, 117, 126);color:#fff"">
-                                <tr>
-                                    <th>Employee Grade</th>
-                                    <th>Options</th>
-                                    <th>Rates</th>
-                                    <th>Any Explanation</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><input type=" text" class="form-control">
-                  </td>
-                  <td><input type="text" class="form-control" /></td>
-                  <td><input type="text" class="form-control" /></td>
-                  <td><input type="text" class="form-control" /></td>
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th> {{ form.empgrade.label(class="form-control-label") }} </th>
+                    <th> {{ form.options.label(class="form-control-label") }}</th>
+                    <th> {{ form.rates.label(class="form-control-label") }} </th>
+                    <th> {{ form.explnation.label(class="form-control-label") }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ form.empgrade(class="form-control form-control") }}</td>
+                    <td>{{ form.options(class="form-control form-control") }}</td>
+                    <td>{{ form.rates(class="form-control form-control") }}</td>
+                    <td>{{ form.explanation(class="form-control form-control") }}</td>
                   </tr>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td><input type="text" class="form-control" /></td>
-                    <td><input type="text" class="form-control" /></td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.empgrade(class="form-control form-control") }}</td>
+                    <td>{{ form.options(class="form-control form-control") }}</td>
+                    <td>{{ form.rates(class="form-control form-control") }}</td>
+                    <td>{{ form.explanation(class="form-control form-control") }}</td>
                   </tr>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td><input type="text" class="form-control" /></td>
-                    <td><input type="text" class="form-control" /></td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.empgrade(class="form-control form-control") }}</td>
+                    <td>{{ form.options(class="form-control form-control") }}</td>
+                    <td>{{ form.rates(class="form-control form-control") }}</td>
+                    <td>{{ form.explanation(class="form-control form-control") }}</td>
                   </tr>
-                  </tbody>
+                </tbody>
               </table>
             </div>
           </div>
@@ -2583,9 +2552,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D27(b). &nbsp; </span>If Yes, please indicate below, the positions:
-              </label>
-              <textarea class="form-control"></textarea>
+              {{ form.indicatebenefits.label(class="form-control-label") }}
+
+              {% if form.indicatebenefits.errors %}
+              {{ form.indicatebenefits(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.indicatebenefits.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.indicatebenefits(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -2599,26 +2577,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">D28. &nbsp; </span> Are there
-                expertise/skills you find difficult to recruit from the Ghanaian labour market?</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
+              {{ form.difficultexpertise.label(class="form-control-label") }}
+
+              {% if form.difficultexpertise.errors %}
+              {{ form.difficultexpertise(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.difficultexpertise.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
               </div>
+              {% else %}
+              {{ form.difficultexpertise(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -2627,8 +2597,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D28(b). &nbsp; </span>If Yes, please list them below: </label>
-              <textarea class="form-control"></textarea>
+              {{ form.expertiselist.label(class="form-control-label") }}
+
+              {% if form.expertiselist.errors %}
+              {{ form.expertiselist(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.expertiselist.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.expertiselist(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -2642,9 +2622,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D29. &nbsp; </span>Please indicate frequent reasons for employee
-                turnover.: </label>
-              <textarea class="form-control"></textarea>
+              {{ form.turnover.label(class="form-control-label") }}
+
+              {% if form.turnover.errors %}
+              {{ form.turnover(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.turnover.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.turnover(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -2658,27 +2647,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">D30. &nbsp; </span> As an organisation, do
-                you have a separate salary scale for local employees who have regional responsibilities within
-                Africa?</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
+              {{ form.havescale.label(class="form-control-label") }}
+
+              {% if form.havescale.errors %}
+              {{ form.havescale(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.havescale.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
               </div>
+              {% else %}
+              {{ form.havescale(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -2687,9 +2667,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D30(b). &nbsp; </span>If Yes, please provide the reasons for a having
-                a separate scale: </label>
-              <textarea class="form-control"></textarea>
+              {{ form.reason.label(class="form-control-label") }}
+
+              {% if form.reason.errors %}
+              {{ form.reason(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.reason.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.reason(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -2703,7 +2692,6 @@
 
 
       <!-- Next and Previous Button -->
-      <!-- TODO: fix onclick action -->
       <div class="row">
         <div class="col-6">
           <span id="general_personnel_practices_prev_button" class="btn btn-outline-info"
