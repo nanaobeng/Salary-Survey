@@ -1175,16 +1175,14 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D6. &nbsp;</span> What is the over time entitlements/rates in the
-                following
-                instances?</label>
+              {{ forms.whatentitlements.label(class="form-control-label") }}
               <table class="table col-12">
                 <thead style="background-color: rgb(107, 117, 126);color:#fff">
                   <tr>
                     <th> {{ form.empgrade.label(class="form-control-label") }} </th>
                     <th> {{ form.options.label(class="form-control-label") }}</th>
                     <th> {{ form.rates.label(class="form-control-label") }} </th>
-                    <th> {{ form.explnation.label(class="form-control-label") }}</th>
+                    <th> {{ form.explanation.label(class="form-control-label") }}</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -1221,73 +1219,55 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D7. &nbsp;</span> What policy provisions do you have for staff with
-                respect to
-                the
-                following and how much?
-                (Please provide policy as attachment if different for various staff
-                grades/categories)</label>
+             {{ form.policyprovisions.label(class="form-control-label") }}
               <table class="table col-12">
                 <thead style="background-color: rgb(107, 117, 126);color:#fff">
                   <tr>
-                    <th>Grade</th>
-                    <th>Policy description
-                      (examples below)</th>
-                    <th>Entitlement (Please include details if varied for
-                      different tenures and/or staff categories)</th>
+                    <th> {{ form.gradeopt.label(class="form-control-label") }} </th>
+                    <th> {{ form.policydescription.label(class="form-control-label") }}</th>
+                    <th> {{ form.entitlement.label(class="form-control-label") }} </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td>Gratuity</td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.gratuity.label(class="form-control-label") }}</td>
+                    <td>{{ form.gratuity(class="form-control form-control") }}</td>
                   </tr>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td>Long term service awards</td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.longterm.label(class="form-control-label") }}</td>
+                    <td>{{ form.longterm(class="form-control form-control") }}</td>
                   </tr>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td>Severance awards/
-                      Redundancy</td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.severance.label(class="form-control-label") }}</td>
+                    <td>{{ form.severance(class="form-control form-control") }}</td>
                   </tr>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td>Severance awards/
-                      Redundancy</td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.endofservice.label(class="form-control-label") }}</td>
+                    <td>{{ form.endofservice(class="form-control form-control") }}</td>
                   </tr>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td>End of services benefits
-                      (indicate if different
-                      based on years of service)</td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.termination.label(class="form-control-label") }}</td>
+                    <td>{{ form.termination(class="form-control form-control") }}</td>
                   </tr>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td>Termination (including
-                      notice period)</td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.resignation.label(class="form-control-label") }}</td>
+                    <td>{{ form.resignation(class="form-control form-control") }}</td>
                   </tr>
                   <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td>Resignation (including
-                      notice period)</td>
-                    <td><input type="text" class="form-control" /></td>
-                  </tr>
-                  <tr>
-                    <td><input type="text" class="form-control" /></td>
-                    <td>Other (please specify)</td>
-                    <td><input type="text" class="form-control" /></td>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.othertype.label(class="form-control-label") }}</td>
+                    <td>{{ form.othertype(class="form-control form-control") }}</td>
                   </tr>
                 </tbody>
               </table>
 
-              <input type="file">
+              {{forms.othertypefile(class="form-control form-control")}}
 
             </div>
           </div>
@@ -1302,9 +1282,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">D8. &nbsp;</span> When was the last time you undertook redundancy
-                exercises?</label>
-              <input type="date" class="form-control" />
+              {{ form.redexercise.label(class="form-control-label") }}
+
+              {% if form.redexercise.errors %}
+              {{ form.redexercise(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.redexercise.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.redexercise(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -1313,44 +1302,34 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">D9. &nbsp;</span> Choose the staff categories and the
-                number of leave days
-                granted: </label>
+              {{ forms.numleavedaysgranted.label(class="form-control-label") }}
               <table class="col-12">
                 <thead style="background-color: rgb(107, 117, 126);color:#fff">
                   <tr>
-                    <th>Staff Category</th>
-                    <th>Package Paid</th>
+                    <th> {{ form.staffcategory.label(class="form-control-label") }} </th>
+                    <th> {{ form.packagepaid.label(class="form-control-label") }}</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
                     <td>
-                      <select name="category" id="category">
-                        <option value="cat1">Category 1</option>
-                        <option value="cat2">Category 2</option>
-                        <option value="cat3">Category 3</option>
-                      </select>
+                      {{ form.staffcategory(class="form-control form-control") }}
                     </td>
-                    <td><input type="number" min="0" class="form-control" /></td>
+                    <td>{{ form.packagepaid(class="form-control form-control") }}</td>
 
                   </tr>
                   <tr>
-                    <td><select name="category" id="category">
-                        <option value="cat1">Category 1</option>
-                        <option value="cat2">Category 2</option>
-                        <option value="cat3">Category 3</option>
-                      </select></td>
-                    <td><input type="number" min="0" class="form-control" /></td>
+                    <td>
+                      {{ form.staffcategory(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.packagepaid(class="form-control form-control") }}</td>
 
                   </tr>
                   <tr>
-                    <td><select name="category" id="category">
-                        <option value="cat1">Category 1</option>
-                        <option value="cat2">Category 2</option>
-                        <option value="cat3">Category 3</option>
-                      </select></td>
-                    <td><input type="number" min="0" class="form-control" /></td>
+                    <td>
+                      {{ form.staffcategory(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.packagepaid(class="form-control form-control") }}</td>
                   </tr>
                 </tbody>
               </table>
@@ -1367,29 +1346,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">D10. &nbsp; </span> Does the organisation
-                subsidise/provide
-                transportation to and from work
-                (includes vehicle
-                type, fuel, personal driver)?</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
+              { form.trans.label(class="form-control-label") }}
+
+              {% if form.trans.errors %}
+              {{ form.trans(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.trans.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
               </div>
+              {% else %}
+              {{ form.trans(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -2459,28 +2427,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">D26. &nbsp; </span> Are there any other
-                benefits provided to
-                senior management staff/executives not mentioned in this questionnaire?
-              </label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
+              {{ form.senior.label(class="form-control-label") }}
+
+              {% if form.senior.errors %}
+              {{ form.senior(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.senior.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
               </div>
+              {% else %}
+              {{ form.senior(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
@@ -2489,10 +2447,7 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">D26(b). &nbsp; </span> Please describe these
-                benefit items
-                using a separate sheet if needed. Probable benefit items not covered in this
-                questionnaire may be:
+              {{ forms.benefititems.label(class="form-control-label") }}
                 <ul>
                   <li>books and periodicals</li>
                   <li>festival gifts</li>
@@ -2500,15 +2455,15 @@
                   <li>consolidated annual benefits</li>
                   <li>credit card subscription</li>
                   <li>beverages at work</li>
-                  <li> free parking</li>
-                  <li> long service awards</li>
-                  <li> stock options</li>
-                  <li> share options</li>
-                  <li> spouse benefits</li>
+                  <li>free parking</li>
+                  <li>long service awards</li>
+                  <li>stock options</li>
+                  <li>share options</li>
+                  <li>spouse benefits</li>
                 </ul>
               </label>
-              <textarea class="form-control"></textarea>
-              <input type="file">
+              {{ forms.benefititems(class="form-control form-control") }}
+              {{ forms.benefititemsfile(class="form-control form-control") }}
             </div>
           </div>
         </div>
@@ -2523,27 +2478,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">D27. &nbsp; </span> Are any of the Direct
-                reports to the
-                Managing Director on contract?</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
-                </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
+              {{ form.directreportsoncontract.label(class="form-control-label") }}
+
+              {% if form.directreportsoncontract.errors %}
+              {{ form.directreportsoncontract(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.directreportsoncontract.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
               </div>
+              {% else %}
+              {{ form.directreportsoncontract(class="form-control form-control") }}
+              {% endif %}
             </div>
           </div>
         </div>
