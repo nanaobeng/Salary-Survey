@@ -139,7 +139,7 @@ class QualForm(FlaskForm):
     vacay = RadioField(u'D20. Are vacation related benefits offered to senior management staff?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired()])
     dometravel = StringField('Personal domestic travel?', validators=[DataRequired()])
     foreigntravel = StringField('Personal foreign travel including warm clothing and flight type?', validators=[DataRequired()])
-    hotel=StringField('Hotel Accomodation?')
+    hotel=StringField('Hotel Accomodation?', , validators=[DataRequired()])
     comfac = StringField('Use of company owned facilities for vacation e.g. accommodation?', validators=[DataRequired()])
     telephone = StringField('Telephone (roaming facility)?', validators=[DataRequired()])
     otherfac = StringField('Other (please specify)', validators=[DataRequired()])
