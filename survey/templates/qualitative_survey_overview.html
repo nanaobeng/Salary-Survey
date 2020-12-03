@@ -17,10 +17,18 @@
         <div class="col-6">
           <div class="form-group">
 
-            <label for="num_employees"> <span class="question_number">A1. &nbsp; </span>What is the total number of
-              employees in the
-              company?</label>
-            <input type="number" min="1" class="form-control col-10" id="num_employees">
+            {{ form.total_employee_num .label(class="form-control-label") }}
+      
+            {% if form.total_employee_num .errors %}
+            {{ form.total_employee_num (class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+                {% for error in total_employee_num.errors %}
+                <span> {{ error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.total_employee_num(class="form-control form-control") }}
+            {% endif %}
 
           </div>
         </div>
@@ -29,9 +37,18 @@
         <div class="col-6">
           <div class="form-group">
             <div>
-              <label for="num_employees"> <span class="question_number">A2. &nbsp; </span>How many working hours are
-                there in a normal week? </label>
-              <input type="number" min="0" class="form-control col-12" id="num_working_hours">
+                {{ form.work_hours .label(class="form-control-label") }}
+      
+                {% if form.work_hours.errors %}
+                {{ form.work_hours(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in work_hours.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.total_employee_num(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -110,16 +127,25 @@
         <div class="col-12">
           <div class="form-group">
             <div>
-              <label for="num_employees"> <span class="question_number">A4. &nbsp; </span>Describe your overtime policy
-                (eligibility, payments,
-                approvals etc): </label>
-              <textarea class="form-control" id="overtime_policy"></textarea>
+                {{ form.overtime.label(class="form-control-label") }}
+      
+                {% if form.overtime.errors %}
+                {{ form.overtime (class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in overtime.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.overtime(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
       </div>
 
       <!-- Next Button -->
+      <!-- TODO: fix onclick action -->
       <div class="col-12 text-right">
         <span id="general_information_next_button" class="btn btn-outline-info"
           onclick="switchFormSection(this.id)">Next</span>
@@ -143,42 +169,18 @@
           <div class="col-12">
             <div class="form-group">
               <div>
-                <label for="percentiles"> <span class="question_number">B1. &nbsp; </span>As an organisation, where
-                  (i.e. percentile terms) do you
-                  want to position yourself on the market for (please tick)?</label>
-                <br>
-                <div class="row justify-content-center  pl-4">
-                  <div class="col-12 text-left ">
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox1" value="option1">
-                      <label class="form-check-label" for="inlineCheckbox1">25</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox2" value="option2">
-                      <label class="form-check-label" for="inlineCheckbox2">40</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox3" value="option3">
-                      <label class="form-check-label" for="inlineCheckbox3">50</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox4" value="option1">
-                      <label class="form-check-label" for="inlineCheckbox1">60</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox5" value="option2">
-                      <label class="form-check-label" for="inlineCheckbox2">75</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox6" value="option3">
-                      <label class="form-check-label" for="inlineCheckbox3">80</label>
-                    </div>
-                    <div class="form-check form-check-inline">
-                      <input class="form-check-input" type="checkbox" id="inlineCheckbox7" value="option3">
-                      <label class="form-check-label" for="inlineCheckbox3">90</label>
-                    </div>
-                  </div>
+                {{ form.market_pos.label(class="form-control-label") }}
+      
+                {% if form.market_pos.errors %}
+                {{ form.market_pos (class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in market_pos.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
+                {% else %}
+                {{ form.market_pos(class="form-control form-control") }}
+                {% endif %}
               </div>
             </div>
           </div>
@@ -188,28 +190,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">B2. &nbsp; </span> Does your organisation
-                have a formal salary structure
-                for
-                staff ?</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
+                {{ form.salary_struct.label(class="form-control-label") }}
+      
+                {% if form.salary_struct.errors %}
+                {{ form.salary_struct (class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in salary_struct.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
-              </div>
+                {% else %}
+                {{ form.salary_struct(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -219,10 +211,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">B2(b). &nbsp; </span> If Yes, please upload
-                a copy of your current salary
-                structure(s).</label>
-              <input type="file" id="salaryStructure" name="filename">
+                {{ form.file_upload.label(class="form-control-label") }}
+      
+                {% if form.file_upload.errors %}
+                {{ form.file_upload(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in file_upload.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.file_upload(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -231,10 +231,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B2(c). &nbsp;</span> If No, how are salary level(s)
-                established?</label>
-              <textarea class="form-control" name="If No, how are salary level(s) established?" rows="5"
-                id="comment"></textarea>
+                {{ form.salary_level.label(class="form-control-label") }}
+      
+                {% if form.salary_level.errors %}
+                {{ form.salary_level(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in salary_level.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.salary_level(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -247,20 +255,18 @@
           <div class="col-12">
             <div class="form-group">
               <div class="form-group">
-                <label for="usr"><span class="question_number">B3. &nbsp;</span>How often is salary structure(s)
-                  adjusted?</label>
-                <select id="salaryStructure Adjustment" class="form-control" name="adjustment">
-                  <option value="annually">Annually</option>
-                  <option value="quarterly">Quarterly</option>
-                  <option value="bimonthly">Bi-monthly</option>
-                  <option value="monthly">Monthly</option>
-                  <option value="other">Other</option>
-                </select>
-                <br />
-                <div class="form-group ">
-                  <label for="usr">If other, please specify: </label>
-                  <input type="text" class="form-control" id="usr" name="How often is salary structure(s) adjusted?">
+                {{ form.salary_struct_adjust.label(class="form-control-label") }}
+      
+                {% if form.salary_struct_adjust.errors %}
+                {{ form.salary_struct_adjust(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in salary_struct_adjust.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
+                {% else %}
+                {{ form.salary_struct_adjust(class="form-control form-control") }}
+                {% endif %}
 
               </div>
             </div>
@@ -271,8 +277,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="date"><span class="question_number">B4. &nbsp;</span>Date of last adjustment:</label>
-              <input type="date" id="adjustmentDate" name="adjustment">
+                {{ form.adjustment_date.label(class="form-control-label") }}
+      
+                {% if form.adjustment_date.errors %}
+                {{ form.adjustment_date(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in adjustment_date.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.adjustment_date(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -281,9 +297,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B5. &nbsp;</span> Average percentage increase in last
-                reviews: </label>
-              <input type="text" class="form-control" id="usr" name="Average percentage increase in last reviews">
+                {{ form.percentage.label(class="form-control-label") }}
+      
+                {% if form.percentage.errors %}
+                {{ form.percentage(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in percentage.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.percentage(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -292,8 +317,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B6. &nbsp;</span> Basis of adjustment:</label>
-              <input type="text" class="form-control" id="usr" name="Basis of adjustment:">
+                {{ form.basis.label(class="form-control-label") }}
+      
+                {% if form.basis.errors %}
+                {{ form.basis(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in basis.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.basis(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -338,29 +373,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">B8. &nbsp;</span> Are all grades adjusted by the same
-                percentage?</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input form-check-inline" id="radio111" name="optradio1ab"
-                        value="option11" checked>
-                      Yes
-                    </label>
-                  </div>
-
+                {{ form.grades.label(class="form-control-label") }}
+      
+                {% if form.grades.errors %}
+                {{ form.grades(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in grades.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-6">
-                  <div class="form-check">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input form-check-inline" id="radio121" name="optradio1ab"
-                        value="option12">No
-
-                    </label>
-                  </div>
-                </div>
-              </div>
+                {% else %}
+                {{ form.grades(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
 
@@ -368,8 +392,18 @@
           <div class="form-row">
             <div class="col-12">
               <div class="form-group">
-                <label><span class="question_number">B8(b). &nbsp;</span>If No, how are adjustments made?</label>
-                <input type="text" class="form-control" id="usr" name="How adjustments are made">
+                {{ form.how_adjust.label(class="form-control-label") }}
+      
+                {% if form.how_adjust.errors %}
+                {{ form.how_adjust(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in how_adjust.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.how_adjust(class="form-control form-control") }}
+                {% endif %}
               </div>
             </div>
           </div>
@@ -383,9 +417,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B9. &nbsp;</span> When are allowance offerings
-                reviewed?</label>
-              <input type="text" class="form-control" id="usr" name="When allowance offerings are reviewed">
+                {{ form.review_date.label(class="form-control-label") }}
+      
+                {% if form.review_date.errors %}
+                {{ form.review_date(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in review_date.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.review_date(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -394,11 +437,17 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B9(b). &nbsp;</span> What is the typical effective date
-                once reviewed (i.e.
-                back to January 1 of that year or the first date of the month in which they
-                are reviewed)? </label>
-              <input type="text" class="form-control" id="usr" name="Typical effective date once reviewed">
+                {{ form.effective_date.label(class="form-control-label") }}
+      
+                {% if form.effective_date.errors %}
+                {{ form.effective_date(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">effective_date.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.effective_date(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -412,30 +461,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B10. &nbsp;</span> Does your organisation use a formal Job
-                Evaluation System? </label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input form-check-inline" id="radio111" name="optradio1ab"
-                        value="option11" checked>
-                      Yes
-                    </label>
-                  </div>
-
+                {{ form.eval_system.label(class="form-control-label") }}
+      
+                {% if form.eval_system.errors %}
+                {{ form.eval_system(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in eval_system.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-6">
-                  <div class="form-check">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input form-check-inline" id="radio121" name="optradio1ab"
-                        value="option12">No
-
-                    </label>
-                  </div>
-                </div>
-              </div>
-            </div>
+                {% else %}
+                {{ form.eval_system(class="form-control form-control") }}
+                {% endif %}
           </div>
         </div>
 
@@ -443,9 +480,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B10(b). &nbsp;</span>If Yes, what method of job evaluation
-                is used?</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
+                {{ form.eval_method.label(class="form-control-label") }}
+      
+                {% if form.eval_method.errors %}
+                {{ form.eval_method(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in eval_method.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.eval_method(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -460,31 +506,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">B11. &nbsp;</span>What types of periodic salary increases are
-                granted?</label>
-              <div class="form-check">
-                <label class="form-check-label" for="check1">
-                  <input type="checkbox" class="form-check-input" id="check1" name="option1"
-                    value="something">Performance/Merit increases
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label" for="check2">
-                  <input type="checkbox" class="form-check-input" id="check2" name="option2" value="something">General
-                  increases (across board)
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input">Cost of living increases
-                </label>
-              </div>
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input">Other (please specify) <input type=text
-                    class="form-control form-control-inline">
-                </label>
-              </div>
+                {{ form.periodic_sal.label(class="form-control-label") }}
+      
+                {% if form.periodic_sal.errors %}
+                {{ form.periodic_sal(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in periodic_sal.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.periodic_sal(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -493,30 +526,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B12. &nbsp;</span> Do your staff receive automatic cost of
-                living salary adjustments at
-                periodic intervals? </label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input form-check-inline" id="radio111" name="optradio1ab"
-                        value="option11" checked>
-                      Yes
-                    </label>
-                  </div>
-
+                {{ form.auto_cost.label(class="form-control-label") }}
+      
+                {% if form.auto_cost.errors %}
+                {{ form.auto_cost(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in auto_cost.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-6">
-                  <div class="form-check">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input form-check-inline" id="radio121" name="optradio1ab"
-                        value="option12">No
-
-                    </label>
-                  </div>
-                </div>
-              </div>
+                {% else %}
+                {{ form.auto_cost(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -525,10 +546,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="usr"><span class="question_number">B12(b). &nbsp;</span>If Yes, on what basis are increments
-                computed and what are the
-                normal intervals?</label>
-              <textarea class="form-control" rows="5" id="comment"></textarea>
+                {{ form.yes_basis.label(class="form-control-label") }}
+      
+                {% if form.yes_basis.errors %}
+                {{ form.yes_basis(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in yes_basis.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.yes_basis(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -537,9 +566,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="quantity"><span class="question_number">B13. &nbsp;</span> How many grade levels do you
-                have?</label>
-              <input type="number" min="1" class="form-control " />
+                {{ form.grade_num.label(class="form-control-label") }}
+      
+                {% if form.grade_num.errors %}
+                {{ form.grade_num(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in grade_num.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.grade_num(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -548,11 +586,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">B14. &nbsp;</span> What is the percentage difference in salary
-                between the notches
-                within
-                a grade?</label>
-              <input type="text" class="form-control" />
+                {{ form.perc_diff.label(class="form-control-label") }}
+      
+                {% if form.perc_diff.errors %}
+                {{ form.perc_diff(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in perc_diff.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.perc_diff(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -561,28 +606,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">B15. &nbsp;</span> Salary increments in the same grade are based
-                on:</label>
-              <div class="row">
-                <div class="col-3">
-                  <div class="form-check">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="optradio1abc" value="option11"
-                        checked>
-                      Notches
-                    </label>
-                  </div>
-
+                {{ form.grade_basis.label(class="form-control-label") }}
+      
+                {% if form.grade_basis.errors %}
+                {{ form.grade_basis(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in grade_basis.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-3">
-                  <div class="form-check">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="optradio1abc"
-                        value="option12">Percentages
-                    </label>
-                  </div>
-                </div>
-              </div>
+                {% else %}
+                {{ form.grade_basis(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -595,29 +630,18 @@
               </label>
               <div class="col-9">
                 <div class="form-check">
-                  <label class="form-check-label" for="radio1">
-                    <input type="checkbox" class="form-check-input" id="radio111" name="optradio1abc" value="option11">
-                    Automatic annual salary increments
-                  </label>
-                </div>
-
-              </div>
-              <div class="col-9">
-                <div class="form-check">
-                  <label class="form-check-label" for="radio2">
-                    <input type="checkbox" class="form-check-input" id="radio121" name="optradio1abc"
-                      value="option12">Performance/Merit
-                  </label>
-                </div>
-              </div>
-              <div class="col-9">
-                <div class="form-check">
-                  <label class="form-check-label" for="radio2">
-                    <input type="checkbox" class="form-check-input" id="radio121" name="optradio1abc"
-                      value="option12">Other (please specify) <input type="text" class="form-check form-check-inline">
-                  </label>
-                </div>
-              </div>
+                    {{ form.staff_progress.label(class="form-control-label") }}
+      
+                    {% if form.staff_progress.errors %}
+                    {{ form.staff_progress(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in staff_progress.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.staff_progress(class="form-control form-control") }}
+                    {% endif %}
             </div>
           </div>
         </div>
@@ -626,35 +650,57 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">B17. &nbsp;</span> In order of importance, what factors are
-                considered in placing your new
-                staff on your salary scale (please rank as 1st, 2nd, 3rd, etc)?</label>
-              <div>
-                <br />
-                <label>1st Priority:</label>
-                <select>
-                  <option value="education">Education</option>
-                  <option value="experience">Experience</option>
-                  <option value="prev-salary">Previous Salary</option>
-                </select>
+                {{ form.first_priority.label(class="form-control-label") }}
+      
+                {% if form.first_priority.errors %}
+                {{ form.first_priority(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in first_priority.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.first_priority(class="form-control form-control") }}
+                {% endif %}
 
-                <label>2nd Priority:</label>
-                <select>
-                  <option value="education">Education</option>
-                  <option value="experience">Experience</option>
-                  <option value="prev-salary">Previous Salary</option>
-                </select>
+                {{ form.second_priority.label(class="form-control-label") }}
+      
+                {% if form.second_priority.errors %}
+                {{ form.second_priority(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in second_priority.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.second_priority(class="form-control form-control") }}
+                {% endif %}
 
-                <label>3rd Priority:</label>
-                <select>
-                  <option value="education">Education</option>
-                  <option value="experience">Experience</option>
-                  <option value="prev-salary">Previous Salary</option>
-                </select>
+                {{ form.first_priority.label(class="form-control-label") }}
+      
+                {% if form.third_priority.errors %}
+                {{ form.third_priority(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in third_priority.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.third_priority(class="form-control form-control") }}
+                {% endif %}
 
-                <label>Others (please specify):</label>
-                <input type="text" class="form-control">
-              </div>
+                {{ form.first_priority.label(class="form-control-label") }}
+      
+                {% if form.other_priority.errors %}
+                {{ form.other_priority(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in other_priority.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.other_priority(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -663,28 +709,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">B18. &nbsp; </span> Is there a hiring rate
-                for each grade or job which
-                differs from the
-                minimum of the scale?</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
+                {{ form.hiring_rate.label(class="form-control-label") }}
+      
+                {% if form.hiring_rate.errors %}
+                {{ form.hiring_rate(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in hiring_rate.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
-              </div>
+                {% else %}
+                {{ form.hiring_rate(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -693,8 +729,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">B18(b). &nbsp;</span>Please explain your above response: </label>
-              <textarea cols="5" class="form-control"></textarea>
+                {{ form.explain.label(class="form-control-label") }}
+      
+                {% if form.explain.errors %}
+                {{ form.explain(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in explain.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.explain(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -703,28 +749,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">B19. &nbsp; </span> Is there a Is there a
-                maximum salary for each grade
-                which cannot be
-                exceeded??</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
+                {{ form.max_salary.label(class="form-control-label") }}
+      
+                {% if form.max_salary.errors %}
+                {{ form.max_salary(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in max_salary.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
-              </div>
+                {% else %}
+                {{ form.max_salary(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -733,8 +769,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">B19(b). &nbsp;</span>Please explain your above response: </label>
-              <textarea cols="5" class="form-control"></textarea>
+                {{ form.explain_max.label(class="form-control-label") }}
+      
+                {% if form.explain_max.errors %}
+                {{ form.explain_max(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in explain_max.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.explain_max(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -743,28 +789,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label for="formal_sal_struct"> <span class="question_number">B20. &nbsp; </span> Are there instances
-                where the maximum salary for a
-                grade has been
-                exceeded?</label>
-              <div class="row">
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio1">
-                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
-                        checked>
-                      Yes
-                    </label>
-                  </div>
+                {{ form.instances.label(class="form-control-label") }}
+      
+                {% if form.instances.errors %}
+                {{ form.instances(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in instances.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-6">
-                  <div class="form-check form-check-inline">
-                    <label class="form-check-label" for="radio2">
-                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
-                    </label>
-                  </div>
-                </div>
-              </div>
+                {% else %}
+                {{ form.instances(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -773,8 +809,18 @@
         <div class="form-row">
           <div class="col-12">
             <div class="form-group">
-              <label><span class="question_number">B20(b). &nbsp;</span>If Yes, please explain: </label>
-              <textarea cols="5" class="form-control"></textarea>
+                {{ form.yes_explain.label(class="form-control-label") }}
+      
+                {% if form.yes_explain.errors %}
+                {{ form.yes_explain(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in yes_explain.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.yes_explain(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
