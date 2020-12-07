@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint
 from survey import db,bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm, QualForm
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm
 from survey.models import User
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -217,12 +217,12 @@ def my_surveys():
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():
     return render_template("quantitative_survey_overview.html")
-
+"""
 @users.route("/my_surveys/view_survey/qualitative")
 def qualitative_overview():
     form = QualForm()
     return render_template("qualitative_survey_overview.html")
-
+"""
 @users.route("/administration")
 def admin_home():
     return render_template("admin_home.html")

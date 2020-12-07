@@ -10,7 +10,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_login import current_user
 from survey.models import User
 
-
+"""
 class QualForm(FlaskForm):
     
     total_employee_num = IntegerField('A1. What is the total number of employees in the company? ',validators=[DataRequired()])   
@@ -72,9 +72,9 @@ class QualForm(FlaskForm):
     plans = TextAreaField('C1(b). Please list and describe these plans (provide copy of the plan or policy)')
     staffC1 = RadioField(u'C2(a). Are all staff including executives eligible for C1?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired()])
     explainno = TextAreaField('C2(b). If No, explain:')
-    bonuses = RadioField(u'C3. When does your company pay the bonuses listed in 1b?',choices = [('option11','At the end of the year as a lump sum'),('option12','At completion of appraisal'),('option13','onthly as part of the salary'),('option14','Other (please sepcify)'))], validators=[DataRequired()])
+    #bonuses = RadioField(u'C3. When does your company pay the bonuses listed in 1b?',choices = [('option11','At the end of the year as a lump sum'),('option12','At completion of appraisal'),('option13','onthly as part of the salary'),('option14','Other (please sepcify)'))], validators=[DataRequired()])
     month13bonus = RadioField(u'C4. Does your company pay 13th month bonus?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired()])
-    bonustime = nuses = RadioField(u'C5. When is the 13th month bonus paid?',choices = [('option11','At the end of the year as a lump sum'),('option12','At completion of appraisal'),('option13','onthly as part of the salary'),('option14','Other (please sepcify)'))], validators=[DataRequired()])
+   # bonustime = nuses = RadioField(u'C5. When is the 13th month bonus paid?',choices = [('option11','At the end of the year as a lump sum'),('option12','At completion of appraisal'),('option13','onthly as part of the salary'),('option14','Other (please sepcify)'))], validators=[DataRequired()])
     restrictions = TextAreaField('C6. List any restrictions on paying out the 13th month.', validators=[DataRequired()])
     compensations = TextAreaField('C7. Apart from the direct compensations above (sections B&C) (and excluding employee benefits,perquisites and in-kind allowances, which are reviewed in other sections of this questionnaire), what other forms of direct compensation are available to employees? (Please describe in detail)', validators=[DataRequired()])
     
@@ -139,7 +139,7 @@ class QualForm(FlaskForm):
     ptginterest = IntegerField('Percentage of Interest', validators=[DataRequired()])
     repay = StringField('Repayment Period', validators=[DataRequired()])
     limit = StringField('Limit of Facility', validators=[DataRequired()])
-    housingbenefits = RadioField(u'D16. Does the organisation provide housing benefits to staff (includes house allowance as cash benefit and accommodation, furnishing, residence utilities, etc)?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired())
+    #housingbenefits = RadioField(u'D16. Does the organisation provide housing benefits to staff (includes house allowance as cash benefit and accommodation, furnishing, residence utilities, etc)?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired())
     detailsempgrade = StringField('Employee Grade', validators=[DataRequired()])
     facility = StringField('Type of Facility', validators=[DataRequired()])
     amount = StringField('Cash Amount', validators=[DataRequired()])
@@ -180,21 +180,21 @@ class QualForm(FlaskForm):
     water = StringField('Water', validators=[DataRequired()])
     telephone = StringField('Telephone and mobile phone', validators=[DataRequired()])
     otherfacility = StringField('Other (please specify)', validators=[DataRequired()])
-    senior = RadioField(u'D26. Are there any other benefits provided to senior management staff/executives not mentioned in this questionnaire?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired())
-    benefititems = TextAreaField('D26(b). Please describe these benefit items using a separate sheet if needed. Probable benefit items not covered in this questionnaire may be: Managing Director on contract?', validators=[DataRequired())
+    #senior = RadioField(u'D26. Are there any other benefits provided to senior management staff/executives not mentioned in this questionnaire?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired())
+    #benefititems = TextAreaField('D26(b). Please describe these benefit items using a separate sheet if needed. Probable benefit items not covered in this questionnaire may be: Managing Director on contract?', validators=[DataRequired())
     benefititemsfile = FileField()
     directreportsoncontract = RadioField(u'D27. Are any of the Direct reports to the Managing Director on contract?', choices = [('yes','Yes'),('no','No')], validators=[DataRequired()])
     indicatebenefits = TextField('D27(b). If Yes, please indicate below, the positions: ', validators=[DataRequired()])
-    difficultexpertise = RadioField(u'D28. Are there expertise/skills you find difficult to recruit from the Ghanaian labour market?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired())
+    #difficultexpertise = RadioField(u'D28. Are there expertise/skills you find difficult to recruit from the Ghanaian labour market?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired())
     expertiselist = TextAreaField('D28(b). If Yes, please list them below:', validators=[DataRequired()])
     turnover = TextAreaField('D29. Please indicate frequent reasons for employee turnover.:', validators=[DataRequired()])
-    havescale = RadioField(u'D30. As an organisation, do you have a separate salary scale for local employees who have regional responsibilities within Africa?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired())
+    #havescale = RadioField(u'D30. As an organisation, do you have a separate salary scale for local employees who have regional responsibilities within Africa?',choices = [('yes','Yes'),('no','No')], validators=[DataRequired())
     reason= TextAreaField('D30(b). If Yes, please provide the reasons for a having a separate scale:', validators=[DataRequired()])
     
-   
+  # 
 
 
-
+"""
 
 
 class RegistrationForm(FlaskForm):
