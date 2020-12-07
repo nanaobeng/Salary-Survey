@@ -325,18 +325,27 @@ Spin has a real team to support its customers and potential clients. Don't hesit
       </div>
 
 
-      <div class="row p-4" style="background-color:rgb(42, 42, 49)">
-     
-                  <div class="col-12 p-2" style="color:#fff">
-                      <hr style="border-color: white;"/>
-                      © 2020. See Terms of Use for more information.<br/>
-
-                      Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited, a UK private company limited by guarantee (“DTTL”), its network of member firms, and their related entities. DTTL and each of its member firms are legally separate and independent entities. DTTL (also referred to as “Deloitte Global”) does not provide services to clients. Please see www.deloitte.com/about for a detailed description of DTTL and its member firms.
-                  </div>
-              </div>
-        
-
       
 
   </div>
+
+  <script>
+    // Initialize and add the map
+function initMap() {
+// The location of Uluru
+
+const uluru = { lat: 5.6223532, lng: -0.1809536 };
+// The map, centered at Uluru
+const map = new google.maps.Map(document.getElementById("map"), {
+  zoom: 15,
+  center: uluru,
+});
+// The marker, positioned at Uluru
+const marker = new google.maps.Marker({
+  position: uluru,
+  map: map,
+});
+}
+</script>
+
   {% endblock content %}

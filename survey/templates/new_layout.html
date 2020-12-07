@@ -14,24 +14,6 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css//icofont/icofont.min.css')}}">
-<script>
-    // Initialize and add the map
-function initMap() {
-// The location of Uluru
-
-const uluru = { lat: 5.6223532, lng: -0.1809536 };
-// The map, centered at Uluru
-const map = new google.maps.Map(document.getElementById("map"), {
-  zoom: 15,
-  center: uluru,
-});
-// The marker, positioned at Uluru
-const marker = new google.maps.Marker({
-  position: uluru,
-  map: map,
-});
-}
-</script>
 
 <script>
 $(window).scroll(function () {
@@ -393,13 +375,8 @@ color: #fff;
                 </div>  
               </nav>
               </header>
-    
-    <div style="background-color:rgba(211, 211, 211, 0.459); min-height: 100%;">
-      <section class="page-section bg-white container main-section" id="request_services">
-          <div class="container bg-white" style="min-height: 100%;">
-              <!-- page header -->
-              <h2 class="text-center mt-0">{% block header %} {% endblock header %}</h2>
-              <hr class="divider my-3" />
+
+   
               <br>
               {% with messages = get_flashed_messages(with_categories=true) %}
               {%if messages %}
@@ -418,9 +395,7 @@ color: #fff;
             {% endwith %}
 
             {% block content %}{% endblock content%}
-            </div>
-          </section>
-      </div>
+
         
      
          <style>
@@ -460,7 +435,7 @@ color: #fff;
             Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited, a UK private company limited by guarantee (“DTTL”), its network of member firms, and their related entities. DTTL and each of its member firms are legally separate and independent entities. DTTL (also referred to as “Deloitte Global”) does not provide services to clients. Please see www.deloitte.com/about for a detailed description of DTTL and its member firms.
           </div></div>
       </footer>
-       <!--JavaScript at end of body for optimized loading-->
+   <!--JavaScript at end of body for optimized loading-->
        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
