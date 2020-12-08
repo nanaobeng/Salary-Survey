@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint
 from survey import db,bcrypt
 from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm
-from survey.models import User
+from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 
@@ -159,7 +159,14 @@ def survey_home():
 
 @users.route("/create_survey")
 def create_survey():
-    return render_template("new_create_survey.html")
+    form = SurveyForm()
+    if form.validate_on_submit():
+        sur = Survey(name="test2",start_date=datetime(2012, 3, 3, 10, 10, 10),end_date=datetime(2012, 3, 3, 10, 10, 10),status="active",client_id=1)
+        db.session.add(sur)
+        db.session.commit()
+        flash('Account Created','success')
+        return redirect(url_for('users.login'))
+    return render_template("new_create_survey.html",form=form)
 
 @users.route("/edit_survey")
 def edit_survey():
@@ -229,7 +236,7 @@ def admin_home():
 
 @users.route("/administration/surveys")
 def admin_surveys():
-    return render_template("admin_surveys.html")
+    return render_template("new_view_survey.html")
 
 @users.route("/administration/benchmark-jobs")
 def admin_benchmarl():
