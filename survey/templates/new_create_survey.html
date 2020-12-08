@@ -599,20 +599,20 @@ function switchnext(form){
   $(window).scrollTop(0);
   if(form == 'survey_details'){
     $('.survey_details').css('display','none')
-    $('.benchmark_jobs').css('display','block')
+    $('.benchmark_jobs').css('display','')
     surveyCompleted()
     benchmarkActive()
     
   }
   if(form == 'benchmark_jobs'){
     $('.benchmark_jobs').css('display','none')
-    $('.comparators').css('display','block')
+    $('.comparators').css('display','')
     benchmarkCompleted()
     comparatorActive()
   }
   if(form == 'comparators'){
     $('.comparators').css('display','none')
-    $('.review').css('display','block')
+    $('.review').css('display','')
     comparatorCompleted()
     reviewActive()
   }
@@ -626,19 +626,19 @@ function switchback(form){
 
   if(form == 'benchmark_jobs'){
     $('.benchmark_jobs').css('display','none')
-    $('.survey_details').css('display','block')
+    $('.survey_details').css('display','')
     benchmarkNotActive()
     surveyActive()
   }
   if(form == 'comparators'){
     $('.comparators').css('display','none')
-    $('.benchmark_jobs').css('display','block')
+    $('.benchmark_jobs').css('display','')
     comparatorNotActive()
     benchmarkActive()
   }
   if(form == 'review'){
     $('.review').css('display','none')
-    $('.comparators').css('display','block')
+    $('.comparators').css('display','')
     reviewNotActive()
     comparatorActive()
   }
