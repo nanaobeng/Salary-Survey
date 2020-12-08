@@ -10,7 +10,6 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from flask_login import current_user
 from survey.models import User
 
-"""
 class QualForm(FlaskForm):
     
     total_employee_num = IntegerField('A1. What is the total number of employees in the company? ')   
@@ -185,11 +184,6 @@ class QualForm(FlaskForm):
 
 
 
-
-  # 
-
-
-"""
 
 
 class RegistrationForm(FlaskForm):
