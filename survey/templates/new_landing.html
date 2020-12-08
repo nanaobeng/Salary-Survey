@@ -1,13 +1,95 @@
 
     {% extends "new_layout.html" %}
 
-   
+
    
     
     {% block content %}
+    <style>
+        #hero {
+ width: 100%;
+ height: 80vh;
+ background: top center;
+ background: url("../static/img/home.jpg") top center;
+ position: relative;
+ }
+ 
+ #hero:before {
+ content: "";
+ background: rgba(20, 44, 9, 0.7);
+ position: absolute;
+ bottom: 0;
+ top: 0;
+ left: 0;
+ right: 0;
+ }
+ 
+ #hero .container {
+ text-align: center;
+ padding-top: 50px;
+ }
+ 
+ @media (max-width: 992px) {
+ #hero .container {
+   padding-top: 0;
+ }
+ }
+ 
+ #hero h1 {
+ margin: 0;
+ font-size: 48px;
+ font-weight: 700;
+ line-height: 56px;
+ color: #fff;
+ }
+ 
+ #hero h2 {
+ color: #eee;
+ margin: 15px 0 0 0;
+ font-size: 22px;
+ }
+ 
+ #hero .btn-get-started {
+ font-family: "Raleway", sans-serif;
+ font-weight: 500;
+ font-size: 15px;
+ letter-spacing: 1px;
+ display: inline-block;
+ padding: 9px 35px;
+ border-radius: 50px;
+ transition: 0.5s;
+ margin-top: 40px;
+ border: 2px solid #ffc107;
+ color: #fff;
+ }
+ 
+ #hero .btn-get-started:hover {
+ background: #ffc107;
+ }
+ 
+ @media (min-width: 1024px) {
+ #hero {
+   background-attachment: fixed;
+ }
+ }
+ 
+ @media (max-width: 768px) {
+ #hero {
+   height: 100vh;
+ }
+ #hero h1 {
+   font-size: 28px;
+   line-height: 36px;
+ }
+ #hero h2 {
+   font-size: 18px;
+   line-height: 24px;
+ }
+ }
+    </style>
       <div class="row">
         <div class="col-12">
-          <section id="hero" class="d-flex align-items-center justify-content-center">
+          <section id="hero" class="d-flex align-items-center justify-content-center" style="">
               <div class="container position-relative">
                   <div class="row p-2 justify-content-center">
                      
@@ -124,9 +206,9 @@
           <div class="col-5 p-4">
 
               <br/>
-              <h1 style="color:#fff">Set up your site,
-                  pick a plan later</h1>
-              <span style="color:#fff">Try Spin free for 14 days, no credit card required. Enterprise-grade solutions for high traffic websites, and large businesses.</span>
+              <h1 style="color:#fff">Interested?,
+                  Request for our services</h1>
+              <span style="color:#fff">Whether you are a curious individual or registered corporate entity, we are available for a converstaion.</span>
               
           </div>
           <div class="col-7 p-4">
@@ -137,7 +219,7 @@
                               <i class="ico-white icofont-ui-office"></i>
                           </div>
                           <div class="col-12 p-4 text-center">
-                              <span class="btn btn-outline-light">Corporate Request</span>
+                              <a class="btn btn-outline-light" href="/requests/corporate">Corporate Request</a>
                           </div>
                       </div>
                   </div>
@@ -147,7 +229,7 @@
                               <i class="ico-white icofont-user-alt-2"></i>
                           </div>
                           <div class="col-12 p-4 text-center">
-                              <span class="btn btn-outline-light">Individual Request</span>
+                              <a class="btn btn-outline-light" href="/requests/individual">Individual Request</a>
                           </div>
                       </div>
                   </div>
@@ -329,23 +411,6 @@ Spin has a real team to support its customers and potential clients. Don't hesit
 
   </div>
 
-  <script>
-    // Initialize and add the map
-function initMap() {
-// The location of Uluru
 
-const uluru = { lat: 5.6223532, lng: -0.1809536 };
-// The map, centered at Uluru
-const map = new google.maps.Map(document.getElementById("map"), {
-  zoom: 15,
-  center: uluru,
-});
-// The marker, positioned at Uluru
-const marker = new google.maps.Marker({
-  position: uluru,
-  map: map,
-});
-}
-</script>
 
   {% endblock content %}

@@ -1,152 +1,271 @@
-{% extends "layout.html" %}
 
-{% block header %} 
-Request Service
-{% endblock header %}
+{% extends "new_layout.html" %}
+
 
 {% block content %}
+<style>
+    #hero {
+width: 100%;
+height: 30vh;
+background: url("../static/img/home.jpg") top center;
+background-size: cover;
+position: relative;
+}
 
-<div class="row pt-4">
-    <div class="col-6">
-                                <label for="usr">Firstname:</label>
-                                     <div class="form-group">
-                                     <input type="text" class="form-control" id="usr" name="username">
-                                    </div>
-    </div>
-    
-    
-    
-    <div class="col-6">
-                                <label for="usr">Lastname:</label>
-                                     <div class="form-group">
-                                     <input type="text" class="form-control" id="usr" name="username">
-                                    </div>
-    </div>
-    </div>
-    
-    
-                        
+#hero:before {
+content: "";
+background: rgba(20, 44, 9, 0.7);
+position: absolute;
+bottom: 0;
+top: 0;
+left: 0;
+right: 0;
+}
+
+#hero .container {
+text-align: center;
+padding-top: 50px;
+}
+
+@media (max-width: 992px) {
+#hero .container {
+  padding-top: 0;
+}
+}
+
+#hero h1 {
+margin: 0;
+font-size: 48px;
+font-weight: 700;
+line-height: 56px;
+color: #fff;
+}
+
+#hero h2 {
+color: #eee;
+margin: 15px 0 0 0;
+font-size: 22px;
+}
+
+#hero .btn-get-started {
+font-family: "Raleway", sans-serif;
+font-weight: 500;
+font-size: 15px;
+letter-spacing: 1px;
+display: inline-block;
+padding: 9px 35px;
+border-radius: 50px;
+transition: 0.5s;
+margin-top: 40px;
+border: 2px solid #ffc107;
+color: #fff;
+}
+
+#hero .btn-get-started:hover {
+background: #ffc107;
+}
+
+@media (min-width: 1024px) {
+#hero {
+  background-attachment: fixed;
+}
+}
+
+@media (max-width: 768px) {
+#hero {
+  height: 100vh;
+}
+#hero h1 {
+  font-size: 28px;
+  line-height: 36px;
+}
+#hero h2 {
+  font-size: 18px;
+  line-height: 24px;
+}
+}
+</style>
+<div class="row">
+    <div class="col-12">
+      <section id="hero" class="d-flex align-items-center justify-content-center">
+          <div class="container position-relative">
+       <h2><b style="font-size: 40px;">Individual Request</b></h2>
           
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                                    <label for="usr">Other Names:</label>
-                                     <div class="form-group">
-                                     <input type="text" class="form-control" id="usr" name="username">
-                                    </div>
-    
-                            
-                                        </div>
-            </div>
-    
-    
-            <div class="col-6">
-                <div class="form-group">
-                                    <label for="usr">Nationality:</label>
-                                     <div class="form-group">
-                                     <input type="text" class="form-control" id="usr" name="username">
-                                    </div>
-    
-                            
-                                        </div>
-            </div>
-            
-            
-        </div>
-    
-    
-        <div class="row">
-            <div class="col-6">
-                <div class="form-group">
-                                    <label for="usr">Email:</label>
-                                     <div class="form-group">
-                                     <input type="email" class="form-control" id="usr" name="username">
-                                    </div>
-    
-                            
-                                        </div>
-            </div>
-    
-    
-            <div class="col-6">
-                <div class="form-group">
-                                    <label for="usr">Phone Number:</label>
-                                     <div class="form-group">
-                                     <input type="number" class="form-control" id="usr" name="username">
-                                    </div>
-    
-                            
-                                        </div>
-            </div>
-            
-            
-        </div>
-    
-        <div class="row">
-            <div class="col-12">
-                <div class="form-group">
-                                    <label for="usr">Address:</label>
-                                     <div class="form-group">
-                                     <input type="text" class="form-control">
-                                    </div>
-    
-                            
-                                        </div>
-            </div>
-    
-    
-            <div class="col-6">
-                <div class="form-group">
-                                    <label for="usr">City:</label>
-                                     <div class="form-group">
-                                     <input type="text" class="form-control" id="usr" name="username">
-                                    </div>
-    
-                            
-                                        </div>
-            </div>
-    
-            <div class="col-6">
-                <div class="form-group">
-                                    <label for="usr">Country:</label>
-                                     <div class="form-group">
-                                     <input type="text" class="form-control" id="usr" name="username">
-                                    </div>
-    
-                            
-                                        </div>
-            </div>
-            
-            
-        </div>
-        <hr/>
-    
-        <div class="row">
-        <div class="col-12 ">
-            <div class="form-group">
-      <label for="sel1">Select Service:</label>
-      <select class="form-control" id="sel1">
-          <option value="">---Select---</option>
-        <option>Industry Reports</option>
-        <option>Sub-Industry Report</option>
-        <option>Job Specific Report</option>
-      </select>
+          </div>
+        </section>
     </div>
-        </div>
-        </div>
-      
-    
-      <div class="row">
-      <div class="col-12 text-right">
-    
-      <span class="btn btn-outline-success">
-      Submit
-      </span>
-    
+</div>
+<div class="p-4" style="background-color:rgb(245, 243, 243)">
+<div class="row p-4" >
+<div class="col-12 p-4">
+
+<div class="card">
+  <div class="row p-4">
+      <div class="col-12">
+          <h3>Individual Request</h3>
+          <div class="divider"style="width:100% ;border-style : solid ; border-width:5px; border-color:rgba(66,99,50,1); border-radius: 25px;"></div>
       </div>
+      <div class="col-12">
+          <div class="row pt-4">
+              <div class="col-6">
+                                          <label for="usr">Firstname:</label>
+                                               <div class="form-group">
+                                               <input type="text" class="form-control" id="usr" name="username">
+                                              </div>
+              </div>
+              
+              
+              
+              <div class="col-6">
+                                          <label for="usr">Lastname:</label>
+                                               <div class="form-group">
+                                               <input type="text" class="form-control" id="usr" name="username">
+                                              </div>
+              </div>
+              </div>
+              
+              
+                                  
+                    
+                  <div class="row">
+                      <div class="col-6">
+                          <div class="form-group">
+                                              <label for="usr">Other Names:</label>
+                                               <div class="form-group">
+                                               <input type="text" class="form-control" id="usr" name="username">
+                                              </div>
+              
+                                      
+                                                  </div>
+                      </div>
+              
+              
+                      <div class="col-6">
+                          <div class="form-group">
+                                              <label for="usr">Nationality:</label>
+                                               <div class="form-group">
+                                               <input type="text" class="form-control" id="usr" name="username">
+                                              </div>
+              
+                                      
+                                                  </div>
+                      </div>
+                      
+                      
+                  </div>
+              
+              
+                  <div class="row">
+                      <div class="col-6">
+                          <div class="form-group">
+                                              <label for="usr">Email:</label>
+                                               <div class="form-group">
+                                               <input type="email" class="form-control" id="usr" name="username">
+                                              </div>
+              
+                                      
+                                                  </div>
+                      </div>
+              
+              
+                      <div class="col-6">
+                          <div class="form-group">
+                                              <label for="usr">Phone Number:</label>
+                                               <div class="form-group">
+                                               <input type="number" class="form-control" id="usr" name="username">
+                                              </div>
+              
+                                      
+                                                  </div>
+                      </div>
+                      
+                      
+                  </div>
+              
+                  <div class="row">
+                      <div class="col-12">
+                          <div class="form-group">
+                                              <label for="usr">Address:</label>
+                                               <div class="form-group">
+                                               <input type="text" class="form-control">
+                                              </div>
+              
+                                      
+                                                  </div>
+                      </div>
+              
+              
+                      <div class="col-6">
+                          <div class="form-group">
+                                              <label for="usr">City:</label>
+                                               <div class="form-group">
+                                               <input type="text" class="form-control" id="usr" name="username">
+                                              </div>
+              
+                                      
+                                                  </div>
+                      </div>
+              
+                      <div class="col-6">
+                          <div class="form-group">
+                                              <label for="usr">Country:</label>
+                                               <div class="form-group">
+                                               <input type="text" class="form-control" id="usr" name="username">
+                                              </div>
+              
+                                      
+                                                  </div>
+                      </div>
+                      
+                      
+                  </div>
+                  <hr/>
+              
+                  <div class="row">
+                  <div class="col-12 ">
+                      <div class="form-group">
+                <label for="sel1">Select Service:</label>
+                <select class="form-control" id="sel1">
+                    <option value="">---Select---</option>
+                  <option>Industry Reports</option>
+                  <option>Sub-Industry Report</option>
+                  <option>Job Specific Report</option>
+                </select>
+              </div>
+                  </div>
+                  </div>
+                
+              
+                <div class="row">
+                <div class="col-12 text-right">
+              
+                <span class="btn btn-outline-success">
+                Submit
+                </span>
+              
+                </div>
+                </div>
+              
+              
+                                  
+              </div>
       </div>
+  </div>
+</div>
+
+</div>
+
+
+</div>
+</div>
+
+
+
+
     
-    
-                        
-    </div>
+
+  
+
+</div>
+
 {% endblock  %}
