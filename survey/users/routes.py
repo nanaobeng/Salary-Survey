@@ -159,7 +159,7 @@ def survey_home():
 
 @users.route("/create_survey")
 def create_survey():
-    return render_template("create_survey.html")
+    return render_template("new_create_survey.html")
 
 @users.route("/edit_survey")
 def edit_survey():
