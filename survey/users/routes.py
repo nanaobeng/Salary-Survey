@@ -228,7 +228,7 @@ def quantitative_overview():
 @users.route("/my_surveys/view_survey/qualitative")
 def qualitative_overview():
     form = QualForm()
-    return render_template("qualitative_survey_overview.html")
+    return render_template("qualitative_survey_overview.html",form=form)
 
 @users.route("/administration")
 def admin_home():
