@@ -118,12 +118,14 @@ Custom Filter <i class="icofont-filter"></i>
         <div class="col-3">
           <div class="form-group">
             <label for="sel1" style="color:grey">Client:</label>
-            <select class="form-control" id="client" onchange="filter('client')">
-              <option value="ABC">ABC Company</option>
-              <option value="Modec">Modec</option>
-              <option value="Villagio">Villagio</option>
-             
-            </select>
+            <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+  <datalist id="clients">
+    <option value="ABC">
+    <option value="Modec">
+    <option value="Villagio">
+    <option value="Shell">
+    
+  </datalist>
           </div>
       </div>
 

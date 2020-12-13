@@ -210,12 +210,21 @@ def my_reports():
 
 @users.route("/my_benchmark_jobs")
 def my_benchmark_jobs():
-    return render_template("client_benchmark_jobs.html")
+    
+    form = SurveyForm()
+    return render_template("new_view_client_benchmark.html",form=form)
+
+
+
+@users.route("/my_benchmark_jobs/options")
+def my_benchmark_options():
+
+    return render_template("new_client_benchmark_options.html")
 
 @users.route("/my_benchmark_jobs/new")
 def my_benchmark_jobs_create():
     form = SurveyForm()
-    return render_template("client_create_benchmark_job.html",form=form)
+    return render_template("new_client_create_benchmark.html",form=form)
 
 @users.route("/my_surveys")
 def my_surveys():
@@ -244,7 +253,7 @@ def admin_benchmarl():
 
 @users.route("/administration/clients")
 def admin_clients():
-    return render_template("admin_clients.html")
+    return render_template("new_view_client.html")
 
 @users.route("/administration/service_requests")
 def admin_service_requests():
@@ -296,7 +305,7 @@ def update_profile():
 @users.route("/administration/corporate-request-review")
 def review_corporate():
     
-    return render_template("corporate_review.html")
+    return render_template("new_service_requests_view.html")
 
 
 
@@ -338,13 +347,19 @@ def review_benchmark():
 def view_client():
     
 
-    return render_template("view_client.html")
+    return render_template("new_view_client_info.html")
 
 @users.route("/administration/edit_client")
 def edit_client():
     
 
-    return render_template("edit_client.html")
+    return render_template("new_edit_client.html")
+
+@users.route("/my_benchmark_jobs/edit")
+def edit_benchmark():
+    
+    form = SurveyForm()
+    return render_template("new_edit_client_benchmark_jobs.html",form=form)
 
 
 

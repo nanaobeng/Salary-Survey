@@ -1,0 +1,100 @@
+{% extends "new_admin_layout.html" %}
+
+
+   
+    
+{% block content %}
+
+ 
+
+<div class="row">
+    <div class="col-12">
+      <section id="hero" class="d-flex align-items-center justify-content-center">
+          <div class="container position-relative">
+       <h2><b style="font-size: 40px;">Add Benchmark Options </b></h2>
+          
+          </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {%if messages %}
+  {% for category, message in messages %}
+  <div class="container">
+  <div class="alert alert-{{ category}}">
+      {{message}}
+  </div>
+</div>
+
+
+  {% endfor %}
+
+  {% endif %}
+
+{% endwith %}
+  <div class="col-12" style="background-color: rgb(226, 223, 223);height:auto">
+    <div class="row p-4 justify-content-center">
+        <div class="col-12 green_shade p-2 text-center">
+           <b>Kindly select an option below :</b> 
+        </div>
+        
+<div class="col-12 p-4">
+    <div class="row justify-content-center p-4">
+        <div class="col-12 pb-4 text-right">
+            <a class="btn btn-success" href="/my_benchmark_jobs/new"> Create Benchmark Job </a>
+        </div>
+        <div class="col-12 pt-4 pb-4 ">
+       <b class="green_shade" style="font-size: 20px;">Select and edit an existing benchmark job below :</b>
+        </div>
+        <div class="col-lg-12 col-md-12 pb-4">
+            <div class="card" style="border-color: rgba(66,99,50,1);">
+             <table class="table">
+               <thead class="gb text-white" >
+                 <tr>
+                   <div class="input-group" >
+                     <input type="text" name="Selected Comparator" class="form-control" placeholder="Search Comparator">
+                     <div class="input-group-append">
+                       <button class="btn btn-secondary" style="background-color: rgba(66,99,50,1);" type="button">
+                         <i style="color:white" class="fa fa-search"></i>
+                       </button>
+                     </div>
+                   </div>
+                 </tr>
+                 <tr>
+                   <td>Comparator Name</td>
+                   <td>Industry</td>
+                   <td></td>
+                 </tr>
+               </thead>
+               <tbody>
+                 <tr>
+                   <td>XYZ Bank</td>
+                   <td>Banking</td>
+                   <td><a class="icofont-edit green_shade"href="/my_benchmark_jobs/edit"></a></td>
+                 </tr>
+                 <tr>
+                   <td>JKL Textiles</td>
+                   <td>Manufacturing</td>
+                   <td><a class="icofont-edit green_shade"href="/my_benchmark_jobs/edit"></a></td>
+                 </tr>
+                 <tr>
+                   <td>MNO Energy</td>
+                   <td>Oil and Gas</td>
+                   <td><a class="icofont-edit green_shade"href="/my_benchmark_jobs/edit"></a></td>
+                 </tr>
+               </tbody>
+             </table>
+           </div>
+           </div>
+
+   
+      
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}

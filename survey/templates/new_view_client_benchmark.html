@@ -93,13 +93,23 @@
       <div class="col-12">
         <section id="hero" class="d-flex align-items-center justify-content-center">
             <div class="container position-relative">
-         <h2><b style="font-size: 40px;">View Clients</b></h2>
+         <h2><b style="font-size: 40px;">My Benchmark Jobs</b></h2>
             
             </div>
           </section>
       </div>
   </div>
   <div class="p-4" style="background-color:rgb(245, 243, 243)">
+    <div class="row p-4">
+        <div class="col-6">
+            <a class="btn btn-outline-success" data-toggle="modal" data-target="#upload_jobs">Upload Jobs</a>
+        </div>
+        <div class="col-6 text-right">
+            <a href="/my_benchmark_jobs/options" class="btn btn-outline-primary">Add Benchmark</a>
+        </div>
+
+    </div>
+
     <div class="row p-4">
       <div class="col-12 pb-4 " style="color:grey">
 Custom Filter <i class="icofont-filter"></i>
@@ -108,8 +118,9 @@ Custom Filter <i class="icofont-filter"></i>
         <div class="form-group">
           <label for="sel1" style="color:grey">Status:</label>
           <select class="form-control" id="status" onchange="filter('status')">
-            <option value="completed">Active</option>
-            <option value="active">Inactive</option>
+            <option value="saved">Saved</option>
+            <option value="submitted">Submitted</option>
+            <option value="verified">Verified</option>
    
            
           </select>
@@ -118,13 +129,13 @@ Custom Filter <i class="icofont-filter"></i>
 
         <div class="col-3">
           <div class="form-group">
-            <label for="sel1" style="color:grey">Client:</label>
+            <label for="sel1" style="color:grey">Job Title:</label>
             <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
   <datalist id="clients">
-    <option value="ABC">
-    <option value="Modec">
-    <option value="Villagio">
-    <option value="Shell">
+    <option value="Procurement Asistant">
+    <option value="Accountant">
+    <option value="HR Officer">
+    <option value="Internal Audit Manager">
     
   </datalist>
           </div>
@@ -133,10 +144,10 @@ Custom Filter <i class="icofont-filter"></i>
 
       <div class="col-3">
         <div class="form-group">
-          <label for="sel1" style="color:grey">Industry:</label>
+          <label for="sel1" style="color:grey">Department:</label>
           <select class="form-control" id="industry" onchange="filter('industry')">
-            <option value="minerals">Minerals</option>
-            <option value="Fintech">Fintech</option>
+            <option value="finance">Finance</option>
+            <option value="Internal Audit">Internal Audit</option>
            
            
           </select>
@@ -168,15 +179,12 @@ Custom Filter <i class="icofont-filter"></i>
         <div class="col-12 ">
       <div class="row">
         <div class="col-10">
-          <h5><b>Roma Ventures</b></h5>
+          <h5><b>Procurement Asistant</b></h5>
         </div>
         <div class="col-1">
-          <a href="/administration/view_client" style="color:grey"><i class="icofont-eye-alt" ></i></a>
+          <a href="/user/view-benchmark" style="color:grey"><i class="icofont-eye-alt" ></i></a>
         </div>
-        <div class="col-1">
-          <a href="/administration/edit_client" style="color:grey"><i class="icofont-edit" ></i></a>
-          
-        </div>
+      
        
       </div>
         </div>
@@ -185,56 +193,30 @@ Custom Filter <i class="icofont-filter"></i>
           <div class="col-12" style="color:grey;font-size:12px">
             <div class="row">
               <div class="col-5">
-                Contact Person
+                Department
               </div>
               <div class="col-1">
                 :
               </div>
               <div class="col-6">
-                Justin Kluvert
+             Procurement
               </div>
             </div>
          
           </div>
-          <div class="col-12" style="color:grey;font-size:12px">
-            <div class="row">
-              <div class="col-5">
-                Industry 
-              </div>
-              <div class="col-1">
-                :
-              </div>
-              <div class="col-6">
-                Metals and Mineral
-              </div>
-            </div>
-  
-          </div>
-          <div class="col-12" style="color:grey;font-size:12px">
-            <div class="row">
-              <div class="col-5">
-              Area of Operation
-              </div>
-              <div class="col-1">
-                :
-              </div>
-              <div class="col-6">
-                Mining
-              </div>
-            </div>
-              
-          </div>
+ 
+   
         </div>
 
         <div class="child">
           <div class="row ">
             <div class="col-12" >
-            <h4><span class="badge badge-success">Active</span></h4>
+            <h4><span class="badge badge-success">Verified</span></h4>
          
             </div>
             <div class="col-12" style="color:grey;font-size:12px">
                  
-              Category :     Corporate
+              Date Created :     2/11/2020
           
               
           </div>
@@ -255,15 +237,12 @@ Custom Filter <i class="icofont-filter"></i>
           <div class="col-12 ">
         <div class="row">
           <div class="col-10">
-            <h5><b>OKC LLC</b></h5>
+            <h5><b>HR Officer</b></h5>
           </div>
           <div class="col-1">
-            <a href="/administration/view_client" style="color:grey"><i class="icofont-eye-alt" ></i></a>
+            <a href="/user/view-benchmark" style="color:grey"><i class="icofont-eye-alt" ></i></a>
           </div>
-          <div class="col-1">
-            <a href="/administration/edit_client" style="color:grey"><i class="icofont-edit" ></i></a>
-            
-          </div>
+        
          
         </div>
           </div>
@@ -272,56 +251,30 @@ Custom Filter <i class="icofont-filter"></i>
             <div class="col-12" style="color:grey;font-size:12px">
               <div class="row">
                 <div class="col-5">
-                  Contact Person
+                  Department
                 </div>
                 <div class="col-1">
                   :
                 </div>
                 <div class="col-6">
-                  Russel Westbrook
+                 Human Capital
                 </div>
               </div>
            
             </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Industry 
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  Metals and Mineral
-                </div>
-              </div>
-    
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                Area of Operation
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  Mining
-                </div>
-              </div>
-                
-            </div>
+       
+       
           </div>
 
           <div class="child">
             <div class="row ">
               <div class="col-12" >
-              <h4><span class="badge badge-danger">Inactive</span></h4>
+              <h4><span class="badge badge-warning">Submitted</span></h4>
            
               </div>
               <div class="col-12" style="color:grey;font-size:12px">
                  
-                Category :     Individual
+                Date Created :     11/05/1991
             
                 
             </div>
@@ -335,88 +288,7 @@ Custom Filter <i class="icofont-filter"></i>
 
 
 
-  <div class="col-4 p-4">
-
-    <div class="card p-4 parent"  style="height:300px">
-        <div class="row ">
-           
-            <div class="col-12 ">
-          <div class="row">
-            <div class="col-10">
-              <h5><b>Emirates</b></h5>
-            </div>
-            <div class="col-1">
-              <a href="/administration/view_client" style="color:grey"><i class="icofont-eye-alt" ></i></a>
-            </div>
-            <div class="col-1">
-              <a href="/administration/edit_client" style="color:grey"><i class="icofont-edit" ></i></a>
-              
-            </div>
-           
-          </div>
-            </div>
-            </div>
-            <div class="row">
-              <div class="col-12" style="color:grey;font-size:12px">
-                <div class="row">
-                  <div class="col-5">
-                    Contact Person
-                  </div>
-                  <div class="col-1">
-                    :
-                  </div>
-                  <div class="col-6">
-                    Mikel Arteta
-                  </div>
-                </div>
-             
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-                <div class="row">
-                  <div class="col-5">
-                    Industry 
-                  </div>
-                  <div class="col-1">
-                    :
-                  </div>
-                  <div class="col-6">
-                    Metals and Mineral
-                  </div>
-                </div>
-      
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-                <div class="row">
-                  <div class="col-5">
-                  Area of Operation
-                  </div>
-                  <div class="col-1">
-                    :
-                  </div>
-                  <div class="col-6">
-                    Mining
-                  </div>
-                </div>
-                  
-              </div>
-            </div>
-
-            <div class="child">
-              <div class="row ">
-                <div class="col-12" >
-                <h4><span class="badge badge-success">Active</span></h4>
-             
-                </div>
-                <div class="col-12" style="color:grey;font-size:12px">
-                 
-                    Category :     Corporate
-                
-                    
-                </div>
-              </div>
-            </div>
-        </div>
-    </div>
+  
 
 </div>
   
@@ -432,7 +304,30 @@ Custom Filter <i class="icofont-filter"></i>
 
 </div>
 
-
+<div class="modal fade" id="upload_jobs" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Upload Benchmark Job</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Please upload your benchmark jobs file</p>
+          <p>file must be in .csv format</p>
+          <i class="fas fa-upload upload-icon" ></i>
+          <br>
+          <br>
+          <button class="btn btn-sm btn-outline-success">Douwnload Template</button>
+          <button class="btn btn-sm btn-success" id="upload_jobs_btn">Choose File</button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-success btn-sm" >Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <script>
   function filter(view){
