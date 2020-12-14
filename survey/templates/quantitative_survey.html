@@ -146,15 +146,15 @@
       <div class="col-md-9 col-sm-12 p-4">
 
 
-        <div class="row  survey_details">
-          <div class="col-sm-12 pl-4 pr-4 pb-4 ">
+        <div class="row  base_salary">
+          <div class="col-sm-9 pl-4 pr-4 pb-4 ">
             <div class="card p-4" style="height:300px;border-color: green;">
               <div class="row ">
 
 
 
 
-                <div class="col-6">
+                <div class="col-9">
                   <span style="color:grey;font-size: 12px;"><b>Question 1/1</b></span>
                   <div class="form-group">
                     <span><b class="green_shade">
@@ -189,16 +189,16 @@
           <!-- <div class="col-12 text-right pl-4 pr-4 pb-4">
             <div class="row">
               <div class="col-6 text-right">
-                <span class="btn btn-outline-success" onclick="switchnext('survey_details')"> Next </span>
+                <span class="btn btn-outline-success" onclick="switchnext('base_salary')"> Next </span>
               </div>
             </div>
           </div> -->
 
 
-          <div class="col-12 text-right pl-4 pr-4 pb-4">
+          <div class="col-3 text-right pl-4 pr-4 pb-4">
             <div class="row">
               <div class="col-6 text-right pl-4 pr-4 pb-4">
-                <span class="btn btn-outline-success" onclick="switchnext('survey_details')"> Next </span>
+                <span class="btn btn-outline-success" onclick="switchnext('base_salary')"> Next </span>
               </div>
             </div>
           </div>
@@ -210,7 +210,7 @@
 
 
 
-        <div class="row benchmark_jobs" style="display:none">
+        <div class="row bonus" style="display:none">
 
           <div class="col-sm-12 pl-4 pr-4 pb-4 ">
             <div class="card p-4" style="border-color: green;">
@@ -333,11 +333,11 @@
           <div class="col-12 text-right pl-4 pr-4 pb-4">
             <div class="row">
               <div class="col-6 text-left">
-                <span class="btn btn-outline-success" onclick="switchback('benchmark_jobs')"> Back </span>
+                <span class="btn btn-outline-success" onclick="switchback('bonus')"> Back </span>
 
               </div>
               <div class="col-6 text-right">
-                <span class="btn btn-outline-success" onclick="switchnext('benchmark_jobs')"> Next </span>
+                <span class="btn btn-outline-success" onclick="switchnext('bonus')"> Next </span>
 
               </div>
 
@@ -353,7 +353,7 @@
 
 
 
-        <div class="row comparators" style="display:none">
+        <div class="row benefits" style="display:none">
           <div class="col-sm-12 pl-4 pr-4 pb-4">
             <div class="card p-4" style="border-color: green;">
               <div class="row ">
@@ -765,12 +765,12 @@
           <div class="col-12 text-right pl-4 pr-4 pb-4">
             <div class="row">
               <div class="col-6 text-left">
-                <span class="btn btn-outline-success" onclick="switchback('comparators')"> Back </span>
+                <span class="btn btn-outline-success" onclick="switchback('benefits')"> Back </span>
 
               </div>
               <div class="col-6 text-right">
 
-                <span class="btn btn-outline-success" onclick="switchnext('comparators')"> Next </span>
+                <span class="btn btn-outline-success" onclick="switchnext('benefits')"> Next </span>
 
               </div>
             </div>
@@ -1199,21 +1199,21 @@
 <script>
   function switchnext(form) {
     $(window).scrollTop(0);
-    if (form == 'survey_details') {
-      $('.survey_details').css('display', 'none')
-      $('.benchmark_jobs').css('display', '')
+    if (form == 'base_salary') {
+      $('.base_salary').css('display', 'none')
+      $('.bonus').css('display', '')
       surveyCompleted()
       benchmarkActive()
 
     }
-    if (form == 'benchmark_jobs') {
-      $('.benchmark_jobs').css('display', 'none')
-      $('.comparators').css('display', '')
+    if (form == 'bonus') {
+      $('.bonus').css('display', 'none')
+      $('.benefits').css('display', '')
       benchmarkCompleted()
       comparatorActive()
     }
-    if (form == 'comparators') {
-      $('.comparators').css('display', 'none')
+    if (form == 'benefits') {
+      $('.benefits').css('display', 'none')
       $('.review').css('display', '')
       comparatorCompleted()
       reviewActive()
@@ -1226,21 +1226,21 @@
   function switchback(form) {
     $(window).scrollTop(0);
 
-    if (form == 'benchmark_jobs') {
-      $('.benchmark_jobs').css('display', 'none')
-      $('.survey_details').css('display', '')
+    if (form == 'bonus') {
+      $('.bonus').css('display', 'none')
+      $('.base_salary').css('display', '')
       benchmarkNotActive()
       surveyActive()
     }
-    if (form == 'comparators') {
-      $('.comparators').css('display', 'none')
-      $('.benchmark_jobs').css('display', '')
+    if (form == 'benefits') {
+      $('.benefits').css('display', 'none')
+      $('.bonus').css('display', '')
       comparatorNotActive()
       benchmarkActive()
     }
     if (form == 'review') {
       $('.review').css('display', 'none')
-      $('.comparators').css('display', '')
+      $('.benefits').css('display', '')
       reviewNotActive()
       comparatorActive()
     }
