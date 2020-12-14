@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html>
     <head>
 
@@ -268,14 +268,11 @@ section {
                 <div class="collapse navbar-collapse" id="collapsibleNavbar">
                   <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     {% if current_user.is_authenticated %}
-                   
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_home')}}">Home</a></li>
-                    <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{  url_for('users.create_survey')}}">Create Survey</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_surveys')}}">View Surveys</a></li>
-                  
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.create_client')}}">Create Client</a></li>
-                    <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_clients')}}">View Clients</a></li>
-                    <li class="nav-item">  <a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_service_requests')}}">Service Requests</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('main.index')}}">Home</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_benchmark_jobs')}}">My Benchmark Jobs</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_surveys')}}">Complete Survey</a></li>
+                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.my_reports')}}">Reports</a></li>
+
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_reports')}}">Reports</a></li>
                           
                          

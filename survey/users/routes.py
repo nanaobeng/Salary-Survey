@@ -99,7 +99,7 @@ def reset_token(token):
 @users.route("/create_client")
 def create_client():
     form = ClientForm()
-    return render_template("create_client.html",form=form,title="Create Client")
+    return render_template("new_create_client.html",form=form,title="Create Client")
 
 
 @users.route("/create_contact")
@@ -257,7 +257,7 @@ def admin_clients():
 
 @users.route("/administration/service_requests")
 def admin_service_requests():
-    return render_template("admin_service_requests.html")
+    return render_template("new_requests.html")
 
 
 @users.route("/administration/reports")
@@ -314,7 +314,7 @@ def review_corporate():
 def review_individual():
     
     
-    return render_template("individual_review.html")
+    return render_template("new_service_individual_requests_view.html")
 
 @users.route("/user/update-client")
 def update_client():
