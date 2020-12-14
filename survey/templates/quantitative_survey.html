@@ -149,7 +149,7 @@
 
             </div>
             <div class="col-12 pt-4 text-center">
-              <span ><b class="green_shade"><h2><b>
+              <span ><b class="green_shade">
                 {{ form.base_salary.label(class="form-control-label") }}
       
                   {% if form.base_salary.errors %}
@@ -162,7 +162,7 @@
                   {% else %}
                   {{ form.base_salary(class="form-control form-control") }}
                   {% endif %}
-      
+                  </b></span>
                   
               </div>
               
@@ -199,181 +199,123 @@
 
 
 
+      <div class="col-sm-12 pl-4 pr-4 pb-4 ">
+        <div class="card p-4" style="border-color: green;">
+          <div class="row ">
 
 
-
-
-      <div class="col-12 pl-4 pr-4 pb-4">
-        
-        <div class="row">
-        
-          <div class="col-sm-4 pl-4 pr-4 pb-4 ">
-            <div class="card p-4" style="height:300px;border-color: green;">
-              <div class="row ">
-                <div class="col-12 text-center">
-                  <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span>
+            <div class="col-6 ">
+              <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span>
+              <div class="form-group">
+                <span ><b class="green_shade">
+                  {{ form.company_bonus_performance.label(class="form-control-label") }}
     
-                </div>
-                <div class="col-12 pt-4 text-center">
-                  <span ><b class="green_shade"><h2><b>
-                    {{ form.company_bonus_performance.label(class="form-control-label") }}
-      
-                    {% if form.company_bonus_performance.errors %}
-                    {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.company_bonus_performance.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.company_bonus_performance(class="form-control form-control") }}
-                    {% endif %}
-                  </b></h2></b></span>
-                  <hr/>
-                </div>
-               
-                 
-          
-                  </div>
-              </div>
-    
-          </div>
-
-          <div class="col-sm-4 pl-4 pr-4 pb-4 ">
-            <div class="card p-4" style="height:300px;border-color: green;">
-              <div class="row ">
-                <div class="col-12 text-center">
-                  <span style="color:grey;font-size: 12px;"><b>Question 2/5</b></span>
-    
-                </div>
-                <div class="col-12 pt-4 text-center">
-                  <span ><b class="green_shade"><h2><b>
-                    {{ form.individual_bonus_performance.label(class="form-control-label") }}
-      
-                  {% if form.individual_bonus_performance.errors %}
-                  {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
+                  {% if form.company_bonus_performance.errors %}
+                  {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
                   <div class="invalid-feedback">
-                      {% for error in form.individual_bonus_performance.errors %}
+                      {% for error in form.company_bonus_performance.errors %}
                       <span> {{ error}}</span>
                       {% endfor %}
                   </div>
                   {% else %}
-                  {{ form.individual_bonus_performance(class="form-control form-control") }}
+                  {{ form.company_bonus_performance(class="form-control form-control") }}
                   {% endif %}
-                  </b></h2></b></span>
-                  <hr/>
-                </div>
+                </b></span>
                
-                 
-          
-                  </div>
               </div>
-    
-          </div>
+            </div>
 
-          <div class="col-sm-4 pl-4 pr-4 pb-4 ">
-            <div class="card p-4" style="height:300px;border-color: green;">
-              <div class="row ">
-                <div class="col-12 text-center">
-                  <span style="color:grey;font-size: 12px;"><b>Question 3/5</b></span>
+
+            <div class="col-6 ">
+              <span style="color:grey;font-size: 12px;"><b>Question 2/5</b></span>
+              <div class="form-group">
+                <span ><b class="green_shade">
+                  {{ form.individual_bonus_performance.label(class="form-control-label") }}
     
+                {% if form.individual_bonus_performance.errors %}
+                {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.individual_bonus_performance.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                 </div>
-                <div class="col-12 pt-4 text-center">
-                  <span ><b class="green_shade"><h2><b>
-                    {{ form.annual_bonus.label(class="form-control-label") }}
-        
-                    {% if form.annual_bonus.errors %}
-                    {{ form.annual_bonus(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.annual_bonus.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.annual_bonus(class="form-control form-control") }}
-                    {% endif %}
-                  </b></h2></b></span>
-                  <hr/>
-                </div>
-               
-                 
-          
-                  </div>
+                {% else %}
+                {{ form.individual_bonus_performance(class="form-control form-control") }}
+                {% endif %}
+                </b></span>
               </div>
-    
-          </div>
-
-          <div class="col-sm-4 pl-4 pr-4 pb-4 ">
-            <div class="card p-4" style="height:300px;border-color: green;">
-              <div class="row ">
-                <div class="col-12 text-center">
-                  <span style="color:grey;font-size: 12px;"><b>Question 4/5</b></span>
-    
-                </div>
-                <div class="col-12 pt-4 text-center">
-                  <span ><b class="green_shade"><h2><b>
-                    {{ form.incentive_bonus.label(class="form-control-label") }}
-        
-                    {% if form.incentive_bonus.errors %}
-                    {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.incentive_bonus.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.incentive_bonus(class="form-control form-control") }}
-                    {% endif %}
-                  </b></h2></b></span>
-                  <hr/>
-                </div>
-               
-                 
-          
-                  </div>
-              </div>
-    
-          </div>
-
-          <div class="col-sm-4 pl-4 pr-4 pb-4 ">
-            <div class="card p-4" style="height:300px;border-color: green;">
-              <div class="row ">
-                <div class="col-12 text-center">
-                  <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span>
-    
-                </div>
-                <div class="col-12 pt-4 text-center">
-                  <span ><b class="green_shade"><h2><b>
-                    {{ form.other_bonus.label(class="form-control-label") }}
-        
-                    {% if form.other_bonus.errors %}
-                    {{ form.other_bonus(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.other_bonus.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.other_bonus(class="form-control form-control") }}
-                    {% endif %}
-                  </b></h2></b></span>
-                  <hr/>
-                </div>
-               
-                 
-          
-                  </div>
-              </div>
-    
-          </div>
-
-          
+            </div>
+            <div class="col-6 ">
+              <span style="color:grey;font-size: 12px;"><b>Question 3/5</b></span>
+              <div class="form-group">
+                <span ><b class="green_shade">
+                  {{ form.annual_bonus.label(class="form-control-label") }}
       
+                  {% if form.annual_bonus.errors %}
+                  {{ form.annual_bonus(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.annual_bonus.errors %}
+                      <span> {{ error}}</span>
+                      {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.annual_bonus(class="form-control form-control") }}
+                  {% endif %}
+                </b></span>
+              </div>
+            </div>
+            <div class="col-6 ">
+              <span style="color:grey;font-size: 12px;"><b>Question 4/5</b></span>
+              <div class="form-group">
+                <span ><b class="green_shade">
+                  {{ form.incentive_bonus.label(class="form-control-label") }}
+      
+                  {% if form.incentive_bonus.errors %}
+                  {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.incentive_bonus.errors %}
+                      <span> {{ error}}</span>
+                      {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.incentive_bonus(class="form-control form-control") }}
+                  {% endif %}
+                </b></span>
+              </div>
+            </div>
+            <div class="col-6 ">
+              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span>
+              <div class="form-group">
+                <span ><b class="green_shade">
+                  {{ form.other_bonus.label(class="form-control-label") }}
+      
+                  {% if form.other_bonus.errors %}
+                  {{ form.other_bonus(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.other_bonus.errors %}
+                      <span> {{ error}}</span>
+                      {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.other_bonus(class="form-control form-control") }}
+                  {% endif %}
+                </b></span>
+              </div>
+            </div>
           
-      </div>
-  
+
+         
+           
+             
+      
+              </div>
+          </div>
 
       </div>
+
+
+
+
 
       <div class="col-12 text-right pl-4 pr-4 pb-4">
         <div class="row">
