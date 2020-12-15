@@ -5,7 +5,10 @@
 <!--Import Google Icon Font-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -269,22 +272,38 @@ section {
                   <ul class="navbar-nav ml-auto my-2 my-lg-0">
                     {% if current_user.is_authenticated %}
                    
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_home')}}">Home</a></li>
-                    <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{  url_for('users.create_survey')}}">Create Survey</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_surveys')}}">View Surveys</a></li>
+                    <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_home')}}">Home</a></li>
+                    <li class="nav-item dropdown">
+                      <a style="color:white" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                        Surveys
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{  url_for('users.create_survey')}}">Create Survey</a>
+                        <a class="dropdown-item" href="{{  url_for('users.admin_surveys')}}">View Surveys</a>
+           
+                      </div >
+                    </li> 
+                    <li class="nav-item dropdown">
+                      <a style="color:white" class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                     Clients
+                      </a>
+                      <div class="dropdown-menu">
+                        <a class="dropdown-item" href="{{  url_for('users.create_client')}}">Create Client</a>
+                        <a class="dropdown-item" href="{{  url_for('users.admin_clients')}}">View Clients</a>
+                        <a  class="dropdown-item" href="{{  url_for('users.admin_service_requests')}}">Service Requests</a>
+                      </div >
+                    </li> 
                   
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.create_client')}}">Create Client</a></li>
-                    <li class="nav-item"> <a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_clients')}}">View Clients</a></li>
-                    <li class="nav-item">  <a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_service_requests')}}">Service Requests</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_reports')}}">Reports</a></li>
+                  
+                    <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_reports')}}">Reports</a></li>
                           
                          
-                          
+                     
                   
 <!--
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_configuration')}}">Configuration</a></li>
                     -->
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{  url_for('users.logout')}}">Logout</a></li>
+                    <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger" href="{{  url_for('users.logout')}}">Logout</a></li>
                
     
                    
