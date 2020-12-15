@@ -241,7 +241,7 @@ def qualitative_overview():
 
 @users.route("/administration")
 def admin_home():
-    return render_template("admin_home.html")
+    return render_template("new_admin_dashboard.html")
 
 @users.route("/administration/surveys")
 def admin_surveys():
@@ -262,7 +262,7 @@ def admin_service_requests():
 
 @users.route("/administration/reports")
 def admin_reports():
-    return render_template("admin_reports.html")
+    return render_template("new_admin_reports.html")
 
 @users.route("/administration/configuration")
 def admin_configuration():
