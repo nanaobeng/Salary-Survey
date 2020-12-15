@@ -1,16 +1,115 @@
-{% extends "layout.html" %}
+{% extends "new_client_layout.html" %}
 
-{% block header %} 
-Complete Survey
-{% endblock header %}
+
 {% block content %}
+<div class="row">
+  <div class="col-12">
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+        <div class="container position-relative">
+     <h2><b style="font-size: 40px;">Complete Survey</b></h2>
+        
+        </div>
+      </section>
+  </div>
+</div>
+
+
+<div class="row p-4" >
+  <div class="col-md-3 col-sm-12 p-4">
+  
+  <div class="card p-4 parent"  style="height:150px">
+      <div class="row ">
+         
+          <div class="col-12 ">
+        <div class="row">
+          <div class="col-10">
+            <h5><b>Finance Manager</b></h5>
+          </div>
+          <div class="col-1">
+            <a data-toggle="modal" data-target="#job_detail" style="color:grey"><i class="icofont-eye-alt" ></i></a>
+          </div>
+         
+         
+        </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-12" style="color:grey;font-size:12px">
+       
+           
+            </div>
+  
+          </div>
+  
+          <div class="child">
+            <div class="row ">
+              <div class="col-12" >
+              <h4><span class="badge badge-success">Completed</span></h4>
+           
+              </div>
+           
+            
+            </div>
+          </div>
+      </div>
+  </div>
+
+
+  <div class="col-md-3 col-sm-12 p-4">
+  
+    <div class="card p-4 parent"  style="height:150px">
+        <div class="row ">
+           
+            <div class="col-12 ">
+          <div class="row">
+            <div class="col-10">
+              <h5><b>IT Controller</b></h5>
+            </div>
+            <div class="col-1">
+              <a data-toggle="modal" data-target="#job_detail" style="color:grey"><i class="icofont-eye-alt" ></i></a>
+            </div>
+           
+           
+          </div>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-12" style="color:grey;font-size:12px">
+         
+             
+              </div>
+    
+            </div>
+    
+            <div class="child">
+              <div class="row ">
+                <div class="col-12" >
+                <h4><span class="badge badge-warning">Outstanding</span></h4>
+             
+                </div>
+             
+              
+              </div>
+            </div>
+        </div>
+    </div>
+  
+  
+  
+  
+ 
+  
+  </div>
+    
+   <!-- 
+<div class="row p-4">
 <div class="col-12 text-right">
   <a class="btn btn-outline-info" href="{{ url_for('users.qualitative_overview')}}">Proceed to Questionnaire &nbsp;<i class="fas fa-arrow-right"></i></a>
 </div>
 <h5>Outstanding Jobs Benchmarking</h5>
 <br>
 
-
+<div class="col-12">
 <div class="row">
   <div class="col-lg-6 col-md-12 pl-4 pr-4 pb-4">
     <div class="job-card-content p-0" data-toggle="modal" data-target="#job_detail">
@@ -45,9 +144,10 @@ Complete Survey
     </div>
   </div>
 </div>
+</div>
 <br>
 <h5>Completed Job Benchmarking</h5><br>
-
+<div class="col-12">
 <div class="row">
   <div class="col-lg-6 col-md-12 pl-4 pr-4 pb-4">
     <div class="job-card-content-completed p-0">
@@ -82,7 +182,8 @@ Complete Survey
     </div>
   </div>
 </div>
-
+</div>
+ -->
  <!-- survey instruction modal -->
  <div class="modal" id="instruction" role="dialog">
   <div class="modal-dialog" role="document">
@@ -225,6 +326,8 @@ Complete Survey
       </div>
     </div>
   </div>
+</div>
+
 <script>
 
     $('#proceed_btn').click(function(){

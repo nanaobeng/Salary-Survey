@@ -206,7 +206,7 @@ def view_survey():
 
 @users.route("/my_reports")
 def my_reports():
-    return render_template("my_reports.html")
+    return render_template("new_client_reports.html")
 
 @users.route("/my_benchmark_jobs")
 def my_benchmark_jobs():
