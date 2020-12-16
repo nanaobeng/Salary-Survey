@@ -10,7 +10,7 @@
     <style>
       #hero {
   width: 100%;
-  height: 30vh;
+  height: 15vh;
   background: url("../static/img/home.jpg") top center;
   background-size: cover;
   position: relative;
@@ -109,10 +109,10 @@
         </div>
 
     </div>
-
+<div class="card">
     <div class="row p-4">
       <div class="col-12 pb-4 " style="color:grey">
-Custom Filter <i class="icofont-filter"></i>
+Custom Filters <i class="icofont-filter"></i>
       </div>
       <div class="col-3">
         <div class="form-group">
@@ -160,12 +160,12 @@ Custom Filter <i class="icofont-filter"></i>
     </div>
     <div class="row p-4 ">
       <div class="col-12">
-        <div class="row filter_box">
+        <div class="row filter_box p-2 ">
 
         </div>
       </div>
      
-      <div class="col-12 pt-4" >
+      <div class="col-12 " >
        <a href="#" style="color:grey" onclick="clear_filter()" > Discard Filters</a>
       </div>
       
@@ -291,7 +291,7 @@ Custom Filter <i class="icofont-filter"></i>
   
 
 </div>
-  
+  </div>
 
   </div>
 </div>
@@ -336,7 +336,7 @@ if(view == 'status'){
   var unique = ($('#status').val()).trim().replace(/\s/g,'')
 
   if($("#" + unique).length == 0 ){
- $('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-info">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+ $('.filter_box').prepend( '<div id="'+unique+'"class="col-2"><span class="badge badge-pill badge-info">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
 }
   }
 
@@ -345,7 +345,7 @@ if(view == 'status'){
 var unique = ($('#client').val()).trim().replace(/\s/g,'')
 
 if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-warning">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-2"><span class="badge badge-pill badge-warning">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
 }
 }
 
@@ -355,7 +355,7 @@ if(view == 'industry'){
 var unique = ($('#industry').val()).trim().replace(/\s/g,'')
 
 if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-danger">'+$('#industry').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-2"><span class="badge badge-pill badge-danger">'+$('#industry').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
 }
 }
 
@@ -366,7 +366,7 @@ unique = unique.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
 unique = "a"+unique
 
 if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-success">'+$('#s_period').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-2"><span class="badge badge-pill badge-success">'+$('#s_period').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
 }
 }
   }
