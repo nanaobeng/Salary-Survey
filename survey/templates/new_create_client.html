@@ -5,7 +5,88 @@
    
     
     {% block content %}
-
+    <style>
+      #hero {
+  width: 100%;
+  height: 15vh;
+  background: url("../static/img/home.jpg") top center;
+  background-size: cover;
+  position: relative;
+  }
+  
+  #hero:before {
+  content: "";
+  background: rgba(20, 44, 9, 0.7);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  }
+  
+  #hero .container {
+  text-align: center;
+  padding-top: 50px;
+  }
+  
+  @media (max-width: 992px) {
+  #hero .container {
+    padding-top: 0;
+  }
+  }
+  
+  #hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+  }
+  
+  #hero h2 {
+  color: #eee;
+  margin: 15px 0 0 0;
+  font-size: 22px;
+  }
+  
+  #hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 9px 35px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin-top: 40px;
+  border: 2px solid #ffc107;
+  color: #fff;
+  }
+  
+  #hero .btn-get-started:hover {
+  background: #ffc107;
+  }
+  
+  @media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+  }
+  
+  @media (max-width: 768px) {
+  #hero {
+    height: 100vh;
+  }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  }
+  </style>
      
      
     
@@ -132,12 +213,12 @@
           <hr/>
           <div class="row p-4">
             <div class="col-6 text-center">
-              <h1><b class="green_shade">5</b></h1>
+              <h1><b class="green_shade">60</b></h1>
               <span style="color:grey;font-size: 12px;">Questions</span>
 
             </div>
             <div class="col-6 text-center">
-              <h1><b class="green_shade">4</b></h1>
+              <h1><b class="green_shade">6</b></h1>
               <span style="color:grey;font-size: 12px;">Sections</span>
 
             </div>
@@ -164,14 +245,14 @@
           </div>
 
           <div class="col-12 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Registered Company Name</b></label>
             <input type="text" class="form-control" />
           </div>
        
 
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Sector</b></label>
             <div class="form-group">
 
@@ -186,7 +267,7 @@
 
 
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Industry</b></label>
             <div class="form-group">
 
@@ -201,7 +282,7 @@
 
 
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Area of Operation</b></label>
             <div class="form-group">
 
@@ -216,60 +297,60 @@
        
           
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Financial Year End</b></label>
             <input type="text" class="form-control" />
           </div>
 
 
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Company Type</b></label>
             <input type="text" class="form-control" />
           </div>
 
 
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>VAT Number</b></label>
             <input type="text" class="form-control" />
           </div>
            
 
           <div class="col-4 p-4 ">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Telephone</b></label>
             <input type="text" class="form-control" />
           </div>
 
 
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Fax Number</b></label>
             <input type="text" class="form-control" />
           </div>
 
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Email Address</b></label>
             <input type="text" class="form-control" />
           </div>
 
           <div class="col-6 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Website Address</b></label>
             <input type="text" class="form-control" />
           </div>
 
 
           <div class="col-6 p-4 ">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br/>
+           
             <label class="green_shade"><b>Date of Incorporation</b></label>
             <input type="text" class="form-control" />
           </div>
 
           <div class="col-4 p-4">
-            <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br>
+            
             <label class="green_shade"><b>Country of Incorporation</b></label>
             <input type="text" class="form-control" />
           </div>
@@ -349,7 +430,7 @@
               <hr/>
                 </div>
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Firstname</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -358,7 +439,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Lastname</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -367,7 +448,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Other Name</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -376,7 +457,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Email Address</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -385,7 +466,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Nationality</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -394,7 +475,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Phone Number</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -469,7 +550,7 @@
                 <hr/>
                   </div>
               <div class="col-6 ">
-                <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+               
                 <div class="form-group">
                   <label class="green_shade"><b>Firstname</b></label>
                   <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -478,7 +559,7 @@
               </div>
 
               <div class="col-6 ">
-                <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+               
                 <div class="form-group">
                   <label class="green_shade"><b>Lastname</b></label>
                   <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -487,7 +568,7 @@
               </div>
 
               <div class="col-4 ">
-                <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+               
                 <div class="form-group">
                   <label class="green_shade"><b>Other Name</b></label>
                   <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -496,7 +577,7 @@
               </div>
 
               <div class="col-4 ">
-                <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+               
                 <div class="form-group">
                   <label class="green_shade"><b>Email Address</b></label>
                   <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -505,7 +586,7 @@
               </div>
 
               <div class="col-4 ">
-                <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+               
                 <div class="form-group">
                   <label class="green_shade"><b>Nationality</b></label>
                   <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -514,7 +595,7 @@
               </div>
 
               <div class="col-4 ">
-                <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+               
                 <div class="form-group">
                   <label class="green_shade"><b>Phone Number</b></label>
                   <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -588,7 +669,7 @@
               <hr/>
                 </div>
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Firstname</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -597,7 +678,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Lastname</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -606,7 +687,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Other Name</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -615,7 +696,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Email Address</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -624,7 +705,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Nationality</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -633,7 +714,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Phone Number</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -705,7 +786,7 @@
               <hr/>
                 </div>
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Name</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -714,7 +795,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Address</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -723,7 +804,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>City</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -732,7 +813,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Country</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -811,7 +892,7 @@
               <hr/>
                 </div>
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Name</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -820,7 +901,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Address</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -829,7 +910,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>City</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -838,7 +919,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Country</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -918,7 +999,7 @@
               <hr/>
                 </div>
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Name</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -927,7 +1008,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Address</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -936,7 +1017,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>City</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -945,7 +1026,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Country</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1024,7 +1105,7 @@
                 </div>
              
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Street line 1</b></label>
                 <textarea cols="3" rows="3" class="form-control"></textarea>
@@ -1033,7 +1114,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Street line 2</b></label>
                 <textarea cols="3" rows="3" class="form-control"></textarea>
@@ -1042,7 +1123,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>City/Town</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1051,7 +1132,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Region</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1060,7 +1141,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Country</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1127,7 +1208,7 @@
               <hr/>
                 </div>
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Building</b></label>
                 <textarea cols="2" rows="2" class="form-control"></textarea>
@@ -1136,7 +1217,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Street</b></label>
                 <textarea cols="2" rows="2" class="form-control"></textarea>
@@ -1145,7 +1226,7 @@
             </div>
 
             <div class="col-6">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>City/Town</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1156,7 +1237,7 @@
    
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Country</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1225,7 +1306,7 @@
          
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Registration Number</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1234,7 +1315,7 @@
             </div>
 
             <div class="col-6 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Tax ID</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1303,7 +1384,7 @@
               <hr/>
                 </div>
             <div class="col-3 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Firstname</b></label>
               <input type="text" class="form-control"/>
@@ -1312,7 +1393,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Middlename</b></label>
                 <input type="text" class="form-control"/>
@@ -1321,7 +1402,7 @@
             </div>
 
             <div class="col-5 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Lastname</b></label>
                 <input type="text" class="form-control"/>
@@ -1330,7 +1411,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Job Title</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1339,7 +1420,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Email Address</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">
@@ -1348,7 +1429,7 @@
             </div>
 
             <div class="col-4 ">
-              <span style="color:grey;font-size: 12px;"><b>Question 5/5</b></span><br/>
+             
               <div class="form-group">
                 <label class="green_shade"><b>Phone</b></label>
                 <input type="text" class="form-control" id="start_date" name="Start Date">

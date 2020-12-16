@@ -334,7 +334,7 @@ def client_benchmark():
 def client_view_benchmark():
     
     form = SurveyForm()
-    return render_template("client_view_benchmark_job.html", form=form)
+    return render_template("new_view_benchmark.html", form=form)
 
 
 @users.route("/administration/review_benchmark")
