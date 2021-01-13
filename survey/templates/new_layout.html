@@ -14,10 +14,7 @@
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css//icofont/icofont.min.css')}}">
-<script
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
-defer
-></script>
+
 <script>
 $(window).scroll(function () {
 if ($(window).scrollTop() >= 100) {
@@ -268,24 +265,7 @@ color: #fff;
 
 </style>
 <!--Let browser know website is optimized for mobile-->
-<script>
-  // Initialize and add the map
-function initMap() {
-// The location of Uluru
 
-const uluru = { lat: 5.6223532, lng: -0.1809536 };
-// The map, centered at Uluru
-const map = new google.maps.Map(document.getElementById("map"), {
-zoom: 15,
-center: uluru,
-});
-// The marker, positioned at Uluru
-const marker = new google.maps.Marker({
-position: uluru,
-map: map,
-});
-}
-</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
  
         {% if title %}

@@ -142,6 +142,8 @@ class Sector(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sector = db.Column(db.String(100))
     client = db.relationship('Client', backref='sector' , lazy=True)
+    industry = db.relationship('Industry', backref='business_sector' , lazy=True)
+    area = db.relationship('Area', backref='broad_sector' , lazy=True)
 
    
 
@@ -181,6 +183,9 @@ class Sub_industry(db.Model):
 class Industry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     industry = db.Column(db.String(100))
+    sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
+
+    
     # sub_industry = db.relationship('Sub_industry', backref='industry' , lazy=True)
     
 
@@ -188,6 +193,21 @@ class Industry(db.Model):
 
     def __repr__(self):
         return '<Industry %r>' % self.id
+
+
+class Area(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    area = db.Column(db.String(100))
+    sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
+
+    
+    # sub_industry = db.relationship('Sub_industry', backref='industry' , lazy=True)
+    
+
+   
+
+    def __repr__(self):
+        return '<Area %r>' % self.id
 
 
 
@@ -273,6 +293,126 @@ class Service_request(db.Model):
         return '<Service_request %r>' % self.id
 
 
+class Individual_request(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_of_request = db.Column(db.DateTime, default=datetime.utcnow )
+    type_of_request = db.Column(db.String(100),default='individual')
+    status = db.Column(db.String(50),default='pending')
+    firstname = db.Column(db.String(100))
+    lastname = db.Column(db.String(100))
+    other = db.Column(db.String(100))
+    
+    email = db.Column(db.String(100))
+    dob = db.Column(db.String(100))
+    phone = db.Column(db.String(50))
+    address = db.Column(db.String(400))
+    city = db.Column(db.String(100))
+    country = db.Column(db.String(100))
+    service = db.Column(db.String(200))
+    
+
+    
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Individual_request %r>' % self.id
+
+
+class Corporate_request(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    date_of_request = db.Column(db.DateTime, default=datetime.utcnow )
+    type_of_request = db.Column(db.String(100),default='corporate')
+    status = db.Column(db.String(50),default='pending')
+    company_name = db.Column(db.String(300))
+    sector = db.Column(db.String(100))
+    industry = db.Column(db.String(100))
+    area = db.Column(db.String(100))
+    financial_year_end = db.Column(db.String(100))
+    company_type = db.Column(db.String(100))
+    postal_address = db.Column(db.String(1000))
+    street_address = db.Column(db.String(1000))
+    reg_number = db.Column(db.String(100))
+    vat_number = db.Column(db.String(100))
+    tel = db.Column(db.String(100))
+    company_email = db.Column(db.String(100))
+    website = db.Column(db.String(100))
+    date_inc = db.Column(db.DateTime)
+    country_inc = db.Column(db.String(100))
+    chair_firstname = db.Column(db.String(100))
+    chair_lastname = db.Column(db.String(100))
+    chair_other = db.Column(db.String(100))
+    chair_nation = db.Column(db.String(100))
+    chair_email = db.Column(db.String(100))
+   
+    chair_phone = db.Column(db.String(100))
+
+    ceo_firstname = db.Column(db.String(100))
+    ceo_lastname = db.Column(db.String(100))
+    ceo_other = db.Column(db.String(100))
+    ceo_nation = db.Column(db.String(100))
+    ceo_email = db.Column(db.String(100))
+   
+    ceo_phone = db.Column(db.String(100))
+
+
+    other_board_firstname = db.Column(db.String(100))
+    other_board_lastname = db.Column(db.String(100))
+    other_board_other = db.Column(db.String(100))
+    other_board_nation = db.Column(db.String(100))
+    other_board_email = db.Column(db.String(100))
+   
+    other_board_phone = db.Column(db.String(100))
+
+
+    key_firstname = db.Column(db.String(100))
+    key_lastname = db.Column(db.String(100))
+    key_other = db.Column(db.String(100))
+    key_nation = db.Column(db.String(100))
+    key_email = db.Column(db.String(100))
+   
+    key_phone = db.Column(db.String(100))
+
+
+
+    prev_name = db.Column(db.String(100))
+    prev_address = db.Column(db.String(1000))
+    prev_city = db.Column(db.String(100))
+    prev_country = db.Column(db.String(100))
+
+
+    current_name = db.Column(db.String(100))
+    current_address = db.Column(db.String(1000))
+    current_city = db.Column(db.String(100))
+    current_country = db.Column(db.String(100))
+
+
+    sec_name = db.Column(db.String(100))
+    sec_address = db.Column(db.String(1000))
+    sec_city = db.Column(db.String(100))
+    sec_country = db.Column(db.String(100))
+
+
+    contact_firstname = db.Column(db.String(100))
+    contact_lastname = db.Column(db.String(100))
+    contact_other = db.Column(db.String(100))
+    contact_nation = db.Column(db.String(100))
+    contact_email = db.Column(db.String(100))
+    contact_dob = db.Column(db.String(100))
+    contact_phone = db.Column(db.String(100))
+
+
+    brief_history = db.Column(db.String(1000))
+    service = db.Column(db.String(100))
+
+
+    def __repr__(self):
+        return '<Corporate_request %r>' % self.id
+
+
 class Current_auditor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
@@ -285,6 +425,26 @@ class Current_auditor(db.Model):
 
     def __repr__(self):
         return '<Current_Auditor %r>' % self.id
+
+
+class Contact(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(500))
+    firstname = db.Column(db.String(50))
+    lastname = db.Column(db.String(100))
+    email = db.Column(db.String(100))
+    job_title = db.Column(db.String(100))
+    company_name = db.Column(db.String(100))
+    phone = db.Column(db.String(100))
+    address_1 = db.Column(db.String(300))
+    address_2 = db.Column(db.String(300))
+    city = db.Column(db.String(100))
+    country = db.Column(db.String(100))
+    
+
+
+    def __repr__(self):
+        return '<Contact %r>' % self.id
 
 
 class Previous_auditor(db.Model):
