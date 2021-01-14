@@ -127,7 +127,7 @@ class CorporateRequestForm(FlaskForm):
     brief_history = TextAreaField('Brief History', validators=[DataRequired()])
     service =  SelectField(
         'Select Service',
-        choices=[('survey', 'Salary_Survey')] , validators=[DataRequired()]
+        choices=[('survey', 'Salary Survey')] , validators=[DataRequired()]
     )
    
 
