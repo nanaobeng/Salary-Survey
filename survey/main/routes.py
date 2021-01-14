@@ -124,7 +124,7 @@ def corporate_requests():
         service=form.service.data
         )
         db.session.add(corp)
-        db.session.commmit()
+        db.session.commit()
         flash('Request Submitted','success')
         return redirect(url_for('main.corporate_requests'))
     return render_template("corporate_request.html",form=form)
