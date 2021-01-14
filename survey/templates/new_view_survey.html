@@ -1,0 +1,563 @@
+
+    {% extends "new_admin_layout.html" %}
+
+
+   
+    
+    {% block content %}
+
+    <style>
+      #hero {
+  width: 100%;
+  height: 15vh;
+  background: url("../static/img/home.jpg") top center;
+  background-size: cover;
+  position: relative;
+  }
+  
+  #hero:before {
+  content: "";
+  background: rgba(20, 44, 9, 0.7);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  }
+  
+  #hero .container {
+  text-align: center;
+  padding-top: 50px;
+  }
+  
+  @media (max-width: 992px) {
+  #hero .container {
+    padding-top: 0;
+  }
+  }
+  
+  #hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+  }
+  
+  #hero h2 {
+  color: #eee;
+  margin: 15px 0 0 0;
+  font-size: 22px;
+  }
+  
+  #hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 9px 35px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin-top: 40px;
+  border: 2px solid #ffc107;
+  color: #fff;
+  }
+  
+  #hero .btn-get-started:hover {
+  background: #ffc107;
+  }
+  
+  @media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+  }
+  
+  @media (max-width: 768px) {
+  #hero {
+    height: 100vh;
+  }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  }
+  </style>
+    <div class="row">
+      <div class="col-12">
+        <section id="hero" class="d-flex align-items-center justify-content-center">
+            <div class="container position-relative">
+         <h2><b style="font-size: 40px;">View Surveys </b></h2>
+            
+            </div>
+          </section>
+      </div>
+  </div>
+  <div class="p-4" style="background-color:rgb(245, 243, 243)">
+    <div class="card">
+    <div class="row p-4">
+      <div class="col-12 pb-4 " style="color:grey">
+Custom Filters <i class="icofont-filter"></i>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="sel1" style="color:grey">Status:</label>
+          <select class="form-control" id="status" onchange="filter('status')">
+            <option value="completed">Completed</option>
+            <option value="in Progress">In Progress</option>
+            <option value="cancelled">Cancelled</option>
+           
+          </select>
+        </div>
+      </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="sel1" style="color:grey">Client:</label>
+            <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+  <datalist id="clients">
+    <option value="ABC">
+    <option value="Modec">
+    <option value="Villagio">
+    <option value="Shell">
+    
+  </datalist>
+          </div>
+      </div>
+
+
+      <div class="col-3">
+        <div class="form-group">
+          <label for="sel1" style="color:grey">Industry:</label>
+          <select class="form-control" id="industry" onchange="filter('industry')">
+            <option value="minerals">Minerals</option>
+            <option value="Fintech">Fintech</option>
+           
+           
+          </select>
+        </div>
+    </div>
+
+
+    <div class="col-3">
+      <div class="form-group">
+        <label for="s_period" style="color:grey">Period:</label>
+        <select class="form-control" id="s_period" onchange="filter('s_period')">
+          <option value="8/2020">8/2020</option>
+          <option value="11/2019">11/2019</option>
+         
+         
+        </select>
+      </div>
+  </div>
+
+
+    </div>
+    <div class="row p-4 ">
+      <div class="col-12">
+        <div class="row filter_box">
+
+        </div>
+      </div>
+     
+      <div class="col-12 pt-4" >
+       <a href="#" style="color:grey" onclick="clear_filter()" > Discard Filters</a>
+      </div>
+      
+    </div>
+  <div class="row p-4" >
+<div class="col-4 p-4">
+
+<div class="card p-4 parent"  style="height:300px">
+    <div class="row ">
+       
+        <div class="col-12 ">
+      <div class="row">
+        <div class="col-10">
+          <h5><b>ABC Mining Company Survey</b></h5>
+        </div>
+        <div class="col-2">
+          <i class="icofont-ui-note" style="color:grey;cursor:pointer" data-toggle="modal" data-target="#myModal"></i>
+        </div>
+       
+      </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-12" style="color:grey;font-size:12px">
+            <div class="row">
+              <div class="col-5">
+                Client
+              </div>
+              <div class="col-1">
+                :
+              </div>
+              <div class="col-6">
+                ABC Mining Company
+              </div>
+            </div>
+         
+          </div>
+          <div class="col-12" style="color:grey;font-size:12px">
+            <div class="row">
+              <div class="col-5">
+                Industry 
+              </div>
+              <div class="col-1">
+                :
+              </div>
+              <div class="col-6">
+                Metals and Mineral
+              </div>
+            </div>
+  
+          </div>
+          <div class="col-12" style="color:grey;font-size:12px">
+            <div class="row">
+              <div class="col-5">
+              Area of Operation
+              </div>
+              <div class="col-1">
+                :
+              </div>
+              <div class="col-6">
+                Mining
+              </div>
+            </div>
+              
+          </div>
+        </div>
+
+        <div class="child">
+          <div class="row ">
+            <div class="col-12" >
+            <h4><span class="badge badge-success">Completed</span></h4>
+         
+            </div>
+            <div class="col-12" style="color:grey;font-size:12px">
+             
+                Start Date :     2/11/2020
+            
+                
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="col-4 p-4">
+
+  <div class="card p-4 parent"  style="height:300px">
+      <div class="row ">
+         
+          <div class="col-12 ">
+        <div class="row">
+          <div class="col-10">
+            <h5><b>ABC Mining Company Survey</b></h5>
+          </div>
+          <div class="col-2">
+            <i class="icofont-ui-note" data-toggle="modal" data-target="#myModal" style="color:grey;cursor:pointer"></i>
+          </div>
+         
+        </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-12" style="color:grey;font-size:12px">
+              <div class="row">
+                <div class="col-5">
+                  Client
+                </div>
+                <div class="col-1">
+                  :
+                </div>
+                <div class="col-6">
+                  ABC Mining Company
+                </div>
+              </div>
+           
+            </div>
+            <div class="col-12" style="color:grey;font-size:12px">
+              <div class="row">
+                <div class="col-5">
+                  Industry 
+                </div>
+                <div class="col-1">
+                  :
+                </div>
+                <div class="col-6">
+                  Metals and Mineral
+                </div>
+              </div>
+    
+            </div>
+            <div class="col-12" style="color:grey;font-size:12px">
+              <div class="row">
+                <div class="col-5">
+                Area of Operation
+                </div>
+                <div class="col-1">
+                  :
+                </div>
+                <div class="col-6">
+                  Mining
+                </div>
+              </div>
+                
+            </div>
+          </div>
+
+          <div class="child">
+            <div class="row ">
+              <div class="col-12" >
+              <h4><span class="badge badge-danger">Cancelled</span></h4>
+           
+              </div>
+              <div class="col-12" style="color:grey;font-size:12px">
+               
+                  Start Date :     2/11/2020
+              
+                  
+              </div>
+            </div>
+          </div>
+      </div>
+  </div>
+
+
+
+
+
+  <div class="col-4 p-4">
+
+    <div class="card p-4 parent"  style="height:300px">
+        <div class="row ">
+           
+            <div class="col-12 ">
+          <div class="row">
+            <div class="col-10">
+              <h5><b>ABC Mining Company Survey</b></h5>
+            </div>
+            <div class="col-2">
+              <i class="icofont-ui-note" data-toggle="modal" data-target="#myModal" style="color:grey;cursor:pointer"></i>
+            </div>
+           
+          </div>
+            </div>
+            </div>
+            <div class="row">
+              <div class="col-12" style="color:grey;font-size:12px">
+                <div class="row">
+                  <div class="col-5">
+                    Client
+                  </div>
+                  <div class="col-1">
+                    :
+                  </div>
+                  <div class="col-6">
+                    ABC Mining Company
+                  </div>
+                </div>
+             
+              </div>
+              <div class="col-12" style="color:grey;font-size:12px">
+                <div class="row">
+                  <div class="col-5">
+                    Industry 
+                  </div>
+                  <div class="col-1">
+                    :
+                  </div>
+                  <div class="col-6">
+                    Metals and Mineral
+                  </div>
+                </div>
+      
+              </div>
+              <div class="col-12" style="color:grey;font-size:12px">
+                <div class="row">
+                  <div class="col-5">
+                  Area of Operation
+                  </div>
+                  <div class="col-1">
+                    :
+                  </div>
+                  <div class="col-6">
+                    Mining
+                  </div>
+                </div>
+                  
+              </div>
+            </div>
+
+            <div class="child">
+              <div class="row ">
+                <div class="col-12" >
+                <h4><span class="badge badge-warning">In Progress</span></h4>
+             
+                </div>
+                <div class="col-12" style="color:grey;font-size:12px">
+                 
+                    Start Date :     2/11/2020
+                
+                    
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+  
+</div>
+  </div>
+</div>
+
+
+
+ 
+
+    
+
+</div>
+
+
+<!-- The Modal -->
+<div class="modal" id="myModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title">View Survey</h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Survey Name:  </b> <span id="review_survey_name">Galaxy Insurance Salary Survey</span>
+          </div> <hr>
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Client: </b> <span id="review_client_name"> Galaxy Insurance</span>
+          </div>
+        </div>
+        <hr>
+        <div class="row mb-2">
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Industry:  </b> <span id="review_industry">Financial</span>
+          </div>
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Area of Operation: </b><span id="review_area_of_operation">Insurance </span>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Start Date: </b><span id="review_start_date">12/03/2020</span>
+          </div>
+         
+        </div>
+        <hr>
+        <div class="row mb-2">
+          <div class="col-lg-6 col-md-12">
+            <b>Benchmark Jobs:</b><br>
+            <ul id="review_benchmark_jobs">
+              <li>Front Desk Officer</li>
+              <li>Accounts Officer</li>
+              <li>Sales Eecutive</li>
+              <li>Marketing Officer</li>
+              <li>Procurement Manager</li>
+              <li>Internal Auditor</li>
+              <li>Compliance Manager</li>
+            </ul>
+            
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <b>Comparators:</b><br>
+            <ul id="review_comparators">
+              <li>Peal Insurance Company</li>
+              <li>GTR Insurance</li>
+              <li>RZec Insurance Company Limited</li>
+              <li>Prock Insurance Company</li>
+            </ul>
+            
+          </div>
+         
+        </div>
+
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script>
+  function filter(view){
+if(view == 'status'){
+
+  var unique = ($('#status').val()).trim().replace(/\s/g,'')
+
+  if($("#" + unique).length == 0 ){
+ $('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-info">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+}
+  }
+
+  if(view == 'client'){
+
+var unique = ($('#client').val()).trim().replace(/\s/g,'')
+
+if($("#" + unique).length == 0 ){
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-warning">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+}
+}
+
+
+if(view == 'industry'){
+
+var unique = ($('#industry').val()).trim().replace(/\s/g,'')
+
+if($("#" + unique).length == 0 ){
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-danger">'+$('#industry').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+}
+}
+
+if(view == 's_period'){
+
+var unique = ($('#s_period').val())
+unique = unique.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+unique = "a"+unique
+
+if($("#" + unique).length == 0 ){
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-success">'+$('#s_period').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+}
+}
+  }
+</script>
+
+<script>
+  function remove_filter(id){
+   
+    $(id).remove()
+  }
+</script>
+
+<script>
+  function clear_filter(){
+    $('.filter_box').empty()
+  }
+</script>
+
+    {% endblock content %}

@@ -1,7 +1,7 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint
 from survey import db,bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm,AreaForm
-from survey.models import User
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm
+from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 
@@ -46,7 +46,7 @@ def login():
             return redirect(next_page)  if next_page else redirect(url_for('main.index'))
         else:
             flash('Login unsuccessful',"danger")
-    return render_template('login.html',form=form)
+    return render_template('new_login.html',form=form)
 
 
 @users.route("/logout")
@@ -99,7 +99,7 @@ def reset_token(token):
 @users.route("/create_client")
 def create_client():
     form = ClientForm()
-    return render_template("create_client.html",form=form,title="Create Client")
+    return render_template("new_create_client.html",form=form,title="Create Client")
 
 
 @users.route("/create_contact")
@@ -159,7 +159,14 @@ def survey_home():
 
 @users.route("/create_survey")
 def create_survey():
-    return render_template("create_survey.html")
+    form = SurveyForm()
+    if form.validate_on_submit():
+        sur = Survey(name="test2",start_date=datetime(2012, 3, 3, 10, 10, 10),end_date=datetime(2012, 3, 3, 10, 10, 10),status="active",client_id=1)
+        db.session.add(sur)
+        db.session.commit()
+        flash('Account Created','success')
+        return redirect(url_for('users.login'))
+    return render_template("new_create_survey.html",form=form)
 
 @users.route("/edit_survey")
 def edit_survey():
@@ -199,16 +206,25 @@ def view_survey():
 
 @users.route("/my_reports")
 def my_reports():
-    return render_template("my_reports.html")
+    return render_template("new_client_reports.html")
 
 @users.route("/my_benchmark_jobs")
 def my_benchmark_jobs():
-    return render_template("client_benchmark_jobs.html")
+    
+    form = SurveyForm()
+    return render_template("new_view_client_benchmark.html",form=form)
+
+
+
+@users.route("/my_benchmark_jobs/options")
+def my_benchmark_options():
+
+    return render_template("new_client_benchmark_options.html")
 
 @users.route("/my_benchmark_jobs/new")
 def my_benchmark_jobs_create():
     form = SurveyForm()
-    return render_template("client_create_benchmark_job.html",form=form)
+    return render_template("new_client_create_benchmark.html",form=form)
 
 @users.route("/my_surveys")
 def my_surveys():
@@ -220,27 +236,16 @@ def quantitative_overview():
 
 @users.route("/my_surveys/view_survey/qualitative")
 def qualitative_overview():
-    return render_template("qualitative_survey_overview.html")
-
-@users.route("/my_surveys/view_survey/qualitative_survey_dc")
-def qualitative_survey_dc():
-    return render_template("qualitative_survey_dc.html")
-
-@users.route("/my_surveys/view_survey/qualitative_survey_bip")
-def qualitative_survey_bip():
-    return render_template("qualitative_survey_bip.html")
-
-@users.route("/my_surveys/view_survey/qualitative_survey_gpp")
-def qualitative_survey_gpp():
-    return render_template("qualitative_survey_gpp.html")
+    form = QualForm()
+    return render_template("qualitative_survey_overview.html",form=form)
 
 @users.route("/administration")
 def admin_home():
-    return render_template("admin_home.html")
+    return render_template("new_admin_dashboard.html")
 
 @users.route("/administration/surveys")
 def admin_surveys():
-    return render_template("admin_surveys.html")
+    return render_template("new_view_survey.html")
 
 @users.route("/administration/benchmark-jobs")
 def admin_benchmarl():
@@ -248,16 +253,16 @@ def admin_benchmarl():
 
 @users.route("/administration/clients")
 def admin_clients():
-    return render_template("admin_clients.html")
+    return render_template("new_view_client.html")
 
 @users.route("/administration/service_requests")
 def admin_service_requests():
-    return render_template("admin_service_requests.html")
+    return render_template("new_requests.html")
 
 
 @users.route("/administration/reports")
 def admin_reports():
-    return render_template("admin_reports.html")
+    return render_template("new_admin_reports.html")
 
 @users.route("/administration/configuration")
 def admin_configuration():
@@ -300,7 +305,7 @@ def update_profile():
 @users.route("/administration/corporate-request-review")
 def review_corporate():
     
-    return render_template("corporate_review.html")
+    return render_template("new_service_requests_view.html")
 
 
 
@@ -309,7 +314,7 @@ def review_corporate():
 def review_individual():
     
     
-    return render_template("individual_review.html")
+    return render_template("new_service_individual_requests_view.html")
 
 @users.route("/user/update-client")
 def update_client():
@@ -329,7 +334,7 @@ def client_benchmark():
 def client_view_benchmark():
     
     form = SurveyForm()
-    return render_template("client_view_benchmark_job.html", form=form)
+    return render_template("new_view_benchmark.html", form=form)
 
 
 @users.route("/administration/review_benchmark")
@@ -342,13 +347,19 @@ def review_benchmark():
 def view_client():
     
 
-    return render_template("view_client.html")
+    return render_template("new_view_client_info.html")
 
 @users.route("/administration/edit_client")
 def edit_client():
     
 
-    return render_template("edit_client.html")
+    return render_template("new_edit_client.html")
+
+@users.route("/my_benchmark_jobs/edit")
+def edit_benchmark():
+    
+    form = SurveyForm()
+    return render_template("new_edit_client_benchmark_jobs.html",form=form)
 
 
 

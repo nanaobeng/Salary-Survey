@@ -1,0 +1,77 @@
+{% extends "new_client_layout.html" %}
+
+
+   
+    
+{% block content %}
+
+ 
+
+<div class="row">
+    <div class="col-12">
+      <section id="hero" class="d-flex align-items-center justify-content-center">
+          <div class="container position-relative">
+       <h2><b style="font-size: 40px;">Edit </b></h2>
+          
+          </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {%if messages %}
+  {% for category, message in messages %}
+  <div class="container">
+  <div class="alert alert-{{ category}}">
+      {{message}}
+  </div>
+</div>
+
+
+  {% endfor %}
+
+  {% endif %}
+
+{% endwith %}
+  <div class="col-12" style="background-color: rgb(226, 223, 223);height:auto">
+    <div class="row p-4 justify-content-center">
+        <div class="col-12 green_shade p-2 text-center">
+           <b>Kindly select an option below :</b> 
+        </div>
+<div class="col-12 p-4">
+    <div class="row justify-content-center p-4">
+        <div class="col-3 p-4">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12 p-4 text-center">
+                        <i class=" ico icofont-eye-alt"  ></i><br/>
+                        <a class="btn btn-success">Edit Existing Job </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-3 p-4">
+            <div class="card">
+                <div class="row">
+                    <div class="col-12 p-4 text-center">
+                        <i class=" ico icofont-eye-alt"  ></i><br/>
+                        <a class="btn btn-success" href="my_benchmark_jobs/new"> New Job </a>
+                        
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+      
+    </div>
+</div>
+
+</div>
+</div>
+</div>
+
+{% endblock content %}

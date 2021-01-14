@@ -11,7 +11,7 @@ def index():
     if current_user.role == 'admin':
         return redirect(url_for('users.admin_home'))
     
-    return render_template('index.html')
+    return render_template('new_client_dashboard.html')
  
 
 
@@ -27,7 +27,7 @@ def landing():
     if current_user.is_authenticated and current_user.role != 'admin':
         return redirect(url_for('main.index'))
 
-    return render_template("landing.html")
+    return render_template("new_landing.html")
 
 
 

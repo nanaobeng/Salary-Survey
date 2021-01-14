@@ -1,4 +1,4 @@
-{% extends "new_layout.html" %}
+{% extends "new_admin_layout.html" %}
 
 
 {% block content %}
@@ -6,7 +6,7 @@
 <style>
     #hero {
 width: 100%;
-height: 30vh;
+height: 15vh;
 background: url("../static/img/home.jpg") top center;
 background-size: cover;
 position: relative;
@@ -94,7 +94,7 @@ background: #ffc107;
           <div class="col-12">
             <section id="hero" class="d-flex align-items-center justify-content-center">
                 <div class="container position-relative">
-             <h2><b style="font-size: 40px;">Corporate Request</b></h2>
+             <h2><b style="font-size: 40px;">Corporate Request Review</b></h2>
                 
                 </div>
               </section>
@@ -107,7 +107,7 @@ background: #ffc107;
     <div class="card">
         <div class="row p-4">
             <div class="col-12">
-                <h3>Corporate Request</h3>
+                <h3>Corporate Request Review</h3>
                
             </div>
     
@@ -141,198 +141,247 @@ background: #ffc107;
      </div>
      <br/>
      
-     
-     <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Registed Company Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
+     <div class="row p-4">
+        <div class="col-12 text-center p-4">
+            <b>Company Details</b>
         </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-      <label for="sel1">Sector:</label>
-      <select class="form-control" id="sel1">
-          <option value="">---Select---</option>
-          <option value="Consumer">Consumer</option>
-          <option value="Energy, Resources and Industrials">Energy, Resources and Industrials</option>
-        <option>Government and Public services</option>
-        <option>Technology, Media and Telecom</option>
-      </select>
+
+        <div class="col-5 pl-4" style="color: grey;">
+            Registered Business Name 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sector : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Industry : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Area of Operation : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Financial Year End : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Company Type : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Postal Address : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Postal City : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Postal Country : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Street Address : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+           Street City : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Street Country : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Company Registration Number : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            VAT Number : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Telephone Number : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Fax Number : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+           Company Email : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Website Address : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Principal Shareholder and Shareholder Structure : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Corporate Shareholders and Shareholder Structure : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Date of Incorporation : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Country of Incorporation: 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Company Registration Documents : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Associate Companies : 
+        </div>
+        <div class="col-2 pl-4" style="color: grey;">
+            : 
+        </div>
+        <div class="col-5 pl-4" style="color: grey;">
+            Sample 
+        </div>
     </div>
-     </div>
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-      <label for="sel1">Industry:</label>
-      <select class="form-control" id="sel1">
-          <option value="">---Select---</option>
-        <option>Health and Social Care</option>
-        <option>Defense, Security and Justice</option>
-        <option>Civil Government</option>
-        <option>International Donor Organisations</option>
-        <option value="Transport">Transport</option>
-      </select>
+    <br/>
+    <div class="row">
+        <div class="col-12 text-right">
+            <span class="btn btn-outline-success next_btn" id= "pg_one">
+                Next
+            </span>
+        </div>
     </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-      <label for="sel1">Area of Operation:</label>
-      <select class="form-control" id="sel1">
-          <option value="">---Select---</option>
-        <option>Center of government</option>
-        <option>City Government</option>
-        <option>Economic Development</option>
-        <option>Governance and Operations</option>
-      </select>
-    </div>
-     </div>
-     </div>
-     
-     
-     
-     
-     <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Financial Year End:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-     <div class="form-group">
-      <label for="sel1">Company Type:</label>
-      <select class="form-control" id="sel1">
-          <option value="">---Select---</option>
-        <option>Parent</option>
-        <option>Subsidiary</option>
-        <option>Branch</option>
-        <option>Affiliate</option>
-        <option value="">Division</option>
-      </select>
-    </div>
-     </div>
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Postal Address:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Street Address:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-    
-      <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Company Registration Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">VAT Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
      
      </div>
      
-     
-      <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Telephone Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Fax Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     
-     </div>
-     
-     
-      <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Company Email:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Website Address:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     
-     </div>
-     
-     
-      <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Date of Incorporation:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-       <div class="form-group">
-      <label for="sel1">Country of Incorporation:</label>
-      <select class="form-control" id="sel1">
-        <option>---Select---</option>
       
-      </select>
-    </div>
-     </div>
-     
-     
-     </div>
-     
-        <br/>
-        <div class="row">
-            <div class="col-12 text-right">
-                <span class="btn btn-outline-success next_btn" id= "pg_one">
-                    Next
-                </span>
-            </div>
-        </div>
     
         </div>
     
         <div id="pg_two" style="display:none">
     
    
-     <div class="row">
+     <div class="row p-4">
       <div class="col-12 pt-4">
         <div class="row justify-content-center">
           <div class="col-2">
@@ -356,255 +405,280 @@ background: #ffc107;
      </div>
      <br/>
      <br/>
-     
-     <div class="row">
-     <div class="col-12 text-center mb-4">
-     <h6>
-         Chairman of Board
-     </h6>
-     </div>
-     </div>
-     
-     <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">First Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
+     <div class="row p-4">
+        <div class="col-12 p-4">
+                     
+            
+        <div class="row">
+            <div class="col-12 text-center p-4">
+                <b>Chairman of Board</b>
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Firstname
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Lastname
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Other Names
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Nationality
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Email
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Phone Number
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
         </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Last Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
+
+        <hr style="color: black;"/>
+
+        <div class="row">
+            <div class="col-12 text-center p-4">
+                <b>Chief Executive Officer</b>
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Firstname
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Lastname
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Other Names
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Nationality
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Email
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Phone Number
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
         </div>
-     </div>
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Other Names:</label>
-          <input type="text" class="form-control" id="usr" name="username">
+
+        <hr style="color:black" />
+
+        <div class="row">
+            <div class="col-12  text-center p-4" >
+                <b>Other Members of the Board</b>
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Firstname
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Lastname
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Other Names
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Nationality
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Email
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Phone Number
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
         </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Nationality:</label>
-          <input type="text" class="form-control" id="usr" name="username">
+
+
+        <hr style="color:black"/>
+
+        <div class="row">
+            <div class="col-12 text-center p-4">
+                <b>Key Management Personnel</b>
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Firstname
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Lastname
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Other Names
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Nationality
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Email
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
+
+            <div class="col-5 pl-4" style="color: grey;">
+                Phone Number
+            </div>
+            <div class="col-2 pl-4" style="color: grey;">
+                : 
+            </div>
+            <div class="col-5 pl-4" style="color: grey;">
+                Sample 
+            </div>
         </div>
-     </div>
-     </div>
      
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Email:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Phone Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     
-     <hr/>
-     
-      <div class="row">
-     <div class="col-12 text-center">
-     <h6>
-         Chief Executive Officer
-     </h6>
-     </div>
-     </div>
-     <br/>
-     <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">First Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Last Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Other Names:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Nationality:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Email:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Phone Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     <hr/>
-     
-      <div class="row">
-     <div class="col-12 text-center">
-     <h6>
-         Other Members of the Board
-     </h6>
-     </div>
-     </div>
-     <br/>
-      <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">First Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Last Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Other Names:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Nationality:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Email:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Phone Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     <hr/>
-      <div class="row">
-     <div class="col-12 text-center">
-     <h6>
-         Key Management Personnel
-     </h6>
-     </div>
-     </div>
-     <br/>
-     
-      <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">First Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Last Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Other Names:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Nationality:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Email:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Phone Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
+
+       
+    </div>
      </div>
     
      
@@ -654,253 +728,234 @@ background: #ffc107;
                
            </div>
      </div>
-     
-    
-     
-     <div class="row">
-     <div class="col-12 text-center mt-4">
-     <h6>
-         Previous Auditor
-     </h6>
-     </div>
-     </div>
-     <br/>
-     
-     <div class="row">
-     <div class="col-12">
-      <div class="form-group">
-          <label for="usr">Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-    
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-12">
-     <div class="form-group">
-          <label for="usr">Address:</label>
-          <input type="text" name="address" id="addres" class="form-control">
-        </div>
-      
-     </div>
-     
-    
-     </div>
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">City:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Country:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-      
-     <hr/>
-     <div class="row">
-     <div class="col-12 text-center">
-     <h6>
-         Current Auditor
-     </h6>
-     </div>
-     </div>
-     <br/>
-     
-     <div class="row">
-     <div class="col-12">
-      <div class="form-group">
-          <label for="usr">Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-    
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-12">
-     <div class="form-group">
-          <label for="usr">Address:</label>
-          <input type="text" name="" id="" class="form-control">
-        </div>
-      
-     </div>
-     
-    
-     </div>
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">City:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Country:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     <hr/>
-     <div class="row">
-     <div class="col-12 text-center">
-    <h6>
-        Company Secretary
-    </h6>
-     </div>
-     </div>
-     <br/>
-     
-     <div class="row">
-     <div class="col-12">
-      <div class="form-group">
-          <label for="usr">Name:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-    
-     </div>
-     
-     
-     
-     <div class="row">
-     <div class="col-12">
-     <div class="form-group">
-          <label for="usr">Address:</label>
-          <textarea cols="5"class="form-control" row="5"></textarea>
-        </div>
-      
-     </div>
-     
-    
-     </div>
-     
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">City:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Country:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-      
-    
-     
-     <hr/>
-     
-     <div class="row">
-     <div class="col-12 text-center">
-     <h6>
-         Contact Person (Ghana)
-     </h6>
-     </div>
-     </div>
-     <br/>
-     
-     <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Firstname:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">lastname:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-    
-     </div>
-     
-     
-      <div class="row">
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Other Names:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Nationality:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     
-    
-     </div>
-     
-     
-    
-     
-     <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Date of Birth:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
-     </div>
-     
-     <div class="col-6">
-      <div class="form-group">
-          <label for="usr">Phone Number:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-     </div>
-     </div>
-     
-     
-      <div class="row">
-     <div class="col-6">
-     <div class="form-group">
-          <label for="usr">Email:</label>
-          <input type="text" class="form-control" id="usr" name="username">
-        </div>
-      
+
+
+     <div class="row p-4">
+         <div class="col-12 ">
+
+            <div class="row p-4">
+                <div class="col-12 p-4 text-center">
+                    <b>Current Auditor</b>
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Name
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Address
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    City
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Country
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+                
+            </div>
+
+            <hr style="color:black" />
+
+            <div class="row p-4">
+                <div class="col-12 p-4 text-center">
+                    <b>Previous Auditor</b>
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Name
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Address
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    City
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Country
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+                
+            </div>
+
+            <hr style="color:black" />
+
+            <div class="row p-4">
+                <div class="col-12 p-4 text-center">
+                    <b>Company Secretary</b>
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Name
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Address
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    City
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Country
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+                
+            </div>
+
+            <hr style="color:black" />
+
+            <div class="row p-4">
+                <div class="col-12 p-4 text-center">
+                    <b>Contact Person</b>
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Firstname
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Lastname
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Other Names
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                   Nationality
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                    Date of Birth
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                   Phone Number
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+
+                <div class="col-5 pl-4" style="color: grey;">
+                   Email
+                </div>
+                <div class="col-2 pl-4" style="color: grey;">
+                    : 
+                </div>
+                <div class="col-5 pl-4" style="color: grey;">
+                    Sample 
+                </div>
+                
+            </div>
+         </div>
      </div>
      
     
-     </div>
-     
-     
-     <br/>
      <div class="row">
     
         <div class="col-6 text-left">
@@ -919,92 +974,7 @@ background: #ffc107;
         </div>
     
     
-        <div id="pg_four" style="display:none">
-      
-          
-     <div class="row">
-      <div class="col-12 pt-4">
-        <div class="row justify-content-center">
-          <div class="col-2">
-           <div class="divider"style="width:100% ;border-style : solid ; border-width:5px; border-color:rgba(66,99,50,1); border-radius: 25px;"></div>
-          </div>
-          <div class="col-2">
-           <div class="divider"style="width:100% ;border-style : solid ; border-width:5px; border-color:rgba(66,99,50,1); border-radius: 25px;"></div>
-          </div>
-          <div class="col-2">
-           <div class="divider"style="width:100% ;border-style : solid ; border-width:5px; border-color:rgba(66,99,50,1); border-radius: 25px;"></div>
-          </div>
-          <div class="col-2">
-           <div class="divider"style="width:100% ;border-style : solid ; border-width:5px; border-color:rgba(66,99,50,1); border-radius: 25px;"></div>
-          </div>
-          <div class="col-2">
-           <div class="divider"style="width:100% ;border-style : solid ; border-width:5px; border-color:rgb(245, 243, 300); border-radius: 25px;"></div>
-          </div>
-        </div>
-           
-       </div>
-     </div>
-     <br/>
-     <br/>
      
-  
-     
-     
-    
-     
-     
-     
-     <div class="row">
-     <div class="col-12">
-     <div class="form-group">
-          <label for="usr">Brief History of Company and Operations:</label>
-          <textarea cols="10"class="form-control" rows="6"></textarea>
-        </div>
-      
-     </div>
-     
-    
-     </div>
-     
-     <div class="row">
-     <div class="col-12">
-     <div class="form-group">
-      <label for="sel1" class="text-center">Select Service:</label>
-      <select class="form-control" id="sel1">
-        <option>---Select---</option>
-        <option>Salary Survey</option>
-    
-      </select>
-    </div>
-      
-     </div>
-     
-    
-     </div>
-     
-     
-     
-    
-     
-    <div class="row">
-        <div class="col-6 text-left">
-            <span class="btn btn-outline-success back_btn" id= "pg_four" >
-              Back
-            </span>
-        </div>
-    
-        <div class="col-6 text-right">
-            <span class="btn btn-success next_btn " id= "pg_four" >
-          Review
-            </span>
-        </div>
-    
-    </div>
-     
-    
-    
-        </div>
-    
         <div class="row" id="pg_five" style="display:none">    
       
             
@@ -1043,9 +1013,9 @@ background: #ffc107;
             <hr/>
           </div>
     
-          <div class="col-12">
-            <div class="row">
-              <div class="col-12 pl-2">
+          <div class="col-12 p-4">
+            <div class="row p-4">
+              <div class="col-12 p-4 text-center">
                   <b>Company Details</b>
               </div>
     
@@ -1268,7 +1238,9 @@ background: #ffc107;
           </div>
        
             <div class="row">
-              <div class="col-12 pl-2">
+                <div class="col-12 ">
+                    <div class="row p-4">
+              <div class="col-12 p-4 text-center">
                   <b>Chairman of Board</b>
               </div>
               <div class="col-5 pl-4" style="color: grey;">
@@ -1330,14 +1302,15 @@ background: #ffc107;
               <div class="col-5 pl-4" style="color: grey;">
                   Sample 
               </div>
-         
+            </div>
+            </div>
     
      
             
     
-          <div class="col-12">
-            <div class="row">
-              <div class="col-12 pl-2">
+          <div class="col-12 ">
+            <div class="row p-4">
+              <div class="col-12 p-4 text-center">
                   <b>Chief Executive Officer</b>
               </div>
               <div class="col-5 pl-4" style="color: grey;">
@@ -1405,8 +1378,8 @@ background: #ffc107;
     
       
           
-            <div class="row">
-              <div class="col-12 pl-2">
+            <div class="row p-4" >
+              <div class="col-12 p-4 text-center">
                   <b>Other Members of the Board</b>
               </div>
               <div class="col-5 pl-4" style="color: grey;">
@@ -1470,8 +1443,8 @@ background: #ffc107;
               </div>
           </div>
        
-            <div class="row">
-              <div class="col-12 pl-2">
+            <div class="row p-4">
+              <div class="col-12 p-4 text-center">
                   <b>Key Management Personnel</b>
               </div>
               <div class="col-5 pl-4" style="color: grey;">
@@ -1535,8 +1508,8 @@ background: #ffc107;
               </div>
           </div>
         
-            <div class="row">
-              <div class="col-12 pl-2">
+            <div class="row p-4">
+              <div class="col-12 p-4 text-center">
                   <b>Current Auditor</b>
               </div>
               <div class="col-5 pl-4" style="color: grey;">
@@ -1582,8 +1555,8 @@ background: #ffc107;
           </div>
     
       
-            <div class="row">
-              <div class="col-12 pl-2">
+            <div class="row p-4">
+              <div class="col-12 p-4 text-center">
                   <b>Previous Auditor</b>
               </div>
               <div class="col-5 pl-4" style="color: grey;">
@@ -1628,8 +1601,8 @@ background: #ffc107;
               
           </div>
       
-            <div class="row">
-              <div class="col-12 pl-2">
+            <div class="row p-4" >
+              <div class="col-12 p-4 text-center">
                   <b>Company Secretary</b>
               </div>
               <div class="col-5 pl-4" style="color: grey;">
@@ -1675,8 +1648,8 @@ background: #ffc107;
           </div>
     
      
-            <div class="row">
-              <div class="col-12 pl-2">
+            <div class="row p-4">
+              <div class="col-12 p-4 text-center">
                   <b>Contact Person</b>
               </div>
               <div class="col-5 pl-4" style="color: grey;">
@@ -1752,7 +1725,7 @@ background: #ffc107;
           </div>
     
     
-              <div class="col-12 pl-2">
+              <div class="col-12 p-4 text-center">
                   <b>Brief History of Company and Operations </b>
               </div>
               <div class="col-12 pl-4" style="color: grey;">
@@ -1777,7 +1750,7 @@ background: #ffc107;
     
           </div>
           <br/>
-          <div class="row" >
+          <div class="row p-4" >
             <div class="col-6 text-left">
                 <span class="btn btn-outline-success back_btn" id= "pg_five" >
                   Back
@@ -1839,12 +1812,9 @@ background: #ffc107;
   
           if($(this).attr('id') == 'pg_three'){
              $('#pg_three').css('display','none')
-             $('#pg_four').css('display','block')
-          }
-          if($(this).attr('id') == 'pg_four'){
-             $('#pg_four').css('display','none')
              $('#pg_five').css('display','block')
           }
+       
   
   });
   
@@ -1862,14 +1832,10 @@ background: #ffc107;
      $('#pg_three').css('display','none')
      $('#pg_two').css('display','block')
   }
-  
-  if($(this).attr('id') == 'pg_four'){
-     $('#pg_four').css('display','none')
-     $('#pg_three').css('display','block')
-  }
+
   if($(this).attr('id') == 'pg_five'){
      $('#pg_five').css('display','none')
-     $('#pg_four').css('display','block')
+     $('#pg_three').css('display','block')
   }
   
   });

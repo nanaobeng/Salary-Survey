@@ -1,32 +1,54 @@
 {% extends "qualitative_form_layout.html" %}
 
 
-<!-- General Information Page -->
 
 {% block body %}
 
+
 <form>
-  <div class="row general_organization_view p-4">
+
+  <!-- General Information Page -->
+
+  <div class="row general_information_view p-4">
     <div class="col-12">
 
       <!-- Question A1 -->
       <div class="form-row">
         <div class="col-6">
           <div class="form-group">
-         
-              <label for="num_employees"> <span class="question_number">A1. &nbsp; </span>What is the total number of employees in the
-                company?</label>
-              <input type="number" min="1" class="form-control col-10" id="num_employees">
-           
+
+            {{ form.total_employee_num .label(class="form-control-label") }}
+      
+            {% if form.total_employee_num .errors %}
+            {{ form.total_employee_num (class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+                {% for error in total_employee_num.errors %}
+                <span> {{ error}}</span>
+                {% endfor %}
+            </div>
+            {% else %}
+            {{ form.total_employee_num(class="form-control form-control") }}
+            {% endif %}
+
           </div>
         </div>
 
-  <!-- Question A2 -->
+        <!-- Question A2 -->
         <div class="col-6">
           <div class="form-group">
             <div>
-              <label for="num_employees"> <span class="question_number">A2. &nbsp; </span>How many working hours are there in a normal week? </label>
-              <input type="number" min="0" class="form-control col-12" id="num_working_hours">
+                {{ form.work_hours .label(class="form-control-label") }}
+      
+                {% if form.work_hours.errors %}
+                {{ form.work_hours(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in work_hours.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.total_employee_num(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -35,13 +57,14 @@
       </div>
 
 
-       
-       
+
+
       <!-- Question A3 -->
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
-            <label for="usr"><span class="question_number">A3. &nbsp; </span>Fill in the number of employees for each category
+            <label for="usr"><span class="question_number">A3. &nbsp; </span>Fill in the number of employees for each
+              category
               below: </label>
             <table class="col-12">
               <tr style="background-color: rgb(107, 117, 126);color:#fff">
@@ -97,16 +120,25 @@
 
 
 
-   
+
 
       <!-- Question A4 -->
       <div class="form-row">
         <div class="col-12">
           <div class="form-group">
             <div>
-              <label for="num_employees"> <span class="question_number">A4. &nbsp; </span>Describe your overtime policy (eligibility, payments,
-                approvals etc): </label>
-              <textarea class="form-control" id="overtime_policy"></textarea>
+                {{ form.overtime.label(class="form-control-label") }}
+      
+                {% if form.overtime.errors %}
+                {{ form.overtime (class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in overtime.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.overtime(class="form-control form-control") }}
+                {% endif %}
             </div>
           </div>
         </div>
@@ -115,13 +147,2595 @@
       <!-- Next Button -->
       <!-- TODO: fix onclick action -->
       <div class="col-12 text-right">
-        <span id="general_organization" class="btn btn-outline-info" onclick="switchView(this.id)">Next</span>
+        <span id="general_information_next_button" class="btn btn-outline-info"
+          onclick="switchFormSection(this.id)">Next</span>
       </div>
 
     </div>
   </div>
+
+
+
+  <!-- Direct Compensation Page -->
+
+  <div class="row direct_compensation_view p-4" style="display:none">
+    <div class="col-12">
+
+      <fieldset class="collapsible">
+        <legend>Salary Structure</legend>
+
+        <!-- Question B1 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <div>
+                {{ form.market_pos.label(class="form-control-label") }}
+      
+                {% if form.market_pos.errors %}
+                {{ form.market_pos (class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in market_pos.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.market_pos(class="form-control form-control") }}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B2 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.salary_struct.label(class="form-control-label") }}
+      
+                {% if form.salary_struct.errors %}
+                {{ form.salary_struct (class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in salary_struct.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.salary_struct(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+
+        <!-- Question B2b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.file_upload.label(class="form-control-label") }}
+      
+                {% if form.file_upload.errors %}
+                {{ form.file_upload(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in file_upload.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.file_upload(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B2c -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.salary_level.label(class="form-control-label") }}
+      
+                {% if form.salary_level.errors %}
+                {{ form.salary_level(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in salary_level.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.salary_level(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Salary Adjustments</legend>
+        <!-- Question B3 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <div class="form-group">
+                {{ form.salary_struct_adjust.label(class="form-control-label") }}
+      
+                {% if form.salary_struct_adjust.errors %}
+                {{ form.salary_struct_adjust(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in salary_struct_adjust.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.salary_struct_adjust(class="form-control form-control") }}
+                {% endif %}
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B4 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.adjustment_date.label(class="form-control-label") }}
+      
+                {% if form.adjustment_date.errors %}
+                {{ form.adjustment_date(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in adjustment_date.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.adjustment_date(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B5 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.percentage.label(class="form-control-label") }}
+      
+                {% if form.percentage.errors %}
+                {{ form.percentage(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in percentage.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.percentage(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B6 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.basis.label(class="form-control-label") }}
+      
+                {% if form.basis.errors %}
+                {{ form.basis(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in basis.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.basis(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B7 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="usr"><span class="question_number">B7. &nbsp;</span> Give the percentage adjustment for the
+                following indicators:</label>
+              <table class="col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th>Indicator</th>
+                    <th>Percentage (%)</th>
+                  </tr>
+                </thead>
+                <tr>
+                  <th>Cost of living changes/inflation</th>
+                  <th><input class="form-control" type="number" min="0" name="cost of living"></th>
+                </tr>
+                <tr>
+                  <th>Business conditions</th>
+                  <th><input class="form-control" type="number" min="0" name="business conditions"></th>
+                </tr>
+                <tr>
+                  <th>Salary levels of other organizations/market</th>
+                  <th><input class="form-control" type="number" min="0" name="salary levels"></th>
+                </tr>
+                <tr>
+                  <th>Other (please specify): <input class="form-control form-control-inline" type="text"> </th>
+
+                  <th><input class="form-control" type="number" min="0" name="other" /></th>
+                </tr>
+              </table>
+
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B8 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.grades.label(class="form-control-label") }}
+      
+                {% if form.grades.errors %}
+                {{ form.grades(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in grades.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.grades(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+
+          <!-- Question B8b -->
+          <div class="form-row">
+            <div class="col-12">
+              <div class="form-group">
+                {{ form.how_adjust.label(class="form-control-label") }}
+      
+                {% if form.how_adjust.errors %}
+                {{ form.how_adjust(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in how_adjust.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.how_adjust(class="form-control form-control") }}
+                {% endif %}
+              </div>
+            </div>
+          </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Allowance Reviews</legend>
+
+        <!-- Question B9 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.review_date.label(class="form-control-label") }}
+      
+                {% if form.review_date.errors %}
+                {{ form.review_date(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in review_date.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.review_date(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B9b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.effective_date.label(class="form-control-label") }}
+      
+                {% if form.effective_date.errors %}
+                {{ form.effective_date(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">effective_date.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.effective_date(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Job Evaluations</legend>
+
+        <!-- Question B10 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.eval_system.label(class="form-control-label") }}
+      
+                {% if form.eval_system.errors %}
+                {{ form.eval_system(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in eval_system.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.eval_system(class="form-control form-control") }}
+                {% endif %}
+          </div>
+        </div>
+
+        <!-- Question B10b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.eval_method.label(class="form-control-label") }}
+      
+                {% if form.eval_method.errors %}
+                {{ form.eval_method(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in eval_method.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.eval_method(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+
+      <fieldset class="collapsible">
+        <legend>Salary Increments</legend>
+
+        <!-- Question B11 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.periodic_sal.label(class="form-control-label") }}
+      
+                {% if form.periodic_sal.errors %}
+                {{ form.periodic_sal(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in periodic_sal.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.periodic_sal(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B12 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.auto_cost.label(class="form-control-label") }}
+      
+                {% if form.auto_cost.errors %}
+                {{ form.auto_cost(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in auto_cost.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.auto_cost(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B12b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.yes_basis.label(class="form-control-label") }}
+      
+                {% if form.yes_basis.errors %}
+                {{ form.yes_basis(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in yes_basis.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.yes_basis(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B13 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.grade_num.label(class="form-control-label") }}
+      
+                {% if form.grade_num.errors %}
+                {{ form.grade_num(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in grade_num.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.grade_num(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B14 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.perc_diff.label(class="form-control-label") }}
+      
+                {% if form.perc_diff.errors %}
+                {{ form.perc_diff(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in perc_diff.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.perc_diff(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B15 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.grade_basis.label(class="form-control-label") }}
+      
+                {% if form.grade_basis.errors %}
+                {{ form.grade_basis(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in grade_basis.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.grade_basis(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B16 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">B16. &nbsp;</span> How do your staff progress through the steps?
+              </label>
+              <div class="col-9">
+                <div class="form-check">
+                    {{ form.staff_progress.label(class="form-control-label") }}
+      
+                    {% if form.staff_progress.errors %}
+                    {{ form.staff_progress(class="form-control form-control is-invalid")}}
+                    <div class="invalid-feedback">
+                        {% for error in staff_progress.errors %}
+                        <span> {{ error}}</span>
+                        {% endfor %}
+                    </div>
+                    {% else %}
+                    {{ form.staff_progress(class="form-control form-control") }}
+                    {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B17 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.first_priority.label(class="form-control-label") }}
+      
+                {% if form.first_priority.errors %}
+                {{ form.first_priority(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in first_priority.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.first_priority(class="form-control form-control") }}
+                {% endif %}
+
+                {{ form.second_priority.label(class="form-control-label") }}
+      
+                {% if form.second_priority.errors %}
+                {{ form.second_priority(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in second_priority.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.second_priority(class="form-control form-control") }}
+                {% endif %}
+
+                {{ form.first_priority.label(class="form-control-label") }}
+      
+                {% if form.third_priority.errors %}
+                {{ form.third_priority(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in third_priority.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.third_priority(class="form-control form-control") }}
+                {% endif %}
+
+                {{ form.first_priority.label(class="form-control-label") }}
+      
+                {% if form.other_priority.errors %}
+                {{ form.other_priority(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in other_priority.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.other_priority(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B18 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.hiring_rate.label(class="form-control-label") }}
+      
+                {% if form.hiring_rate.errors %}
+                {{ form.hiring_rate(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in hiring_rate.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.hiring_rate(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B18b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.explain.label(class="form-control-label") }}
+      
+                {% if form.explain.errors %}
+                {{ form.explain(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in explain.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.explain(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B19 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.max_salary.label(class="form-control-label") }}
+      
+                {% if form.max_salary.errors %}
+                {{ form.max_salary(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in max_salary.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.max_salary(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B19b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.explain_max.label(class="form-control-label") }}
+      
+                {% if form.explain_max.errors %}
+                {{ form.explain_max(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in explain_max.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.explain_max(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B20 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.instances.label(class="form-control-label") }}
+      
+                {% if form.instances.errors %}
+                {{ form.instances(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in instances.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.instances(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question B20b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+                {{ form.yes_explain.label(class="form-control-label") }}
+      
+                {% if form.yes_explain.errors %}
+                {{ form.yes_explain(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in yes_explain.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.yes_explain(class="form-control form-control") }}
+                {% endif %}
+            </div>
+          </div>
+        </div>
+
+
+
+      </fieldset>
+
+
+
+
+
+      <!-- Next and Previous Button -->
+      <div class="row">
+        <div class="col-6">
+          <span id="direct_compensation_prev_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Back</span></a>
+        </div>
+
+        <div class="col-6 text-right">
+          <span id="direct_compensation_next_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Next
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- Bonus / Incentive Plans Page -->
+
+  <div class="row bonus_incentive_plans_view p-4" style="display:none">
+    <div class="col-12">
+
+      <!-- Question C1 -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            <!-- <label for="formal_sal_struct"> <span class="question_number">C1. &nbsp; </span> Does the organisation
+              provide an annual
+              cash bonus or other short term incentive plan (excluding 13th month pay) for
+              employees?</label>
+            <div class="row">
+              <div class="col-6">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label" for="radio1">
+                    <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                      checked>
+                    Yes
+                  </label>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="form-check form-check-inline">
+                  <label class="form-check-label" for="radio2">
+                    <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                  </label>
+                </div>
+              </div>
+            </div> -->
+            {{ form.incentive.label(class="form-control-label") }}
+
+            {% if form.incentive.errors %}
+            {{ form.incentive(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.incentive.errors %}
+              <span> {{error}}</span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.incentive(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Question C1b -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            {{ form.plans.label(class="form-control-label") }}
+
+            {% if form.plans.errors %}
+            {{ form.plans(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.plans.errors %}
+              <span> {{error}}</span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.plans(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Question C2 -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            {{ form.staffC1.label(class="form-control-label") }}
+
+            {% if form.staffC1.errors %}
+            {{ form.staffC1(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.staffC1.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.staffC1(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Question C2b -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            {{ form.explainno.label(class="form-control-label") }}
+
+            {% if form.explainno.errors %}
+            {{ form.explainno(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.explainno.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.explainno(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Question C3 -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            {{ form.bonuses.label(class="form-control-label") }}
+
+            {% if form.bonuses.errors %}
+            {{ form.bonuses(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.bonuses.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.bonuses(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Question C4 -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            {{ form.month13bonus.label(class="form-control-label") }}
+
+            {% if form.month13bonus.errors %}
+            {{ form.month13bonus(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.month13bonus.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.month13bonus(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Question C4b -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            {{ form.bonustime.label(class="form-control-label") }}
+
+            {% if form.bonustime.errors %}
+            {{ form.bonustime(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.bonustime.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.bonustime(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Question C5 -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            {{ form.restrictions.label(class="form-control-label") }}
+
+            {% if form.restrictions.errors %}
+            {{ form.restrictions(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.restrictions.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.restrictions(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Question C6 -->
+      <div class="form-row">
+        <div class="col-12">
+          <div class="form-group">
+            {{ form.compensations.label(class="form-control-label") }}
+
+            {% if form.compensations.errors %}
+            {{ form.compensations(class="form-control form-control is-invalid")}}
+            <div class="invalid-feedback">
+              {% for error in form.compensations.errors %}
+              <span> {{error}} </span>
+              {% endfor %}
+            </div>
+            {% else %}
+            {{ form.compensations(class="form-control form-control") }}
+            {% endif %}
+          </div>
+        </div>
+      </div>
+
+      <!-- Next and Previous Button -->
+      <div class="row">
+        <div class="col-6">
+          <span id="bonus_incentive_plans_prev_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Back</span>
+        </div>
+
+        <div class="col-6 text-right">
+          <span id="bonus_incentive_plans_next_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Next
+          </span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+
+
+
+  <!-- General Personnel Practices Page -->
+
+
+  <div class="row general_personnel_practices_view p-4" style="display:none">
+    <div class="col-12">
+
+      <fieldset class="collapsible">
+        <legend>Leave Days</legend>
+
+        <!-- Question D1 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.leavedays.label(class="form-control-label") }}
+
+              {% if form.leavedays.errors %}
+              {{ form.leavedays(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.leavedays.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.leavedays(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D2 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.numleavedaysincrease.label(class="form-control-label") }}
+
+              {% if form.numleavedaysincrease.errors %}
+              {{ form.numleavedaysincrease(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.numleavedaysincrease.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.numleavedaysincrease(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D3 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.staffcat.label(class="form-control-label") }}
+              <table class="col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th> {{ form.staffcatopt.label(class="form-control-label") }} </th>
+                    <th> {{ form.numleavedays.label(class="form-control-label") }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {{ form.staffcatopt(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.numleavedays(class="form-control form-control") }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {{ form.staffcatopt(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.numleavedays(class="form-control form-control") }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td>
+                      {{ form.staffcatopt(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.numleavedays(class="form-control form-control") }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D4 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.paidholidaysnum.label(class="form-control-label") }}
+
+              {% if form.paidholidaysnum.errors %}
+              {{ form.paidholidaysnum(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.paidholidaysnum.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.paidholidaysnum(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D5 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ forms.whatnumleavedays.label(class="form-control-label") }}
+
+              {{ forms.sickness.label(class="form-control-label") }}
+              {{ forms.sickness(class="form-control form-control") }}
+
+              {{ forms.accident.label(class="form-control-label") }}
+              {{ forms.accident(class="form-control form-control") }}
+
+              {{ forms.maternity.label(class="form-control-label") }}
+              {{ forms.maternity(class="form-control form-control") }}
+
+              {{ forms.paternity.label(class="form-control-label") }}
+              {{ forms.paternity(class="form-control form-control") }}
+
+              {{ forms.sickness.label(class="form-control-label") }}
+              {{ forms.sickness(class="form-control form-control") }}
+
+              {{ forms.emergency.label(class="form-control-label") }}
+              {{ forms.emergency(class="form-control form-control") }}
+
+              {{ forms.otherleavedays.label(class="form-control-label") }}
+              {{ forms.sickness(class="form-control form-control") }}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D6 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ forms.whatentitlements.label(class="form-control-label") }}
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th> {{ form.empgrade.label(class="form-control-label") }} </th>
+                    <th> {{ form.options.label(class="form-control-label") }}</th>
+                    <th> {{ form.rates.label(class="form-control-label") }} </th>
+                    <th> {{ form.explanation.label(class="form-control-label") }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ form.empgrade(class="form-control form-control") }}</td>
+                    <td>{{ form.options(class="form-control form-control") }}</td>
+                    <td>{{ form.rates(class="form-control form-control") }}</td>
+                    <td>{{ form.explanation(class="form-control form-control") }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ form.empgrade(class="form-control form-control") }}</td>
+                    <td>{{ form.options(class="form-control form-control") }}</td>
+                    <td>{{ form.rates(class="form-control form-control") }}</td>
+                    <td>{{ form.explanation(class="form-control form-control") }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ form.empgrade(class="form-control form-control") }}</td>
+                    <td>{{ form.options(class="form-control form-control") }}</td>
+                    <td>{{ form.rates(class="form-control form-control") }}</td>
+                    <td>{{ form.explanation(class="form-control form-control") }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Entitlements</legend>
+
+        <!-- Question D7 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+             {{ form.policyprovisions.label(class="form-control-label") }}
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th> {{ form.gradeopt.label(class="form-control-label") }} </th>
+                    <th> {{ form.policydescription.label(class="form-control-label") }}</th>
+                    <th> {{ form.entitlement.label(class="form-control-label") }} </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.gratuity.label(class="form-control-label") }}</td>
+                    <td>{{ form.gratuity(class="form-control form-control") }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.longterm.label(class="form-control-label") }}</td>
+                    <td>{{ form.longterm(class="form-control form-control") }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.severance.label(class="form-control-label") }}</td>
+                    <td>{{ form.severance(class="form-control form-control") }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.endofservice.label(class="form-control-label") }}</td>
+                    <td>{{ form.endofservice(class="form-control form-control") }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.termination.label(class="form-control-label") }}</td>
+                    <td>{{ form.termination(class="form-control form-control") }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.resignation.label(class="form-control-label") }}</td>
+                    <td>{{ form.resignation(class="form-control form-control") }}</td>
+                  </tr>
+                  <tr>
+                    <td>{{ form.gradeopt(class="form-control form-control") }}</td>
+                    <td>{{ form.othertype.label(class="form-control-label") }}</td>
+                    <td>{{ form.othertype(class="form-control form-control") }}</td>
+                  </tr>
+                </tbody>
+              </table>
+
+              {{forms.othertypefile(class="form-control form-control")}}
+
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Redundancy</legend>
+
+        <!-- Question D8 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.redexercise.label(class="form-control-label") }}
+
+              {% if form.redexercise.errors %}
+              {{ form.redexercise(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.redexercise.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.redexercise(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D9 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ forms.numleavedaysgranted.label(class="form-control-label") }}
+              <table class="col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th> {{ form.staffcategory.label(class="form-control-label") }} </th>
+                    <th> {{ form.packagepaid.label(class="form-control-label") }}</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      {{ form.staffcategory(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.packagepaid(class="form-control form-control") }}</td>
+
+                  </tr>
+                  <tr>
+                    <td>
+                      {{ form.staffcategory(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.packagepaid(class="form-control form-control") }}</td>
+
+                  </tr>
+                  <tr>
+                    <td>
+                      {{ form.staffcategory(class="form-control form-control") }}
+                    </td>
+                    <td>{{ form.packagepaid(class="form-control form-control") }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Transportation</legend>
+
+        <!-- Question D10 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              { form.trans.label(class="form-control-label") }}
+
+              {% if form.trans.errors %}
+              {{ form.trans(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.trans.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.trans(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D10b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D10(b).</span> If Yes, provide details below: </label>
+              <table class="table ">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th>Policy (indicate separate if
+                      different for various grades)</th>
+                    <th>Who qualifies/
+                      Grade?</th>
+                    <th>Cash amount/Value</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Fully maintained company car? (Indicate car type, engine capacity)</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Car maintenance allowance per what period? </td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Fuel allowance per what period? </td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Transport Allowance per what
+                      period? </td>
+                    <td><input type="text" class="form-control" /></td>
+
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Kilometric</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Company paid driver (Yes/No)</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Others (please specify)</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D11 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <span class="question_number">D11. &nbsp; </span> Do you have a car scheme
+                in which an
+                employee uses a company car and
+                after
+                some years,
+                the car is sold to the employee at a discounted rate?</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D11b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D11(b). &nbsp; </span>If Yes, after how many years of use is the car
+                sold?</label>
+              <input type="number" min="0" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D11c -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D11(c). &nbsp; </span> At what percentage of market value is the car
+                sold?</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D11d -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D11(d). &nbsp; </span> Based on the scheme you have described, how do
+                you deal with
+                tax
+                issues?</label>
+              <input type="text" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Meals</legend>
+
+        <!-- Question 12 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <span class="question_number">D12. &nbsp; </span> Does the organisation
+                subsidise meal
+                costs for senior management
+                staff/executives (includes
+                meal allowance as cash benefit and cafeteria service as kind benefit)?</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D12b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D10(b).</span> If Yes, provide details below: </label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th>Employee Grade</th>
+                    <th>Cash
+                      amount/value</th>
+                    <th>Period (i.e. daily, weekly,
+                      etc)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Clothing</legend>
+
+        <!-- Question D13 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <span class="question_number">D13. &nbsp; </span> Does the organisation
+                subsidise/provide
+                clothing allowance for staff?
+              </label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D13b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D13(b). &nbsp;</span>How much clothing allowance is given per
+                year?</label>
+              <input type="number" min="0" class="form-control" />
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D13c -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D13(c). &nbsp;</span> Which grades qualify for the clothing
+                allowance?</label>
+              <textarea class="form-control" cols="5"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Travel</legend>
+
+        <!-- Question D14 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D14. &nbsp;</span> What is the travel policy (including per diem,
+                lodging, meals, air
+                tickets, excess baggage, etc)
+                for outside location?</label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th>Type of rate
+                    <th>Policy
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Overseas rates (please specify separately if different for various grades):
+                    </td>
+                    <td><textarea class="form-control"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td>Out of location allowance (in country):</td>
+                    <td><textarea class="form-control"></textarea></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Loans</legend>
+
+        <!-- Question D15 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <span class="question_number">D15. &nbsp; </span> Does the organisation
+                provide interest
+                free or low interest bearing
+                loans
+                (including
+                salary advances) to employees for personal effects?
+              </label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D15b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D15(b). &nbsp;</span> If Yes, provide details below: </label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th>Employee Grade</th>
+                    <th>Type of loan</th>
+                    <th>Percentage of interest</th>
+                    <th>Repayment period</th>
+                    <th>Limit of facility</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Housing</legend>
+
+        <!-- Question D16 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D16. &nbsp;</span> Does the organisation provide housing benefits to
+                staff
+                (includes house allowance as cash
+                benefit and accommodation, furnishing, residence utilities,
+                etc)?</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D16b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D16(b). &nbsp;</span> If Yes, provide details below: </label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff"">
+                                <tr>
+                                    <th>Employee Grade</th>
+                                    <th>Type of Facility</th>
+                                    <th>Cash amount</th>
+                                    <th>If in kind
+                                    (please
+                                    indicate size of
+                                    facility)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                <td><input type=" text" class="form-control" />
+                </td>
+                <td><input type="text" class="form-control" /></td>
+                <td><input type="text" class="form-control" /></td>
+                <td><input type="text" class="form-control" /></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                </tr>
+
+                <tr>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D16c -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D16(c). &nbsp;</span> List all household benefits provided, if any
+                (e.g. Security,
+                Cook, House-help, etc): </label>
+              <textarea class="form-control" cols="10"></textarea>
+
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+
+      <fieldset class="collapsible">
+        <legend>Education</legend>
+
+        <!-- Question D17 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D17. &nbsp;</span>Do you provide education subsidy for staff and/or
+                their
+                dependents?</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D17b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D17(b). &nbsp;</span> If Yes, provide details below: </label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <th>Employee Grade</th>
+                  <th>Policy description</th>
+                  <th>Dependents (please indicate maximum number and age limit for dependents)</th>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" class="form-control"></td>
+                    <td>Staff entitlements (cash/year)</td>
+                    <td><textarea class="form-control"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control"></td>
+                    <td>Dependent/children (cash/year)</td>
+                    <td><textarea class="form-control"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><textarea class="form-control"></textarea></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D18 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D18. &nbsp;</span>What provisions does the organisation make for the
+                following:</label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th rowspan="2">Employee Grade</th>
+                    <th colspan="4">Personnel development (indicate value per month if cash or
+                      describe)</th>
+                  </tr>
+                  <tr>
+                    <th>Short courses</th>
+                    <th>Professional
+                      programmes</th>
+                    <th>Post Graduate
+                      programmes</th>
+                    <th>Other (please
+                      specify )</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                </tbody>
+              </table>
+              <i>NB: Please provide staff educational policy if available</i>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Entertainment</legend>
+        <!-- Question D19 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <span class="question_number">D19. &nbsp; </span> Do you provide
+                entertainment allowance
+                for staff?
+              </label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D19b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D19(b). &nbsp; </span> If Yes, please provide details.</label>
+              <textarea class="form-control" cols="5"></textarea>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Vacations</legend>
+
+        <!-- Question D20 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D20. &nbsp;</span>Are vacation related benefits offered to senior
+                management
+                staff?</label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D20b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D20(b). &nbsp;</span>Please describe entitlement and value of
+                vacation benefits.
+                Various components of this benefit might include:</label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th>Examples</th>
+                    <th>Employee Grade</th>
+                    <th>Yes/No
+                      (please provide
+                      details if Yes)</th>
+                    <th>Please indicate
+                      Amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Personal domestic travel?</td>
+                    <td><input type=" text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="number" min="0" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Personal foreign travel including warm clothing and flight type?</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="number" min="0" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Hotel accommodation?</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="number" min="0" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Use of company
+                      owned facilities for
+                      vacation e.g.
+                      accommodation?</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="number" min="0" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Telephone (roaming facility)?</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="number" min="0" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td>Other (please
+                      specify)</td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="number" min="0" class="form-control" /></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Medicals</legend>
+
+        <!-- Question D21 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D21. &nbsp;</span>Please describe your company's medical scheme and
+                how it is
+                administered (i.e. who is covered under the plan):</label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th>Policy description</th>
+                    <th>Company contribution % or Annual cash amount</th>
+                    <th>Employee contribution % or Annual cash amount</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Employee: medical</td>
+                    <td><textarea class="form-control"></textarea></td>
+                    <td><textarea class="form-control"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td>Employee: prescribed glasses</td>
+                    <td><textarea class="form-control"></textarea></td>
+                    <td><textarea class="form-control"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td>Employee: other e.g. dentures</td>
+                    <td><textarea class="form-control"></textarea></td>
+                    <td><textarea class="form-control"></textarea></td>
+                  </tr>
+
+                  <tr>
+                    <th>Dependents</th>
+                    <td colspan="2"></td>
+                  </tr>
+                  <tr>
+                    <td>Spouse:</td>
+                    <td colspan="2"><textarea class="form-control"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td>Children (number and age limit):</td>
+                    <td colspan="2"><textarea class="form-control"></textarea></td>
+                  </tr>
+                  <tr>
+                    <td>Others:</td>
+                    <td colspan="2"><textarea class="form-control"></textarea></td>
+                  </tr>
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D22 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <span class="question_number">D22. &nbsp; </span> Does the medical scheme
+                cover
+                overseas treatments?
+              </label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Funerals/Death</legend>
+
+        <!-- Question D23 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <span class="question_number">D23. &nbsp; </span> Do you have a funeral
+                assistance/ death
+                benefits arrangement for your staff and family
+                members?
+              </label>
+              <div class="row">
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio1">
+                      <input type="radio" class="form-check-input" id="radio111" name="formal_structure" value="Yes"
+                        checked>
+                      Yes
+                    </label>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="form-check form-check-inline">
+                    <label class="form-check-label" for="radio2">
+                      <input type="radio" class="form-check-input" id="radio121" name="formal_structure" value="No">No
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D23b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label for="formal_sal_struct"> <span class="question_number">D23(b). &nbsp; </span> If Yes, please
+                specify the benefits
+                below (e.g. transport, coffin, food, etc.)
+              </label>
+              <table>
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th rowspan="2">Deceased</th>
+                    <th colspan="4">Please indicate cash amount where applicable</th>
+                  </tr>
+                  <tr>
+                    <th>Coffin?</th>
+                    <th>Transportation?</th>
+                    <th>Food/Drink?</th>
+                    <th>Any other donations in kind?</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>Employee</td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                  </tr>
+                  <tr>
+                    <td>Spouse</td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                  </tr>
+                  <tr>
+                    <td>Children</td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                  </tr>
+                  <tr>
+                    <td>Parents</td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                  </tr>
+                  <tr>
+                    <td>Other</td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                    <td><input type="text" class="form-control"></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </fieldset>
+
+
+      <fieldset class="collapsible">
+        <legend>Schemes</legend>
+
+        <!-- Question D24 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D24. &nbsp;</span> Fill in the following information if your
+                organisation operates
+                any of the following
+                schemes:</label>
+              <table class="table ">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff"">
+                            <tr>
+                                <th>Employee Grade</th>
+                                <th>Employer
+                                contribution (%)</th>
+                                <th>Employee
+                                    contribution (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Provident Fund</td>
+                                <td><input type=" text" class="form-control" />
+                </td>
+                <td><input type="text" class="form-control" /></td>
+                </tr>
+                <tr>
+                  <td>Other schemes (please specify)</td>
+                  <td><input type="text" class="form-control" /></td>
+                  <td><input type="text" class="form-control" /></td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+
+      <fieldset class="collapsible">
+        <legend>Facilities</legend>
+
+        <!-- Question D25 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              <label><span class="question_number">D25. &nbsp;</span>What provisions does the organisation make for the
+                following:</label>
+              <table class="table col-12">
+                <thead style="background-color: rgb(107, 117, 126);color:#fff">
+                  <tr>
+                    <th rowspan="2">Employee Grade</th>
+                    <th colspan="4">Facility (indicate value per month if cash or describe)</th>
+                  </tr>
+                  <tr>
+                    <th>Electricity</th>
+                    <th>Water</th>
+                    <th>Telephone and mobile phone</th>
+                    <th>Other (please
+                      specify )</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+
+                  <tr>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                    <td><input type="text" class="form-control" /></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Other Benefits</legend>
+
+        <!-- Question D26 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.senior.label(class="form-control-label") }}
+
+              {% if form.senior.errors %}
+              {{ form.senior(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.senior.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.senior(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D26b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ forms.benefititems.label(class="form-control-label") }}
+                <ul>
+                  <li>books and periodicals</li>
+                  <li>festival gifts</li>
+                  <li>company sponsored activities</li>
+                  <li>consolidated annual benefits</li>
+                  <li>credit card subscription</li>
+                  <li>beverages at work</li>
+                  <li>free parking</li>
+                  <li>long service awards</li>
+                  <li>stock options</li>
+                  <li>share options</li>
+                  <li>spouse benefits</li>
+                </ul>
+              </label>
+              {{ forms.benefititems(class="form-control form-control") }}
+              {{ forms.benefititemsfile(class="form-control form-control") }}
+            </div>
+          </div>
+        </div>
+
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Direct Reports</legend>
+
+        <!-- Question D27 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.directreportsoncontract.label(class="form-control-label") }}
+
+              {% if form.directreportsoncontract.errors %}
+              {{ form.directreportsoncontract(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.directreportsoncontract.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.directreportsoncontract(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D27b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.indicatebenefits.label(class="form-control-label") }}
+
+              {% if form.indicatebenefits.errors %}
+              {{ form.indicatebenefits(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.indicatebenefits.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.indicatebenefits(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Expertise</legend>
+
+        <!-- Question D28 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.difficultexpertise.label(class="form-control-label") }}
+
+              {% if form.difficultexpertise.errors %}
+              {{ form.difficultexpertise(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.difficultexpertise.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.difficultexpertise(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D28b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.expertiselist.label(class="form-control-label") }}
+
+              {% if form.expertiselist.errors %}
+              {{ form.expertiselist(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.expertiselist.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.expertiselist(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Employee Turnover</legend>
+
+        <!-- Question D29 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.turnover.label(class="form-control-label") }}
+
+              {% if form.turnover.errors %}
+              {{ form.turnover(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.turnover.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.turnover(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+      <fieldset class="collapsible">
+        <legend>Expertise</legend>
+
+        <!-- Question D30 -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.havescale.label(class="form-control-label") }}
+
+              {% if form.havescale.errors %}
+              {{ form.havescale(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.havescale.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.havescale(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+        <!-- Question D30b -->
+        <div class="form-row">
+          <div class="col-12">
+            <div class="form-group">
+              {{ form.reason.label(class="form-control-label") }}
+
+              {% if form.reason.errors %}
+              {{ form.reason(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                {% for error in form.reason.errors %}
+                <span> {{error}} </span>
+                {% endfor %}
+              </div>
+              {% else %}
+              {{ form.reason(class="form-control form-control") }}
+              {% endif %}
+            </div>
+          </div>
+        </div>
+
+      </fieldset>
+
+
+
+
+
+
+
+      <!-- Next and Previous Button -->
+      <div class="row">
+        <div class="col-6">
+          <span id="general_personnel_practices_prev_button" class="btn btn-outline-info"
+            onclick="switchFormSection(this.id)">Back</span>
+        </div>
+
+        <div class="col-6 text-right">
+          <span id="bonus" class="btn btn-outline-info">Submit</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </form>
 
+
+
+<script>
+  // Function to switch to a form section
+  function switchFormSection(id) {
+    // clear all primary buttons and make them grey (secondary or inactive)
+    $('div.setup-panel div span').removeClass('btn-primary').addClass('btn-secondary');
+    $(window).scrollTop(0);
+
+    // navigate to direct compensation section 
+    if (id == "general_information_next_button" || id == "dc_button" || id == "bonus_incentive_plans_prev_button") {
+      $('.general_information_view').css("display", "none");
+      $('.bonus_incentive_plans_view').css("display", "none");
+      $('.direct_compensation_view').css("display", "block");
+      $('#dc_button').removeClass('btn-secondary').addClass('btn-primary');
+    }
+    // navigate to bonus/incentive plans section 
+    if (id == "direct_compensation_next_button" || id == "bip_button" || id == "general_personnel_practices_prev_button") {
+      $('.direct_compensation_view').css("display", "none");
+      $('.general_personnel_practices_view').css("display", "none");
+      $('.bonus_incentive_plans_view').css("display", "block");
+      $('#bip_button').removeClass('btn-secondary').addClass('btn-primary');
+    }
+    // navigate to general personnel practices section
+    if (id == "bonus_incentive_plans_next_button" || id == "gpp_button") {
+      $('.bonus_incentive_plans_view').css("display", "none")
+      $('.general_personnel_practices_view').css("display", "block")
+      $('#gpp_button').removeClass('btn-secondary').addClass('btn-primary');
+    }
+    // navigate to general information section
+    if (id == "direct_compensation_prev_button" || id == "gi_button") {
+      $('.direct_compensation_view').css("display", "none");
+      $('.general_information_view').css("display", "block");
+      $('#gi_button').removeClass('btn-secondary').addClass('btn-primary');
+    }
+  }
+</script>
 
 
 {% endblock %}
