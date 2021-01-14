@@ -130,8 +130,6 @@ class CorporateRequestForm(FlaskForm):
         choices=[('survey', 'Salary Survey')] , validators=[DataRequired()]
     )
    
-
-
     submit = SubmitField('Submit')
 
 class IndividualRequestForm(FlaskForm):

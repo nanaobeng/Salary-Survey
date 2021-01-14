@@ -49,6 +49,7 @@ def landing():
 def individual_requests():
     form = IndividualRequestForm()
     if form.validate_on_submit():
+        
         indv = Individual_request(firstname=form.firstname.data,lastname=form.lastname.data,other=form.other.data,email=form.email.data,dob=form.dob.data,phone=form.phone.data,city=form.city.data,country=form.country.data,service=form.service.data,address=form.address.data)
         db.session.add(indv)
         db.session.commit()
@@ -61,7 +62,7 @@ def individual_requests():
 def corporate_requests():
     form = CorporateRequestForm()
     if form.validate_on_submit():
-        corp = Corporate_request(
+       corp = Corporate_request(
         company_name = form.company_name.data,
         sector = form.sector.data,
         industry = form.industry.data,
@@ -123,14 +124,10 @@ def corporate_requests():
         brief_history=form.brief_history.data,
         service=form.service.data
         )
-<<<<<<< HEAD
-        db.session.add(corp)    
-=======
-        db.session.add(corp)
->>>>>>> 0e798c686d39f0db42e5679c840e2d57a791ef7d
-        db.session.commit()
-        flash('Request Submitted','success')
-        return redirect(url_for('main.corporate_requests'))
+       db.session.add(corp)
+       db.session.commit()
+       flash('Request Submitted','success')
+       return redirect(url_for('main.corporate_requests'))
     return render_template("corporate_request.html",form=form)
 
 
