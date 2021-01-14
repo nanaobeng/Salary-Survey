@@ -62,6 +62,11 @@ Sectors
                     </div>
                   </div>
                
+                  Choose a City<SELECT name="city">
+                    {% for c in sectors %}
+                      <OPTION value={{c.name}}>{{c.name}}</option>
+                    {% endfor %}
+                    </SELECT>
             
                   </form>
               </div>
@@ -76,5 +81,4 @@ Sectors
 
 
 
-</script>
 {% endblock content %}

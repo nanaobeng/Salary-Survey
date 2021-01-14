@@ -109,8 +109,8 @@ def create_contact():
 @users.route("/create_sector")
 def create_sector():
     form = SectorForm()
-    
-    return render_template("create_sector.html",form=form,title="Create Sector")
+    sectors = Sector.query.all()
+    return render_template("create_sector.html",form=form,title="Create Sector", sectors = sectors)
 
 @users.route("/create_job")
 def create_job():
@@ -269,7 +269,17 @@ def admin_configuration():
 
 @users.route("/administration/config/users")
 def admin_users():
-    return render_template("admin_users.html")
+    rows_per_page = 5
+    search = request.args.get('search', 1, type=str)
+    page = request.args.get('page', 1, type=int)
+    if search !='':
+        
+        Users = User.query.paginate(page=page, per_page=rows_per_page)
+        # Users = User.query.filter(User.email.like(('%'+search+'%'))).paginate(page=page, per_page=rows_per_page)
+    else:
+        Users = User.query.paginate(page=page, per_page=rows_per_page)
+    
+    return render_template("admin_users.html", Users=Users)
 
 @users.route("/administration/config/benchmark_jobs")
 def admin_benchmark_jobs():
