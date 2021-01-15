@@ -461,7 +461,11 @@ body {
   }
 }
 
-
+.dropdown-container {
+  display: none;
+  background-color: #54945f;
+  padding-left: 8px;
+}
 
 </style>
 
@@ -490,37 +494,55 @@ body {
           </a>
       </li>
       <li>
-        <a href="{{  url_for('users.create_survey')}}">
-          <svg>
-            <use xlink:href="#pages"></use>
-          </svg>
-          <span>Create Survey</span>
-        </a>
+        <button class="dropdown-btn"><svg>
+          <use xlink:href="#pages"></use>
+        </svg>
+        <span>Surveys</span>
+          <i class="fa fa-caret-down"></i>
+        </button>
+        <div class="dropdown-container">
+            <a href="{{  url_for('users.create_survey')}}">
+              <svg>
+                <use xlink:href="#pages"></use>
+              </svg>
+              <span>Create Survey</span>
+            </a>
+        
+            <a href="{{  url_for('users.admin_surveys')}}">
+              <svg>
+                <use xlink:href="#pages"></use>
+              </svg>
+              <span>View Surveys</span>
+            </a>
+          
+        </div> 
       </li>
+
+      
+
       <li>
-        <a href="{{  url_for('users.admin_surveys')}}">
-          <svg>
-            <use xlink:href="#pages"></use>
-          </svg>
-          <span>View Surveys</span>
-        </a>
-      </li>
-      <li>
+      <button class="dropdown-btn"><svg>
+        <use xlink:href="#pages"></use>
+      </svg>
+      <span>Clients</span>
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
         <a href="{{  url_for('users.create_client')}}">
           <svg>
             <use xlink:href="#collection"></use>
           </svg>
           <span>Create Client</span>
         </a>
-      </li>
-      <li>
-        <a href="{{  url_for('users.admin_clients')}}">
-          <svg>
-            <use xlink:href="#options"></use>
-          </svg>
-          <span>View Clients</span>
-        </a>
-      </li>
+          <a href="{{  url_for('users.admin_clients')}}">
+            <svg>
+              <use xlink:href="#options"></use>
+            </svg>
+            <span>View Clients</span>
+          </a>
+      </div>
+    </li>
+     
       <li>
         <a href="{{  url_for('users.admin_reports')}}">
           <svg>
@@ -719,6 +741,24 @@ for (const link of menuLinks) {
 }
 
 </script>
+
+<script>
+  /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+  
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none";
+    } else {
+    dropdownContent.style.display = "block";
+    }
+    });
+  }
+  </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
