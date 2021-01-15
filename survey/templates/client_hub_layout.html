@@ -530,6 +530,14 @@ body {
         </a>
       </li>
       <li>
+        <a href="{{ url_for('users.messages') }}">
+          <svg>
+            <use xlink:href="#comments"></use>
+          </svg>
+          <span>Messages</span>
+        </a>
+      </li>
+      <li>
         <a href="{{  url_for('users.admin_service_requests')}}">
           <svg>
             <use xlink:href="#appearance"></use>
@@ -537,6 +545,7 @@ body {
           <span>Service Requests</span>
         </a>
       </li>
+      
       <li class="menu-heading">
         <h3>Settings</h3>
       </li>

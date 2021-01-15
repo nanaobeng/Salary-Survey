@@ -96,16 +96,16 @@
 
     function drawChart() {
         var data1 = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
+          ['Request Type', 'Number of Requests'],
+          ['Completed',     11],
+          ['Approved',      2],
+          ['Rejected',  2],
+          ['Followed-Up', 2],
+          ['Signed-On',    7]
         ]);
 
         var options1 = {
-          title: 'Some Pie Data'
+          title: "Today's Requests"
         };
 
         var chart1 = new google.visualization.PieChart(document.getElementById('piechart'));
@@ -114,15 +114,15 @@
     
 
       var data2 = google.visualization.arrayToDataTable([
-        ['Year', 'Sales', 'Expenses'],
-        ['2004',  1000,      400],
-        ['2005',  1170,      460],
-        ['2006',  660,       1120],
-        ['2007',  1030,      540]
+        ['Date', 'Total Number of Requests', 'Completed Requests', 'Rejected Requests'],
+        ['2021-01-21',  1000,      400,     600],
+        ['2021-01-22',  1170,      460,     710],
+        ['2021-01-23',  1120,      660,     460],
+        ['2021-01-24',  1030,      540,     490]
       ]);
 
       var options2 = {
-        title: 'Company Performance',
+        title: 'Client Requests',
         curveType: 'function',
         legend: { position: 'bottom' }
       };

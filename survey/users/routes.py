@@ -267,6 +267,10 @@ def admin_reports():
 def client_hub():
     return render_template("client_hub.html")
 
+@users.route("/administration/messages")
+def messages():
+    return render_template("messages.html")
+
 @users.route("/administration/configuration")
 def admin_configuration():
     return render_template("admin_configuration.html")
