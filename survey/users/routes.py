@@ -96,9 +96,58 @@ def reset_token(token):
     return render_template("reset_token.html",form=form,title="Reset Password")
 
 
-@users.route("/create_client")
+@users.route("/create_client",methods=['POST','GET'])
 def create_client():
     form = ClientForm()
+    if form.validate_on_submit():
+        post = Postal_address(street_line1=form.mailing_building.data,street_line2=form.mailing_street.data,city=form.mailing_city.data,country=form.mailing_country.data,region=form.mailing_country.data)
+        street = Street_address(street_line1=form.street_building.data,street_line2=form.street_street.data,city=form.street_city.data,country=form.street_country.data,region=form.street_country.data)
+        chair = Board_chairman(first_name=form.chairman_firstname.data,last_name=form.chairman_lastname.data,other_names=form.chairman_other_names.data,email=form.chairman_email.data,mobile_number=form.chairman_phone.data,nationality=form.chairman_nationality.data)
+        ceo = Ceo(first_name=form.ceo_firstname.data,last_name=form.ceo_lastname.data,other_names=form.ceo_other_names.data,email=form.ceo_email.data,mobile_number=form.ceo_phone.data,nationality=form.ceo_nationality.data)
+        key = Key_management(first_name=form.key_firstname.data,last_name=form.key_lastname.data,other_names=form.key_other_names.data,email=form.key_email.data,mobile_number=form.key_phone.data,nationality=form.key_nationality.data)
+        cur_aud = Current_auditor(name=form.current_auditor_name.data,address=form.current_auditor_address.data,city=form.current_auditor_city.data,country=form.current_auditor_country.data)
+        prev_aud = Previous_auditor(name=form.previous_auditor_name.data,address=form.previous_auditor_address.data,city=form.previous_auditor_city.data,country=form.previous_auditor_country.data)
+        con = Contact_person(first_name=form.contact_firstname.data,last_name=form.contact_lastname.data,other_names=form.contact_middlename.data,email=form.c_email.data,mobile_number=form.c_phone.data,nationality=form.contact_nationality.data,date_of_birth=form.contact_dob.data,job=form.job.data)
+        sec = Company_secretary(name=form.company_secretary_name.data,address=form.company_secretary_address.data,city=form.company_secretary_city.data,country=form.company_secretary_country.data)
+        client = Client(
+        company_history = form.company_history.data,
+        company_name = form.name.data,
+        sector = form.sector.data,
+        industry = form.industry.data,
+        area = form.area.data,
+        financial_year_end = form.financial_year_end.data,
+        company_type = form.company_type.data,
+        postal_address = post,
+        street_address = street,
+        reg_number = form.registration.data,
+        vat_number = form.vat.data,
+        tel = form.telephone.data,
+        fax = form.fax.data,
+        company_email = form.email.data,
+        website = form.website.data,
+        date_inc = form.date_of_incorporation.data,
+        country_inc = form.country_of_incorporation.data,
+        board_chairman = chair,
+        ceo = ceo,
+        key_management = key,
+        previous_auditor=prev_aud,
+        current_auditor=cur_aud,
+        company_secretary= sec,
+        contact_person = con)
+        db.session.add(post)
+        db.session.add(street)
+        db.session.add(chair)
+        db.session.add(ceo)
+        db.session.add(key)
+        db.session.add(cur_aud)
+        db.session.add(prev_aud)
+        db.session.add(con)
+        db.session.add(sec)
+        db.session.add(client)
+        db.session.commit()
+
+        flash('Client has successfully been created','success')
+        return redirect(url_for('users.create_client'))
     return render_template("new_create_client.html",form=form,title="Create Client")
 
 

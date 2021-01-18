@@ -23,7 +23,7 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(120), unique=True)
     role = db.Column(db.String(120))
     password = db.Column(db.String(60),  nullable=False)
-    client = db.relationship('Client', backref='client' , lazy=True)
+
     audit_log = db.relationship('Audit_log', backref='log' , lazy=True)
     
 
@@ -52,32 +52,33 @@ class User(db.Model,UserMixin):
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    registered_name = db.Column(db.String(100), unique=True)
-    trading_name = db.Column(db.String(100), unique=True)
+    company_name = db.Column(db.String(100), unique=True)
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
-    sub_industry_id = db.Column(db.Integer, db.ForeignKey('sub_industry.id'))
+    industry_id = db.Column(db.Integer, db.ForeignKey('industry.id'))
+    area_id = db.Column(db.Integer, db.ForeignKey('area.id'))
     financial_year_end = db.Column(db.String(50))
     company_type = db.Column(db.String(50))
     vat_number = db.Column(db.String(11))
-    telephone = db.Column(db.String(10))
-    fax = db.Column(db.String(10))
-    email = db.Column(db.String(100))
+    tel = db.Column(db.String(11))
+    fax = db.Column(db.String(11))
+    company_email = db.Column(db.String(100))
     website = db.Column(db.String(200))
-    date_of_inception = db.Column(db.DateTime)
-    country_of_inception = db.Column(db.String(70))
+    date_inc = db.Column(db.DateTime)
+    country_inc = db.Column(db.String(70))
     contact_person_id = db.Column(db.Integer,  db.ForeignKey('contact_person.id'))
     postal_address_id = db.Column(db.Integer,  db.ForeignKey('postal_address.id'))
     street_address_id = db.Column(db.Integer,   db.ForeignKey('street_address.id'))
     company_history = db.Column(db.Text)
-    user_id = db.Column(db.Integer,  db.ForeignKey('user.id'))
     client_type = db.Column(db.String(50))
-    registration_number = db.Column(db.String(50))
+    reg_number = db.Column(db.String(50))
     tax_id = db.Column(db.String(20))
     board_chairman_id = db.Column(db.Integer,  db.ForeignKey('board_chairman.id'))
+    company_secretary_id = db.Column(db.Integer,  db.ForeignKey('company_secretary.id'))
     ceo_id = db.Column(db.Integer ,  db.ForeignKey('ceo.id') )
     key_management_id = db.Column(db.Integer  ,  db.ForeignKey('key_management.id'))
     current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('current_auditor.id'))
     previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('previous_auditor.id'))
+    
 
     # client_address = db.relationship('Address', backref='client_address' , lazy=True)
     # contact_person = db.relationship('Contact_person', backref='contact' , lazy=True)
@@ -160,6 +161,7 @@ class Contact_person(db.Model):
     mobile_number = db.Column(db.String(20))
     date_of_birth = db.Column(db.DateTime)
     nationality = db.Column(db.String(100))
+    job = db.Column(db.String(100))
     # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
     client = db.relationship('Client', backref='contact_person' , lazy=True)
     
@@ -173,7 +175,7 @@ class Sub_industry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     sub_industry = db.Column(db.String(100))
     industry = db.Column(db.Integer, db.ForeignKey('industry.id'))
-    client = db.relationship('Client', backref='sub_industry' , lazy=True)
+    
     
    
 
@@ -186,7 +188,7 @@ class Industry(db.Model):
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
 
     
-    # sub_industry = db.relationship('Sub_industry', backref='industry' , lazy=True)
+    client = db.relationship('Client', backref='industry' , lazy=True)
     
 
    
@@ -201,7 +203,7 @@ class Area(db.Model):
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
 
     
-    # sub_industry = db.relationship('Sub_industry', backref='industry' , lazy=True)
+    client = db.relationship('Client', backref='area' , lazy=True)
     
 
    
@@ -219,7 +221,7 @@ class Key_management(db.Model):
     email = db.Column(db.String(100))
     mobile_number = db.Column(db.String(20))
     nationality = db.Column(db.String(100))
-    position = db.Column(db.String(100))
+   
     # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
     client = db.relationship('Client', backref='key_management' , lazy=True)
@@ -241,7 +243,7 @@ class Ceo(db.Model):
     email = db.Column(db.String(100))
     mobile_number = db.Column(db.String(20))
     nationality = db.Column(db.String(100))
-    position = db.Column(db.String(100))
+   
     # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
     client = db.relationship('Client', backref='ceo' , lazy=True)
@@ -263,7 +265,7 @@ class Board_chairman(db.Model):
     email = db.Column(db.String(100))
     mobile_number = db.Column(db.String(20))
     nationality = db.Column(db.String(100))
-    position = db.Column(db.String(100))
+    
     # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
     client = db.relationship('Client', backref='board_chairman' , lazy=True)
@@ -401,6 +403,20 @@ class Current_auditor(db.Model):
     country = db.Column(db.String(100))
     # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
     client = db.relationship('Client', backref='current_auditor' , lazy=True)
+
+
+    def __repr__(self):
+        return '<Current_Auditor %r>' % self.id
+
+
+class Company_secretary(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100))
+    address = db.Column(db.String(200))
+    city = db.Column(db.String(100))
+    country = db.Column(db.String(100))
+    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    client = db.relationship('Client', backref='company_secretary' , lazy=True)
 
 
     def __repr__(self):
