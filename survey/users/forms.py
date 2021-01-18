@@ -3,12 +3,160 @@ from wtforms import StringField, PasswordField, SubmitField, BooleanField, Selec
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from survey.models import User
+from wtforms_sqlalchemy.fields import QuerySelectField
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, FieldList, PasswordField, SubmitField, BooleanField, SelectField,FloatField,TextAreaField, DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from survey.models import User
+from survey.models import User,Sector,Industry,Area
+
+def survey_query():
+    return Sector.query
+
+def industry_query():
+    return Industry.query
+
+def area_query():
+    return Area.query
+
+
+
+class ContactForm(FlaskForm):
+   
+    company_name = StringField('Company', validators=[DataRequired()])
+    title =  SelectField(
+        'Title',
+        choices=[('dr', 'Dr.'), ('mr', 'Mr.'),('ms','Ms'),('mrs','Mrs.'),('miss','Miss'),('prof','Prof.')] , validators=[DataRequired()]
+    )
+    firstname = StringField('Firstname', validators=[DataRequired()])
+    lastname = StringField('Lastname', validators=[DataRequired()])
+    email = StringField('Email Adress', validators=[DataRequired()])
+    job_title = StringField('Job Title/Position', validators=[DataRequired()])
+    phone = StringField('Phone Number', validators=[DataRequired()])
+    address_1 = StringField('*Address 1', validators=[DataRequired()])
+    address_2 = StringField('Address 2', validators=[DataRequired()])
+    city = StringField('City/Town', validators=[DataRequired()])
+    country = StringField('Country', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    
+
+
+
+
+
+class CorporateRequestForm(FlaskForm):
+   
+    company_name = StringField('Registered Company Name', validators=[DataRequired()])
+    sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
+    industry = QuerySelectField(query_factory=industry_query,allow_blank=True,get_label='industry')
+    area = QuerySelectField(query_factory=area_query,allow_blank=True,get_label='area')
+
+   
+    financial_year_end = StringField('Financial Year End', validators=[DataRequired()])
+    company_type =  SelectField(
+        'Company Type',
+        choices=[('parent', 'Parent'), ('subsidiary', 'Subsidiary'),('branch','Branch')] , validators=[DataRequired()]
+    )
+    postal_address = StringField('Street Address', validators=[DataRequired()])
+    street_address = StringField('Street Address', validators=[DataRequired()])
+    reg_number = StringField('Company Registration Number', validators=[DataRequired()])
+    vat_number = StringField('VAT Number', validators=[DataRequired()])
+    tel = StringField('Telephone Number', validators=[DataRequired()])
+    fax = StringField('Fax Number', validators=[DataRequired()])
+    company_email = StringField('Company Email', validators=[DataRequired()])
+    website = StringField('Website Address', validators=[DataRequired()])
+    date_inc = DateField('Date of Incorporation', validators=[DataRequired()])
+    country_inc = StringField('Country of Incorporation', validators=[DataRequired()])
+
+    chair_firstname = StringField('Firstname', validators=[DataRequired()])
+    chair_lastname = StringField('Lastname', validators=[DataRequired()])
+    chair_other = StringField('Other Name', validators=[DataRequired()])
+    chair_nation = StringField('Nationality', validators=[DataRequired()])
+    chair_email = StringField('Email', validators=[DataRequired()])
+    chair_phone = StringField('Phone Number', validators=[DataRequired()])
+
+
+    ceo_firstname = StringField('Firstname', validators=[DataRequired()])
+    ceo_lastname = StringField('Lastname', validators=[DataRequired()])
+    ceo_other = StringField('Other Name', validators=[DataRequired()])
+    ceo_nation = StringField('Nationality', validators=[DataRequired()])
+    ceo_email = StringField('Email', validators=[DataRequired()])
+    ceo_phone = StringField('Phone Number', validators=[DataRequired()])
+
+    other_board_firstname = StringField('Firstname', validators=[DataRequired()])
+    other_board_lastname = StringField('Lastname', validators=[DataRequired()])
+    other_board_other = StringField('Other Name', validators=[DataRequired()])
+    other_board_nation = StringField('Nationality', validators=[DataRequired()])
+    other_board_email = StringField('Email', validators=[DataRequired()])
+    other_board_phone = StringField('Phone Number', validators=[DataRequired()])
+
+    key_firstname = StringField('Firstname', validators=[DataRequired()])
+    key_lastname = StringField('Lastname', validators=[DataRequired()])
+    key_other = StringField('Other Name', validators=[DataRequired()])
+    key_nation = StringField('Nationality', validators=[DataRequired()])
+    key_email = StringField('Email', validators=[DataRequired()])
+    key_phone = StringField('Phone Number', validators=[DataRequired()])
+
+
+    prev_name = StringField('Name', validators=[DataRequired()])
+    prev_address = StringField('Address', validators=[DataRequired()])
+    prev_city = StringField('City', validators=[DataRequired()])
+    prev_country = StringField('Country', validators=[DataRequired()])
+    
+    current_name = StringField('Name', validators=[DataRequired()])
+    current_address = StringField('Address', validators=[DataRequired()])
+    current_city = StringField('City', validators=[DataRequired()])
+    current_country = StringField('Country', validators=[DataRequired()])
+    
+
+    sec_name = StringField('Name', validators=[DataRequired()])
+    sec_address = StringField('Address', validators=[DataRequired()])
+    sec_city = StringField('City', validators=[DataRequired()])
+    sec_country = StringField('Country', validators=[DataRequired()])
+
+
+    contact_firstname = StringField('Firstname', validators=[DataRequired()])
+    contact_lastname = StringField('Lastname', validators=[DataRequired()])
+    contact_other = StringField('Other Name', validators=[DataRequired()])
+    contact_nation = StringField('Nationality', validators=[DataRequired()])
+    contact_email = StringField('Email', validators=[DataRequired()])
+    contact_dob = DateField('Date of Birth', validators=[DataRequired()])
+    contact_phone = StringField('Phone Number', validators=[DataRequired()])
+
+    brief_history = TextAreaField('Brief History', validators=[DataRequired()])
+    service =  SelectField(
+        'Select Service',
+        choices=[('survey', 'Salary_Survey')] , validators=[DataRequired()]
+    )
+   
+
+
+    submit = SubmitField('Submit')
+
+class IndividualRequestForm(FlaskForm):
+    firstname = StringField('Firstname', validators=[DataRequired()])
+    lastname = StringField('Lastname', validators=[DataRequired()])
+    other = StringField('Other Name', validators=[DataRequired()])
+
+    email = StringField('Email', validators=[DataRequired()])
+    dob = DateField('Date of Birth')
+    phone = StringField('Phone Number', validators=[DataRequired()])
+    address = TextAreaField('Address', validators=[DataRequired()])
+
+    city = StringField('City', validators=[DataRequired()])
+    country = StringField('Country', validators=[DataRequired()])
+    service =  SelectField(
+        'Select Service',
+        choices=[('industry_reports', 'Industry Reports'),('sub_industry_reports', 'Sub-Industry Reports'),('job_specific_reports', 'Job Specific Reports')] , validators=[DataRequired()]
+    )
+    submit = SubmitField('Submit')
+
+
+
+
+
+
 
 class QualForm(FlaskForm):
     
@@ -424,7 +572,7 @@ class RegistrationForm(FlaskForm):
 
     role =  SelectField(
         'Role',
-        choices=[('admin', 'Admin'), ('client', 'Client')] , validators=[DataRequired()]
+        choices=[('admin', 'Admin'), ('client', 'Client'), ('associate', 'Associate'), ('manager', 'Manager'), ('director', 'Director')] , validators=[DataRequired()]
     )
     password = PasswordField('Password', validators=[DataRequired()])
     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])

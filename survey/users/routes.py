@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint
 from survey import db,bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -236,8 +236,7 @@ def quantitative_overview():
 
 @users.route("/my_surveys/view_survey/qualitative")
 def qualitative_overview():
-    form = QualForm()
-    return render_template("qualitative_survey_overview.html",form=form)
+    return render_template("qualitative_survey_overview.html")
 
 @users.route("/administration")
 def admin_home():
@@ -264,6 +263,10 @@ def admin_service_requests():
 def admin_reports():
     return render_template("new_admin_reports.html")
 
+@users.route("/administration/client_hub")
+def client_hub():
+    return render_template("client_hub.html")
+
 @users.route("/administration/configuration")
 def admin_configuration():
     return render_template("admin_configuration.html")
@@ -285,16 +288,10 @@ def quantitative_survey():
     form = SurveyForm()
     return render_template("quantitative_survey.html",form=form)
 
-@users.route("/requests/corporate")
-def corporate_requests():
-    
-    return render_template("corporate_request.html")
 
 
-@users.route("/requests/individual")
-def individual_requests():
-    
-    return render_template("individual_request.html")
+
+
 
 @users.route("/user/profile")
 def update_profile():

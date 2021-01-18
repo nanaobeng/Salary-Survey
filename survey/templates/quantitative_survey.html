@@ -245,6 +245,43 @@
       </div>
 
 
+<<<<<<< HEAD
+        </div>
+        <div class="col-4 pt-4 ">
+          <span ><b class="green_shade"><b>
+            {{ form.base_salary.label(class="form-control-label") }}
+  
+              {% if form.base_salary.errors %}
+              {{ form.base_salary(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.base_salary.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.base_salary(class="form-control form-control") }}
+              {% endif %}
+  
+              
+          </div>
+          
+
+       
+       
+         
+  
+          </div>
+      </div>
+<div class="row">
+  <div class="col-sm-12  pt-4">
+    <div class="row">
+      <div class="col-6 ">
+        <span class="btn btn-outline-success" onclick="switchback('survey_details')"> Back </span>
+        
+      </div>
+      <div class="col-6 text-right">
+        <span class="btn btn-outline-success" onclick="switchnext('survey_details')"> Next </span>
+=======
       <div class="col-md-9 col-sm-12 p-4">
 
 
@@ -267,9 +304,19 @@
 
                     </div>
 
+>>>>>>> f89613998d9862c88384245add2ee9da6426592d
 
                   </div>
                 </div>
+
+</div>
+  </div>
+
+
+  
+
+
+
 
 
                 <div class="col-6 pb-4">
