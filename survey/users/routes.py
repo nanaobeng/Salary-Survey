@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint
+from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json
 from survey import db,bcrypt
 from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm
 from survey.models import *
@@ -106,11 +106,39 @@ def create_client():
 def create_contact():
     return render_template("contact_person.html")
 
-@users.route("/create_sector")
+@users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
     form = SectorForm()
     sectors = Sector.query.all()
-    return render_template("create_sector.html",form=form,title="Create Sector", sectors = sectors)
+    if form.validate_on_submit():
+       new_sector = Sector(sector=form.name.data)
+       db.session.add(new_sector)
+       db.session.commit()
+       flash('Sector Created','success')
+       return redirect(url_for('users.create_sector'))
+    return render_template("create_sector.html",form=form,title="Create Sector", Sectors=sectors)
+
+
+@app.route("/sector/<int:sector_id>/delete", methods=['POST'])
+@login_required
+def delete_sector(sector_id):
+    sector = Sector.query.get_or_404(sector_id)
+    db.session.delete(sector)
+    db.session.commit()
+    flash('Sector Deleted', 'success')
+    return redirect(url_for('users.create_sector'))
+
+
+@users.route("/sector/view", methods = ['POST','GET'])
+@login_required
+def view_sector():
+    sector_id = request.form['id']
+    sector = Sector.query.get(sector_id)
+
+    data = []
+    data.append({'id':sector.id, 'sector':sector.sector})
+    return jsonify(data)
+    return redirect(url_for('users.create_sector'))
 
 @users.route("/create_job")
 def create_job():

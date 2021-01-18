@@ -11,20 +11,48 @@ Sectors
       <td></td>
   </thead>
   <tbody>
-      <tr>
-          <td>Private</td>
-          <td><i class="fas fa-eye"></i></td>
-      </tr>
-      <tr>
-          <td>Public</td>
-          <td><i class="fas fa-eye"></i></td>
-      </tr>
+    {% for sector in Sectors %}
+    <tr>
+      <td>{{sector.sector}}</td>
+      <td>
+        <!-- <form action="{{ url_for('delete_sector', sector_id=sector.id)}}" method="POST">
+          <span type="submit"><i class="fas fa-edit"></i></span>
+        </form> -->
+        <span type="" data-id="{{sector.id}}" onclick="editSector(this)"><i class="fas fa-edit"></i></span>
+        <!-- <form action="{{ url_for('delete_sector', sector_id=sector.id)}}" method="POST"> -->
+          <span type="" data-id="{{sector.id}}" onclick="deleteSector(this)"><i class="fas fa-trash"></i></span>
+        <!-- </form> -->
+         </td>
+  </tr>
+    {% endfor %}
   </tbody>
 </table>
 <div class="row justify-content-center">
   <button class="btn btn-info" data-toggle="modal" data-target="#sector" >New Sector</button>
 </div>
 
+<script>
+  function editSector(elm){
+    //$('#delete').modal('show')
+    localStorage.setItem('editId',$(elm).attr('data-id'));
+    
+    $.ajax({
+      url: '/sector/view',
+      data: {
+          id: $(elm).attr('data-id')
+      },
+      type: 'POST',
+      success: function(res) {
+          $('#name').val(res[0].sector)
+          $('#update_sector').modal('show')
+          console.log(res);
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+  }
+</script>
 
 <!-- Modal for creating new Sector -->
 <div class="modal fade " id="sector" tabindex="-1" role="dialog">
@@ -61,24 +89,94 @@ Sectors
                       </div>
                     </div>
                   </div>
-               
-                  Choose a City<SELECT name="city">
-                    {% for c in sectors %}
-                      <OPTION value={{c.name}}>{{c.name}}</option>
-                    {% endfor %}
-                    </SELECT>
             
-                  </form>
+                 
               </div>
           </div>
       <div class="modal-footer">
         <div class="form-group">
           {{ form.submit(class="btn btn-outline-info") }}
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+<!-- Modal for Updating Sector -->
+<div class="modal fade " id="update_sector" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Create Sector</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+            <form method="POST" action="" class="col-12">
+              {{ form.hidden_tag() }}
+             
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                          {{ form.name.label(class="form-control-label") }}
+              
+                          {% if form.name.errors %}
+                          {{ form.name(class="form-control form-control is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.name.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.name(class="form-control form-control") }}
+                          {% endif %}
+              
+                          
+                      </div>
+                    </div>
+                  </div>
+            
+                 
+              </div>
+          </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          {{ form.submit(class="btn btn-outline-info") }}
+        </form>
+        </div>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+<div class="modal" tabindex="-1" role="dialog" id="delete">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content modal-sm">
+      <div class="modal-header bg-info">
+        <span class="text-white">Confirm</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>Do you want to delete sector?</span>
+      </div>
+      <div class="modal-footer">
+  
+          <button type="button" class="btn btn-sm btn-success">Yes</button>
+       
+        <button type="button" class="btn btn-sm btn-success">Yes</button>
+        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
       </div>
     </div>
   </div>
 </div>
-
 
 
 {% endblock content %}
