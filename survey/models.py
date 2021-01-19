@@ -23,7 +23,7 @@ class User(db.Model,UserMixin):
     email = db.Column(db.String(120), unique=True)
     role = db.Column(db.String(120))
     password = db.Column(db.String(60),  nullable=False)
-
+    client = db.relationship('Client', backref='user' , lazy=True)
     audit_log = db.relationship('Audit_log', backref='log' , lazy=True)
     
 
@@ -68,6 +68,7 @@ class Client(db.Model):
     contact_person_id = db.Column(db.Integer,  db.ForeignKey('contact_person.id'))
     postal_address_id = db.Column(db.Integer,  db.ForeignKey('postal_address.id'))
     street_address_id = db.Column(db.Integer,   db.ForeignKey('street_address.id'))
+    user_id = db.Column(db.Integer,   db.ForeignKey('user.id'))
     company_history = db.Column(db.Text)
     client_type = db.Column(db.String(50))
     reg_number = db.Column(db.String(50))

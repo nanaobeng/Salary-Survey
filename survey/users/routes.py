@@ -98,6 +98,7 @@ def reset_token(token):
 
 @users.route("/create_client",methods=['POST','GET'])
 def create_client():
+    usn = current_user
     form = ClientForm()
     if form.validate_on_submit():
         post = Postal_address(street_line1=form.mailing_building.data,street_line2=form.mailing_street.data,city=form.mailing_city.data,country=form.mailing_country.data,region=form.mailing_country.data)
@@ -112,6 +113,7 @@ def create_client():
         client = Client(
         company_history = form.company_history.data,
         company_name = form.name.data,
+        user = usn,
         sector = form.sector.data,
         industry = form.industry.data,
         area = form.area.data,
@@ -301,7 +303,8 @@ def admin_benchmarl():
 
 @users.route("/administration/clients")
 def admin_clients():
-    return render_template("new_view_client.html")
+    query = Client.query.all()
+    return render_template("new_view_client.html",query=query)
 
 @users.route("/administration/service_requests")
 def admin_service_requests():
@@ -409,11 +412,16 @@ def view_client():
 
     return render_template("new_view_client_info.html")
 
-@users.route("/administration/edit_client")
-def edit_client():
+@users.route("/administration/edit_client/<int:id>",methods=['POST','GET'])
+def edit_client(id):
+    client = Client.query.get_or_404(id)
+    if request.method == 'POST':
+        fn = request.form['company_name']
+        return render_template('account.html',fn=fn)
+      
     
 
-    return render_template("new_edit_client.html")
+    return render_template("new_edit_client.html",client=client)
 
 @users.route("/my_benchmark_jobs/edit")
 def edit_benchmark():
