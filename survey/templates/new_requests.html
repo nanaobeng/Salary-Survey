@@ -498,7 +498,8 @@
 
               <div class="form-check">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="pending" name="status" value="pending">Pending
+                  <input type="radio" class="form-check-input" id="pending" name="status" value="pending"
+                    checked>Pending
                 </label>
               </div>
 
@@ -538,21 +539,24 @@
               </div>
 
             </div>
+
+            <hr>
+
+            <div class="form-group">
+              <p>Comments:
+                <ol style="color: gray;">
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                </ol>
+              </p>
+              <label style="font-size: smaller; font-style: italic;">Add New Comment
+                <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;" ></textarea>
+              </label>
+            </div>
           </form>
         </div>
-        <!-- <div>
-          <p>Update Request Status:</p>
-          <input type="radio" id="submitted" name="status" value="submitted">
-          <label for="submitted">Submitted For Approval</label><br>
-          <p>Add comment:</p>
-          <textarea></textarea>
-          <input type="radio" id="pending" name="status" value="pending">
-          <label for="pending">Pending</label><br>
-          <input type="radio" id="awaiting" name="status" value="awaiting">
-          <label for="awaiting">Awaiting Client Information</label>
-          <input type="radio" id="conflictcheck" name="status" value="conflictcheck">
-          <label for="conflictcheck">Conflict Check</label>
-        </div> -->
+
 
       </div>
       <div class="modal-footer">
