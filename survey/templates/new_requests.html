@@ -99,7 +99,7 @@
   }
 </style>
 
-
+<!--Header-->
 <div class="row">
   <div class="col-12">
     <section id="hero" class="d-flex align-items-center justify-content-center">
@@ -111,50 +111,70 @@
   </div>
 </div>
 
+
+<!--Body-->
+<div class="py-5">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8">
+        <input type="text" id="searchbar" onkeyup="myFunction()" placeholder="Search Requests">
+        <button id="searchbutton" type="submit"><i class="fa fa-search"></i></button>
+      </div>
+      <div class="col-md-4">
+        <span>Filter View</span>
+        <i class="fa fa-sliders"></i>
+      </div>
+    </div>
+  </div>
+</div>
+
 <div class="py-5">
   <div class="container">
     <div class="row hidden-md-up">
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
             <span class="badge badge-success">Submitted For Approval</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
             <a class="stretched-link" href=#>
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
             <span class="badge badge-secondary">Pending</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
             <a class="stretched-link" href=#>
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
             <span class="badge badge-warning">Awaiting Client Information</span>
           </div>
         </div>
@@ -163,46 +183,49 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
             <a class="stretched-link" href=#>
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-            <span class="badge badge-primary">Undergoing Risk Processes</span>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
+            <span class="badge badge-info">First Pass</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
             <a class="stretched-link" href=#>
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-            <span class="badge badge-primary">Undergoing Risk Processes</span>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
+            <span class="badge badge-danger">Conflict Check</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
             <a class="stretched-link" href=#>
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-            <span class="badge badge-secondary">Pending</span>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
+            <span class="badge badge-primary">Finish Completion</span>
           </div>
         </div>
       </div>
@@ -435,6 +458,111 @@
 
 </div> -->
 
+<!-- Modal -->
+<div class="modal fade" id="viewRequestModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header d-block">
+        <div class="d-flex">
+          <h4 class="modal-title">Company Name</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <h6 style="color: gray;" class="modal-title">Request Title</h5>
+      </div>
+      <div class="modal-body">
+        <!--Request Description-->
+        <div>
+          <p>Assigned To: </p>
+          <p>Date Assigned: </p>
+          <p style="color: gray;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lobortis convallis sagittis. Pellentesque
+            tempus turpis eu urna varius, ut hendrerit lectus auctor. Nam convallis erat nec justo tincidunt, ut
+            ultrices felis dignissim. Proin finibus diam at neque pharetra, ut ornare nisi aliquet. Cras et justo non
+            odio semper vehicula sit amet quis neque. Etiam volutpat a tortor eu egestas. Quisque ultricies condimentum
+            sapien, a suscipit lacus consectetur rutrum. Fusce sodales aliquam erat vel faucibus. Pellentesque porta,
+            neque a ultrices hendrerit, tellus massa efficitur felis, at aliquam diam metus et eros.
+          </p>
+        </div>
+
+        <hr>
+
+        <!--Change Status / Add Comments-->
+        <div>
+          <form>
+            <div class="form-group">
+              <label>Update Request Status</label>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="pending" name="status" value="pending">Pending
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="requesting" name="status"
+                    value="requesting">Requesting Client Information
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="firstpass" name="status" value="firstpass">Undergoing
+                  Risk Processes: First Pass
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="conflictcheck" name="status"
+                    value="conflictcheck">Undergoing Risk Processes: Conflict Check
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="finishcompletion" name="status"
+                    value="finishcompletion">Undergoing Risk Processes: Finish Completion
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="submitted" name="status" value="submitted">Submitted
+                  For Approval
+                </label>
+              </div>
+
+            </div>
+          </form>
+        </div>
+        <!-- <div>
+          <p>Update Request Status:</p>
+          <input type="radio" id="submitted" name="status" value="submitted">
+          <label for="submitted">Submitted For Approval</label><br>
+          <p>Add comment:</p>
+          <textarea></textarea>
+          <input type="radio" id="pending" name="status" value="pending">
+          <label for="pending">Pending</label><br>
+          <input type="radio" id="awaiting" name="status" value="awaiting">
+          <label for="awaiting">Awaiting Client Information</label>
+          <input type="radio" id="conflictcheck" name="status" value="conflictcheck">
+          <label for="conflictcheck">Conflict Check</label>
+        </div> -->
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 <script>
