@@ -249,11 +249,17 @@ line-height: 24px;
         <label class="green_shade"><b>Sector</b></label>
         <div class="form-group">
 
-          <select class="form-control" id="sel1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+          <select class="form-control" name="sector">
+            {% for sec in sector %}
+
+            {% if sec.id == client.sector.id %}
+            <option value="{{sec.id}}" selected>{{sec.sector}}</option>
+            {% else %}
+            <option value="{{sec.id}}">{{sec.sector}}</option>
+            {% endif %}
+
+        
+            {% endfor %}
           </select>
         </div>
       </div>
@@ -264,11 +270,17 @@ line-height: 24px;
         <label class="green_shade"><b>Industry</b></label>
         <div class="form-group">
 
-          <select class="form-control" id="sel1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+          <select class="form-control" name="industry">
+            {% for ind in industry %}
+
+            {% if ind.id == client.industry.id %}
+            <option value="{{ind.id}}" selected>{{ind.industry}}</option>
+            {% else %}
+            <option value="{{ind.id}}">{{ind.industry}}</option>
+            {% endif %}
+
+        
+            {% endfor %}
           </select>
         </div>
       </div>
@@ -279,11 +291,17 @@ line-height: 24px;
         <label class="green_shade"><b>Area of Operation</b></label>
         <div class="form-group">
 
-          <select class="form-control" id="sel1">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+          <select class="form-control" name="area">
+            {% for ar in area %}
+
+            {% if ar.id == client.area.id %}
+            <option  value="{{ar.id}}" selected>{{ar.area}}</option>
+            {% else %}
+            <option value="{{ar.id}}">{{ar.area}}</option>
+            {% endif %}
+
+        
+            {% endfor %}
           </select>
         </div>
       </div>
@@ -292,60 +310,60 @@ line-height: 24px;
       <div class="col-4 p-4">
       
         <label class="green_shade"><b>Financial Year End</b></label>
-        <input type="text" class="form-control" value="{{client.financial_year_end}}" />
+        <input type="text" class="form-control" name="financial_year_end" value="{{client.financial_year_end}}" />
       </div>
 
 
       <div class="col-4 p-4">
       
         <label class="green_shade"><b>Company Type</b></label>
-        <input type="text" class="form-control"  value="{{client.company_type}}"/>
+        <input type="text" class="form-control"  name="company_type" value="{{client.company_type}}"/>
       </div>
 
 
       <div class="col-4 p-4">
       
         <label class="green_shade"><b>VAT Number</b></label>
-        <input type="text" class="form-control" value="{{client.vat}}"/>
+        <input type="text" class="form-control" name="vat" value="{{client.vat}}"/>
       </div>
        
 
       <div class="col-4 p-4 ">
       
         <label class="green_shade"><b>Telephone</b></label>
-        <input type="text" class="form-control" value="{{client.tel}}"/>
+        <input type="text" class="form-control" name="tel" value="{{client.tel}}"/>
       </div>
 
 
       <div class="col-4 p-4">
       
         <label class="green_shade"><b>Fax Number</b></label>
-        <input type="text" class="form-control" value="{{client.fax}}"/>
+        <input type="text" class="form-control" name="fax" value="{{client.fax}}"/>
       </div>
 
       <div class="col-4 p-4">
       
         <label class="green_shade"><b>Email Address</b></label>
-        <input type="text" class="form-control" value="{{client.company_email}}"/>
+        <input type="text" class="form-control" name="email" value="{{client.company_email}}"/>
       </div>
 
       <div class="col-6 p-4">
       
         <label class="green_shade"><b>Website Address</b></label>
-        <input type="text" class="form-control" value="{{client.website}}" />
+        <input type="text" class="form-control" name="website" value="{{client.website}}" />
       </div>
 
 
       <div class="col-6 p-4 ">
       
         <label class="green_shade"><b>Date of Incorporation</b></label>
-        <input type="text" class="form-control" value="{{client.date_inc}}" />
+        <input type="date" class="form-control" name="date_inc" value="{{client.date_inc.strftime('%Y-%m-%d')}}" />
       </div>
 
       <div class="col-4 p-4">
         <span style="color:grey;font-size: 12px;"><b>Question 1/5</b></span><br>
         <label class="green_shade"><b>Country of Incorporation</b></label>
-        <input type="text" class="form-control" value="{{client.country_inc}}"/>
+        <input type="text" class="form-control" name="country_inc" value="{{client.country_inc}}"/>
       </div>
 
         </div>
@@ -418,7 +436,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Firstname</b></label>
-            <input type="text" class="form-control" value="{{client.board_chairman.first_name}}">
+            <input type="text" class="form-control" name="chairman_firstname" value="{{client.board_chairman.first_name}}">
           </div>
 
         </div>
@@ -427,7 +445,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Lastname</b></label>
-            <input type="text" class="form-control" value="{{client.board_chairman.last_name}}">
+            <input type="text" class="form-control" name="chairman_lastname" value="{{client.board_chairman.last_name}}">
           </div>
 
         </div>
@@ -436,7 +454,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Other Name</b></label>
-            <input type="text" class="form-control" value="{{client.board_chairman.other_names}}">
+            <input type="text" class="form-control" name="chairman_other_names" value="{{client.board_chairman.other_names}}">
           </div>
 
         </div>
@@ -445,7 +463,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Email Address</b></label>
-            <input type="text" class="form-control" value="{{client.board_chairman.email}}">
+            <input type="text" class="form-control" name="chairman_email" value="{{client.board_chairman.email}}">
           </div>
 
         </div>
@@ -454,7 +472,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Nationality</b></label>
-            <input type="text" class="form-control" value="{{client.board_chairman.nationality}}">
+            <input type="text" class="form-control" name="chairman_nationality" value="{{client.board_chairman.nationality}}">
           </div>
 
         </div>
@@ -463,7 +481,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Phone Number</b></label>
-            <input type="text" class="form-control" value="{{client.board_chairman.mobile_number}}">
+            <input type="text" class="form-control" name="chairman_phone" value="{{client.board_chairman.mobile_number}}">
           </div>
 
         </div>
@@ -534,7 +552,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Firstname</b></label>
-              <input type="text" class="form-control" value="{{client.ceo.first_name}}">
+              <input type="text" class="form-control" name="ceo_firstname" value="{{client.ceo.first_name}}">
             </div>
 
           </div>
@@ -543,7 +561,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Lastname</b></label>
-              <input type="text" class="form-control" value="{{client.ceo.last_name}}">
+              <input type="text" class="form-control" name="ceo_lastname" value="{{client.ceo.last_name}}">
             </div>
 
           </div>
@@ -552,7 +570,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Other Name</b></label>
-              <input type="text" class="form-control" value="{{client.ceo.other_names}}">
+              <input type="text" class="form-control" name="ceo_other_names" value="{{client.ceo.other_names}}">
             </div>
 
           </div>
@@ -561,7 +579,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Email Address</b></label>
-              <input type="text" class="form-control" value="{{client.ceo.email}}">
+              <input type="text" class="form-control" name="ceo_email" value="{{client.ceo.email}}">
             </div>
 
           </div>
@@ -570,7 +588,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Nationality</b></label>
-              <input type="text" class="form-control" value="{{client.ceo.nationality}}">
+              <input type="text" class="form-control" name="ceo_nationality" value="{{client.ceo.nationality}}">
             </div>
 
           </div>
@@ -579,7 +597,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Phone Number</b></label>
-              <input type="text" class="form-control" value="{{client.ceo.mobile_number}}">
+              <input type="text" class="form-control" name="ceo_phone" value="{{client.ceo.mobile_number}}">
             </div>
 
           </div>
@@ -649,7 +667,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Firstname</b></label>
-            <input type="text" class="form-control" value="{{client.key_management.first_name}}">
+            <input type="text" class="form-control" name="key_firstname" value="{{client.key_management.first_name}}">
           </div>
 
         </div>
@@ -658,7 +676,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Lastname</b></label>
-            <input type="text" class="form-control" value="{{client.key_management.last_name}}">
+            <input type="text" class="form-control" name="key_lastname" value="{{client.key_management.last_name}}">
           </div>
 
         </div>
@@ -667,7 +685,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Other Name</b></label>
-            <input type="text" class="form-control" value="{{client.key_management.other_names}}">
+            <input type="text" class="form-control" name="key_other_names" value="{{client.key_management.other_names}}">
           </div>
 
         </div>
@@ -676,7 +694,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Email Address</b></label>
-            <input type="text" class="form-control" value="{{client.key_management.email}}">
+            <input type="text" class="form-control" name="key_email" value="{{client.key_management.email}}">
           </div>
 
         </div>
@@ -685,7 +703,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Nationality</b></label>
-            <input type="text" class="form-control" value="{{client.key_management.nationality}}">
+            <input type="text" class="form-control" name="key_nationality" value="{{client.key_management.nationality}}">
           </div>
 
         </div>
@@ -694,7 +712,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Phone Number</b></label>
-            <input type="text" class="form-control" value="{{client.key_management.mobile_number}}">
+            <input type="text" class="form-control" name="key_phone" value="{{client.key_management.mobile_number}}">
           </div>
 
         </div>
@@ -762,7 +780,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Name</b></label>
-            <input type="text" class="form-control" value="{{client.previous_auditor.name}}">
+            <input type="text" class="form-control" name="previous_auditor_name" value="{{client.previous_auditor.name}}">
           </div>
 
         </div>
@@ -771,7 +789,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Address</b></label>
-            <input type="text" class="form-control" value="{{client.previous_auditor.address}}">
+            <input type="text" class="form-control" name="previous_auditor_address" value="{{client.previous_auditor.address}}">
           </div>
 
         </div>
@@ -780,7 +798,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City</b></label>
-            <input type="text" class="form-control" value="{{client.previous_auditor.city}}">
+            <input type="text" class="form-control" name="previous_auditor_city" value="{{client.previous_auditor.city}}">
           </div>
 
         </div>
@@ -789,7 +807,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" value="{{client.previous_auditor.country}}">
+            <input type="text" class="form-control" name="previous_auditor_country" value="{{client.previous_auditor.country}}">
           </div>
 
         </div>
@@ -864,7 +882,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Name</b></label>
-            <input type="text" class="form-control" value="{{client.current_auditor.name}}">
+            <input type="text" class="form-control" name="current_auditor_name" value="{{client.current_auditor.name}}">
           </div>
 
         </div>
@@ -873,7 +891,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Address</b></label>
-            <input type="text" class="form-control" value="{{client.current_auditor.address}}">
+            <input type="text" class="form-control" name="current_auditor_address" value="{{client.current_auditor.address}}">
           </div>
 
         </div>
@@ -882,7 +900,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City</b></label>
-            <input type="text" class="form-control" value="{{client.current_auditor.city}}">
+            <input type="text" class="form-control" name="current_auditor_city" value="{{client.current_auditor.city}}">
           </div>
 
         </div>
@@ -891,7 +909,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" value="{{client.current_auditor.country}}">
+            <input type="text" class="form-control" name="current_auditor_country" value="{{client.current_auditor.country}}">
           </div>
 
         </div>
@@ -967,7 +985,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Name</b></label>
-            <input type="text" class="form-control" value="{{client.company_secretary.name}}">
+            <input type="text" class="form-control" name="company_secretary_name" value="{{client.company_secretary.name}}">
           </div>
 
         </div>
@@ -976,7 +994,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Address</b></label>
-            <input type="text" class="form-control" value="{{client.company_secretary.address}}">
+            <input type="text" class="form-control" name="company_secretary_address" value="{{client.company_secretary.address}}">
           </div>
 
         </div>
@@ -985,7 +1003,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City</b></label>
-            <input type="text" class="form-control" value="{{client.company_secretary.city}}">
+            <input type="text" class="form-control" name="company_secretary_city" value="{{client.company_secretary.city}}">
           </div>
 
         </div>
@@ -994,7 +1012,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" value="{{client.company_secretary.country}}">
+            <input type="text" class="form-control" name="company_secretary_country" value="{{client.company_secretary.country}}">
           </div>
 
         </div>
@@ -1066,7 +1084,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Street line 1</b></label>
-            <textarea cols="3" rows="3" class="form-control">{{client.postal_address.street_line1}}</textarea>
+            <textarea cols="3" rows="3"  name="mailing_building" class="form-control">{{client.postal_address.street_line1}}</textarea>
           </div>
 
         </div>
@@ -1075,7 +1093,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Street line 2</b></label>
-            <textarea cols="3" rows="3" class="form-control">{{client.postal_address.street_line2}}</textarea>
+            <textarea cols="3" rows="3" name="mailing_street" class="form-control">{{client.postal_address.street_line2}}</textarea>
           </div>
 
         </div>
@@ -1084,7 +1102,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City/Town</b></label>
-            <input type="text" class="form-control" value="{{client.postal_address.city}}">
+            <input type="text" class="form-control"  name="mailing_city"value="{{client.postal_address.city}}">
           </div>
 
         </div>
@@ -1093,7 +1111,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Region</b></label>
-            <input type="text" class="form-control" value="{{client.postal_address.region}}">
+            <input type="text" class="form-control" name="mailing_region" value="{{client.postal_address.region}}">
           </div>
 
         </div>
@@ -1102,7 +1120,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" value="{{client.postal_address.country}}">
+            <input type="text" class="form-control" name="mailing_country" value="{{client.postal_address.country}}">
           </div>
 
         </div>
@@ -1164,7 +1182,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Building</b></label>
-            <textarea cols="2" rows="2" class="form-control">{{client.street_address.streetline1}}</textarea>
+            <textarea cols="2" rows="2" name="street_building" class="form-control">{{client.street_address.streetline1}}</textarea>
           </div>
 
         </div>
@@ -1173,27 +1191,34 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Street</b></label>
-            <textarea cols="2" rows="2" class="form-control">{{client.street_address.street_line2}}</textarea>
+            <textarea cols="2" rows="2" name="street_street" class="form-control">{{client.street_address.street_line2}}</textarea>
           </div>
 
         </div>
 
-        <div class="col-6">
+        <div class="col-4">
           
           <div class="form-group">
             <label class="green_shade"><b>City/Town</b></label>
-            <input type="text" class="form-control" value="{{client.street_address.city}}">
+            <input type="text" class="form-control" name="street_city" value="{{client.street_address.city}}">
           </div>
 
         </div>
 
+        <div class="col-4 ">
+          
+          <div class="form-group">
+            <label class="green_shade"><b>Region</b></label>
+            <input type="text" class="form-control" name="street_region" value="{{client.street_address.country}}">
+          </div>
 
+        </div>
 
-        <div class="col-6 ">
+        <div class="col-4 ">
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" value="{{client.street_address.country}}">
+            <input type="text" class="form-control" name="street_country" value="{{client.street_address.country}}">
           </div>
 
         </div>
@@ -1258,7 +1283,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Registration Number</b></label>
-            <input type="text" class="form-control" value="{{client.reg_number}}">
+            <input type="text" class="form-control"  name="reg_number"  value="{{client.reg_number}}">
           </div>
 
         </div>
@@ -1267,7 +1292,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Tax ID</b></label>
-            <input type="text" class="form-control" value="{{client.tax_id}}">
+            <input type="text" class="form-control" name="tax_id" value="{{client.tax_id}}">
           </div>
 
         </div>
@@ -1331,7 +1356,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Firstname</b></label>
-          <input type="text" class="form-control" value="{{client.contact_person.first_name}}"/>
+          <input type="text" class="form-control" name="contact_firstname" value="{{client.contact_person.first_name}}"/>
           </div>
 
         </div>
@@ -1340,7 +1365,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Lastname</b></label>
-            <input type="text" class="form-control" value="{{client.contact_person.last_name}}"/>
+            <input type="text" class="form-control" name="contact_lastname" value="{{client.contact_person.last_name}}"/>
           </div>
 
         </div>
@@ -1348,8 +1373,8 @@ line-height: 24px;
         <div class="col-5 ">
           
           <div class="form-group">
-            <label class="green_shade"><b>Other Name</b></label>
-            <input type="text" class="form-control" value="{{client.contact_person.other_names}}"/>
+            <label class="green_shade"><b>Other Names</b></label>
+            <input type="text" class="form-control" name="contact_other_names" value="{{client.contact_person.other_names}}"/>
           </div>
 
         </div>
@@ -1358,7 +1383,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Job Title</b></label>
-            <input type="text" class="form-control" value="{{client.contact_person.job}}">
+            <input type="text" class="form-control" name="contact_job" value="{{client.contact_person.job}}">
           </div>
 
         </div>
@@ -1367,7 +1392,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Email Address</b></label>
-            <input type="text" class="form-control" value="{{client.contact_person.email}}">
+            <input type="text" class="form-control" name="contact_email" value="{{client.contact_person.email}}">
           </div>
 
         </div>
@@ -1376,7 +1401,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Phone</b></label>
-            <input type="text" class="form-control" value="{{client.contact_person.mobile_number}}">
+            <input type="text" class="form-control" name="contact_phone" value="{{client.contact_person.mobile_number}}">
           </div>
 
         </div>
@@ -1385,7 +1410,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Date of Birth</b></label>
-            <input type="text" class="form-control" value="{{client.contact_person.date_of_biirth}}">
+            <input type="date" class="form-control" name="contact_dob" value="{{client.contact_person.date_of_birth.strftime('%Y-%m-%d')}}">
           </div>
 
         </div>
@@ -1394,7 +1419,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Nationality</b></label>
-            <input type="text" class="form-control" value="{{client.contact_person.nationality}}">
+            <input type="text" class="form-control" name="contact_nationality" value="{{client.contact_person.nationality}}">
           </div>
 
         </div>

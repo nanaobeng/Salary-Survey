@@ -4,7 +4,7 @@ from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, Re
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
-
+from datetime import datetime
 users = Blueprint('users',__name__)
 
 
@@ -100,6 +100,7 @@ def reset_token(token):
 def create_client():
     usn = current_user
     form = ClientForm()
+    
     if form.validate_on_submit():
         post = Postal_address(street_line1=form.mailing_building.data,street_line2=form.mailing_street.data,city=form.mailing_city.data,country=form.mailing_country.data,region=form.mailing_country.data)
         street = Street_address(street_line1=form.street_building.data,street_line2=form.street_street.data,city=form.street_city.data,country=form.street_country.data,region=form.street_country.data)
@@ -406,22 +407,95 @@ def review_benchmark():
 
     return render_template("review_benchmark.html")
 
-@users.route("/administration/view_client")
-def view_client():
+@users.route("/administration/view_client/<int:id>")
+def view_client(id):
+    client = Client.query.get_or_404(id)
     
 
-    return render_template("new_view_client_info.html")
+    return render_template("new_view_client_info.html",client=client)
 
 @users.route("/administration/edit_client/<int:id>",methods=['POST','GET'])
 def edit_client(id):
+    sector = Sector.query.all()
+    industry = Industry.query.all()
+    area = Area.query.all()
+
     client = Client.query.get_or_404(id)
     if request.method == 'POST':
-        fn = request.form['company_name']
-        return render_template('account.html',fn=fn)
-      
-    
+        client.company_name = request.form['company_name']
+        client.sector_id = request.form['sector']
+        client.industry_id = request.form['industry']
+        client.area_id = request.form['area']
+        client.financial_year_end = request.form['financial_year_end']
+        client.vat_number = request.form['vat']
+        client.company_type = request.form['company_type']
+        client.tel = request.form['tel']
+        client.fax = request.form['fax']
+        client.company_email = request.form['email']
+        client.website = request.form['website']
+        client.date_inc = datetime.strptime(request.form['date_inc'], '%Y-%m-%d')
+        client.country_inc = request.form['country_inc']
+        client.board_chairman.first_name = request.form['chairman_firstname']
+        client.board_chairman.last_name = request.form['chairman_lastname']
+        client.board_chairman.other_names = request.form['chairman_other_names']
+        client.board_chairman.email = request.form['chairman_email']
+        client.board_chairman.nationality = request.form['chairman_nationality']
+        client.board_chairman.mobile_number = request.form['chairman_phone']
+        client.ceo.first_name = request.form['ceo_firstname']
+        client.ceo.last_name = request.form['ceo_lastname']
+        client.ceo.other_names = request.form['ceo_other_names']
+        client.ceo.email = request.form['ceo_email']
+        client.ceo.nationality = request.form['ceo_nationality']
+        client.ceo.mobile_number = request.form['ceo_phone']
+        client.key_management.first_name = request.form['key_firstname']
+        client.key_management.last_name = request.form['key_lastname']
+        client.key_management.other_names = request.form['key_other_names']
+        client.key_management.email = request.form['key_email']
+        client.key_management.nationality = request.form['key_nationality']
+        client.key_management.mobile_number = request.form['key_phone']
+        client.previous_auditor.name = request.form['previous_auditor_name']
+        client.previous_auditor.address = request.form['previous_auditor_address']
+        client.previous_auditor.city = request.form['previous_auditor_city']
+        client.previous_auditor.country = request.form['previous_auditor_country']
+        client.current_auditor.name = request.form['current_auditor_name']
+        client.current_auditor.address = request.form['current_auditor_address']
+        client.current_auditor.city = request.form['current_auditor_city']
+        client.current_auditor.country = request.form['current_auditor_country']
+        client.company_secretary.name = request.form['company_secretary_name']
+        client.company_secretary.address = request.form['company_secretary_address']
+        client.company_secretary.city = request.form['company_secretary_city']
+        client.company_secretary.country = request.form['company_secretary_country']
+        client.postal_address.street_line1 = request.form['mailing_building']
+        client.postal_address.street_line2 = request.form['mailing_street']
+        client.postal_address.city = request.form['mailing_city']
+        client.postal_address.region = request.form['mailing_region']
+        client.postal_address.country = request.form['mailing_country']
+        client.street_address.street_line1 = request.form['street_building']
+        client.street_address.street_line2 = request.form['street_street']
+        client.street_address.city= request.form['street_city']
+        client.street_address.region = request.form['street_region']
+        client.street_address.country = request.form['street_country']
+        client.reg_number = request.form['reg_number']
+        client.tax_id = request.form['tax_id']
+        
+        client.contact_person.first_name = request.form['contact_firstname']
+        client.contact_person.lastname = request.form['contact_lastname']
+        client.contact_person.other_names = request.form['contact_other_names']
+        client.contact_person.email = request.form['contact_email']
+        client.contact_person.nationality = request.form['contact_nationality']
+        client.contact_person.mobile_number = request.form['contact_phone']
+        client.contact_person.job = request.form['contact_job']
+        client.contact_person.date_of_birth = datetime.strptime(request.form['contact_dob'], '%Y-%m-%d')
+        try:
+            db.session.commit()
+            flash('Client Updated','success')
+            return redirect(url_for('users.admin_clients'))
+        except:
+            flash('There was an issue updating the client','danger')
+            return redirect(url_for('users.admin_clients'))
+    else:
 
-    return render_template("new_edit_client.html",client=client)
+        return render_template("new_edit_client.html",client=client,sector=sector,industry=industry,area=area)
 
 @users.route("/my_benchmark_jobs/edit")
 def edit_benchmark():
