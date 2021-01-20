@@ -6,6 +6,7 @@
    
     
     {% block content %}
+    
 
     <style>
       #hero {
@@ -278,9 +279,18 @@ Custom Filters <i class="icofont-filter"></i>
           </div>
   
           <div class="child">
+           
+              
+            
             <div class="row ">
               <div class="col-12" >
+                {% if item.status == 'Active'  %}
               <h4><span class="badge badge-success">Active</span></h4>
+              {% elif item.status == 'active' %}
+              <h4><span class="badge badge-success">Active</span></h4>
+              {% else %}
+              <h4><span class="badge badge-danger">Inactive</span></h4>
+              {% endif %}
            
               </div>
               <div class="col-12" style="color:grey;font-size:12px">
@@ -288,6 +298,33 @@ Custom Filters <i class="icofont-filter"></i>
                 Category :     Corporate
             
                 
+            </div>
+            <div class="col-12 text-right ">
+              <span data-toggle="collapse" data-target="#demo{{item.id}}" style="cursor: pointer;color: rgb(19, 98, 151);">Change Status <i class="icofont-settings-alt"></i></span>
+        
+        <div id="demo{{item.id}}" class="collapse">
+          <form method="POST">
+            <div class="form-group">
+            <div class="form-check-inline">
+              <label class="form-check-label" for="radio1">
+                <input type="radio" class="form-check-input" id="radio1" name="c_status" value="active" checked>Active
+              </label>
+            </div>
+            <div class="form-check-inline">
+              <label class="form-check-label" for="radio2">
+                <input type="radio" class="form-check-input" id="radio2" name="c_status" value="inactive">Inactive
+              </label>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="hidden" name="client_id" value="{{item.id}}"/>
+          </div>
+            <div class="form-group">
+            <button type="submit" class="btn btn-success">Confirm</button>
+            </div>
+          </form>
+         
+        </div>
             </div>
             
             </div>

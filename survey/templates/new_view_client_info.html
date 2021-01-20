@@ -710,7 +710,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Name</b></label>
-            <input type="text" class="form-control" value="{{client.previous_auditor_name}}" disabled>
+            <input type="text" class="form-control" value="{{client.previous_auditor.name}}" disabled>
           </div>
 
         </div>
@@ -719,7 +719,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Address</b></label>
-            <input type="text" class="form-control" value="{{client.previous_auditor_address}}" disabled>
+            <input type="text" class="form-control" value="{{client.previous_auditor.address}}" disabled>
           </div>
 
         </div>
@@ -728,7 +728,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City</b></label>
-            <input type="text" class="form-control" value="{{client.previous_auditor_city}}" disabled>
+            <input type="text" class="form-control" value="{{client.previous_auditor.city}}" disabled>
           </div>
 
         </div>
@@ -737,7 +737,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" value="{{client.previous_auditor_country}}" disabled>
+            <input type="text" class="form-control" value="{{client.previous_auditor.country}}" disabled>
           </div>
 
         </div>
@@ -812,7 +812,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Name</b></label>
-            <input type="text" class="form-control" value="{{client.current_auditor_name}}" disabled>
+            <input type="text" class="form-control" value="{{client.current_auditor.name}}" disabled>
           </div>
 
         </div>
@@ -821,7 +821,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Address</b></label>
-            <input type="text" class="form-control" value="{{client.current_auditor_address}}" disabled>
+            <input type="text" class="form-control" value="{{client.current_auditor.address}}" disabled>
           </div>
 
         </div>
@@ -830,7 +830,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City</b></label>
-            <input type="text" class="form-control" value="{{client.current_auditor_city}}" disabled>
+            <input type="text" class="form-control" value="{{client.current_auditor.city}}" disabled>
           </div>
 
         </div>
@@ -839,7 +839,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" value="{{client.current_auditor_country}}" disabled>
+            <input type="text" class="form-control" value="{{client.current_auditor.country}}" disabled>
           </div>
 
         </div>
@@ -1032,7 +1032,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City/Town</b></label>
-            <input type="text" value="{{client.postal_address.city}}" disabled>
+            <input type="text" class="form-control"value="{{client.postal_address.city}}" disabled>
           </div>
 
         </div>
@@ -1112,7 +1112,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Building</b></label>
-            <textarea cols="2" rows="2" class="form-control" disabled>{{client.street_address.street_line1}}</textarea>
+            <textarea cols="2" rows="2" class="form-control" disabled>{{client.street_address.street_line1}}}</textarea>
           </div>
 
         </div>

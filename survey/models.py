@@ -52,6 +52,9 @@ class User(db.Model,UserMixin):
 
 class Client(db.Model):
     id = db.Column(db.Integer, primary_key=True)
+    status = db.Column(db.String(100), default = 'Inactive')
+
+    
     company_name = db.Column(db.String(100), unique=True)
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
     industry_id = db.Column(db.Integer, db.ForeignKey('industry.id'))

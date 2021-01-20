@@ -2288,9 +2288,10 @@
                 <hr/>
               </div>
             </div>
+            
           <div class="row pt-4 ">
             <div class="col-lg-6 col-md-12">
-              <b>Survey Name: </b> <span id="review_survey_name"></span>
+              <b>Company Name: </b> <span id="review_compnay_name"></span>
             </div>
             <div class="col-lg-6 col-md-12">
               <b>Client: </b> <span id="review_client_name"></span>
@@ -2708,6 +2709,16 @@ streetNotActive()
 registrationNotActive()
 contactNotActive()
 reviewNotActive()
+</script>
+<script>
+    $(".testdiv").find('input:text, select, textarea')
+        .each(function() {
+
+          var line = "<b>" +  $(this).attr("name") + "</b> : " + $(this).val() + "<br/> <hr/>"
+   
+          $('.reviewForm').append(line)
+       
+        });
 </script>
 
     {% endblock content %}

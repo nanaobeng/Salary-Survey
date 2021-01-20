@@ -302,10 +302,22 @@ def admin_surveys():
 def admin_benchmarl():
     return render_template("admin_benchmark.html")
 
-@users.route("/administration/clients")
+@users.route("/administration/clients",methods=['POST','GET'])
 def admin_clients():
     query = Client.query.all()
-    return render_template("new_view_client.html",query=query)
+    
+    if request.method == 'POST':
+        client = Client.query.get_or_404(request.form['client_id'])
+        client.status = request.form['c_status']
+        try:
+            db.session.commit()
+            flash('Client Updated','success')
+            return redirect(url_for('users.admin_clients'))
+        except:
+            flash('There was an issue updating the client','danger')
+            return redirect(url_for('users.admin_clients'))
+    else:
+        return render_template("new_view_client.html",query=query)
 
 @users.route("/administration/service_requests")
 def admin_service_requests():
