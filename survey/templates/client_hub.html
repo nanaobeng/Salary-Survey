@@ -90,103 +90,103 @@
 
 
 <script type="text/javascript">
-    google.charts.load('current', {'packages':['corechart']});
+    google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(drawChart);
 
 
     function drawChart() {
         var data1 = google.visualization.arrayToDataTable([
-          ['Request Type', 'Number of Requests'],
-          ['Completed',     11],
-          ['Approved',      2],
-          ['Rejected',  2],
-          ['Followed-Up', 2],
-          ['Signed-On',    7]
+            ['Request Type', 'Number of Requests'],
+            ['Completed', 11],
+            ['Approved', 2],
+            ['Rejected', 2],
+            ['Followed-Up', 2],
+            ['Signed-On', 7]
         ]);
 
         var options1 = {
-          title: "Today's Requests"
+            title: "Today's Requests"
         };
 
         var chart1 = new google.visualization.PieChart(document.getElementById('piechart'));
 
         chart1.draw(data1, options1);
-    
 
-      var data2 = google.visualization.arrayToDataTable([
-        ['Date', 'Total Number of Requests', 'Completed Requests', 'Rejected Requests'],
-        ['2021-01-21',  1000,      400,     600],
-        ['2021-01-22',  1170,      460,     710],
-        ['2021-01-23',  1120,      660,     460],
-        ['2021-01-24',  1030,      540,     490]
-      ]);
 
-      var options2 = {
-        title: 'Client Requests',
-        curveType: 'function',
-        legend: { position: 'bottom' }
-      };
+        var data2 = google.visualization.arrayToDataTable([
+            ['Date', 'Total Number of Requests', 'Completed Requests', 'Rejected Requests'],
+            ['2021-01-21', 1000, 400, 600],
+            ['2021-01-22', 1170, 460, 710],
+            ['2021-01-23', 1120, 660, 460],
+            ['2021-01-24', 1030, 540, 490]
+        ]);
 
-      var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart'));
+        var options2 = {
+            title: 'Client Requests',
+            curveType: 'function',
+            legend: { position: 'bottom' }
+        };
 
-      chart2.draw(data2, options2);
-    
+        var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart'));
 
-    var data3 = google.visualization.arrayToDataTable([
-          ['ID', 'X', 'Y', 'Temperature'],
-          ['',   80,  167,      120],
-          ['',   79,  136,      130],
-          ['',   78,  184,      50],
-          ['',   72,  278,      230],
-          ['',   81,  200,      210],
-          ['',   72,  170,      100],
-          ['',   68,  477,      80]
+        chart2.draw(data2, options2);
+
+
+        var data3 = google.visualization.arrayToDataTable([
+            ['ID', 'X', 'Y', 'Temperature'],
+            ['', 80, 167, 120],
+            ['', 79, 136, 130],
+            ['', 78, 184, 50],
+            ['', 72, 278, 230],
+            ['', 81, 200, 210],
+            ['', 72, 170, 100],
+            ['', 68, 477, 80]
         ]);
 
         var options3 = {
-          colorAxis: {colors: ['yellow', 'red']}
+            colorAxis: { colors: ['yellow', 'red'] }
         };
 
         var chart3 = new google.visualization.BubbleChart(document.getElementById('bubble_chart'));
         chart3.draw(data3, options3);
 
         var data4 = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2013',  1000,      400],
-          ['2014',  1170,      460],
-          ['2015',  660,       1120],
-          ['2016',  1030,      540]
+            ['Year', 'Sales', 'Expenses'],
+            ['2013', 1000, 400],
+            ['2014', 1170, 460],
+            ['2015', 660, 1120],
+            ['2016', 1030, 540]
         ]);
 
         var options4 = {
-          title: 'Company Performance',
-          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
-          vAxis: {minValue: 0}
+            title: 'Company Performance',
+            hAxis: { title: 'Year', titleTextStyle: { color: '#333' } },
+            vAxis: { minValue: 0 }
         };
 
         var chart4 = new google.visualization.AreaChart(document.getElementById('area_chart'));
         chart4.draw(data4, options4);
 
         var data5 = google.visualization.arrayToDataTable([
-          ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-          ['2004/05',  165,      938,         522,             998,           450,      614.6],
-          ['2005/06',  135,      1120,        599,             1268,          288,      682],
-          ['2006/07',  157,      1167,        587,             807,           397,      623],
-          ['2007/08',  139,      1110,        615,             968,           215,      609.4],
-          ['2008/09',  136,      691,         629,             1026,          366,      569.6]
+            ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
+            ['2004/05', 165, 938, 522, 998, 450, 614.6],
+            ['2005/06', 135, 1120, 599, 1268, 288, 682],
+            ['2006/07', 157, 1167, 587, 807, 397, 623],
+            ['2007/08', 139, 1110, 615, 968, 215, 609.4],
+            ['2008/09', 136, 691, 629, 1026, 366, 569.6]
         ]);
 
         var options5 = {
-          title : 'Monthly Coffee Production by Country',
-          vAxis: {title: 'Cups'},
-          hAxis: {title: 'Month'},
-          seriesType: 'bars',
-          series: {5: {type: 'line'}}
+            title: 'Monthly Coffee Production by Country',
+            vAxis: { title: 'Cups' },
+            hAxis: { title: 'Month' },
+            seriesType: 'bars',
+            series: { 5: { type: 'line' } }
         };
 
         var chart5 = new google.visualization.ComboChart(document.getElementById('combo_chart'));
         chart5.draw(data5, options5);
-        
+
         var chart6 = new google.visualization.PieChart(document.getElementById('piechart2'));
         chart6.draw(data1, options1);
 
@@ -195,10 +195,20 @@
 
         var chart8 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
         chart8.draw(data2, options2);
-    
-    }
-  </script>
 
+    }
+</script>
+
+<div class="row">
+    <div class="col-12">
+        <section id="hero" class="d-flex align-items-center justify-content-center">
+            <div class="container position-relative">
+                <h2><b style="font-size: 40px;">Client Hub</b></h2>
+
+            </div>
+        </section>
+    </div>
+</div>
 
 <section class="page-content">
     <section class="search-and-user">
@@ -223,14 +233,30 @@
 
     <!--Section for graphs-->
     <section class="grid">
-        <article><div id="curve_chart" style="width: 100%;"></div></article>
-        <article><div id="piechart" style="width: 100%;"></div></article>
-        <article><div id="bubble_chart" style="width: 100%;"></div></article>
-        <article><div id="area_chart" style="width: 100%;"></div></article>
-        <article><div id="combo_chart" style="width: 100%;"></div></article>
-        <article><div id="bubble_chart2" style="width: 100%;"></div></article>
-        <article><div id="piechart2" style="width: 100%;"></div></article>
-        <article><div id="curve_chart2" style="width: 100%;"></div></article>
+        <article>
+            <div id="curve_chart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="piechart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="bubble_chart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="area_chart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="combo_chart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="bubble_chart2" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="piechart2" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="curve_chart2" style="width: 100%;"></div>
+        </article>
     </section>
-    
+
     {% endblock content %}
