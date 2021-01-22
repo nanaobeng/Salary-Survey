@@ -1,138 +1,4 @@
-{% extends "new_admin_layout.html" %}
-
-
-
-
-{% block content %}
-
-<style>
-  #hero {
-    width: 100%;
-    height: 15vh;
-    background: url("../static/img/home.jpg") top center;
-    background-size: cover;
-    position: relative;
-  }
-
-  #hero:before {
-    content: "";
-    background: rgba(20, 44, 9, 0.7);
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  #hero .container {
-    text-align: center;
-    padding-top: 50px;
-  }
-
-  @media (max-width: 992px) {
-    #hero .container {
-      padding-top: 0;
-    }
-  }
-
-  #hero h1 {
-    margin: 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 56px;
-    color: #fff;
-  }
-
-  #hero h2 {
-    color: #eee;
-    margin: 15px 0 0 0;
-    font-size: 22px;
-  }
-
-  #hero .btn-get-started {
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 9px 35px;
-    border-radius: 50px;
-    transition: 0.5s;
-    margin-top: 40px;
-    border: 2px solid #ffc107;
-    color: #fff;
-  }
-
-  #hero .btn-get-started:hover {
-    background: #ffc107;
-  }
-
-  @media (min-width: 1024px) {
-    #hero {
-      background-attachment: fixed;
-    }
-  }
-
-  @media (max-width: 768px) {
-    #hero {
-      height: 100vh;
-    }
-
-    #hero h1 {
-      font-size: 28px;
-      line-height: 36px;
-    }
-
-    #hero h2 {
-      font-size: 18px;
-      line-height: 24px;
-    }
-
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  a {
-    color: inherit;
-  }
-
-  .searchbar {
-    margin-bottom: auto;
-    margin-top: auto;
-    height: 60px;
-    /* background-color: #353b48; */
-    border-radius: 30px;
-    padding: 10px;
-  }
-
-  .search_input {
-    /* color: white; */
-    color: #353b48;
-    /* border: 0; */
-    border-radius: 30px;
-    outline: 0;
-    background: none;
-    width: 450px;
-    /* width: 0px; */
-    /* caret-color:transparent; */
-    line-height: 40px;
-    padding: 0 10px;
-    /* transition: width 0.4s linear; */
-  }
-
-  /* .searchbar:hover > .search_input{
-    padding: 0 10px;
-    width: 450px;
-    caret-color:red;
-    border-radius: 30px;
-    transition: width 0.4s linear;
-    } 
-
-  .searchbar:hover > .search_icon{
-    background: white;
-    color: grey;
+lor: grey;
     } */
 
   .search_icon {
@@ -143,7 +9,7 @@
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color:white;
+    color: white;
     /* background: white; */
     background: grey;
     /* color: black; */
@@ -170,20 +36,6 @@
 
 
 <!--Body-->
-<!-- <div class="py-5">
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <input type="text" id="searchbar" onkeyup="myFunction()" placeholder="Search Requests">
-        <button id="searchbutton" type="submit"><i class="fa fa-search"></i></button>
-      </div> -->
-<!-- <div class="col-md-4">
-        <span>Filter View</span>
-        <i class="fa fa-sliders"></i>
-      </div> -->
-<!-- </div>
-  </div>
-</div> -->
 
 <div class="container py-5 h-100">
   <div class="d-flex float-right h-100">
@@ -223,12 +75,61 @@
           <option value="Modec">
           <option value="Villagio">
           <option value="Shell">
-
         </datalist>
       </div>
     </form>
   </div>
-</div>
+</div> 
+
+<!-- <div class="row p-5">
+  <div class="col-12">
+    <div class="table">
+      <table>
+        <thead style="background-color: rgb(51, 73, 41);">
+          <th id="searchbar">
+            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
+            <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
+          </th>
+          <th>
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
+                class="icofont-settings"></i></span></button>
+            <form class="dropdown-menu p-4">
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Status:</label>
+                <select class="form-control" id="status" onchange="filter('status')">
+                  <option value="opened">Pending</option>
+                  <option value="close">Awaiting Client Information</option>
+                  <option>First Pass</option>
+                  <option>Conflict Check</option>
+                  <option>Finish Completion</option>
+                  <option>Submitted For Approval</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Request Type:</label>
+                <select class="form-control" id="s_period" onchange="filter('s_period')">
+                  <option value="corporate">Corporate</option>
+                  <option value="individual">Individual</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Client:</label>
+                <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+                <datalist id="clients">
+                  <option value="ABC">
+                  <option value="Modec">
+                  <option value="Villagio">
+                  <option value="Shell">
+
+                </datalist>
+              </div>
+            </form>
+          </th>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div> -->
 
 
 <div class="py-5">
