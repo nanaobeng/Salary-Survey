@@ -97,7 +97,64 @@
   a {
     color: inherit;
   }
+
+  .searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    /* background-color: #353b48; */
+    border-radius: 30px;
+    padding: 10px;
+  }
+
+  .search_input {
+    /* color: white; */
+    color: #353b48;
+    /* border: 0; */
+    border-radius: 30px;
+    outline: 0;
+    background: none;
+    width: 450px;
+    /* width: 0px; */
+    /* caret-color:transparent; */
+    line-height: 40px;
+    padding: 0 10px;
+    /* transition: width 0.4s linear; */
+  }
+
+  /* .searchbar:hover > .search_input{
+    padding: 0 10px;
+    width: 450px;
+    caret-color:red;
+    border-radius: 30px;
+    transition: width 0.4s linear;
+    } 
+
+  .searchbar:hover > .search_icon{
+    background: white;
+    color: grey;
+    } */
+
+  .search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color:white;
+    /* background: white; */
+    background: grey;
+    /* color: black; */
+    text-decoration: none;
+  }
+
+  .filterbar {
+    color: #353b48;
+  }
 </style>
+
 
 <!--Header-->
 <div class="row">
@@ -113,20 +170,66 @@
 
 
 <!--Body-->
-<div class="py-5">
+<!-- <div class="py-5">
   <div class="container">
     <div class="row">
       <div class="col-12">
         <input type="text" id="searchbar" onkeyup="myFunction()" placeholder="Search Requests">
         <button id="searchbutton" type="submit"><i class="fa fa-search"></i></button>
-      </div>
-      <!-- <div class="col-md-4">
+      </div> -->
+<!-- <div class="col-md-4">
         <span>Filter View</span>
         <i class="fa fa-sliders"></i>
       </div> -->
+<!-- </div>
+  </div>
+</div> -->
+
+<div class="container py-5 h-100">
+  <div class="d-flex float-right h-100">
+    <div class="searchbar">
+      <input class="search_input" type="text" name="" placeholder="Search...">
+      <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
     </div>
   </div>
+  <div class="filterbar float-left">
+    <!-- Filter <i class="icofont-settings"></i> -->
+    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
+        class="icofont-settings"></i></span></button>
+    <form class="dropdown-menu p-4">
+      <div class="form-group">
+        <label for="sel1" style="color:grey">Status:</label>
+        <select class="form-control" id="status" onchange="filter('status')">
+          <option value="opened">Pending</option>
+          <option value="close">Awaiting Client Information</option>
+          <option>First Pass</option>
+          <option>Conflict Check</option>
+          <option>Finish Completion</option>
+          <option>Submitted For Approval</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="sel1" style="color:grey">Request Type:</label>
+        <select class="form-control" id="s_period" onchange="filter('s_period')">
+          <option value="corporate">Corporate</option>
+          <option value="individual">Individual</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="sel1" style="color:grey">Client:</label>
+        <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+        <datalist id="clients">
+          <option value="ABC">
+          <option value="Modec">
+          <option value="Villagio">
+          <option value="Shell">
+
+        </datalist>
+      </div>
+    </form>
+  </div>
 </div>
+
 
 <div class="py-5">
   <div class="container">
@@ -153,7 +256,7 @@
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
             alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
             <h6 class="card-subtitle text-muted">Request Title</h6>
@@ -169,7 +272,7 @@
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
             alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
             <h6 class="card-subtitle text-muted">Request Title</h6>
@@ -187,7 +290,7 @@
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
             alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
             <h6 class="card-subtitle text-muted">Request Title</h6>
@@ -203,7 +306,7 @@
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
             alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
             <h6 class="card-subtitle text-muted">Request Title</h6>
@@ -219,7 +322,7 @@
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
             alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
             <h6 class="card-subtitle text-muted">Request Title</h6>
@@ -544,14 +647,14 @@
 
             <div class="form-group">
               <p>Comments:
-                <ol style="color: gray;">
-                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                  <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                </ol>
+              <ol style="color: gray;">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              </ol>
               </p>
               <label style="font-size: smaller; font-style: italic;">Add New Comment
-                <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;" ></textarea>
+                <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
               </label>
             </div>
           </form>
