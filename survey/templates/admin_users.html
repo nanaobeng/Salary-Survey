@@ -6,59 +6,80 @@ Users
 {% block content %}
 <div class="col d-flex justify-content-center">
     <div class="input-group" style="max-width: 400px;">
-        <input type="text" class="form-control" placeholder="Search user">
+        <input type="text" class="form-control" placeholder="Search user" id="search_user">
         <div class="input-group-append">
-          <button class="btn btn-secondary" type="button">
+          <button class="btn btn-secondary" type="button" onclick="search_user()">
             <i class="fa fa-search"></i>
           </button>
         </div>
       </div>
 </div>
 <br>
+<script>
+    function search_user(){
+        var search_value = $('#search_user').val()
+        console.log(search_value)
+        var url = "/administration/config/users?search="+search_value
+        console.log(url)
+        window.location.replace(url)
+    }
+</script>
 <table class="table table-hover">
     <thead class="bg-secondary text-white">
         <td>Name</td>
-        <td>Organisation</td>
         <td>Email</td>
         <td>Role</td>
         <td>Status</td>
         <td></td>
     </thead>
     <tbody>
+        {% for User in Users.items %}
         <tr>
-            <td>Prosper Osei</td>
-            <td>XYZ Financial Services</td>
-            <td>posei@xyzfinancial.com</td>
-            <td>Client</td>
-            <td>Active</td>
+            <td>{{User.username}}</td>
+            <td>{{User.email}}</td>
+            <td>{{User.role}}</td>
+            <td>ff</td>
             <td><i class="fas fa-eye"></i></td>
         </tr>
-        <tr>
-            <td>Anita Agyekum</td>
-            <td>JKL Support</td>
-            <td>aagyekum@jklsupport.com.gh</td>
-            <td>Client</td>
-            <td>Active</td>
-            <td><i class="fas fa-eye"></i></td>
-        </tr>
-        <tr>
-            <td>Nana Obeng-Marnu</td>
-            <td>Deloitte</td>
-            <td>nobengmarnu@deloitte.com.gh</td>
-            <td>Administrator</td>
-            <td>Active</td>
-            <td><i class="fas fa-eye"></i></td>
-        </tr>
-        <tr>
-            <td>Josephine Yorke</td>
-            <td>MNO Breweries</td>
-            <td>jyorke@mnobreweries.com</td>
-            <td>Client</td>
-            <td>Inactive</td>
-            <td><i class="fas fa-eye"></i></td>
-        </tr>
+        {% endfor %}
+        
     </tbody>
 </table>
+<!-- Pagination Links-->
+<div class="text-right">
+    <a href="{{ url_for('users.admin_users', page=Users.prev_num) }}"
+       class="btn btn-outline-dark 
+       {% if Users.page == 1 %}disabled{% endif %}">
+        &laquo;
+    </a>
+<!-- Loop through the number of pages to display a link for each-->
+    {% for page_num in Users.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
+{% if page_num %}
+<!-- Check for the active page and set the link to "Active"-->
+            {% if Users.page == page_num %}
+            <a href="{{ url_for('users.admin_users', page=page_num) }}"
+               class="btn btn-dark">
+                {{ page_num }}
+            </a>
+            {% else %}
+            <a href="{{ url_for('users.admin_users', page=page_num) }}"
+               class="btn btn-outline-dark">
+                {{ page_num }}
+            </a>
+            {% endif %}
+        {% else %}
+            ...
+        {% endif %}
+    {% endfor %}
+    <a href="{{ url_for('users.admin_users', page=Users.next_num) }}"
+       class="btn btn-outline-dark 
+       {% if Users.page == Users.pages %}disabled{% endif %}">
+        &raquo;
+    </a>
+</div>
+<p class="text-right mt-3">
+   Showing page {{ Users.page }} of {{ Users.pages }}
+</p>
 <div class="row justify-content-center">
     <a href="{{ url_for('users.register')}}"><button class="btn btn-info">New User</button></a>
 </div>

@@ -184,7 +184,7 @@ class Industry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     industry = db.Column(db.String(100))
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
-
+    area = db.relationship('Area', backref='industry' , lazy=True)
     
     # sub_industry = db.relationship('Sub_industry', backref='industry' , lazy=True)
     
@@ -199,6 +199,7 @@ class Area(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     area = db.Column(db.String(100))
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
+    industry_id = db.Column(db.Integer, db.ForeignKey('industry.id'))
 
     
     # sub_industry = db.relationship('Sub_industry', backref='industry' , lazy=True)
