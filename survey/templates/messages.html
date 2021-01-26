@@ -207,7 +207,7 @@
 <div class="row pt-5 pb-5 justify-content-center">
   <div class="col-auto">
     <div class="table">
-      <table class="table-responsive">
+      <table>
         <thead style="background-color: rgb(51, 73, 41);">
           <th id="searchbar">
             <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
@@ -231,7 +231,6 @@
                 class="icofont-sort-alt"></i></span></button>
             <form class="dropdown-menu p-2">
               <div class="form-group">
-                <label for="status">Status:</label>
                 <select class="form-control" id="status" onchange="filter('status')">
                   <option value="open">Newest First</option>
                   <option value="closed">Oldest First</option>
@@ -305,7 +304,7 @@
     <div class="modal-content">
       <div class="modal-header d-block">
         <div class="d-flex">
-          <h4 class="modal-title">Dr Open</h3>
+          <h4 class="modal-title">Dr John Doe</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -316,10 +315,24 @@
         <!--Request Description-->
         <div>
           <p>Job Title / Position: <span style="color: gray;">Director</span></p>
-          <p>Company: <span style="color: gray;">Closed</span></p>
+          <p>Company: <span style="color: gray;">Company ABC</span></p>
           <p>Phone Number: <span style="color: gray;">0302123456</span></p>
           <p>Address: <span style="color: gray;">Plot No. 71, The Deloitte Place, Off George W. Bush Hwy, Accra, Ghana
             </span></p>
+        </div>
+
+        <hr>
+        <div class="form-group">
+          <p>Comments:
+          <ol style="color: gray;">
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+          </ol>
+          </p>
+          <label style="font-size: smaller; font-style: italic;">Add New Comment
+            <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
+          </label>
         </div>
 
         <hr>
@@ -334,13 +347,14 @@
             <span style="font-size:smaller; color: rgb(71, 70, 70);">Closed</span>
           </div>
           <div class="col-3 float-right">
-            <i class="far fa-envelope"></i><a href="#"> Send Email</a>
+            <i class="far fa-envelope" style="margin-right: 5px;"></i><a href="#" style="color: inherit;">Send Email</a>
           </div>
         </div>
 
 
       </div>
       <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save Changes</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
     </div>
