@@ -52,7 +52,13 @@
   
 <style>
 
- 
+#hero {
+        width: 100%;
+        height: 5vh;
+        background: url("../static/img/home.jpg") top center;
+        background-size: cover;
+        position: relative;
+    }
 
 
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
@@ -113,13 +119,14 @@ svg {
 
 body {
   font: 16px/1.5 "Lato", sans-serif;
+  
 }
 
 
 /* HEADER STYLES
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 .page-header {
-  position: fixed;
+  position:fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -135,7 +142,7 @@ body {
 .page-header nav {
   display: flex;
   flex-direction: column;
-  min-height: 100%;
+  height:60%
 }
 
 .page-header .logo {
@@ -335,7 +342,7 @@ body {
   }
    
   .page-header {
-    padding: 10px;
+    padding-top: 10px;
   }
 
   .page-header nav {
@@ -366,7 +373,7 @@ body {
   }
 
   .page-header .admin-menu li:nth-last-child(2) {
-    margin-bottom: 12px;
+    margin-bottom: 0;
   }
   
   .page-header .admin-menu li:last-child,
@@ -430,7 +437,7 @@ body {
 
 @media screen and (min-width: 768px) {
   .collapsed .page-header {
-    width: 40px;
+    width: 70px;
   }
 
   .collapsed .page-header .admin-menu li > * {
@@ -466,109 +473,107 @@ body {
 </style>
 
 <header  class="page-header">
-</nav>
-    <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
-      <svg width="20" height="20" aria-hidden="true">
-        <use xlink:href="#down"></use>
-      </svg>
-    </button>
-    <ul class="admin-menu">
-      
-      <li>
-        <a href="{{  url_for('users.admin_home')}}">
-            <svg>
-              <use xlink:href="#home"></use>
-            </svg>
-            <span>Home</span>
-          </a>
-      </li>
-     
-      <li>
-        <a href="{{  url_for('users.client_hub')}}">
-            <svg>
-              <use xlink:href="#trends"></use>
-            </svg>
-            <span>Dashboard</span>
-          </a>
-      </li>
-      
-
-      <li>
-      <button class="dropdown-btn"><svg>
-        <use xlink:href="#pages"></use>
-      </svg>
-      <span>Clients</span>
-        <i class="fa fa-caret-down"></i>
-      </button>
-      <div class="dropdown-container">
-        <a href="{{  url_for('users.create_client')}}">
-          <svg>
-            <use xlink:href="#collection"></use>
-          </svg>
-          <span>Create Client</span>
-        </a>
-          <a href="{{  url_for('users.admin_clients')}}">
-            <svg>
-              <use xlink:href="#options"></use>
-            </svg>
-            <span>View Clients</span>
-          </a>
-      </div>
-    </li>
-     
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#comments"></use>
-          </svg>
-          <span>View Reports</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{ url_for('users.messages') }}">
-          <svg>
-            <use xlink:href="#comments"></use>
-          </svg>
-          <span>Messages</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{  url_for('users.admin_service_requests')}}">
-          <svg>
-            <use xlink:href="#appearance"></use>
-          </svg>
-          <span>Service Requests</span>
-        </a>
-      </li>
-      
-      
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#charts"></use>
-          </svg>
-          <span>Charts</span>
-        </a>
-      </li>
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#charts"></use>
-          </svg>
-          <span>Tables</span>
-        </a>
-      </li>
-      <li>
-        <button class="collapse-btn" aria-expanded="true" aria-label="collapse menu">
-          <svg aria-hidden="true">
-            <use xlink:href="#collapse"></use>
-          </svg>
-          <span>Collapse</span>
+  <nav>
+      <ul class="admin-menu">
+        
+        <li>
+          <a href="{{  url_for('users.admin_home')}}">
+              <svg>
+                <use xlink:href="#home"></use>
+              </svg>
+              <span>Home</span>
+            </a>
+        </li>
+       
+        <li>
+          <a href="{{  url_for('users.client_hub')}}">
+              <svg>
+                <use xlink:href="#trends"></use>
+              </svg>
+              <span>Dashboard</span>
+            </a>
+        </li>
+        
+  
+        <li>
+        <button class="dropdown-btn"><svg>
+          <use xlink:href="#pages"></use>
+        </svg>
+        <span>Clients</span>
+          <i class="fa fa-caret-down"></i>
         </button>
+        <div class="dropdown-container">
+          <a href="{{  url_for('users.create_client')}}">
+            <svg>
+              <use xlink:href="#collection"></use>
+            </svg>
+            <span>Create Client</span>
+          </a>
+            <a href="{{  url_for('users.admin_clients')}}">
+              <svg>
+                <use xlink:href="#options"></use>
+              </svg>
+              <span>View Clients</span>
+            </a>
+        </div>
       </li>
-    </ul>
-  </nav>
-</header>
+       
+        <li>
+          <a href="#0">
+            <svg>
+              <use xlink:href="#comments"></use>
+            </svg>
+            <span>View Reports</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{ url_for('users.messages') }}">
+            <svg>
+              <use xlink:href="#comments"></use>
+            </svg>
+            <span>Messages</span>
+          </a>
+        </li>
+        <li>
+          <a href="{{  url_for('users.admin_service_requests')}}">
+            <svg>
+              <use xlink:href="#appearance"></use>
+            </svg>
+            <span>Service Requests</span>
+          </a>
+        </li>
+        
+        
+        <li>
+          <a href="#0">
+            <svg>
+              <use xlink:href="#charts"></use>
+            </svg>
+            <span>Charts</span>
+          </a>
+        </li>
+        
+        <li>
+          <a href="#0">
+            <svg>
+              <use xlink:href="#charts"></use>
+            </svg>
+            <span>Tables</span>
+          </a>
+        </li> 
+        <li>
+          <button class="collapse-btn" aria-expanded="true" aria-label="collapse menu">
+            <svg aria-hidden="true">
+              <use xlink:href="#collapse"></use>
+            </svg>
+            <span>Collapse</span>
+          </button>
+        </li>
+       
+      </ul>
+    </nav>
+  </header>
+
 
 
 <body translate="no" data-new-gr-c-s-check-loaded="14.991.0" data-gr-ext-installed="" class="mob-menu-opened">
@@ -620,8 +625,6 @@ body {
     <path d="M3 10v11h6v-7h6v7h6v-11L12,3z"/> <rect x="4.16" y="1.75" width="24" height="24" viewBox="0 0 24 24"/>
   </symbol>
 </svg>
-
-
 
   <div>
 
@@ -676,7 +679,7 @@ body {
   margin-top: auto;
 
   }
-  }
+  
   </style>
 
 <script>
@@ -738,11 +741,10 @@ for (const link of menuLinks) {
   </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
-        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
-     
-        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
         
 </body>
         
