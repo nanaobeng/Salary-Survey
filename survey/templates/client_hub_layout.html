@@ -330,7 +330,7 @@ body {
 @media screen and (max-width: 767px) {
   .page-header,
   .page-content {
-    position: static;
+    position: sticky;
     width: 100%;
   }
    
@@ -466,18 +466,13 @@ body {
 </style>
 
 <header  class="page-header">
-  <nav>
-   
+</nav>
     <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
       <svg width="20" height="20" aria-hidden="true">
         <use xlink:href="#down"></use>
       </svg>
     </button>
     <ul class="admin-menu">
-      <li class="menu-heading">
-        <h3>Admin</h3>
-      </li>
-      
       
       <li>
         <a href="{{  url_for('users.admin_home')}}">
@@ -546,9 +541,6 @@ body {
         </a>
       </li>
       
-      <li class="menu-heading">
-        <h3>Settings</h3>
-      </li>
       
       <li>
         <a href="#0">
@@ -677,6 +669,13 @@ body {
   }
   .footer-link:hover{
     color: greenyellow;
+  }
+
+  .footer-link{
+    flex: 0 0 50px;/*or just height:50px;*/
+  margin-top: auto;
+
+  }
   }
   </style>
 
