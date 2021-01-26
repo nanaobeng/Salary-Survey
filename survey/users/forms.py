@@ -9,7 +9,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, FieldList, PasswordField, SubmitField, BooleanField, SelectField,FloatField,TextAreaField, DateField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from survey.models import User,Sector,Industry,Area
+from survey.models import User,Sector,Industry,Area,Department
 
 def survey_query():
     return Sector.query
@@ -19,6 +19,9 @@ def industry_query():
 
 def area_query():
     return Area.query
+
+def department_query():
+    return Department.query
 
 
 
@@ -443,73 +446,7 @@ class AreaForm(FlaskForm):
 
 
 
-class SurveyForm(FlaskForm):
-   
-    base_salary = FloatField('Annual Base Salary (GHS)', validators=[DataRequired()])
-    
-    company_bonus_performance = FloatField('Company Performance Bonus', validators=[DataRequired()])
-    individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[DataRequired()])
-    annual_bonus = FloatField('Annual Bonus', validators=[DataRequired()])
-    incentive_bonus = FloatField('Incentive Bonus', validators=[DataRequired()])
-    other_bonus = FloatField('Other bonus', validators=[DataRequired()])
 
-
-    staff_bus = FloatField('Staff Bus', validators=[DataRequired()])
-    company_car = FloatField('Company Car', validators=[DataRequired()])
-    personal_travel = FloatField('Personal Travel', validators=[DataRequired()])
-    petrol = FloatField('Petrol', validators=[DataRequired()])
-    vehicle = FloatField('Vehicle', validators=[DataRequired()])
-    driver = FloatField('Driver', validators=[DataRequired()])
-
-    health_insurance = FloatField('Health', validators=[DataRequired()])
-    medical_assistance = FloatField('Medical Assistance', validators=[DataRequired()])
-    funeral_assistance = FloatField('Funeral Assistance', validators=[DataRequired()])
-    life_insurance = FloatField('Life Insurance', validators=[DataRequired()])
-    group_accident = FloatField('Group Personnel Accident', validators=[DataRequired()])
-
-
-    club_membership = FloatField('Club Membership', validators=[DataRequired()])
-    school_fees = FloatField('School fees (Paid by employer)', validators=[DataRequired()])
-    vacation = FloatField('Vacation', validators=[DataRequired()])
-    housing = FloatField('Housing', validators=[DataRequired()])
-    telephone = FloatField('Telephone', validators=[DataRequired()])
-    security = FloatField('Security', validators=[DataRequired()])
-    other_benefits = FloatField('Other Benefits', validators=[DataRequired()])
-
-    
-    vehicle_maintenance = FloatField('Vehicle Maintenance', validators=[DataRequired()])
-    allowance_vehicle = FloatField('Vehicle', validators=[DataRequired()])
-    transport = FloatField('Transport', validators=[DataRequired()])
-    fuel = FloatField('Fuel', validators=[DataRequired()])
-    car = FloatField('Car', validators=[DataRequired()])
-    allowance_driver = FloatField('Driver', validators=[DataRequired()])
-    
-
-    domestic = FloatField('Domestic Safety and Security', validators=[DataRequired()])
-    allowance_housing = FloatField('Housing', validators=[DataRequired()])
-    utilities = FloatField('Utilities', validators=[DataRequired()])
-    meal = FloatField('Meal', validators=[DataRequired()])
-    allowance_telephone = FloatField('Telephone', validators=[DataRequired()])
-
-
-    entertainment = FloatField('Entertainment', validators=[DataRequired()])
-    education = FloatField('Education', validators=[DataRequired()])
-    vacation = FloatField('Vacation', validators=[DataRequired()])
-    uniform = FloatField('Uniform', validators=[DataRequired()])
-    mobile_money = FloatField('Mobile Money', validators=[DataRequired()])
-    misc = FloatField('Miscellaneous', validators=[DataRequired()])
-    
-
-   
-    
-    
-
-
-    
-
-
-
-    submit = SubmitField('Submit')
 
 class RegistrationForm(FlaskForm):
     username = StringField('Username',
@@ -719,60 +656,71 @@ class ClientForm(FlaskForm):
 
 
 class SurveyForm(FlaskForm):
+    job_title = StringField('Job Title')
+    grade = StringField('Grade')
+    reporting_relationship = TextField('Reporting Relationship')
+    job_desc = TextField('Job Description')
+    key_duties = TextField('Key Duties and Scope of Responsibility')
+    fin_res = StringField('Financial Responsibilities')
+    tech_qual = TextField('Technical/Professional Qualification')
+    exp_years = StringField('Minimum Years of Experience')
+
+    
+    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department')
    
-    base_salary = FloatField('Annual Base Salary (GHS)', validators=[DataRequired()])
+    base_salary = FloatField('Annual Base Salary (GHS)')
     
-    company_bonus_performance = FloatField('Company Performance Bonus', validators=[DataRequired()])
-    individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[DataRequired()])
-    annual_bonus = FloatField('Annual Bonus', validators=[DataRequired()])
-    incentive_bonus = FloatField('Incentive Bonus', validators=[DataRequired()])
-    other_bonus = FloatField('Other bonus', validators=[DataRequired()])
+    company_bonus_performance = FloatField('Company Performance Bonus')
+    individual_bonus_performance = FloatField('Individual Performance Bonus')
+    annual_bonus = FloatField('Annual Bonus')
+    incentive_bonus = FloatField('Incentive Bonus')
+    other_bonus = FloatField('Other bonus')
 
 
-    staff_bus = FloatField('Staff Bus', validators=[DataRequired()])
-    company_car = FloatField('Company Car', validators=[DataRequired()])
-    personal_travel = FloatField('Personal Travel', validators=[DataRequired()])
-    petrol = FloatField('Petrol', validators=[DataRequired()])
-    vehicle = FloatField('Vehicle', validators=[DataRequired()])
-    driver = FloatField('Driver', validators=[DataRequired()])
+    staff_bus = FloatField('Staff Bus')
+    company_car = FloatField('Company Car')
+    personal_travel = FloatField('Personal Travel')
+    petrol = FloatField('Petrol')
+    vehicle = FloatField('Vehicle')
+    driver = FloatField('Driver')
 
-    health_insurance = FloatField('Health', validators=[DataRequired()])
-    medical_assistance = FloatField('Medical Assistance', validators=[DataRequired()])
-    funeral_assistance = FloatField('Funeral Assistance', validators=[DataRequired()])
-    life_insurance = FloatField('Life Insurance', validators=[DataRequired()])
-    group_accident = FloatField('Group Personnel Accident', validators=[DataRequired()])
+    health_insurance = FloatField('Health')
+    medical_assistance = FloatField('Medical Assistance')
+    funeral_assistance = FloatField('Funeral Assistance')
+    life_insurance = FloatField('Life Insurance')
+    group_accident = FloatField('Group Personnel Accident')
 
 
-    club_membership = FloatField('Club Membership', validators=[DataRequired()])
-    school_fees = FloatField('School fees (Paid by employer)', validators=[DataRequired()])
-    vacation = FloatField('Vacation', validators=[DataRequired()])
-    housing = FloatField('Housing', validators=[DataRequired()])
-    telephone = FloatField('Telephone', validators=[DataRequired()])
-    security = FloatField('Security', validators=[DataRequired()])
-    other_benefits = FloatField('Other Benefits', validators=[DataRequired()])
+    club_membership = FloatField('Club Membership')
+    school_fees = FloatField('School fees (Paid by employer)')
+    vacation = FloatField('Vacation')
+    housing = FloatField('Housing')
+    telephone = FloatField('Telephone')
+    security = FloatField('Security')
+    other_benefits = FloatField('Other Benefits')
 
     
-    vehicle_maintenance = FloatField('Vehicle Maintenance', validators=[DataRequired()])
-    allowance_vehicle = FloatField('Vehicle', validators=[DataRequired()])
-    transport = FloatField('Transport', validators=[DataRequired()])
-    fuel = FloatField('Fuel', validators=[DataRequired()])
-    car = FloatField('Car', validators=[DataRequired()])
-    allowance_driver = FloatField('Driver', validators=[DataRequired()])
+    vehicle_maintenance = FloatField('Vehicle Maintenance')
+    allowance_vehicle = FloatField('Vehicle')
+    transport = FloatField('Transport')
+    fuel = FloatField('Fuel')
+    car = FloatField('Car')
+    allowance_driver = FloatField('Driver')
     
 
-    domestic = FloatField('Domestic Safety and Security', validators=[DataRequired()])
-    allowance_housing = FloatField('Housing', validators=[DataRequired()])
-    utilities = FloatField('Utilities', validators=[DataRequired()])
-    meal = FloatField('Meal', validators=[DataRequired()])
-    allowance_telephone = FloatField('Telephone', validators=[DataRequired()])
+    domestic = FloatField('Domestic Safety and Security')
+    allowance_housing = FloatField('Housing')
+    utilities = FloatField('Utilities')
+    meal = FloatField('Meal')
+    allowance_telephone = FloatField('Telephone')
 
 
-    entertainment = FloatField('Entertainment', validators=[DataRequired()])
-    education = FloatField('Education', validators=[DataRequired()])
-    vacation = FloatField('Vacation', validators=[DataRequired()])
-    uniform = FloatField('Uniform', validators=[DataRequired()])
-    mobile_money = FloatField('Mobile Money', validators=[DataRequired()])
-    misc = FloatField('Miscellaneous', validators=[DataRequired()])
+    entertainment = FloatField('Entertainment')
+    education = FloatField('Education')
+    vacation = FloatField('Vacation')
+    uniform = FloatField('Uniform')
+    mobile_money = FloatField('Mobile Money')
+    misc = FloatField('Miscellaneous')
     
 
    

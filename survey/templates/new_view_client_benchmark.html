@@ -171,118 +171,90 @@ Custom Filters <i class="icofont-filter"></i>
       
     </div>
   <div class="row p-4" >
-<div class="col-4 p-4">
 
-<div class="card p-4 parent"  style="height:200px">
-    <div class="row ">
-       
-        <div class="col-12 ">
-      <div class="row">
-        <div class="col-10">
-          <h5><b>Procurement Asistant</b></h5>
-        </div>
-        <div class="col-1">
-          <a href="/user/view-benchmark" style="color:grey"><i class="icofont-eye-alt" ></i></a>
-        </div>
-      
-       
-      </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-12" style="color:grey;font-size:12px">
+    {% for job in query %}
+
+    <div class="col-4 p-4">
+
+      <div class="card p-4 parent"  style="height:200px">
+          <div class="row ">
+             
+              <div class="col-12 ">
             <div class="row">
-              <div class="col-5">
-                Department
+              <div class="col-10">
+                <h5><b>{{job.job_title}}</b></h5>
               </div>
               <div class="col-1">
-                :
+                <a href="/user/view-benchmark" style="color:grey"><i class="icofont-eye-alt" ></i></a>
               </div>
-              <div class="col-6">
-             Procurement
+            
+             
+            </div>
               </div>
-            </div>
-         
-          </div>
- 
-   
-        </div>
-
-        <div class="child">
-          <div class="row ">
-            <div class="col-12" >
-            <h4><span class="badge badge-success">Verified</span></h4>
-         
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-                 
-              Date Created :     2/11/2020
-          
-              
-          </div>
-          
-          </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-<div class="col-4 p-4">
-
-  <div class="card p-4 parent"  style="height:200px">
-      <div class="row ">
-         
-          <div class="col-12 ">
-        <div class="row">
-          <div class="col-10">
-            <h5><b>HR Officer</b></h5>
-          </div>
-          <div class="col-1">
-            <a href="/user/view-benchmark" style="color:grey"><i class="icofont-eye-alt" ></i></a>
-          </div>
-        
-         
-        </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
+              </div>
               <div class="row">
-                <div class="col-5">
-                  Department
+                <div class="col-12" style="color:grey;font-size:12px">
+                  <div class="row">
+                    <div class="col-5">
+                      Department
+                    </div>
+                    <div class="col-1">
+                      :
+                    </div>
+                    <div class="col-6">
+                   {{job.main_department.department}}
+                    </div>
+                  </div>
+               
                 </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                 Human Capital
-                </div>
-              </div>
-           
-            </div>
        
-       
-          </div>
-
-          <div class="child">
-            <div class="row ">
-              <div class="col-12" >
-              <h4><span class="badge badge-warning">Submitted</span></h4>
-           
+         
               </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-                 
-                Date Created :     11/05/1991
-            
+              <div class="row">
+                <div class="col-12" style="color:grey;font-size:12px">
+                  <div class="row">
+                    <div class="col-5">
+                      Annual Base Salary
+                    </div>
+                    <div class="col-1">
+                      :
+                    </div>
+                    <div class="col-6">
+               {% for sal in base %}
+               {% if sal.main_benchmark_base.id == job.id %}
+               {{sal.monthly_base_salary}} (GHS)
+               {% endif%}
+               {% endfor %}
+                    </div>
+                  </div>
+               
+                </div>
+       
+         
+              </div>
+      
+              <div class="child">
+                <div class="row ">
+                  <div class="col-12" >
+                  <h4><span class="badge badge-success">Verified</span></h4>
+               
+                  </div>
+                  <div class="col-12" style="color:grey;font-size:12px">
+                       
+                    Date Created :     2/11/2020
                 
-            </div>
-            
-            </div>
+                    
+                </div>
+                
+                </div>
+              </div>
           </div>
       </div>
-  </div>
+      
+
+    {% endfor %}
+
+
 
 
 

@@ -262,9 +262,10 @@ def my_reports():
 
 @users.route("/my_benchmark_jobs")
 def my_benchmark_jobs():
+    query = Main_benchmark_job.query.all()
+    base = Base_salary.query.all()
     
-    form = SurveyForm()
-    return render_template("new_view_client_benchmark.html",form=form)
+    return render_template("new_view_client_benchmark.html",query=query,base=base)
 
 
 
@@ -273,9 +274,23 @@ def my_benchmark_options():
 
     return render_template("new_client_benchmark_options.html")
 
-@users.route("/my_benchmark_jobs/new")
+@users.route("/my_benchmark_jobs/new",methods=['POST','GET'])
 def my_benchmark_jobs_create():
     form = SurveyForm()
+    if form.validate_on_submit():
+        b_job = Main_benchmark_job(job_title=form.job_title.data,grade=form.grade.data,main_department=form.department.data,reporting_relationship=form.reporting_relationship.data,job_description=form.job_desc.data,duties_and_responsibility=form.key_duties.data,financial_responsibilities=form.fin_res.data,technical_qualification=form.tech_qual.data,minimum_years_of_experience=form.exp_years.data)
+        base = Base_salary(monthly_base_salary=form.base_salary.data,main_benchmark_base=b_job)
+        inc  = Incentive(company_performance=form.company_bonus_performance.data,individual_performance=form.individual_bonus_performance.data,annual_incentive=form.annual_bonus.data,incentive=form.incentive_bonus.data,other_cash=form.other_bonus.data,main_benchmark_incentive=b_job)
+        benefits = Benefit(staff_bus=form.staff_bus.data,company_car=form.company_car.data,personal_travel=form.personal_travel.data,petrol=form.petrol.data,vehicle_maintenance=form.vehicle.data,driver=form.driver.data,health_insurance=form.health_insurance.data,medical_assistance=form.medical_assistance.data,funeral_assistance=form.funeral_assistance.data,life_insurance=form.life_insurance.data,group_accident=form.group_accident.data,club_membership=form.club_membership.data,school_fees=form.school_fees.data,vacation=form.vacation.data,housing=form.housing.data,telephone=form.telephone.data,security=form.security.data,other_benefits=form.other_benefits.data,main_benchmark_benefit=b_job)
+        allowance = Allowance(vehicle_maintenance=form.vehicle_maintenance.data,vehicle=form.allowance_vehicle.data,transport=form.transport.data,fuel=form.fuel.data,car=form.car.data,driver=form.allowance_driver.data,domestic_safety=form.domestic.data,housing=form.allowance_housing.data,utilities=form.utilities.data,meal=form.meal.data,telephone=form.allowance_telephone.data,entertainment=form.entertainment.data,education_support=form.education.data,vacation=form.vacation.data,uniform=form.uniform.data,mobile_money=form.mobile_money.data,miscellaenous=form.misc.data,main_benchmark_allowance=b_job)
+        db.session.add(b_job)
+        db.session.add(base)
+        db.session.add(inc)
+        db.session.add(benefits)
+        db.session.add(allowance)
+        db.session.commit()
+        flash('Job Position Created','success')
+        return redirect(url_for('users.my_benchmark_jobs_create')) 
     return render_template("new_client_create_benchmark.html",form=form)
 
 @users.route("/my_surveys")
