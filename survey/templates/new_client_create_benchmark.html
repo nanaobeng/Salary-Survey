@@ -104,21 +104,7 @@
     </div>
 </div>
 <div class="row">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-  {%if messages %}
-  {% for category, message in messages %}
-  <div class="container">
-  <div class="alert alert-{{ category}}">
-      {{message}}
-  </div>
-</div>
 
-
-  {% endfor %}
-
-  {% endif %}
-
-{% endwith %}
   <div class="col-12" style="background-color: rgb(226, 223, 223);height:auto">
     <div class="row p-4 justify-content-center">
 
@@ -191,6 +177,26 @@
 
   </div>
 </div>
+<div class="row p-4">
+  <div class="col-12 pl-2 pr-2">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {%if messages %}
+    {% for category, message in messages %}
+    <div class="container">
+    <div class="alert alert-{{ category}}">
+        {{message}}
+    </div>
+</div>
+
+
+    {% endfor %}
+
+    {% endif %}
+
+  {% endwith %}
+
+</div>
+</div>
 <div class="p-4" style="background-color:rgb(245, 243, 243)">
   <form method="POST">
 
@@ -254,10 +260,18 @@
               </div>
               <div class="col-12 pt-2 ">
                 <div class="form-group">
-                    <label class="green_shade">
-                        <b>Job Title</b>
-                    </label>
-                    <input type="text" class="form-control" />
+                  {{ form.job_title.label(class="form-control-label") }}
+  
+                  {% if form.job_title.errors %}
+                  {{ form.job_title(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.job_title.errors %}
+                      <span> {{ error}}</span>
+                      {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.job_title(class="form-control form-control") }}
+                  {% endif %}
                 </div>
         
                     
@@ -276,10 +290,18 @@
                       </div>
                       <div class="col-12 pt-2 ">
                         <div class="form-group">
-                            <label class="green_shade">
-                                <b>Department</b>
-                            </label>
-                            <input type="text" class="form-control" />
+                         <span class="green_shade"><b>{{ form.department.label(class="form-control-label") }}</b></span> 
+  
+                          {% if form.department.errors %}
+                          {{ form.department(class="form-control form-control is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.department.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.department(class="form-control form-control") }}
+                          {% endif %}
                         </div>
                 
                             
@@ -298,11 +320,19 @@
                               </div>
                               <div class="col-12 pt-2 ">
                                 <div class="form-group">
-                                    <label class="green_shade">
-                                        <b>Grade</b>
-                                    </label>
-                                    <input type="text" class="form-control" />
-                                </div>
+                                  {{ form.grade.label(class="form-control-label") }}
+  
+                                  {% if form.grade.errors %}
+                                  {{ form.grade(class="form-control form-control is-invalid")}}
+                                  <div class="invalid-feedback">
+                                      {% for error in form.grade.errors %}
+                                      <span> {{ error}}</span>
+                                      {% endfor %}
+                                  </div>
+                                  {% else %}
+                                  {{ form.grade(class="form-control form-control") }}
+                                  {% endif %}
+                                 </div>
                         
                                     
                                 </div>
@@ -319,11 +349,18 @@
                                       </div>
                                       <div class="col-12 pt-2 ">
                                         <div class="form-group">
-                                            <label class="green_shade">
-                                                <b>Reporting Relationship</b>
-                                            </label>
-                                            <input type="text" class="form-control" />
-                                        </div>
+                                          {{ form.reporting_relationship.label(class="form-control-label") }}
+  
+                                          {% if form.reporting_relationship.errors %}
+                                          {{ form.reporting_relationship(class="form-control form-control is-invalid")}}
+                                          <div class="invalid-feedback">
+                                              {% for error in form.reporting_relationship.errors %}
+                                              <span> {{ error}}</span>
+                                              {% endfor %}
+                                          </div>
+                                          {% else %}
+                                          {{ form.reporting_relationship(class="form-control form-control") }}
+                                          {% endif %} </div>
                                 
                                             
                                         </div>
@@ -340,11 +377,18 @@
                                               </div>
                                               <div class="col-12 pt-2 ">
                                                 <div class="form-group">
-                                                    <label class="green_shade">
-                                                        <b>Job Description</b>
-                                                    </label>
-                                                    <textarea cols="3" rows="3" class="form-control"></textarea>
-                                                </div>
+                                                  {{ form.job_desc.label(class="form-control-label") }}
+  
+                                                  {% if form.job_desc.errors %}
+                                                  {{ form.job_desc(class="form-control form-control is-invalid")}}
+                                                  <div class="invalid-feedback">
+                                                      {% for error in form.job_desc.errors %}
+                                                      <span> {{ error}}</span>
+                                                      {% endfor %}
+                                                  </div>
+                                                  {% else %}
+                                                  {{ form.job_desc(class="form-control form-control") }}
+                                                  {% endif %} </div>
                                         
                                                     
                                                 </div>
@@ -362,11 +406,18 @@
                                                       </div>
                                                       <div class="col-12 pt-2 ">
                                                         <div class="form-group">
-                                                            <label class="green_shade">
-                                                                <b>Key Duties and Scope of Responsibility</b>
-                                                            </label>
-                                                            <textarea cols="3" rows="3" class="form-control"></textarea>
-                                                        </div>
+                                                          {{ form.key_duties.label(class="form-control-label") }}
+  
+              {% if form.key_duties.errors %}
+              {{ form.key_duties(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.key_duties.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.key_duties(class="form-control form-control") }}
+              {% endif %}</div>
                                                 
                                                             
                                                         </div>
@@ -384,11 +435,18 @@
                                                               </div>
                                                               <div class="col-12 pt-2 ">
                                                                 <div class="form-group">
-                                                                    <label class="green_shade">
-                                                                        <b>Financial Responsibilities</b>
-                                                                    </label>
-                                                                    <textarea cols="3" rows="3" class="form-control"></textarea>
-                                                                </div>
+                                                                  {{ form.fin_res.label(class="form-control-label") }}
+  
+                                                                  {% if form.fin_res.errors %}
+                                                                  {{ form.fin_res(class="form-control form-control is-invalid")}}
+                                                                  <div class="invalid-feedback">
+                                                                      {% for error in form.fin_res.errors %}
+                                                                      <span> {{ error}}</span>
+                                                                      {% endfor %}
+                                                                  </div>
+                                                                  {% else %}
+                                                                  {{ form.fin_res(class="form-control form-control") }}
+                                                                  {% endif %}</div>
                                                         
                                                                     
                                                                 </div>
@@ -406,10 +464,18 @@
                                                                       </div>
                                                                       <div class="col-12 pt-2 ">
                                                                         <div class="form-group">
-                                                                            <label class="green_shade">
-                                                                                <b>Technical/Professional Qualification</b>
-                                                                            </label>
-                                                                            <textarea cols="3" rows="3" class="form-control"></textarea>
+                                                                          {{ form.tech_qual.label(class="form-control-label") }}
+  
+                                                                          {% if form.tech_qual.errors %}
+                                                                          {{ form.tech_qual(class="form-control form-control is-invalid")}}
+                                                                          <div class="invalid-feedback">
+                                                                              {% for error in form.tech_qual.errors %}
+                                                                              <span> {{ error}}</span>
+                                                                              {% endfor %}
+                                                                          </div>
+                                                                          {% else %}
+                                                                          {{ form.tech_qual(class="form-control form-control") }}
+                                                                          {% endif %}
                                                                         </div>
                                                                 
                                                                             
@@ -427,11 +493,18 @@
                                                                               </div>
                                                                               <div class="col-12 pt-2 ">
                                                                                 <div class="form-group">
-                                                                                    <label class="green_shade">
-                                                                                        <b>Minimum Years of Experience</b>
-                                                                                    </label>
-                                                                                   <input type="text" class="form-control"/>
-                                                                                </div>
+                                                                                  {{ form.exp_years.label(class="form-control-label") }}
+  
+                                                                                  {% if form.exp_years.errors %}
+                                                                                  {{ form.exp_years(class="form-control form-control is-invalid")}}
+                                                                                  <div class="invalid-feedback">
+                                                                                      {% for error in form.exp_years.errors %}
+                                                                                      <span> {{ error}}</span>
+                                                                                      {% endfor %}
+                                                                                  </div>
+                                                                                  {% else %}
+                                                                                  {{ form.exp_years(class="form-control form-control") }}
+                                                                                  {% endif %} </div>
                                                                         
                                                                                     
                                                                                 </div>
@@ -468,7 +541,8 @@
 
         </div>
         <div class="col-12 pt-4 ">
-          <span ><b class="green_shade"><b>
+          <div class="form-group">
+          <span ><b class="green_shade"></b>
             {{ form.base_salary.label(class="form-control-label") }}
   
               {% if form.base_salary.errors %}
@@ -482,7 +556,7 @@
               {{ form.base_salary(class="form-control form-control") }}
               {% endif %}
   
-              
+            </div>
           </div>
           
 
@@ -551,6 +625,7 @@
 
             </div>
             <div class="col-12 pt-2">
+              <div class="form-group">
               <span ><b class="green_shade"><b>
                 {{ form.company_bonus_performance.label(class="form-control-label") }}
   
@@ -565,7 +640,7 @@
                 {{ form.company_bonus_performance(class="form-control form-control") }}
                 {% endif %}
               </b></h2></b></span>
-             
+             </div>
             </div>
            </div>
              </div>
@@ -577,6 +652,7 @@
           
                       </div>
                       <div class="col-12 pt-2 ">
+                        <div class="form-group">
                         <span ><b class="green_shade"><b>
                           {{ form.individual_bonus_performance.label(class="form-control-label") }}
             
@@ -591,7 +667,7 @@
                         {{ form.individual_bonus_performance(class="form-control form-control") }}
                         {% endif %}
                         </b></h2></b></span>
-                        
+</div>
                       </div>
                       </div>
              </div>
@@ -606,6 +682,7 @@
       
                   </div>
                   <div class="col-12 pt-2">
+                    <div class="form-group">
                     <span ><b class="green_shade"><b>
                       {{ form.annual_bonus.label(class="form-control-label") }}
           
@@ -620,7 +697,7 @@
                       {{ form.annual_bonus(class="form-control form-control") }}
                       {% endif %}
                     </b></h2></b></span>
-                  
+                  </div>
                   </div>
      </div>
        </div>
@@ -633,6 +710,7 @@
   
               </div>
               <div class="col-12 pt-2 ">
+                <div class="form-group">
                 <span ><b class="green_shade"><b>
                   {{ form.incentive_bonus.label(class="form-control-label") }}
       
@@ -647,7 +725,7 @@
                   {{ form.incentive_bonus(class="form-control form-control") }}
                   {% endif %}
                 </b></h2></b></span>
-               
+               </div>
               </div>
              
  </div>
@@ -661,6 +739,7 @@
 
           </div>
           <div class="col-12 pt-2 ">
+            <div class="form-group">
             <span ><b class="green_shade"><b>
               {{ form.other_bonus.label(class="form-control-label") }}
   
@@ -675,7 +754,7 @@
               {{ form.other_bonus(class="form-control form-control") }}
               {% endif %}
             </b></h2></b></span>
-            
+            </div>
           </div>
          
 </div>
@@ -746,6 +825,7 @@
 
             </div>
             <div class="col-12 pt-2">
+              <div class="form-group">
               <span ><b class="green_shade"><b>
                 {{ form.staff_bus.label(class="form-control-label") }}
                             
@@ -760,7 +840,7 @@
                 {{ form.staff_bus(class="form-control form-control") }}
                 {% endif %}
               </b></b></span>
-            
+            </div>
             </div>
            
              
@@ -774,6 +854,7 @@
       
                   </div>
                   <div class="col-12 pt-2">
+                    <div class="form-group">
                     <span ><b class="green_shade"><b>
                       {{ form.company_car.label(class="form-control-label") }}
                                     
@@ -788,7 +869,7 @@
                       {{ form.company_car(class="form-control form-control") }}
                       {% endif %}
                     </b></b></span>
-                    
+                    </div>
                   </div>
                  
                    
@@ -802,6 +883,7 @@
               
                           </div>
                           <div class="col-12 pt-2">
+                            <div class="form-group">
                             <span ><b class="green_shade"><b>
                               {{ form.personal_travel.label(class="form-control-label") }}
                                               
@@ -816,7 +898,7 @@
                                                           {{ form.personal_travel(class="form-control form-control") }}
                                                           {% endif %}
                             </b></b></span>
-                            
+                            </div>
                           </div>
                          
                            
@@ -831,6 +913,7 @@
                       
                                   </div>
                                   <div class="col-12 pt-2">
+                                    <div class="form-group">
                                     <span ><b class="green_shade"><b>
                                       {{ form.petrol.label(class="form-control-label") }}
                                                         
@@ -845,7 +928,7 @@
                                                                     {{ form.petrol(class="form-control form-control") }}
                                                                     {% endif %}
                                     </b></b></span>
-                                    
+                                    </div>
                                   </div>
                                  
                                    
@@ -860,6 +943,7 @@
                               
                                           </div>
                                           <div class="col-12 pt-2">
+                                            
                                             <span ><b class="green_shade"><b>
                                               {{ form.vehicle.label(class="form-control-label") }}
                                                                 
@@ -1865,8 +1949,9 @@
 
     </div>
     <div class="col-6 text-right">
+      <div class="form-group">
       {{ form.submit(class="btn btn-success btn-max") }}
-
+    </div>
     </div>
 </div>
 </div>
