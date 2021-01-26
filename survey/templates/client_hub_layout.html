@@ -4,16 +4,7 @@
 
 <!--Import Google Icon Font-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
+ 
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css//icofont/icofont.min.css')}}">
@@ -25,10 +16,7 @@
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css//crmstyle.css')}}">
-<script
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
-defer
-></script>
+
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
     </head>
@@ -494,13 +482,20 @@ body {
       <li>
         <a href="{{  url_for('users.admin_home')}}">
             <svg>
-              <use xlink:href="#trends"></use>
+              <use xlink:href="#home"></use>
             </svg>
             <span>Home</span>
           </a>
       </li>
      
-
+      <li>
+        <a href="{{  url_for('users.client_hub')}}">
+            <svg>
+              <use xlink:href="#trends"></use>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+      </li>
       
 
       <li>
@@ -628,6 +623,9 @@ body {
   </symbol>
   <symbol id="search" viewBox="0 0 16 16">
     <path d="M6.57,1A5.57,5.57,0,1,1,1,6.57,5.57,5.57,0,0,1,6.57,1m0-1a6.57,6.57,0,1,0,6.57,6.57A6.57,6.57,0,0,0,6.57,0Z"/><rect x="11.84" y="9.87" width="2" height="5.93" transform="translate(-5.32 12.84) rotate(-45)"/>
+  </symbol>
+  <symbol id="home" viewBox="0 0 16 16">
+    <path d="M3 10v11h6v-7h6v7h6v-11L12,3z"/> <rect x="4.16" y="1.75" width="24" height="24" viewBox="0 0 24 24"/>
   </symbol>
 </svg>
 
