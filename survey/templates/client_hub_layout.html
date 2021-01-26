@@ -48,8 +48,6 @@
   });
   </script>
   
-
-  
 <style>
 
 #hero {
@@ -59,7 +57,6 @@
         background-size: cover;
         position: relative;
     }
-
 
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 
@@ -119,6 +116,9 @@ svg {
 
 body {
   font: 16px/1.5 "Lato", sans-serif;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
   
 }
 
@@ -130,9 +130,9 @@ body {
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;
   overflow: auto;
   padding-top: 20px;
+  padding-bottom:200px;
   width: var(--page-header-width);
   color: var(--page-header-txtColor);
   background: var(--page-header-bgColor);
@@ -142,7 +142,7 @@ body {
 .page-header nav {
   display: flex;
   flex-direction: column;
-  height:60%
+  height:60%;
 }
 
 .page-header .logo {
@@ -677,7 +677,10 @@ body {
   .footer-link{
     flex: 0 0 50px;/*or just height:50px;*/
   margin-top: auto;
+  }
 
+  .main-footer{
+    padding-left:230px;
   }
   
   </style>
