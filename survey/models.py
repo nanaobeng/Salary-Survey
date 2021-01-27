@@ -25,6 +25,7 @@ class User(db.Model,UserMixin):
     password = db.Column(db.String(60),  nullable=False)
     client = db.relationship('Client', backref='user' , lazy=True)
     audit_log = db.relationship('Audit_log', backref='log' , lazy=True)
+    benchmark = db.relationship('Main_benchmark_job', backref='user_account' , lazy=True)
     
 
 
@@ -82,6 +83,7 @@ class Client(db.Model):
     key_management_id = db.Column(db.Integer  ,  db.ForeignKey('key_management.id'))
     current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('current_auditor.id'))
     previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('previous_auditor.id'))
+    
     
 
     # client_address = db.relationship('Address', backref='client_address' , lazy=True)
@@ -531,6 +533,8 @@ class Main_benchmark_job(db.Model):
     financial_responsibilities = db.Column(db.Text)
     technical_qualification = db.Column(db.Text)
     minimum_years_of_experience = db.Column(db.Text)
+    user = db.Column(db.Integer, db.ForeignKey('user.id'))
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
    
 
     allowance = db.relationship('Allowance', backref='main_benchmark_allowance' , lazy=True)

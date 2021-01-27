@@ -1794,17 +1794,17 @@
                                       </div>
                                       <div class="col-12 pt-2">
                                         <span ><b class="green_shade"><b>
-                                          {{ form.vacation.label(class="form-control-label") }}
+                                          {{ form.vacation_allowance.label(class="form-control-label") }}
                                                         
-                                                                    {% if form.vacation.errors %}
-                                                                    {{ form.vacation(class="form-control form-control is-invalid")}}
+                                                                    {% if form.vacation_allowance.errors %}
+                                                                    {{ form.vacation_allowance(class="form-control form-control is-invalid")}}
                                                                     <div class="invalid-feedback">
-                                                                        {% for error in form.vacation.errors %}
+                                                                        {% for error in form.vacation_allowance.errors %}
                                                                         <span> {{ error}}</span>
                                                                         {% endfor %}
                                                                     </div>
                                                                     {% else %}
-                                                                    {{ form.vacation(class="form-control form-control") }}
+                                                                    {{ form.vacation_allowance(class="form-control form-control") }}
                                                                     {% endif %}
                               
                                         </b></b></span>

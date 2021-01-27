@@ -99,6 +99,23 @@
           </section>
       </div>
   </div>
+  <div class="row p-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {%if messages %}
+    {% for category, message in messages %}
+    <div class="container">
+    <div class="alert alert-{{ category}}">
+        {{message}}
+    </div>
+  </div>
+  
+  
+    {% endfor %}
+  
+    {% endif %}
+  
+  {% endwith %}
+  </div>
   <div class="p-4" style="background-color:rgb(245, 243, 243)">
     <div class="row p-4">
         <div class="col-6">
@@ -185,7 +202,7 @@ Custom Filters <i class="icofont-filter"></i>
                 <h5><b>{{job.job_title}}</b></h5>
               </div>
               <div class="col-1">
-                <a href="/user/view-benchmark" style="color:grey"><i class="icofont-eye-alt" ></i></a>
+                <a href="/user/view-benchmark/{{job.id}}" style="color:grey"><i class="icofont-eye-alt" ></i></a>
               </div>
             
              
@@ -241,7 +258,7 @@ Custom Filters <i class="icofont-filter"></i>
                   </div>
                   <div class="col-12" style="color:grey;font-size:12px">
                        
-                    Date Created :     2/11/2020
+                    Date Created :     {{job.timestamp.strftime('%Y-%m-%d')}}
                 
                     
                 </div>

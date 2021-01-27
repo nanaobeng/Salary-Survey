@@ -717,7 +717,7 @@ class SurveyForm(FlaskForm):
 
     entertainment = FloatField('Entertainment')
     education = FloatField('Education')
-    vacation = FloatField('Vacation')
+    vacation_allowance = FloatField('Vacation')
     uniform = FloatField('Uniform')
     mobile_money = FloatField('Mobile Money')
     misc = FloatField('Miscellaneous')
