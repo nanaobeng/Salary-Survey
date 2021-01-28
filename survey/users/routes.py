@@ -617,3 +617,9 @@ def edit_benchmark(id):
 
 
 
+@users.route("/client/benchmark")
+def benchmark_home():
+    usn = current_user
+    job = Main_benchmark_job.query.filter_by(user_account=usn).all()
+    return render_template("benchmark_dashboard.html",job=job)
+
