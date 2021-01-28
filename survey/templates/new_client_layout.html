@@ -264,16 +264,16 @@
     }
 
     .parent {
-      /* set height as you need */
-      display: flex;
-      flex-direction: column;
+   /* set height as you need */
+  display: flex;
+  flex-direction: column;
+  
+}
+.child {
+  margin-top: auto;
 
-    }
+}
 
-    .child {
-      margin-top: auto;
-
-    }
   </style>
   <!--Let browser know website is optimized for mobile-->
 
@@ -301,7 +301,7 @@
           <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger"
               href="{{  url_for('main.index')}}">Home</a></li>
           <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger"
-              href="{{  url_for('users.my_benchmark_jobs')}}">My Benchmark Jobs</a></li>
+              href="{{  url_for('users.benchmark_home')}}">My Benchmark Jobs</a></li>
           <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger"
               href="{{  url_for('users.my_surveys')}}">Complete Survey</a></li>
           <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger"
@@ -390,7 +390,7 @@
 
   <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
 
-
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
 
 </body>
