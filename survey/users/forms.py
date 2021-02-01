@@ -550,7 +550,7 @@ class AreaForm(FlaskForm):
 
 
 
-# class ClientForm(FlaskForm):
+class ClientForm(FlaskForm):
    
     name = StringField('Registered Company Name')
     reg = StringField('Company Registration Number')
