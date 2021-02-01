@@ -1,105 +1,28 @@
-{% extends "new_admin_layout.html" %}
+lor: grey;
+    } */
 
-
-
-
-{% block content %}
-
-<style>
-  #hero {
-    width: 100%;
-    height: 15vh;
-    background: url("../static/img/home.jpg") top center;
-    background-size: cover;
-    position: relative;
+  .search_icon {
+    height: 40px;
+    width: 40px;
+    float: right;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: white;
+    /* background: white; */
+    background: grey;
+    /* color: black; */
+    text-decoration: none;
   }
 
-  #hero:before {
-    content: "";
-    background: rgba(20, 44, 9, 0.7);
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
-  }
-
-  #hero .container {
-    text-align: center;
-    padding-top: 50px;
-  }
-
-  @media (max-width: 992px) {
-    #hero .container {
-      padding-top: 0;
-    }
-  }
-
-  #hero h1 {
-    margin: 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 56px;
-    color: #fff;
-  }
-
-  #hero h2 {
-    color: #eee;
-    margin: 15px 0 0 0;
-    font-size: 22px;
-  }
-
-  #hero .btn-get-started {
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 9px 35px;
-    border-radius: 50px;
-    transition: 0.5s;
-    margin-top: 40px;
-    border: 2px solid #ffc107;
-    color: #fff;
-  }
-
-  #hero .btn-get-started:hover {
-    background: #ffc107;
-  }
-
-  @media (min-width: 1024px) {
-    #hero {
-      background-attachment: fixed;
-    }
-  }
-
-  @media (max-width: 768px) {
-    #hero {
-      height: 100vh;
-    }
-
-    #hero h1 {
-      font-size: 28px;
-      line-height: 36px;
-    }
-
-    #hero h2 {
-      font-size: 18px;
-      line-height: 24px;
-    }
-
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  a {
-    color: inherit;
+  .filterbar {
+    color: #353b48;
   }
 </style>
 
 
+<!--Header-->
 <div class="row">
   <div class="col-12">
     <section id="hero" class="d-flex align-items-center justify-content-center">
@@ -111,50 +34,151 @@
   </div>
 </div>
 
+
+<!--Body-->
+
+<div class="container py-5 h-100">
+  <div class="d-flex float-right h-100">
+    <div class="searchbar">
+      <input class="search_input" type="text" name="" placeholder="Search...">
+      <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
+    </div>
+  </div>
+  <div class="filterbar float-left">
+    <!-- Filter <i class="icofont-settings"></i> -->
+    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
+        class="icofont-settings"></i></span></button>
+    <form class="dropdown-menu p-4">
+      <div class="form-group">
+        <label for="sel1" style="color:grey">Status:</label>
+        <select class="form-control" id="status" onchange="filter('status')">
+          <option value="opened">Pending</option>
+          <option value="close">Awaiting Client Information</option>
+          <option>First Pass</option>
+          <option>Conflict Check</option>
+          <option>Finish Completion</option>
+          <option>Submitted For Approval</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="sel1" style="color:grey">Request Type:</label>
+        <select class="form-control" id="s_period" onchange="filter('s_period')">
+          <option value="corporate">Corporate</option>
+          <option value="individual">Individual</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="sel1" style="color:grey">Client:</label>
+        <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+        <datalist id="clients">
+          <option value="ABC">
+          <option value="Modec">
+          <option value="Villagio">
+          <option value="Shell">
+        </datalist>
+      </div>
+    </form>
+  </div>
+</div> 
+
+<!-- <div class="row p-5">
+  <div class="col-12">
+    <div class="table">
+      <table>
+        <thead style="background-color: rgb(51, 73, 41);">
+          <th id="searchbar">
+            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
+            <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
+          </th>
+          <th>
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
+                class="icofont-settings"></i></span></button>
+            <form class="dropdown-menu p-4">
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Status:</label>
+                <select class="form-control" id="status" onchange="filter('status')">
+                  <option value="opened">Pending</option>
+                  <option value="close">Awaiting Client Information</option>
+                  <option>First Pass</option>
+                  <option>Conflict Check</option>
+                  <option>Finish Completion</option>
+                  <option>Submitted For Approval</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Request Type:</label>
+                <select class="form-control" id="s_period" onchange="filter('s_period')">
+                  <option value="corporate">Corporate</option>
+                  <option value="individual">Individual</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Client:</label>
+                <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+                <datalist id="clients">
+                  <option value="ABC">
+                  <option value="Modec">
+                  <option value="Villagio">
+                  <option value="Shell">
+
+                </datalist>
+              </div>
+            </form>
+          </th>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div> -->
+
+
 <div class="py-5">
   <div class="container">
     <div class="row hidden-md-up">
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
             <span class="badge badge-success">Submitted For Approval</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
             <span class="badge badge-secondary">Pending</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
             <span class="badge badge-warning">Awaiting Client Information</span>
           </div>
         </div>
@@ -163,46 +187,49 @@
     <div class="row">
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-            <span class="badge badge-primary">Undergoing Risk Processes</span>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
+            <span class="badge badge-info">First Pass</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-            <span class="badge badge-primary">Undergoing Risk Processes</span>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
+            <span class="badge badge-danger">Conflict Check</span>
           </div>
         </div>
       </div>
       <div class="col-md-4">
         <div class="card">
-          <img class="card-img-top"
+          <!-- <img class="card-img-top"
             src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%">
+            alt="Card image" style="width:100%"> -->
           <div class="card-body">
-            <a class="stretched-link" href=#>
+            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
               <h4 class="card-title">Company Name</h4>
             </a>
-            <h6 class="card-subtitle text-muted">Support card subtitle</h6>
-            <p class="card-text p-y-1">Some quick example text to build on the card title .</p>
-            <span class="badge badge-secondary">Pending</span>
+            <h6 class="card-subtitle text-muted">Request Title</h6>
+            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
+              libero sit amet malesuada.</p>
+            <span class="badge badge-primary">Finish Completion</span>
           </div>
         </div>
       </div>
@@ -435,6 +462,115 @@
 
 </div> -->
 
+<!-- Modal -->
+<div class="modal fade" id="viewRequestModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header d-block">
+        <div class="d-flex">
+          <h4 class="modal-title">Company Name</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <h6 style="color: gray;" class="modal-title">Request Title</h5>
+      </div>
+      <div class="modal-body">
+        <!--Request Description-->
+        <div>
+          <p>Assigned To: </p>
+          <p>Date Assigned: </p>
+          <p style="color: gray;">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lobortis convallis sagittis. Pellentesque
+            tempus turpis eu urna varius, ut hendrerit lectus auctor. Nam convallis erat nec justo tincidunt, ut
+            ultrices felis dignissim. Proin finibus diam at neque pharetra, ut ornare nisi aliquet. Cras et justo non
+            odio semper vehicula sit amet quis neque. Etiam volutpat a tortor eu egestas. Quisque ultricies condimentum
+            sapien, a suscipit lacus consectetur rutrum. Fusce sodales aliquam erat vel faucibus. Pellentesque porta,
+            neque a ultrices hendrerit, tellus massa efficitur felis, at aliquam diam metus et eros.
+          </p>
+        </div>
+
+        <hr>
+
+        <!--Change Status / Add Comments-->
+        <div>
+          <form>
+            <div class="form-group">
+              <label>Update Request Status</label>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="pending" name="status" value="pending"
+                    checked>Pending
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="requesting" name="status"
+                    value="requesting">Requesting Client Information
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="firstpass" name="status" value="firstpass">Undergoing
+                  Risk Processes: First Pass
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="conflictcheck" name="status"
+                    value="conflictcheck">Undergoing Risk Processes: Conflict Check
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="finishcompletion" name="status"
+                    value="finishcompletion">Undergoing Risk Processes: Finish Completion
+                </label>
+              </div>
+
+              <div class="form-check">
+                <label class="form-check-label">
+                  <input type="radio" class="form-check-input" id="submitted" name="status" value="submitted">Submitted
+                  For Approval
+                </label>
+              </div>
+
+            </div>
+
+            <hr>
+
+            <div class="form-group">
+              <p>Comments:
+              <ol style="color: gray;">
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
+              </ol>
+              </p>
+              <label style="font-size: smaller; font-style: italic;">Add New Comment
+                <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
+              </label>
+            </div>
+          </form>
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary">Save changes</button>
+        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+      </div>
+    </div>
+
+  </div>
+</div>
 
 
 <script>
