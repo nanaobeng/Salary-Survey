@@ -25,6 +25,7 @@ class User(db.Model,UserMixin):
     password = db.Column(db.String(60),  nullable=False)
     client = db.relationship('Client', backref='user' , lazy=True)
     audit_log = db.relationship('Audit_log', backref='log' , lazy=True)
+    benchmark = db.relationship('Main_benchmark_job', backref='user_account' , lazy=True)
     
 
 
@@ -82,6 +83,7 @@ class Client(db.Model):
     key_management_id = db.Column(db.Integer  ,  db.ForeignKey('key_management.id'))
     current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('current_auditor.id'))
     previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('previous_auditor.id'))
+    
     
 
     # client_address = db.relationship('Address', backref='client_address' , lazy=True)
@@ -489,9 +491,7 @@ class Survey_comparator(db.Model):
     comparator_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
 
-    allowance = db.relationship('Allowance', backref='allowance_comparator' , lazy=True)
-    benefit = db.relationship('Benefit', backref='benefit_comparator' , lazy=True)
-    incentive = db.relationship('Incentive', backref='incentive_comparator' , lazy=True)
+   
     job = db.relationship('Comparator_job', backref='survey_comparator' , lazy=True)
 
 
@@ -510,6 +510,7 @@ class Department(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     department = db.Column(db.String(100))
     benchmark = db.relationship('Benchmark_job', backref='department' , lazy=True)
+    main_benchmark = db.relationship('Main_benchmark_job', backref='main_department' , lazy=True)
     job = db.relationship('Comparator_job', backref='department' , lazy=True)
 
 
@@ -519,6 +520,41 @@ class Department(db.Model):
 
     def __repr__(self):
         return '<Department %r>' % self.id
+
+
+
+class Main_benchmark_job(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    job_title = db.Column(db.String(100))
+    grade = db.Column(db.String(50))
+    department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
+    reporting_relationship = db.Column(db.String(100))
+    job_description = db.Column(db.Text)
+    duties_and_responsibility = db.Column(db.Text)
+    financial_responsibilities = db.Column(db.Text)
+    technical_qualification = db.Column(db.Text)
+    minimum_years_of_experience = db.Column(db.Text)
+    user = db.Column(db.Integer, db.ForeignKey('user.id'))
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
+   
+
+    allowance = db.relationship('Allowance', backref='main_benchmark_allowance' , lazy=True)
+    benefit = db.relationship('Benefit', backref='main_benchmark_benefit' , lazy=True)
+    incentive = db.relationship('Incentive', backref='main_benchmark_incentive' , lazy=True)
+    base = db.relationship('Base_salary', backref='main_benchmark_base' , lazy=True)
+
+    
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Main_benchmark_job %r>' % self.id
+
+
+
 
 class Benchmark_job(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -534,9 +570,7 @@ class Benchmark_job(db.Model):
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
     survey_id = db.Column(db.Integer, db.ForeignKey('survey.id'))
 
-    allowance = db.relationship('Allowance', backref='benchmark_allowance' , lazy=True)
-    benefit = db.relationship('Benefit', backref='benchmark_benefit' , lazy=True)
-    incentive = db.relationship('Incentive', backref='benchmark_incentive' , lazy=True)
+    
     comparator = db.relationship('Comparator_job', backref='benchmark_comparator' , lazy=True)
     
 
@@ -570,8 +604,9 @@ class Allowance(db.Model):
     rent = db.Column(db.Float)
   
 
-    survey_comparator_id = db.Column(db.Integer, db.ForeignKey('survey_comparator.id'))
-    benchmark_job_id = db.Column(db.Integer, db.ForeignKey('benchmark_job.id'))
+    
+    
+    main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
     
 
 
@@ -582,10 +617,28 @@ class Allowance(db.Model):
     def __repr__(self):
         return '<Allowance %r>' % self.id
 
+class Base_salary(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    monthly_base_salary = db.Column(db.Float)
+   
+ 
+    
+    main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
+    
+
+
+
+
+   
+
+    def __repr__(self):
+        return '<Base_salary %r>' % self.id
+
+
 
 class Incentive(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    monthly_base_salary = db.Column(db.Float)
+  
     work_month = db.Column(db.Float)
     job_value_adjustment = db.Column(db.Float)
     company_performance = db.Column(db.Float)
@@ -597,8 +650,9 @@ class Incentive(db.Model):
  
   
 
-    survey_comparator_id = db.Column(db.Integer, db.ForeignKey('survey_comparator.id'))
-    benchmark_job_id = db.Column(db.Integer, db.ForeignKey('benchmark_job.id'))
+
+    
+    main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
     
 
 
@@ -625,15 +679,18 @@ class Benefit(db.Model):
     housing = db.Column(db.Float)
     telephone = db.Column(db.Float)
     driver = db.Column(db.Float)
+    funeral_assistance = db.Column(db.Float)
     security = db.Column(db.Float)
     petrol = db.Column(db.Float)
     vehicle_maintenance = db.Column(db.Float)
     other_benefits = db.Column(db.Float)
+    group_accident = db.Column(db.Float)
   
   
 
-    survey_comparator_id = db.Column(db.Integer, db.ForeignKey('survey_comparator.id'))
-    benchmark_job_id = db.Column(db.Integer, db.ForeignKey('benchmark_job.id'))
+ 
+    
+    main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
     
 
 

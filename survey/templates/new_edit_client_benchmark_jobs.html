@@ -241,283 +241,288 @@
 
 
 
-    <div class="row  benchmark_details">
-        <div class="col-sm-12 pl-4 pr-4 pb-4 ">
-          <div class="card p-4" style="border-color: green;">
-            <div class="row">
+  <div class="row  benchmark_details">
+      <div class="col-sm-12 pl-4 pr-4 pb-4 ">
+        <div class="card p-4" style="border-color: green;">
+          <div class="row">
 
-              <div class=" green_shade col-12 text-center">
-                <b>Benchmark Details</b>
+            <div class=" green_shade col-12 text-center">
+              <b>Benchmark Details</b>
 <hr/>
+            </div>
+          <div class="col-6 pb-4">
+          <div class="row ">
+            <div class="col-12 ">
+              
+    
+            </div>
+            <div class="col-12 pt-2 ">
+              <div class="form-group">
+                  <label class="green_shade">
+                      <b>Job Title</b>
+                  </label>
+                  <input type="text" class="form-control" name="job_title" value="{{job.job_title}}"/>
               </div>
-            <div class="col-6 pb-4">
-            <div class="row ">
-              <div class="col-12 ">
-                
+      
+                  
+              </div>
+      
       
               </div>
-              <div class="col-12 pt-2 ">
-                <div class="form-group">
-                    <label class="green_shade">
-                        <b>Job Title</b>
-                    </label>
-                    <input type="text" class="form-control" />
-                </div>
-        
-                    
-                </div>
-        
-        
-                </div>
-                </div>
+              </div>
 
 
-                <div class="col-6 pb-4">
-                    <div class="row ">
-                      <div class="col-12 ">
-                        
+              <div class="col-6 pb-4">
+                  <div class="row ">
+                    <div class="col-12 ">
+                      
+            
+                    </div>
+                    <div class="col-12 pt-2 ">
+                      <div class="form-group">
+                          <label class="green_shade">
+                              <b>Department</b>
+                          </label>
+
+
+                            <select class="form-control" name="department">
+                              {% for item in dept %}
+                  
+                              {% if item.id == job.main_department.id %}
+                              <option value="{{item.id}}" selected>{{item.department}}</option>
+                              {% else %}
+                              <option value="{{item.id}}" >{{item.department}}</option>
+                              {% endif %}
+                  
+                          
+                              {% endfor %}
+                            </select>
+                          
+                      </div>
+              
+                          
+                      </div>
+              
               
                       </div>
-                      <div class="col-12 pt-2 ">
-                        <div class="form-group">
-                            <label class="green_shade">
-                                <b>Department</b>
-                            </label>
-                            <input type="text" class="form-control" />
-                        </div>
-                
-                            
-                        </div>
-                
-                
-                        </div>
-                        </div>
+                      </div>
 
 
-                        <div class="col-6 pb-4">
-                            <div class="row ">
-                              <div class="col-12 ">
-                                
+                      <div class="col-6 pb-4">
+                          <div class="row ">
+                            <div class="col-12 ">
+                              
+                    
+                            </div>
+                            <div class="col-12 pt-2 ">
+                              <div class="form-group">
+                                  <label class="green_shade">
+                                      <b>Grade</b>
+                                  </label>
+                                  <input type="text" class="form-control" name="grade" value="{{job.grade}}"/>
+                              </div>
+                      
+                                  
+                              </div>
+                      
                       
                               </div>
-                              <div class="col-12 pt-2 ">
-                                <div class="form-group">
-                                    <label class="green_shade">
-                                        <b>Grade</b>
-                                    </label>
-                                    <input type="text" class="form-control" />
-                                </div>
-                        
-                                    
-                                </div>
-                        
-                        
-                                </div>
-                                </div>
+                              </div>
 
-                                <div class="col-6 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                        
+                              <div class="col-6 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                                      
+                            
+                                    </div>
+                                    <div class="col-12 pt-2 ">
+                                      <div class="form-group">
+                                          <label class="green_shade">
+                                              <b>Reporting Relationship</b>
+                                          </label>
+                                          <input type="text" class="form-control" name="reporting_relationship" value="{{job.reporting_relationship}}"/>
+                                      </div>
+                              
+                                          
+                                      </div>
+                              
                               
                                       </div>
-                                      <div class="col-12 pt-2 ">
-                                        <div class="form-group">
-                                            <label class="green_shade">
-                                                <b>Reporting Relationship</b>
-                                            </label>
-                                            <input type="text" class="form-control" />
-                                        </div>
-                                
-                                            
-                                        </div>
-                                
-                                
-                                        </div>
-                                        </div>
+                                      </div>
 
-                                        <div class="col-12 pb-4">
-                                            <div class="row ">
-                                              <div class="col-12 ">
-                                                
+                                      <div class="col-12 pb-4">
+                                          <div class="row ">
+                                            <div class="col-12 ">
+                                              
+                                    
+                                            </div>
+                                            <div class="col-12 pt-2 ">
+                                              <div class="form-group">
+                                                  <label class="green_shade">
+                                                      <b>Job Description</b>
+                                                  </label>
+                                                  <textarea cols="3" rows="3" name="job_description" class="form-control" >{{job.job_description}}</textarea>
+                                              </div>
+                                      
+                                                  
+                                              </div>
+                                      
                                       
                                               </div>
-                                              <div class="col-12 pt-2 ">
-                                                <div class="form-group">
-                                                    <label class="green_shade">
-                                                        <b>Job Description</b>
-                                                    </label>
-                                                    <textarea cols="3" rows="3" class="form-control"></textarea>
-                                                </div>
-                                        
-                                                    
-                                                </div>
-                                        
-                                        
-                                                </div>
-                                                </div>
+                                              </div>
 
 
-                                                <div class="col-12 pb-4">
-                                                    <div class="row ">
-                                                      <div class="col-12 ">
-                                                        
+                                              <div class="col-12 pb-4">
+                                                  <div class="row ">
+                                                    <div class="col-12 ">
+                                                      
+                                            
+                                                    </div>
+                                                    <div class="col-12 pt-2 ">
+                                                      <div class="form-group">
+                                                          <label class="green_shade">
+                                                              <b>Key Duties and Scope of Responsibility</b>
+                                                          </label>
+                                                          <textarea cols="3" rows="3" name="key_duties" class="form-control" >{{job.duties_and_responsibility}}</textarea>
+                                                      </div>
+                                              
+                                                          
+                                                      </div>
+                                              
                                               
                                                       </div>
-                                                      <div class="col-12 pt-2 ">
-                                                        <div class="form-group">
-                                                            <label class="green_shade">
-                                                                <b>Key Duties and Scope of Responsibility</b>
-                                                            </label>
-                                                            <textarea cols="3" rows="3" class="form-control"></textarea>
-                                                        </div>
-                                                
-                                                            
-                                                        </div>
-                                                
-                                                
-                                                        </div>
-                                                        </div>
+                                                      </div>
 
 
-                                                        <div class="col-12 pb-4">
-                                                            <div class="row ">
-                                                              <div class="col-12 ">
-                                                                
+                                                      <div class="col-12 pb-4">
+                                                          <div class="row ">
+                                                            <div class="col-12 ">
+                                                              
+                                                    
+                                                            </div>
+                                                            <div class="col-12 pt-2 ">
+                                                              <div class="form-group">
+                                                                  <label class="green_shade">
+                                                                      <b>Financial Responsibilities</b>
+                                                                  </label>
+                                                                  <textarea cols="3" rows="3" name="financial_responsibilities" class="form-control">{{job.financial_responsibilities}}</textarea>
+                                                              </div>
+                                                      
+                                                                  
+                                                              </div>
+                                                      
                                                       
                                                               </div>
-                                                              <div class="col-12 pt-2 ">
-                                                                <div class="form-group">
-                                                                    <label class="green_shade">
-                                                                        <b>Financial Responsibilities</b>
-                                                                    </label>
-                                                                    <textarea cols="3" rows="3" class="form-control"></textarea>
-                                                                </div>
-                                                        
-                                                                    
-                                                                </div>
-                                                        
-                                                        
-                                                                </div>
-                                                                </div>
+                                                              </div>
 
 
-                                                                <div class="col-12 pb-4">
-                                                                    <div class="row ">
-                                                                      <div class="col-12 ">
-                                                                        
+                                                              <div class="col-12 pb-4">
+                                                                  <div class="row ">
+                                                                    <div class="col-12 ">
+                                                                      
+                                                            
+                                                                    </div>
+                                                                    <div class="col-12 pt-2 ">
+                                                                      <div class="form-group">
+                                                                          <label class="green_shade">
+                                                                              <b>Technical/Professional Qualification</b>
+                                                                          </label>
+                                                                          <textarea cols="3" rows="3" name="tech_qual" class="form-control">{{job.technical_qualification}}</textarea>
+                                                                      </div>
+                                                              
+                                                                          
+                                                                      </div>
+                                                              
                                                               
                                                                       </div>
-                                                                      <div class="col-12 pt-2 ">
-                                                                        <div class="form-group">
-                                                                            <label class="green_shade">
-                                                                                <b>Technical/Professional Qualification</b>
-                                                                            </label>
-                                                                            <textarea cols="3" rows="3" class="form-control"></textarea>
-                                                                        </div>
-                                                                
-                                                                            
-                                                                        </div>
-                                                                
-                                                                
-                                                                        </div>
-                                                                        </div>
+                                                                      </div>
 
-                                                                        <div class="col-12 pb-4">
-                                                                            <div class="row ">
-                                                                              <div class="col-12 ">
-                                                                                
+                                                                      <div class="col-12 pb-4">
+                                                                          <div class="row ">
+                                                                            <div class="col-12 ">
+                                                                              
+                                                                    
+                                                                            </div>
+                                                                            <div class="col-12 pt-2 ">
+                                                                              <div class="form-group">
+                                                                                  <label class="green_shade">
+                                                                                      <b>Minimum Years of Experience</b>
+                                                                                  </label>
+                                                                                 <input type="text" name="exp_years" class="form-control" value="{{job.minimum_years_of_experience}}" />
+                                                                              </div>
+                                                                      
+                                                                                  
+                                                                              </div>
+                                                                      
                                                                       
                                                                               </div>
-                                                                              <div class="col-12 pt-2 ">
-                                                                                <div class="form-group">
-                                                                                    <label class="green_shade">
-                                                                                        <b>Minimum Years of Experience</b>
-                                                                                    </label>
-                                                                                   <input type="text" class="form-control"/>
-                                                                                </div>
-                                                                        
-                                                                                    
-                                                                                </div>
-                                                                        
-                                                                        
-                                                                                </div>
-                                                                                </div>
-                </div>
-            </div>
-      
-        </div>
-      
-      
-        
-         
-        <div class="col-12 text-right pl-4 pr-4 pb-4">
-          <div class="row">
-          <div class="col-12 text-right pl-4 pr-4 pb-4">
-            <span class="btn btn-outline-success" onclick="switchnext('benchmark_details')"> Next </span>
+                                                                              </div>
+              </div>
           </div>
-        </div>
-        </div>
-      
-      
+    
       </div>
+    
+    
       
+       
+      <div class="col-12 text-right pl-4 pr-4 pb-4">
+        <div class="row">
+        <div class="col-12 text-right pl-4 pr-4 pb-4">
+          <span class="btn btn-outline-success" onclick="switchnext('benchmark_details')"> Next </span>
+        </div>
+      </div>
+      </div>
+    
+    
+    </div>
+    
 
 <div class="row  survey_details" style="display: none;">
-  <div class="col-sm-12 pl-4 pr-4 pb-4 ">
-    <div class="card p-4" style="border-color: green;">
-      <div class="row ">
-        <div class=" green_shade col-12 text-center">
-          <b>Base Salary</b>
+<div class="col-sm-12 pl-4 pr-4 pb-4 ">
+  <div class="card p-4" style="border-color: green;">
+    <div class="row ">
+      <div class=" green_shade col-12 text-center">
+        <b>Base Salary</b>
 <hr/>
+      </div>
+      <div class="col-12 pt-4 ">
+        <b class="green_shade"><b>
+          {{ form.base_salary.label(class="form-control-label") }}
+
+            <input class="form-control" name="base_salary" value="{{base.monthly_base_salary}}"  />
+
+            
         </div>
-        <div class="col-12 pt-4 ">
-          <span ><b class="green_shade"><b>
-            {{ form.base_salary.label(class="form-control-label") }}
-  
-              {% if form.base_salary.errors %}
-              {{ form.base_salary(class="form-control form-control is-invalid")}}
-              <div class="invalid-feedback">
-                  {% for error in form.base_salary.errors %}
-                  <span> {{ error}}</span>
-                  {% endfor %}
-              </div>
-              {% else %}
-              {{ form.base_salary(class="form-control form-control") }}
-              {% endif %}
-  
-              
-          </div>
-          
+        
 
+     
+     
        
-       
-         
-  
-          </div>
-      </div>
 
+        </div>
+    </div>
+    <br/>
+<div class="row">
+  <br/>
+  <div class="col-sm-12  ">
       <div class="row">
-        <div class="col-sm-12  pt-4">
-          <div class="row">
-            <div class="col-6 ">
-              <span class="btn btn-outline-success" onclick="switchback('survey_details')"> Back </span>
-              
-            </div>
-            <div class="col-6 text-right">
-              <span class="btn btn-outline-success" onclick="switchnext('survey_details')"> Next </span>
-      
-            </div>
-           
-          </div>
+        <div class="col-6 ">
+          <span class="btn btn-outline-success" onclick="switchback('survey_details')"> Back </span>
           
-         </div>
-
-      </div>
-  </div>
-
-
+        </div>
+        <div class="col-6 text-right">
+          <span class="btn btn-outline-success" onclick="switchnext('survey_details')"> Next </span>
   
+        </div>
+       
+      </div>
+      
+     </div>
+</div>
+</div>
+
+
+
 
 
 
@@ -530,197 +535,147 @@
 
 
 <div class="row benchmark_jobs" style="display:none">
+
+
+
+
+
+
+
+
+<div class="col-12 pl-4 pr-4 pb-4">
   
-
-
-
-
-
-
-
-  <div class="col-12 pl-4 pr-4 pb-4">
-    
-    <div class="row">
-    
-      <div class="col-sm-12 pl-4 pr-4 pb-4 ">
-        <div class="card p-4" style="border-color: green;">
-          <div class="row ">
-            <div class=" green_shade col-12 text-center">
-              <b>Bonus</b>
+  <div class="row">
+  
+    <div class="col-sm-12 pl-4 pr-4 pb-4 ">
+      <div class="card p-4" style="border-color: green;">
+        <div class="row ">
+          <div class=" green_shade col-12 text-center">
+            <b>Bonus</b>
 <hr/>
-            </div>
-              <div class="col-4 pb-4">
-                  <div class="row">
-            <div class="col-12 ">
-            
-
-            </div>
-            <div class="col-12 pt-2">
-              <span ><b class="green_shade"><b>
-                {{ form.company_bonus_performance.label(class="form-control-label") }}
-  
-                {% if form.company_bonus_performance.errors %}
-                {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.company_bonus_performance.errors %}
-                    <span> {{ error}}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.company_bonus_performance(class="form-control form-control") }}
-                {% endif %}
-              </b></h2></b></span>
-             
-            </div>
-           </div>
-             </div>
-
-             <div class="col-4 pb-4">
+          </div>
+            <div class="col-4 pb-4">
                 <div class="row">
-                    <div class="col-12 ">
-                  
+          <div class="col-12 ">
           
-                      </div>
-                      <div class="col-12 pt-2 ">
-                        <span ><b class="green_shade"><b>
-                          {{ form.individual_bonus_performance.label(class="form-control-label") }}
-            
-                        {% if form.individual_bonus_performance.errors %}
-                        {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
-                        <div class="invalid-feedback">
-                            {% for error in form.individual_bonus_performance.errors %}
-                            <span> {{ error}}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.individual_bonus_performance(class="form-control form-control") }}
-                        {% endif %}
-                        </b></h2></b></span>
-                        
-                      </div>
-                      </div>
-             </div>
-                     
-    
 
+          </div>
+          <div class="col-12 pt-2">
+          <b class="green_shade">
+              {{ form.company_bonus_performance.label(class="form-control-label") }}
+
+            </b>
+            <input class="form-control" name="cmp_bonus" value="{{incentive.company_performance}}"  />
+          </div>
+         </div>
+           </div>
 
            <div class="col-4 pb-4">
-            <div class="row">
-                <div class="col-12 ">
-                    
-      
-                  </div>
-                  <div class="col-12 pt-2">
-                    <span ><b class="green_shade"><b>
-                      {{ form.annual_bonus.label(class="form-control-label") }}
-          
-                      {% if form.annual_bonus.errors %}
-                      {{ form.annual_bonus(class="form-control form-control is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.annual_bonus.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.annual_bonus(class="form-control form-control") }}
-                      {% endif %}
-                    </b></h2></b></span>
+              <div class="row">
+                  <div class="col-12 ">
+                
+        
+                    </div>
+                    <div class="col-12 pt-2 ">
+                     <b class="green_shade">
+                        {{ form.individual_bonus_performance.label(class="form-control-label") }}
+ </b>
+ <input class="form-control" name="indv_bonus"value="{{incentive.individual_performance}}"  />
+                    </div>
+                    </div>
+           </div>
+                   
+  
+
+
+         <div class="col-4 pb-4">
+          <div class="row">
+              <div class="col-12 ">
                   
-                  </div>
-     </div>
-       </div>
-
-
-       <div class="col-4 pb-4">
-        <div class="row">
-            <div class="col-12 ">
-            
-              </div>
-              <div class="col-12 pt-2 ">
-                <span ><b class="green_shade"><b>
-                  {{ form.incentive_bonus.label(class="form-control-label") }}
-      
-                  {% if form.incentive_bonus.errors %}
-                  {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
-                  <div class="invalid-feedback">
-                      {% for error in form.incentive_bonus.errors %}
-                      <span> {{ error}}</span>
-                      {% endfor %}
-                  </div>
-                  {% else %}
-                  {{ form.incentive_bonus(class="form-control form-control") }}
-                  {% endif %}
-                </b></h2></b></span>
-               
-              </div>
-             
- </div>
+    
+                </div>
+                <div class="col-12 pt-2">
+                  <b class="green_shade">
+                    {{ form.annual_bonus.label(class="form-control-label") }}
+        </b>
+        <input class="form-control" name="annual_bonus" value="{{incentive.annual_incentive}}"  />
+                
+                </div>
    </div>
+     </div>
 
 
-   <div class="col-4 pb-4">
-    <div class="row">
-        <div class="col-12 ">
+     <div class="col-4 pb-4">
+      <div class="row">
+          <div class="col-12 ">
+          
+            </div>
+            <div class="col-12 pt-2 ">
+         <b class="green_shade">
+                {{ form.incentive_bonus.label(class="form-control-label") }}
+    
+             </b>
+             <input class="form-control" name="inv_bonus" value="{{incentive.incentive}}"  />
+            </div>
+           
+</div>
+ </div>
+
+
+ <div class="col-4 pb-4">
+  <div class="row">
+      <div class="col-12 ">
+
+
+        </div>
+        <div class="col-12 pt-2 ">
+          <span ><b class="green_shade">
+            {{ form.other_bonus.label(class="form-control-label") }}
+</b>
+<input class="form-control" name="other_bonus" value="{{incentive.other_cash}}"  />
+
+          
+        </div>
+       
+</div>
+</div>
+
+    
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
  
 
-          </div>
-          <div class="col-12 pt-2 ">
-            <span ><b class="green_shade"><b>
-              {{ form.other_bonus.label(class="form-control-label") }}
-  
-              {% if form.other_bonus.errors %}
-              {{ form.other_bonus(class="form-control form-control is-invalid")}}
-              <div class="invalid-feedback">
-                  {% for error in form.other_bonus.errors %}
-                  <span> {{ error}}</span>
-                  {% endfor %}
-              </div>
-              {% else %}
-              {{ form.other_bonus(class="form-control form-control") }}
-              {% endif %}
-            </b></h2></b></span>
-            
-          </div>
-         
-</div>
-</div>
+ 
 
-      
-              </div>
-          </div>
-
-      </div>
-
-  
-
-  
-
-   
-
-   
-
-      
-  
-      
-  </div>
-
-
-  </div>
-
-  <div class="col-12 text-right pl-4 pr-4 pb-4">
-    <div class="row">
-      <div class="col-6 text-left">
-        <span class="btn btn-outline-success" onclick="switchback('benchmark_jobs')"> Back </span>
-        
-      </div>
-      <div class="col-6 text-right">
-        <span class="btn btn-outline-success" onclick="switchnext('benchmark_jobs')"> Next </span>
-
-      </div>
-     
-    </div>
     
-   </div>
+
+    
+</div>
+
+
+</div>
+
+<div class="col-12 text-right pl-4 pr-4 pb-4">
+  <div class="row">
+    <div class="col-6 text-left">
+      <span class="btn btn-outline-success" onclick="switchback('benchmark_jobs')"> Back </span>
+      
+    </div>
+    <div class="col-6 text-right">
+      <span class="btn btn-outline-success" onclick="switchnext('benchmark_jobs')"> Next </span>
+
+    </div>
+   
+  </div>
+  
+ </div>
 
 
 </div>
@@ -729,587 +684,394 @@
 
 
 <div class="row comparators" style="display:none">
+
+
+
+
+
+
+
+
+<div class="col-12 pl-4 pr-4 pb-2">
+  <div class="row">
+
+    <div class="col-sm-12 pl-4 pr-4 pb-4 ">
+      <div class="card p-4" style="border-color: green;">
+          <div class="row">
+            <div class=" green_shade col-12 text-center">
+              <b>Benefits</b>
+<hr/>
+            </div>
+          <div class="col-4 pb-4">
+        <div class="row ">
+          <div class="col-12 ">
+            
+
+          </div>
+          <div class="col-12 pt-2">
+         <b class="green_shade">
+              {{ form.staff_bus.label(class="form-control-label") }}
+               </b>
+               <input class="form-control" name="staff_bus" value="{{benefit.staff_bus}}"  />
+          
+          </div>
+         
+           
+    
+            </div>
+            </div>
+            <div class="col-4 pb-4">
+              <div class="row ">
+                <div class="col-12 ">
+                 
+    
+                </div>
+                <div class="col-12 pt-2">
+                  <b class="green_shade">
+                    {{ form.company_car.label(class="form-control-label") }}
+                    </b>
+                    <input class="form-control" name="cmp_car" value="{{benefit.company_car}}"  />
+                  
+                </div>
+               
+                 
+          
+                  </div>
+                  </div>
+                  <div class="col-4 pb-4">
+                      <div class="row ">
+                        <div class="col-12 ">
+                
+            
+                        </div>
+                        <div class="col-12 pt-2">
+                          <b class="green_shade">
+                            {{ form.personal_travel.label(class="form-control-label") }}
+                             </b>
+                             <input class="form-control" name="personal_travel" value="{{benefit.personal_travel}}"  />
+                          
+                        </div>
+                       
+                         
+                  
+                          </div>
+                          </div>
+
+                          <div class="col-4 pb-4">
+                              <div class="row ">
+                                <div class="col-12">
+                            
+                    
+                                </div>
+                                <div class="col-12 pt-2">
+                                  <b class="green_shade">
+                                    {{ form.petrol.label(class="form-control-label") }}
+                                   </b>
+                                   <input class="form-control" name="petrol" value="{{benefit.petrol}}"  />
+                                  
+                                </div>
+                               
+                                 
+                          
+                                  </div>
+                                  </div>
+
+                                  <div class="col-4 pb-4">
+                                      <div class="row ">
+                                        <div class="col-12 ">
+                                    
+                            
+                                        </div>
+                                        <div class="col-12 pt-2">
+                                        <b class="green_shade">
+                                            {{ form.vehicle.label(class="form-control-label") }}
+                                            </b>
+                                            <input class="form-control" name="vehicle" value="{{benefit.vehicle_maintenance}}"  />
+                                         
+                                          
+                                        </div>
+                                       
+                                         
+                                  
+                                          </div>
+                                          </div>
+
+                                          <div class="col-4 pb-4">
+                                              <div class="row ">
+                                                <div class="col-12 ">
+                                                 
+                                    
+                                                </div>
+                                                <div class="col-12 pt-2">
+                                                  <b class="green_shade">
+                                                    {{ form.driver.label(class="form-control-label") }}
+                                                     </b>
+                                                     <input class="form-control" name="driver"value="{{benefit.driver}}"  />  
+                                                  
+                                                </div>
+                                               
+                                                 
+                                          
+                                                  </div>
+                                                  </div>
+
+                                                  <div class="col-4 pb-4">
+                                                      <div class="row ">
+                                                        <div class="col-12 ">
+                                                         
+                                            
+                                                        </div>
+                                                        <div class="col-12 pt-2">
+                                                          <b class="green_shade">
+                                                            {{ form.health_insurance.label(class="form-control-label") }}
+                                                            </b>
+                                                            <input class="form-control" name="htl_ins" value="{{benefit.health_insurance}}"  />
+                                                          
+                                                        </div>
+                                                       
+                                                         
+                                                  
+                                                          </div>
+                                                          </div>
+
+                                                          <div class="col-4 pb-4">
+                                                              <div class="row ">
+                                                                <div class="col-12 ">
+                                                                 
+                                                    
+                                                                </div>
+                                                                <div class="col-12 pt-2">
+                                                                  <b class="green_shade">
+                                                                    {{ form.medical_assistance.label(class="form-control-label") }}
+                                                                      </b>
+                                                                      <input class="form-control" name="medi_assis" value="{{benefit.medical_assistance}}"  />
+                                                                  
+                                                                </div>
+                                                               
+                                                                 
+                                                          
+                                                                  </div>
+                                                                  </div>
+
+                                                                  <div class="col-4 pb-4">
+                                                                      <div class="row ">
+                                                                        <div class="col-12 ">
+                                                                         
+                                                            
+                                                                        </div>
+                                                                        <div class="col-12 pt-2">
+                                                                          <b class="green_shade">
+                                                                            {{ form.funeral_assistance.label(class="form-control-label") }}
+                                                                              </b>
+                                                                              <input class="form-control" name="funeral_assistance" value="{{benefit.funeral_assistance}}"  />
+                                                          
+                                                                        </div>
+                                                                       
+                                                                         
+                                                                  
+                                                                          </div>
+                                                                          </div>
+
+                                                                          <div class="col-4 pb-4">
+                                                                              <div class="row ">
+                                                                                <div class="col-12">
+                                                                                  
+                                                                    
+                                                                                </div>
+                                                                                <div class="col-12 pt-2">
+                                                                                 <b class="green_shade">
+                                                                                    {{ form.life_insurance.label(class="form-control-label") }}
+                                                                            </b>
+                                                                            <input class="form-control" name="life_insurance" value="{{benefit.life_insurance}}"  />
+                                                                                </div>
+                                                                               
+                                                                                 
+                                                                          
+                                                                                  </div>
+                                                                                  </div>
+
+                                                                                  <div class="col-4 pb-4">
+                                                                                      <div class="row ">
+                                                                                        <div class="col-12 ">
+                                                                                     
+                                                                            
+                                                                                        </div>
+                                                                                        <div class="col-12 pt-2">
+                                                                                          <b class="green_shade">
+                                                                                            {{ form.group_accident.label(class="form-control-label") }}
+                                                                                              </b>
+                                                                                              <input class="form-control" name="group_accident" value="{{benefit.group_accident}}"  />
+                                                                                        </div>
+                                                                                       
+                                                                                         
+                                                                                  
+                                                                                          </div>
+                                                                                          </div>
+
+                                                                                          <div class="col-4 pb-4">
+                                                                                              <div class="row ">
+                                                                                                <div class="col-12 ">
+                                                                                                 
+                                                                                    
+                                                                                                </div>
+                                                                                                <div class="col-12 pt-2">
+                                                                                                 <b class="green_shade">
+                                                                                                    {{ form.club_membership.label(class="form-control-label") }}
+                                                                                                    </b>
+
+                                                                                                    <input class="form-control" name="club_membership" value="{{benefit.club_membership}}"  />
+                                                                                                   
+                                                                                                 
+                                                                                                </div>
+                                                                                               
+                                                                                                 
+                                                                                          
+                                                                                                  </div>
+                                                                                                  </div>
+
+                                                                                                  <div class="col-4 pb-4">
+                                                                                                      <div class="row ">
+                                                                                                        <div class="col-12 ">
+                                                                                                         
+                                                                                            
+                                                                                                        </div>
+                                                                                                        <div class="col-12 pt-2">
+                                                                                                          <b class="green_shade">
+                                                                                                            {{ form.school_fees.label(class="form-control-label") }}
+                                                                                                              </b>
+                                                                                                              <input class="form-control" name="school_fees" value="{{benefit.school_fees}}"  />
+                                                                                                       
+                                                                                                        </div>
+                                                                                                       
+                                                                                                         
+                                                                                                  
+                                                                                                          </div>
+                                                                                                          </div>
+                                                                                                          <div class="col-4 pb-4">
+                                                                                                              <div class="row ">
+                                                                                                                <div class="col-12 ">
+                                                                                                                  
+                                                                                                                </div>
+                                                                                                                <div class="col-12 pt-2">
+                                                                                                                 <b class="green_shade">
+                                                                                                                    {{ form.vacation.label(class="form-control-label") }}
+                                                                                                                    </b>
+                                                                                                                    <input class="form-control" name="vacation" value="{{benefit.vacation}}"  /> 
+                                                                                                                  
+                                                                                                                </div>
+                                                                                                               
+                                                                                                                 
+                                                                                                          
+                                                                                                                  </div>
+                                                                                                                </div>
+
+                                                                                                                <div class="col-4 pb-4">
+                                                                                                                  <div class="row ">
+                                                                                                                    <div class="col-12 ">
+                                                                                                                      
+                                                                                                        
+                                                                                                                    </div>
+                                                                                                                    <div class="col-12 pt-2">
+                                                                                                                      <b class="green_shade">
+                                                                                                                        {{ form.housing.label(class="form-control-label") }}
+                                                                                                                 </b>
+                                                                                                                 <input class="form-control" name="housing" value="{{benefit.housing}}"  />
+                                                                                                                    </div>
+                                                                                                                   
+                                                                                                                     
+                                                                                                              
+                                                                                                                      </div>
+                                                                                                                      </div>
+                                                                                                                      <div class="col-4 pb-4">
+                                                                                                                          <div class="row ">
+                                                                                                                            <div class="col-12 ">
+                                                                                                                             
+                                                                                                                
+                                                                                                                            </div>
+                                                                                                                            <div class="col-12 pt-2">
+                                                                                                                              <b class="green_shade">
+                                                                                                                                {{ form.telephone.label(class="form-control-label") }}
+                                                                                                                            </b>      
+                                                                                                                            <input class="form-control" name="telephone" value="{{benefit.telephone}}"  />
+                                                                                                                           
+                                                                                                                            </div>
+                                                                                                                           
+                                                                                                                             
+                                                                                                                      
+                                                                                                                              </div>
+                                                                                                                              </div>
+                                                                                                                              <div class="col-4 pb-4">
+                                                                                                                                  <div class="row ">
+                                                                                                                                    <div class="col-12 ">
+                                                                                                                                      
+                                                                                                                        
+                                                                                                                                    </div>
+                                                                                                                                    <div class="col-12 pt-2">
+                                                                                                                                    <b class="green_shade">
+                                                                                                                                        {{ form.security.label(class="form-control-label") }}
+                                                                                                                                          
+                                                                                                                                    </b>
+                                                                                                                                    <input class="form-control" name="security" value="{{benefit.security}}"  />
+                                                                                                                                    </div>
+                                                                                                                                   
+                                                                                                                                     
+                                                                                                                              
+                                                                                                                                      </div>
+                                                                                                                                      </div>
+                                                                                                                                      <div class="col-4 pb-4">
+                                                                                                                                          <div class="row ">
+                                                                                                                                            <div class="col-12 ">
+                                                                                                                                             
+                                                                                                                                
+                                                                                                                                            </div>
+                                                                                                                                            <div class="col-12 pt-2 ">
+                                                                                                                                              <b class="green_shade">
+                                                                                                                                                {{ form.other_benefits.label(class="form-control-label") }}
+                                                                                                                                                  </b>
+                                                                                                                                                  <input class="form-control" name="other_benefits" value="{{benefit.other_benefits}}"  />
+                                                                                                                                             
+                                                                                                                                          
+                                                                                                                                            </div>
+                                                                                                                                           
+                                                                                                                                             
+                                                                                                                                      
+                                                                                                                                              </div>
+                                                                                                                                              </div>
+        </div>
+        </div>
+
+    </div>
+
+
+
+ 
+
+ 
+
   
 
 
-
-
-
-
-
-  <div class="col-12 pl-4 pr-4 pb-4">
-    <div class="row">
-
-      <div class="col-sm-12 pl-4 pr-4 pb-4 ">
-        <div class="card p-4" style="border-color: green;">
-            <div class="row">
-              <div class=" green_shade col-12 text-center">
-                <b>Benefits</b>
-<hr/>
-              </div>
-            <div class="col-4 pb-4">
-          <div class="row ">
-            <div class="col-12 ">
-              
-
-            </div>
-            <div class="col-12 pt-2">
-              <span ><b class="green_shade"><b>
-                {{ form.staff_bus.label(class="form-control-label") }}
-                            
-                {% if form.staff_bus.errors %}
-                {{ form.staff_bus(class="form-control form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.staff_bus.errors %}
-                    <span> {{ error}}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.staff_bus(class="form-control form-control") }}
-                {% endif %}
-              </b></b></span>
-            
-            </div>
-           
-             
-      
-              </div>
-              </div>
-              <div class="col-4 pb-4">
-                <div class="row ">
-                  <div class="col-12 ">
-                   
-      
-                  </div>
-                  <div class="col-12 pt-2">
-                    <span ><b class="green_shade"><b>
-                      {{ form.company_car.label(class="form-control-label") }}
-                                    
-                      {% if form.company_car.errors %}
-                      {{ form.company_car(class="form-control form-control is-invalid")}}
-                      <div class="invalid-feedback">
-                        {% for error in form.company_car.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.company_car(class="form-control form-control") }}
-                      {% endif %}
-                    </b></b></span>
-                    
-                  </div>
-                 
-                   
-            
-                    </div>
-                    </div>
-                    <div class="col-4 pb-4">
-                        <div class="row ">
-                          <div class="col-12 ">
-                  
-              
-                          </div>
-                          <div class="col-12 pt-2">
-                            <span ><b class="green_shade"><b>
-                              {{ form.personal_travel.label(class="form-control-label") }}
-                                              
-                              {% if form.personal_travel.errors %}
-                                                          {{ form.personal_travel(class="form-control form-control is-invalid")}}
-                                                          <div class="invalid-feedback">
-                                                              {% for error in form.personal_travel.errors %}
-                                                              <span> {{ error}}</span>
-                                                              {% endfor %}
-                                                          </div>
-                                                          {% else %}
-                                                          {{ form.personal_travel(class="form-control form-control") }}
-                                                          {% endif %}
-                            </b></b></span>
-                            
-                          </div>
-                         
-                           
-                    
-                            </div>
-                            </div>
-
-                            <div class="col-4 pb-4">
-                                <div class="row ">
-                                  <div class="col-12">
-                              
-                      
-                                  </div>
-                                  <div class="col-12 pt-2">
-                                    <span ><b class="green_shade"><b>
-                                      {{ form.petrol.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.petrol.errors %}
-                                                                    {{ form.petrol(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.petrol.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.petrol(class="form-control form-control") }}
-                                                                    {% endif %}
-                                    </b></b></span>
-                                    
-                                  </div>
-                                 
-                                   
-                            
-                                    </div>
-                                    </div>
-
-                                    <div class="col-4 pb-4">
-                                        <div class="row ">
-                                          <div class="col-12 ">
-                                      
-                              
-                                          </div>
-                                          <div class="col-12 pt-2">
-                                            <span ><b class="green_shade"><b>
-                                              {{ form.vehicle.label(class="form-control-label") }}
-                                                                
-                                              {% if form.vehicle.errors %}
-                                              {{ form.vehicle(class="form-control form-control is-invalid")}}
-                                              <div class="invalid-feedback">
-                                                  {% for error in form.vehicle.errors %}
-                                                  <span> {{ error}}</span>
-                                                  {% endfor %}
-                                              </div>
-                                              {% else %}
-                                              {{ form.vehicle(class="form-control form-control") }}
-                                              {% endif %}
-                                  
-                                            </b></b></span>
-                                            
-                                          </div>
-                                         
-                                           
-                                    
-                                            </div>
-                                            </div>
-
-                                            <div class="col-4 pb-4">
-                                                <div class="row ">
-                                                  <div class="col-12 ">
-                                                   
-                                      
-                                                  </div>
-                                                  <div class="col-12 pt-2">
-                                                    <span ><b class="green_shade"><b>
-                                                      {{ form.driver.label(class="form-control-label") }}
-                                                                        
-                                                                                    {% if form.driver.errors %}
-                                                                                    {{ form.driver(class="form-control form-control is-invalid")}}
-                                                                                    <div class="invalid-feedback">
-                                                                                        {% for error in form.driver.errors %}
-                                                                                        <span> {{ error}}</span>
-                                                                                        {% endfor %}
-                                                                                    </div>
-                                                                                    {% else %}
-                                                                                    {{ form.driver(class="form-control form-control") }}
-                                                                                    {% endif %}
-                                          
-                                                    </b></b></span>
-                                                    
-                                                  </div>
-                                                 
-                                                   
-                                            
-                                                    </div>
-                                                    </div>
-
-                                                    <div class="col-4 pb-4">
-                                                        <div class="row ">
-                                                          <div class="col-12 ">
-                                                           
-                                              
-                                                          </div>
-                                                          <div class="col-12 pt-2">
-                                                            <span ><b class="green_shade"><b>
-                                                              {{ form.health_insurance.label(class="form-control-label") }}
-                                                              
-                                                                          {% if form.health_insurance.errors %}
-                                                                          {{ form.health_insurance(class="form-control form-control is-invalid")}}
-                                                                          <div class="invalid-feedback">
-                                                                              {% for error in form.health_insurance.errors %}
-                                                                              <span> {{ error}}</span>
-                                                                              {% endfor %}
-                                                                          </div>
-                                                                          {% else %}
-                                                                          {{ form.health_insurance(class="form-control form-control") }}
-                                                                          {% endif %}
-                                                  
-                                                            </b></b></span>
-                                                            
-                                                          </div>
-                                                         
-                                                           
-                                                    
-                                                            </div>
-                                                            </div>
-
-                                                            <div class="col-4 pb-4">
-                                                                <div class="row ">
-                                                                  <div class="col-12 ">
-                                                                   
-                                                      
-                                                                  </div>
-                                                                  <div class="col-12 pt-2">
-                                                                    <span ><b class="green_shade"><b>
-                                                                      {{ form.medical_assistance.label(class="form-control-label") }}
-                                                                        
-                                                                                    {% if form.medical_assistance.errors %}
-                                                                                    {{ form.medical_assistance(class="form-control form-control is-invalid")}}
-                                                                                    <div class="invalid-feedback">
-                                                                                        {% for error in form.medical_assistance.errors %}
-                                                                                        <span> {{ error}}</span>
-                                                                                        {% endfor %}
-                                                                                    </div>
-                                                                                    {% else %}
-                                                                                    {{ form.medical_assistance(class="form-control form-control") }}
-                                                                                    {% endif %}
-                                                          
-                                                                    </b></b></span>
-                                                                    
-                                                                  </div>
-                                                                 
-                                                                   
-                                                            
-                                                                    </div>
-                                                                    </div>
-
-                                                                    <div class="col-4 pb-4">
-                                                                        <div class="row ">
-                                                                          <div class="col-12 ">
-                                                                           
-                                                              
-                                                                          </div>
-                                                                          <div class="col-12 pt-2">
-                                                                            <span ><b class="green_shade"><b>
-                                                                              {{ form.funeral_assistance.label(class="form-control-label") }}
-                                                                                
-                                                                                            {% if form.funeral_assistance.errors %}
-                                                                                            {{ form.funeral_assistance(class="form-control form-control is-invalid")}}
-                                                                                            <div class="invalid-feedback">
-                                                                                                {% for error in form.funeral_assistance.errors %}
-                                                                                                <span> {{ error}}</span>
-                                                                                                {% endfor %}
-                                                                                            </div>
-                                                                                            {% else %}
-                                                                                            {{ form.funeral_assistance(class="form-control form-control") }}
-                                                                                            {% endif %}
-                                                                  
-                                                                            </b></b></span>
-                                                            
-                                                                          </div>
-                                                                         
-                                                                           
-                                                                    
-                                                                            </div>
-                                                                            </div>
-
-                                                                            <div class="col-4 pb-4">
-                                                                                <div class="row ">
-                                                                                  <div class="col-12">
-                                                                                    
-                                                                      
-                                                                                  </div>
-                                                                                  <div class="col-12 pt-2">
-                                                                                    <span ><b class="green_shade"><b>
-                                                                                      {{ form.life_insurance.label(class="form-control-label") }}
-                                                                                        
-                                                                                                    {% if form.life_insurance.errors %}
-                                                                                                    {{ form.life_insurance(class="form-control form-control is-invalid")}}
-                                                                                                    <div class="invalid-feedback">
-                                                                                                        {% for error in form.life_insurance.errors %}
-                                                                                                        <span> {{ error}}</span>
-                                                                                                        {% endfor %}
-                                                                                                    </div>
-                                                                                                    {% else %}
-                                                                                                    {{ form.life_insurance(class="form-control form-control") }}
-                                                                                                    {% endif %}
-                                                                          
-                                                                                    </b></b></span>
-                                                                                    
-                                                                                  </div>
-                                                                                 
-                                                                                   
-                                                                            
-                                                                                    </div>
-                                                                                    </div>
-
-                                                                                    <div class="col-4 pb-4">
-                                                                                        <div class="row ">
-                                                                                          <div class="col-12 ">
-                                                                                       
-                                                                              
-                                                                                          </div>
-                                                                                          <div class="col-12 pt-2">
-                                                                                            <span ><b class="green_shade"><b>
-                                                                                              {{ form.group_accident.label(class="form-control-label") }}
-                                                                                                
-                                                                                                            {% if form.group_accident.errors %}
-                                                                                                            {{ form.group_accident(class="form-control form-control is-invalid")}}
-                                                                                                            <div class="invalid-feedback">
-                                                                                                                {% for error in form.group_accident.errors %}
-                                                                                                                <span> {{ error}}</span>
-                                                                                                                {% endfor %}
-                                                                                                            </div>
-                                                                                                            {% else %}
-                                                                                                            {{ form.group_accident(class="form-control form-control") }}
-                                                                                                            {% endif %}
-                                                                                  
-                                                                                            </b></b></span>
-                                                                                            
-                                                                                          </div>
-                                                                                         
-                                                                                           
-                                                                                    
-                                                                                            </div>
-                                                                                            </div>
-
-                                                                                            <div class="col-4 pb-4">
-                                                                                                <div class="row ">
-                                                                                                  <div class="col-12 ">
-                                                                                                   
-                                                                                      
-                                                                                                  </div>
-                                                                                                  <div class="col-12 pt-2">
-                                                                                                    <span ><b class="green_shade"><b>
-                                                                                                      {{ form.club_membership.label(class="form-control-label") }}
-                                                                                                      
-                                                                                                                  {% if form.club_membership.errors %}
-                                                                                                                  {{ form.club_membership(class="form-control form-control is-invalid")}}
-                                                                                                                  <div class="invalid-feedback">
-                                                                                                                      {% for error in form.club_membership.errors %}
-                                                                                                                      <span> {{ error}}</span>
-                                                                                                                      {% endfor %}
-                                                                                                                  </div>
-                                                                                                                  {% else %}
-                                                                                                                  {{ form.club_membership(class="form-control form-control") }}
-                                                                                                                  {% endif %}
-                                                                                          
-                                                                                                    </b></b></span>
-                                                                                                   
-                                                                                                  </div>
-                                                                                                 
-                                                                                                   
-                                                                                            
-                                                                                                    </div>
-                                                                                                    </div>
-
-                                                                                                    <div class="col-4 pb-4">
-                                                                                                        <div class="row ">
-                                                                                                          <div class="col-12 ">
-                                                                                                           
-                                                                                              
-                                                                                                          </div>
-                                                                                                          <div class="col-12 pt-2">
-                                                                                                            <span ><b class="green_shade"><b>
-                                                                                                              {{ form.school_fees.label(class="form-control-label") }}
-                                                                                                                
-                                                                                                                            {% if form.school_fees.errors %}
-                                                                                                                            {{ form.school_fees(class="form-control form-control is-invalid")}}
-                                                                                                                            <div class="invalid-feedback">
-                                                                                                                                {% for error in form.school_fees.errors %}
-                                                                                                                                <span> {{ error}}</span>
-                                                                                                                                {% endfor %}
-                                                                                                                            </div>
-                                                                                                                            {% else %}
-                                                                                                                            {{ form.school_fees(class="form-control form-control") }}
-                                                                                                                            {% endif %}
-                                                                                                  
-                                                                                                            </b></h2></b></span>
-                                                                                                         
-                                                                                                          </div>
-                                                                                                         
-                                                                                                           
-                                                                                                    
-                                                                                                            </div>
-                                                                                                            </div>
-                                                                                                            <div class="col-4 pb-4">
-                                                                                                                <div class="row ">
-                                                                                                                  <div class="col-12 ">
-                                                                                                                    
-                                                                                                                  </div>
-                                                                                                                  <div class="col-12 pt-2">
-                                                                                                                    <span ><b class="green_shade"><b>
-                                                                                                                      {{ form.vacation.label(class="form-control-label") }}
-                                                                                                                        
-                                                                                                                                    {% if form.vacation.errors %}
-                                                                                                                                    {{ form.vacation(class="form-control form-control is-invalid")}}
-                                                                                                                                    <div class="invalid-feedback">
-                                                                                                                                        {% for error in form.vacation.errors %}
-                                                                                                                                        <span> {{ error}}</span>
-                                                                                                                                        {% endfor %}
-                                                                                                                                    </div>
-                                                                                                                                    {% else %}
-                                                                                                                                    {{ form.vacation(class="form-control form-control") }}
-                                                                                                                                    {% endif %}
-                                                                                                          
-                                                                                                                    </b></b></span>
-                                                                                                                    
-                                                                                                                  </div>
-                                                                                                                 
-                                                                                                                   
-                                                                                                            
-                                                                                                                    </div>
-                                                                                                                  </div>
-
-                                                                                                                  <div class="col-4 pb-4">
-                                                                                                                    <div class="row ">
-                                                                                                                      <div class="col-12 ">
-                                                                                                                        
-                                                                                                          
-                                                                                                                      </div>
-                                                                                                                      <div class="col-12 pt-2">
-                                                                                                                        <span ><b class="green_shade"><b>
-                                                                                                                          {{ form.housing.label(class="form-control-label") }}
-                                                                                                                            
-                                                                                                                                        {% if form.housing.errors %}
-                                                                                                                                        {{ form.housing(class="form-control form-control is-invalid")}}
-                                                                                                                                        <div class="invalid-feedback">
-                                                                                                                                            {% for error in form.housing.errors %}
-                                                                                                                                            <span> {{ error}}</span>
-                                                                                                                                            {% endfor %}
-                                                                                                                                        </div>
-                                                                                                                                        {% else %}
-                                                                                                                                        {{ form.housing(class="form-control form-control") }}
-                                                                                                                                        {% endif %}
-                                                                                                              
-                                                                                                                        </b></b></span>
-                                                                                                                   
-                                                                                                                      </div>
-                                                                                                                     
-                                                                                                                       
-                                                                                                                
-                                                                                                                        </div>
-                                                                                                                        </div>
-                                                                                                                        <div class="col-4 pb-4">
-                                                                                                                            <div class="row ">
-                                                                                                                              <div class="col-12 ">
-                                                                                                                               
-                                                                                                                  
-                                                                                                                              </div>
-                                                                                                                              <div class="col-12 pt-2">
-                                                                                                                                <span ><b class="green_shade"><b>
-                                                                                                                                  {{ form.telephone.label(class="form-control-label") }}
-                                                                                                                                    
-                                                                                                                                                {% if form.telephone.errors %}
-                                                                                                                                                {{ form.telephone(class="form-control form-control is-invalid")}}
-                                                                                                                                                <div class="invalid-feedback">
-                                                                                                                                                    {% for error in form.telephone.errors %}
-                                                                                                                                                    <span> {{ error}}</span>
-                                                                                                                                                    {% endfor %}
-                                                                                                                                                </div>
-                                                                                                                                                {% else %}
-                                                                                                                                                {{ form.telephone(class="form-control form-control") }}
-                                                                                                                                                {% endif %}
-                                                                                                                      
-                                                                                                                                </b></b></span>
-                                                                                                                             
-                                                                                                                              </div>
-                                                                                                                             
-                                                                                                                               
-                                                                                                                        
-                                                                                                                                </div>
-                                                                                                                                </div>
-                                                                                                                                <div class="col-4 pb-4">
-                                                                                                                                    <div class="row ">
-                                                                                                                                      <div class="col-12 ">
-                                                                                                                                        
-                                                                                                                          
-                                                                                                                                      </div>
-                                                                                                                                      <div class="col-12 pt-2">
-                                                                                                                                        <span ><b class="green_shade"><b>
-                                                                                                                                          {{ form.security.label(class="form-control-label") }}
-                                                                                                                                            
-                                                                                                                                                        {% if form.security.errors %}
-                                                                                                                                                        {{ form.security(class="form-control form-control is-invalid")}}
-                                                                                                                                                        <div class="invalid-feedback">
-                                                                                                                                                            {% for error in form.security.errors %}
-                                                                                                                                                            <span> {{ error}}</span>
-                                                                                                                                                            {% endfor %}
-                                                                                                                                                        </div>
-                                                                                                                                                        {% else %}
-                                                                                                                                                        {{ form.security(class="form-control form-control") }}
-                                                                                                                                                        {% endif %}
-                                                                                                                              
-                                                                                                                                        </b></b></span>
-                                                                                                                                      
-                                                                                                                                      </div>
-                                                                                                                                     
-                                                                                                                                       
-                                                                                                                                
-                                                                                                                                        </div>
-                                                                                                                                        </div>
-                                                                                                                                        <div class="col-4 pb-4">
-                                                                                                                                            <div class="row ">
-                                                                                                                                              <div class="col-12 ">
-                                                                                                                                               
-                                                                                                                                  
-                                                                                                                                              </div>
-                                                                                                                                              <div class="col-12 pt-2 ">
-                                                                                                                                                <span ><b class="green_shade"><b>
-                                                                                                                                                  {{ form.other_benefits.label(class="form-control-label") }}
-                                                                                                                                                    
-                                                                                                                                                                {% if form.other_benefits.errors %}
-                                                                                                                                                                {{ form.other_benefits(class="form-control form-control is-invalid")}}
-                                                                                                                                                                <div class="invalid-feedback">
-                                                                                                                                                                    {% for error in form.other_benefits.errors %}
-                                                                                                                                                                    <span> {{ error}}</span>
-                                                                                                                                                                    {% endfor %}
-                                                                                                                                                                </div>
-                                                                                                                                                                {% else %}
-                                                                                                                                                                {{ form.other_benefits(class="form-control form-control") }}
-                                                                                                                                                                {% endif %}
-                                                                                                                                      
-                                                                                                                                                </b></b></span>
-                                                                                                                                            
-                                                                                                                                              </div>
-                                                                                                                                             
-                                                                                                                                               
-                                                                                                                                        
-                                                                                                                                                </div>
-                                                                                                                                                </div>
-          </div>
-          </div>
-
-      </div>
-
-
-
+ 
    
-
-   
-
-    
-
-
-   
-     
-    </div>
-
-
   </div>
 
-  <div class="col-12 text-right pl-4 pr-4 pb-4">
-    <div class="row">
-      <div class="col-6 text-left">
-        <span class="btn btn-outline-success" onclick="switchback('comparators')"> Back </span>
 
-      </div>
-      <div class="col-6 text-right">
-   
-        <span class="btn btn-outline-success" onclick="switchnext('comparators')"> Next </span>
-        
-      </div>
+</div>
+
+<div class="col-12 text-right pl-4 pr-4 pb-4">
+  <div class="row">
+    <div class="col-6 text-left">
+      <span class="btn btn-outline-success" onclick="switchback('comparators')"> Back </span>
+
     </div>
-    
-   </div>
+    <div class="col-6 text-right">
+ 
+      <span class="btn btn-outline-success" onclick="switchnext('comparators')"> Next </span>
+      
+    </div>
+  </div>
+  
+ </div>
 
 
 </div>
@@ -1320,566 +1082,384 @@
 
 
 
-  <div class="col-sm-12 pl-4 pr-4 pb-4 ">x
-    <div class="card p-4" style="border-color: green;">
-        <div class="row">
-          <div class=" green_shade col-12 text-center">
-            <b>Benefits</b>
+<div class="col-sm-12 pl-4 pr-4 pb-4 ">
+  <div class="card p-4" style="border-color: green;">
+      <div class="row">
+        <div class=" green_shade col-12 text-center">
+          <b>Allowance</b>
 <hr/>
-          </div>
-            <div class="col-4 pb-4">
-      <div class="row ">
-        <div class="col-12 ">
+        </div>
+          <div class="col-4 pb-4">
+    <div class="row ">
+      <div class="col-12 ">
+      
+
+      </div>
+      <div class="col-12 pt-2 ">
+       <b class="green_shade">
+          {{ form.vehicle_maintenance.label(class="form-control-label") }}
+          </b>
+          <input class="form-control" name="vehicle_maintenance" value="{{allowance.vehicle_maintenance}}"  />
         
+      </div>
+     
+       
 
         </div>
-        <div class="col-12 pt-2 ">
-          <span ><b class="green_shade"><b>
-            {{ form.vehicle_maintenance.label(class="form-control-label") }}
-                          
-                                      {% if form.vehicle_maintenance.errors %}
-                                      {{ form.vehicle_maintenance(class="form-control form-control is-invalid")}}
-                                      <div class="invalid-feedback">
-                                          {% for error in form.vehicle_maintenance.errors %}
-                                          <span> {{ error}}</span>
-                                          {% endfor %}
-                                      </div>
-                                      {% else %}
-                                      {{ form.vehicle_maintenance(class="form-control form-control") }}
-                                      {% endif %}
-          </b></b></span>
-          
         </div>
-       
-         
+        <div class="col-4 pb-4">
+          <div class="row ">
+            <div class="col-12 ">
   
-          </div>
-          </div>
-          <div class="col-4 pb-4">
-            <div class="row ">
-              <div class="col-12 ">
     
+            </div>
+            <div class="col-12 pt-2">
+              <b class="green_shade">
+                {{ form.allowance_vehicle.label(class="form-control-label") }}
+                    </b>    
+                    <input class="form-control" name="allowance_vehicle" value="{{allowance.vehicle}}"  />
+           
+             
       
               </div>
-              <div class="col-12 pt-2">
-                <span ><b class="green_shade"><b>
-                  {{ form.allowance_vehicle.label(class="form-control-label") }}
-                                
-                                            {% if form.allowance_vehicle.errors %}
-                                            {{ form.allowance_vehicle(class="form-control form-control is-invalid")}}
-                                            <div class="invalid-feedback">
-                                                {% for error in form.allowance_vehicle.errors %}
-                                                <span> {{ error}}</span>
-                                                {% endfor %}
-                                            </div>
-                                            {% else %}
-                                            {{ form.allowance_vehicle(class="form-control form-control") }}
-                                            {% endif %}
-                </b></b></span>
-                
               </div>
-             
-               
-        
-                </div>
-                </div>
-                <div class="col-4 pb-4">
-                    <div class="row ">
-                      <div class="col-12 ">
-                      
+        </div>
+              <div class="col-4 pb-4">
+                  <div class="row ">
+                    <div class="col-12 ">
+                    
+            
+                    </div>
+                    <div class="col-12 pt-2">
+                      <b class="green_shade">
+                        {{ form.transport.label(class="form-control-label") }}
+                         </b>
+                         <input class="form-control" name="transport" value="{{allowance.transport}}"  />
+                    </div>
+                   
+                     
               
                       </div>
-                      <div class="col-12 pt-2">
-                        <span ><b class="green_shade"><b>
-                          {{ form.transport.label(class="form-control-label") }}
-                                        
-                                                    {% if form.transport.errors %}
-                                                    {{ form.transport(class="form-control form-control is-invalid")}}
-                                                    <div class="invalid-feedback">
-                                                        {% for error in form.transport.errors %}
-                                                        <span> {{ error}}</span>
-                                                        {% endfor %}
-                                                    </div>
-                                                    {% else %}
-                                                    {{ form.transport(class="form-control form-control") }}
-                                                    {% endif %}
-                        </b></b></span>
-                        
                       </div>
-                     
-                       
-                
-                        </div>
-                        </div>
 
-                        <div class="col-4 pb-4">
-                            <div class="row ">
-                              <div class="col-12 ">
-                        
+                      <div class="col-4 pb-4">
+                          <div class="row ">
+                            <div class="col-12 ">
+                      
+                    
+                            </div>
+                            <div class="col-12 pt-2">
+                              <b class="green_shade">
+                                {{ form.fuel.label(class="form-control-label") }}
+                                     </b>   
+                                     <input class="form-control" name="fuel" value="{{allowance.fuel}}"  />
+                              
+                            </div>
+                           
+                             
                       
                               </div>
-                              <div class="col-12 pt-2">
-                                <span ><b class="green_shade"><b>
-                                  {{ form.fuel.label(class="form-control-label") }}
-                                                
-                                                            {% if form.fuel.errors %}
-                                                            {{ form.fuel(class="form-control form-control is-invalid")}}
-                                                            <div class="invalid-feedback">
-                                                                {% for error in form.fuel.errors %}
-                                                                <span> {{ error}}</span>
-                                                                {% endfor %}
-                                                            </div>
-                                                            {% else %}
-                                                            {{ form.fuel(class="form-control form-control") }}
-                                                            {% endif %}
-                                </b></b></span>
-                                
                               </div>
-                             
-                               
-                        
-                                </div>
+
+                              <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                                      
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.car.label(class="form-control-label") }}
+                                                      
+                                          </b>
+                                          <input class="form-control" name="car" value="{{allowance.car}}"  />
+                                   
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
                                 </div>
 
                                 <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                        
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.car.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.car.errors %}
-                                                                    {{ form.car(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.car.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.car(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                     
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                        
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.allowance_driver.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.allowance_driver.errors %}
-                                                                    {{ form.allowance_driver(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.allowance_driver.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.allowance_driver(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                       
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                       
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.domestic.label(class="form-control-label") }}
-                                            
-                                                        {% if form.domestic.errors %}
-                                                        {{ form.domestic(class="form-control form-control is-invalid")}}
-                                                        <div class="invalid-feedback">
-                                                            {% for error in form.domestic.errors %}
-                                                            <span> {{ error}}</span>
-                                                            {% endfor %}
-                                                        </div>
-                                                        {% else %}
-                                                        {{ form.domestic(class="form-control form-control") }}
-                                                        {% endif %}
-                              
-                                        </b></b></span>
-                                       
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.allowance_housing.label(class="form-control-label") }}
-                                    
-                                                {% if form.allowance_housing.errors %}
-                                                {{ form.allowance_housing(class="form-control form-control is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.allowance_housing.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.allowance_housing(class="form-control form-control") }}
-                                                {% endif %}
-                              
-                                        </b></b></span>
-                                        
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                       
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.utilities.label(class="form-control-label") }}
-                                    
-                                                {% if form.utilities.errors %}
-                                                {{ form.utilities(class="form-control form-control is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.utilities.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.utilities(class="form-control form-control") }}
-                                                {% endif %}
-                              
-                                        </b></b></span>
-                                     
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                     
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.meal.label(class="form-control-label") }}
-                                    
-                                                {% if form.meal.errors %}
-                                                {{ form.meal(class="form-control form-control is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.meal.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.meal(class="form-control form-control") }}
-                                                {% endif %}
-                              
-                                        </b></b></span>
-                                        
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                 
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.allowance_telephone.label(class="form-control-label") }}
-                                    
-                                                {% if form.allowance_telephone.errors %}
-                                                {{ form.allowance_telephone(class="form-control form-control is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.allowance_telephone.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.allowance_telephone(class="form-control form-control") }}
-                                                {% endif %}
-                              
-                                        </b></b></span>
-                                       
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                  
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.entertainment.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.entertainment.errors %}
-                                                                    {{ form.entertainment(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.entertainment.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.entertainment(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                       
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                    
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.education.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.education.errors %}
-                                                                    {{ form.education(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.education.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.education(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                        
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                               
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.vacation.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.vacation.errors %}
-                                                                    {{ form.vacation(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.vacation.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.vacation(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                        
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                     
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.uniform.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.uniform.errors %}
-                                                                    {{ form.uniform(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.uniform.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.uniform(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                       
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
-                                 
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.mobile_money.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.mobile_money.errors %}
-                                                                    {{ form.mobile_money(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.mobile_money.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.mobile_money(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                        
-                                      </div>
-                                     
-                                       
-                                
-                                        </div>
-                                  </div>
-
-                                  <div class="col-4 pb-4">
-                                    <div class="row ">
-                                      <div class="col-12 ">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                                      
                             
-                              
-                                      </div>
-                                      <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
-                                          {{ form.misc.label(class="form-control-label") }}
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.allowance_driver.label(class="form-control-label") }}
                                                       
-                                                                  {% if form.misc.errors %}
-                                                                  {{ form.misc(class="form-control form-control is-invalid")}}
-                                                                  <div class="invalid-feedback">
-                                                                      {% for error in form.misc.errors %}
-                                                                      <span> {{ error}}</span>
-                                                                      {% endfor %}
-                                                                  </div>
-                                                                  {% else %}
-                                                                  {{ form.misc(class="form-control form-control") }}
-                                                                  {% endif %}
-                              
-                                        </b></b></span>
-                                        
-                                      </div>
+                                        </b>
+
+                                        <input class="form-control" name="allowance_driver" value="{{allowance.driver}}"  />
                                      
-                                       
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                                     
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                     <b class="green_shade">
+                                        {{ form.domestic.label(class="form-control-label") }}
+                                       </b>
+                                       <input class="form-control" name="domestic" value="{{allowance.domestic_safety}}"  />
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                              
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.allowance_housing.label(class="form-control-label") }}
+                                  </b>
+                                  <input class="form-control" name="allowance_housing" value="{{allowance.housing}}"  />
+                                      
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                                     
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                   <b class="green_shade">
+                                        {{ form.utilities.label(class="form-control-label") }}
+                                  </b>
+                                  <input class="form-control" name="utilities" value="{{allowance.utilities}}"  />
+                                   
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                                   
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                     <b class="green_shade">
+                                        {{ form.meal.label(class="form-control-label") }}
+                                  </b>
+                                  <input class="form-control" name="meal" value="{{allowance.meal}}"  />
+                                      
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                               
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                     <b class="green_shade">
+                                        {{ form.allowance_telephone.label(class="form-control-label") }}
+                                  </b>
+                                  <input class="form-control" name="allowance_telephone" value="{{allowance.telephone}}"  />
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
                                 
-                                        </div>
-                                  </div>
-  </div>
-      </div>
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.entertainment.label(class="form-control-label") }}
+                                           </b>
+                                           <input class="form-control" name="entertainment" value="{{allowance.entertainment}}"  />
+                                     
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                                  
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.education.label(class="form-control-label") }}
+                                        </b>
+                                        <input class="form-control" name="education" value="{{allowance.education_support}}"  />
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                             
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.vacation.label(class="form-control-label") }}
+                                             </b>
+                                             <input class="form-control" name="allowance_vacation" value="{{allowance.vacation}}"  />
+                                      
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                                   
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.uniform.label(class="form-control-label") }}
+                                           </b>
+                                           <input class="form-control" name="uniform" value="{{allowance.uniform}}"  />
+                                     
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                               
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.mobile_money.label(class="form-control-label") }}
+                                        </b>
+                                        <input class="form-control" name="momo" value="{{allowance.mobile_money}}"  />     
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+
+                                <div class="col-4 pb-4">
+                                  <div class="row ">
+                                    <div class="col-12 ">
+                          
+                            
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                      <b class="green_shade">
+                                        {{ form.misc.label(class="form-control-label") }}
+                                              </b>
+                                              <input class="form-control" name="misc" value="{{allowance.miscellaenous}}"  />
+                                      
+                                    </div>
+                                   
+                                     
+                              
+                                      </div>
+                                </div>
+</div>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <div class="col-12 text-right pl-4 pr-4 pb-4">
+<div class="row">
+  <div class="col-6 text-left">
+    <span class=" btn btn-outline-success"   onclick="switchback('review')">Back</span>
+
 
   </div>
+  <div class="col-6 text-right">
+    <div class="form-group">
+      <input class="btn btn-success" type="submit" value="Update">
+  </div>
 
 
-
-
-
-
- 
-
-
-
- 
-
-
-
-
- 
-
-
-
- 
-
-
-
-
-
- 
-
- 
+  </div>
   
- 
-
-   <div class="col-12 text-right pl-4 pr-4 pb-4">
-  <div class="row">
-    <div class="col-6 text-left">
-      <span class=" btn btn-outline-success"   onclick="switchback('review')">Back</span>
-
-
-    </div>
-    <div class="col-6 text-right">
-      {{ form.submit(class="btn btn-success btn-max") }}
-
-    </div>
 </div>
 </div>
- 
+
 </div>
 
 

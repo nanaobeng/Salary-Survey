@@ -11,7 +11,7 @@
     <div class="col-12">
       <section id="hero" class="d-flex align-items-center justify-content-center">
           <div class="container position-relative">
-       <h2><b style="font-size: 40px;">Financial Analyst</b></h2>
+       <h2><b style="font-size: 40px;">{{job.job_title}}</b></h2>
           
           </div>
         </section>
@@ -108,7 +108,7 @@
 <div class="p-4" style="background-color:rgb(245, 243, 243)">
   <form method="POST">
 
-  {{ form.hidden_tag() }}
+
 <div class="row  " >
   
 
@@ -138,7 +138,7 @@
                     <label class="green_shade">
                         <b>Job Title</b>
                     </label>
-                    <input type="text" class="form-control" disabled/>
+                    <input type="text" class="form-control" value="{{job.job_title}}"disabled/>
                 </div>
         
                     
@@ -160,7 +160,7 @@
                             <label class="green_shade">
                                 <b>Department</b>
                             </label>
-                            <input type="text" class="form-control" disabled/>
+                            <input type="text" class="form-control" value="{{job.main_department.department}}"disabled/>
                         </div>
                 
                             
@@ -182,7 +182,7 @@
                                     <label class="green_shade">
                                         <b>Grade</b>
                                     </label>
-                                    <input type="text" class="form-control" disabled/>
+                                    <input type="text" class="form-control" value="{{job.grade}}"disabled/>
                                 </div>
                         
                                     
@@ -203,7 +203,7 @@
                                             <label class="green_shade">
                                                 <b>Reporting Relationship</b>
                                             </label>
-                                            <input type="text" class="form-control" disabled/>
+                                            <input type="text" class="form-control" value="{{job.reporting_relationship}}"disabled/>
                                         </div>
                                 
                                             
@@ -224,7 +224,7 @@
                                                     <label class="green_shade">
                                                         <b>Job Description</b>
                                                     </label>
-                                                    <textarea cols="3" rows="3" class="form-control" disabled></textarea>
+                                                    <textarea cols="3" rows="3" class="form-control" disabled>{{job.job_description}}</textarea>
                                                 </div>
                                         
                                                     
@@ -246,7 +246,7 @@
                                                             <label class="green_shade">
                                                                 <b>Key Duties and Scope of Responsibility</b>
                                                             </label>
-                                                            <textarea cols="3" rows="3" class="form-control" disabled></textarea>
+                                                            <textarea cols="3" rows="3" class="form-control" disabled>{{job.duties_and_responsibility}}</textarea>
                                                         </div>
                                                 
                                                             
@@ -268,7 +268,7 @@
                                                                     <label class="green_shade">
                                                                         <b>Financial Responsibilities</b>
                                                                     </label>
-                                                                    <textarea cols="3" rows="3" class="form-control"disabled></textarea>
+                                                                    <textarea cols="3" rows="3" class="form-control"disabled>{{job.financial_responsibilities}}</textarea>
                                                                 </div>
                                                         
                                                                     
@@ -290,7 +290,7 @@
                                                                             <label class="green_shade">
                                                                                 <b>Technical/Professional Qualification</b>
                                                                             </label>
-                                                                            <textarea cols="3" rows="3" class="form-control"disabled></textarea>
+                                                                            <textarea cols="3" rows="3" class="form-control"disabled>{{job.technical_qualification}}</textarea>
                                                                         </div>
                                                                 
                                                                             
@@ -311,7 +311,7 @@
                                                                                     <label class="green_shade">
                                                                                         <b>Minimum Years of Experience</b>
                                                                                     </label>
-                                                                                   <input type="text" class="form-control"disabled/>
+                                                                                   <input type="text" class="form-control" value="{{job.minimum_years_of_experience}}" disabled/>
                                                                                 </div>
                                                                         
                                                                                     
@@ -349,19 +349,10 @@
 <hr/>
         </div>
         <div class="col-12 pt-4 ">
-          <span ><b class="green_shade"><b>
+          <b class="green_shade"><b>
             {{ form.base_salary.label(class="form-control-label") }}
   
-              {% if form.base_salary.errors %}
-              {{ form.base_salary(class="form-control form-control is-invalid ")}}
-              <div class="invalid-feedback">
-                  {% for error in form.base_salary.errors %}
-                  <span> {{ error}}</span>
-                  {% endfor %}
-              </div>
-              {% else %}
-              {{ form.base_salary(class="form-control form-control") }}
-              {% endif %}
+              <input class="form-control" value="{{base.monthly_base_salary}}" disabled />
   
               
           </div>
@@ -433,21 +424,11 @@
 
             </div>
             <div class="col-12 pt-2">
-              <span ><b class="green_shade"><b>
+            <b class="green_shade">
                 {{ form.company_bonus_performance.label(class="form-control-label") }}
   
-                {% if form.company_bonus_performance.errors %}
-                {{ form.company_bonus_performance(class="form-control form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.company_bonus_performance.errors %}
-                    <span> {{ error}}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.company_bonus_performance(class="form-control form-control") }}
-                {% endif %}
-              </b></h2></b></span>
-             
+              </b>
+              <input class="form-control" value="{{incentive.company_performance}}" disabled />
             </div>
            </div>
              </div>
@@ -459,21 +440,10 @@
           
                       </div>
                       <div class="col-12 pt-2 ">
-                        <span ><b class="green_shade"><b>
+                       <b class="green_shade">
                           {{ form.individual_bonus_performance.label(class="form-control-label") }}
-            
-                        {% if form.individual_bonus_performance.errors %}
-                        {{ form.individual_bonus_performance(class="form-control form-control is-invalid")}}
-                        <div class="invalid-feedback">
-                            {% for error in form.individual_bonus_performance.errors %}
-                            <span> {{ error}}</span>
-                            {% endfor %}
-                        </div>
-                        {% else %}
-                        {{ form.individual_bonus_performance(class="form-control form-control") }}
-                        {% endif %}
-                        </b></h2></b></span>
-                        
+   </b>
+   <input class="form-control" value="{{incentive.individual_performance}}" disabled />
                       </div>
                       </div>
              </div>
@@ -488,20 +458,10 @@
       
                   </div>
                   <div class="col-12 pt-2">
-                    <span ><b class="green_shade"><b>
+                    <b class="green_shade">
                       {{ form.annual_bonus.label(class="form-control-label") }}
-          
-                      {% if form.annual_bonus.errors %}
-                      {{ form.annual_bonus(class="form-control form-control is-invalid")}}
-                      <div class="invalid-feedback">
-                          {% for error in form.annual_bonus.errors %}
-                          <span> {{ error}}</span>
-                          {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.annual_bonus(class="form-control form-control") }}
-                      {% endif %}
-                    </b></h2></b></span>
+          </b>
+          <input class="form-control" value="{{incentive.annual_incentive}}" disabled />
                   
                   </div>
      </div>
@@ -514,21 +474,11 @@
             
               </div>
               <div class="col-12 pt-2 ">
-                <span ><b class="green_shade"><b>
+           <b class="green_shade">
                   {{ form.incentive_bonus.label(class="form-control-label") }}
       
-                  {% if form.incentive_bonus.errors %}
-                  {{ form.incentive_bonus(class="form-control form-control is-invalid")}}
-                  <div class="invalid-feedback">
-                      {% for error in form.incentive_bonus.errors %}
-                      <span> {{ error}}</span>
-                      {% endfor %}
-                  </div>
-                  {% else %}
-                  {{ form.incentive_bonus(class="form-control form-control") }}
-                  {% endif %}
-                </b></h2></b></span>
-               
+               </b>
+               <input class="form-control" value="{{incentive.incentive}}" disabled />
               </div>
              
  </div>
@@ -542,20 +492,11 @@
 
           </div>
           <div class="col-12 pt-2 ">
-            <span ><b class="green_shade"><b>
+            <span ><b class="green_shade">
               {{ form.other_bonus.label(class="form-control-label") }}
-  
-              {% if form.other_bonus.errors %}
-              {{ form.other_bonus(class="form-control form-control is-invalid")}}
-              <div class="invalid-feedback">
-                  {% for error in form.other_bonus.errors %}
-                  <span> {{ error}}</span>
-                  {% endfor %}
-              </div>
-              {% else %}
-              {{ form.other_bonus(class="form-control form-control") }}
-              {% endif %}
-            </b></h2></b></span>
+  </b>
+  <input class="form-control" value="{{incentive.other_cash}}" disabled />
+
             
           </div>
          
@@ -614,7 +555,7 @@
 
 
 
-  <div class="col-12 pl-4 pr-4 pb-4">
+  <div class="col-12 pl-4 pr-4 pb-2">
     <div class="row">
 
       <div class="col-sm-12 pl-4 pr-4 pb-4 ">
@@ -631,20 +572,10 @@
 
             </div>
             <div class="col-12 pt-2">
-              <span ><b class="green_shade"><b>
+           <b class="green_shade">
                 {{ form.staff_bus.label(class="form-control-label") }}
-                            
-                {% if form.staff_bus.errors %}
-                {{ form.staff_bus(class="form-control form-control is-invalid")}}
-                <div class="invalid-feedback">
-                    {% for error in form.staff_bus.errors %}
-                    <span> {{ error}}</span>
-                    {% endfor %}
-                </div>
-                {% else %}
-                {{ form.staff_bus(class="form-control form-control") }}
-                {% endif %}
-              </b></b></span>
+                 </b>
+                 <input class="form-control" value="{{benefit.staff_bus}}" disabled />
             
             </div>
            
@@ -659,20 +590,10 @@
       
                   </div>
                   <div class="col-12 pt-2">
-                    <span ><b class="green_shade"><b>
+                    <b class="green_shade">
                       {{ form.company_car.label(class="form-control-label") }}
-                                    
-                      {% if form.company_car.errors %}
-                      {{ form.company_car(class="form-control form-control is-invalid")}}
-                      <div class="invalid-feedback">
-                        {% for error in form.company_car.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                      </div>
-                      {% else %}
-                      {{ form.company_car(class="form-control form-control") }}
-                      {% endif %}
-                    </b></b></span>
+                      </b>
+                      <input class="form-control" value="{{benefit.company_car}}" disabled />
                     
                   </div>
                  
@@ -687,20 +608,10 @@
               
                           </div>
                           <div class="col-12 pt-2">
-                            <span ><b class="green_shade"><b>
+                            <b class="green_shade">
                               {{ form.personal_travel.label(class="form-control-label") }}
-                                              
-                              {% if form.personal_travel.errors %}
-                                                          {{ form.personal_travel(class="form-control form-control is-invalid")}}
-                                                          <div class="invalid-feedback">
-                                                              {% for error in form.personal_travel.errors %}
-                                                              <span> {{ error}}</span>
-                                                              {% endfor %}
-                                                          </div>
-                                                          {% else %}
-                                                          {{ form.personal_travel(class="form-control form-control") }}
-                                                          {% endif %}
-                            </b></b></span>
+                               </b>
+                               <input class="form-control" value="{{benefit.personal_travel}}" disabled />
                             
                           </div>
                          
@@ -716,20 +627,10 @@
                       
                                   </div>
                                   <div class="col-12 pt-2">
-                                    <span ><b class="green_shade"><b>
+                                    <b class="green_shade">
                                       {{ form.petrol.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.petrol.errors %}
-                                                                    {{ form.petrol(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.petrol.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.petrol(class="form-control form-control") }}
-                                                                    {% endif %}
-                                    </b></b></span>
+                                     </b>
+                                     <input class="form-control" value="{{benefit.petrol}}" disabled />
                                     
                                   </div>
                                  
@@ -745,21 +646,11 @@
                               
                                           </div>
                                           <div class="col-12 pt-2">
-                                            <span ><b class="green_shade"><b>
+                                          <b class="green_shade">
                                               {{ form.vehicle.label(class="form-control-label") }}
-                                                                
-                                              {% if form.vehicle.errors %}
-                                              {{ form.vehicle(class="form-control form-control is-invalid")}}
-                                              <div class="invalid-feedback">
-                                                  {% for error in form.vehicle.errors %}
-                                                  <span> {{ error}}</span>
-                                                  {% endfor %}
-                                              </div>
-                                              {% else %}
-                                              {{ form.vehicle(class="form-control form-control") }}
-                                              {% endif %}
-                                  
-                                            </b></b></span>
+                                              </b>
+                                              <input class="form-control" value="{{benefit.vehicle_maintenance}}" disabled />
+                                           
                                             
                                           </div>
                                          
@@ -775,21 +666,10 @@
                                       
                                                   </div>
                                                   <div class="col-12 pt-2">
-                                                    <span ><b class="green_shade"><b>
+                                                    <b class="green_shade">
                                                       {{ form.driver.label(class="form-control-label") }}
-                                                                        
-                                                                                    {% if form.driver.errors %}
-                                                                                    {{ form.driver(class="form-control form-control is-invalid")}}
-                                                                                    <div class="invalid-feedback">
-                                                                                        {% for error in form.driver.errors %}
-                                                                                        <span> {{ error}}</span>
-                                                                                        {% endfor %}
-                                                                                    </div>
-                                                                                    {% else %}
-                                                                                    {{ form.driver(class="form-control form-control") }}
-                                                                                    {% endif %}
-                                          
-                                                    </b></b></span>
+                                                       </b>
+                                                       <input class="form-control" value="{{benefit.driver}}" disabled />  
                                                     
                                                   </div>
                                                  
@@ -805,21 +685,10 @@
                                               
                                                           </div>
                                                           <div class="col-12 pt-2">
-                                                            <span ><b class="green_shade"><b>
+                                                            <b class="green_shade">
                                                               {{ form.health_insurance.label(class="form-control-label") }}
-                                                              
-                                                                          {% if form.health_insurance.errors %}
-                                                                          {{ form.health_insurance(class="form-control form-control is-invalid")}}
-                                                                          <div class="invalid-feedback">
-                                                                              {% for error in form.health_insurance.errors %}
-                                                                              <span> {{ error}}</span>
-                                                                              {% endfor %}
-                                                                          </div>
-                                                                          {% else %}
-                                                                          {{ form.health_insurance(class="form-control form-control") }}
-                                                                          {% endif %}
-                                                  
-                                                            </b></b></span>
+                                                              </b>
+                                                              <input class="form-control" value="{{benefit.health_insurance}}" disabled />
                                                             
                                                           </div>
                                                          
@@ -835,21 +704,10 @@
                                                       
                                                                   </div>
                                                                   <div class="col-12 pt-2">
-                                                                    <span ><b class="green_shade"><b>
+                                                                    <b class="green_shade">
                                                                       {{ form.medical_assistance.label(class="form-control-label") }}
-                                                                        
-                                                                                    {% if form.medical_assistance.errors %}
-                                                                                    {{ form.medical_assistance(class="form-control form-control is-invalid")}}
-                                                                                    <div class="invalid-feedback">
-                                                                                        {% for error in form.medical_assistance.errors %}
-                                                                                        <span> {{ error}}</span>
-                                                                                        {% endfor %}
-                                                                                    </div>
-                                                                                    {% else %}
-                                                                                    {{ form.medical_assistance(class="form-control form-control") }}
-                                                                                    {% endif %}
-                                                          
-                                                                    </b></b></span>
+                                                                        </b>
+                                                                        <input class="form-control" value="{{benefit.medical_assistance}}" disabled />
                                                                     
                                                                   </div>
                                                                  
@@ -865,21 +723,10 @@
                                                               
                                                                           </div>
                                                                           <div class="col-12 pt-2">
-                                                                            <span ><b class="green_shade"><b>
+                                                                            <b class="green_shade">
                                                                               {{ form.funeral_assistance.label(class="form-control-label") }}
-                                                                                
-                                                                                            {% if form.funeral_assistance.errors %}
-                                                                                            {{ form.funeral_assistance(class="form-control form-control is-invalid")}}
-                                                                                            <div class="invalid-feedback">
-                                                                                                {% for error in form.funeral_assistance.errors %}
-                                                                                                <span> {{ error}}</span>
-                                                                                                {% endfor %}
-                                                                                            </div>
-                                                                                            {% else %}
-                                                                                            {{ form.funeral_assistance(class="form-control form-control") }}
-                                                                                            {% endif %}
-                                                                  
-                                                                            </b></b></span>
+                                                                                </b>
+                                                                                <input class="form-control" value="{{benefit.funeral_assistance}}" disabled />
                                                             
                                                                           </div>
                                                                          
@@ -895,22 +742,10 @@
                                                                       
                                                                                   </div>
                                                                                   <div class="col-12 pt-2">
-                                                                                    <span ><b class="green_shade"><b>
+                                                                                   <b class="green_shade">
                                                                                       {{ form.life_insurance.label(class="form-control-label") }}
-                                                                                        
-                                                                                                    {% if form.life_insurance.errors %}
-                                                                                                    {{ form.life_insurance(class="form-control form-control is-invalid")}}
-                                                                                                    <div class="invalid-feedback">
-                                                                                                        {% for error in form.life_insurance.errors %}
-                                                                                                        <span> {{ error}}</span>
-                                                                                                        {% endfor %}
-                                                                                                    </div>
-                                                                                                    {% else %}
-                                                                                                    {{ form.life_insurance(class="form-control form-control") }}
-                                                                                                    {% endif %}
-                                                                          
-                                                                                    </b></b></span>
-                                                                                    
+                                                                              </b>
+                                                                              <input class="form-control" value="{{benefit.life_insurance}}" disabled />
                                                                                   </div>
                                                                                  
                                                                                    
@@ -925,22 +760,10 @@
                                                                               
                                                                                           </div>
                                                                                           <div class="col-12 pt-2">
-                                                                                            <span ><b class="green_shade"><b>
+                                                                                            <b class="green_shade">
                                                                                               {{ form.group_accident.label(class="form-control-label") }}
-                                                                                                
-                                                                                                            {% if form.group_accident.errors %}
-                                                                                                            {{ form.group_accident(class="form-control form-control is-invalid")}}
-                                                                                                            <div class="invalid-feedback">
-                                                                                                                {% for error in form.group_accident.errors %}
-                                                                                                                <span> {{ error}}</span>
-                                                                                                                {% endfor %}
-                                                                                                            </div>
-                                                                                                            {% else %}
-                                                                                                            {{ form.group_accident(class="form-control form-control") }}
-                                                                                                            {% endif %}
-                                                                                  
-                                                                                            </b></b></span>
-                                                                                            
+                                                                                                </b>
+                                                                                                <input class="form-control" value="{{benefit.group_accident}}" disabled />
                                                                                           </div>
                                                                                          
                                                                                            
@@ -955,21 +778,12 @@
                                                                                       
                                                                                                   </div>
                                                                                                   <div class="col-12 pt-2">
-                                                                                                    <span ><b class="green_shade"><b>
+                                                                                                   <b class="green_shade">
                                                                                                       {{ form.club_membership.label(class="form-control-label") }}
-                                                                                                      
-                                                                                                                  {% if form.club_membership.errors %}
-                                                                                                                  {{ form.club_membership(class="form-control form-control is-invalid")}}
-                                                                                                                  <div class="invalid-feedback">
-                                                                                                                      {% for error in form.club_membership.errors %}
-                                                                                                                      <span> {{ error}}</span>
-                                                                                                                      {% endfor %}
-                                                                                                                  </div>
-                                                                                                                  {% else %}
-                                                                                                                  {{ form.club_membership(class="form-control form-control") }}
-                                                                                                                  {% endif %}
-                                                                                          
-                                                                                                    </b></b></span>
+                                                                                                      </b>
+
+                                                                                                      <input class="form-control" value="{{benefit.club_membership}}" disabled />
+                                                                                                     
                                                                                                    
                                                                                                   </div>
                                                                                                  
@@ -985,21 +799,10 @@
                                                                                               
                                                                                                           </div>
                                                                                                           <div class="col-12 pt-2">
-                                                                                                            <span ><b class="green_shade"><b>
+                                                                                                            <b class="green_shade">
                                                                                                               {{ form.school_fees.label(class="form-control-label") }}
-                                                                                                                
-                                                                                                                            {% if form.school_fees.errors %}
-                                                                                                                            {{ form.school_fees(class="form-control form-control is-invalid")}}
-                                                                                                                            <div class="invalid-feedback">
-                                                                                                                                {% for error in form.school_fees.errors %}
-                                                                                                                                <span> {{ error}}</span>
-                                                                                                                                {% endfor %}
-                                                                                                                            </div>
-                                                                                                                            {% else %}
-                                                                                                                            {{ form.school_fees(class="form-control form-control") }}
-                                                                                                                            {% endif %}
-                                                                                                  
-                                                                                                            </b></h2></b></span>
+                                                                                                                </b>
+                                                                                                                <input class="form-control" value="{{benefit.school_fees}}" disabled />
                                                                                                          
                                                                                                           </div>
                                                                                                          
@@ -1013,21 +816,10 @@
                                                                                                                     
                                                                                                                   </div>
                                                                                                                   <div class="col-12 pt-2">
-                                                                                                                    <span ><b class="green_shade"><b>
+                                                                                                                   <b class="green_shade">
                                                                                                                       {{ form.vacation.label(class="form-control-label") }}
-                                                                                                                        
-                                                                                                                                    {% if form.vacation.errors %}
-                                                                                                                                    {{ form.vacation(class="form-control form-control is-invalid")}}
-                                                                                                                                    <div class="invalid-feedback">
-                                                                                                                                        {% for error in form.vacation.errors %}
-                                                                                                                                        <span> {{ error}}</span>
-                                                                                                                                        {% endfor %}
-                                                                                                                                    </div>
-                                                                                                                                    {% else %}
-                                                                                                                                    {{ form.vacation(class="form-control form-control") }}
-                                                                                                                                    {% endif %}
-                                                                                                          
-                                                                                                                    </b></b></span>
+                                                                                                                      </b>
+                                                                                                                      <input class="form-control" value="{{benefit.vacation}}" disabled /> 
                                                                                                                     
                                                                                                                   </div>
                                                                                                                  
@@ -1043,22 +835,10 @@
                                                                                                           
                                                                                                                       </div>
                                                                                                                       <div class="col-12 pt-2">
-                                                                                                                        <span ><b class="green_shade"><b>
+                                                                                                                        <b class="green_shade">
                                                                                                                           {{ form.housing.label(class="form-control-label") }}
-                                                                                                                            
-                                                                                                                                        {% if form.housing.errors %}
-                                                                                                                                        {{ form.housing(class="form-control form-control is-invalid")}}
-                                                                                                                                        <div class="invalid-feedback">
-                                                                                                                                            {% for error in form.housing.errors %}
-                                                                                                                                            <span> {{ error}}</span>
-                                                                                                                                            {% endfor %}
-                                                                                                                                        </div>
-                                                                                                                                        {% else %}
-                                                                                                                                        {{ form.housing(class="form-control form-control") }}
-                                                                                                                                        {% endif %}
-                                                                                                              
-                                                                                                                        </b></b></span>
-                                                                                                                   
+                                                                                                                   </b>
+                                                                                                                   <input class="form-control" value="{{benefit.housing}}" disabled />
                                                                                                                       </div>
                                                                                                                      
                                                                                                                        
@@ -1072,21 +852,10 @@
                                                                                                                   
                                                                                                                               </div>
                                                                                                                               <div class="col-12 pt-2">
-                                                                                                                                <span ><b class="green_shade"><b>
+                                                                                                                                <b class="green_shade">
                                                                                                                                   {{ form.telephone.label(class="form-control-label") }}
-                                                                                                                                    
-                                                                                                                                                {% if form.telephone.errors %}
-                                                                                                                                                {{ form.telephone(class="form-control form-control is-invalid")}}
-                                                                                                                                                <div class="invalid-feedback">
-                                                                                                                                                    {% for error in form.telephone.errors %}
-                                                                                                                                                    <span> {{ error}}</span>
-                                                                                                                                                    {% endfor %}
-                                                                                                                                                </div>
-                                                                                                                                                {% else %}
-                                                                                                                                                {{ form.telephone(class="form-control form-control") }}
-                                                                                                                                                {% endif %}
-                                                                                                                      
-                                                                                                                                </b></b></span>
+                                                                                                                              </b>      
+                                                                                                                              <input class="form-control" value="{{benefit.telephone}}" disabled />
                                                                                                                              
                                                                                                                               </div>
                                                                                                                              
@@ -1101,22 +870,11 @@
                                                                                                                           
                                                                                                                                       </div>
                                                                                                                                       <div class="col-12 pt-2">
-                                                                                                                                        <span ><b class="green_shade"><b>
+                                                                                                                                      <b class="green_shade">
                                                                                                                                           {{ form.security.label(class="form-control-label") }}
                                                                                                                                             
-                                                                                                                                                        {% if form.security.errors %}
-                                                                                                                                                        {{ form.security(class="form-control form-control is-invalid")}}
-                                                                                                                                                        <div class="invalid-feedback">
-                                                                                                                                                            {% for error in form.security.errors %}
-                                                                                                                                                            <span> {{ error}}</span>
-                                                                                                                                                            {% endfor %}
-                                                                                                                                                        </div>
-                                                                                                                                                        {% else %}
-                                                                                                                                                        {{ form.security(class="form-control form-control") }}
-                                                                                                                                                        {% endif %}
-                                                                                                                              
-                                                                                                                                        </b></b></span>
-                                                                                                                                      
+                                                                                                                                      </b>
+                                                                                                                                      <input class="form-control" value="{{benefit.security}}" disabled />
                                                                                                                                       </div>
                                                                                                                                      
                                                                                                                                        
@@ -1130,21 +888,11 @@
                                                                                                                                   
                                                                                                                                               </div>
                                                                                                                                               <div class="col-12 pt-2 ">
-                                                                                                                                                <span ><b class="green_shade"><b>
+                                                                                                                                                <b class="green_shade">
                                                                                                                                                   {{ form.other_benefits.label(class="form-control-label") }}
-                                                                                                                                                    
-                                                                                                                                                                {% if form.other_benefits.errors %}
-                                                                                                                                                                {{ form.other_benefits(class="form-control form-control is-invalid")}}
-                                                                                                                                                                <div class="invalid-feedback">
-                                                                                                                                                                    {% for error in form.other_benefits.errors %}
-                                                                                                                                                                    <span> {{ error}}</span>
-                                                                                                                                                                    {% endfor %}
-                                                                                                                                                                </div>
-                                                                                                                                                                {% else %}
-                                                                                                                                                                {{ form.other_benefits(class="form-control form-control") }}
-                                                                                                                                                                {% endif %}
-                                                                                                                                      
-                                                                                                                                                </b></b></span>
+                                                                                                                                                    </b>
+                                                                                                                                                    <input class="form-control" value="{{benefit.other_benefits}}" disabled />
+                                                                                                                                               
                                                                                                                                             
                                                                                                                                               </div>
                                                                                                                                              
@@ -1197,11 +945,11 @@
 
 
 
-  <div class="col-sm-12 pl-4 pr-4 pb-4 ">x
+  <div class="col-sm-12 pl-4 pr-4 pb-4 ">
     <div class="card p-4" style="border-color: green;">
         <div class="row">
           <div class=" green_shade col-12 text-center">
-            <b>Benefits</b>
+            <b>Allowance</b>
 <hr/>
           </div>
             <div class="col-4 pb-4">
@@ -1211,20 +959,10 @@
 
         </div>
         <div class="col-12 pt-2 ">
-          <span ><b class="green_shade"><b>
+         <b class="green_shade">
             {{ form.vehicle_maintenance.label(class="form-control-label") }}
-                          
-                                      {% if form.vehicle_maintenance.errors %}
-                                      {{ form.vehicle_maintenance(class="form-control form-control is-invalid")}}
-                                      <div class="invalid-feedback">
-                                          {% for error in form.vehicle_maintenance.errors %}
-                                          <span> {{ error}}</span>
-                                          {% endfor %}
-                                      </div>
-                                      {% else %}
-                                      {{ form.vehicle_maintenance(class="form-control form-control") }}
-                                      {% endif %}
-          </b></b></span>
+            </b>
+            <input class="form-control" value="{{allowance.vehicle_maintenance}}" disabled />
           
         </div>
        
@@ -1239,27 +977,16 @@
       
               </div>
               <div class="col-12 pt-2">
-                <span ><b class="green_shade"><b>
+                <b class="green_shade">
                   {{ form.allowance_vehicle.label(class="form-control-label") }}
-                                
-                                            {% if form.allowance_vehicle.errors %}
-                                            {{ form.allowance_vehicle(class="form-control form-control is-invalid")}}
-                                            <div class="invalid-feedback">
-                                                {% for error in form.allowance_vehicle.errors %}
-                                                <span> {{ error}}</span>
-                                                {% endfor %}
-                                            </div>
-                                            {% else %}
-                                            {{ form.allowance_vehicle(class="form-control form-control") }}
-                                            {% endif %}
-                </b></b></span>
-                
-              </div>
+                      </b>    
+                      <input class="form-control" value="{{allowance.vehicle}}" disabled />
              
                
         
                 </div>
                 </div>
+          </div>
                 <div class="col-4 pb-4">
                     <div class="row ">
                       <div class="col-12 ">
@@ -1267,21 +994,10 @@
               
                       </div>
                       <div class="col-12 pt-2">
-                        <span ><b class="green_shade"><b>
+                        <b class="green_shade">
                           {{ form.transport.label(class="form-control-label") }}
-                                        
-                                                    {% if form.transport.errors %}
-                                                    {{ form.transport(class="form-control form-control is-invalid")}}
-                                                    <div class="invalid-feedback">
-                                                        {% for error in form.transport.errors %}
-                                                        <span> {{ error}}</span>
-                                                        {% endfor %}
-                                                    </div>
-                                                    {% else %}
-                                                    {{ form.transport(class="form-control form-control") }}
-                                                    {% endif %}
-                        </b></b></span>
-                        
+                           </b>
+                           <input class="form-control" value="{{allowance.transport}}" disabled />
                       </div>
                      
                        
@@ -1296,20 +1012,10 @@
                       
                               </div>
                               <div class="col-12 pt-2">
-                                <span ><b class="green_shade"><b>
+                                <b class="green_shade">
                                   {{ form.fuel.label(class="form-control-label") }}
-                                                
-                                                            {% if form.fuel.errors %}
-                                                            {{ form.fuel(class="form-control form-control is-invalid")}}
-                                                            <div class="invalid-feedback">
-                                                                {% for error in form.fuel.errors %}
-                                                                <span> {{ error}}</span>
-                                                                {% endfor %}
-                                                            </div>
-                                                            {% else %}
-                                                            {{ form.fuel(class="form-control form-control") }}
-                                                            {% endif %}
-                                </b></b></span>
+                                       </b>   
+                                       <input class="form-control" value="{{allowance.fuel}}" disabled />
                                 
                               </div>
                              
@@ -1325,21 +1031,11 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.car.label(class="form-control-label") }}
                                                         
-                                                                    {% if form.car.errors %}
-                                                                    {{ form.car(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.car.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.car(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
+                                            </b>
+                                            <input class="form-control" value="{{allowance.car}}" disabled />
                                      
                                       </div>
                                      
@@ -1355,21 +1051,12 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.allowance_driver.label(class="form-control-label") }}
                                                         
-                                                                    {% if form.allowance_driver.errors %}
-                                                                    {{ form.allowance_driver(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.allowance_driver.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.allowance_driver(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
+                                          </b>
+
+                                          <input class="form-control" value="{{allowance.driver}}" disabled />
                                        
                                       </div>
                                      
@@ -1384,22 +1071,10 @@
                                        
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                       <b class="green_shade">
                                           {{ form.domestic.label(class="form-control-label") }}
-                                            
-                                                        {% if form.domestic.errors %}
-                                                        {{ form.domestic(class="form-control form-control is-invalid")}}
-                                                        <div class="invalid-feedback">
-                                                            {% for error in form.domestic.errors %}
-                                                            <span> {{ error}}</span>
-                                                            {% endfor %}
-                                                        </div>
-                                                        {% else %}
-                                                        {{ form.domestic(class="form-control form-control") }}
-                                                        {% endif %}
-                              
-                                        </b></b></span>
-                                       
+                                         </b>
+                                         <input class="form-control" value="{{allowance.domestic_safety}}" disabled />
                                       </div>
                                      
                                        
@@ -1414,21 +1089,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.allowance_housing.label(class="form-control-label") }}
-                                    
-                                                {% if form.allowance_housing.errors %}
-                                                {{ form.allowance_housing(class="form-control form-control is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.allowance_housing.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.allowance_housing(class="form-control form-control") }}
-                                                {% endif %}
-                              
-                                        </b></b></span>
+                                    </b>
+                                    <input class="form-control" value="{{allowance.housing}}" disabled />
                                         
                                       </div>
                                      
@@ -1445,21 +1109,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                     <b class="green_shade">
                                           {{ form.utilities.label(class="form-control-label") }}
-                                    
-                                                {% if form.utilities.errors %}
-                                                {{ form.utilities(class="form-control form-control is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.utilities.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.utilities(class="form-control form-control") }}
-                                                {% endif %}
-                              
-                                        </b></b></span>
+                                    </b>
+                                    <input class="form-control" value="{{allowance.utilities}}" disabled />
                                      
                                       </div>
                                      
@@ -1474,21 +1127,10 @@
                                      
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                       <b class="green_shade">
                                           {{ form.meal.label(class="form-control-label") }}
-                                    
-                                                {% if form.meal.errors %}
-                                                {{ form.meal(class="form-control form-control is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.meal.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.meal(class="form-control form-control") }}
-                                                {% endif %}
-                              
-                                        </b></b></span>
+                                    </b>
+                                    <input class="form-control" value="{{allowance.meal}}" disabled />
                                         
                                       </div>
                                      
@@ -1505,22 +1147,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                       <b class="green_shade">
                                           {{ form.allowance_telephone.label(class="form-control-label") }}
-                                    
-                                                {% if form.allowance_telephone.errors %}
-                                                {{ form.allowance_telephone(class="form-control form-control is-invalid")}}
-                                                <div class="invalid-feedback">
-                                                    {% for error in form.allowance_telephone.errors %}
-                                                    <span> {{ error}}</span>
-                                                    {% endfor %}
-                                                </div>
-                                                {% else %}
-                                                {{ form.allowance_telephone(class="form-control form-control") }}
-                                                {% endif %}
-                              
-                                        </b></b></span>
-                                       
+                                    </b>
+                                    <input class="form-control" value="{{allowance.telephone}}" disabled />
                                       </div>
                                      
                                        
@@ -1535,21 +1165,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.entertainment.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.entertainment.errors %}
-                                                                    {{ form.entertainment(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.entertainment.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.entertainment(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
+                                             </b>
+                                             <input class="form-control" value="{{allowance.entertainment}}" disabled />
                                        
                                       </div>
                                      
@@ -1565,22 +1184,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.education.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.education.errors %}
-                                                                    {{ form.education(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.education.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.education(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                        
+                                          </b>
+                                          <input class="form-control" value="{{allowance.education_support}}" disabled />
                                       </div>
                                      
                                        
@@ -1595,21 +1202,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.vacation.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.vacation.errors %}
-                                                                    {{ form.vacation(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.vacation.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.vacation(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
+                                               </b>
+                                               <input class="form-control" value="{{allowance.vacation}}" disabled />
                                         
                                       </div>
                                      
@@ -1626,21 +1222,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.uniform.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.uniform.errors %}
-                                                                    {{ form.uniform(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.uniform.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.uniform(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
+                                             </b>
+                                             <input class="form-control" value="{{allowance.uniform}}" disabled />
                                        
                                       </div>
                                      
@@ -1656,22 +1241,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.mobile_money.label(class="form-control-label") }}
-                                                        
-                                                                    {% if form.mobile_money.errors %}
-                                                                    {{ form.mobile_money(class="form-control form-control is-invalid")}}
-                                                                    <div class="invalid-feedback">
-                                                                        {% for error in form.mobile_money.errors %}
-                                                                        <span> {{ error}}</span>
-                                                                        {% endfor %}
-                                                                    </div>
-                                                                    {% else %}
-                                                                    {{ form.mobile_money(class="form-control form-control") }}
-                                                                    {% endif %}
-                              
-                                        </b></b></span>
-                                        
+                                          </b>
+                                          <input class="form-control" value="{{allowance.mobile_money}}" disabled />     
                                       </div>
                                      
                                        
@@ -1686,21 +1259,10 @@
                               
                                       </div>
                                       <div class="col-12 pt-2">
-                                        <span ><b class="green_shade"><b>
+                                        <b class="green_shade">
                                           {{ form.misc.label(class="form-control-label") }}
-                                                      
-                                                                  {% if form.misc.errors %}
-                                                                  {{ form.misc(class="form-control form-control is-invalid")}}
-                                                                  <div class="invalid-feedback">
-                                                                      {% for error in form.misc.errors %}
-                                                                      <span> {{ error}}</span>
-                                                                      {% endfor %}
-                                                                  </div>
-                                                                  {% else %}
-                                                                  {{ form.misc(class="form-control form-control") }}
-                                                                  {% endif %}
-                              
-                                        </b></b></span>
+                                                </b>
+                                                <input class="form-control" value="{{allowance.miscellaenous}}" disabled />
                                         
                                       </div>
                                      
@@ -1750,10 +1312,7 @@
 
 
     </div>
-    <div class="col-6 text-right">
-      {{ form.submit(class="btn btn-success btn-max") }}
-
-    </div>
+    
 </div>
 </div>
  
