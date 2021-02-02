@@ -158,6 +158,10 @@ def create_client():
 def create_contact():
     return render_template("contact_person.html")
 
+@users.route("/messages")
+def messages():
+    return render_template("messages.html")
+
 @users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
     form = SectorForm()
