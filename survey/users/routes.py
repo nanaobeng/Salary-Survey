@@ -487,7 +487,11 @@ def admin_clients():
 
 @users.route("/administration/service_requests")
 def admin_service_requests():
-    return render_template("new_requests.html")
+
+    ind = Individual_request.query.all()
+    corp= Corporate_request.query.all()
+
+    return render_template("new_requests.html", ind=ind, corp=corp)
 
 
 @users.route("/administration/reports")
