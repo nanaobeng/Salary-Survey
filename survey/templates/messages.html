@@ -190,6 +190,13 @@
   .slider.round:before {
     border-radius: 50%;
   }
+
+  tbody:before {
+    content: "@";
+    display: block;
+    line-height: 25px;
+    text-indent: -99999px;
+  }
 </style>
 
 
@@ -207,91 +214,52 @@
 <!-- <div class="row pt-5 pb-5 justify-content-center"> -->
 <div class="row p-5 justify-content-center">
   <div class="col-12">
-      <table class="table table-hover">
-        <thead style="background-color: rgb(66, 95, 53);">
-          <th id="searchbar">
-            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
-            <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
-          </th>
-          <th>
-            <button id="filterbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
-                class="icofont-settings"></i></span></button>
-            <form class="dropdown-menu p-2">
-              <div class="form-group">
-                <label for="status">Status:</label>
-                <select class="form-control" id="status" onchange="filter('status')">
-                  <option value="open">Open</option>
-                  <option value="closed">Closed</option>
-                </select>
-              </div>
-            </form>
-          </th>
-          <th>
-            <button id="sortbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Sort <i
-                class="icofont-sort-alt"></i></span></button>
-            <form class="dropdown-menu p-2">
-              <div class="form-group">
-                <select class="form-control" id="status" onchange="filter('status')">
-                  <option value="open">Newest First</option>
-                  <option value="closed">Oldest First</option>
-                  <option>Sender</option>
-                </select>
-              </div>
-            </form>
-          </th>
-        </thead>
-        <tbody>
-          <tr class="table-row" data-toggle="modal" href="#viewRequestModal">
-            <td>
-              <strong class="message-heading">Message from John Doe</strong> Company XYZ
-            </td>
-            <td>Today, 11:00am</td>
-            <td><span class="badge badge-success">Open</span></td>
-          </tr>
-          <tr class="table-row" data-href="#">
-            <td>
-              <strong class="message-heading">Message from Jane Doe</strong> Company XYZ
-            </td>
-            <td>Today, 11:00am</td>
-            <td><span class="badge badge-danger">Closed</span></td>
-          </tr>
-          <tr class="table-row" data-href="#">
-            <td>
-              <strong class="message-heading">Message from Jane Doe</strong> Company ABC
-            </td>
-            <td>Today, 11:00am</td>
-            <td><span class="badge badge-danger">Closed</span></td>
-          </tr>
-          <tr class="table-row" data-href="#">
-            <td>
-              <strong class="message-heading">Message from John Doe</strong> Company ABC
-            </td>
-            <td>Yesterday, 9:00pm</td>
-            <td><span class="badge badge-success">Open</span></td>
-          </tr>
-          <tr class="table-row" data-href="#">
-            <td>
-              <strong class="message-heading">Message from John Doe</strong> Company XYZ
-            </td>
-            <td>31/12/2020</td>
-            <td><span class="badge badge-success">Open</span></td>
-          </tr>
-          <tr class="table-row" data-href="#">
-            <td>
-              <strong class="message-heading">Message from Jane Doe</strong> Company XYZ
-            </td>
-            <td>Today, 11:00am</td>
-            <td><span class="badge badge-danger">Closed</span></td>
-          </tr>
-          <tr class="table-row" data-href="#">
-            <td>
-              <strong class="message-heading">Message from John Doe</strong> Company ABC
-            </td>
-            <td>Today, 11:00am</td>
-            <td><span class="badge badge-danger">Closed</span></td>
-          </tr>
-        </tbody>
-      </table>
+    <table class="table table-hover">
+      <thead style="background-color: rgb(78, 110, 62);">
+        <th id="searchbar">
+          <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
+          <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
+        </th>
+        <th>
+          <button id="filterbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
+              class="icofont-settings"></i></span></button>
+          <form class="dropdown-menu p-2">
+            <div class="form-group">
+              <label for="status">Status:</label>
+              <select class="form-control" id="status" onchange="filter('status')">
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+          </form>
+        </th>
+        <th>
+          <button id="sortbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Sort <i
+              class="icofont-sort-alt"></i></span></button>
+          <form class="dropdown-menu p-2">
+            <div class="form-group">
+              <select class="form-control" id="status" onchange="filter('status')">
+                <option value="open">Newest First</option>
+                <option value="closed">Oldest First</option>
+                <option>Sender</option>
+              </select>
+            </div>
+          </form>
+        </th>
+      </thead>
+      <tbody>
+        {% for message in messages %}
+        <tr class="table-row" data-toggle="modal" href="#viewRequestModal">
+          <td>
+            <strong class="message-heading">Message from {{message.firstname}} {{message.lastname}}</strong>
+            {{message.company_name}}
+          </td>
+          <td>Today, 11:00am</td>
+          <td><span class="badge badge-success">{{message.status}}</span></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
   </div>
 </div>
 
@@ -346,7 +314,9 @@
             <span style="font-size:smaller; color: rgb(71, 70, 70);">Closed</span>
           </div>
           <div class="col-3 float-right">
-            <i class="far fa-envelope" style="margin-right: 5px;"></i><a href="#" style="color: inherit;">Send Email</a>
+            <i class="far fa-envelope" style="margin-right: 5px;"></i><a
+              href="mailto:johndoe@example.com?subject=Thank You For Reaching Out To Us" style="color: inherit;">Send
+              Email</a>
           </div>
         </div>
 

@@ -160,7 +160,8 @@ def create_contact():
 
 @users.route("/messages")
 def messages():
-    return render_template("messages.html")
+    messages = Contact.query.all()
+    return render_template("messages.html", messages=messages)
 
 @users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
