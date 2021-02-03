@@ -1,94 +1,92 @@
-{% extends "new_admin_layout.html" %}
+
+    {% extends "new_admin_layout.html" %}
 
 
-
-
-{% block content %}
-
-<style>
-  #hero {
-    width: 100%;
-    height: 15vh;
-    background: url("../static/img/home.jpg") top center;
-    background-size: cover;
-    position: relative;
+   
+    
+    {% block content %}
+    <style>
+      #hero {
+  width: 100%;
+  height: 15vh;
+  background: url("../static/img/home.jpg") top center;
+  background-size: cover;
+  position: relative;
   }
-
+  
   #hero:before {
-    content: "";
-    background: rgba(20, 44, 9, 0.7);
-    position: absolute;
-    bottom: 0;
-    top: 0;
-    left: 0;
-    right: 0;
+  content: "";
+  background: rgba(20, 44, 9, 0.7);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
   }
-
+  
   #hero .container {
-    text-align: center;
-    padding-top: 50px;
+  text-align: center;
+  padding-top: 50px;
   }
-
+  
   @media (max-width: 992px) {
-    #hero .container {
-      padding-top: 0;
-    }
+  #hero .container {
+    padding-top: 0;
   }
-
+  }
+  
   #hero h1 {
-    margin: 0;
-    font-size: 48px;
-    font-weight: 700;
-    line-height: 56px;
-    color: #fff;
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
   }
-
+  
   #hero h2 {
-    color: #eee;
-    margin: 15px 0 0 0;
-    font-size: 22px;
+  color: #eee;
+  margin: 15px 0 0 0;
+  font-size: 22px;
   }
-
+  
   #hero .btn-get-started {
-    font-family: "Raleway", sans-serif;
-    font-weight: 500;
-    font-size: 15px;
-    letter-spacing: 1px;
-    display: inline-block;
-    padding: 9px 35px;
-    border-radius: 50px;
-    transition: 0.5s;
-    margin-top: 40px;
-    border: 2px solid #ffc107;
-    color: #fff;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 9px 35px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin-top: 40px;
+  border: 2px solid #ffc107;
+  color: #fff;
   }
-
+  
   #hero .btn-get-started:hover {
-    background: #ffc107;
+  background: #ffc107;
   }
-
+  
   @media (min-width: 1024px) {
-    #hero {
-      background-attachment: fixed;
-    }
+  #hero {
+    background-attachment: fixed;
   }
-
+  }
+  
   @media (max-width: 768px) {
-    #hero {
-      height: 100vh;
-    }
-
-    #hero h1 {
-      font-size: 28px;
-      line-height: 36px;
-    }
-
-    #hero h2 {
-      font-size: 18px;
-      line-height: 24px;
-    }
-
+  #hero {
+    height: 100vh;
   }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  }
+ 
 
   .card {
     padding: 20px;
@@ -268,332 +266,57 @@
 <div class="py-5">
   <div class="container">
     <div class="row hidden-md-up">
-      <div class="col-md-4">
-        <div class="card">
-          <!-- <img class="card-img-top"
-            src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%"> -->
-          <div class="card-body">
-            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
-              <h4 class="card-title">Company Name</h4>
-            </a>
-            <h6 class="card-subtitle text-muted">Request Title</h6>
-            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
-              libero sit amet malesuada.</p>
-            <span class="badge badge-success">Submitted For Approval</span>
+      <h2 style="text-align:center"> Individual Requests</h2>
+      {% for i in ind %}
+        
+        <div class="col-md-3">
+          <div class="card">
+            <!-- <img class="card-img-top"
+              src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
+              alt="Card image" style="width:100%"> -->
+            <div class="card-body">
+              <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
+                
+                <h4 class="card-title">
+                  {{i.firstname}} {{other}} {{i.lastname}}
+              </h4>
+              </a>
+              <h6 class="card-subtitle text-muted">{{i.email}}</h6>
+              <p class="card-text p-y-1">{{i.service}}.</p>
+              <span class="badge badge-success">{{i.status}}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <!-- <img class="card-img-top"
-            src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%"> -->
-          <div class="card-body">
-            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
-              <h4 class="card-title">Company Name</h4>
-            </a>
-            <h6 class="card-subtitle text-muted">Request Title</h6>
-            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
-              libero sit amet malesuada.</p>
-            <span class="badge badge-secondary">Pending</span>
+      {% endfor %}
+     
+    </div>
+    <div class="row hidden-md-up">
+      <h2 style="text-align:center"> Corporate Requests</h2>
+      {% for i in corp %}
+        
+        <div class="col-md-3">
+          <div class="card">
+            <!-- <img class="card-img-top"
+              src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
+              alt="Card image" style="width:100%"> -->
+            <div class="card-body">
+              <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
+                
+                <h4 class="card-title">
+                  {{i.company_name}}
+              </h4>
+              </a>
+              <h6 class="card-subtitle text-muted">{{i.company_email}}</h6>
+              <p class="card-text p-y-1">{{i.service}}</p>
+              <span class="badge badge-success">{{i.status}}</span>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <!-- <img class="card-img-top"
-            src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%"> -->
-          <div class="card-body">
-            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
-              <h4 class="card-title">Company Name</h4>
-            </a>
-            <h6 class="card-subtitle text-muted">Request Title</h6>
-            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
-              libero sit amet malesuada.</p>
-            <span class="badge badge-warning">Awaiting Client Information</span>
-          </div>
-        </div>
-      </div>
-    </div><br>
-    <div class="row">
-      <div class="col-md-4">
-        <div class="card">
-          <!-- <img class="card-img-top"
-            src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%"> -->
-          <div class="card-body">
-            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
-              <h4 class="card-title">Company Name</h4>
-            </a>
-            <h6 class="card-subtitle text-muted">Request Title</h6>
-            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
-              libero sit amet malesuada.</p>
-            <span class="badge badge-info">First Pass</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <!-- <img class="card-img-top"
-            src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%"> -->
-          <div class="card-body">
-            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
-              <h4 class="card-title">Company Name</h4>
-            </a>
-            <h6 class="card-subtitle text-muted">Request Title</h6>
-            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
-              libero sit amet malesuada.</p>
-            <span class="badge badge-danger">Conflict Check</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-4">
-        <div class="card">
-          <!-- <img class="card-img-top"
-            src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-            alt="Card image" style="width:100%"> -->
-          <div class="card-body">
-            <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
-              <h4 class="card-title">Company Name</h4>
-            </a>
-            <h6 class="card-subtitle text-muted">Request Title</h6>
-            <p class="card-text p-y-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus mollis sed
-              libero sit amet malesuada.</p>
-            <span class="badge badge-primary">Finish Completion</span>
-          </div>
-        </div>
-      </div>
+      {% endfor %}
+     
     </div>
   </div>
 </div>
-<!-- <div class="p-4" style="background-color:rgb(245, 243, 243)">
-  <div class="card">
-    <div class="row p-4">
-      <div class="col-12 pb-4 " style="color:grey">
-        Custom Filter <i class="icofont-filter"></i>
-      </div>
-      <div class="col-3">
-        <div class="form-group">
-          <label for="sel1" style="color:grey">Status:</label>
-          <select class="form-control" id="status" onchange="filter('status')">
-            <option value="opened">Pending</option>
-            <option value="close">Awaiting Client Information</option>
-            <option>Ongoing Risk Process</option>
-            <option>Submitted For Approval</option>
-
-
-
-          </select>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="form-group">
-          <label for="sel1" style="color:grey">Request Type:</label>
-          <select class="form-control" id="s_period" onchange="filter('s_period')">
-            <option value="corporate">Corporate</option>
-            <option value="individual">Individual</option>
-
-
-          </select>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="form-group">
-          <label for="sel1" style="color:grey">Client:</label>
-          <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
-          <datalist id="clients">
-            <option value="ABC">
-            <option value="Modec">
-            <option value="Villagio">
-            <option value="Shell">
-
-          </datalist>
-        </div>
-      </div>
-
-
-
-
-
-
-    </div>
-    <div class="row p-4 ">
-      <div class="col-12">
-        <div class="row filter_box">
-
-        </div>
-      </div>
-
-      <div class="col-12 pt-4">
-        <a href="#" style="color:grey" onclick="clear_filter()"> Discard Filters</a>
-      </div>
-
-    </div>
-    <div class="row p-4">
-      <div class="col-4 p-4">
-
-        <div class="card p-4 parent" style="height:300px">
-          <div class="row ">
-
-            <div class="col-12 ">
-              <div class="row">
-                <div class="col-10">
-                  <h5><b>Roma Ventures</b></h5>
-                </div>
-                <div class="col-2">
-                  <a href="/administration/corporate-request-review" style="color:grey"><i
-                      class="icofont-eye-alt"></i></a>
-                </div>
-
-
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Contact Person
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  Justin Kluvert
-                </div>
-              </div>
-
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Organization Email
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  rmv@rmv.com
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="child">
-            <div class="row ">
-              <div class="col-12">
-                <h4><span class="badge badge-success">Opened</span></h4>
-
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-
-                Client Type : Corporate
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-      <div class="col-4 p-4">
-
-        <div class="card p-4 parent" style="height:300px">
-          <div class="row ">
-
-            <div class="col-12 ">
-              <div class="row">
-                <div class="col-10">
-                  <h5><b>ABC Company</b></h5>
-                </div>
-                <div class="col-2">
-                  <a href="/administration/individual-request-review" style="color:grey"><i
-                      class="icofont-eye-alt"></i></a>
-                </div>
-
-
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Contact Person
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  Justin Kluvert
-                </div>
-              </div>
-
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Organization Email
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  rmv@rmv.com
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-          <div class="child">
-            <div class="row ">
-              <div class="col-12">
-                <h4><span class="badge badge-danger">Closed</span></h4>
-
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-
-                Client Type : Individual
-
-
-              </div>
-
-            </div>
-          </div>
-        </div>
-      </div>
-
-
-
-
-
-
-    </div>
-
-
-  </div>
-</div>
-</div>
-
-
-
-
-
-
-
-</div> -->
 
 <!-- Modal -->
 <div class="modal fade" id="viewRequestModal" role="dialog">
