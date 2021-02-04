@@ -256,7 +256,7 @@
             <strong class="message-heading">Message from {{message.firstname}} {{message.lastname}}</strong>
             {{message.company_name}}
           </td>
-          <td>{{message.timestamp.strftime('%d-%m-%Y')}}</td>
+          <td>{{message.timestamp.strftime('%-dth %b, %Y')}}</td>
           <td><span class="badge badge-success">{{message.status}}</span></td>
         </tr>
           {% endfor %}
@@ -278,14 +278,9 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <div id="head" class="modal-header d-block">
-        
+      <div id="head" class="modal-header d-block">    
       </div>
-      <div id="test1" class="modal-body">
-        <!--Request Description-->
-        
-
-
+      <div id="body" class="modal-body">      
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary">Save Changes</button>
@@ -316,12 +311,12 @@
         </div>
         <h6 style="color: gray;" class="modal-title">${res1.email}</h5>`
         )
-        $('#test1').html(
+        $('#body').html(
           `<div>
           <p>Job Title / Position: <span style="color: gray;">${res1.job_title}</span></p>
           <p>Company: <span style="color: gray;">${res1.company_name}</span></p>
           <p>Phone Number: <span style="color: gray;">${res1.phone}</span></p>
-          <p>Address: <span style="color: gray;">${res1.address_1} ${res1.address_2} ${res1.city} ${res1.country}
+          <p>Address: <span style="color: gray;">${res1.address_1}, ${res1.address_2}, ${res1.city}, ${res1.country}.
             </span></p>
         </div>
 
@@ -336,11 +331,9 @@
           </p>
           <label style="font-size: smaller; font-style: italic;">New Comment
             <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
-            <!-- <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
-            <button class="btn btn-outline-success btn-sm" type="submit">Add Comment</button> -->
           </label>
-          <button class="btn btn-outline-danger btn-sm form-control" type="reset">Clear Comment</button>
-            <button class="btn btn-outline-success btn-sm form-control" type="submit">Add Comment</button>
+          <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
+          <button class="btn btn-outline-success btn-sm pull-right" type="submit">Add Comment</button>
         </div>
 
         <hr>
@@ -356,7 +349,7 @@
           </div>
           <div class="col-3 float-right">
             <i class="far fa-envelope" style="margin-right: 5px;"></i><a
-              href="mailto:johndoe@example.com?subject=Thank You For Reaching Out To Us" style="color: inherit;">Send
+              href="mailto:${res1.email}?subject=Thank You For Reaching Out To Us" style="color: inherit;">Send
               Email</a>
           </div>
         </div>`
