@@ -163,6 +163,17 @@ def messages():
     messages = Contact.query.all()
     return render_template("messages.html", messages=messages)
 
+@users.route('/view_message', methods=['POST','GET'])
+def view_m():
+    id = request.form['id']
+
+    posts = Contact.query.filter_by(id=id)
+    temp = []
+    for post in posts:
+        temp.append({'id': post.id, 'title':post.title ,'firstname' :post.firstname,'lastname':post.lastname,'email':post.email,'job_title':post.job_title,'company_name':post.company_name,'phone':post.phone,'address_1':post.address_1,'address_2':post.address_2,'city':post.city,'country':post.country,'status':post.status,'timestamp':post.timestamp})
+
+    return jsonify(temp)
+
 @users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
     form = SectorForm()

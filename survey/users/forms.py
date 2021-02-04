@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField,FloatField,IntegerField,RadioField,FileField,TextField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from survey.models import User
+from survey.models import *
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from flask_wtf import FlaskForm
@@ -424,7 +424,7 @@ class JobForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class AreaForm(FlaskForm):
-    iquery = Industry.query.all()
+    # iquery = Industry.query.all()
     name = StringField('Area of Operation')
     sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
     industry =  SelectField('Industry', coerce=str, choices = [])

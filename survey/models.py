@@ -451,8 +451,8 @@ class Contact(db.Model):
     city = db.Column(db.String(100))
     country = db.Column(db.String(100))
     comment = db.relationship('Comment', backref='new_comment' , lazy=True)
-    status = db.Column(db.String(10))
-
+    status = db.Column(db.String(10), default='Open')
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
 
     def __repr__(self):
         return '<Contact %r>' % self.id
