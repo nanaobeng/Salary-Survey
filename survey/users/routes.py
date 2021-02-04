@@ -1,6 +1,6 @@
-from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json
-from survey import db,bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm
+from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
+from survey import db , bcrypt
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -37,7 +37,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
 
-  
+       
         
         if user and (bcrypt.check_password_hash(user.password,form.password.data)):
             
@@ -485,22 +485,50 @@ def admin_clients():
     else:
         return render_template("new_view_client.html",query=query)
 
-@users.route("/administration/service_requests")
+@users.route("/administration/service_requests", methods=["POST","GET"])
 def admin_service_requests():
 
     ind = Individual_request.query.all()
     corp= Corporate_request.query.all()
+    
+    form = ServiceRequestForm()
+    if request.method == 'POST':
+        try:
+            newstatus = request.form.get("newstatus")
+            oldstatus = request.form.get("status")
+            indv = Individual_request.query.filter_by(status=oldstatus).first()
+            indv.status = newstatus
+            db.session.commit()
+        except Exception as e:
+            print("Couldn't update status")
+            print(e)
+        return redirect("/administration/service_requests")
+    return render_template("new_requests.html",form=form, ind=ind, corp=corp )
 
-    return render_template("new_requests.html", ind=ind, corp=corp)
+  
+   
 
 
 @users.route("/administration/reports")
 def admin_reports():
     return render_template("new_admin_reports.html")
 
+
 @users.route("/administration/client_hub")
 def client_hub():
+    
     return render_template("client_hub.html")
+    
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
+
 
 @users.route("/administration/configuration")
 def admin_configuration():
@@ -532,9 +560,6 @@ def create_benchmark_job():
 def quantitative_survey():
     form = SurveyForm()
     return render_template("quantitative_survey.html",form=form)
-
-
-
 
 
 

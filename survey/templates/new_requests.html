@@ -150,6 +150,23 @@
   .filterbar {
     color: #353b48;
   }
+
+  .addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
 </style>
 
 
@@ -308,8 +325,12 @@
               </a>
               <h6 class="card-subtitle text-muted">{{i.company_email}}</h6>
               <p class="card-text p-y-1">{{i.service}}</p>
-              <span class="badge badge-success">{{i.status}}</span>
+              <span id='status' class="badge badge-success">{{i.status}}</span>
             </div>
+            <script>
+              var s = document.getElementById("status").innerHTML;
+              document.write(s);
+           </script>
           </div>
         </div>
       {% endfor %}
@@ -324,6 +345,11 @@
 
     <!-- Modal content-->
     <div class="modal-content">
+      <div class="container" style="height: auto">
+        <form method="POST" action="./service_requests" style="display: inline">
+            <br/>
+            {{ form.hidden_tag() }}
+            <fieldset class="form-group">
       <div class="modal-header d-block">
         <div class="d-flex">
           <h4 class="modal-title">Company Name</h3>
@@ -340,93 +366,71 @@
           <p>Date Assigned: </p>
           <p style="color: gray;">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lobortis convallis sagittis. Pellentesque
-            tempus turpis eu urna varius, ut hendrerit lectus auctor. Nam convallis erat nec justo tincidunt, ut
-            ultrices felis dignissim. Proin finibus diam at neque pharetra, ut ornare nisi aliquet. Cras et justo non
-            odio semper vehicula sit amet quis neque. Etiam volutpat a tortor eu egestas. Quisque ultricies condimentum
-            sapien, a suscipit lacus consectetur rutrum. Fusce sodales aliquam erat vel faucibus. Pellentesque porta,
+            tempus turpis eu urna varius, ut hendrerit lectus auctor.  Pellentesque porta,
             neque a ultrices hendrerit, tellus massa efficitur felis, at aliquam diam metus et eros.
           </p>
         </div>
 
         <hr>
-
+   
         <!--Change Status / Add Comments-->
-        <div>
-          <form>
-            <div class="form-group">
-              <label>Update Request Status</label>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="pending" name="status" value="pending"
-                    checked>Pending
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="requesting" name="status"
-                    value="requesting">Requesting Client Information
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="firstpass" name="status" value="firstpass">Undergoing
-                  Risk Processes: First Pass
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="conflictcheck" name="status"
-                    value="conflictcheck">Undergoing Risk Processes: Conflict Check
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="finishcompletion" name="status"
-                    value="finishcompletion">Undergoing Risk Processes: Finish Completion
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="submitted" name="status" value="submitted">Submitted
-                  For Approval
-                </label>
-              </div>
-
-            </div>
-
-            <hr>
-
-            <div class="form-group">
-              <p>Comments:
-              <ol style="color: gray;">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-              </ol>
-              </p>
-              <label style="font-size: smaller; font-style: italic;">Add New Comment
-                <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
-              </label>
-            </div>
-          </form>
+        <div id="myDIV" class="form-group">
+          <p>Comments:
+          <ol id="myUL" style="color: gray;">
+            <li>Check your email</li>
+          </ol>
+          </p>
+          <label style="font-size: smaller; font-style: italic;">Add New Comment
+            <textarea id='myInput' class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
+          </label>
+          <span onclick="newElement()" class="addBtn">Add</span>
         </div>
 
+         
+    
+    
+       <div class="form-group">
+          
+        {{ form.newstatus.label(class="form-control-label") }}
 
+                {% if form.newstatus.errors %}
+                {{ form.newstatus(class="form-control form-control is-invalid")}}
+                <div class="invalid-feedback">
+                    {% for error in form.status.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
+                </div>
+                {% else %}
+                {{ form.newstatus(class=" form-control") }}
+                {% endif %}
+           
+        </div>
+
+            
+         
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-      </div>
+
+
+    </fieldset>
+   <div class="modal-footer form-group">
+      
+      <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+     {{ form.submit(class="btn btn-success btn-max") }}
+   
+   </div>
+     
+    
+    </form>
+    </div>
+  </div>
+<!--End of modal content-->
+
     </div>
 
   </div>
-</div>
+<!--End of modal-->
+
+
 
 
 <script>
@@ -485,4 +489,63 @@
   }
 </script>
 
+
+<script>
+  // Create a "close" button and append it to each list item
+  var myNodelist = document.getElementsByTagName("LI");
+  var i;
+  for (i = 0; i < 100; i++) {
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    myNodelist[i].appendChild(span);
+  }
+  
+  // Click on a close button to hide the current list item
+  var close = document.getElementsByClassName("close");
+  var i;
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+  
+  // Add a "checked" symbol when clicking on a list item
+  var list = document.querySelector('ol');
+  list.addEventListener('click', function(ev) {
+    if (ev.target.tagName === 'LI') {
+      ev.target.classList.toggle('checked');
+    }
+  }, false);
+  
+  // Create a new list item when clicking on the "Add" button
+  function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("myInput").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+      alert("You must write something!");
+    } else {
+      document.getElementById("myUL").appendChild(li);
+    }
+    document.getElementById("myInput").value = "";
+  
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+  
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
+  }
+  </script>
+  
 {% endblock content %}
