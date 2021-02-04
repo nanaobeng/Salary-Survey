@@ -95,40 +95,32 @@
   a {
     color: inherit;
   }
-
-  .searchbar {
+  
+  #searchbar {
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
-    border-radius: 30px;
-    padding: 10px;
   }
 
-  .search_input {
-    color: #353b48;
-    border-radius: 30px;
+  #search_input {
+    border-radius: 10px;
     outline: 0;
-    background: none;
     width: 450px;
-    line-height: 40px;
+    line-height: 30px;
     padding: 0 10px;
   }
 
-  .search_icon {
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
+  #search_icon {
     color: white;
-    background: grey;
-    text-decoration: none;
+    margin-left: 5px;
   }
 
-  .filterbar {
-    color: #353b48;
+  .dropdowndown-menu {
+    padding: 10px;
+  }
+
+  #filterbutton {
+    color: white;
   }
 </style>
 
@@ -148,7 +140,7 @@
 
 <!--Body-->
 
-<div class="container py-5 h-100">
+<!-- <div class="container py-5 h-100">
   <div class="d-flex float-right h-100">
     <div class="searchbar">
       <input class="search_input" type="text" name="" placeholder="Search...">
@@ -156,7 +148,6 @@
     </div>
   </div>
   <div class="filterbar float-left">
-    <!-- Filter <i class="icofont-settings"></i> -->
     <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
         class="icofont-settings"></i></span></button>
     <form class="dropdown-menu p-4">
@@ -190,57 +181,37 @@
       </div>
     </form>
   </div>
-</div> 
+</div>  -->
 
-<!-- <div class="row p-5">
+<div class="row p-5 justify-content-center">
   <div class="col-12">
-    <div class="table">
-      <table>
-        <thead style="background-color: rgb(51, 73, 41);">
-          <th id="searchbar">
-            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
-            <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
-          </th>
-          <th>
-            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
-                class="icofont-settings"></i></span></button>
-            <form class="dropdown-menu p-4">
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Status:</label>
-                <select class="form-control" id="status" onchange="filter('status')">
-                  <option value="opened">Pending</option>
-                  <option value="close">Awaiting Client Information</option>
-                  <option>First Pass</option>
-                  <option>Conflict Check</option>
-                  <option>Finish Completion</option>
-                  <option>Submitted For Approval</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Request Type:</label>
-                <select class="form-control" id="s_period" onchange="filter('s_period')">
-                  <option value="corporate">Corporate</option>
-                  <option value="individual">Individual</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Client:</label>
-                <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
-                <datalist id="clients">
-                  <option value="ABC">
-                  <option value="Modec">
-                  <option value="Villagio">
-                  <option value="Shell">
-
-                </datalist>
-              </div>
-            </form>
-          </th>
-        </thead>
-      </table>
-    </div>
+    <table class="table table-hover">
+      <thead style="background-color: rgb(78, 110, 62);">
+        <th id="searchbar">
+          <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
+          <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
+        </th>
+        <th>
+          <button id="filterbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
+              class="icofont-settings"></i></span></button>
+          <form class="dropdown-menu p-2">
+            <div class="form-group">
+              <label for="status">Status:</label>
+              <select class="form-control" id="status" onchange="filter('status')">
+                <option value="opened">Pending</option>
+          <option value="close">Awaiting Client Information</option>
+          <option>First Pass</option>
+          <option>Conflict Check</option>
+          <option>Finish Completion</option>
+          <option>Submitted For Approval</option>
+              </select>
+            </div>
+          </form>
+        </th>
+      </thead>
+    </table>
   </div>
-</div> -->
+</div>
 
 
 <div class="py-5">
