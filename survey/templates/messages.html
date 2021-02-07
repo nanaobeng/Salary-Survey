@@ -249,13 +249,17 @@
       <tbody>
         {% if messages %}
           {% for message in messages %}
-        <tr class="table-row" onclick="viewMessages('{{message.id}}')" data-toggle="modal" href="#viewRequestModal">
+        <tr class="table-row" onclick="viewMessages('{{message.id}}', this)" data-id="{{message.id}}" data-toggle="modal" href="#viewRequestModal">
           <td>
             <strong class="message-heading">Message from {{message.firstname}} {{message.lastname}}</strong>
             {{message.company_name}}
           </td>
           <td>{{message.timestamp.strftime('%-dth %b, %Y')}}</td>
+          {% if message.status=="Open" %}
           <td><span class="badge badge-success">{{message.status}}</span></td>
+          {% else %}
+          <td><span class="badge badge-danger">{{message.status}}</span></td>
+          {% endif %}
         </tr>
           {% endfor %}
         {% else %}
@@ -276,6 +280,7 @@
 
     <!-- Modal content-->
     <div class="modal-content">
+      <form action="" method="POST" id="updateForm" onsubmit="updateMessage()">
       <div id="head" class="modal-header d-block">    
       </div>
       <div id="body" class="modal-body">      
@@ -284,13 +289,15 @@
         <button type="button" class="btn btn-primary">Save Changes</button>
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
+      </form>
     </div>
 
   </div>
 </div>
 
 <script>
-  function viewMessages(modal){
+  function viewMessages(modal, element){
+    localStorage.setItem('messageId', $(element).attr('data-id')) 
     $.ajax({
       url: '/view_message',
       data: { 
@@ -320,27 +327,36 @@
 
         <hr>
         <div class="form-group">
-          <p>Comments:
-          <ol style="color: gray;">
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-          </ol>
-          </p>
-          <label style="font-size: smaller; font-style: italic;">New Comment
-            <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
-          </label>
+            <p>Comments:
+            <ol id="commentList" style="color: gray;">
+              
+            </ol>
+            </p>
+          {{form.comment.label(class="comment-label")}}
+            {% if form.comment.errors %}
+              {{ form.comment(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.comment.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.comment(class="form-control form-control") }}
+              {% endif %}
+  
           <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
-          <button class="btn btn-outline-success btn-sm pull-right" type="submit">Add Comment</button>
+          {{form.submit}}
+
         </div>
 
         <hr>
         <!--Change Status-->
         <div class="row">
           <div class="col-9">
+            {{form.my_status}}
             <span style="font-size:smaller; color: rgb(71, 70, 70);">Open</span>
             <label class="switch">
-              <input type="checkbox">
+        
               <span class="slider round"></span>
             </label>
             <span style="font-size:smaller; color: rgb(71, 70, 70);">Closed</span>
@@ -350,15 +366,25 @@
               href="mailto:${res1.email}?subject=Thank You For Reaching Out To Us" style="color: inherit;">Send
               Email</a>
           </div>
-        </div>`
+        </div>
+      `
         )
+        for (var i=0; i<res[1].comments.length; i++){
+          $('#commentList').append('<li>' + res[1].comments[i] + '</li>')
+        }
       },
       error: function(error){
         console.log(error)
       }
     })
   }
+
+  function updateMessage(){
+    var messageId = localStorage.getItem('messageId')
+    document.getElementById('updateForm').action = '/messages/update/' + messageId
+  }
 </script>
+
 
 
 
