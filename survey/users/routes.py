@@ -1,12 +1,8 @@
-<<<<<<< HEAD
+
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint ,jsonify
 from survey import db,bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,MyForm,ComparatorForm
-=======
-from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
-from survey import db , bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
->>>>>>> 6cd4e5db160f2e1dc398a67ba6478182e5d2ec4a
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,MyForm,ComparatorForm,ServiceRequestForm,MessageComment
+
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -509,17 +505,16 @@ def admin_clients():
     else:
         return render_template("new_view_client.html",query=query)
 
-<<<<<<< HEAD
-@users.route("/administration/service_requests")
-def admin_service_requests():
-    #make a query to the db
-    indv = Individual_request.query.all()
-    cnt = Individual_request.query.filter_by(status="approved").count()
-    #filter out what i want
-    return render_template("new_requests.html",indv=indv)
 
-=======
->>>>>>> 6cd4e5db160f2e1dc398a67ba6478182e5d2ec4a
+# @users.route("/administration/service_requests")
+# def admin_service_requests():
+#     #make a query to the db
+#     indv = Individual_request.query.all()
+#     cnt = Individual_request.query.filter_by(status="approved").count()
+#     #filter out what i want
+#     return render_template("new_requests.html",indv=indv)
+
+
 
 @users.route("/administration/reports")
 def admin_reports():
@@ -809,7 +804,7 @@ def benchmark_home():
     return render_template("benchmark_dashboard.html",job=job)
 
 
-<<<<<<< HEAD
+
 
 @users.route('/form')
 def sdg():
@@ -1007,14 +1002,14 @@ def survey_filter():
         temp.append({'id': post.id})
 
     return jsonify(temp)
-=======
-@users.route("/administration/service_requests", methods=["POST","GET"])
-def admin_service_requests():
-    form = ServiceRequestForm() 
-    ind = Individual_request.query.all()
-    corp= Corporate_request.query.filter_by(status="pending").all()
 
-    return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+# @users.route("/administration/service_requests", methods=["POST","GET"])
+# def admin_service_requests():
+#     form = ServiceRequestForm() 
+#     ind = Individual_request.query.all()
+#     corp= Corporate_request.query.filter_by(status="pending").all()
+
+#     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
 
 @users.route('/view_request', methods=['POST','GET'])
 def viewRequest():
@@ -1035,22 +1030,22 @@ def viewRequest():
 
     return jsonify(temp)
 
-@users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
-def updateRequest(requestId):
-    request = Individual_request.query.get_or_404(requestId)
-    form = ServiceRequestForm()
-    if form.validate_on_submit:
-        comment = RequestComment(comment=form.comment.data, contact_id=messageId)
-        request.status = form.newstatus.data
-        db.session.add(comment)
-        db.session.commit()
-        flash("Request Updated", "success")
-        return redirect(url_for('users.admin_service_requests'))
+# @users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
+# def updateRequest(requestId):
+#     request = Individual_request.query.get_or_404(requestId)
+#     form = ServiceRequestForm()
+#     if form.validate_on_submit:
+#         comment = RequestComment(comment=form.comment.data, contact_id=messageId)
+#         request.status = form.newstatus.data
+#         db.session.add(comment)
+#         db.session.commit()
+#         flash("Request Updated", "success")
+#         return redirect(url_for('users.admin_service_requests'))
 
 @users.route("/messages")
 
 def messages():
-    form=MessageComment()
+    form= MessageComment()
     messages = Contact.query.all()
     return render_template("messages.html", form=form, messages=messages)
 
@@ -1088,4 +1083,4 @@ def updateMessage(messageId):
         db.session.commit()
         flash("Message Updated", "success")
         return redirect(url_for('users.messages'))
->>>>>>> 6cd4e5db160f2e1dc398a67ba6478182e5d2ec4a
+
