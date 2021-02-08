@@ -138,7 +138,7 @@ class CorporateRequestForm(FlaskForm):
 class IndividualRequestForm(FlaskForm):
     firstname = StringField('Firstname', validators=[DataRequired()])
     lastname = StringField('Lastname', validators=[DataRequired()])
-    other = StringField('Other Name', validators=[DataRequired()])
+    other = StringField('Other Name')
 
     email = StringField('Email', validators=[DataRequired()])
     dob = DateField('Date of Birth')
@@ -720,7 +720,11 @@ class SurveyForm(FlaskForm):
     misc = FloatField('Miscellaneous')
     
 
-   
+class MessageComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    # status = BooleanField('Change Status')
+    my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
     
     
 

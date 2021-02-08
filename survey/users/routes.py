@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
 from survey import db , bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -53,8 +53,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.landing'))
-
-
 
 
 @users.route("/account")
@@ -158,9 +156,7 @@ def create_client():
 def create_contact():
     return render_template("contact_person.html")
 
-@users.route("/messages")
-def messages():
-    return render_template("messages.html")
+
 
 @users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
@@ -485,29 +481,6 @@ def admin_clients():
     else:
         return render_template("new_view_client.html",query=query)
 
-@users.route("/administration/service_requests", methods=["POST","GET"])
-def admin_service_requests():
-
-    ind = Individual_request.query.all()
-    corp= Corporate_request.query.all()
-    
-    form = ServiceRequestForm()
-    if request.method == 'POST':
-        try:
-            newstatus = request.form.get("newstatus")
-            oldstatus = request.form.get("status")
-            indv = Individual_request.query.filter_by(status=oldstatus).first()
-            indv.status = newstatus
-            db.session.commit()
-        except Exception as e:
-            print("Couldn't update status")
-            print(e)
-        return redirect("/administration/service_requests")
-    return render_template("new_requests.html",form=form, ind=ind, corp=corp )
-
-  
-   
-
 
 @users.route("/administration/reports")
 def admin_reports():
@@ -796,3 +769,78 @@ def benchmark_home():
     job = Main_benchmark_job.query.filter_by(user_account=usn).all()
     return render_template("benchmark_dashboard.html",job=job)
 
+
+@users.route("/administration/service_requests", methods=["POST","GET"])
+def admin_service_requests():
+    form = ServiceRequestForm() 
+    ind = Individual_request.query.all()
+    corp= Corporate_request.query.filter_by(status="pending").all()
+
+    return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+
+@users.route('/view_request', methods=['POST','GET'])
+def viewRequest():
+    id = request.form['id']
+
+    requests = Individual_request.query.filter_by(id=id)
+    temp = []
+    for request in requests:
+        temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
+        'status':post.status,'firstname' :post.firstname,'lastname':post.lastname,'other':post.other,'email':post.email,'dob':post.dob,'phone':post.phone,'address':post.address,
+        'city':post.city,'country':post.country,'service':post.service})
+  
+    return jsonify(temp)
+
+@users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
+def updateRequest(requestId):
+    request = Individual_request.query.get_or_404(requestId)
+    form = ServiceRequestForm()
+    if form.validate_on_submit:
+        #comment = Comment(comment=form.comment.data, contact_id=messageId)
+        request.status = form.newstatus.data
+        #db.session.add(comment)
+        db.session.commit()
+        flash("Request Updated", "success")
+        return redirect(url_for('users.admin_service_requests'))
+
+@users.route("/messages")
+
+def messages():
+    form=MessageComment()
+    messages = Contact.query.all()
+    return render_template("messages.html", form=form, messages=messages)
+
+
+@users.route('/view_message', methods=['POST','GET'])
+def viewMessage():
+    id = request.form['id']
+
+    messages = Contact.query.filter_by(id=id)
+    comments = Comment.query.filter_by(contact_id=id)
+    comment_array = []
+    temp = []
+    for message in messages:
+        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
+        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
+        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
+        'address_2':message.address_2,'city':message.city,'country':message.country,
+        'status':message.status,'timestamp':message.timestamp})
+    
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+@users.route('/messages/update/<int:messageId>', methods=['POST'])
+def updateMessage(messageId):
+    message = Contact.query.get_or_404(messageId)
+    form = MessageComment()
+    if form.validate_on_submit:
+        comment = Comment(comment=form.comment.data, contact_id=messageId)
+        message.status = form.my_status.data
+        db.session.add(comment)
+        db.session.commit()
+        flash("Message Updated", "success")
+        return redirect(url_for('users.messages'))
