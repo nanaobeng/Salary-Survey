@@ -12,10 +12,12 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">  
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.autocompleter.css')}}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css//icofont/icofont.min.css')}}">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
 <script
@@ -82,6 +84,12 @@ $('#header').css('background','transparent');
 #header.header-scrolled {
   background: rgba(15, 41, 9, 0.9);
   padding: 15px 0;
+}
+.ui-autocomplete
+{
+    position:absolute;
+    cursor:default;
+    z-index:1001 !important
 }
 
 #header .logo {
@@ -372,8 +380,9 @@ section {
         <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.easing.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.magnific-popup.min.js') }}"></script>
-     
+        <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script> 
         <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+        <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.autocompleter.js') }}"></script>
        
         
    

@@ -288,8 +288,19 @@ line-height: 24px;
         <i class="fas fa-upload upload-icon" ></i>
         <br>
         <br>
-        <button class="btn btn-sm btn-outline-success">Douwnload Template</button>
-        <button class="btn btn-sm btn-success" id="upload_jobs_btn">Choose File</button>
+        <dov class="row justify-content-center">
+          <div class="col-5 text-right">
+            <button class="btn btn-sm btn-outline-success">Douwnload Template</button>
+          </div>
+          <div class="col-5">
+            <form id="form" action="" method="post" enctype="multipart/form-data">
+         
+              <input type="file" name="upload"  accept=".csv" id="fileUpload" />
+          </form>
+            
+          </div>
+        </dov>
+       
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success btn-sm" >Submit</button>
@@ -305,20 +316,20 @@ var data = {
     labels: ["Sr. Manager", "Associate", "CTO", "CFA", "Senior", "Junior", "Supervisor"],
     datasets: [
         {
-            label: "Annual Salary",
+            label: "Annual Salary (GHS)",
             fill: false,
             lineTension: 0.1,
-            backgroundColor: "rgba(75,192,192,0.4)",
-            borderColor: "rgba(75,192,192,1)",
+            backgroundColor: "orange",
+            borderColor: "rgba(66,99,50,1)",
             borderCapStyle: 'butt',
             borderDash: [],
             borderDashOffset: 0.0,
             borderJoinStyle: 'miter',
-            pointBorderColor: "rgba(75,192,192,1)",
+            pointBorderColor: "orange",
             pointBackgroundColor: "#fff",
             pointBorderWidth: 1,
             pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBackgroundColor: "orange",
             pointHoverBorderColor: "rgba(220,220,220,1)",
             pointHoverBorderWidth: 2,
             pointRadius: 1,
@@ -331,6 +342,54 @@ var data = {
 var myLineChart = new Chart(ctx, {
     type: 'line',
     data: data,
+});
+</script>
+
+<script>
+  $('.uploadButton').click(function () {
+    $("#fileUpload").click();
+});
+
+$('#fileUpload').change(function (e) {
+
+alert(this.files[0].size);
+	var t = []
+  var final = []
+    var ext = $('#fileUpload').val().split(".").pop().toLowerCase();
+
+    if ($.inArray(ext, ["csv"]) == -1) {
+        $('#csvErr').css('display', 'block');
+        $('#csvOk').css('display', 'none');
+        return false;
+    } else {
+        $('#csvErr').css('display', 'none');
+        $('#csvOk').css('display', 'block');
+    }
+    if (e.target.files != undefined) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+           var csvval = e.target.result.split("\n");
+           for (var rows = 0; rows < csvval.length; rows++) {
+             var csvvalue = csvval[rows].split(",");
+             for (var i = 0; i < csvvalue.length; i++) {
+             		if(csvvalue[i].replace(/\s/g,"") != ""){
+                t.push(csvvalue[i])
+                
+                }
+             }
+              
+           }
+            console.log(t)
+            
+           var k = t.slice(0)
+            for(l=0;l<k.length;l++){
+            console.log(k[l].split(';'))
+            }        };
+        reader.readAsText(e.target.files.item(0));
+    }
+    
+  
+    
 });
 </script>
 

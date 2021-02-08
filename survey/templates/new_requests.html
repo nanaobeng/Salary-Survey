@@ -1,27 +1,29 @@
-lor: grey;
-    } */
-
-  .search_icon {
-    height: 40px;
-    width: 40px;
-    float: right;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color: white;
-    /* background: white; */
-    background: grey;
-    /* color: black; */
-    text-decoration: none;
-  }
-
-  .filterbar {
-    color: #353b48;
-  }
-</style>
 
 
+{% block content %}
+
+<style>
+ 
+  
+    .search_icon {
+      height: 40px;
+      width: 40px;
+      float: right;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      color: white;
+      /* background: white; */
+      background: grey;
+      /* color: black; */
+      text-decoration: none;
+    }
+  
+    .filterbar {
+      color: #353b48;
+    }
+  </style>
 <!--Header-->
 <div class="row">
   <div class="col-12">
@@ -33,7 +35,19 @@ lor: grey;
     </section>
   </div>
 </div>
+<div class="row">
+  <div class="col-12 p-4">
+   {%  for i in indv  %}
+<div class="row p-4">
+  <div class="col-4 p-4" style="background-color: red;">
+    {{i.firstname}} : {{i.lastname}}
+  </div>
+</div>
+   
 
+   {% endfor %}
+  </div>
+</div>
 
 <!--Body-->
 

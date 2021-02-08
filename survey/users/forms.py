@@ -23,6 +23,9 @@ def area_query():
 def department_query():
     return Department.query
 
+def usn_query():
+    return User.query
+
 
 
 class ContactForm(FlaskForm):
@@ -46,7 +49,11 @@ class ContactForm(FlaskForm):
 
 
 
+class MyForm(FlaskForm):
+    country = StringField('Country', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "country"})
 
+class ComparatorForm(FlaskForm):
+    comp = StringField('Comp', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "comp"})
 
 class CorporateRequestForm(FlaskForm):
    
@@ -558,7 +565,7 @@ class AreaForm(FlaskForm):
 
 
 class ClientForm(FlaskForm):
-   
+    user_account = QuerySelectField(query_factory=usn_query,allow_blank=True,get_label='username')
     name = StringField('Registered Company Name')
     reg = StringField('Company Registration Number')
     financial_year_end = StringField('Financial Year End')
