@@ -773,7 +773,7 @@ def benchmark_home():
 @users.route("/administration/service_requests", methods=["POST","GET"])
 def admin_service_requests():
     form = ServiceRequestForm() 
-    ind = Individual_request.query.all()
+    ind = Individual_request.query.filter_by(status="pending").all()
     corp= Corporate_request.query.filter_by(status="pending").all()
 
     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
