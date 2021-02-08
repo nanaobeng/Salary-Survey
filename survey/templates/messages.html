@@ -254,15 +254,9 @@
             <strong class="message-heading">Message from {{message.firstname}} {{message.lastname}}</strong>
             {{message.company_name}}
           </td>
-<<<<<<< HEAD
           <td>{{message.timestamp.strftime('%-dth %b, %Y')}}</td>
-          {% if message.status %}
-          <td><span class="badge badge-success">Open</span></td>
-=======
-     
           {% if message.status=="Open" %}
-          <td><span class="badge badge-success">{{message.status}}</span></td>
->>>>>>> 50a661fbd62330521f9a57f814e6878fe596f81f
+          <td><span class="badge badge-success">Open</span></td>
           {% else %}
           <td><span class="badge badge-danger">Closed</span></td>
           {% endif %}

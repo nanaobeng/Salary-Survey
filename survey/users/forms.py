@@ -723,17 +723,11 @@ class SurveyForm(FlaskForm):
 class MessageComment(FlaskForm):
     comment = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
-<<<<<<< HEAD
     status = BooleanField('Change Status')
     # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
 
 # class ChangeMessageStatus(FlaskForm):
 
-=======
-    # status = BooleanField('Change Status')
-    my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
-    
->>>>>>> 50a661fbd62330521f9a57f814e6878fe596f81f
     
 
 class ServiceRequestForm(FlaskForm):
