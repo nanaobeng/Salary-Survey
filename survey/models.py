@@ -158,6 +158,9 @@ class Sector(db.Model):
         return '<Sector %r>' % self.id
 
 
+
+
+
 class Contact_person(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String(50))

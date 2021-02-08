@@ -424,17 +424,11 @@ class JobForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class AreaForm(FlaskForm):
-    iquery = Industry.query.all()
     name = StringField('Area of Operation')
     sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
-    industry =  SelectField('Industry', coerce=str, choices = [])
-    # industry =  SelectField('Industry', choices = [(i.id, i.industry) for i in iquery])
+    industry = QuerySelectField(query_factory=industry_query,allow_blank=True,get_label='industry')
     submit = SubmitField('Submit')
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-        
-    #     self.industry.choices = [(i.id, i.industry) for i in iquery]
 
 
 
