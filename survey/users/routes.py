@@ -1042,13 +1042,13 @@ def survey_filter():
 
     return jsonify(temp)
 
-# @users.route("/administration/service_requests", methods=["POST","GET"])
-# def admin_service_requests():
-#     form = ServiceRequestForm() 
-#     ind = Individual_request.query.all()
-#     corp= Corporate_request.query.filter_by(status="pending").all()
+@users.route("/administration/service_requests", methods=["POST","GET"])
+def admin_service_requests():
+    form = ServiceRequestForm() 
+    ind = Individual_request.query.all()
+    corp= Corporate_request.query.filter_by(status="pending").all()
 
-#     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+    return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
 
 @users.route('/view_request', methods=['POST','GET'])
 def viewRequest():
@@ -1080,46 +1080,4 @@ def viewRequest():
 #         db.session.commit()
 #         flash("Request Updated", "success")
 #         return redirect(url_for('users.admin_service_requests'))
-
-@users.route("/messages")
-
-def messages():
-    form= MessageComment()
-    messages = Contact.query.all()
-    return render_template("messages.html", form=form, messages=messages)
-
-
-@users.route('/view_message', methods=['POST','GET'])
-def viewMessage():
-    id = request.form['id']
-
-    messages = Contact.query.filter_by(id=id)
-    comments = Comment.query.filter_by(contact_id=id)
-    comment_array = []
-    temp = []
-    for message in messages:
-        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
-        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
-        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
-        'address_2':message.address_2,'city':message.city,'country':message.country,
-        'status':message.status,'timestamp':message.timestamp})
-    
-    for comment in comments:
-        comment_array.append(comment.comment)
-
-    temp.append({'comments': comment_array})
-
-    return jsonify(temp)
-
-@users.route('/messages/update/<int:messageId>', methods=['POST'])
-def updateMessage(messageId):
-    message = Contact.query.get_or_404(messageId)
-    form = MessageComment()
-    if form.validate_on_submit:
-        comment = Comment(comment=form.comment.data, contact_id=messageId)
-        message.status = form.my_status.data
-        db.session.add(comment)
-        db.session.commit()
-        flash("Message Updated", "success")
-        return redirect(url_for('users.messages'))
 
