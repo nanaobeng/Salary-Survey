@@ -192,7 +192,7 @@ def updateMessage(messageId):
     form = MessageComment()
     if form.validate_on_submit:
         comment = Comment(comment=form.comment.data, contact_id=messageId)
-        message.status = form.status.data
+        message.status = str(form.status.data)
         db.session.add(comment)
         db.session.commit()
         flash("Message Updated", "success")
