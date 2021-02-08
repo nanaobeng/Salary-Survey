@@ -194,7 +194,7 @@ class Industry(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     industry = db.Column(db.String(100))
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
-
+    area = db.relationship('Area', backref='industry' , lazy=True)
     
     client = db.relationship('Client', backref='industry' , lazy=True)
     
@@ -209,6 +209,7 @@ class Area(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     area = db.Column(db.String(100))
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
+    industry_id = db.Column(db.Integer, db.ForeignKey('industry.id'))
 
     
     client = db.relationship('Client', backref='area' , lazy=True)
@@ -296,9 +297,6 @@ class Service_request(db.Model):
 
 
 
-
-   
-
     def __repr__(self):
         return '<Service_request %r>' % self.id
 
@@ -307,7 +305,7 @@ class Individual_request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_of_request = db.Column(db.DateTime, default=datetime.utcnow )
     type_of_request = db.Column(db.String(100),default='individual')
-    status = db.Column(db.String(50),default='pending')
+    status = db.Column(db.String(50), default="pending")
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
     other = db.Column(db.String(100))
@@ -320,17 +318,17 @@ class Individual_request(db.Model):
     country = db.Column(db.String(100))
     service = db.Column(db.String(200))
     
-
-    
-
-
-
-
-   
+    def __init__(self, id,firstname, lastname,email,service,status):
+        self.id = id
+        self.firstname = firstname
+        self.lastname=lastname
+        self.email = email
+        self.service=service
+        self.status=status
 
     def __repr__(self):
-        return '<Individual_request %r>' % self.id
-
+     # return '<Individual_request %r>' % self.id
+        return f"{self.email}:{self.id}"
 
 class Corporate_request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -430,6 +428,13 @@ class Company_secretary(db.Model):
     def __repr__(self):
         return '<Current_Auditor %r>' % self.id
 
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(500))
+    contact_id = db.Column(db.Integer,  db.ForeignKey('contact.id'))
+
+    def __repr__(self):
+        return '<Comment %r>' % self.id
 
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -444,11 +449,13 @@ class Contact(db.Model):
     address_2 = db.Column(db.String(300))
     city = db.Column(db.String(100))
     country = db.Column(db.String(100))
-    
-
+    comment = db.relationship('Comment', backref='new_comment' , lazy=True)
+    status = db.Column(db.String(10), default='Open')
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
 
     def __repr__(self):
         return '<Contact %r>' % self.id
+
 
 
 class Previous_auditor(db.Model):
@@ -739,3 +746,13 @@ class Comparator_job(db.Model):
 
     def __repr__(self):
         return '<Comparator_job %r>' % self.id
+
+
+
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(500))
+    contact_id = db.Column(db.Integer,  db.ForeignKey('contact.id'))
+
+    def __repr__(self):
+        return '<Comment %r>' % self.id

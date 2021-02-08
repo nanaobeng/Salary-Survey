@@ -1,6 +1,12 @@
+<<<<<<< HEAD
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint ,jsonify
 from survey import db,bcrypt
 from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,MyForm,ComparatorForm
+=======
+from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
+from survey import db , bcrypt
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
+>>>>>>> 6cd4e5db160f2e1dc398a67ba6478182e5d2ec4a
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -37,7 +43,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
 
-  
+       
         
         if user and (bcrypt.check_password_hash(user.password,form.password.data)):
             
@@ -53,8 +59,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.landing'))
-
-
 
 
 @users.route("/account")
@@ -158,27 +162,173 @@ def create_client():
 def create_contact():
     return render_template("contact_person.html")
 
-@users.route("/create_sector")
+
+
+@users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
     form = SectorForm()
     sectors = Sector.query.all()
-    return render_template("create_sector.html",form=form,title="Create Sector", sectors = sectors)
+    if form.validate_on_submit():
+       new_sector = Sector(sector=form.name.data)
+       db.session.add(new_sector)
+       db.session.commit()
+       flash('Sector Created','success')
+       return redirect(url_for('users.create_sector'))
+    return render_template("create_sector.html",form=form,title="Create Sector", Sectors=sectors)
+
+
+@app.route("/sector/<int:sector_id>/delete", methods=['POST'])
+@login_required
+def delete_sector(sector_id):
+    sector = Sector.query.get_or_404(sector_id)
+    db.session.delete(sector)
+    db.session.commit()
+    flash('Sector Deleted', 'success')
+    return redirect(url_for('users.create_sector'))
+
+
+@users.route("/sector/view", methods = ['POST','GET'])
+@login_required
+def view_sector():
+    sector_id = request.form['id']
+    sector = Sector.query.get(sector_id)
+
+    data = []
+    data.append({'id':sector.id, 'sector':sector.sector})
+    return jsonify(data)
+    return redirect(url_for('users.create_sector'))
+
+
+@users.route("/sector/update/<int:sector_id>", methods = ['POST','GET'])
+@login_required
+def update_sector(sector_id):
+    sector = Sector.query.get_or_404(sector_id)
+    form = SectorForm()
+    if form.validate_on_submit():
+        sector.sector = form.name.data
+        db.session.commit()
+        flash('Sector Updated', 'success')
+    return redirect(url_for('users.create_sector'))
+    
+
 
 @users.route("/create_job")
 def create_job():
     form = JobForm()
     return render_template("create_job_title.html",form=form,title="Create Job Title")
 
-@users.route("/area_of_operation")
+@users.route("/area_of_operation", methods=['POST', 'GET'])
 def create_area():
     form = AreaForm()
-    return render_template("operation_area.html",form=form,title="Create Area of Operation")
+    Areas = Area.query.all()
+    
+    if form.validate_on_submit():
+        area = Area(area = form.name.data, industry_id = form.industry.data)
+        
+        db.session.add(area)
+        db.session.commit()
+        flash('Area of Operation Created','success')
+        return redirect(url_for('users.create_area'))
+    return render_template("operation_area.html",form=form,title="Create Area of Operation", Areas = Areas)
 
 
-@users.route("/create_industry")
+@users.route("/area/<int:area_id>/delete", methods=['POST'])
+@login_required
+def delete_area(area_id):
+    area = Area.query.get_or_404(area_id)
+    db.session.delete(area)
+    db.session.commit()
+    flash('Area of Operation Deleted', 'success')
+    return redirect(url_for('users.create_area'))
+
+
+@users.route("/industry/filter", methods = ['POST','GET'])
+@login_required
+def filter_industry():
+    sector_id = request.form['id']
+    industries = Industry.query.filter_by(sector_id = sector_id)
+    data = []
+    for industry in industries:
+        data.append({'id':industry.id, 'industry':industry.industry})
+    return jsonify(data)
+
+
+
+@users.route("/area/view", methods = ['POST','GET'])
+@login_required
+def view_area():
+    area_id = request.form['id']
+    area = Area.query.get(area_id)
+    data = []
+    data.append({'id':area.id, 'area':area.area, 'industry':area.industry.id, 'sector':area.industry.business_sector.id})
+    return jsonify(data)
+
+
+
+@users.route("/area/update/<int:area_id>", methods = ['POST','GET'])
+@login_required
+def update_area(area_id):
+    area = Area.query.get_or_404(area_id)
+    form = AreaForm()
+    if form.validate_on_submit():
+        area.area = form.name.data
+        area.industry_id = form.industry.data
+        db.session.commit()
+        flash('Area Updated', 'success')
+    return redirect(url_for('users.create_area'))
+
+
+
+
+@users.route("/create_industry", methods=['POST', 'GET'])
 def create_industry():
+    Industries = Industry.query.all()
     form = IndustryForm()
-    return render_template("create_industry.html",form=form,title="Create Industry")
+    if form.validate_on_submit():
+        industry = Industry(industry = form.name.data, sector_id = form.sector.data.id)
+        
+        db.session.add(industry)
+        db.session.commit()
+        flash('Industry Created','success')
+        return redirect(url_for('users.create_industry'))
+    return render_template("create_industry.html",form=form,title="Create Industry", Industries = Industries)
+
+
+@users.route("/industry/<int:industry_id>/delete", methods=['POST'])
+@login_required
+def delete_industry(industry_id):
+    industry = Industry.query.get_or_404(industry_id)
+    db.session.delete(industry)
+    db.session.commit()
+    flash('Industry Deleted', 'success')
+    return redirect(url_for('users.create_industry'))
+
+
+@users.route("/industry/view", methods = ['POST','GET'])
+@login_required
+def view_industry():
+    industry_id = request.form['id']
+    industry = Industry.query.get(industry_id)
+
+    data = []
+    data.append({'id':industry.id, 'industry':industry.industry, 'sector':industry.sector_id})
+    return jsonify(data)
+    return redirect(url_for('users.create_industry'))
+
+
+@users.route("/industry/update/<int:industry_id>", methods = ['POST','GET'])
+@login_required
+def update_industry(industry_id):
+    industry = Industry.query.get_or_404(industry_id)
+    form = IndustryForm()
+    if form.validate_on_submit():
+        industry.industry = form.name.data
+        industry.sector_id = form.sector.data.id
+        db.session.commit()
+        flash('Industry Updated', 'success')
+    return redirect(url_for('users.create_industry'))
+
+
 
 @users.route("/create_admin")
 def create_admin():
@@ -359,6 +509,7 @@ def admin_clients():
     else:
         return render_template("new_view_client.html",query=query)
 
+<<<<<<< HEAD
 @users.route("/administration/service_requests")
 def admin_service_requests():
     #make a query to the db
@@ -367,18 +518,29 @@ def admin_service_requests():
     #filter out what i want
     return render_template("new_requests.html",indv=indv)
 
+=======
+>>>>>>> 6cd4e5db160f2e1dc398a67ba6478182e5d2ec4a
 
 @users.route("/administration/reports")
 def admin_reports():
     return render_template("new_admin_reports.html")
 
+
 @users.route("/administration/client_hub")
 def client_hub():
+    
     return render_template("client_hub.html")
+    
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
 
-@users.route("/administration/messages")
-def messages():
-    return render_template("messages.html")
 
 @users.route("/administration/configuration")
 def admin_configuration():
@@ -410,9 +572,6 @@ def create_benchmark_job():
 def quantitative_survey():
     form = SurveyForm()
     return render_template("quantitative_survey.html",form=form)
-
-
-
 
 
 
@@ -650,6 +809,7 @@ def benchmark_home():
     return render_template("benchmark_dashboard.html",job=job)
 
 
+<<<<<<< HEAD
 
 @users.route('/form')
 def sdg():
@@ -847,3 +1007,79 @@ def survey_filter():
         temp.append({'id': post.id})
 
     return jsonify(temp)
+=======
+@users.route("/administration/service_requests", methods=["POST","GET"])
+def admin_service_requests():
+    form = ServiceRequestForm() 
+    ind = Individual_request.query.filter_by(status="pending").all()
+    corp= Corporate_request.query.filter_by(status="pending").all()
+
+    return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+
+@users.route('/view_request', methods=['POST','GET'])
+def viewRequest():
+    id = request.form['id']
+
+    requests = Individual_request.query.filter_by(id=id)
+    temp = []
+    for request in requests:
+        temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
+        'status':post.status,'firstname' :post.firstname,'lastname':post.lastname,'other':post.other,'email':post.email,'dob':post.dob,'phone':post.phone,'address':post.address,
+        'city':post.city,'country':post.country,'service':post.service})
+  
+    return jsonify(temp)
+
+@users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
+def updateRequest(requestId):
+    request = Individual_request.query.get_or_404(requestId)
+    form = ServiceRequestForm()
+    if form.validate_on_submit:
+        #comment = Comment(comment=form.comment.data, contact_id=messageId)
+        request.status = form.newstatus.data
+        #db.session.add(comment)
+        db.session.commit()
+        flash("Request Updated", "success")
+        return redirect(url_for('users.admin_service_requests'))
+
+@users.route("/messages")
+
+def messages():
+    form=MessageComment()
+    messages = Contact.query.all()
+    return render_template("messages.html", form=form, messages=messages)
+
+
+@users.route('/view_message', methods=['POST','GET'])
+def viewMessage():
+    id = request.form['id']
+
+    messages = Contact.query.filter_by(id=id)
+    comments = Comment.query.filter_by(contact_id=id)
+    comment_array = []
+    temp = []
+    for message in messages:
+        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
+        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
+        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
+        'address_2':message.address_2,'city':message.city,'country':message.country,
+        'status':message.status,'timestamp':message.timestamp})
+    
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+@users.route('/messages/update/<int:messageId>', methods=['POST'])
+def updateMessage(messageId):
+    message = Contact.query.get_or_404(messageId)
+    form = MessageComment()
+    if form.validate_on_submit:
+        comment = Comment(comment=form.comment.data, contact_id=messageId)
+        message.status = form.my_status.data
+        db.session.add(comment)
+        db.session.commit()
+        flash("Message Updated", "success")
+        return redirect(url_for('users.messages'))
+>>>>>>> 6cd4e5db160f2e1dc398a67ba6478182e5d2ec4a

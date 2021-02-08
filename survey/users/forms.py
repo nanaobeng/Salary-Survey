@@ -12,10 +12,10 @@ from flask_login import current_user
 from survey.models import User,Sector,Industry,Area,Department
 
 def survey_query():
-    return Sector.query
+    return Sector.query.order_by(Sector.sector.asc())
 
 def industry_query():
-    return Industry.query
+    return Industry.query.all()
 
 def area_query():
     return Area.query
@@ -145,7 +145,7 @@ class CorporateRequestForm(FlaskForm):
 class IndividualRequestForm(FlaskForm):
     firstname = StringField('Firstname', validators=[DataRequired()])
     lastname = StringField('Lastname', validators=[DataRequired()])
-    other = StringField('Other Name', validators=[DataRequired()])
+    other = StringField('Other Name')
 
     email = StringField('Email', validators=[DataRequired()])
     dob = DateField('Date of Birth')
@@ -161,9 +161,13 @@ class IndividualRequestForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-
-
-
+class ServiceRequestForm(FlaskForm):
+    
+    newstatus = RadioField(u'Update Request Status',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
+    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
+    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval')], 
+    validators=[DataRequired()])
+    submit = SubmitField('Save Changes')
 
 
 class QualForm(FlaskForm):
@@ -400,16 +404,13 @@ class ResetPasswordForm(FlaskForm):
 class SectorForm(FlaskForm):
    
     name = StringField('Sector', validators=[DataRequired()])
-
+    update = SubmitField('Update')
     submit = SubmitField('Submit')
 
 class IndustryForm(FlaskForm):
-   
+    
     name = StringField('Industry Name', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
+    sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
 
     submit = SubmitField('Submit')
 
@@ -434,133 +435,129 @@ class JobForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class AreaForm(FlaskForm):
+    iquery = Industry.query.all()
+    name = StringField('Area of Operation')
+    sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
+    industry =  SelectField('Industry', coerce=str, choices = [])
+    # industry =  SelectField('Industry', choices = [(i.id, i.industry) for i in iquery])
+    submit = SubmitField('Submit')
+
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+        
+    #     self.industry.choices = [(i.id, i.industry) for i in iquery]
+
+
+
+
+
+
+# class RegistrationForm(FlaskForm):
+#     username = StringField('Username',
+#                                 validators=[DataRequired(), Length(min=2,max=20)])
+#     email = StringField('Email', validators=[DataRequired(), Email()])
+
+#     role =  SelectField(
+#         'Role',
+#         choices=[('admin', 'Admin'), ('client', 'Client'), ('associate', 'Associate'), ('manager', 'Manager'), ('director', 'Director')] , validators=[DataRequired()]
+#     )
+#     password = PasswordField('Password', validators=[DataRequired()])
+#     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
+
+#     submit = SubmitField('Save')
+
+#     def validate_username(self,username):
+#         user = User.query.filter_by(username = username.data).first()
+#         if user:
+#             raise ValidationError('Username is already taken')
+    
+#     def validate_email(self,email):
+#         user = User.query.filter_by(email= email.data).first()
+#         if user:
+#             raise ValidationError('Email is already in use')
+
+
+
+# class LoginForm(FlaskForm):
    
-    name = StringField('Area of Operation', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-    industry =  SelectField(
-        'Industry',
-        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
-    )
+#     email = StringField('Email', validators=[DataRequired(), Email()])
+
+#     password = PasswordField('Password', validators=[DataRequired()])
+    
+#     remember = BooleanField('Remember Me')
+#     submit = SubmitField('Login')
+
+
+
+# class RequestResetForm(FlaskForm):
+   
+#     email = StringField('Email', validators=[DataRequired(), Email()])
+#     submit = SubmitField('Request Password Reset')
+
+#     def validate_email(self,email):
+#         user = User.query.filter_by(email= email.data).first()
+#         if user is None:
+#             raise ValidationError('There is no account with this email')
+
+
+# class ResetPasswordForm(FlaskForm):
+#     password = PasswordField('Password', validators=[DataRequired()])
+#     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
+
+#     submit = SubmitField('Reset Password')
+
+
+# class SectorForm(FlaskForm):
+   
+#     name = StringField('Sector', validators=[DataRequired()])
+#     update = SubmitField('Update')
+#     submit = SubmitField('Submit')
+
+# class IndustryForm(FlaskForm):
+   
+#     name = StringField('Industry Name', validators=[DataRequired()])
+#     sector =  SelectField(
+#         'Sector',
+#         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
+#     )
+
+#     submit = SubmitField('Submit')
+
+
+# class JobForm(FlaskForm):
+   
+#     name = StringField('Job Title', validators=[DataRequired()])
+#     sector =  SelectField(
+#         'Sector',
+#         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
+#     )
+#     industry =  SelectField(
+#         'Industry',
+#         choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
+#     )
+#     area =  SelectField(
+#         'Area of Operation',
+#         choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
+#     )
+   
+
+#     submit = SubmitField('Submit')
+
+# class AreaForm(FlaskForm):
+   
+#     name = StringField('Area of Operation', validators=[DataRequired()])
+#     sector =  SelectField(
+#         'Sector',
+#         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
+#     )
+#     industry =  SelectField(
+#         'Industry',
+#         choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
+#     )
     
    
 
-    submit = SubmitField('Submit')
-
-
-
-
-
-
-
-class RegistrationForm(FlaskForm):
-    username = StringField('Username',
-                                validators=[DataRequired(), Length(min=2,max=20)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-
-    role =  SelectField(
-        'Role',
-        choices=[('admin', 'Admin'), ('client', 'Client'), ('associate', 'Associate'), ('manager', 'Manager'), ('director', 'Director')] , validators=[DataRequired()]
-    )
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
-
-    submit = SubmitField('Save')
-
-    def validate_username(self,username):
-        user = User.query.filter_by(username = username.data).first()
-        if user:
-            raise ValidationError('Username is already taken')
-    
-    def validate_email(self,email):
-        user = User.query.filter_by(email= email.data).first()
-        if user:
-            raise ValidationError('Email is already in use')
-
-
-
-class LoginForm(FlaskForm):
-   
-    email = StringField('Email', validators=[DataRequired(), Email()])
-
-    password = PasswordField('Password', validators=[DataRequired()])
-    
-    remember = BooleanField('Remember Me')
-    submit = SubmitField('Login')
-
-
-
-class RequestResetForm(FlaskForm):
-   
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Request Password Reset')
-
-    def validate_email(self,email):
-        user = User.query.filter_by(email= email.data).first()
-        if user is None:
-            raise ValidationError('There is no account with this email')
-
-
-class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
-
-    submit = SubmitField('Reset Password')
-
-
-class SectorForm(FlaskForm):
-   
-    name = StringField('Sector', validators=[DataRequired()])
-
-    submit = SubmitField('Submit')
-
-class IndustryForm(FlaskForm):
-   
-    name = StringField('Industry Name', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-
-    submit = SubmitField('Submit')
-
-
-class JobForm(FlaskForm):
-   
-    name = StringField('Job Title', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-    industry =  SelectField(
-        'Industry',
-        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
-    )
-    area =  SelectField(
-        'Area of Operation',
-        choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
-    )
-   
-
-    submit = SubmitField('Submit')
-
-class AreaForm(FlaskForm):
-   
-    name = StringField('Area of Operation', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-    industry =  SelectField(
-        'Industry',
-        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
-    )
-    
-   
-
-    submit = SubmitField('Submit')
+#     submit = SubmitField('Submit')
 
 
 
@@ -656,7 +653,7 @@ class ClientForm(FlaskForm):
 
     tax_id = StringField('Tax ID')
 
-    submit = SubmitField('Submit')
+#     submit = SubmitField('Submit')
 
 
 
@@ -730,13 +727,17 @@ class SurveyForm(FlaskForm):
     misc = FloatField('Miscellaneous')
     
 
-   
-    
-    
-
-
-    
-
-
-
+class MessageComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
+    # status = BooleanField('Change Status')
+    my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
+    
+    
+
+
+    
+
+
+
+#     submit = SubmitField('Submit')

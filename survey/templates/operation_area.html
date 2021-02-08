@@ -13,18 +13,19 @@ Areas of Operation
       <td></td>
   </thead>
   <tbody>
-      <tr>
-        <td>Insurance</td>
-          <td>Banking</td>
-          <td>Private</td>
-          <td><i class="fas fa-eye"></i></td>
-      </tr>
-      <tr>
-        <td>Food and Beverage</td>
-          <td>Manufacturing</td>
-          <td>Private</td>
-          <td><i class="fas fa-eye"></i></td>
-      </tr>
+    {% for area in Areas %}
+    <tr>
+      <td>{{area.area}}</td>
+      <td>{{area.industry.industry}}</td>
+      <td>{{area.industry}}</td>
+      <td>
+        <span  data-id="{{area.id}}" onclick="editArea(this)"><i class="fas fa-edit"></i></span>
+        <span  data-id="{{area.id}}" onclick="deleteArea(this)"><i class="fas fa-trash"></i></span>
+      </td>
+      
+    </tr>
+    {% endfor %}
+
   </tbody>
 </table>
 <div class="row justify-content-center">
@@ -78,7 +79,7 @@ Areas of Operation
                               {% endfor %}
                           </div>
                           {% else %}
-                          {{ form.sector(class="form-control form-control") }}
+                          {{ form.sector(class="form-control form-control", onchange="getIndustry(this)") }}
                           {% endif %}
                 
                           
@@ -106,15 +107,211 @@ Areas of Operation
                   </div>
                
             
-                  </form>
+                  
               </div>
       <div class="modal-footer">
         <div class="form-group">
           {{ form.submit(class="btn btn-outline-info") }}
       </div>
     </div>
+  </form>
   </div>
+</div>
 </div>
 
 
+<!-- Modal for editing area_of_operation -->
+<div class="modal fade " id="update_area" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Update Area of Operation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+            <form method="POST" action="" class="col-12" onsubmit="updateArea()" id="updateForm">
+              {{ form.hidden_tag() }}
+             
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <div class="form-group">
+                        {{ form.name.label(class="form-control-label") }}
+            
+                        {% if form.name.errors %}
+                        {{ form.name(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.name.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.name(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                      </div>
+                      <div class="col-lg-6 col-md-12">
+                        <div class="form-group">
+                          {{ form.sector.label(class="form-control-label") }}
+                
+                          {% if form.sector.errors %}
+                          {{ form.sector(class="form-control form-control is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.sector.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.sector(class="form-control form-control", onchange="getIndustry(this)") }}
+                          {% endif %}
+                
+                          
+                      </div>
+                      </div>
+                      <div class="col-lg-6 col-md-12">
+                        <div class="form-group">
+                          {{ form.industry.label(class="form-control-label") }}
+                  
+                          {% if form.industry.errors %}
+                          {{ form.industry(class="form-control form-control is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.industry.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.industry(class="form-control form-control") }}
+                          {% endif %}
+                  
+                          
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+               
+            
+                  
+              </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          {{ form.submit(class="btn btn-outline-info") }}
+      </div>
+    </div>
+  </form>
+  </div>
+</div>
+</div>
+
+
+
+<!-- confirmation modal -->
+<div class="modal" tabindex="-1" role="dialog" id="delete_area">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content modal-sm">
+      <div class="modal-header bg-danger">
+        <span class="text-white">Confirm</span>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <span>Do you want to delete industry?</span>
+      </div>
+      <div class="modal-footer">
+
+       
+        <form action="" method="POST" id="deleteForm" onsubmit="confirmDelete()">
+          <button type="submit" class="btn btn-sm btn-success">Yes</button>
+        </form>
+        <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  function getIndustry(elm){
+    $.ajax({
+      url: '/industry/filter',
+      data: {
+          id: $(elm).val()
+      },
+      type: 'POST',
+      success: function(res) {
+        //Clear content of dropdown
+        $('#industry').find('option').remove()
+        res.forEach(element => {
+          var option = new Option(element.industry, element.id)
+          $(option).html(element.industry)
+          $('#industry').append(option)
+          console.log(element.industry);
+        });
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+  }
+
+  function deleteArea(elm){
+    localStorage.setItem('editId',$(elm).attr('data-id'));
+
+    $.ajax({
+      url: '/area/view',
+      data: {
+          id: $(elm).attr('data-id')
+      },
+      type: 'POST',
+      success: function(res) {
+          $('#delete_area').modal('show')
+          
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+  }
+
+  function confirmDelete(){
+    document.getElementById('deleteForm').action = '/area/'+localStorage.getItem('editId')+'/delete'
+  }
+
+  function editArea(elm){
+
+    localStorage.setItem('editId',$(elm).attr('data-id'));
+    
+    $.ajax({
+      url: '/area/view',
+      data: {
+          id: $(elm).attr('data-id')
+      },
+      type: 'POST',
+      success: function(res) {
+      
+          $("input[name='name']").val(res[0].area)
+          $("select[name='sector']").val(res[0].sector)
+          $("select[name='industry']").val(res[0].industry)
+          $('#update_area').modal('show')
+          console.log(res);
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+  }
+
+  function updateArea(){
+    var id = localStorage.getItem('editId')
+    document.getElementById('updateForm').action = '/area/update/'+id
+  }
+  function newArea() {
+    $("input[name='name']").val('')
+    $("select[name='sector']").val('')
+  }
+
+</script>
 {% endblock  %}
