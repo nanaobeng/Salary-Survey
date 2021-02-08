@@ -426,6 +426,13 @@ class Company_secretary(db.Model):
     def __repr__(self):
         return '<Current_Auditor %r>' % self.id
 
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(500))
+    contact_id = db.Column(db.Integer,  db.ForeignKey('contact.id'))
+
+    def __repr__(self):
+        return '<Comment %r>' % self.id
 
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
