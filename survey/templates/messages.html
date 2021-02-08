@@ -215,7 +215,7 @@
     <table class="table table-hover">
       <thead style="background-color: rgb(78, 110, 62);">
         <th id="searchbar">
-          <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
+          <input type="search" id="search_input" placeholder="Search...">
           <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
         </th>
         <th>
@@ -246,7 +246,7 @@
         </th>
       </thead>
       
-      <tbody>
+      <tbody id="messages_list">
         {% if messages %}
           {% for message in messages %}
         <tr class="table-row" onclick="viewMessages('{{message.id}}', this)" data-id="{{message.id}}" data-toggle="modal" href="#viewRequestModal">
@@ -255,10 +255,10 @@
             {{message.company_name}}
           </td>
           <td>{{message.timestamp.strftime('%-dth %b, %Y')}}</td>
-          {% if message.status=="Open" %}
-          <td><span class="badge badge-success">{{message.status}}</span></td>
+          {% if message.status %}
+          <td><span class="badge badge-success">Open</span></td>
           {% else %}
-          <td><span class="badge badge-danger">{{message.status}}</span></td>
+          <td><span class="badge badge-danger">Closed</span></td>
           {% endif %}
         </tr>
           {% endfor %}
@@ -353,10 +353,9 @@
         <!--Change Status-->
         <div class="row">
           <div class="col-9">
-            {{form.my_status}}
             <span style="font-size:smaller; color: rgb(71, 70, 70);">Open</span>
             <label class="switch">
-        
+              {{form.status}}
               <span class="slider round"></span>
             </label>
             <span style="font-size:smaller; color: rgb(71, 70, 70);">Closed</span>
@@ -384,6 +383,17 @@
     document.getElementById('updateForm').action = '/messages/update/' + messageId
   }
 </script>
+
+<script>
+  $(document).ready(function(){
+    $("#search_input").on("keyup", function() {
+      var value = $(this).val().toLowerCase();
+      $("#messages_list tr").filter(function() {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+  </script>
 
 
 
