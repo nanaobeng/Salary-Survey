@@ -154,13 +154,6 @@ class IndividualRequestForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-class ServiceRequestForm(FlaskForm):
-    
-    newstatus = RadioField(u'Update Request Status',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
-    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
-    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval')], 
-    validators=[DataRequired()])
-    submit = SubmitField('Save Changes')
 
 
 class QualForm(FlaskForm):
@@ -728,6 +721,14 @@ class MessageComment(FlaskForm):
     
     
 
+class ServiceRequestForm(FlaskForm):
+    
+    newstatus = RadioField(u'Update Request Status',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
+    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
+    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval')], 
+    validators=[DataRequired()])
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Submit')
 
     
 

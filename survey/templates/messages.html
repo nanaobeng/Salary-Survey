@@ -254,7 +254,7 @@
             <strong class="message-heading">Message from {{message.firstname}} {{message.lastname}}</strong>
             {{message.company_name}}
           </td>
-          <td>{{message.timestamp.strftime('%-dth %b, %Y')}}</td>
+     
           {% if message.status=="Open" %}
           <td><span class="badge badge-success">{{message.status}}</span></td>
           {% else %}
