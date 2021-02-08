@@ -289,7 +289,7 @@
             <!-- <img class="card-img-top"
               src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
               alt="Card image" style="width:100%"> -->
-            <div class="card-body" onclick="viewRequests('{{i.id}}')" data-toggle="modal" href="#viewRequestModal">
+            <div class="card-body" onclick="viewRequests('{{i.id}}')" data-id="{{i.id}}" data-toggle="modal" href="#viewRequestModal">
               <a class="stretched-link"  >
                 
                 <h4 class="card-title">
@@ -352,6 +352,7 @@
   </div>
 </div>
 
+
 <!-- Individual Request Modal -->
 
 <div class="modal fade" id="viewRequestModal" role="dialog">
@@ -359,10 +360,8 @@
 
     <!-- Modal content-->
     <div class="modal-content">
-      <form action="" method="POST" id="updateForm" onsubmit="updateRequest()"></form>
-      <div id="head" class="container modal-header d-block" style="height: auto">
-        
-          
+      <form action="" method="POST" id="updateForm" onsubmit="updateRequest()">
+      <div id="head" class="modal-header d-block" style="height: auto">    
       </div>
       <div id="body" class="modal-body">
         <!--Request Description-->
@@ -370,13 +369,9 @@
       </div>
     
    <div class="modal-footer form-group">
-      
-      <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
      {{ form.submit(class="btn btn-success btn-max") }}
-   
    </div>
      
-    
   </form>
     </div>
     </div>
@@ -431,7 +426,7 @@
 <!--End of modal-->
 
 <script>
-  function viewRequests(modal){
+  function viewRequests(modal, element){
     localStorage.setItem('requestId', $(element).attr('data-id'))
     $.ajax({
       url: '/view_request',
@@ -460,16 +455,27 @@
         </div>
         <hr>
         <!--Change Status / Add Comments-->
-        <div id="myDIV" class="form-group">
-          <p>Comments:
-          <ol id="myUL" style="color: gray;">
-            <li>Check your email</li>
-          </ol>
-          </p>
-          <label style="font-size: smaller; font-style: italic;">Add New Comment
-            <textarea id='myInput' class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
-          </label>
-          <span onclick="newElement()" class="addBtn">Add</span>
+        <div class="form-group">
+            <p>Comments:
+            <ol id="commentList" style="color: gray;">
+              
+            </ol>
+            </p>
+          {{form.comment.label(class="comment-label")}}
+            {% if form.comment.errors %}
+              {{ form.comment(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.comment.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.comment(class="form-control form-control") }}
+              {% endif %}
+  
+          <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
+          {{form.submit}}
+
         </div>
         <hr>
         <!--Change Status-->
@@ -575,34 +581,7 @@
 
 
 <script>
-  // Create a "close" button and append it to each list item
-  var myNodelist = document.getElementsByTagName("LI");
-  var i;
-  for (i = 0; i < 100; i++) {
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    myNodelist[i].appendChild(span);
-  }
-  
-  // Click on a close button to hide the current list item
-  var close = document.getElementsByClassName("close");
-  var i;
-  for (i = 0; i < close.length; i++) {
-    close[i].onclick = function() {
-      var div = this.parentElement;
-      div.style.display = "none";
-    }
-  }
-  
-  // Add a "checked" symbol when clicking on a list item
-  var list = document.querySelector('ol');
-  list.addEventListener('click', function(ev) {
-    if (ev.target.tagName === 'LI') {
-      ev.target.classList.toggle('checked');
-    }
-  }, false);
+
   
   // Create a new list item when clicking on the "Add" button
   function newElement() {

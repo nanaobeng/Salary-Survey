@@ -436,6 +436,14 @@ class Comment(db.Model):
     def __repr__(self):
         return '<Comment %r>' % self.id
 
+class RequestComment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(500))
+    service_id = db.Column(db.Integer,  db.ForeignKey('service_request.id'))
+
+    def __repr__(self):
+        return '<RequestComment %r>' % self.id
+
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(500))
@@ -748,11 +756,3 @@ class Comparator_job(db.Model):
         return '<Comparator_job %r>' % self.id
 
 
-
-class Comment(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    comment = db.Column(db.String(500))
-    contact_id = db.Column(db.Integer,  db.ForeignKey('contact.id'))
-
-    def __repr__(self):
-        return '<Comment %r>' % self.id

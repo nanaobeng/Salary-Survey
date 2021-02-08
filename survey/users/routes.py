@@ -1011,7 +1011,7 @@ def survey_filter():
 @users.route("/administration/service_requests", methods=["POST","GET"])
 def admin_service_requests():
     form = ServiceRequestForm() 
-    ind = Individual_request.query.filter_by(status="pending").all()
+    ind = Individual_request.query.all()
     corp= Corporate_request.query.filter_by(status="pending").all()
 
     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
@@ -1021,12 +1021,18 @@ def viewRequest():
     id = request.form['id']
 
     requests = Individual_request.query.filter_by(id=id)
+    comments = RequestComment.query.filter_by(contact_id=id)
+    comment_array = []
     temp = []
     for request in requests:
         temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
         'status':post.status,'firstname' :post.firstname,'lastname':post.lastname,'other':post.other,'email':post.email,'dob':post.dob,'phone':post.phone,'address':post.address,
         'city':post.city,'country':post.country,'service':post.service})
-  
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
     return jsonify(temp)
 
 @users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
@@ -1034,9 +1040,9 @@ def updateRequest(requestId):
     request = Individual_request.query.get_or_404(requestId)
     form = ServiceRequestForm()
     if form.validate_on_submit:
-        #comment = Comment(comment=form.comment.data, contact_id=messageId)
+        comment = RequestComment(comment=form.comment.data, contact_id=messageId)
         request.status = form.newstatus.data
-        #db.session.add(comment)
+        db.session.add(comment)
         db.session.commit()
         flash("Request Updated", "success")
         return redirect(url_for('users.admin_service_requests'))
