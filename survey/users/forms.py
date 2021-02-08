@@ -731,7 +731,12 @@ class ServiceRequestForm(FlaskForm):
     submit = SubmitField('Submit')
 
     
-
+class RequestSearchForm(FlaskForm):
+    choices = [('Date', 'Date'),
+               ('Company', 'Company'),
+               ('Status', 'Status')]
+    select = SelectField('Search for request:', choices=choices)
+    search = StringField('')
 
 
 #     submit = SubmitField('Submit')

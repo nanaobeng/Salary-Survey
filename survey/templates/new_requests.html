@@ -163,6 +163,7 @@
       <thead style="background-color: rgb(78, 110, 62);">
         <th id="searchbar">
           <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
+          
           <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
         </th>
         <th>
@@ -187,55 +188,7 @@
   </div>
 </div>
 
-<!-- <div class="row p-5">
-  <div class="col-12">
-    <div class="table">
-      <table>
-        <thead style="background-color: rgb(51, 73, 41);">
-          <th id="searchbar">
-            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
-            <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
-          </th>
-          <th>
-            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
-                class="icofont-settings"></i></span></button>
-            <form class="dropdown-menu p-4">
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Status:</label>
-                <select class="form-control" id="status" onchange="filter('status')">
-                  <option value="opened">Pending</option>
-                  <option value="close">Awaiting Client Information</option>
-                  <option>First Pass</option>
-                  <option>Conflict Check</option>
-                  <option>Finish Completion</option>
-                  <option>Submitted For Approval</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Request Type:</label>
-                <select class="form-control" id="s_period" onchange="filter('s_period')">
-                  <option value="corporate">Corporate</option>
-                  <option value="individual">Individual</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Client:</label>
-                <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
-                <datalist id="clients">
-                  <option value="ABC">
-                  <option value="Modec">
-                  <option value="Villagio">
-                  <option value="Shell">
 
-                </datalist>
-              </div>
-            </form>
-          </th>
-        </thead>
-      </table>
-    </div>
-  </div>
-</div> -->
 
 
 <div class="py-5">
@@ -247,9 +200,7 @@
         
         <div class="col-md-3">
           <div class="card border-primary mb-4 bg-light">
-            <!-- <img class="card-img-top"
-              src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-              alt="Card image" style="width:100%"> -->
+          
             <div class="card-body" onclick="viewRequests('{{i.id}}')" data-id="{{i.id}}" data-toggle="modal" href="#viewRequestModal">
               <a class="stretched-link"  >
                 
@@ -257,7 +208,7 @@
                   {{i.firstname}} {{other}} {{i.lastname}}
               </h4>
               </a>
-              <p class="card-subtitle text-muted">{{i.email}} {{i.id}}</p>
+              <p class="card-subtitle text-muted">{{i.email}}</p>
               <p class="card-text p-y-1">{{i.service}}.</p>
               <span class="badge badge-success">{{i.status}}</span>
             </div>
@@ -267,7 +218,7 @@
       {% else %}
       <p class="col-row"style="text-align:center;">
         
-          <em> You have no individual requests to view.</em>
+          <em> You have no pending requests to view.</em>
        
       </p>
       {% endif %}
@@ -305,7 +256,7 @@
       {% else %}
       <p class="col-row"style="text-align:center;">
         
-          <em> You have no corporate requests to view.</em>
+          <em> You have no pending requests to view.</em>
        
       </p>
       {% endif %}
