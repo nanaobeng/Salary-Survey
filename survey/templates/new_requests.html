@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 
     {% extends "new_admin_layout.html" %}
 
@@ -6,7 +8,7 @@
     
     {% block content %}
     <style>
-      #hero {
+            #hero {
   width: 100%;
   height: 15vh;
   background: url("../static/img/home.jpg") top center;
@@ -122,69 +124,80 @@
   #filterbutton {
     color: white;
   }
+
+  .addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
 </style>
+>>>>>>> 6cd4e5db160f2e1dc398a67ba6478182e5d2ec4a
 
 
+{% block content %}
+
+<style>
+ 
+  
+    .search_icon {
+      height: 40px;
+      width: 40px;
+      float: right;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      color: white;
+      /* background: white; */
+      background: grey;
+      /* color: black; */
+      text-decoration: none;
+    }
+  
+    .filterbar {
+      color: #353b48;
+    }
+  </style>
 <!--Header-->
 <div class="row">
   <div class="col-12">
     <section id="hero" class="d-flex align-items-center justify-content-center">
       <div class="container position-relative">
-        <h2><b style="font-size: 40px;">Service Requests</b></h2>
+        <h2><b style="font-size: 30px;">Service Requests</b></h2>
 
       </div>
     </section>
   </div>
 </div>
+<div class="row">
+  <div class="col-12 p-4">
+   {%  for i in indv  %}
+<div class="row p-4">
+  <div class="col-4 p-4" style="background-color: red;">
+    {{i.firstname}} : {{i.lastname}}
+  </div>
+</div>
+   
 
+   {% endfor %}
+  </div>
+</div>
 
 <!--Body-->
 
-<!-- <div class="container py-5 h-100">
-  <div class="d-flex float-right h-100">
-    <div class="searchbar">
-      <input class="search_input" type="text" name="" placeholder="Search...">
-      <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-    </div>
-  </div>
-  <div class="filterbar float-left">
-    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
-        class="icofont-settings"></i></span></button>
-    <form class="dropdown-menu p-4">
-      <div class="form-group">
-        <label for="sel1" style="color:grey">Status:</label>
-        <select class="form-control" id="status" onchange="filter('status')">
-          <option value="opened">Pending</option>
-          <option value="close">Awaiting Client Information</option>
-          <option>First Pass</option>
-          <option>Conflict Check</option>
-          <option>Finish Completion</option>
-          <option>Submitted For Approval</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="sel1" style="color:grey">Request Type:</label>
-        <select class="form-control" id="s_period" onchange="filter('s_period')">
-          <option value="corporate">Corporate</option>
-          <option value="individual">Individual</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label for="sel1" style="color:grey">Client:</label>
-        <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
-        <datalist id="clients">
-          <option value="ABC">
-          <option value="Modec">c
-          <option value="Villagio">
-          <option value="Shell">
-        </datalist>
-      </div>
-    </form>
-  </div>
-</div>  -->
-
 <div class="row p-5 justify-content-center">
-  <div class="col-12">
+  <div class="col-8">
     <table class="table table-hover">
       <thead style="background-color: rgb(78, 110, 62);">
         <th id="searchbar">
@@ -213,40 +226,100 @@
   </div>
 </div>
 
+<!-- <div class="row p-5">
+  <div class="col-12">
+    <div class="table">
+      <table>
+        <thead style="background-color: rgb(51, 73, 41);">
+          <th id="searchbar">
+            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
+            <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
+          </th>
+          <th>
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
+                class="icofont-settings"></i></span></button>
+            <form class="dropdown-menu p-4">
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Status:</label>
+                <select class="form-control" id="status" onchange="filter('status')">
+                  <option value="opened">Pending</option>
+                  <option value="close">Awaiting Client Information</option>
+                  <option>First Pass</option>
+                  <option>Conflict Check</option>
+                  <option>Finish Completion</option>
+                  <option>Submitted For Approval</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Request Type:</label>
+                <select class="form-control" id="s_period" onchange="filter('s_period')">
+                  <option value="corporate">Corporate</option>
+                  <option value="individual">Individual</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="sel1" style="color:grey">Client:</label>
+                <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+                <datalist id="clients">
+                  <option value="ABC">
+                  <option value="Modec">
+                  <option value="Villagio">
+                  <option value="Shell">
+
+                </datalist>
+              </div>
+            </form>
+          </th>
+        </thead>
+      </table>
+    </div>
+  </div>
+</div> -->
+
 
 <div class="py-5">
   <div class="container">
     <div class="row hidden-md-up">
-      <h2 style="text-align:center"> Individual Requests</h2>
+      <h4 style="text-align:left"><i>Individual Requests</i> </h4>
+      {% if ind %}
       {% for i in ind %}
         
         <div class="col-md-3">
-          <div class="card">
+          <div class="card border-primary mb-4 bg-light">
             <!-- <img class="card-img-top"
               src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
               alt="Card image" style="width:100%"> -->
-            <div class="card-body">
-              <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
+            <div class="card-body" onclick="viewRequests('{{i.id}}')" data-id="{{i.id}}" data-toggle="modal" href="#viewRequestModal">
+              <a class="stretched-link"  >
                 
                 <h4 class="card-title">
                   {{i.firstname}} {{other}} {{i.lastname}}
               </h4>
               </a>
-              <h6 class="card-subtitle text-muted">{{i.email}}</h6>
+              <p class="card-subtitle text-muted">{{i.email}} {{i.id}}</p>
               <p class="card-text p-y-1">{{i.service}}.</p>
               <span class="badge badge-success">{{i.status}}</span>
             </div>
           </div>
         </div>
       {% endfor %}
-     
+      {% else %}
+      <p class="col-row"style="text-align:center;">
+        
+          <em> You have no individual requests to view.</em>
+       
+      </p>
+      {% endif %}
     </div>
+
+
     <div class="row hidden-md-up">
-      <h2 style="text-align:center"> Corporate Requests</h2>
+      <h4 style="text-align:left"><i>Corporate Requests</i> </h4>
+      {% if corp %}
       {% for i in corp %}
         
         <div class="col-md-3">
-          <div class="card">
+          <div class="card" onclick="viewRequests('{{i.id}}', this)" data-id="{{i.id}}">
             <!-- <img class="card-img-top"
               src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
               alt="Card image" style="width:100%"> -->
@@ -257,127 +330,197 @@
                   {{i.company_name}}
               </h4>
               </a>
-              <h6 class="card-subtitle text-muted">{{i.company_email}}</h6>
+              <h6 class="card-subtitle text-muted">{{i.company_email}} {{i.id}}</h6>
               <p class="card-text p-y-1">{{i.service}}</p>
-              <span class="badge badge-success">{{i.status}}</span>
+              <span id='status' class="badge badge-success">{{i.status}}</span>
             </div>
+            <script>
+              var s = document.getElementById("status").innerHTML;
+              document.write(s);
+           </script>
           </div>
         </div>
       {% endfor %}
-     
+      {% else %}
+      <p class="col-row"style="text-align:center;">
+        
+          <em> You have no corporate requests to view.</em>
+       
+      </p>
+      {% endif %}
     </div>
   </div>
 </div>
 
-<!-- Modal -->
+
+<!-- Individual Request Modal -->
+
 <div class="modal fade" id="viewRequestModal" role="dialog">
   <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
+      <form action="" method="POST" id="updateForm" onsubmit="updateRequest()">
+      <div id="head" class="modal-header d-block" style="height: auto">    
+      </div>
+      <div id="body" class="modal-body">
+        <!--Request Description-->
+        
+      </div>
+    
+   <div class="modal-footer form-group">
+     {{ form.submit(class="btn btn-success btn-max") }}
+   </div>
+     
+  </form>
+    </div>
+    </div>
+  </div>
+<!--End of modal content-->
+
+    </div>
+
+  </div>
+
+<!--End of modal-->
+
+<!-- Corporate Request Modal -->
+
+<div class="modal fade" id="viewCorporateRequestModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="container" style="height: auto">
+        <form method="POST" action="./service_requests" id="updateForm" onsubmit="updateRequest()"  style="display: inline">
+            <br/>
+           
+            <fieldset class="form-group">
       <div class="modal-header d-block">
-        <div class="d-flex">
-          <h4 class="modal-title">Company Name</h3>
+        
+      </div>
+      <div class="modal-body">
+        <!--Request Description-->
+        
+        <hr>
+   
+      </div>
+    </fieldset>
+   <div class="modal-footer form-group">
+      
+      <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+     {{ form.submit(class="btn btn-success btn-max") }}
+   
+   </div>
+     
+    
+    </form>
+    </div>
+  </div>
+<!--End of modal content-->
+
+    </div>
+
+  </div>
+
+<!--End of modal-->
+
+<script>
+  function viewRequests(modal, element){
+    localStorage.setItem('requestId', $(element).attr('data-id'))
+    $.ajax({
+      url: '/view_request',
+      data: { 
+        id: modal
+      },
+      type: 'POST',
+      success: function(res){
+        console.log(res)
+        res1 = res[0]
+       
+        $('#head').html(
+          `<div class="d-flex">
+          <h4 class="modal-title"> ${res1.firstname} ${res1.lastname}</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <h6 style="color: gray;" class="modal-title">Request Title</h5>
-      </div>
-      <div class="modal-body">
-        <!--Request Description-->
-        <div>
-          <p>Assigned To: </p>
-          <p>Date Assigned: </p>
-          <p style="color: gray;">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas lobortis convallis sagittis. Pellentesque
-            tempus turpis eu urna varius, ut hendrerit lectus auctor. Nam convallis erat nec justo tincidunt, ut
-            ultrices felis dignissim. Proin finibus diam at neque pharetra, ut ornare nisi aliquet. Cras et justo non
-            odio semper vehicula sit amet quis neque. Etiam volutpat a tortor eu egestas. Quisque ultricies condimentum
-            sapien, a suscipit lacus consectetur rutrum. Fusce sodales aliquam erat vel faucibus. Pellentesque porta,
-            neque a ultrices hendrerit, tellus massa efficitur felis, at aliquam diam metus et eros.
-          </p>
+        <h6 style="color: gray;" class="modal-title">${res1.email}</h5>`
+        )
+        $('#body').html(
+          `<div>
+          <p>Request Title: <span style="color: gray;">${res1.service}</span></p>
+          <p>Address: <span style="color: gray;">${res1.address},  ${res1.city}, ${res1.country}.
+            </span></p>
         </div>
-
         <hr>
-
         <!--Change Status / Add Comments-->
-        <div>
-          <form>
-            <div class="form-group">
-              <label>Update Request Status</label>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="pending" name="status" value="pending"
-                    checked>Pending
-                </label>
+        <div class="form-group">
+            <p>Comments:
+            <ol id="commentList" style="color: gray;">
+              
+            </ol>
+            </p>
+          {{form.comment.label(class="comment-label")}}
+            {% if form.comment.errors %}
+              {{ form.comment(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.comment.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
               </div>
+              {% else %}
+              {{ form.comment(class="form-control form-control") }}
+              {% endif %}
+  
+          <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
+          {{form.submit}}
 
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="requesting" name="status"
-                    value="requesting">Requesting Client Information
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="firstpass" name="status" value="firstpass">Undergoing
-                  Risk Processes: First Pass
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="conflictcheck" name="status"
-                    value="conflictcheck">Undergoing Risk Processes: Conflict Check
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="finishcompletion" name="status"
-                    value="finishcompletion">Undergoing Risk Processes: Finish Completion
-                </label>
-              </div>
-
-              <div class="form-check">
-                <label class="form-check-label">
-                  <input type="radio" class="form-check-input" id="submitted" name="status" value="submitted">Submitted
-                  For Approval
-                </label>
-              </div>
-
-            </div>
-
-            <hr>
-
-            <div class="form-group">
-              <p>Comments:
-              <ol style="color: gray;">
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-                <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-              </ol>
-              </p>
-              <label style="font-size: smaller; font-style: italic;">Add New Comment
-                <textarea class="form-control" rows="1" cols="100" onfocus="this.rows=5;"></textarea>
-              </label>
-            </div>
-          </form>
         </div>
+        <hr>
+        <!--Change Status-->
+        <div class="row">
+          
+       <div class="form-group">
+          
+          {{ form.newstatus.label(class="form-control-label") }}
+  
+                  {% if form.newstatus.errors %}
+                  {{ form.newstatus(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                      {% for error in form.status.errors %}
+                      <span> {{ error}}</span>
+                      {% endfor %}
+                  </div>
+                  {% else %}
+                  {{ form.newstatus(class=" form-control") }}
+                  {% endif %}
+             
+          </div>
+          <div class="col-3 float-right">
+            <i class="far fa-envelope" style="margin-right: 5px;"></i><a
+              href="mailto:${res1.email}?subject=Thank You For Reaching Out To Us" style="color: inherit;">Send
+              Email</a>
+          </div>
+        </div>
+      `
+        )
+        for (var i=0; i<res[1].comments.length; i++){
+          $('#commentList').append('<li>' + res[1].comments[i] + '</li>')
+        }
+      },
+      error: function(error){
+        console.log(error)
+      }
+    })
+  }
 
+  function updateRequest(){
+    var requestId = localStorage.getItem('requestId')
+    document.getElementById('updateForm').action = 'service_requests/update/' + requestId
+  }
+</script>
 
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save changes</button>
-        <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-      </div>
-    </div>
-
-  </div>
-</div>
 
 
 <script>
@@ -436,4 +579,36 @@
   }
 </script>
 
+
+<script>
+
+  
+  // Create a new list item when clicking on the "Add" button
+  function newElement() {
+    var li = document.createElement("li");
+    var inputValue = document.getElementById("myInput").value;
+    var t = document.createTextNode(inputValue);
+    li.appendChild(t);
+    if (inputValue === '') {
+      alert("You must write something!");
+    } else {
+      document.getElementById("myUL").appendChild(li);
+    }
+    document.getElementById("myInput").value = "";
+  
+    var span = document.createElement("SPAN");
+    var txt = document.createTextNode("\u00D7");
+    span.className = "close";
+    span.appendChild(txt);
+    li.appendChild(span);
+  
+    for (i = 0; i < close.length; i++) {
+      close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+      }
+    }
+  }
+  </script>
+  
 {% endblock content %}

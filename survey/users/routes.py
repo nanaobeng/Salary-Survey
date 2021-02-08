@@ -1,6 +1,8 @@
-from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json
+
+from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint ,jsonify
 from survey import db,bcrypt
-from survey.users.forms import *
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,MyForm,ComparatorForm,ServiceRequestForm,MessageComment
+
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -37,7 +39,7 @@ def login():
     if form.validate_on_submit():
         user = User.query.filter_by(email=form.email.data).first()
 
-  
+       
         
         if user and (bcrypt.check_password_hash(user.password,form.password.data)):
             
@@ -53,8 +55,6 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.landing'))
-
-
 
 
 @users.route("/account")
@@ -98,7 +98,7 @@ def reset_token(token):
 
 @users.route("/create_client",methods=['POST','GET'])
 def create_client():
-    usn = current_user
+    
     form = ClientForm()
     
     if form.validate_on_submit():
@@ -114,7 +114,7 @@ def create_client():
         client = Client(
         company_history = form.company_history.data,
         company_name = form.name.data,
-        user = usn,
+        user = form.user_account.data,
         sector = form.sector.data,
         industry = form.industry.data,
         area = form.area.data,
@@ -396,6 +396,8 @@ def survey_home():
 
 @users.route("/create_survey")
 def create_survey():
+    searchform = MyForm()
+    compform = ComparatorForm()
     form = SurveyForm()
     if form.validate_on_submit():
         sur = Survey(name="test2",start_date=datetime(2012, 3, 3, 10, 10, 10),end_date=datetime(2012, 3, 3, 10, 10, 10),status="active",client_id=1)
@@ -403,7 +405,7 @@ def create_survey():
         db.session.commit()
         flash('Account Created','success')
         return redirect(url_for('users.login'))
-    return render_template("new_create_survey.html",form=form)
+    return render_template("new_create_survey.html",form=form,searchform=searchform,compform=compform)
 
 @users.route("/edit_survey")
 def edit_survey():
@@ -483,7 +485,14 @@ def my_benchmark_jobs_create():
 
 @users.route("/my_surveys")
 def my_surveys():
-    return render_template("quantitative_survey_overview.html")
+    usn = 2
+    query = []
+    surveys = Benchmark_job.query.all()
+    for survey in surveys:
+        if survey.comp_benchmark.survey_client.user.id == usn:
+            query.append(survey)
+
+    return render_template("quantitative_survey_overview.html",usn=usn,query=query)
 
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():
@@ -499,7 +508,20 @@ def admin_home():
 
 @users.route("/administration/surveys")
 def admin_surveys():
-    return render_template("new_view_survey.html")
+    query = Survey.query.all()
+    
+    # if request.method == 'POST':
+    #     client = Client.query.get_or_404(request.form['client_id'])
+    #     client.status = request.form['c_status']
+    #     try:
+    #         db.session.commit()
+    #         flash('Client Updated','success')
+    #         return redirect(url_for('users.admin_clients'))
+    #     except:
+    #         flash('There was an issue updating the client','danger')
+    #         return redirect(url_for('users.admin_clients'))
+    
+    return render_template("new_view_survey.html",query=query)
 
 @users.route("/administration/benchmark-jobs")
 def admin_benchmarl():
@@ -522,22 +544,37 @@ def admin_clients():
     else:
         return render_template("new_view_client.html",query=query)
 
-@users.route("/administration/service_requests")
-def admin_service_requests():
 
-    ind = Individual_request.query.all()
-    corp= Corporate_request.query.all()
+# @users.route("/administration/service_requests")
+# def admin_service_requests():
+#     #make a query to the db
+#     indv = Individual_request.query.all()
+#     cnt = Individual_request.query.filter_by(status="approved").count()
+#     #filter out what i want
+#     return render_template("new_requests.html",indv=indv)
 
-    return render_template("new_requests.html", ind=ind, corp=corp)
 
 
 @users.route("/administration/reports")
 def admin_reports():
     return render_template("new_admin_reports.html")
 
+
 @users.route("/administration/client_hub")
 def client_hub():
+    
     return render_template("client_hub.html")
+    
+@app.route('/user/<username>')
+@login_required
+def user(username):
+    user = User.query.filter_by(username=username).first_or_404()
+    posts = [
+        {'author': user, 'body': 'Test post #1'},
+        {'author': user, 'body': 'Test post #2'}
+    ]
+    return render_template('user.html', user=user, posts=posts)
+
 
 @users.route("/administration/configuration")
 def admin_configuration():
@@ -569,9 +606,6 @@ def create_benchmark_job():
 def quantitative_survey():
     form = SurveyForm()
     return render_template("quantitative_survey.html",form=form)
-
-
-
 
 
 
@@ -807,4 +841,285 @@ def benchmark_home():
     usn = current_user
     job = Main_benchmark_job.query.filter_by(user_account=usn).all()
     return render_template("benchmark_dashboard.html",job=job)
+
+
+
+
+@users.route('/form')
+def sdg():
+	form = MyForm()
+	return render_template('sdg.html', form=form)
+
+
+
+@users.route('/i')
+def indexx():
+ form = MyForm()
+ return render_template('sdg.html', form=form)
+
+@users.route('/countries', methods=['POST'])
+def countrydic():
+    tag = request.form["id"]
+    search = "%{}%".format(tag)
+
+    vajx2 = request.form['id']
+    posts = Main_benchmark_job.query.filter(Main_benchmark_job.job_title.like(search)).all()
+    temp = []
+    for post in posts:
+        temp.append({'id': post.id, 'job_title':post.job_title ,'main_department' :post.main_department.department})
+
+    return jsonify(temp)
+
+    list_countries = [r.as_dict() for r in posts]
+    return 'list_countries'
+    res = Main_benchmark_job.query.all()
+
+    return jsonify(list_countries)
+ 
+@users.route('/process', methods=['POST'])
+def process():
+    country = request.form['country']
+    if country:
+        return jsonify({'country':country})
+    return jsonify({'error': 'missing data..'})
+
+
+
+@users.route('/jobs', methods=['POST','GET'])
+def jobdic():
+    tag = request.form['id']
+    search = "%{}%".format(tag)
+
+  
+    posts = Main_benchmark_job.query.filter_by(id=tag)
+    temp = []
+    for post in posts:
+
+        temp.append({'id': post.id, 'job_title':post.job_title ,'main_department' :post.main_department.department, 'job_description' : post.job_description, 'grade':post.grade})
+
+    return jsonify(temp)
+
+
+
+
+
+
+
+
+@users.route('/compare', methods=['POST'])
+def comparedic():
+    tag = request.form["id"]
+    search = "%{}%".format(tag)
+
+    vajx2 = request.form['id']
+    posts = Client.query.filter(Client.company_name.like(search)).all()
+    temp = []
+    for post in posts:
+        temp.append({'id': post.id, 'company_name':post.company_name ,'company_history' :post.company_history,'sector':post.sector.sector,'industry':post.industry.industry})
+
+    return jsonify(temp)
+
+
+@users.route('/comps', methods=['POST','GET'])
+def compdic():
+    tag = request.form['id']
+    search = "%{}%".format(tag)
+
+  
+    posts = Client.query.filter_by(id=tag)
+    temp = []
+    for post in posts:
+
+        temp.append({'id': post.id, 'company_name':post.company_name ,'company_history' :post.company_history,'sector':post.sector.sector,'industry':post.industry.industry,'area':post.area.area})
+
+    return jsonify(temp)
+
+
+@users.route('/compss', methods=['POST','GET'])
+def compdict():
+    tag = request.form['id']
+    search = "%{}%".format(tag)
+
+  
+    posts = Client.query.filter_by(company_name=tag)
+    temp = []
+    for post in posts:
+
+        temp.append({'id': post.id, 'company_name':post.company_name ,'company_history' :post.company_history,'sector':post.sector.sector,'industry':post.industry.industry,'area':post.area.area})
+
+    return jsonify(temp)
+
+
+@users.route('/survey_create', methods=['POST','GET'])
+def created_survey_ajax():
+    bench = request.form['bench']
+    comp = request.form['comp']
+    survey = request.form['survey']
+    start_date = request.form['start_date']
+    client = request.form['client']
+    #search = "%{}%".format(tag)
+
+    bench_split = bench.split(',')
+    comp_split = comp.split(',')
+    posts = Client.query.filter_by(company_name=client).first()
+    b_id = "f"
+
+    #client_id = temp[0].id
+    sur = Survey(name=survey,status="unprocessed",survey_client=posts)
+    db.session.add(sur)
+   
+    
+    
+    for i in bench_split:
+        b_id = (int(i.replace("b", "")))
+        main = Main_benchmark_job.query.filter_by(id=b_id).first()
+        base = Base_salary.query.filter_by(id=main.id).first()
+        incentive = Incentive.query.filter_by(id=main.id).first()
+        allowance = Allowance.query.filter_by(id=main.id).first()
+        benefit = Benefit.query.filter_by(id=main.id).first()
+        for c in comp_split :
+            c_id = (int(c.replace("c", "")))
+            cli = Client.query.filter_by(id=c_id).first()
+            db.session.add(Survey_comparator(comparator=sur,client=cli,status="unprocessed"))
+            db.session.add(Benchmark_job(job_title=main.job_title,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=cli,comp_benchmark=sur,comp_benchmark_allowance=allowance,comp_benchmark_benefit=benefit,comp_benchmark_incentive=incentive,comp_benchmark_base=base))
+    
+    db.session.commit()
+    return jsonify('success')
+
+
+
+ 
+
+@users.route('/survey_modal', methods=['POST','GET'])
+def smodaldict():
+    tag = request.form['id']
+    search = "%{}%".format(tag)
+
+  
+    posts = Survey.query.filter_by(id=tag).all()
+    post = posts[0]
+    b_marks = Benchmark_job.query.all()
+    comps = Survey_comparator.query.all()
+    temp_b = []
+    temp_c = []
+    for b in b_marks:
+        if(b.comp_benchmark.id == post.id):
+            temp_b.append(b.job_title)
+    for c in comps:
+        if(c.comparator.id == post.id):
+            temp_c.append(c.comparator.survey_client.company_name)
+
+    temp_b = list(dict.fromkeys(temp_b))
+    temp_c = list(dict.fromkeys(temp_c))
+    temp = []
+   
+
+    temp.append({'id': post.id, 'name':post.name ,'client':post.survey_client.company_name,'industry' :post.survey_client.industry.industry,'area':post.survey_client.area.area,'start_date':post.start_date,'benchmarks':temp_b,'comps':temp_c})
+
+    return jsonify(temp)
+
+
+
+@users.route('/survey_filters', methods=['POST','GET'])
+def survey_filter():
+    tag = request.form['stat']
+    tag = tag.split(",")
+
+
+
+    
+
+
+  
+
+  
+    posts =  Survey.query.filter(Survey.status.in_(tag)).all()
+   
+    temp = []
+    for post in posts:
+
+        temp.append({'id': post.id})
+
+    return jsonify(temp)
+
+# @users.route("/administration/service_requests", methods=["POST","GET"])
+# def admin_service_requests():
+#     form = ServiceRequestForm() 
+#     ind = Individual_request.query.all()
+#     corp= Corporate_request.query.filter_by(status="pending").all()
+
+#     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+
+@users.route('/view_request', methods=['POST','GET'])
+def viewRequest():
+    id = request.form['id']
+
+    requests = Individual_request.query.filter_by(id=id)
+    comments = RequestComment.query.filter_by(contact_id=id)
+    comment_array = []
+    temp = []
+    for request in requests:
+        temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
+        'status':post.status,'firstname' :post.firstname,'lastname':post.lastname,'other':post.other,'email':post.email,'dob':post.dob,'phone':post.phone,'address':post.address,
+        'city':post.city,'country':post.country,'service':post.service})
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+# @users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
+# def updateRequest(requestId):
+#     request = Individual_request.query.get_or_404(requestId)
+#     form = ServiceRequestForm()
+#     if form.validate_on_submit:
+#         comment = RequestComment(comment=form.comment.data, contact_id=messageId)
+#         request.status = form.newstatus.data
+#         db.session.add(comment)
+#         db.session.commit()
+#         flash("Request Updated", "success")
+#         return redirect(url_for('users.admin_service_requests'))
+
+@users.route("/messages")
+
+def messages():
+    form= MessageComment()
+    messages = Contact.query.all()
+    return render_template("messages.html", form=form, messages=messages)
+
+
+@users.route('/view_message', methods=['POST','GET'])
+def viewMessage():
+    id = request.form['id']
+
+    messages = Contact.query.filter_by(id=id)
+    comments = Comment.query.filter_by(contact_id=id)
+    comment_array = []
+    temp = []
+    for message in messages:
+        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
+        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
+        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
+        'address_2':message.address_2,'city':message.city,'country':message.country,
+        'status':message.status,'timestamp':message.timestamp})
+    
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+@users.route('/messages/update/<int:messageId>', methods=['POST'])
+def updateMessage(messageId):
+    message = Contact.query.get_or_404(messageId)
+    form = MessageComment()
+    if form.validate_on_submit:
+        comment = Comment(comment=form.comment.data, contact_id=messageId)
+        message.status = form.my_status.data
+        db.session.add(comment)
+        db.session.commit()
+        flash("Message Updated", "success")
+        return redirect(url_for('users.messages'))
 

@@ -83,6 +83,8 @@ class Client(db.Model):
     key_management_id = db.Column(db.Integer  ,  db.ForeignKey('key_management.id'))
     current_auditor_id = db.Column(db.Integer ,  db.ForeignKey('current_auditor.id'))
     previous_auditor_id = db.Column(db.Integer ,  db.ForeignKey('previous_auditor.id'))
+    survey = db.relationship('Survey', backref='survey_client' , lazy=True)
+    comparator = db.relationship('Survey_comparator', backref='client' , lazy=True)
     
     
 
@@ -91,9 +93,9 @@ class Client(db.Model):
     # governance = db.relationship('Client_governace', backref='governance' , lazy=True)
     # service_request = db.relationship('Service_request', backref='request' , lazy=True)
     # auditor = db.relationship('Auditor', backref='audit' , lazy=True)
-    # survey = db.relationship('Survey', backref='survey_info' , lazy=True)
-    # benchmark = db.relationship('Benchmark_job', backref='benchmark' , lazy=True)
-    # comparator = db.relationship('Survey_comparator', backref='client' , lazy=True)
+    
+    benchmark = db.relationship('Benchmark_job', backref='benchmark' , lazy=True)
+    
     
 
 
@@ -295,9 +297,6 @@ class Service_request(db.Model):
 
 
 
-
-   
-
     def __repr__(self):
         return '<Service_request %r>' % self.id
 
@@ -306,7 +305,7 @@ class Individual_request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     date_of_request = db.Column(db.DateTime, default=datetime.utcnow )
     type_of_request = db.Column(db.String(100),default='individual')
-    status = db.Column(db.String(50),default='pending')
+    status = db.Column(db.String(50), default="pending")
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
     other = db.Column(db.String(100))
@@ -319,17 +318,17 @@ class Individual_request(db.Model):
     country = db.Column(db.String(100))
     service = db.Column(db.String(200))
     
-
-    
-
-
-
-
-   
+    def __init__(self, id,firstname, lastname,email,service,status):
+        self.id = id
+        self.firstname = firstname
+        self.lastname=lastname
+        self.email = email
+        self.service=service
+        self.status=status
 
     def __repr__(self):
-        return '<Individual_request %r>' % self.id
-
+     # return '<Individual_request %r>' % self.id
+        return f"{self.email}:{self.id}"
 
 class Corporate_request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -437,6 +436,14 @@ class Comment(db.Model):
     def __repr__(self):
         return '<Comment %r>' % self.id
 
+class RequestComment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(500))
+    service_id = db.Column(db.Integer,  db.ForeignKey('service_request.id'))
+
+    def __repr__(self):
+        return '<RequestComment %r>' % self.id
+
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(500))
@@ -456,6 +463,7 @@ class Contact(db.Model):
 
     def __repr__(self):
         return '<Contact %r>' % self.id
+
 
 
 class Previous_auditor(db.Model):
@@ -482,7 +490,7 @@ class Survey(db.Model):
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
     comparator = db.relationship('Survey_comparator', backref='comparator' , lazy=True)
-    benchmark = db.relationship('Benchmark_job', backref='benchmark' , lazy=True)
+    benchmark = db.relationship('Benchmark_job', backref='comp_benchmark' , lazy=True)
 
 
 
@@ -497,10 +505,11 @@ class Survey_comparator(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     survey_id = db.Column(db.Integer, db.ForeignKey('survey.id'))
     comparator_id = db.Column(db.Integer, db.ForeignKey('client.id'))
+    status = db.Column(db.String(100))
 
 
    
-    job = db.relationship('Comparator_job', backref='survey_comparator' , lazy=True)
+
 
 
     
@@ -544,6 +553,7 @@ class Main_benchmark_job(db.Model):
     minimum_years_of_experience = db.Column(db.Text)
     user = db.Column(db.Integer, db.ForeignKey('user.id'))
     timestamp = db.Column(db.DateTime , default=datetime.utcnow)
+    status = db.Column(db.String(100))
    
 
     allowance = db.relationship('Allowance', backref='main_benchmark_allowance' , lazy=True)
@@ -561,6 +571,9 @@ class Main_benchmark_job(db.Model):
     def __repr__(self):
         return '<Main_benchmark_job %r>' % self.id
 
+    def as_dict(self):
+        return {'job_title': self.job_title}
+
 
 
 
@@ -575,12 +588,20 @@ class Benchmark_job(db.Model):
     financial_responsibilities = db.Column(db.Text)
     technical_qualification = db.Column(db.Text)
     minimum_years_of_experience = db.Column(db.Text)
+    status = db.Column(db.String(100))
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
     survey_id = db.Column(db.Integer, db.ForeignKey('survey.id'))
 
+    benefit_id = db.Column(db.Integer, db.ForeignKey('benefit.id'))
+    incentive_id = db.Column(db.Integer, db.ForeignKey('incentive.id'))
+    allowance_id = db.Column(db.Integer, db.ForeignKey('allowance.id'))
+    base_salary_id = db.Column(db.Integer, db.ForeignKey('base_salary.id'))
+
+
     
-    comparator = db.relationship('Comparator_job', backref='benchmark_comparator' , lazy=True)
+
     
+ 
 
 
 
@@ -615,6 +636,7 @@ class Allowance(db.Model):
     
     
     main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
+    comp_benchmark = db.relationship('Benchmark_job', backref='comp_benchmark_allowance' , lazy=True)
     
 
 
@@ -632,6 +654,7 @@ class Base_salary(db.Model):
  
     
     main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
+    comp_benchmark = db.relationship('Benchmark_job', backref='comp_benchmark_base' , lazy=True)
     
 
 
@@ -661,6 +684,7 @@ class Incentive(db.Model):
 
     
     main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
+    comp_benchmark = db.relationship('Benchmark_job', backref='comp_benchmark_incentive' , lazy=True)
     
 
 
@@ -699,6 +723,7 @@ class Benefit(db.Model):
  
     
     main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
+    comp_benchmark = db.relationship('Benchmark_job', backref='comp_benchmark_benefit' , lazy=True)
     
 
 
@@ -721,9 +746,6 @@ class Comparator_job(db.Model):
  
   
 
-    survey_comparator_id = db.Column(db.Integer, db.ForeignKey('survey_comparator.id'))
-    benchmark_job_id = db.Column(db.Integer, db.ForeignKey('benchmark_job.id'))
-    
 
 
 
@@ -732,3 +754,5 @@ class Comparator_job(db.Model):
 
     def __repr__(self):
         return '<Comparator_job %r>' % self.id
+
+
