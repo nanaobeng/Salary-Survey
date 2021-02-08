@@ -737,7 +737,7 @@ class ServiceRequestForm(FlaskForm):
     ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval')], 
     validators=[DataRequired()])
     comment = TextAreaField('Comment', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Save Changes')
 
     
 

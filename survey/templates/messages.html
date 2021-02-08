@@ -195,6 +195,7 @@
     line-height: 25px;
     text-indent: -99999px;
   }
+
 </style>
 
 
@@ -229,6 +230,13 @@
                 <option value="closed">Closed</option>
               </select>
             </div>
+            <div class="form-group">
+              <label for="status">Date:</label>
+              <select class="form-control" id="status" onchange="filter('status')">
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
           </form>
         </th>
         <th>
@@ -255,7 +263,7 @@
             {{message.company_name}}
           </td>
           <td>{{message.timestamp.strftime('%-dth %b, %Y')}}</td>
-          {% if message.status=="Open" %}
+          {% if message.status==1 %}
           <td><span class="badge badge-success">Open</span></td>
           {% else %}
           <td><span class="badge badge-danger">Closed</span></td>
@@ -286,7 +294,7 @@
       <div id="body" class="modal-body">      
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save Changes</button>
+        {{form.submit(class="btn btn-primary")}}
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>
       </form>
@@ -334,7 +342,7 @@
             </p>
           {{form.comment.label(class="comment-label")}}
             {% if form.comment.errors %}
-              {{ form.comment(class="form-control form-control is-invalid")}}
+              {{ form.comment(class="form-control form-control is-invalid", cols="100", rows="1", onfocus="this.rows=5;")}}
               <div class="invalid-feedback">
                   {% for error in form.comment.errors %}
                   <span> {{ error}}</span>
@@ -345,7 +353,6 @@
               {% endif %}
   
           <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
-          {{form.submit}}
 
         </div>
 
@@ -393,7 +400,8 @@
       });
     });
   });
-  </script>
+</script>
+
 
 
 
