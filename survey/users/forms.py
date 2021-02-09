@@ -23,6 +23,9 @@ def area_query():
 def department_query():
     return Department.query
 
+def usn_query():
+    return User.query
+
 
 
 class ContactForm(FlaskForm):
@@ -46,7 +49,11 @@ class ContactForm(FlaskForm):
 
 
 
+class MyForm(FlaskForm):
+    country = StringField('Country', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "country"})
 
+class ComparatorForm(FlaskForm):
+    comp = StringField('Comp', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "comp"})
 
 class CorporateRequestForm(FlaskForm):
    
@@ -548,7 +555,7 @@ class AreaForm(FlaskForm):
 
 
 class ClientForm(FlaskForm):
-   
+    user_account = QuerySelectField(query_factory=usn_query,allow_blank=True,get_label='username')
     name = StringField('Registered Company Name')
     reg = StringField('Company Registration Number')
     financial_year_end = StringField('Financial Year End')
@@ -716,9 +723,11 @@ class SurveyForm(FlaskForm):
 class MessageComment(FlaskForm):
     comment = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
-    # status = BooleanField('Change Status')
-    my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
-    
+    status = BooleanField('Change Status')
+    # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
+
+# class ChangeMessageStatus(FlaskForm):
+
     
 
 class ServiceRequestForm(FlaskForm):
@@ -728,14 +737,14 @@ class ServiceRequestForm(FlaskForm):
     ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval')], 
     validators=[DataRequired()])
     comment = TextAreaField('Comment', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Save Changes')
 
     
 class RequestSearchForm(FlaskForm):
-    choices = [('Date', 'Date'),
-               ('Company', 'Company'),
+    choices = [('Request Date', 'Request Date'),
+               ('Name', 'Name'),
                ('Status', 'Status')]
-    select = SelectField('Search for request:', choices=choices)
+    select = SelectField('Filter:', choices=choices)
     search = StringField('')
 
 

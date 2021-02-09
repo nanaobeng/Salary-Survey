@@ -201,7 +201,7 @@
         <div class="col-md-3">
           <div class="card border-primary mb-4 bg-light">
           
-            <div class="card-body" onclick="viewRequests('{{i.id}}')" data-id="{{i.id}}" data-toggle="modal" href="#viewRequestModal">
+            <div class="card-body" onclick="viewIndRequests('{{i.id}}',this)" data-id="{{i.id}}" data-toggle="modal" href="#viewIndividualRequestModal">
               <a class="stretched-link"  >
                 
                 <h4 class="card-title">
@@ -231,25 +231,22 @@
       {% for i in corp %}
         
         <div class="col-md-3">
-          <div class="card" onclick="viewRequests('{{i.id}}', this)" data-id="{{i.id}}">
+          <div class="card" onclick="viewCorpRequests('{{i.id}}', this)" data-id="{{i.id}}">
             <!-- <img class="card-img-top"
               src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
               alt="Card image" style="width:100%"> -->
             <div class="card-body">
-              <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
+              <a class="stretched-link" data-toggle="modal" href="#viewCorporateRequestModal">
                 
                 <h4 class="card-title">
                   {{i.company_name}}
               </h4>
               </a>
-              <h6 class="card-subtitle text-muted">{{i.company_email}} {{i.id}}</h6>
+              <h6 class="card-subtitle text-muted">{{i.company_email}} </h6>
               <p class="card-text p-y-1">{{i.service}}</p>
               <span id='status' class="badge badge-success">{{i.status}}</span>
             </div>
-            <script>
-              var s = document.getElementById("status").innerHTML;
-              document.write(s);
-           </script>
+          
           </div>
         </div>
       {% endfor %}
@@ -267,12 +264,12 @@
 
 <!-- Individual Request Modal -->
 
-<div class="modal fade" id="viewRequestModal" role="dialog">
+<div class="modal fade" id="viewIndividualRequestModal" role="dialog">
   <div class="modal-dialog modal-lg">
 
     <!-- Modal content-->
     <div class="modal-content">
-      <form action="" method="POST" id="updateForm" onsubmit="updateRequest()">
+      <form action="" method="POST" id="updateForm" onsubmit="updateIndRequest()">
       <div id="head" class="modal-header d-block" style="height: auto">    
       </div>
       <div id="body" class="modal-body">
@@ -281,7 +278,6 @@
       </div>
     
    <div class="modal-footer form-group">
-     {{ form.submit(class="btn btn-success btn-max") }}
    </div>
      
   </form>
@@ -296,54 +292,15 @@
 
 <!--End of modal-->
 
-<!-- Corporate Request Modal -->
-
-<div class="modal fade" id="viewCorporateRequestModal" role="dialog">
-  <div class="modal-dialog modal-lg">
-
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="container" style="height: auto">
-        <form method="POST" action="./service_requests" id="updateForm" onsubmit="updateRequest()"  style="display: inline">
-            <br/>
-           
-            <fieldset class="form-group">
-      <div class="modal-header d-block">
-        
-      </div>
-      <div class="modal-body">
-        <!--Request Description-->
-        
-        <hr>
-   
-      </div>
-    </fieldset>
-   <div class="modal-footer form-group">
-      
-      <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
-     {{ form.submit(class="btn btn-success btn-max") }}
-   
-   </div>
-     
-    
-    </form>
-    </div>
-  </div>
-<!--End of modal content-->
-
-    </div>
-
-  </div>
-
-<!--End of modal-->
-
 <script>
-  function viewRequests(modal, element){
+  function viewIndRequests(modal, element){
     localStorage.setItem('requestId', $(element).attr('data-id'))
+    var id =$(element).attr('data-id')
+
     $.ajax({
-      url: '/view_request',
+      url: '/view_request/'+id,
       data: { 
-        id: modal
+       
       },
       type: 'POST',
       success: function(res){
@@ -370,9 +327,10 @@
         <div class="form-group">
             <p>Comments:
             <ol id="commentList" style="color: gray;">
-              
+              <li>Check your mail</li>
             </ol>
             </p>
+                     
           {{form.comment.label(class="comment-label")}}
             {% if form.comment.errors %}
               {{ form.comment(class="form-control form-control is-invalid")}}
@@ -385,8 +343,7 @@
               {{ form.comment(class="form-control form-control") }}
               {% endif %}
   
-          <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
-          {{form.submit}}
+         
 
         </div>
         <hr>
@@ -395,25 +352,11 @@
           
        <div class="form-group">
           
-          {{ form.newstatus.label(class="form-control-label") }}
+           
+        {{ form.newstatus }}
   
-                  {% if form.newstatus.errors %}
-                  {{ form.newstatus(class="form-control form-control is-invalid")}}
-                  <div class="invalid-feedback">
-                      {% for error in form.status.errors %}
-                      <span> {{ error}}</span>
-                      {% endfor %}
-                  </div>
-                  {% else %}
-                  {{ form.newstatus(class=" form-control") }}
-                  {% endif %}
-             
-          </div>
-          <div class="col-3 float-right">
-            <i class="far fa-envelope" style="margin-right: 5px;"></i><a
-              href="mailto:${res1.email}?subject=Thank You For Reaching Out To Us" style="color: inherit;">Send
-              Email</a>
-          </div>
+      </div>
+      {{form.submit}} 
         </div>
       `
         )
@@ -427,12 +370,137 @@
     })
   }
 
-  function updateRequest(){
+  function updateIndRequest(){
     var requestId = localStorage.getItem('requestId')
     document.getElementById('updateForm').action = 'service_requests/update/' + requestId
   }
 </script>
 
+<!-- Corporate Request Modal -->
+
+<div class="modal fade" id="viewCorporateRequestModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="container" style="height: auto">
+        <form method="POST" action="./service_requests" id="updateCorpForm" onsubmit="updateCorpRequest()"  style="display: inline">
+            <br/>
+           
+            <fieldset class="form-group">
+      <div id="corphead" class="modal-header d-block">
+        
+      </div>
+      <div id="corpbody" class="modal-body">
+        <!--Request Description-->
+        
+        <hr>
+   
+      </div>
+    </fieldset>
+   <div class="modal-footer form-group">
+      
+      <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+  
+   
+   </div>
+     
+    
+    </form>
+    </div>
+  </div>
+<!--End of modal content-->
+
+    </div>
+
+  </div>
+
+<!--End of modal-->
+
+<script>
+  function viewCorpRequests(modal, element){
+    localStorage.setItem('corprequestId', $(element).attr('data-id'))
+    var corpid =$(element).attr('data-id')
+
+    $.ajax({
+      url: '/view_corprequest/'+corpid,
+      data: { 
+       
+      },
+      type: 'POST',
+      success: function(result){
+        console.log(result)
+        res2 = result[0]
+       
+        $('#corphead').html(
+          `<div class="d-flex">
+          <h4 class="modal-title"> ${res2.company_name}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <h6 style="color: gray;" class="modal-title">${res2.company_email}</h5>`
+        )
+        $('#corpbody').html(
+          `<div>
+          
+          <p>Request Title: <span style="color: gray;">${res2.service} </span></p>
+            <p>Address:<span  style="color: gray;"> ${res2.postal_address}</span></p>
+        </div>
+        <hr>
+        <!--Change Status / Add Comments-->
+        <div class="form-group">
+            <p>Comments:
+            <ol id="commentList" style="color: gray;">
+              <li>Check your mail</li>
+            </ol>
+            </p>
+                     
+          {{form.comment.label(class="comment-label")}}
+            {% if form.comment.errors %}
+              {{ form.comment(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.comment.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.comment(class="form-control form-control") }}
+              {% endif %}
+  
+          
+          
+
+        </div>
+        <hr>
+        <!--Change Status-->
+        <div class="row">
+          
+       <div class="form-group">
+          
+          {{ form.newstatus }}
+  
+          </div>
+          {{form.submit}}
+        </div>
+       
+      `
+        )
+        for (var i=0; i<result[1].comments.length; i++){
+          $('#commentList').append('<li>' + result[1].comments[i] + '</li>')
+        }
+      },
+      error: function(error){
+        console.log(error)
+      }
+    })
+  }
+
+  function updateCorpRequest(){
+    var requestId = localStorage.getItem('corprequestId')
+    document.getElementById('updateCorpForm').action = 'service_requests/corpupdate/' + requestId
+  }
+</script>
 
 
 <script>
@@ -492,35 +560,5 @@
 </script>
 
 
-<script>
-
-  
-  // Create a new list item when clicking on the "Add" button
-  function newElement() {
-    var li = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    if (inputValue === '') {
-      alert("You must write something!");
-    } else {
-      document.getElementById("myUL").appendChild(li);
-    }
-    document.getElementById("myInput").value = "";
-  
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
-  
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        var div = this.parentElement;
-        div.style.display = "none";
-      }
-    }
-  }
-  </script>
   
 {% endblock content %}

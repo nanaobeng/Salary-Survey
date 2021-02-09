@@ -773,23 +773,24 @@ def benchmark_home():
 @users.route("/administration/service_requests", methods=["POST","GET"])
 def admin_service_requests():
     form = ServiceRequestForm() 
-    ind = Individual_request.query.all()
+    ind = Individual_request.query.filter_by(status="pending").all()
     corp= Corporate_request.query.filter_by(status="pending").all()
 
     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
 
-@users.route('/view_request', methods=['POST','GET'])
-def viewRequest():
-    id = request.form['id']
-
-    requests = Individual_request.query.filter_by(id=id)
-    comments = RequestComment.query.filter_by(contact_id=id)
+@users.route('/view_request/<int:id>', methods=['POST','GET'])
+def viewIndRequest(id):
+    
+    
+    request = Individual_request.query.get_or_404(id)
+    comments = RequestComment.query.filter_by(service_id=id)
     comment_array = []
     temp = []
-    for request in requests:
-        temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
-        'status':post.status,'firstname' :post.firstname,'lastname':post.lastname,'other':post.other,'email':post.email,'dob':post.dob,'phone':post.phone,'address':post.address,
-        'city':post.city,'country':post.country,'service':post.service})
+  
+    temp.append({'id': request.id, 'date_of_request': request.date_of_request, 'type_of_request': request.type_of_request,
+    'status': request.status,'firstname' : request.firstname,'lastname': request.lastname,'email': request.email,'dob': request.dob,'phone': request.phone,
+    'address': request.address,'city': request.city,'country': request.country,'service': request.service})
+    
     for comment in comments:
         comment_array.append(comment.comment)
 
@@ -797,20 +798,74 @@ def viewRequest():
 
     return jsonify(temp)
 
+
 @users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
 def updateRequest(requestId):
     request = Individual_request.query.get_or_404(requestId)
     form = ServiceRequestForm()
     if form.validate_on_submit:
-        comment = RequestComment(comment=form.comment.data, contact_id=messageId)
+        comment = RequestComment(comment=form.comment.data, service_id=requestId)
         request.status = form.newstatus.data
         db.session.add(comment)
         db.session.commit()
         flash("Request Updated", "success")
         return redirect(url_for('users.admin_service_requests'))
 
-@users.route("/messages")
+@users.route('/view_corprequest/<int:id>', methods=['POST','GET'])
+def viewCorpRequest(id):
+    
+    post = Corporate_request.query.get_or_404(id)
+    comments = RequestComment.query.filter_by(service_id=id)
+    comment_array = []
+    temp = []
+  
+    temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
+    'status':post.status,'company_name' :post.company_name,'sector':post.sector,'industry':post.industry,'area':post.area,'financial_year_end':post.financial_year_end,'company_type':post.company_type,
+   'postal_address' : post.postal_address,'company_email':post.company_email,'postal_address':post.postal_address,'street_address':post.street_address,'reg_number':post.reg_number,'vat_number':post.vat_number,'tel':post.tel,
+    'website':post.website,'date_inc':post.date_inc,'country_inc':post.country_inc,'chair_firstname':post.chair_firstname,'chair_lastname':post.chair_lastname,
+   'chair_other':post.chair_other,'chair_nation':post.chair_nation,'chair_email':post.chair_email,'chair_phone':post.chair_phone,'ceo_firstname': post.ceo_firstname,
+   'ceo_lastname':post.ceo_lastname,'ceo_other':post.ceo_other,'ceo_nation':post.ceo_nation, 'ceo_email':post.ceo_email,'ceo_phone':post.ceo_phone,
+   'other_board_firstname':post.other_board_firstname,'other_board_lastname':post.other_board_lastname,'other_board_other':post.other_board_other,
+   'other_board_nation':post.other_board_nation,'other_board_email':post.other_board_email,'other_board_phone':post.other_board_phone,'key_firstname':post.key_firstname,
+   'key_lastname':post.key_lastname,'key_other':post.key_other,'key_nation':post.key_nation,'key_email':post.key_email,'key_phone':post.key_phone,
+    'prev_name':post.prev_name,'prev_address':post.prev_address,'prev_city':post.prev_city,'prev_country':post.prev_country,'current_name':post.current_name 
+    ,'current_address':post. current_address,'current_city':post.current_city  ,'current_country':post.current_country,'sec_name':post.sec_name,'sec_address':post.sec_address
+    ,'sec_city':post. sec_city,'sec_country':post.sec_country,'contact_firstname ':post.contact_firstname,'contact_lastname':post. contact_lastname 
+    ,'contact_other':post. contact_other,'contact_nation':post. contact_nation,'contact_email ':post.contact_email,'contact_dob ':post.contact_dob,'contact_phone':post.contact_phone,
+    'brief_history ':post.brief_history,'service':post.service,  })
+     
+    for comment in comments:
+        comment_array.append(comment.comment)
 
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+@users.route('/administration/service_requests/corpupdate/<int:corprequestId>', methods=['POST'])
+def updateCorpRequest(corprequestId):
+    request = Corporate_request.query.get_or_404(corprequestId)
+    form = ServiceRequestForm()
+    if form.validate_on_submit:
+        comment = RequestComment(comment=form.comment.data, service_id=corprequestId)
+        request.status = form.newstatus.data
+        db.session.add(comment)
+        db.session.commit()
+        flash("Request Updated", "success")
+        return redirect(url_for('users.admin_service_requests'))
+
+    
+     
+    
+    
+     
+     
+    
+     
+     
+   
+    
+
+@users.route("/messages")
 def messages():
     form=MessageComment()
     messages = Contact.query.all()
