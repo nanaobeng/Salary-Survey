@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json
 from survey import db,bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm
+from survey.users.forms import *
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -157,6 +157,47 @@ def create_client():
 @users.route("/create_contact")
 def create_contact():
     return render_template("contact_person.html")
+
+@users.route("/messages")
+def messages():
+    form = MessageComment()
+    messages = Contact.query.all()
+    return render_template("messages.html", messages=messages, form=form)
+
+@users.route('/view_message', methods=['POST','GET'])
+def viewMessage():
+    id = request.form['id']
+
+    messages = Contact.query.filter_by(id=id)
+    comments = Comment.query.filter_by(contact_id=id)
+    comment_array = []
+    temp = []
+    for message in messages:
+        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
+        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
+        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
+        'address_2':message.address_2,'city':message.city,'country':message.country,
+        'status':message.status,'timestamp':message.timestamp})
+    
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+@users.route('/messages/update/<int:messageId>', methods=['POST'])
+def updateMessage(messageId):
+    message = Contact.query.get_or_404(messageId)
+    form = MessageComment()
+    if form.validate_on_submit:
+        comment = Comment(comment=form.comment.data, contact_id=messageId)
+        message.status = form.my_status.data
+        db.session.add(comment)
+        db.session.commit()
+        flash("Message Updated", "success")
+        return redirect(url_for('users.messages'))
+
 
 @users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
@@ -483,7 +524,11 @@ def admin_clients():
 
 @users.route("/administration/service_requests")
 def admin_service_requests():
-    return render_template("new_requests.html")
+
+    ind = Individual_request.query.all()
+    corp= Corporate_request.query.all()
+
+    return render_template("new_requests.html", ind=ind, corp=corp)
 
 
 @users.route("/administration/reports")
@@ -511,6 +556,60 @@ def admin_users():
         Users = User.query.paginate(page=page, per_page=rows_per_page)
     
     return render_template("admin_users.html", Users=Users)
+
+### Begining of block working on admin viewing client benchmark jobs and approving
+
+# Route for admin to view all benchmark jobs from clients
+@users.route("/view_client_benchmark_jobs")
+def admin_view_client_benchmark_jobs():
+    benchmark_jobs = Main_benchmark_job.query.all()
+    return render_template("admin_view_client_benchmark_jobs.html", benchmark_jobs = benchmark_jobs)
+
+# Route to search for client based of search input
+@users.route("/client/search", methods =['POST'])
+def search_client():
+    search = request.form['search']
+    clients = Client.query.filter(Client.company_name.like(('%'+search+'%')))
+    new_clients =[]
+    for client in clients:
+        new_clients.append({'id':client.id,'name':client.company_name})
+    return jsonify(new_clients)
+
+# Route to get job details and send back to ajax function to be displayed in modal
+@users.route("/client_benchmark_job/view", methods=['POST'])
+def view_client_benchmark_job():
+    id = request.form['id']
+    benchmark_job = Main_benchmark_job.query.get_or_404(id)
+    # benchmark_job.grade = 'Grade1'
+    # benchmark_job.department_id = 1
+    # benchmark_job.reporting_relationship = 'Reportinng to HR Manager'
+    # benchmark_job.job_description = 'Someone assisting HR manager in their work'
+    # benchmark_job.duties_and_responsibility = 'Responsible for all staff HR issues'
+    # benchmark_job.technical_qualification = 'First degree in any course of study'
+    # benchmark_job.minimum_years_of_experience = '2 years working in similar role'
+    # db.session.commit()
+    comments = []
+    for comment in benchmark_job.comment:
+        comments.append(comment.comment)
+    new_benchmark_job = {
+        'id':benchmark_job.id, 
+        'job_title':benchmark_job.job_title,
+        'grade':benchmark_job.grade,
+        'department':benchmark_job.main_department.department,
+        'reporting_relationship':benchmark_job.reporting_relationship,
+        'job_description':benchmark_job.job_description,
+        'key_duties':benchmark_job.duties_and_responsibility,
+        'financial_responsibilies':benchmark_job.financial_responsibilities,
+        'technical_qualifications':benchmark_job.technical_qualification,
+        'years_of_experience':benchmark_job.minimum_years_of_experience,
+        'comments_': comments
+        }
+    return jsonify(new_benchmark_job)
+
+
+
+
+### End of block working on admin viewing client benchmark jobs and approving
 
 @users.route("/administration/config/benchmark_jobs")
 def admin_benchmark_jobs():

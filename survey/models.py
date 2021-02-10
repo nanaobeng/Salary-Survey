@@ -432,6 +432,13 @@ class Company_secretary(db.Model):
     def __repr__(self):
         return '<Current_Auditor %r>' % self.id
 
+class Comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String(500))
+    contact_id = db.Column(db.Integer,  db.ForeignKey('contact.id'))
+
+    def __repr__(self):
+        return '<Comment %r>' % self.id
 
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -446,8 +453,9 @@ class Contact(db.Model):
     address_2 = db.Column(db.String(300))
     city = db.Column(db.String(100))
     country = db.Column(db.String(100))
-    
-
+    comment = db.relationship('Comment', backref='new_comment' , lazy=True)
+    status = db.Column(db.String(10), default='Open')
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
 
     def __repr__(self):
         return '<Contact %r>' % self.id
@@ -518,9 +526,6 @@ class Department(db.Model):
 
 
 
-
-   
-
     def __repr__(self):
         return '<Department %r>' % self.id
 
@@ -540,24 +545,24 @@ class Main_benchmark_job(db.Model):
     user = db.Column(db.Integer, db.ForeignKey('user.id'))
     timestamp = db.Column(db.DateTime , default=datetime.utcnow)
    
-
+    comment = db.relationship('Main_benchmark_job_comment', backref='main_benchmark_comment' , lazy=True)
     allowance = db.relationship('Allowance', backref='main_benchmark_allowance' , lazy=True)
     benefit = db.relationship('Benefit', backref='main_benchmark_benefit' , lazy=True)
     incentive = db.relationship('Incentive', backref='main_benchmark_incentive' , lazy=True)
     base = db.relationship('Base_salary', backref='main_benchmark_base' , lazy=True)
 
-    
-
-
-
-
-   
 
     def __repr__(self):
         return '<Main_benchmark_job %r>' % self.id
 
+class Main_benchmark_job_comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.Text)
+    main_benchmark_job_id = db.Column(db.Integer, db.ForeignKey('main_benchmark_job.id'))
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
 
-
+    def __repr__(self):
+        return '<Main_benchmark_job_comment %r>' % self.id
 
 class Benchmark_job(db.Model):
     id = db.Column(db.Integer, primary_key=True)

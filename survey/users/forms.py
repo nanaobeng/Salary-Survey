@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField,FloatField,IntegerField,RadioField,FileField,TextField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from survey.models import User
+from survey.models import *
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from flask_wtf import FlaskForm
@@ -711,7 +711,14 @@ class SurveyForm(FlaskForm):
     
 
    
-    
+class MessageComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Submit')
+    # status = BooleanField('Change Status')
+    my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
+
+# class ChangeMessageStatus(FlaskForm):
+
     
 
 

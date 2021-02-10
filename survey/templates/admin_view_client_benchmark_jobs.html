@@ -1,0 +1,458 @@
+
+    {% extends "new_admin_layout.html" %}
+
+
+   
+    
+    {% block content %}
+
+    <style>
+      #hero {
+  width: 100%;
+  height: 15vh;
+  background: url("../static/img/home.jpg") top center;
+  background-size: cover;
+  position: relative;
+  }
+  
+  #hero:before {
+  content: "";
+  background: rgba(20, 44, 9, 0.7);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  }
+  
+  #hero .container {
+  text-align: center;
+  padding-top: 50px;
+  }
+  
+  @media (max-width: 992px) {
+  #hero .container {
+    padding-top: 0;
+  }
+  }
+  
+  #hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+  }
+  
+  #hero h2 {
+  color: #eee;
+  margin: 15px 0 0 0;
+  font-size: 22px;
+  }
+  
+  #hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 9px 35px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin-top: 40px;
+  border: 2px solid #ffc107;
+  color: #fff;
+  }
+  
+  #hero .btn-get-started:hover {
+  background: #ffc107;
+  }
+  
+  @media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+  }
+  
+  @media (max-width: 768px) {
+  #hero {
+    height: 100vh;
+  }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  }
+  .job-card:hover{
+      border: solid rgba(20, 44, 9, 0.7) ;
+      box-shadow: 0 0 10px #9ecaed;
+      cursor: pointer;
+  }
+  </style>
+    <div class="row">
+      <div class="col-12">
+        <section id="hero" class="d-flex align-items-center justify-content-center">
+            <div class="container position-relative">
+         <h2><b style="font-size: 40px;">Client Benchmark Jobs </b></h2>
+            
+            </div>
+          </section>
+      </div>
+  </div>
+  <div class="p-4" style="background-color:rgb(245, 243, 243)">
+    <div class="card">
+    <div class="row p-4 pb-0">
+      <div class="col-12 pb-4 " style="color:grey">
+        Custom Filters <i class="icofont-filter"></i>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="sel1" style="color:grey">Status:</label>
+          <select class="form-control" id="status" onchange="filter('status')">
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+           
+          </select>
+        </div>
+      </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="sel1" style="color:grey">Client:</label>
+            <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+            <datalist id="clients">
+                
+            </datalist>
+          </div>
+      </div>
+
+
+
+    <div class="col-3">
+      <div class="form-group">
+        <label for="survey" style="color:grey">Survey:</label>
+        <select class="form-control" id="survey" onchange="filter('survey')">
+          
+         
+         
+        </select>
+      </div>
+  </div>
+
+
+    </div>
+    <div class="row pl-4 pr-4 ">
+      <div class="col-12 pb-2">
+        <div class="row filter_box">
+
+        </div>
+      </div>
+     
+      <div class="col-12" >
+       <a href="#" style="color:grey" onclick="clear_filter()" > Discard Filters</a>
+      </div>
+      
+    </div>
+  <div class="row p-4 pt-0" >
+      {% for benchmark_job in benchmark_jobs %}
+      <div class="col-4 p-4">
+
+        <div class="card p-4 parent job-card" id="{{benchmark_job.id}}" onclick="display_job(this)" style="height:160px">
+            <div class="row ">
+               
+                <div class="col-12 ">
+              <div class="row">
+                <div class="col-10">
+                  <h5><b>{{benchmark_job.job_title}}</b></h5>
+                </div>
+                <div class="col-2">
+                  <i class="icofont-ui-note" style="color:grey;cursor:pointer" data-toggle="modal" data-target="#JobModal"></i>
+                </div>
+               
+              </div>
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-12" style="color:grey;font-size:12px">
+                    <div class="row">
+                      <div class="col-5">
+                        Client
+                      </div>
+                      <div class="col-1">
+                        :
+                      </div>
+                      <div class="col-6">
+                        ABC Mining Company
+                      </div>
+                    </div>
+                 
+                  </div>
+                  <div class="col-12" style="color:grey;font-size:12px">
+                    <div class="row">
+                      <div class="col-5">
+                        Department 
+                      </div>
+                      <div class="col-1">
+                        :
+                      </div>
+                      <div class="col-6">
+                        Metals and Mineral
+                      </div>
+                    </div>
+          
+                  </div>
+                  <div class="col-12" style="color:grey;font-size:12px">
+                    <div class="row">
+                      <div class="col-5">
+                      Grade
+                      </div>
+                      <div class="col-1">
+                        :
+                      </div>
+                      <div class="col-6">
+                        
+                      </div>
+                    </div>
+                      
+                  </div>
+                </div>
+        
+                <div class="">
+                  <div class="row mt-2">
+                    <div class="col-6" style="color:grey;font-size:12px">
+                        Submitted on :     2/11/2020
+                    </div>
+                    <div class="col-6" >
+                    <h6 class="float-right"><span class="badge badge-success">Completed</span></h6>
+                 
+                    </div>
+                   
+                  </div>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+
+</div>
+  
+</div>
+  </div>
+</div>
+
+
+
+ 
+
+    
+
+</div>
+
+
+<!-- The Modal -->
+<div class="modal" id="JobModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id="job_title"></h4>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <div class="row">
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Job Grade:  </b> <span id="grade"></span>
+          </div>
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Department: </b> <span id="department"></span>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Reporting Relationship </b>
+            <br>
+            <span id="reporting_relationship"></span>
+          </div>
+         
+        </div>
+        <hr>
+        <div class="row">
+            <b>Generic Job Description:</b><br>
+            <span id="job_description"></span>
+        </div>
+        <hr>
+        <div class="row">
+            <b>Key Duties & Responsibilities:</b><br>
+            <span id="key_duties"></span>
+        </div>
+        <hr>
+        <div class="row">
+            <b>Financial Responsibilities:</b><br>
+            <span id="financial_responsibilities"></span>
+        </div>
+        <hr>
+        <div class="row">
+            <b>Technical Qualifications:</b><br>
+            <span id="technical_qualifications"></span>
+        </div>
+        <hr>
+        <div class="row">
+            <b>Years of Experience:</b><br>
+            <span id="years_of_experience"></span>
+        </div>
+        <hr>
+        <div class="row">
+            <b>Comments:</b>
+            <ul id="comments" class="pr-4 ml-4"></ul>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="gorm-group">
+                <label class="form-label" for="comment">Add Comment</label>
+                <textarea class="form-control" name="comment" id="comment" rows="3"></textarea>
+            </div>
+        </div>
+
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal">Approve</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal">Reject</button>
+      </div>
+      
+    </div>
+  </div>
+</div>
+<script>
+  function filter(view){
+if(view == 'status'){
+
+  var unique = ($('#status').val()).trim().replace(/\s/g,'')
+
+  if($("#" + unique).length == 0 ){
+ $('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-info">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+}
+  }
+
+  if(view == 'client'){
+
+var unique = ($('#client').val()).trim().replace(/\s/g,'')
+
+datalist = document.getElementById('client').list
+optionFound = false
+for (let i = 0; i < datalist.options.length; i++) {
+    const element = datalist.options[i];
+    if ($('#client').val() == element.value) {
+        optionFound = true
+        break
+    }
+    console.log(element);
+}
+if(optionFound){
+
+if($("#" + unique).length == 0 ){
+
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-warning">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+}
+}
+  }
+
+if(view == 'industry'){
+
+var unique = ($('#industry').val()).trim().replace(/\s/g,'')
+
+if($("#" + unique).length == 0 ){
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-danger">'+$('#industry').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+}
+}
+
+if(view == 's_period'){
+
+var unique = ($('#s_period').val())
+unique = unique.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
+unique = "a"+unique
+
+if($("#" + unique).length == 0 ){
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-success">'+$('#s_period').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+}
+}
+  }
+</script>
+
+<script>
+  function remove_filter(id){
+   
+    $(id).remove()
+  }
+</script>
+
+<script>
+  function clear_filter(){
+    $('.filter_box').empty()
+  }
+
+//Search for client
+  $('#client').keyup(function() {
+    
+    $.ajax({
+      url: '/client/search',
+      data: {
+          search: $(this).val()
+      },
+      type: 'POST',
+      success: function(res) {
+          res.forEach(element => {
+            //console.log(element.name);
+            $('#clients').find('option').remove()
+            $('#clients').append('<option value="'+element.name+'" data-id="'+element.id+'"></option>')
+          });
+          
+          //console.log(res);
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+  })
+
+  //display job_details in modal
+  function display_job(element){
+    var id =element.id
+
+    $.ajax({
+      url: '/client_benchmark_job/view',
+      data: {
+          id: id
+      },
+      type: 'POST',
+      success: function(res) {
+        for (const [key, value] of Object.entries(res)) {
+            const item = '#'+`${key}`
+            console.log(item);
+            $('#'+`${key}`).text(`${value}`)
+        }
+
+        //loop through comments and display on list
+        res.comments_.forEach(element => {
+            $('#comments').append('<li>'+element+'</li>')
+        });
+        $('#JobModal').modal('show')
+          console.log(res);
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+
+  }
+</script>
+
+    {% endblock content %}
