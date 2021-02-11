@@ -215,7 +215,7 @@
     <table class="table table-hover">
       <thead style="background-color: rgb(78, 110, 62);">
         <th id="searchbar">
-          <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
+          <input type="search" id="search_input" placeholder="Search...">
           <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
         </th>
         <th>
@@ -224,6 +224,13 @@
           <form class="dropdown-menu p-2">
             <div class="form-group">
               <label for="status">Status:</label>
+              <select class="form-control" id="status" onchange="filter('status')">
+                <option value="open">Open</option>
+                <option value="closed">Closed</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="status">Date:</label>
               <select class="form-control" id="status" onchange="filter('status')">
                 <option value="open">Open</option>
                 <option value="closed">Closed</option>
@@ -245,23 +252,24 @@
           </form>
         </th>
       </thead>
-      
-      <tbody>
+
+      <tbody id="messages_list">
         {% if messages %}
-          {% for message in messages %}
-        <tr class="table-row" onclick="viewMessages('{{message.id}}', this)" data-id="{{message.id}}" data-toggle="modal" href="#viewRequestModal">
+        {% for message in messages %}
+        <tr class="table-row" onclick="viewMessages('{{message.id}}', this)" data-id="{{message.id}}"
+          data-toggle="modal" href="#viewRequestModal">
           <td>
             <strong class="message-heading">Message from {{message.firstname}} {{message.lastname}}</strong>
             {{message.company_name}}
           </td>
           <td>{{message.timestamp.strftime('%-dth %b, %Y')}}</td>
-          {% if message.status=="Open" %}
-          <td><span class="badge badge-success">{{message.status}}</span></td>
+          {% if message.status == "False" %}
+          <td><span class="badge badge-success">Open</span></td>
           {% else %}
-          <td><span class="badge badge-danger">{{message.status}}</span></td>
+          <td><span class="badge badge-danger">Closed</span></td>
           {% endif %}
         </tr>
-          {% endfor %}
+        {% endfor %}
         {% else %}
         <tr class="table-row">
           <td colspan="3" style="text-align:center;">
@@ -281,14 +289,14 @@
     <!-- Modal content-->
     <div class="modal-content">
       <form action="" method="POST" id="updateForm" onsubmit="updateMessage()">
-      <div id="head" class="modal-header d-block">    
-      </div>
-      <div id="body" class="modal-body">      
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-primary">Save Changes</button>
-        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
-      </div>
+        <div id="head" class="modal-header d-block">
+        </div>
+        <div id="body" class="modal-body">
+        </div>
+        <div class="modal-footer">
+          {{form.submit(class="btn btn-primary")}}
+          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+        </div>
       </form>
     </div>
 
@@ -296,15 +304,15 @@
 </div>
 
 <script>
-  function viewMessages(modal, element){
-    localStorage.setItem('messageId', $(element).attr('data-id')) 
+  function viewMessages(modal, element) {
+    localStorage.setItem('messageId', $(element).attr('data-id'))
     $.ajax({
       url: '/view_message',
-      data: { 
+      data: {
         id: modal
       },
       type: 'POST',
-      success: function(res){
+      success: function (res) {
         console.log(res)
         res1 = res[0]
         $('#head').html(
@@ -334,7 +342,7 @@
             </p>
           {{form.comment.label(class="comment-label")}}
             {% if form.comment.errors %}
-              {{ form.comment(class="form-control form-control is-invalid")}}
+              {{ form.comment(class="form-control form-control is-invalid", cols="100", rows="1", onfocus="this.rows=5;")}}
               <div class="invalid-feedback">
                   {% for error in form.comment.errors %}
                   <span> {{ error}}</span>
@@ -345,7 +353,6 @@
               {% endif %}
   
           <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
-          {{form.submit}}
 
         </div>
 
@@ -353,10 +360,9 @@
         <!--Change Status-->
         <div class="row">
           <div class="col-9">
-            {{form.my_status}}
             <span style="font-size:smaller; color: rgb(71, 70, 70);">Open</span>
             <label class="switch">
-        
+              {{form.status}}
               <span class="slider round"></span>
             </label>
             <span style="font-size:smaller; color: rgb(71, 70, 70);">Closed</span>
@@ -369,21 +375,33 @@
         </div>
       `
         )
-        for (var i=0; i<res[1].comments.length; i++){
+        for (var i = 0; i < res[1].comments.length; i++) {
           $('#commentList').append('<li>' + res[1].comments[i] + '</li>')
         }
       },
-      error: function(error){
+      error: function (error) {
         console.log(error)
       }
     })
   }
 
-  function updateMessage(){
+  function updateMessage() {
     var messageId = localStorage.getItem('messageId')
     document.getElementById('updateForm').action = '/messages/update/' + messageId
   }
 </script>
+
+<script>
+  $(document).ready(function () {
+    $("#search_input").on("keyup", function () {
+      var value = $(this).val().toLowerCase();
+      $("#messages_list tr").filter(function () {
+        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      });
+    });
+  });
+</script>
+
 
 
 

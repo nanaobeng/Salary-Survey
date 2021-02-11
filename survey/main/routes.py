@@ -50,7 +50,7 @@ def individual_requests():
     form = IndividualRequestForm()
     if form.validate_on_submit():
         
-        indv = Individual_request(firstname=form.firstname.data,lastname=form.lastname.data,other=form.other.data,email=form.email.data,dob=form.dob.data,phone=form.phone.data,city=form.city.data,country=form.country.data,service=form.service.data,address=form.address.data)
+        indv = Individual_request(firstname=form.firstname.data,lastname=form.lastname.data,email=form.email.data,dob=form.dob.data,phone=form.phone.data,city=form.city.data,country=form.country.data,service=form.service.data,address=form.address.data)
         db.session.add(indv)
         db.session.commit()
         flash('Thank you for the request. You will be contacted by a Deloitte Professional','success')

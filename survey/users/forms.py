@@ -2,7 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField,FloatField,IntegerField,RadioField,FileField,TextField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
-from survey.models import *
+from survey.models import User
 from wtforms_sqlalchemy.fields import QuerySelectField
 
 from flask_wtf import FlaskForm
@@ -22,6 +22,9 @@ def area_query():
 
 def department_query():
     return Department.query
+
+def usn_query():
+    return User.query
 
 
 
@@ -46,7 +49,11 @@ class ContactForm(FlaskForm):
 
 
 
+class MyForm(FlaskForm):
+    country = StringField('Country', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "country"})
 
+class ComparatorForm(FlaskForm):
+    comp = StringField('Comp', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "comp"})
 
 class CorporateRequestForm(FlaskForm):
    
@@ -138,7 +145,7 @@ class CorporateRequestForm(FlaskForm):
 class IndividualRequestForm(FlaskForm):
     firstname = StringField('Firstname', validators=[DataRequired()])
     lastname = StringField('Lastname', validators=[DataRequired()])
-    other = StringField('Other Name', validators=[DataRequired()])
+    other = StringField('Other Name')
 
     email = StringField('Email', validators=[DataRequired()])
     dob = DateField('Date of Birth')
@@ -152,9 +159,6 @@ class IndividualRequestForm(FlaskForm):
         choices=[('industry_reports', 'Industry Reports'),('sub_industry_reports', 'Sub-Industry Reports'),('job_specific_reports', 'Job Specific Reports')] , validators=[DataRequired()]
     )
     submit = SubmitField('Submit')
-
-
-
 
 
 
@@ -545,7 +549,7 @@ class AreaForm(FlaskForm):
 
 
 class ClientForm(FlaskForm):
-   
+    user_account = QuerySelectField(query_factory=usn_query,allow_blank=True,get_label='username')
     name = StringField('Registered Company Name')
     reg = StringField('Company Registration Number')
     financial_year_end = StringField('Financial Year End')
@@ -710,20 +714,32 @@ class SurveyForm(FlaskForm):
     misc = FloatField('Miscellaneous')
     
 
-   
 class MessageComment(FlaskForm):
     comment = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
-    # status = BooleanField('Change Status')
-    my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
+    status = BooleanField('Change Status', default=False)
+    # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
 
 # class ChangeMessageStatus(FlaskForm):
 
     
 
+class ServiceRequestForm(FlaskForm):
+    
+    newstatus = RadioField(u'Update Request Status',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
+    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
+    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval')], 
+    validators=[DataRequired()])
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Save Changes')
 
     
-
+class RequestSearchForm(FlaskForm):
+    choices = [('Request Date', 'Request Date'),
+               ('Name', 'Name'),
+               ('Status', 'Status')]
+    select = SelectField('Filter:', choices=choices)
+    search = StringField('')
 
 
 #     submit = SubmitField('Submit')
