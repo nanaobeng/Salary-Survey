@@ -547,7 +547,7 @@ class Main_benchmark_job(db.Model):
     minimum_years_of_experience = db.Column(db.Text)
     user = db.Column(db.Integer, db.ForeignKey('user.id'))
     timestamp = db.Column(db.DateTime , default=datetime.utcnow)
-    status = db.Column(db.String(100))
+    status = db.Column(db.String(50))
    
     comment = db.relationship('Main_benchmark_job_comment', backref='main_benchmark_comment' , lazy=True)
     allowance = db.relationship('Allowance', backref='main_benchmark_allowance' , lazy=True)
