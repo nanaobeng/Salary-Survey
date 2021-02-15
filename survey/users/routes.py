@@ -7,6 +7,8 @@ from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 from datetime import datetime
+from sqlalchemy import or_
+
 users = Blueprint('users',__name__)
 
 
@@ -161,7 +163,7 @@ def create_contact():
 @users.route("/messages")
 def messages():
     form = MessageComment()
-    messages = Contact.query.all()
+    messages = Contact.query.filter_by(status="False").all()
     return render_template("messages.html", messages=messages, form=form)
 
 @users.route('/view_message', methods=['POST','GET'])
@@ -1081,3 +1083,24 @@ def viewRequest():
 #         flash("Request Updated", "success")
 #         return redirect(url_for('users.admin_service_requests'))
 
+@users.route('/messages/search', methods = ['POST'])
+def searchMessages():
+    search = request.form['id']
+    if (len(search) == 0):
+        messages = Contact.query.filter_by(status="False")
+        new_messages = []
+        for message in messages:
+            new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
+            'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+
+        return jsonify(new_messages)
+    
+    messages = Contact.query.filter(or_(Contact.firstname.like(('%' + search + '%')),
+    Contact.lastname.like(('%' + search + '%')),
+    Contact.company.like(('%' + search + '%'))))
+    new_messages = []
+    for message in messages:
+        new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
+        'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+
+    return jsonify(new_messages)

@@ -721,7 +721,7 @@ class SurveyForm(FlaskForm):
     
 
 class MessageComment(FlaskForm):
-    comment = TextAreaField('Comment', validators=[DataRequired()])
+    comment = TextAreaField('Add New Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
     status = BooleanField('Change Status', default=False)
     # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
