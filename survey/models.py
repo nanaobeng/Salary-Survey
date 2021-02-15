@@ -308,7 +308,7 @@ class Individual_request(db.Model):
     status = db.Column(db.String(50), default="pending")
     firstname = db.Column(db.String(100))
     lastname = db.Column(db.String(100))
-    other = db.Column(db.String(100))
+    #other = db.Column(db.String(100))
     
     email = db.Column(db.String(100))
     dob = db.Column(db.String(100))
@@ -318,17 +318,8 @@ class Individual_request(db.Model):
     country = db.Column(db.String(100))
     service = db.Column(db.String(200))
     
-    def __init__(self, id,firstname, lastname,email,service,status):
-        self.id = id
-        self.firstname = firstname
-        self.lastname=lastname
-        self.email = email
-        self.service=service
-        self.status=status
-
     def __repr__(self):
-     # return '<Individual_request %r>' % self.id
-        return f"{self.email}:{self.id}"
+        return '<Individual_request %r>' % self.id
 
 class Corporate_request(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -443,6 +434,9 @@ class RequestComment(db.Model):
 
     def __repr__(self):
         return '<RequestComment %r>' % self.id
+
+
+
 
 class Contact(db.Model):
     id = db.Column(db.Integer, primary_key=True)

@@ -264,8 +264,6 @@
         <hr/>
           </div>
 
-       
-
           <div class="col-12 p-4">
            
             <div class="form-group">
@@ -517,7 +515,7 @@
           </div>
           </div>
 
-          <div class="col-6 p-4">
+          <div class="col-4 p-4">
             
             <div class="form-group">
               {{ form.country_of_incorporation.label(class="form-control-label") }}
@@ -534,22 +532,6 @@
               {% endif %}
   
               
-          </div>
-          </div>
-          <div class="col-6 p-4">
-            <div class="form-group">
-              {{ form.user_account.label(class="form-control-label") }}
-              
-              {% if form.user_account.errors %}
-              {{ form.user_account(class="form-control form-control is-invalid")}}
-              <div class="invalid-feedback">
-                  {% for error in form.user_account.errors %}
-                  <span> {{ error}}</span>
-                  {% endfor %}
-              </div>
-              {% else %}
-              {{ form.user_account(class="form-control form-control") }}
-              {% endif %}
           </div>
           </div>
 

@@ -94,7 +94,7 @@
   <div class="col-12">
     <section id="hero" class="d-flex align-items-center justify-content-center">
         <div class="container position-relative">
-     <h2><b style="font-size: 40px;">Complete Survey </b></h2>
+     <h2><b style="font-size: 40px;">Complete Survey</b></h2>
         
         </div>
       </section>
@@ -111,49 +111,6 @@
     <b class="green_shade">Select a job from the options below to begin benchmarking</b>
 
   </div>
-
-{%  for i in query %}
-  <div class="col-md-3 col-sm-12 ">
-  
-    <div class="card p-4 parent"  style="height:150px">
-        <div class="row ">
-           
-            <div class="col-12 ">
-          <div class="row">
-            <div class="col-10">
-              <h5><b>{{i.job_title}}</b></h5>
-              {{i.benchmark.company_name}}
-            </div>
-            <div class="col-1">
-              <a data-toggle="modal" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
-            </div>
-           
-           
-          </div>
-            </div>
-            </div>
-            <div class="row">
-              <div class="col-12" style="color:grey;font-size:12px">
-         
-             
-              </div>
-    
-            </div>
-    
-            <div class="child">
-              <div class="row ">
-                <div class="col-12" >
-                <h4><span class="badge badge-success">Completed</span></h4>
-             
-                </div>
-             
-              
-              </div>
-            </div>
-        </div>
-    </div>
-
-    {% endfor %}
   <div class="col-md-3 col-sm-12 ">
   
   <div class="card p-4 parent"  style="height:150px">
