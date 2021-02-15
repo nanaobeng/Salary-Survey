@@ -162,7 +162,8 @@ def create_contact():
 @users.route("/messages")
 def messages():
     form = MessageComment()
-    messages = Contact.query.filter_by(status="False").order_by(desc(Contact.status)).all()
+    messages = Contact.query.filter_by(status="Open").order_by(desc(Contact.timestamp)).all()
+    # messages = Contact.query.all()
     return render_template("messages.html", messages=messages, form=form)
 
 # view message modal
@@ -195,7 +196,12 @@ def updateMessage(messageId):
     form = MessageComment()
     if form.validate_on_submit:
         comment = Comment(comment=form.comment.data, contact_id=messageId)
-        message.status = str(form.status.data)
+        status = str(form.status.data)
+        if (status == "True"):
+            new_status = "Closed"
+        elif (status == "False"):
+            new_status = "Open" 
+        message.status = new_status
         db.session.add(comment)
         db.session.commit()
         flash("Message Updated", "success")
@@ -900,7 +906,7 @@ def updateCorpRequest(corprequestId):
 # search messages on messages.html 
 @users.route('/messages/search', methods = ['POST'])
 def searchMessages():
-    search = request.form['id']
+    search = request.form['search_term']
     if (len(search) == 0):
         messages = Contact.query.filter_by(status="False")
         new_messages = []
@@ -912,7 +918,7 @@ def searchMessages():
     
     messages = Contact.query.filter(or_(Contact.firstname.like(('%' + search + '%')),
     Contact.lastname.like(('%' + search + '%')),
-    Contact.company.like(('%' + search + '%'))))
+    Contact.company_name.like(('%' + search + '%'))))
     new_messages = []
     for message in messages:
         new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
