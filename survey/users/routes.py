@@ -5,6 +5,8 @@ from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 from datetime import datetime
+from sqlalchemy import or_, desc
+
 users = Blueprint('users',__name__)
 
 
@@ -156,6 +158,54 @@ def create_client():
 def create_contact():
     return render_template("contact_person.html")
 
+# load messages from 'Contact' in database
+@users.route("/messages")
+def messages():
+    form = MessageComment()
+    messages = Contact.query.filter_by(status="Open").order_by(desc(Contact.timestamp)).all()
+    # messages = Contact.query.all()
+    return render_template("messages.html", messages=messages, form=form)
+
+# view message modal
+@users.route('/view_message', methods=['POST','GET'])
+def viewMessage():
+    id = request.form['id']
+
+    messages = Contact.query.filter_by(id=id)
+    comments = Comment.query.filter_by(contact_id=id)
+    comment_array = []
+    temp = []
+    for message in messages:
+        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
+        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
+        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
+        'address_2':message.address_2,'city':message.city,'country':message.country,
+        'status':message.status,'timestamp':message.timestamp})
+    
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+# 
+@users.route('/messages/update/<int:messageId>', methods=['POST'])
+def updateMessage(messageId):
+    message = Contact.query.get_or_404(messageId)
+    form = MessageComment()
+    if form.validate_on_submit:
+        comment = Comment(comment=form.comment.data, contact_id=messageId)
+        status = str(form.status.data)
+        if (status == "True"):
+            new_status = "Closed"
+        elif (status == "False"):
+            new_status = "Open" 
+        message.status = new_status
+        db.session.add(comment)
+        db.session.commit()
+        flash("Message Updated", "success")
+        return redirect(url_for('users.messages'))
 
 
 @users.route("/create_sector",methods=["POST","GET"])
@@ -853,55 +903,37 @@ def updateCorpRequest(corprequestId):
         flash("Request Updated", "success")
         return redirect(url_for('users.admin_service_requests'))
 
-    
-     
-    
-    
-     
-     
-    
-     
-     
-   
-    
+# search messages on messages.html 
+@users.route('/messages/search', methods = ['POST'])
+def searchMessages():
+    search = request.form['search_term']
+    if (len(search) == 0):
+        messages = Contact.query.filter_by(status="False")
+        new_messages = []
+        for message in messages:
+            new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
+            'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
 
-@users.route("/messages")
-def messages():
-    form=MessageComment()
-    messages = Contact.query.all()
-    return render_template("messages.html", form=form, messages=messages)
-
-
-@users.route('/view_message', methods=['POST','GET'])
-def viewMessage():
-    id = request.form['id']
-
-    messages = Contact.query.filter_by(id=id)
-    comments = Comment.query.filter_by(contact_id=id)
-    comment_array = []
-    temp = []
+        return jsonify(new_messages)
+    
+    messages = Contact.query.filter(or_(Contact.firstname.like(('%' + search + '%')),
+    Contact.lastname.like(('%' + search + '%')),
+    Contact.company_name.like(('%' + search + '%'))))
+    new_messages = []
     for message in messages:
-        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
-        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
-        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
-        'address_2':message.address_2,'city':message.city,'country':message.country,
-        'status':message.status,'timestamp':message.timestamp})
-    
-    for comment in comments:
-        comment_array.append(comment.comment)
+        new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
+        'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
 
-    temp.append({'comments': comment_array})
+    return jsonify(new_messages)
 
-    return jsonify(temp)
-
-@users.route('/messages/update/<int:messageId>', methods=['POST'])
-def updateMessage(messageId):
-    message = Contact.query.get_or_404(messageId)
-    form = MessageComment()
-    if form.validate_on_submit:
-        comment = Comment(comment=form.comment.data, contact_id=messageId)
-        message.status = form.my_status.data
-        db.session.add(comment)
-        db.session.commit()
-        flash("Message Updated", "success")
-        return redirect(url_for('users.messages'))
+# @users.route('/messages/update/<int:messageId>', methods=['POST'])
+# def updateMessage(messageId):
+#     message = Contact.query.get_or_404(messageId)
+#     form = MessageComment()
+#     if form.validate_on_submit:
+#         comment = Comment(comment=form.comment.data, contact_id=messageId)
+#         message.status = form.my_status.data
+#         db.session.add(comment)
+#         db.session.commit()
+#         flash("Message Updated", "success")
+#         return redirect(url_for('users.messages'))
