@@ -100,6 +100,7 @@
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
+    padding-bottom: 2%;
   }
 
   #search_input {
@@ -115,13 +116,17 @@
     margin-left: 5px;
   }
 
-  .dropdowndown-menu {
+  .dropdowndown {
     padding: 10px;
+    display:block;
   }
 
   #filterbutton {
     color: white;
+    justify-content: center;
+    
   }
+  
 
   .addBtn {
   padding: 10px;
@@ -158,33 +163,37 @@
 <!--Body-->
 
 <div class="row p-5 justify-content-center">
-  <div class="col-8">
+  <div class="col-10">
+    <form method = 'POST' class="dropdown p-2">
     <table class="table table-hover">
       <thead style="background-color: rgb(78, 110, 62);">
         <th id="searchbar">
-          <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
           
+      <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">  
+        
           <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
         </th>
+        
+          <th  id="filterbutton"> Filter by: </span></th>
+
         <th>
-          <button id="filterbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
-              class="icofont-settings"></i></span></button>
-          <form class="dropdown-menu p-2">
+
             <div class="form-group">
-              <label for="status">Status:</label>
-              <select class="form-control" id="status" onchange="filter('status')">
-                <option value="opened">Pending</option>
-          <option value="close">Awaiting Client Information</option>
+            
+            <select class="form-select" id="status" >
+                <option selected>Pending</option>
+          <option >Awaiting Client Information</option>
           <option>First Pass</option>
           <option>Conflict Check</option>
           <option>Finish Completion</option>
           <option>Submitted For Approval</option>
-              </select>
+              </select> 
             </div>
-          </form>
+         
         </th>
       </thead>
     </table>
+  </form>
   </div>
 </div>
 
@@ -266,7 +275,7 @@
 
 <div class="modal fade" id="viewIndividualRequestModal" role="dialog">
   <div class="modal-dialog modal-lg">
-
+ 
     <!-- Modal content-->
     <div class="modal-content">
       <form action="" method="POST" id="updateForm" onsubmit="updateIndRequest()">
@@ -499,63 +508,6 @@
   function updateCorpRequest(){
     var requestId = localStorage.getItem('corprequestId')
     document.getElementById('updateCorpForm').action = 'service_requests/corpupdate/' + requestId
-  }
-</script>
-
-
-<script>
-  function filter(view) {
-    if (view == 'status') {
-
-      var unique = ($('#status').val()).trim().replace(/\s/g, '')
-
-      if ($("#" + unique).length == 0) {
-        $('.filter_box').prepend('<div id="' + unique + '"class="col-1"><span class="badge badge-pill badge-info">' + $('#status').val() + ' <span><i class="icofont-close-line-circled" onclick="remove_filter(' + unique + ')"></i></span></span></div>')
-      }
-    }
-
-    if (view == 'client') {
-
-      var unique = ($('#client').val()).trim().replace(/\s/g, '')
-
-      if ($("#" + unique).length == 0) {
-        $('.filter_box').prepend('<div id="' + unique + '"class="col-1"><span class="badge badge-pill badge-warning">' + $('#client').val() + ' <span><i class="icofont-close-line-circled" onclick="remove_filter(' + unique + ')"></i></span></span></div>')
-      }
-    }
-
-
-    if (view == 'industry') {
-
-      var unique = ($('#industry').val()).trim().replace(/\s/g, '')
-
-      if ($("#" + unique).length == 0) {
-        $('.filter_box').prepend('<div id="' + unique + '"class="col-1"><span class="badge badge-pill badge-danger">' + $('#industry').val() + ' <span><i class="icofont-close-line-circled" onclick="remove_filter(' + unique + ')"></i></span></span></div>')
-      }
-    }
-
-    if (view == 's_period') {
-
-      var unique = ($('#s_period').val())
-      unique = unique.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-      unique = "a" + unique
-
-      if ($("#" + unique).length == 0) {
-        $('.filter_box').prepend('<div id="' + unique + '"class="col-1"><span class="badge badge-pill badge-success">' + $('#s_period').val() + ' <span><i class="icofont-close-line-circled" onclick="remove_filter(' + unique + ')"></i></span></span></div>')
-      }
-    }
-  }
-</script>
-
-<script>
-  function remove_filter(id) {
-
-    $(id).remove()
-  }
-</script>
-
-<script>
-  function clear_filter() {
-    $('.filter_box').empty()
   }
 </script>
 
