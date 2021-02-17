@@ -100,7 +100,23 @@
       </section>
   </div>
 </div>
+<div class="row p-2">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {%if messages %}
+  {% for category, message in messages %}
+  <div class="container">
+    <div class="alert alert-{{ category}}">
+      {{message}}
+    </div>
+  </div>
 
+
+  {% endfor %}
+
+  {% endif %}
+
+  {% endwith %}
+</div>
 
 <div class="row p-4" style="height:60vh" >
   <div class="col-12 text-right">
@@ -113,7 +129,7 @@
   </div>
 
 {%  for i in query %}
-  <div class="col-md-3 col-sm-12 ">
+  <div class="col-md-3 col-sm-12 p-4 ">
   
     <div class="card p-4 parent"  style="height:150px">
         <div class="row ">
@@ -122,10 +138,10 @@
           <div class="row">
             <div class="col-10">
               <h5><b>{{i.job_title}}</b></h5>
-              {{i.benchmark.company_name}}
+
             </div>
             <div class="col-1">
-              <a data-toggle="modal" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
+              <a data-toggle="modal" onclick="submit('{{i.id}}')"data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
             </div>
            
            
@@ -143,7 +159,7 @@
             <div class="child">
               <div class="row ">
                 <div class="col-12" >
-                <h4><span class="badge badge-success">Completed</span></h4>
+                <h4><span class="badge badge-success">{{i.status}}</span></h4>
              
                 </div>
              
@@ -154,86 +170,9 @@
     </div>
 
     {% endfor %}
-  <div class="col-md-3 col-sm-12 ">
-  
-  <div class="card p-4 parent"  style="height:150px">
-      <div class="row ">
-         
-          <div class="col-12 ">
-        <div class="row">
-          <div class="col-10">
-            <h5><b>Finance Manager</b></h5>
-          </div>
-          <div class="col-1">
-            <a data-toggle="modal" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
-          </div>
-         
-         
-        </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
-       
-           
-            </div>
-  
-          </div>
-  
-          <div class="child">
-            <div class="row ">
-              <div class="col-12" >
-              <h4><span class="badge badge-success">Completed</span></h4>
-           
-              </div>
-           
-            
-            </div>
-          </div>
-      </div>
-  </div>
 
 
-  <div class="col-md-3 col-sm-12 ">
-  
-    <div class="card p-4 parent"  style="height:150px">
-        <div class="row ">
-           
-            <div class="col-12 ">
-          <div class="row">
-            <div class="col-10">
-              <h5><b>IT Controller</b></h5>
-            </div>
-            <div class="col-1">
-              <a data-toggle="modal" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
-            </div>
-           
-           
-          </div>
-            </div>
-            </div>
-            <div class="row">
-              <div class="col-12" style="color:grey;font-size:12px">
-         
-             
-              </div>
-    
-            </div>
-    
-            <div class="child">
-              <div class="row ">
-                <div class="col-12" >
-                <h4><span class="badge badge-warning">Outstanding</span></h4>
-             
-                </div>
-             
-              
-              </div>
-            </div>
-        </div>
-    </div>
-  
-  
+
   
   
  
@@ -333,7 +272,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
+      <div class="modal-body" >
           <p>
               <b>Welcome to the Deloitte Salary Survey </b><br>
               This survey is tailored at helping organizations gain an understand of compensations paid to employees.
@@ -361,106 +300,18 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Finance Manager</h5>
+          <h5 class="modal-title" id="model_title"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-            <p>
-                <b>Job Title</b>
-                <br>
-                Finance Manager
-            </p>
-            <p>
-                <b>Job Grade</b>
-                <br>
-                 Manager
-            </p>
-            <p>
-                <b>Reporting Relationship</b>
-                <br>
-                Finance Director
-            </p>
-            <p>
-                <b>Generic Job Description</b>
-                <br>
-                To manage financial accounting and reporting systems for the company
-            </p>
-            <p>
-                <b>Key Duties & Responsibilities</b>
-                <br>
-                	<ul>
-                    
-                      <li>
-                        Ensure that staff capture all data onto Insurance Pro Software on a daily basis and generate report.
-                      </li>
-                      <li>
-                        Prepare annual departmental plan and budget for the company
-                      </li>
-                      
-                      <li>
-                        Build tactical business relationships with clients and maintain them
-                      </li>
-                      <li>
-                        Coordinate revenue collection by the credit team and submit reports
-                      </li>
-                      
-                      <li>
-                        Supervise payroll functions
-                      </li>
-                  </ul>
-
-            </p>
-            <p>
-                <b>Financial Responsibilities</b>
-                <br>
-                <ul>
-                  <li>
-                    Prepare financial management reports for management’s decision making
-                  </li>
-                  <li>
-                    Formulate financial strategies, policies, procedures and action plans to achieve maximum growth and profitability of the company
-                  </li>
-                  <li>
-                    Supervise preparation of statutory financial reports
-                  </li>
-                    <li>
-                      Supervise and implement financial policies and procedures
-                    </li>
-                </ul>
-            </p>
-            <p>
-                <b>Technical Qualifications</b>
-                <br>
-                <ul>
-                  <li>
-                    Knowledge in financial accounting
-                  </li>
-                  <li>
-                    Ability to prepare and interpret balance sheet, income statements, cash flow statements etc
-                  </li>
-                  <li>
-                    Knowledge in Computer
-                  </li>
-
-                </ul>
-            </p>
-            <p>
-                <b>Minimum Years of Experience</b>
-                <br>
-              N/A
-            </p>
-            <br>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="job_not_applicable">
-              <label class="custom-control-label" for="job_not_applicable">This job is not applicable to my organisation</label>
-            </div>
+        <div class="modal-body" id="modal_body">
+     
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" id="m_footer">
          
           <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
-          <button class="btn btn-outline-secondary" id="proceed_btn" >Proceed</button>
+     
         </div>
       </div>
     </div>
@@ -469,14 +320,145 @@
 
 <script>
 
-    $('#proceed_btn').click(function(){
-      window.location.href ='{{  url_for("users.quantitative_survey")}}'
-    });
+  function proceed(id){
+    window.location.href =`/survey/quantitative/${id}`
+
+  }
+
+  function view(id){
+    window.location.href =`/user/view-benchmarked_job/${id}`
+
+  }
+      
+
 
     $('document').ready(function(){
       $('#instruction').modal('show');
     })
 </script>
+
+
+<script>
+  function submit(id){
+    
+
+
+
+
+$.ajax({
+
+  url: '/benchmark_details',
+
+  data: {
+
+    id:id
+  },
+
+  type: 'POST',
+
+  success: function(res) {
+
+   res= res[0]
+
+      
+    $("#model_title").html(
+        `${res.job_title}`
+      )
+    $("#modal_body").html(
+      `
+      <p>
+                <b>Job Title</b>
+                <br>
+               ${res.job_title}
+            </p>
+            <p>
+                <b>Job Grade</b>
+                <br>
+                ${res.grade}
+            </p>
+            <p>
+                <b>Reporting Relationship</b>
+                <br>
+                ${res.reporting_relationship}
+            </p>
+            <p>
+                <b>Generic Job Description</b>
+                <br>
+                ${res.job_desc}
+            </p>
+            <p>
+                <b>Key Duties & Responsibilities</b>
+                <br>
+                ${res.key_duties}
+
+            </p>
+            <p>
+                <b>Financial Responsibilities</b>
+                <br>
+                ${res.financial}
+            </p>
+            <p>
+                <b>Technical Qualifications</b>
+                <br>
+                ${res.technical}
+            </p>
+            <p>
+                <b>Minimum Years of Experience</b>
+                <br>
+                ${res.yrs_exp}
+            </p>
+            <br>
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="job_not_applicable">
+              <label class="custom-control-label" for="job_not_applicable">This job is not applicable to my organisation</label>
+            </div>
+
+
+      `
+    )
+//     if(res.status = "completed"){
+
+//       $("#m_footer").append(
+
+      
+// `
+
+// <button class="btn btn-outline-secondary" id="view_btn" onclick="view('${res.id}')" >View</button>
+// `)
+        
+//       }
+//       else{
+        $("#m_footer").append(
+
+      
+      `
+      
+      <button class="btn btn-outline-secondary" id="proceed_btn" onclick="proceed('${res.id}')" >Proceed</button>
+      `
+        )
+      // }
+
+    
+    
+
+
+  },
+
+  error: function(error) {
+
+      console.log(error);
+
+
+  }
+
+});
+
+
+
+}
+</script>
+
+
 
 
 {% endblock content %}

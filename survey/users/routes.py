@@ -446,11 +446,11 @@ def my_benchmark_jobs_create():
 
 @users.route("/my_surveys")
 def my_surveys():
-    usn = 2
+    usn = current_user.id
     query = []
     surveys = Benchmark_job.query.all()
     for survey in surveys:
-        if survey.comp_benchmark.survey_client.user.id == usn:
+        if survey.benchmark.user.id == usn:
             query.append(survey)
 
     return render_template("quantitative_survey_overview.html",usn=usn,query=query)
@@ -461,7 +461,12 @@ def quantitative_overview():
 
 @users.route("/my_surveys/view_survey/qualitative")
 def qualitative_overview():
-    return render_template("qualitative_survey_overview.html")
+    usn = current_user.id
+    cli = Client.query.all()
+    for i in cli:
+        if i.user.id == usn:
+            cli = i
+    return render_template("qualitative_survey_overview.html",cli=cli)
 
 @users.route("/administration")
 def admin_home():
@@ -563,10 +568,68 @@ def admin_benchmark_jobs():
 def create_benchmark_job():
     return render_template("create_benchmark_job.html")
 
-@users.route("/survey/quantitative")
-def quantitative_survey():
+@users.route("/survey/quantitative/<int:id>",methods=['POST','GET'])
+def quantitative_survey(id):
+    job = Benchmark_job.query.get_or_404(id)
+ 
     form = SurveyForm()
-    return render_template("quantitative_survey.html",form=form)
+    if form.validate_on_submit():
+        
+        
+        job.comp_benchmark_base.monthly_base_salary=form.base_salary.data  
+
+        job.comp_benchmark_incentive.company_performance=form.company_bonus_performance.data  
+        job.comp_benchmark_incentive.individual_performance=form.individual_bonus_performance.data  
+        job.comp_benchmark_incentive.annual_incentive=form.annual_bonus.data  
+        job.comp_benchmark_incentive.incentive=form.incentive_bonus.data  
+        job.comp_benchmark_incentive.other_cash=form.other_bonus.data  
+     
+        job.comp_benchmark_benefit.staff_bus=form.staff_bus.data 
+        job.comp_benchmark_benefit.company_car=form.company_car.data 
+        job.comp_benchmark_benefit.personal_travel=form.personal_travel.data 
+        job.comp_benchmark_benefit.petrol=form.petrol.data 
+        job.comp_benchmark_benefit.vehicle_maintenance=form.vehicle.data 
+        job.comp_benchmark_benefit.driver=form.driver.data 
+        job.comp_benchmark_benefit.health_insurance=form.health_insurance.data 
+        job.comp_benchmark_benefit.medical_assistance=form.medical_assistance.data 
+        job.comp_benchmark_benefit.funeral_assistance=form.funeral_assistance.data 
+        job.comp_benchmark_benefit.life_insurance=form.life_insurance.data 
+        job.comp_benchmark_benefit.group_accident=form.group_accident.data 
+        job.comp_benchmark_benefit.club_membership=form.club_membership.data 
+        job.comp_benchmark_benefit.school_fees=form.school_fees.data 
+        job.comp_benchmark_benefit.vacation=form.vacation.data 
+        job.comp_benchmark_benefit.housing=form.housing.data 
+        job.comp_benchmark_benefit.telephone=form.telephone.data 
+        job.comp_benchmark_benefit.security=form.security.data 
+        job.comp_benchmark_benefit.other_benefits=form.other_benefits.data 
+
+        job.comp_benchmark_allowance.vehicle_maintenance=form.vehicle_maintenance.data 
+        job.comp_benchmark_allowance.vehicle=form.allowance_vehicle.data 
+        job.comp_benchmark_allowance.transport=form.transport.data 
+        job.comp_benchmark_allowance.fuel=form.fuel.data 
+        job.comp_benchmark_allowance.car=form.car.data 
+        job.comp_benchmark_allowance.driver=form.allowance_driver.data 
+        job.comp_benchmark_allowance.domestic_safety=form.domestic.data 
+        job.comp_benchmark_allowance.housing=form.allowance_housing.data 
+        job.comp_benchmark_allowance.utilities=form.utilities.data 
+        job.comp_benchmark_allowance.meal=form.meal.data 
+        job.comp_benchmark_allowance.telephone=form.allowance_telephone.data 
+        job.comp_benchmark_allowance.entertainment=form.entertainment.data 
+        job.comp_benchmark_allowance.education_support=form.education.data 
+        job.comp_benchmark_allowance.vacation=form.vacation_allowance.data 
+        job.comp_benchmark_allowance.uniform=form.uniform.data 
+        job.comp_benchmark_allowance.mobile_money=form.mobile_money.data 
+        job.comp_benchmark_allowance.miscellaenous=form.misc.data 
+        job.status = "completed"
+        try:
+            db.session.commit()
+            flash('Benchmark Completed','success')
+            return redirect(url_for('users.my_surveys'))
+        except:
+            flash('There was an issue completing your request','danger')
+            return redirect(url_for('users.my_surveys'))
+    
+    return render_template("quantitative_survey.html",form=form,job=job)
 
 
 
@@ -942,7 +1005,7 @@ def created_survey_ajax():
             c_id = (int(c.replace("c", "")))
             cli = Client.query.filter_by(id=c_id).first()
             db.session.add(Survey_comparator(comparator=sur,client=cli,status="unprocessed"))
-            db.session.add(Benchmark_job(job_title=main.job_title,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=cli,comp_benchmark=sur,comp_benchmark_allowance=allowance,comp_benchmark_benefit=benefit,comp_benchmark_incentive=incentive,comp_benchmark_base=base))
+            db.session.add(Benchmark_job(job_title=main.job_title,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=cli,comp_benchmark=sur))
     
     db.session.commit()
     return jsonify('success')
@@ -959,23 +1022,28 @@ def smodaldict():
   
     posts = Survey.query.filter_by(id=tag).all()
     post = posts[0]
+    samp = [] 
     b_marks = Benchmark_job.query.all()
     comps = Survey_comparator.query.all()
+    for p in comps:
+        if(p.comparator.id == post.id):
+            samp.append(p.client.company_name )
+
     temp_b = []
     temp_c = []
     for b in b_marks:
         if(b.comp_benchmark.id == post.id):
             temp_b.append(b.job_title)
-    for c in comps:
-        if(c.comparator.id == post.id):
-            temp_c.append(c.comparator.survey_client.company_name)
+    # for c in comps:
+    #     if(c.comparator.id == post.id):
+    #         temp_c.append(c.comparator.survey_client.company_name)
 
     temp_b = list(dict.fromkeys(temp_b))
-    temp_c = list(dict.fromkeys(temp_c))
+    #samp = list(dict.fromkeys(samp))
     temp = []
    
 
-    temp.append({'id': post.id, 'name':post.name ,'client':post.survey_client.company_name,'industry' :post.survey_client.industry.industry,'area':post.survey_client.area.area,'start_date':post.start_date,'benchmarks':temp_b,'comps':temp_c})
+    temp.append({'id': post.id, 'name':post.name ,'client':post.survey_client.company_name,'industry' :post.survey_client.industry.industry,'area':post.survey_client.area.area,'start_date':post.start_date,'benchmarks':temp_b,'comps':samp})
 
     return jsonify(temp)
 
@@ -1003,13 +1071,13 @@ def survey_filter():
 
     return jsonify(temp)
 
-# @users.route("/administration/service_requests", methods=["POST","GET"])
-# def admin_service_requests():
-#     form = ServiceRequestForm() 
-#     ind = Individual_request.query.all()
-#     corp= Corporate_request.query.filter_by(status="pending").all()
+@users.route("/administration/service_requests", methods=["POST","GET"])
+def admin_service_requests():
+    form = ServiceRequestForm() 
+    ind = Individual_request.query.all()
+    corp= Corporate_request.query.filter_by(status="pending").all()
 
-#     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+    return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
 
 @users.route('/view_request', methods=['POST','GET'])
 def viewRequest():
@@ -1030,17 +1098,17 @@ def viewRequest():
 
     return jsonify(temp)
 
-# @users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
-# def updateRequest(requestId):
-#     request = Individual_request.query.get_or_404(requestId)
-#     form = ServiceRequestForm()
-#     if form.validate_on_submit:
-#         comment = RequestComment(comment=form.comment.data, contact_id=messageId)
-#         request.status = form.newstatus.data
-#         db.session.add(comment)
-#         db.session.commit()
-#         flash("Request Updated", "success")
-#         return redirect(url_for('users.admin_service_requests'))
+@users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
+def updateRequest(requestId):
+    request = Individual_request.query.get_or_404(requestId)
+    form = ServiceRequestForm()
+    if form.validate_on_submit:
+        comment = RequestComment(comment=form.comment.data, contact_id=messageId)
+        request.status = form.newstatus.data
+        db.session.add(comment)
+        db.session.commit()
+        flash("Request Updated", "success")
+        return redirect(url_for('users.admin_service_requests'))
 
 @users.route("/messages")
 
@@ -1084,3 +1152,26 @@ def updateMessage(messageId):
         flash("Message Updated", "success")
         return redirect(url_for('users.messages'))
 
+
+
+@users.route('/benchmark_details', methods=['POST','GET'])
+def benchmark_details():
+    id = request.form['id']
+
+    details = Benchmark_job.query.filter_by(id=id)
+    temp = []
+    for i in details:
+        temp.append({'id': i.id, 'job_title':i.job_title,'grade':i.grade,'reporting_relationship':i.reporting_relationship,'job_desc':i.job_description,'key_duties':i.duties_and_responsibility,'financial':i.financial_responsibilities,'technical':i.technical_qualification,'yrs_exp':i.minimum_years_of_experience })
+    
+    
+
+    return jsonify(temp)
+
+
+@users.route("/user/view-benchmarked_job/<int:id>")
+def client_view_benchmarked(id):
+    job = Benchmark_job.query.get_or_404(id)
+    
+    
+    form = SurveyForm()
+    return render_template("new_view_benchmarked.html", job=job,form=form)
