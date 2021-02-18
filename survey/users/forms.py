@@ -747,5 +747,11 @@ class RequestSearchForm(FlaskForm):
     select = SelectField('Filter:', choices=choices)
     search = StringField('')
 
+class FilterReportForm(FlaskForm):
+    report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
+    report_status = SelectField('Status', coerce=int)
+    report_start_date = DateField('Start Date', format='%d-%m-%Y')
+    report_end_date = DateField('End Date', format='%d-%m-%Y')
+    submit = SubmitField('View Report')
 
 #     submit = SubmitField('Submit')

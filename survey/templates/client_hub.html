@@ -95,13 +95,19 @@
 
 
     function drawChart() {
+        // var data1 = google.visualization.arrayToDataTable([
+        //     ['Request Type', 'Number of Requests'],
+        //     ['Completed', 11],
+        //     ['Approved', 2],
+        //     ['Rejected', 2],
+        //     ['Followed-Up', 2],
+        //     ['Signed-On', 7]
+        // ]);
+
         var data1 = google.visualization.arrayToDataTable([
             ['Request Type', 'Number of Requests'],
-            ['Completed', 11],
-            ['Approved', 2],
-            ['Rejected', 2],
-            ['Followed-Up', 2],
-            ['Signed-On', 7]
+            ['Pending', {{total_pending_requests}}],
+            ['Submitted', 2],
         ]);
 
         var options1 = {
