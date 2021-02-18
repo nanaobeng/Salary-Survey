@@ -1,11 +1,11 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
 from survey import db , bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm,FilterReportForm
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 from datetime import datetime
-from sqlalchemy import or_, desc
+from sqlalchemy import or_, desc, func
 
 users = Blueprint('users',__name__)
 
@@ -163,7 +163,6 @@ def create_contact():
 def messages():
     form = MessageComment()
     messages = Contact.query.filter_by(status="Open").order_by(desc(Contact.timestamp)).all()
-    # messages = Contact.query.all()
     return render_template("messages.html", messages=messages, form=form)
 
 # view message modal
@@ -189,7 +188,7 @@ def viewMessage():
 
     return jsonify(temp)
 
-# 
+# update messages on modal submit 
 @users.route('/messages/update/<int:messageId>', methods=['POST'])
 def updateMessage(messageId):
     message = Contact.query.get_or_404(messageId)
@@ -207,6 +206,25 @@ def updateMessage(messageId):
         flash("Message Updated", "success")
         return redirect(url_for('users.messages'))
 
+@users.route("/view_reports")
+def view_reports():
+
+    STATUS_BY_REPORT_TYPE = {
+    'clients': [('active', 'Active'), ('inactive', 'Inactive')],
+    'service_requests': [('pending','Pending'), ('awaiting','Awaiting Client Information'), 
+    ('first_pass','First Pass'), ('conflict_check','Conflict Check'), ('finish_completion','Finish Completion'), 
+    ('submitted','Submitted For Approval')],
+    'messages': [('open', 'Open'), ('closed', 'Closed')]
+    }
+
+    form = FilterReportForm()
+    form.report_status.choices = STATUS_BY_REPORT_TYPE.get(form.report_status.data)
+
+    num_clients = db.session.query(Client).count()
+    num_active_clients = db.session.query(Client).filter(Client.status=='Active').count()
+    num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
+   
+    return render_template("reports.html", form=form, num_clients=num_clients, num_active_clients=num_active_clients, num_inactive_clients=num_inactive_clients)
 
 @users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
@@ -539,9 +557,12 @@ def admin_reports():
 
 @users.route("/administration/client_hub")
 def client_hub():
+    total_num_requests = db.session.query(Service_request).count()
+    total_pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending').count()
+    total_submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted').count()
+    return render_template("client_hub.html", total_num_requests=total_num_requests, total_pending_requests=total_pending_requests, total_submitted_requests=total_submitted_requests)
     
-    return render_template("client_hub.html")
-    
+
 @app.route('/user/<username>')
 @login_required
 def user(username):

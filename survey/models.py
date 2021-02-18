@@ -391,7 +391,6 @@ class Corporate_request(db.Model):
     def __repr__(self):
         return '<Corporate_request %r>' % self.id
 
-
 class Current_auditor(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))
