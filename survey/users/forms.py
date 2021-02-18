@@ -428,7 +428,7 @@ class JobForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class AreaForm(FlaskForm):
-    iquery = Industry.query.all()
+    #iquery = Industry.query.all()
     name = StringField('Area of Operation')
     sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
     industry =  SelectField('Industry', coerce=str, choices = [])
@@ -721,11 +721,13 @@ class SurveyForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class MessageComment(FlaskForm):
-    comment = TextAreaField('Comment', validators=[DataRequired()])
+    comment = TextAreaField('Add New Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
-    # status = BooleanField('Change Status')
-    my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
-    
+    status = BooleanField('Change Status', default=False)
+    # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
+
+# class ChangeMessageStatus(FlaskForm):
+
     
 
 class ServiceRequestForm(FlaskForm):
@@ -735,10 +737,15 @@ class ServiceRequestForm(FlaskForm):
     ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval')], 
     validators=[DataRequired()])
     comment = TextAreaField('Comment', validators=[DataRequired()])
-    submit = SubmitField('Submit')
+    submit = SubmitField('Save Changes')
 
     
-
+class RequestSearchForm(FlaskForm):
+    choices = [('Request Date', 'Request Date'),
+               ('Name', 'Name'),
+               ('Status', 'Status')]
+    select = SelectField('Filter:', choices=choices)
+    search = StringField('')
 
 
 #     submit = SubmitField('Submit')
