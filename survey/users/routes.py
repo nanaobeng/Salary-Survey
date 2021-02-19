@@ -521,12 +521,14 @@ def admin_users():
     
     return render_template("admin_users.html", Users=Users)
 
+
+
 ### Begining of block working on admin viewing client benchmark jobs and approving
 
 # Route for admin to view all benchmark jobs from clients
 @users.route("/view_client_benchmark_jobs", methods=['POST', 'GET'])
 def admin_view_client_benchmark_jobs():
-    benchmark_jobs = Main_benchmark_job.query.all()
+    benchmark_jobs = Main_benchmark_job.query.filter_by(status='Pending')
     form = BenchmarkJobComment()
     if form.validate_on_submit():
         benchmark_job = Main_benchmark_job.query.get_or_404(id)
@@ -586,10 +588,6 @@ def filter_jobs():
         return jsonify(filtered_jobs)
 
 
-
-
-
-
 #Reject benchmark_job
 @users.route("/client_benchmark_job/reject/<int:id>", methods=['POST'])
 def reject_client_benchmark_job(id):
@@ -622,7 +620,7 @@ def approve_client_benchmark_job():
     flash('Job Updated', 'Success')
     return 'true'
 
-# Route to search for client based of search input
+# Route to search for client based of search input and return to input fielf
 @users.route("/client/search", methods =['POST'])
 def search_client():
     search = request.form['search']
@@ -660,48 +658,48 @@ def view_client_benchmark_job():
         'technical_qualifications':benchmark_job.technical_qualification,
         'years_of_experience':benchmark_job.minimum_years_of_experience,
         'status_':benchmark_job.status,
-        'base_salary':int(benchmark_job.base[0].monthly_base_salary) or 'N/A',
-        'company_performance_bonus':benchmark_job.incentive[0].company_performance or 'N/A' ,
-        'individual_performance_bonus':benchmark_job.incentive[0].individual_performance or 'N/A',
-        'annual_bonus':benchmark_job.incentive[0].annual_incentive or 'N/A',
-        'incentive_bonus':benchmark_job.incentive[0].incentive or 'N/A',
-        'other_bonus':benchmark_job.incentive[0].other_cash or 'N/A',
-        'b_staff_bus':benchmark_job.benefit[0].staff_bus or 'N/A',
-        'b_company_car':benchmark_job.benefit[0].company_car or 'N/A',
-        'b_personal_travel':benchmark_job.benefit[0].personal_travel or 'N/A',
-        'b_petrol':benchmark_job.benefit[0].petrol or 'N/A',
-        'b_vehicle':benchmark_job.benefit[0].vehicle_maintenance or 'N/A',
-        'b_driver':benchmark_job.benefit[0].driver or 'N/A',
-        'b_health_insurance':benchmark_job.benefit[0].health_insurance or 'N/A',
-        'b_medical_assistance':benchmark_job.benefit[0].medical_assistance or 'N/A',
-        'b_funeral_assistance':benchmark_job.benefit[0].funeral_assistance or 'N/A',
-        'b_life_insurance':benchmark_job.benefit[0].life_insurance or 'N/A',
-        'b_accident':benchmark_job.benefit[0].group_accident or 'N/A',
-        'b_club_membership':benchmark_job.benefit[0].club_membership or 'N/A',
-        'b_school_fees':benchmark_job.benefit[0].school_fees or 'N/A',
-        'b_vacation':benchmark_job.benefit[0].vacation or 'N/A',
-        'b_housing':benchmark_job.benefit[0].housing or 'N/A',
-        'b_telephone':benchmark_job.benefit[0].telephone or 'N/A',
-        'b_security':benchmark_job.benefit[0].security or 'N/A',
-        'b_other':benchmark_job.benefit[0].other_benefits or 'N/A',
+        'base_salary': "{:,.2f}".format(benchmark_job.base[0].monthly_base_salary or 0),
+        'company_performance_bonus': "{:,.2f}".format(benchmark_job.incentive[0].company_performance or 0) ,
+        'individual_performance_bonus': "{:,.2f}".format(benchmark_job.incentive[0].individual_performance or 0),
+        'annual_bonus': "{:,.2f}".format(benchmark_job.incentive[0].annual_incentive or 0),
+        'incentive_bonus': "{:,.2f}".format(benchmark_job.incentive[0].incentive or 0),
+        'other_bonus': "{:,.2f}".format(benchmark_job.incentive[0].other_cash or 0),
+        'b_staff_bus': "{:,.2f}".format(benchmark_job.benefit[0].staff_bus or 0),
+        'b_company_car': "{:,.2f}".format(benchmark_job.benefit[0].company_car or 0),
+        'b_personal_travel': "{:,.2f}".format(benchmark_job.benefit[0].personal_travel or 0),
+        'b_petrol': "{:,.2f}".format(benchmark_job.benefit[0].petrol or 0),
+        'b_vehicle': "{:,.2f}".format(benchmark_job.benefit[0].vehicle_maintenance or 0),
+        'b_driver': "{:,.2f}".format(benchmark_job.benefit[0].driver or 0),
+        'b_health_insurance': "{:,.2f}".format(benchmark_job.benefit[0].health_insurance or 0),
+        'b_medical_assistance': "{:,.2f}".format(benchmark_job.benefit[0].medical_assistance or 0),
+        'b_funeral_assistance': "{:,.2f}".format(benchmark_job.benefit[0].funeral_assistance or 0),
+        'b_life_insurance': "{:,.2f}".format(benchmark_job.benefit[0].life_insurance or 0),
+        'b_accident': "{:,.2f}".format(benchmark_job.benefit[0].group_accident or 0),
+        'b_club_membership': "{:,.2f}".format(benchmark_job.benefit[0].club_membership or 0),
+        'b_school_fees': "{:,.2f}".format(benchmark_job.benefit[0].school_fees or 0),
+        'b_vacation': "{:,.2f}".format(benchmark_job.benefit[0].vacation or 0),
+        'b_housing': "{:,.2f}".format(benchmark_job.benefit[0].housing or 0),
+        'b_telephone': "{:,.2f}".format(benchmark_job.benefit[0].telephone or 0),
+        'b_security': "{:,.2f}".format(benchmark_job.benefit[0].security or 0),
+        'b_other': "{:,.2f}".format(benchmark_job.benefit[0].other_benefits or 0),
         
-        'a_vehicle_maintenance':benchmark_job.allowance[0].vehicle_maintenance or 'N/A',
-        'a_vehicle':benchmark_job.allowance[0].vehicle or 'N/A',
-        'a_transport':benchmark_job.allowance[0].transport or 'N/A',
-        'a_fuel':benchmark_job.allowance[0].fuel or 'N/A',
-        'a_car':benchmark_job.allowance[0].car or 'N/A',
-        'a_driver':benchmark_job.allowance[0].driver or 'N/A',
-        'a_domestic_safety':benchmark_job.allowance[0].domestic_safety or 'N/A',
-        'a_housing':benchmark_job.allowance[0].housing or 'N/A',
-        'a_utilities':benchmark_job.allowance[0].utilities or 'N/A',
-        'a_meal':benchmark_job.allowance[0].meal or 'N/A',
-        'a_telephone':benchmark_job.allowance[0].telephone or 'N/A',
-        'a_entertainment':benchmark_job.allowance[0].entertainment or 'N/A',
-        'a_education':benchmark_job.allowance[0].education_support or 'N/A',
-        'a_vacation':benchmark_job.allowance[0].vacation or 'N/A',
-        'a_uniform':benchmark_job.allowance[0].uniform or 'N/A',
-        'a_mobile_money':benchmark_job.allowance[0].mobile_money or 'N/A',
-        'a_miscellaneous':benchmark_job.allowance[0].miscellaenous or 'N/A',
+        'a_vehicle_maintenance': "{:,.2f}".format(benchmark_job.allowance[0].vehicle_maintenance or 0),
+        'a_vehicle': "{:,.2f}".format(benchmark_job.allowance[0].vehicle or 0),
+        'a_transport': "{:,.2f}".format(benchmark_job.allowance[0].transport or 0),
+        'a_fuel': "{:,.2f}".format(benchmark_job.allowance[0].fuel or 0),
+        'a_car': "{:,.2f}".format(benchmark_job.allowance[0].car or 0),
+        'a_driver': "{:,.2f}".format(benchmark_job.allowance[0].driver or 0),
+        'a_domestic_safety': "{:,.2f}".format(benchmark_job.allowance[0].domestic_safety or 0),
+        'a_housing': "{:,.2f}".format(benchmark_job.allowance[0].housing or 0),
+        'a_utilities': "{:,.2f}".format(benchmark_job.allowance[0].utilities or 0),
+        'a_meal': "{:,.2f}".format(benchmark_job.allowance[0].meal or 0),
+        'a_telephone': "{:,.2f}".format(benchmark_job.allowance[0].telephone or 0),
+        'a_entertainment': "{:,.2f}".format(benchmark_job.allowance[0].entertainment or 0),
+        'a_education': "{:,.2f}".format(benchmark_job.allowance[0].education_support or 0),
+        'a_vacation': "{:,.2f}".format(benchmark_job.allowance[0].vacation or 0),
+        'a_uniform': "{:,.2f}".format(benchmark_job.allowance[0].uniform or 0),
+        'a_mobile_money': "{:,.2f}".format(benchmark_job.allowance[0].mobile_money or 0),
+        'a_miscellaneous': "{:,.2f}".format(benchmark_job.allowance[0].miscellaenous or 0),
        
 
         'comments_': comments

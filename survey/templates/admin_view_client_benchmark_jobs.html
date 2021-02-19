@@ -352,14 +352,14 @@
           <div class="tab-pane fade" id="compensation" role="tabpanel" aria-labelledby="compensation-tab">
             <table class="table table-borderless">
               <tr>
-                <td colspan="2" class="category">Salary</td>
+                <td colspan="2" class="category">Salary (GHS)</td>
               </tr>
               <tr>
                 <td><span class="compensation">Anual Base Salary:</span> &nbsp; <span class="compensation-value" id="base_salary"></span></td>
                 <td></td>
               </tr>
               <tr>
-                <td colspan="2" class="category">Bonus</td>
+                <td colspan="2" class="category">Bonus (GHS)</td>
               </tr>
               <tr>
                 <td><span class="compensation">Company Performance Bonus:</span> &nbsp; <span class="compensation-value" id="company_performance_bonus"></span></td>
@@ -373,7 +373,7 @@
                 <td><span class="compensation">Other Bonus:</span> &nbsp; <span class="compensation-value" id="other_bonus"></span></td>
               </tr>
               <tr>
-                <td colspan="2" class="category">Benefit</td>
+                <td colspan="2" class="category">Benefit (GHS)</td>
               </tr>
               <tr>
                 <td><span class="compensation">Staff Bus:</span> &nbsp; <span class="compensation-value" id="b_staff_bus"></span></td>
@@ -412,7 +412,7 @@
                 <td><span class="compensation">Other Benefits:</span> &nbsp; <span class="compensation-value" id="b_other"></span></td>
               </tr>
               <tr>
-                <td colspan="2" class="category">Allowance</td>
+                <td colspan="2" class="category">Allowance (GHS)</td>
               </tr>
               <tr>
                 <td><span class="compensation">Vehicle Maintenance:</span> &nbsp; <span class="compensation-value" id="a_vehicle_maintenance"></span></td>
@@ -617,15 +617,8 @@ filter_job()
         $('#comments').html('')
         for (const [key, value] of Object.entries(res)) {
             const item = '#'+`${key}`
-            console.log(typeof `${value}`);
-            if(isNaN(parseFloat(`${value}`))){
-              $('#'+`${key}`).text(`${value}`)
-            }
-            else{
-              // $('#'+`${key}`).text(parseFloat(`${value}`).toFixed(2))
-              $('#'+`${key}`).text(`${value}`)
-              
-            }
+            $('#'+`${key}`).text(`${value}`)
+            
         }
         
         //loop through comments and display on list
