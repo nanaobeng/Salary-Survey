@@ -1,7 +1,7 @@
 """Create benchmark jobs comment table
 
 Revision ID: 0f117f5ed721
-Revises: 
+Revises: 2347eec7a00e
 Create Date: 2021-02-10 08:41:21.107386
 
 """

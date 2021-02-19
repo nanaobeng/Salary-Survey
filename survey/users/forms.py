@@ -7,7 +7,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, FieldList, PasswordField, SubmitField, BooleanField, SelectField,FloatField,TextAreaField, DateField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional, InputRequired
 from flask_login import current_user
 from survey.models import User,Sector,Industry,Area,Department
 
@@ -25,6 +25,8 @@ def department_query():
 
 def usn_query():
     return User.query
+
+# this is a custom validation for required fields 
 
 
 
@@ -643,76 +645,85 @@ class ClientForm(FlaskForm):
 #     submit = SubmitField('Submit')
 
 
-
+def validate_required(form, field):
+        if len(field.data) < 1:
+            raise ValidationError(str(field.label) +' is a required field')
 
 
 class SurveyForm(FlaskForm):
-    job_title = StringField('Job Title')
-    grade = StringField('Grade')
-    reporting_relationship = TextField('Reporting Relationship')
-    job_desc = TextField('Job Description')
-    key_duties = TextField('Key Duties and Scope of Responsibility')
-    fin_res = StringField('Financial Responsibilities')
-    tech_qual = TextField('Technical/Professional Qualification')
-    exp_years = StringField('Minimum Years of Experience')
+    job_title = StringField('Job Title', [validate_required])
+    
+    grade = StringField('Grade', [validate_required])
+    reporting_relationship = TextField('Reporting Relationship', [validate_required])
+    job_desc = TextAreaField('Job Description', [validate_required])
+    key_duties = TextAreaField('Key Duties and Scope of Responsibility', [validate_required])
+    fin_res = TextAreaField('Financial Responsibilities', [validate_required])
+    tech_qual = TextAreaField('Technical/Professional Qualification', [validate_required])
+    exp_years = StringField('Minimum Years of Experience', [validate_required])
 
     
-    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department')
+    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department', validators = [DataRequired()])
    
     base_salary = FloatField('Annual Base Salary (GHS)')
     
-    company_bonus_performance = FloatField('Company Performance Bonus')
-    individual_bonus_performance = FloatField('Individual Performance Bonus')
-    annual_bonus = FloatField('Annual Bonus')
-    incentive_bonus = FloatField('Incentive Bonus')
-    other_bonus = FloatField('Other bonus')
+    company_bonus_performance = FloatField('Company Performance Bonus', validators=[Optional()])
+    individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[Optional()])
+    annual_bonus = FloatField('Annual Bonus', validators=[Optional()])
+    incentive_bonus = FloatField('Incentive Bonus', validators=[Optional()])
+    other_bonus = FloatField('Other bonus', validators=[Optional()])
 
 
-    staff_bus = FloatField('Staff Bus')
-    company_car = FloatField('Company Car')
-    personal_travel = FloatField('Personal Travel')
-    petrol = FloatField('Petrol')
-    vehicle = FloatField('Vehicle')
-    driver = FloatField('Driver')
+    staff_bus = FloatField('Staff Bus', validators=[Optional()])
+    company_car = FloatField('Company Car', validators=[Optional()])
+    personal_travel = FloatField('Personal Travel', validators=[Optional()])
+    petrol = FloatField('Petrol', validators=[Optional()])
+    vehicle = FloatField('Vehicle', validators=[Optional()])
+    driver = FloatField('Driver', validators=[Optional()])
 
-    health_insurance = FloatField('Health')
-    medical_assistance = FloatField('Medical Assistance')
-    funeral_assistance = FloatField('Funeral Assistance')
-    life_insurance = FloatField('Life Insurance')
-    group_accident = FloatField('Group Personnel Accident')
+    health_insurance = FloatField('Health', validators=[Optional()])
+    medical_assistance = FloatField('Medical Assistance', validators=[Optional()])
+    funeral_assistance = FloatField('Funeral Assistance', validators=[Optional()])
+    life_insurance = FloatField('Life Insurance', validators=[Optional()])
+    group_accident = FloatField('Group Personnel Accident', validators=[Optional()])
 
 
-    club_membership = FloatField('Club Membership')
-    school_fees = FloatField('School fees (Paid by employer)')
-    vacation = FloatField('Vacation')
-    housing = FloatField('Housing')
-    telephone = FloatField('Telephone')
-    security = FloatField('Security')
-    other_benefits = FloatField('Other Benefits')
+    club_membership = FloatField('Club Membership', validators=[Optional()])
+    school_fees = FloatField('School fees (Paid by employer)', validators=[Optional()])
+    vacation = FloatField('Vacation', validators=[Optional()])
+    housing = FloatField('Housing', validators=[Optional()])
+    telephone = FloatField('Telephone', validators=[Optional()])
+    security = FloatField('Security', validators=[Optional()])
+    other_benefits = FloatField('Other Benefits', validators=[Optional()])
 
     
-    vehicle_maintenance = FloatField('Vehicle Maintenance')
-    allowance_vehicle = FloatField('Vehicle')
-    transport = FloatField('Transport')
-    fuel = FloatField('Fuel')
-    car = FloatField('Car')
-    allowance_driver = FloatField('Driver')
+    vehicle_maintenance = FloatField('Vehicle Maintenance', validators=[Optional()])
+    allowance_vehicle = FloatField('Vehicle', validators=[Optional()])
+    transport = FloatField('Transport', validators=[Optional()])
+    fuel = FloatField('Fuel', validators=[Optional()])
+    car = FloatField('Car', validators=[Optional()])
+    allowance_driver = FloatField('Driver', validators=[Optional()])
     
 
-    domestic = FloatField('Domestic Safety and Security')
-    allowance_housing = FloatField('Housing')
-    utilities = FloatField('Utilities')
-    meal = FloatField('Meal')
-    allowance_telephone = FloatField('Telephone')
+    domestic = FloatField('Domestic Safety and Security', validators=[Optional()])
+    allowance_housing = FloatField('Housing', validators=[Optional()])
+    utilities = FloatField('Utilities', validators=[Optional()])
+    meal = FloatField('Meal', validators=[Optional()])
+    allowance_telephone = FloatField('Telephone', validators=[Optional()])
 
 
-    entertainment = FloatField('Entertainment')
-    education = FloatField('Education')
-    vacation_allowance = FloatField('Vacation')
-    uniform = FloatField('Uniform')
-    mobile_money = FloatField('Mobile Money')
-    misc = FloatField('Miscellaneous')
+    entertainment = FloatField('Entertainment', validators=[Optional()])
+    education = FloatField('Education', validators=[Optional()])
+    vacation_allowance = FloatField('Vacation', validators=[Optional()])
+    uniform = FloatField('Uniform', validators=[Optional()])
+    mobile_money = FloatField('Mobile Money', validators=[Optional()])
+    misc = FloatField('Miscellaneous', validators=[Optional()])
+    submit = SubmitField('Submit')
+
+class BenchmarkJobComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Reject')
     
+
 
 class MessageComment(FlaskForm):
     comment = TextAreaField('Comment', validators=[DataRequired()])

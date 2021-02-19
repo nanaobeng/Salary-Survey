@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
 from survey import db , bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
+from survey.users.forms import *
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -425,7 +425,7 @@ def my_benchmark_jobs_create():
     form = SurveyForm()
     user = current_user
     if form.validate_on_submit():
-        b_job = Main_benchmark_job(job_title=form.job_title.data,grade=form.grade.data,main_department=form.department.data,reporting_relationship=form.reporting_relationship.data,job_description=form.job_desc.data,duties_and_responsibility=form.key_duties.data,financial_responsibilities=form.fin_res.data,technical_qualification=form.tech_qual.data,minimum_years_of_experience=form.exp_years.data,user_account=user)
+        b_job = Main_benchmark_job(job_title=form.job_title.data,grade=form.grade.data,main_department=form.department.data,reporting_relationship=form.reporting_relationship.data,job_description=form.job_desc.data,duties_and_responsibility=form.key_duties.data,financial_responsibilities=form.fin_res.data,technical_qualification=form.tech_qual.data,minimum_years_of_experience=form.exp_years.data,user_account=user, status='Pending')
         base = Base_salary(monthly_base_salary=form.base_salary.data,main_benchmark_base=b_job)
         inc  = Incentive(company_performance=form.company_bonus_performance.data,individual_performance=form.individual_bonus_performance.data,annual_incentive=form.annual_bonus.data,incentive=form.incentive_bonus.data,other_cash=form.other_bonus.data,main_benchmark_incentive=b_job)
         benefits = Benefit(staff_bus=form.staff_bus.data,company_car=form.company_car.data,personal_travel=form.personal_travel.data,petrol=form.petrol.data,vehicle_maintenance=form.vehicle.data,driver=form.driver.data,health_insurance=form.health_insurance.data,medical_assistance=form.medical_assistance.data,funeral_assistance=form.funeral_assistance.data,life_insurance=form.life_insurance.data,group_accident=form.group_accident.data,club_membership=form.club_membership.data,school_fees=form.school_fees.data,vacation=form.vacation.data,housing=form.housing.data,telephone=form.telephone.data,security=form.security.data,other_benefits=form.other_benefits.data,main_benchmark_benefit=b_job)
@@ -436,7 +436,7 @@ def my_benchmark_jobs_create():
         db.session.add(benefits)
         db.session.add(allowance)
         db.session.commit()
-        flash('Job Position Created','success')
+        flash('Benchmark Job Created','success')
         return redirect(url_for('users.my_benchmark_jobs_create')) 
     return render_template("new_client_create_benchmark.html",form=form)
 
@@ -524,10 +524,103 @@ def admin_users():
 ### Begining of block working on admin viewing client benchmark jobs and approving
 
 # Route for admin to view all benchmark jobs from clients
-@users.route("/view_client_benchmark_jobs")
+@users.route("/view_client_benchmark_jobs", methods=['POST', 'GET'])
 def admin_view_client_benchmark_jobs():
     benchmark_jobs = Main_benchmark_job.query.all()
-    return render_template("admin_view_client_benchmark_jobs.html", benchmark_jobs = benchmark_jobs)
+    form = BenchmarkJobComment()
+    if form.validate_on_submit():
+        benchmark_job = Main_benchmark_job.query.get_or_404(id)
+        comment = form.comment.data
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=1)
+        db.session.add(new_comment)
+        benchmark_job.status = 'Rejected'
+        db.session.commit()
+        flash('Job Updated', 'Success')
+        return redirect(url_for('users.admin_view_client_benchmark_jobs'))
+
+    return render_template("admin_view_client_benchmark_jobs.html", benchmark_jobs = benchmark_jobs, form=form)
+
+
+# Filter benchmark jobs
+@users.route("/client_benchmark_job/filter", methods = ['POST'])
+def filter_jobs():
+    status = request.form.getlist('status[]')
+    client = request.form.getlist('client[]')
+    filtered_jobs = []
+    # filter if status and client are both selected
+    if len(status) >0 and len(client)>0:
+        for status_ in status:
+            for client_ in client:
+                user_id = Client.query.get_or_404(client_).user_id
+                
+                # return jsonify(client_object)
+                benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_, user = user_id)
+                for benchmark_job in benchmark_jobs:
+                    filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+    # filter if status is selected and no client selected
+    if len(status) >0 and len(client)==0:
+        for status_ in status:
+            
+            benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_)
+            for benchmark_job in benchmark_jobs:
+                filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+    # filter if client is selected and no status selected
+    if len(status) ==0 and len(client)>0:
+        for client_ in client:
+            user_id = Client.query.get_or_404(client_).user_id
+            benchmark_jobs = Main_benchmark_job.query.filter_by(user=user_id)
+            for benchmark_job in benchmark_jobs:
+                filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+
+    # query if no filter is selected
+    if len(status) ==0 and len(client)==0:
+        benchmark_jobs = Main_benchmark_job.query.filter_by(status='Pending')
+        for benchmark_job in benchmark_jobs:
+            filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+
+
+
+
+
+#Reject benchmark_job
+@users.route("/client_benchmark_job/reject/<int:id>", methods=['POST'])
+def reject_client_benchmark_job(id):
+    form = BenchmarkJobComment()
+    if form.validate_on_submit():
+        benchmark_job = Main_benchmark_job.query.get_or_404(id)
+        comment = form.comment.data
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=id)
+        db.session.add(new_comment)
+        benchmark_job.status = 'Rejected'
+        db.session.commit()
+        flash('Job Updated', 'Success')
+        return redirect(url_for('users.admin_view_client_benchmark_jobs'))
+
+# Approve client benchmark Job
+@users.route("/client_benchmark_job/approve", methods = ['POST'])
+def approve_client_benchmark_job():
+    
+    id = request.form['id']
+   
+    benchmark_job = Main_benchmark_job.query.get_or_404(id)
+    benchmark_job.status = 'Approved'
+
+    # Check if comment is not blank and add to comment table
+    comment = request.form['comment']
+    if comment != '':
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=id)
+        db.session.add(new_comment)
+    db.session.commit()
+    flash('Job Updated', 'Success')
+    return 'true'
 
 # Route to search for client based of search input
 @users.route("/client/search", methods =['POST'])
@@ -545,7 +638,7 @@ def view_client_benchmark_job():
     id = request.form['id']
     benchmark_job = Main_benchmark_job.query.get_or_404(id)
     # benchmark_job.grade = 'Grade1'
-    # benchmark_job.department_id = 1
+    # benchmark_job.user = 1
     # benchmark_job.reporting_relationship = 'Reportinng to HR Manager'
     # benchmark_job.job_description = 'Someone assisting HR manager in their work'
     # benchmark_job.duties_and_responsibility = 'Responsible for all staff HR issues'
@@ -566,12 +659,61 @@ def view_client_benchmark_job():
         'financial_responsibilies':benchmark_job.financial_responsibilities,
         'technical_qualifications':benchmark_job.technical_qualification,
         'years_of_experience':benchmark_job.minimum_years_of_experience,
+        'status_':benchmark_job.status,
+        'base_salary':int(benchmark_job.base[0].monthly_base_salary) or 'N/A',
+        'company_performance_bonus':benchmark_job.incentive[0].company_performance or 'N/A' ,
+        'individual_performance_bonus':benchmark_job.incentive[0].individual_performance or 'N/A',
+        'annual_bonus':benchmark_job.incentive[0].annual_incentive or 'N/A',
+        'incentive_bonus':benchmark_job.incentive[0].incentive or 'N/A',
+        'other_bonus':benchmark_job.incentive[0].other_cash or 'N/A',
+        'b_staff_bus':benchmark_job.benefit[0].staff_bus or 'N/A',
+        'b_company_car':benchmark_job.benefit[0].company_car or 'N/A',
+        'b_personal_travel':benchmark_job.benefit[0].personal_travel or 'N/A',
+        'b_petrol':benchmark_job.benefit[0].petrol or 'N/A',
+        'b_vehicle':benchmark_job.benefit[0].vehicle_maintenance or 'N/A',
+        'b_driver':benchmark_job.benefit[0].driver or 'N/A',
+        'b_health_insurance':benchmark_job.benefit[0].health_insurance or 'N/A',
+        'b_medical_assistance':benchmark_job.benefit[0].medical_assistance or 'N/A',
+        'b_funeral_assistance':benchmark_job.benefit[0].funeral_assistance or 'N/A',
+        'b_life_insurance':benchmark_job.benefit[0].life_insurance or 'N/A',
+        'b_accident':benchmark_job.benefit[0].group_accident or 'N/A',
+        'b_club_membership':benchmark_job.benefit[0].club_membership or 'N/A',
+        'b_school_fees':benchmark_job.benefit[0].school_fees or 'N/A',
+        'b_vacation':benchmark_job.benefit[0].vacation or 'N/A',
+        'b_housing':benchmark_job.benefit[0].housing or 'N/A',
+        'b_telephone':benchmark_job.benefit[0].telephone or 'N/A',
+        'b_security':benchmark_job.benefit[0].security or 'N/A',
+        'b_other':benchmark_job.benefit[0].other_benefits or 'N/A',
+        
+        'a_vehicle_maintenance':benchmark_job.allowance[0].vehicle_maintenance or 'N/A',
+        'a_vehicle':benchmark_job.allowance[0].vehicle or 'N/A',
+        'a_transport':benchmark_job.allowance[0].transport or 'N/A',
+        'a_fuel':benchmark_job.allowance[0].fuel or 'N/A',
+        'a_car':benchmark_job.allowance[0].car or 'N/A',
+        'a_driver':benchmark_job.allowance[0].driver or 'N/A',
+        'a_domestic_safety':benchmark_job.allowance[0].domestic_safety or 'N/A',
+        'a_housing':benchmark_job.allowance[0].housing or 'N/A',
+        'a_utilities':benchmark_job.allowance[0].utilities or 'N/A',
+        'a_meal':benchmark_job.allowance[0].meal or 'N/A',
+        'a_telephone':benchmark_job.allowance[0].telephone or 'N/A',
+        'a_entertainment':benchmark_job.allowance[0].entertainment or 'N/A',
+        'a_education':benchmark_job.allowance[0].education_support or 'N/A',
+        'a_vacation':benchmark_job.allowance[0].vacation or 'N/A',
+        'a_uniform':benchmark_job.allowance[0].uniform or 'N/A',
+        'a_mobile_money':benchmark_job.allowance[0].mobile_money or 'N/A',
+        'a_miscellaneous':benchmark_job.allowance[0].miscellaenous or 'N/A',
+       
+
         'comments_': comments
         }
     return jsonify(new_benchmark_job)
 
 
-
+#update benchmark job with comment and status
+@users.route("/client_benchmark_job/review", methods=['POST', 'GET'])
+def review_benchmark_job():
+    form = BenchmarkJobComment()
+    
 
 ### End of block working on admin viewing client benchmark jobs and approving
 

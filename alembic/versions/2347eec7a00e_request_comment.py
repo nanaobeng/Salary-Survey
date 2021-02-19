@@ -1,7 +1,7 @@
 """request_comment
 
 Revision ID: 2347eec7a00e
-Revises: f3787fa495a0
+Revises: 
 Create Date: 2021-02-09 09:29:24.440009
 
 """
@@ -11,7 +11,7 @@ import sqlalchemy as sa
 
 # revision identifiers, used by Alembic.
 revision = '2347eec7a00e'
-down_revision = '0f117f5ed721'
+down_revision = None
 branch_labels = None
 depends_on = None
 
