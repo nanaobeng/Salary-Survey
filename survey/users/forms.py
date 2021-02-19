@@ -642,7 +642,7 @@ class ClientForm(FlaskForm):
 
     tax_id = StringField('Tax ID')
 
-#     submit = SubmitField('Submit')
+    submit = SubmitField('Submit')
 
 
 def validate_required(form, field):
@@ -664,7 +664,7 @@ class SurveyForm(FlaskForm):
     
     department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department', validators = [DataRequired()])
    
-    base_salary = FloatField('Annual Base Salary (GHS)')
+    base_salary = FloatField('Annual Base Salary (GHS)',default=0)
     
     company_bonus_performance = FloatField('Company Performance Bonus', validators=[Optional()])
     individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[Optional()])
@@ -726,7 +726,7 @@ class BenchmarkJobComment(FlaskForm):
 
 
 class MessageComment(FlaskForm):
-    comment = TextAreaField('Comment', validators=[DataRequired()])
+    comment = TextAreaField('Add New Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
     status = BooleanField('Change Status', default=False)
     # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
@@ -752,5 +752,11 @@ class RequestSearchForm(FlaskForm):
     select = SelectField('Filter:', choices=choices)
     search = StringField('')
 
+class FilterReportForm(FlaskForm):
+    report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
+    report_status = SelectField('Status', coerce=int)
+    report_start_date = DateField('Start Date', format='%d-%m-%Y')
+    report_end_date = DateField('End Date', format='%d-%m-%Y')
+    submit = SubmitField('View Report')
 
 #     submit = SubmitField('Submit')

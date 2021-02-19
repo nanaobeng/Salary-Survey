@@ -195,6 +195,11 @@
     line-height: 25px;
     text-indent: -99999px;
   }
+
+  .new-comment-label {
+    font-style: italic;
+    font: smaller;
+  }
 </style>
 
 
@@ -209,52 +214,26 @@
   </div>
 </div>
 
-<!-- <div class="row pt-5 pb-5 justify-content-center"> -->
+<!--Body-->
 <div class="row p-5 justify-content-center">
   <div class="col-12">
     <table class="table table-hover">
       <thead style="background-color: rgb(78, 110, 62);">
-        <th id="searchbar">
+        <th colspan="3" id="searchbar">
           <input type="search" id="search_input" placeholder="Search...">
           <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
         </th>
-        <th>
-          <button id="filterbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
-              class="icofont-settings"></i></span></button>
-          <form class="dropdown-menu p-2">
-            <div class="form-group">
-              <label for="status">Status:</label>
-              <select class="form-control" id="status" onchange="filter('status')">
-                <option value="open">Open</option>
-                <option value="closed">Closed</option>
-              </select>
-            </div>
-            <div class="form-group">
-              <label for="status">Date:</label>
-              <select class="form-control" id="status" onchange="filter('status')">
-                <option value="open">Open</option>
-                <option value="closed">Closed</option>
-              </select>
-            </div>
-          </form>
-        </th>
-        <th>
-          <button id="sortbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Sort <i
-              class="icofont-sort-alt"></i></span></button>
-          <form class="dropdown-menu p-2">
-            <div class="form-group">
-              <select class="form-control" id="status" onchange="filter('status')">
-                <option value="open">Newest First</option>
-                <option value="closed">Oldest First</option>
-                <option>Sender</option>
-              </select>
-            </div>
-          </form>
-        </th>
       </thead>
 
+
       <tbody id="messages_list">
-        {% if messages %}
+        {% if not messages %}
+        <tr class="table-row">
+          <td colspan="3" style="text-align:center;">
+            <em> You have no messages to view.</em>
+          </td>
+        </tr>
+        {% else %}
         {% for message in messages %}
         <tr class="table-row" onclick="viewMessages('{{message.id}}', this)" data-id="{{message.id}}"
           data-toggle="modal" href="#viewRequestModal">
@@ -262,20 +241,14 @@
             <strong class="message-heading">Message from {{message.firstname}} {{message.lastname}}</strong>
             {{message.company_name}}
           </td>
-          <td>{{message.timestamp.strftime('%-dth %b, %Y')}}</td>
-          {% if message.status == "False" %}
-          <td><span class="badge badge-success">Open</span></td>
-          {% else %}
-          <td><span class="badge badge-danger">Closed</span></td>
+          <td>{{message.timestamp.strftime('%D')}}</td>
+          {% if message.status == "Open" %}
+          <td><span class="badge badge-success">{{message.status}}</span></td>
+          {% elif message.status == "Closed" %}
+          <td><span class="badge badge-danger">{{message.status}}</span></td>
           {% endif %}
         </tr>
         {% endfor %}
-        {% else %}
-        <tr class="table-row">
-          <td colspan="3" style="text-align:center;">
-            <em> You have no messages to view.</em>
-          </td>
-        </tr>
         {% endif %}
       </tbody>
     </table>
@@ -294,8 +267,8 @@
         <div id="body" class="modal-body">
         </div>
         <div class="modal-footer">
-          {{form.submit(class="btn btn-primary")}}
-          <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+          {{form.submit(class="btn btn-outline-success")}}
+          <button type="reset" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
         </div>
       </form>
     </div>
@@ -337,10 +310,9 @@
         <div class="form-group">
             <p>Comments:
             <ol id="commentList" style="color: gray;">
-              
             </ol>
             </p>
-          {{form.comment.label(class="comment-label")}}
+          {{form.comment.label(class="comment-label new-comment-label")}}
             {% if form.comment.errors %}
               {{ form.comment(class="form-control form-control is-invalid", cols="100", rows="1", onfocus="this.rows=5;")}}
               <div class="invalid-feedback">
@@ -352,7 +324,6 @@
               {{ form.comment(class="form-control form-control") }}
               {% endif %}
   
-          <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
 
         </div>
 
@@ -375,6 +346,7 @@
         </div>
       `
         )
+        document.getElementById("status").checked = true
         for (var i = 0; i < res[1].comments.length; i++) {
           $('#commentList').append('<li>' + res[1].comments[i] + '</li>')
         }
@@ -394,9 +366,72 @@
 <script>
   $(document).ready(function () {
     $("#search_input").on("keyup", function () {
-      var value = $(this).val().toLowerCase();
-      $("#messages_list tr").filter(function () {
-        $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+      var value = $(this).val();
+      $.ajax({
+        url: '/messages/search',
+        data: {
+          search_term: value
+        },
+        type: 'POST',
+        success: function (res) {
+          console.log(res)
+          if (res.length == 0) {
+            $('messages_list').html(
+              `<tr class="table-row">
+          <td colspan="3" style="text-align:center;">
+            <em> You have no messages to view.</em>
+          </td>
+        </tr>
+        `
+            )
+          }
+          else {
+            $('#messages_list').empty()
+            for (var i = 0; i < res.length; i++) {
+              var timestamp = new Date(res[i].timestamp)
+              var day = timestamp.getDate()
+              var month = timestamp.getMonth() + 1
+              var year = timestamp.getFullYear()
+              var date = day + "/" + month + "/" + year
+              if (res[i].status == "Open") {
+                $('#messages_list').append(
+                  `
+        <tr class="table-row" onclick="viewMessages('${res[i].id}', this)" data-id="${res[i].id}"
+          data-toggle="modal" href="#viewRequestModal">
+          <td>
+            <strong class="message-heading">Message from ${res[i].firstname} ${res[i].lastname}</strong>
+            ${res[i].company}
+          </td>
+          <td>${date}</td>
+          <td><span class="badge badge-success">${res[i].status}</span></td>
+        </tr>
+        `
+                )
+              } else {
+                $('#messages_list').append(
+                  `
+        <tr class="table-row" onclick="viewMessages('${res[i].id}', this)" data-id="${res[i].id}"
+          data-toggle="modal" href="#viewRequestModal">
+          <td>
+            <strong class="message-heading">Message from ${res[i].firstname} ${res[i].lastname}</strong>
+            ${res[i].company}
+          </td>
+          <td>${date}</td>
+          <td><span class="badge badge-danger">${res[i].status}</span></td>
+        </tr>
+        `
+                )
+              }
+
+            }
+          }
+
+
+
+        },
+        error: function (error) {
+          console.log(error);
+        }
       });
     });
   });
