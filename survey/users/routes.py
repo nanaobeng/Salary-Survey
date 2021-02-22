@@ -1,12 +1,10 @@
-from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
+from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, session
 from survey import db , bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm,FilterReportForm
+from survey.users.forms import *
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 from datetime import datetime
-from sqlalchemy import or_, desc, func
-
 users = Blueprint('users',__name__)
 
 
@@ -98,7 +96,7 @@ def reset_token(token):
 
 @users.route("/create_client",methods=['POST','GET'])
 def create_client():
-    usn = current_user
+    
     form = ClientForm()
     
     if form.validate_on_submit():
@@ -114,7 +112,7 @@ def create_client():
         client = Client(
         company_history = form.company_history.data,
         company_name = form.name.data,
-        user = usn,
+        user = form.user_account.data,
         sector = form.sector.data,
         industry = form.industry.data,
         area = form.area.data,
@@ -158,73 +156,7 @@ def create_client():
 def create_contact():
     return render_template("contact_person.html")
 
-# load messages from 'Contact' in database
-@users.route("/messages")
-def messages():
-    form = MessageComment()
-    messages = Contact.query.filter_by(status="Open").order_by(desc(Contact.timestamp)).all()
-    return render_template("messages.html", messages=messages, form=form)
 
-# view message modal
-@users.route('/view_message', methods=['POST','GET'])
-def viewMessage():
-    id = request.form['id']
-
-    messages = Contact.query.filter_by(id=id)
-    comments = Comment.query.filter_by(contact_id=id)
-    comment_array = []
-    temp = []
-    for message in messages:
-        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
-        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
-        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
-        'address_2':message.address_2,'city':message.city,'country':message.country,
-        'status':message.status,'timestamp':message.timestamp})
-    
-    for comment in comments:
-        comment_array.append(comment.comment)
-
-    temp.append({'comments': comment_array})
-
-    return jsonify(temp)
-
-# update messages on modal submit 
-@users.route('/messages/update/<int:messageId>', methods=['POST'])
-def updateMessage(messageId):
-    message = Contact.query.get_or_404(messageId)
-    form = MessageComment()
-    if form.validate_on_submit:
-        comment = Comment(comment=form.comment.data, contact_id=messageId)
-        status = str(form.status.data)
-        if (status == "True"):
-            new_status = "Closed"
-        elif (status == "False"):
-            new_status = "Open" 
-        message.status = new_status
-        db.session.add(comment)
-        db.session.commit()
-        flash("Message Updated", "success")
-        return redirect(url_for('users.messages'))
-
-@users.route("/view_reports")
-def view_reports():
-
-    STATUS_BY_REPORT_TYPE = {
-    'clients': [('active', 'Active'), ('inactive', 'Inactive')],
-    'service_requests': [('pending','Pending'), ('awaiting','Awaiting Client Information'), 
-    ('first_pass','First Pass'), ('conflict_check','Conflict Check'), ('finish_completion','Finish Completion'), 
-    ('submitted','Submitted For Approval')],
-    'messages': [('open', 'Open'), ('closed', 'Closed')]
-    }
-
-    form = FilterReportForm()
-    form.report_status.choices = STATUS_BY_REPORT_TYPE.get(form.report_status.data)
-
-    num_clients = db.session.query(Client).count()
-    num_active_clients = db.session.query(Client).filter(Client.status=='Active').count()
-    num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
-   
-    return render_template("reports.html", form=form, num_clients=num_clients, num_active_clients=num_active_clients, num_inactive_clients=num_inactive_clients)
 
 @users.route("/create_sector",methods=["POST","GET"])
 def create_sector():
@@ -423,6 +355,8 @@ def survey_home():
 
 @users.route("/create_survey")
 def create_survey():
+    searchform = MyForm()
+    compform = ComparatorForm()
     form = SurveyForm()
     if form.validate_on_submit():
         sur = Survey(name="test2",start_date=datetime(2012, 3, 3, 10, 10, 10),end_date=datetime(2012, 3, 3, 10, 10, 10),status="active",client_id=1)
@@ -430,7 +364,7 @@ def create_survey():
         db.session.commit()
         flash('Account Created','success')
         return redirect(url_for('users.login'))
-    return render_template("new_create_survey.html",form=form)
+    return render_template("new_create_survey.html",form=form,searchform=searchform,compform=compform)
 
 @users.route("/edit_survey")
 def edit_survey():
@@ -493,7 +427,7 @@ def my_benchmark_jobs_create():
     form = SurveyForm()
     user = current_user
     if form.validate_on_submit():
-        b_job = Main_benchmark_job(job_title=form.job_title.data,grade=form.grade.data,main_department=form.department.data,reporting_relationship=form.reporting_relationship.data,job_description=form.job_desc.data,duties_and_responsibility=form.key_duties.data,financial_responsibilities=form.fin_res.data,technical_qualification=form.tech_qual.data,minimum_years_of_experience=form.exp_years.data,user_account=user)
+        b_job = Main_benchmark_job(job_title=form.job_title.data,grade=form.grade.data,main_department=form.department.data,reporting_relationship=form.reporting_relationship.data,job_description=form.job_desc.data,duties_and_responsibility=form.key_duties.data,financial_responsibilities=form.fin_res.data,technical_qualification=form.tech_qual.data,minimum_years_of_experience=form.exp_years.data,user_account=user, status='Pending')
         base = Base_salary(monthly_base_salary=form.base_salary.data,main_benchmark_base=b_job)
         inc  = Incentive(company_performance=form.company_bonus_performance.data,individual_performance=form.individual_bonus_performance.data,annual_incentive=form.annual_bonus.data,incentive=form.incentive_bonus.data,other_cash=form.other_bonus.data,main_benchmark_incentive=b_job)
         benefits = Benefit(staff_bus=form.staff_bus.data,company_car=form.company_car.data,personal_travel=form.personal_travel.data,petrol=form.petrol.data,vehicle_maintenance=form.vehicle.data,driver=form.driver.data,health_insurance=form.health_insurance.data,medical_assistance=form.medical_assistance.data,funeral_assistance=form.funeral_assistance.data,life_insurance=form.life_insurance.data,group_accident=form.group_accident.data,club_membership=form.club_membership.data,school_fees=form.school_fees.data,vacation=form.vacation.data,housing=form.housing.data,telephone=form.telephone.data,security=form.security.data,other_benefits=form.other_benefits.data,main_benchmark_benefit=b_job)
@@ -504,13 +438,20 @@ def my_benchmark_jobs_create():
         db.session.add(benefits)
         db.session.add(allowance)
         db.session.commit()
-        flash('Job Position Created','success')
+        flash('Benchmark Job Created','success')
         return redirect(url_for('users.my_benchmark_jobs_create')) 
     return render_template("new_client_create_benchmark.html",form=form)
 
 @users.route("/my_surveys")
 def my_surveys():
-    return render_template("quantitative_survey_overview.html")
+    usn = current_user.id
+    query = []
+    surveys = Benchmark_job.query.all()
+    for survey in surveys:
+        if survey.benchmark.user.id == usn:
+            query.append(survey)
+
+    return render_template("quantitative_survey_overview.html",usn=usn,query=query)
 
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():
@@ -518,7 +459,12 @@ def quantitative_overview():
 
 @users.route("/my_surveys/view_survey/qualitative")
 def qualitative_overview():
-    return render_template("qualitative_survey_overview.html")
+    usn = current_user.id
+    cli = Client.query.all()
+    for i in cli:
+        if i.user.id == usn:
+            cli = i
+    return render_template("qualitative_survey_overview.html",cli=cli)
 
 @users.route("/administration")
 def admin_home():
@@ -526,7 +472,20 @@ def admin_home():
 
 @users.route("/administration/surveys")
 def admin_surveys():
-    return render_template("new_view_survey.html")
+    query = Survey.query.all()
+    
+    # if request.method == 'POST':
+    #     client = Client.query.get_or_404(request.form['client_id'])
+    #     client.status = request.form['c_status']
+    #     try:
+    #         db.session.commit()
+    #         flash('Client Updated','success')
+    #         return redirect(url_for('users.admin_clients'))
+    #     except:
+    #         flash('There was an issue updating the client','danger')
+    #         return redirect(url_for('users.admin_clients'))
+    
+    return render_template("new_view_survey.html",query=query)
 
 @users.route("/administration/benchmark-jobs")
 def admin_benchmarl():
@@ -550,6 +509,16 @@ def admin_clients():
         return render_template("new_view_client.html",query=query)
 
 
+# @users.route("/administration/service_requests")
+# def admin_service_requests():
+#     #make a query to the db
+#     indv = Individual_request.query.all()
+#     cnt = Individual_request.query.filter_by(status="approved").count()
+#     #filter out what i want
+#     return render_template("new_requests.html",indv=indv)
+
+
+
 @users.route("/administration/reports")
 def admin_reports():
     return render_template("new_admin_reports.html")
@@ -557,12 +526,9 @@ def admin_reports():
 
 @users.route("/administration/client_hub")
 def client_hub():
-    total_num_requests = db.session.query(Service_request).count()
-    total_pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending').count()
-    total_submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted').count()
-    return render_template("client_hub.html", total_num_requests=total_num_requests, total_pending_requests=total_pending_requests, total_submitted_requests=total_submitted_requests)
     
-
+    return render_template("client_hub.html")
+    
 @app.route('/user/<username>')
 @login_required
 def user(username):
@@ -592,6 +558,200 @@ def admin_users():
     
     return render_template("admin_users.html", Users=Users)
 
+
+
+### Begining of block working on admin viewing client benchmark jobs and approving
+
+# Route for admin to view all benchmark jobs from clients
+@users.route("/view_client_benchmark_jobs", methods=['POST', 'GET'])
+def admin_view_client_benchmark_jobs():
+    benchmark_jobs = Main_benchmark_job.query.filter_by(status='Pending')
+    form = BenchmarkJobComment()
+    if form.validate_on_submit():
+        benchmark_job = Main_benchmark_job.query.get_or_404(id)
+        comment = form.comment.data
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=1)
+        db.session.add(new_comment)
+        benchmark_job.status = 'Rejected'
+        db.session.commit()
+        flash('Job Updated', 'Success')
+        return redirect(url_for('users.admin_view_client_benchmark_jobs'))
+
+    return render_template("admin_view_client_benchmark_jobs.html", benchmark_jobs = benchmark_jobs, form=form)
+
+
+# Filter benchmark jobs
+@users.route("/client_benchmark_job/filter", methods = ['POST'])
+def filter_jobs():
+    status = request.form.getlist('status[]')
+    client = request.form.getlist('client[]')
+    filtered_jobs = []
+    # filter if status and client are both selected
+    if len(status) >0 and len(client)>0:
+        for status_ in status:
+            for client_ in client:
+                user_id = Client.query.get_or_404(client_).user_id
+                
+                # return jsonify(client_object)
+                benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_, user = user_id)
+                for benchmark_job in benchmark_jobs:
+                    filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+    # filter if status is selected and no client selected
+    if len(status) >0 and len(client)==0:
+        for status_ in status:
+            
+            benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_)
+            for benchmark_job in benchmark_jobs:
+                filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+    # filter if client is selected and no status selected
+    if len(status) ==0 and len(client)>0:
+        for client_ in client:
+            user_id = Client.query.get_or_404(client_).user_id
+            benchmark_jobs = Main_benchmark_job.query.filter_by(user=user_id)
+            for benchmark_job in benchmark_jobs:
+                filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+
+    # query if no filter is selected
+    if len(status) ==0 and len(client)==0:
+        benchmark_jobs = Main_benchmark_job.query.filter_by(status='Pending')
+        for benchmark_job in benchmark_jobs:
+            filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+
+#Reject benchmark_job
+@users.route("/client_benchmark_job/reject/<int:id>", methods=['POST'])
+def reject_client_benchmark_job(id):
+    form = BenchmarkJobComment()
+    if form.validate_on_submit():
+        benchmark_job = Main_benchmark_job.query.get_or_404(id)
+        comment = form.comment.data
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=id)
+        db.session.add(new_comment)
+        benchmark_job.status = 'Rejected'
+        db.session.commit()
+        flash('Job Updated', 'Success')
+        return redirect(url_for('users.admin_view_client_benchmark_jobs'))
+
+# Approve client benchmark Job
+@users.route("/client_benchmark_job/approve", methods = ['POST'])
+def approve_client_benchmark_job():
+    
+    id = request.form['id']
+   
+    benchmark_job = Main_benchmark_job.query.get_or_404(id)
+    benchmark_job.status = 'Approved'
+
+    # Check if comment is not blank and add to comment table
+    comment = request.form['comment']
+    if comment != '':
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=id)
+        db.session.add(new_comment)
+    db.session.commit()
+    flash('Job Updated', 'Success')
+    return 'true'
+
+# Route to search for client based of search input and return to input fielf
+@users.route("/client/search", methods =['POST'])
+def search_client():
+    search = request.form['search']
+    clients = Client.query.filter(Client.company_name.like(('%'+search+'%')))
+    new_clients =[]
+    for client in clients:
+        new_clients.append({'id':client.id,'name':client.company_name})
+    return jsonify(new_clients)
+
+# Route to get job details and send back to ajax function to be displayed in modal
+@users.route("/client_benchmark_job/view", methods=['POST'])
+def view_client_benchmark_job():
+    id = request.form['id']
+    benchmark_job = Main_benchmark_job.query.get_or_404(id)
+    # benchmark_job.grade = 'Grade1'
+    # benchmark_job.user = 1
+    # benchmark_job.reporting_relationship = 'Reportinng to HR Manager'
+    # benchmark_job.job_description = 'Someone assisting HR manager in their work'
+    # benchmark_job.duties_and_responsibility = 'Responsible for all staff HR issues'
+    # benchmark_job.technical_qualification = 'First degree in any course of study'
+    # benchmark_job.minimum_years_of_experience = '2 years working in similar role'
+    # db.session.commit()
+    comments = []
+    for comment in benchmark_job.comment:
+        comments.append(comment.comment)
+    new_benchmark_job = {
+        'id':benchmark_job.id, 
+        'job_title':benchmark_job.job_title,
+        'grade':benchmark_job.grade,
+        'department':benchmark_job.main_department.department,
+        'reporting_relationship':benchmark_job.reporting_relationship,
+        'job_description':benchmark_job.job_description,
+        'key_duties':benchmark_job.duties_and_responsibility,
+        'financial_responsibilies':benchmark_job.financial_responsibilities,
+        'technical_qualifications':benchmark_job.technical_qualification,
+        'years_of_experience':benchmark_job.minimum_years_of_experience,
+        'status_':benchmark_job.status,
+        'base_salary': "{:,.2f}".format(benchmark_job.base[0].monthly_base_salary or 0),
+        'company_performance_bonus': "{:,.2f}".format(benchmark_job.incentive[0].company_performance or 0) ,
+        'individual_performance_bonus': "{:,.2f}".format(benchmark_job.incentive[0].individual_performance or 0),
+        'annual_bonus': "{:,.2f}".format(benchmark_job.incentive[0].annual_incentive or 0),
+        'incentive_bonus': "{:,.2f}".format(benchmark_job.incentive[0].incentive or 0),
+        'other_bonus': "{:,.2f}".format(benchmark_job.incentive[0].other_cash or 0),
+        'b_staff_bus': "{:,.2f}".format(benchmark_job.benefit[0].staff_bus or 0),
+        'b_company_car': "{:,.2f}".format(benchmark_job.benefit[0].company_car or 0),
+        'b_personal_travel': "{:,.2f}".format(benchmark_job.benefit[0].personal_travel or 0),
+        'b_petrol': "{:,.2f}".format(benchmark_job.benefit[0].petrol or 0),
+        'b_vehicle': "{:,.2f}".format(benchmark_job.benefit[0].vehicle_maintenance or 0),
+        'b_driver': "{:,.2f}".format(benchmark_job.benefit[0].driver or 0),
+        'b_health_insurance': "{:,.2f}".format(benchmark_job.benefit[0].health_insurance or 0),
+        'b_medical_assistance': "{:,.2f}".format(benchmark_job.benefit[0].medical_assistance or 0),
+        'b_funeral_assistance': "{:,.2f}".format(benchmark_job.benefit[0].funeral_assistance or 0),
+        'b_life_insurance': "{:,.2f}".format(benchmark_job.benefit[0].life_insurance or 0),
+        'b_accident': "{:,.2f}".format(benchmark_job.benefit[0].group_accident or 0),
+        'b_club_membership': "{:,.2f}".format(benchmark_job.benefit[0].club_membership or 0),
+        'b_school_fees': "{:,.2f}".format(benchmark_job.benefit[0].school_fees or 0),
+        'b_vacation': "{:,.2f}".format(benchmark_job.benefit[0].vacation or 0),
+        'b_housing': "{:,.2f}".format(benchmark_job.benefit[0].housing or 0),
+        'b_telephone': "{:,.2f}".format(benchmark_job.benefit[0].telephone or 0),
+        'b_security': "{:,.2f}".format(benchmark_job.benefit[0].security or 0),
+        'b_other': "{:,.2f}".format(benchmark_job.benefit[0].other_benefits or 0),
+        
+        'a_vehicle_maintenance': "{:,.2f}".format(benchmark_job.allowance[0].vehicle_maintenance or 0),
+        'a_vehicle': "{:,.2f}".format(benchmark_job.allowance[0].vehicle or 0),
+        'a_transport': "{:,.2f}".format(benchmark_job.allowance[0].transport or 0),
+        'a_fuel': "{:,.2f}".format(benchmark_job.allowance[0].fuel or 0),
+        'a_car': "{:,.2f}".format(benchmark_job.allowance[0].car or 0),
+        'a_driver': "{:,.2f}".format(benchmark_job.allowance[0].driver or 0),
+        'a_domestic_safety': "{:,.2f}".format(benchmark_job.allowance[0].domestic_safety or 0),
+        'a_housing': "{:,.2f}".format(benchmark_job.allowance[0].housing or 0),
+        'a_utilities': "{:,.2f}".format(benchmark_job.allowance[0].utilities or 0),
+        'a_meal': "{:,.2f}".format(benchmark_job.allowance[0].meal or 0),
+        'a_telephone': "{:,.2f}".format(benchmark_job.allowance[0].telephone or 0),
+        'a_entertainment': "{:,.2f}".format(benchmark_job.allowance[0].entertainment or 0),
+        'a_education': "{:,.2f}".format(benchmark_job.allowance[0].education_support or 0),
+        'a_vacation': "{:,.2f}".format(benchmark_job.allowance[0].vacation or 0),
+        'a_uniform': "{:,.2f}".format(benchmark_job.allowance[0].uniform or 0),
+        'a_mobile_money': "{:,.2f}".format(benchmark_job.allowance[0].mobile_money or 0),
+        'a_miscellaneous': "{:,.2f}".format(benchmark_job.allowance[0].miscellaenous or 0),
+       
+
+        'comments_': comments
+        }
+    return jsonify(new_benchmark_job)
+
+
+#update benchmark job with comment and status
+@users.route("/client_benchmark_job/review", methods=['POST', 'GET'])
+def review_benchmark_job():
+    form = BenchmarkJobComment()
+    
+
+### End of block working on admin viewing client benchmark jobs and approving
+
 @users.route("/administration/config/benchmark_jobs")
 def admin_benchmark_jobs():
     return render_template("admin_benchmark_jobs.html")
@@ -600,10 +760,68 @@ def admin_benchmark_jobs():
 def create_benchmark_job():
     return render_template("create_benchmark_job.html")
 
-@users.route("/survey/quantitative")
-def quantitative_survey():
+@users.route("/survey/quantitative/<int:id>",methods=['POST','GET'])
+def quantitative_survey(id):
+    job = Benchmark_job.query.get_or_404(id)
+ 
     form = SurveyForm()
-    return render_template("quantitative_survey.html",form=form)
+    if form.validate_on_submit():
+        
+        
+        job.comp_benchmark_base.monthly_base_salary=form.base_salary.data or 0 
+
+        job.comp_benchmark_incentive.company_performance=form.company_bonus_performance.data or 0 
+        job.comp_benchmark_incentive.individual_performance=form.individual_bonus_performance.data or 0 
+        job.comp_benchmark_incentive.annual_incentive=form.annual_bonus.data or 0 
+        job.comp_benchmark_incentive.incentive=form.incentive_bonus.data or 0 
+        job.comp_benchmark_incentive.other_cash=form.other_bonus.data or 0 
+     
+        job.comp_benchmark_benefit.staff_bus=form.staff_bus.data or 0
+        job.comp_benchmark_benefit.company_car=form.company_car.data or 0
+        job.comp_benchmark_benefit.personal_travel=form.personal_travel.data or 0
+        job.comp_benchmark_benefit.petrol=form.petrol.data or 0
+        job.comp_benchmark_benefit.vehicle_maintenance=form.vehicle.data or 0
+        job.comp_benchmark_benefit.driver=form.driver.data or 0
+        job.comp_benchmark_benefit.health_insurance=form.health_insurance.data or 0
+        job.comp_benchmark_benefit.medical_assistance=form.medical_assistance.data or 0
+        job.comp_benchmark_benefit.funeral_assistance=form.funeral_assistance.data or 0
+        job.comp_benchmark_benefit.life_insurance=form.life_insurance.data or 0
+        job.comp_benchmark_benefit.group_accident=form.group_accident.data or 0
+        job.comp_benchmark_benefit.club_membership=form.club_membership.data or 0
+        job.comp_benchmark_benefit.school_fees=form.school_fees.data or 0
+        job.comp_benchmark_benefit.vacation=form.vacation.data or 0
+        job.comp_benchmark_benefit.housing=form.housing.data or 0
+        job.comp_benchmark_benefit.telephone=form.telephone.data or 0
+        job.comp_benchmark_benefit.security=form.security.data or 0
+        job.comp_benchmark_benefit.other_benefits=form.other_benefits.data or 0
+
+        job.comp_benchmark_allowance.vehicle_maintenance=form.vehicle_maintenance.data or 0
+        job.comp_benchmark_allowance.vehicle=form.allowance_vehicle.data or 0
+        job.comp_benchmark_allowance.transport=form.transport.data or 0
+        job.comp_benchmark_allowance.fuel=form.fuel.data or 0
+        job.comp_benchmark_allowance.car=form.car.data or 0
+        job.comp_benchmark_allowance.driver=form.allowance_driver.data or 0
+        job.comp_benchmark_allowance.domestic_safety=form.domestic.data or 0
+        job.comp_benchmark_allowance.housing=form.allowance_housing.data or 0
+        job.comp_benchmark_allowance.utilities=form.utilities.data or 0
+        job.comp_benchmark_allowance.meal=form.meal.data or 0
+        job.comp_benchmark_allowance.telephone=form.allowance_telephone.data or 0
+        job.comp_benchmark_allowance.entertainment=form.entertainment.data or 0
+        job.comp_benchmark_allowance.education_support=form.education.data or 0
+        job.comp_benchmark_allowance.vacation=form.vacation_allowance.data or 0
+        job.comp_benchmark_allowance.uniform=form.uniform.data or 0
+        job.comp_benchmark_allowance.mobile_money=form.mobile_money.data or 0
+        job.comp_benchmark_allowance.miscellaenous=form.misc.data or 0
+        job.status = "completed"
+        try:
+            db.session.commit()
+            flash('Benchmark Completed','success')
+            return redirect(url_for('users.my_surveys'))
+        except:
+            flash('There was an issue completing your request','danger')
+            return redirect(url_for('users.my_surveys'))
+    
+    return render_template("quantitative_survey.html",form=form,job=job)
 
 
 
@@ -841,70 +1059,272 @@ def benchmark_home():
     return render_template("benchmark_dashboard.html",job=job)
 
 
+
+
+@users.route('/form')
+def sdg():
+	form = MyForm()
+	return render_template('sdg.html', form=form)
+
+
+
+@users.route('/i')
+def indexx():
+ form = MyForm()
+ return render_template('sdg.html', form=form)
+
+@users.route('/countries', methods=['POST'])
+def countrydic():
+    tag = request.form["id"]
+    search = "%{}%".format(tag)
+
+    vajx2 = request.form['id']
+    posts = Main_benchmark_job.query.filter(Main_benchmark_job.job_title.like(search)).all()
+    temp = []
+    for post in posts:
+        temp.append({'id': post.id, 'job_title':post.job_title ,'main_department' :post.main_department.department})
+
+    return jsonify(temp)
+
+    list_countries = [r.as_dict() for r in posts]
+    return 'list_countries'
+    res = Main_benchmark_job.query.all()
+
+    return jsonify(list_countries)
+ 
+@users.route('/process', methods=['POST'])
+def process():
+    country = request.form['country']
+    if country:
+        return jsonify({'country':country})
+    return jsonify({'error': 'missing data..'})
+
+
+
+@users.route('/jobs', methods=['POST','GET'])
+def jobdic():
+    tag = request.form['id']
+    search = "%{}%".format(tag)
+
+  
+    posts = Main_benchmark_job.query.filter_by(id=tag)
+    temp = []
+    for post in posts:
+
+        temp.append({'id': post.id, 'job_title':post.job_title ,'main_department' :post.main_department.department, 'job_description' : post.job_description, 'grade':post.grade})
+
+    return jsonify(temp)
+
+
+
+
+
+
+
+
+@users.route('/compare', methods=['POST'])
+def comparedic():
+    tag = request.form["id"]
+    search = "%{}%".format(tag)
+
+    vajx2 = request.form['id']
+    posts = Client.query.filter(Client.company_name.like(search)).all()
+    temp = []
+    for post in posts:
+        temp.append({'id': post.id, 'company_name':post.company_name ,'company_history' :post.company_history,'sector':post.sector.sector,'industry':post.industry.industry})
+
+    return jsonify(temp)
+
+
+@users.route('/comps', methods=['POST','GET'])
+def compdic():
+    tag = request.form['id']
+    search = "%{}%".format(tag)
+
+  
+    posts = Client.query.filter_by(id=tag)
+    temp = []
+    for post in posts:
+
+        temp.append({'id': post.id, 'company_name':post.company_name ,'company_history' :post.company_history,'sector':post.sector.sector,'industry':post.industry.industry,'area':post.area.area})
+
+    return jsonify(temp)
+
+
+@users.route('/compss', methods=['POST','GET'])
+def compdict():
+    tag = request.form['id']
+    search = "%{}%".format(tag)
+
+  
+    posts = Client.query.filter_by(company_name=tag)
+    temp = []
+    for post in posts:
+
+        temp.append({'id': post.id, 'company_name':post.company_name ,'company_history' :post.company_history,'sector':post.sector.sector,'industry':post.industry.industry,'area':post.area.area})
+
+    return jsonify(temp)
+
+
+@users.route('/survey_create', methods=['POST','GET'])
+def created_survey_ajax():
+    bench = request.form['bench']
+    comp = request.form['comp']
+    survey = request.form['survey']
+    start_date = request.form['start_date']
+    client = request.form['client']
+    #search = "%{}%".format(tag)
+
+    bench_split = bench.split(',')
+    comp_split = comp.split(',')
+    posts = Client.query.filter_by(company_name=client).first()
+    b_id = "f"
+
+    #client_id = temp[0].id
+    sur = Survey(name=survey,status="unprocessed",survey_client=posts)
+    db.session.add(sur)
+   
+    
+    
+    for i in bench_split:
+        b_id = (int(i.replace("b", "")))
+        main = Main_benchmark_job.query.filter_by(id=b_id).first()
+        base = Base_salary.query.filter_by(id=main.id).first()
+        incentive = Incentive.query.filter_by(id=main.id).first()
+        allowance = Allowance.query.filter_by(id=main.id).first()
+        benefit = Benefit.query.filter_by(id=main.id).first()
+        for c in comp_split :
+            c_id = (int(c.replace("c", "")))
+            cli = Client.query.filter_by(id=c_id).first()
+            db.session.add(Survey_comparator(comparator=sur,client=cli,status="unprocessed"))
+            db.session.add(Benchmark_job(job_title=main.job_title,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=cli,comp_benchmark=sur))
+    
+    db.session.commit()
+    return jsonify('success')
+
+
+
+ 
+
+@users.route('/survey_modal', methods=['POST','GET'])
+def smodaldict():
+    tag = request.form['id']
+    search = "%{}%".format(tag)
+
+  
+    posts = Survey.query.filter_by(id=tag).all()
+    post = posts[0]
+    samp = [] 
+    b_marks = Benchmark_job.query.all()
+    comps = Survey_comparator.query.all()
+    for p in comps:
+        if(p.comparator.id == post.id):
+            samp.append(p.client.company_name )
+
+    temp_b = []
+    temp_c = []
+    for b in b_marks:
+        if(b.comp_benchmark.id == post.id):
+            temp_b.append(b.job_title)
+    # for c in comps:
+    #     if(c.comparator.id == post.id):
+    #         temp_c.append(c.comparator.survey_client.company_name)
+
+    temp_b = list(dict.fromkeys(temp_b))
+    #samp = list(dict.fromkeys(samp))
+    temp = []
+   
+
+    temp.append({'id': post.id, 'name':post.name ,'client':post.survey_client.company_name,'industry' :post.survey_client.industry.industry,'area':post.survey_client.area.area,'start_date':post.start_date,'benchmarks':temp_b,'comps':samp})
+
+    return jsonify(temp)
+
+
+
+@users.route('/survey_filters', methods=['POST','GET'])
+def survey_filter():
+    tag = request.form['stat']
+    tag = tag.split(",")
+
+
+
+    
+
+
+  
+
+  
+    posts =  Survey.query.filter(Survey.status.in_(tag)).all()
+   
+    temp = []
+    for post in posts:
+
+        temp.append({'id': post.id})
+
+    return jsonify(temp)
+
 @users.route("/administration/service_requests", methods=["POST","GET"])
 def admin_service_requests():
     form = ServiceRequestForm() 
-    ind = Individual_request.query.filter_by(status="pending").all()
+    ind = Individual_request.query.all()
     corp= Corporate_request.query.filter_by(status="pending").all()
 
     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
 
-@users.route('/view_request/<int:id>', methods=['POST','GET'])
-def viewIndRequest(id):
-    
-    
-    request = Individual_request.query.get_or_404(id)
-    comments = RequestComment.query.filter_by(service_id=id)
+@users.route('/view_request', methods=['POST','GET'])
+def viewRequest():
+    id = request.form['id']
+
+    requests = Individual_request.query.filter_by(id=id)
+    comments = RequestComment.query.filter_by(contact_id=id)
     comment_array = []
     temp = []
-  
-    temp.append({'id': request.id, 'date_of_request': request.date_of_request, 'type_of_request': request.type_of_request,
-    'status': request.status,'firstname' : request.firstname,'lastname': request.lastname,'email': request.email,'dob': request.dob,'phone': request.phone,
-    'address': request.address,'city': request.city,'country': request.country,'service': request.service})
-    
+    for request in requests:
+        temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
+        'status':post.status,'firstname' :post.firstname,'lastname':post.lastname,'other':post.other,'email':post.email,'dob':post.dob,'phone':post.phone,'address':post.address,
+        'city':post.city,'country':post.country,'service':post.service})
     for comment in comments:
         comment_array.append(comment.comment)
 
     temp.append({'comments': comment_array})
 
     return jsonify(temp)
-
 
 @users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
 def updateRequest(requestId):
     request = Individual_request.query.get_or_404(requestId)
     form = ServiceRequestForm()
     if form.validate_on_submit:
-        comment = RequestComment(comment=form.comment.data, service_id=requestId)
+        comment = RequestComment(comment=form.comment.data, contact_id=messageId)
         request.status = form.newstatus.data
         db.session.add(comment)
         db.session.commit()
         flash("Request Updated", "success")
         return redirect(url_for('users.admin_service_requests'))
 
-@users.route('/view_corprequest/<int:id>', methods=['POST','GET'])
-def viewCorpRequest(id):
-    
-    post = Corporate_request.query.get_or_404(id)
-    comments = RequestComment.query.filter_by(service_id=id)
+@users.route("/messages")
+
+def messages():
+    form= MessageComment()
+    messages = Contact.query.all()
+    return render_template("messages.html", form=form, messages=messages)
+
+
+@users.route('/view_message', methods=['POST','GET'])
+def viewMessage():
+    id = request.form['id']
+
+    messages = Contact.query.filter_by(id=id)
+    comments = Comment.query.filter_by(contact_id=id)
     comment_array = []
     temp = []
-  
-    temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
-    'status':post.status,'company_name' :post.company_name,'sector':post.sector,'industry':post.industry,'area':post.area,'financial_year_end':post.financial_year_end,'company_type':post.company_type,
-   'postal_address' : post.postal_address,'company_email':post.company_email,'postal_address':post.postal_address,'street_address':post.street_address,'reg_number':post.reg_number,'vat_number':post.vat_number,'tel':post.tel,
-    'website':post.website,'date_inc':post.date_inc,'country_inc':post.country_inc,'chair_firstname':post.chair_firstname,'chair_lastname':post.chair_lastname,
-   'chair_other':post.chair_other,'chair_nation':post.chair_nation,'chair_email':post.chair_email,'chair_phone':post.chair_phone,'ceo_firstname': post.ceo_firstname,
-   'ceo_lastname':post.ceo_lastname,'ceo_other':post.ceo_other,'ceo_nation':post.ceo_nation, 'ceo_email':post.ceo_email,'ceo_phone':post.ceo_phone,
-   'other_board_firstname':post.other_board_firstname,'other_board_lastname':post.other_board_lastname,'other_board_other':post.other_board_other,
-   'other_board_nation':post.other_board_nation,'other_board_email':post.other_board_email,'other_board_phone':post.other_board_phone,'key_firstname':post.key_firstname,
-   'key_lastname':post.key_lastname,'key_other':post.key_other,'key_nation':post.key_nation,'key_email':post.key_email,'key_phone':post.key_phone,
-    'prev_name':post.prev_name,'prev_address':post.prev_address,'prev_city':post.prev_city,'prev_country':post.prev_country,'current_name':post.current_name 
-    ,'current_address':post. current_address,'current_city':post.current_city  ,'current_country':post.current_country,'sec_name':post.sec_name,'sec_address':post.sec_address
-    ,'sec_city':post. sec_city,'sec_country':post.sec_country,'contact_firstname ':post.contact_firstname,'contact_lastname':post. contact_lastname 
-    ,'contact_other':post. contact_other,'contact_nation':post. contact_nation,'contact_email ':post.contact_email,'contact_dob ':post.contact_dob,'contact_phone':post.contact_phone,
-    'brief_history ':post.brief_history,'service':post.service,  })
-     
+    for message in messages:
+        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
+        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
+        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
+        'address_2':message.address_2,'city':message.city,'country':message.country,
+        'status':message.status,'timestamp':message.timestamp})
+    
     for comment in comments:
         comment_array.append(comment.comment)
 
@@ -912,49 +1332,38 @@ def viewCorpRequest(id):
 
     return jsonify(temp)
 
-@users.route('/administration/service_requests/corpupdate/<int:corprequestId>', methods=['POST'])
-def updateCorpRequest(corprequestId):
-    request = Corporate_request.query.get_or_404(corprequestId)
-    form = ServiceRequestForm()
+@users.route('/messages/update/<int:messageId>', methods=['POST'])
+def updateMessage(messageId):
+    message = Contact.query.get_or_404(messageId)
+    form = MessageComment()
     if form.validate_on_submit:
-        comment = RequestComment(comment=form.comment.data, service_id=corprequestId)
-        request.status = form.newstatus.data
+        comment = Comment(comment=form.comment.data, contact_id=messageId)
+        message.status = form.my_status.data
         db.session.add(comment)
         db.session.commit()
-        flash("Request Updated", "success")
-        return redirect(url_for('users.admin_service_requests'))
+        flash("Message Updated", "success")
+        return redirect(url_for('users.messages'))
 
-# search messages on messages.html 
-@users.route('/messages/search', methods = ['POST'])
-def searchMessages():
-    search = request.form['search_term']
-    if (len(search) == 0):
-        messages = Contact.query.filter_by(status="False")
-        new_messages = []
-        for message in messages:
-            new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
-            'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
 
-        return jsonify(new_messages)
+
+@users.route('/benchmark_details', methods=['POST','GET'])
+def benchmark_details():
+    id = request.form['id']
+
+    details = Benchmark_job.query.filter_by(id=id)
+    temp = []
+    for i in details:
+        temp.append({'id': i.id, 'job_title':i.job_title,'grade':i.grade,'reporting_relationship':i.reporting_relationship,'job_desc':i.job_description,'key_duties':i.duties_and_responsibility,'financial':i.financial_responsibilities,'technical':i.technical_qualification,'yrs_exp':i.minimum_years_of_experience })
     
-    messages = Contact.query.filter(or_(Contact.firstname.like(('%' + search + '%')),
-    Contact.lastname.like(('%' + search + '%')),
-    Contact.company_name.like(('%' + search + '%'))))
-    new_messages = []
-    for message in messages:
-        new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
-        'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+    
 
-    return jsonify(new_messages)
+    return jsonify(temp)
 
-# @users.route('/messages/update/<int:messageId>', methods=['POST'])
-# def updateMessage(messageId):
-#     message = Contact.query.get_or_404(messageId)
-#     form = MessageComment()
-#     if form.validate_on_submit:
-#         comment = Comment(comment=form.comment.data, contact_id=messageId)
-#         message.status = form.my_status.data
-#         db.session.add(comment)
-#         db.session.commit()
-#         flash("Message Updated", "success")
-#         return redirect(url_for('users.messages'))
+
+@users.route("/user/view-benchmarked_job/<int:id>")
+def client_view_benchmarked(id):
+    job = Benchmark_job.query.get_or_404(id)
+    
+    
+    form = SurveyForm()
+    return render_template("new_view_benchmarked.html", job=job,form=form)

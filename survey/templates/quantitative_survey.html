@@ -97,28 +97,13 @@
   <div class="col-12">
     <section id="hero" class="d-flex align-items-center justify-content-center">
       <div class="container position-relative">
-        <h2><b style="font-size: 40px;">Quantitative Survey - Finance Manager</b></h2>
+        <h2><b style="font-size: 40px;">{{job.job_title}}</b></h2>
 
       </div>
     </section>
   </div>
 </div>
-<div class="row">
-  {% with messages = get_flashed_messages(with_categories=true) %}
-  {%if messages %}
-  {% for category, message in messages %}
-  <div class="container">
-    <div class="alert alert-{{ category}}">
-      {{message}}
-    </div>
-  </div>
 
-
-  {% endfor %}
-
-  {% endif %}
-
-  {% endwith %}
   <div class="col-12" style="background-color: rgb(226, 223, 223);height:auto">
     <div class="row p-4 justify-content-center">
 
@@ -216,7 +201,7 @@
           <div class="row ">
 
             <div class="col-12 ">
-              <b>Survey Structure</b>
+              <b>{{job.job_title}}</b>
               <br />
 
               <span class="pt-3" style="color:grey;font-size: 12px;">Created on 12/3/2019</span>
@@ -245,43 +230,6 @@
       </div>
 
 
-<<<<<<< HEAD
-        </div>
-        <div class="col-4 pt-4 ">
-          <span ><b class="green_shade"><b>
-            {{ form.base_salary.label(class="form-control-label") }}
-  
-              {% if form.base_salary.errors %}
-              {{ form.base_salary(class="form-control form-control is-invalid")}}
-              <div class="invalid-feedback">
-                  {% for error in form.base_salary.errors %}
-                  <span> {{ error}}</span>
-                  {% endfor %}
-              </div>
-              {% else %}
-              {{ form.base_salary(class="form-control form-control") }}
-              {% endif %}
-  
-              
-          </div>
-          
-
-       
-       
-         
-  
-          </div>
-      </div>
-<div class="row">
-  <div class="col-sm-12  pt-4">
-    <div class="row">
-      <div class="col-6 ">
-        <span class="btn btn-outline-success" onclick="switchback('survey_details')"> Back </span>
-        
-      </div>
-      <div class="col-6 text-right">
-        <span class="btn btn-outline-success" onclick="switchnext('survey_details')"> Next </span>
-=======
       <div class="col-md-9 col-sm-12 p-4">
 
 
@@ -295,22 +243,21 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">1</span>
-                          <b>Job Title</b>
+                        
+                          <b>Job Title </b>
                         </label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" id="j_title"value="{{job.job_title}}" disabled />
                       </div>
 
 
                     </div>
 
->>>>>>> f89613998d9862c88384245add2ee9da6426592d
 
                   </div>
                 </div>
 
-</div>
-  </div>
+
+ 
 
 
   
@@ -324,10 +271,10 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">2</span>
+                
                           <b>Department</b>
                         </label>
-                        <input type="text" class="form-control" />
+                        <input type="text" id="dpt" class="form-control" />
                       </div>
 
 
@@ -343,10 +290,10 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">3</span>
+                        
                           <b>Grade</b>
                         </label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" id="grade"value="{{job.grade}}" disabled />
                       </div>
 
 
@@ -361,10 +308,10 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">4</span>
+         
                           <b>Reporting Relationship</b>
                         </label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" id="report_rel" value="{{job.reporting_relationship}}" disabled/>
                       </div>
 
 
@@ -379,10 +326,10 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">5</span>
+                  
                           <b>Job Description</b>
                         </label>
-                        <textarea cols="3" rows="3" class="form-control"></textarea>
+                        <textarea cols="3" rows="3" class="form-control" id="job_desc" disabled>{{job.job_description}}</textarea>
                       </div>
 
 
@@ -398,10 +345,10 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">6</span>
+       
                           <b>Key Duties and Scope of Responsibility</b>
                         </label>
-                        <textarea cols="3" rows="3" class="form-control"></textarea>
+                        <textarea cols="3" rows="3" class="form-control" id="duties" disabled>{{job.duties_and_responsibility}}</textarea>
                       </div>
 
 
@@ -417,10 +364,10 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">7</span>
+    
                           <b>Financial Responsibilities</b>
                         </label>
-                        <textarea cols="3" rows="3" class="form-control"></textarea>
+                        <textarea cols="3" rows="3" class="form-control" id="fin_res" disabled>{{job.financial_responsibilities}}</textarea>
                       </div>
 
 
@@ -436,10 +383,10 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">8</span>
+        
                           <b>Technical/Professional Qualification</b>
                         </label>
-                        <textarea cols="3" rows="3" class="form-control"></textarea>
+                        <textarea cols="3" rows="3" class="form-control" id="tech"disabled>{{job.technical_qualification}}</textarea>
                       </div>
 
 
@@ -454,10 +401,10 @@
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
-                          <span class="badge badge-pill question-number">9</span>
+       
                           <b>Minimum Years of Experience</b>
                         </label>
-                        <input type="text" class="form-control" />
+                        <input type="text" class="form-control" id="yrs_exp" value="{{job.minimum_years_of_experience}}" disabled/>
                       </div>
 
 
@@ -474,7 +421,7 @@
 
 
 
-          <div class="col-12 text-right pl-4 pr-4 pb-4">
+          <div class="col-12 text-right pl-4  pb-4">
             <div class="row">
               <div class="col-12 text-right pl-4 pr-4 pb-4">
                 <span class="btn btn-outline-success" onclick="switchnext('benchmark_details')"> Next </span>
@@ -518,27 +465,27 @@
 
           </div>
 
+        </div>
+        <div class="row survey_details" style="display:none">
+          <div class="col-6 pl-4 ">
+            <span class="btn btn-outline-success" onclick="switchback('survey_details')"> Back </span>
 
-
-
-
-          <div class="col-sm-12  pl-4 pr-4 pb-4">
-            <div class="row">
-              <div class="col-6 ">
-                <span class="btn btn-outline-success" onclick="switchback('survey_details')"> Back </span>
-
-              </div>
-              <div class="col-6 text-right">
-                <span class="btn btn-outline-success" onclick="switchnext('survey_details')"> Next </span>
-
-              </div>
-
-            </div>
+          </div>
+          <div class="col-6 text-right pr-4">
+            <span class="btn btn-outline-success" onclick="switchnext('survey_details')"> Next </span>
 
           </div>
 
-
         </div>
+
+              
+             
+
+
+     
+
+
+       
 
 
 
@@ -553,7 +500,7 @@
 
 
 
-          <div class="col-12 pl-4 pr-4 pb-4">
+          <div class="col-12 pl-4 pr-4 pb-2">
 
             <div class="row">
 
@@ -564,7 +511,7 @@
                       <div class="row">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">1</span>
+                 
                                 {{ form.company_bonus_performance.label(class="form-control-label") }}
 
                                 {% if form.company_bonus_performance.errors %}
@@ -587,7 +534,7 @@
                       <div class="row">
                         <div class="col-12 pt-2 ">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">2</span>
+                         
                                 {{ form.individual_bonus_performance.label(class="form-control-label") }}
 
                                 {% if form.individual_bonus_performance.errors %}
@@ -613,11 +560,11 @@
                       <div class="row">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">3</span>
+                       
                                 {{ form.annual_bonus.label(class="form-control-label") }}
 
                                 {% if form.annual_bonus.errors %}
-                                {{ form.annual_bonus(class="form-control form-control is-invalid")}}
+                                {{ form.annual_bonus(class="form-control form-control is-invalid ")}}
                                 <div class="invalid-feedback">
                                   {% for error in form.annual_bonus.errors %}
                                   <span> {{ error}}</span>
@@ -637,7 +584,7 @@
                       <div class="row">
                         <div class="col-12 pt-2 ">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">4</span>
+                              
                                 {{ form.incentive_bonus.label(class="form-control-label") }}
 
                                 {% if form.incentive_bonus.errors %}
@@ -658,11 +605,11 @@
                     </div>
 
 
-                    <div class="col-4 pb-4">
+                    <div class="col-4 ">
                       <div class="row">
                         <div class="col-12 pt-2 ">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">5</span>
+                        
                                 {{ form.other_bonus.label(class="form-control-label") }}
 
                                 {% if form.other_bonus.errors %}
@@ -705,7 +652,7 @@
           </div>
 
           <div class="col-12 text-right pl-4 pr-4 pb-4">
-            <div class="row">
+            <div class="row pl-2 pr-2">
               <div class="col-6 text-left">
                 <span class="btn btn-outline-success" onclick="switchback('benchmark_jobs')"> Back </span>
 
@@ -734,7 +681,7 @@
 
 
 
-          <div class="col-12 pl-4 pr-4 pb-4">
+          <div class="col-12 pl-4 pr-4 pb-2">
             <div class="row">
 
               <div class="col-sm-12 pl-4 pr-4 pb-4 ">
@@ -744,7 +691,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">1</span>
+       
                                 {{ form.staff_bus.label(class="form-control-label") }}
 
                                 {% if form.staff_bus.errors %}
@@ -769,7 +716,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">2</span>
+       
 
                                 {{ form.company_car.label(class="form-control-label") }}
 
@@ -795,7 +742,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">3</span>
+                  
 
                                 {{ form.personal_travel.label(class="form-control-label") }}
 
@@ -822,7 +769,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">4</span>
+                     
 
                                 {{ form.petrol.label(class="form-control-label") }}
 
@@ -849,7 +796,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">5</span>
+                              
                                 {{ form.vehicle.label(class="form-control-label") }}
 
                                 {% if form.vehicle.errors %}
@@ -876,7 +823,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">6</span>
+        
                                 {{ form.driver.label(class="form-control-label") }}
 
                                 {% if form.driver.errors %}
@@ -903,7 +850,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">7</span>
+                      
                                 {{ form.health_insurance.label(class="form-control-label") }}
 
                                 {% if form.health_insurance.errors %}
@@ -930,7 +877,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">8</span>
+                        
                                 {{ form.medical_assistance.label(class="form-control-label") }}
 
                                 {% if form.medical_assistance.errors %}
@@ -957,7 +904,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">9</span>
+                            
                                 {{ form.funeral_assistance.label(class="form-control-label") }}
 
                                 {% if form.funeral_assistance.errors %}
@@ -984,7 +931,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">10</span>
+                         
                                 {{ form.life_insurance.label(class="form-control-label") }}
 
                                 {% if form.life_insurance.errors %}
@@ -1011,7 +958,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">11</span>
+                    
                                 {{ form.group_accident.label(class="form-control-label") }}
 
                                 {% if form.group_accident.errors %}
@@ -1038,7 +985,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">12</span>
+                            
                                 {{ form.club_membership.label(class="form-control-label") }}
 
                                 {% if form.club_membership.errors %}
@@ -1065,7 +1012,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">13</span>
+                      
                                 {{ form.school_fees.label(class="form-control-label") }}
 
                                 {% if form.school_fees.errors %}
@@ -1091,7 +1038,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">14</span>
+                             
                                 {{ form.vacation.label(class="form-control-label") }}
 
                                 {% if form.vacation.errors %}
@@ -1118,7 +1065,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">15</span>
+                              
                                 {{ form.housing.label(class="form-control-label") }}
 
                                 {% if form.housing.errors %}
@@ -1144,7 +1091,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">16</span>
+                            
                                 {{ form.telephone.label(class="form-control-label") }}
 
                                 {% if form.telephone.errors %}
@@ -1170,7 +1117,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">17</span>
+                              
                                 {{ form.security.label(class="form-control-label") }}
 
                                 {% if form.security.errors %}
@@ -1196,7 +1143,7 @@
                       <div class="row ">
                         <div class="col-12 pt-2 ">
                           <span><b class="green_shade"><b>
-                                <span class="badge badge-pill question-number">18</span>
+                              
                                 {{ form.other_benefits.label(class="form-control-label") }}
 
                                 {% if form.other_benefits.errors %}
@@ -1240,7 +1187,7 @@
           </div>
 
           <div class="col-12 text-right pl-4 pr-4 pb-4">
-            <div class="row">
+            <div class="row pr-2 pl-2">
               <div class="col-6 text-left">
                 <span class="btn btn-outline-success" onclick="switchback('comparators')"> Back </span>
 
@@ -1263,14 +1210,14 @@
 
 
 
-          <div class="col-sm-12 pl-4 pr-4 pb-4 ">x
+          <div class="col-sm-12 pl-4 pr-4 pb-4 ">
             <div class="card p-4" style="border-color: green;">
               <div class="row">
                 <div class="col-4 pb-4">
                   <div class="row ">
                     <div class="col-12 pt-2 ">
                       <span><b class="green_shade"><b>
-                            <span class="badge badge-pill question-number">1</span>
+                        
                             {{ form.vehicle_maintenance.label(class="form-control-label") }}
 
                             {% if form.vehicle_maintenance.errors %}
@@ -1295,7 +1242,7 @@
                   <div class="row ">
                     <div class="col-12 pt-2">
                       <span><b class="green_shade"><b>
-                            <span class="badge badge-pill question-number">2</span>
+             
                             {{ form.allowance_vehicle.label(class="form-control-label") }}
 
                             {% if form.allowance_vehicle.errors %}
@@ -1320,7 +1267,7 @@
                 <div class="col-4 pb-4">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">3</span>
+                   
                           {{ form.transport.label(class="form-control-label") }}
 
                           {% if form.transport.errors %}
@@ -1340,13 +1287,13 @@
 
 
                 </div>
-              </div>
+             
 
               <div class="col-4 pb-4">
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">4</span>
+      
                           {{ form.fuel.label(class="form-control-label") }}
 
                           {% if form.fuel.errors %}
@@ -1372,7 +1319,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">5</span>
+                    
                           {{ form.car.label(class="form-control-label") }}
 
                           {% if form.car.errors %}
@@ -1399,7 +1346,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">6</span>
+                      
                           {{ form.allowance_driver.label(class="form-control-label") }}
 
                           {% if form.allowance_driver.errors %}
@@ -1426,7 +1373,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">7</span>
+               
                           {{ form.domestic.label(class="form-control-label") }}
 
                           {% if form.domestic.errors %}
@@ -1450,7 +1397,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">8</span>
+                          
                           {{ form.allowance_housing.label(class="form-control-label") }}
 
                           {% if form.allowance_housing.errors %}
@@ -1478,7 +1425,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">9</span>
+                      
                           {{ form.utilities.label(class="form-control-label") }}
 
                           {% if form.utilities.errors %}
@@ -1505,7 +1452,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">10</span>
+                        
                           {{ form.meal.label(class="form-control-label") }}
 
                           {% if form.meal.errors %}
@@ -1533,7 +1480,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">11</span>
+                          
                           {{ form.allowance_telephone.label(class="form-control-label") }}
 
                           {% if form.allowance_telephone.errors %}
@@ -1560,7 +1507,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">12</span>
+                    
                           {{ form.entertainment.label(class="form-control-label") }}
 
                           {% if form.entertainment.errors %}
@@ -1587,7 +1534,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">13</span>
+                    
                           {{ form.education.label(class="form-control-label") }}
 
                           {% if form.education.errors %}
@@ -1614,7 +1561,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">14</span>
+              
                           {{ form.vacation.label(class="form-control-label") }}
 
                           {% if form.vacation.errors %}
@@ -1642,7 +1589,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">15</span>
+              
                           {{ form.uniform.label(class="form-control-label") }}
 
                           {% if form.uniform.errors %}
@@ -1669,7 +1616,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">16</span>
+                       
                           {{ form.mobile_money.label(class="form-control-label") }}
 
                           {% if form.mobile_money.errors %}
@@ -1696,7 +1643,7 @@
                 <div class="row ">
                   <div class="col-12 pt-2">
                     <span><b class="green_shade"><b>
-                          <span class="badge badge-pill question-number">17</span>
+                        
                           {{ form.misc.label(class="form-control-label") }}
 
                           {% if form.misc.errors %}
@@ -1761,7 +1708,9 @@
 
             </div>
             <div class="col-6 text-right">
+              <div class="form-group">
               {{ form.submit(class="btn btn-success btn-max") }}
+            </div>
 
             </div>
           </div>

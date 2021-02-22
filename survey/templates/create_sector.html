@@ -181,7 +181,7 @@ Sectors
     document.getElementById('deleteForm').action = '/sector/'+localStorage.getItem('editId')+'/delete'
   }
   function editSector(elm){
-    //$('#delete').modal('show')
+    
     localStorage.setItem('editId',$(elm).attr('data-id'));
     
     $.ajax({
