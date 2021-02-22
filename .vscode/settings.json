@@ -1,3 +1,31 @@
 {
-    "python.pythonPath": "/Library/Frameworks/Python.framework/Versions/3.8/bin/python3"
+    "python.pythonPath": "C:\\Program Files\\Python38\\python.exe",
+    "sqltools.connections": [
+        {
+            "mysqlOptions": {
+                "authProtocol": "default"
+            },
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 3306,
+            "askForPassword": true,
+            "driver": "MySQL",
+            "name": "360feedback",
+            "database": "360feedback",
+            "username": "root"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "${workspaceFolder:Salary-Survey}/survey/site.db",
+            "name": "Survey"
+        },
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "database": "C:\\Projects\\Python\\Blog\\flaskblog\\site.db",
+            "name": "FlaskBlog"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
 }
