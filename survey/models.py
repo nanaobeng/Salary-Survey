@@ -599,16 +599,6 @@ class Survey_comparator(db.Model):
     status = db.Column(db.String(100))
 
 
-   
-
-
-
-    
-
-
-
-
-   
 
     def __repr__(self):
         return '<Survey_comparator %r>' % self.id
@@ -684,20 +674,20 @@ class Benchmark_job(db.Model):
     incentive_id = db.Column(db.Integer, db.ForeignKey('incentive.id'))
     allowance_id = db.Column(db.Integer, db.ForeignKey('allowance.id'))
     base_salary_id = db.Column(db.Integer, db.ForeignKey('base_salary.id'))
-
-
-    
-
-    
- 
-
-
-
-
-   
+    # comment = db.relationship('Comparator_job_comment', backref='comparator_job' , lazy=True)
 
     def __repr__(self):
         return '<Benchmark_job %r>' % self.id
+
+class Comparator_job_comment(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.Text)
+    # comparator_job_id = db.Column(db.Integer, db.ForeignKey('Benchmark_job.id'))
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
+    
+    def __repr__(self):
+        return '<Comparator_job_comment %r>' % self.id
+
 
 class Allowance(db.Model):
     id = db.Column(db.Integer, primary_key=True)

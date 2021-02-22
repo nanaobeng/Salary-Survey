@@ -117,21 +117,22 @@ line-height: 24px;
           <a  href="/my_benchmark_jobs" style="color:white"> <b >View Jobs</b></a>
         </div>
       </div>
+     
       <div class="row">
         <div class="col-12 pt-2 pl-4" style="height:150px">
          <span style="color:grey"> Job Approval Status</span><br/>
          <div class="row">
          <div class="col-4 text-center">
           <i class="icofont-spinner-alt-1" style="font-size: 80px;color:rgb(226, 178, 19)"></i><br/>
-          <span><b>4</b> Pending Jobs</span>
+          <span><b>{{pending}}</b> Pending Jobs</span>
         </div>
         <div class="col-4 text-center">
           <i class="icofont-check-circled" style="font-size: 80px; color: green;"></i><br/>
-          <span><b>4</b> Approved Jobs</span>
+          <span><b>{{approved}}</b> Approved Jobs</span>
         </div>
         <div class="col-4 text-center">
           <i class="icofont-close-circled" style="font-size: 80px;color: rgb(173, 19, 19);"></i><br/>
-          <span><b>4</b> Rejected Jobs</span>
+          <span><b>{{rejected}}</b> Rejected Jobs</span>
         </div>
       </div>
    
@@ -210,6 +211,7 @@ line-height: 24px;
                           <tr style="background-color: rgba(66,99,50,1);color:white">
                               <th>Job Title</th>
                               <th>Department</th>
+                              <th>Status</th>
                               <th>Edit</th>
                           </tr>
                       </thead>
@@ -222,7 +224,12 @@ line-height: 24px;
                             {{item.job_title}}
                         </td>
                             <td data-search="{{item.main_department.department}}">{{item.main_department.department}}</td>
-                            <td><a class="icofont-edit green_shade"href="/my_benchmark_jobs/edit/{{item.id}}">Edit</a></td>
+                            <td data-search="{{item.status}}">{{item.status}}</td>
+                            <td>
+                              {% if item.status != 'Approved' %}
+                                <a class="icofont-edit green_shade"href="/my_benchmark_jobs/edit/{{item.id}}">Edit</a>
+                              {% endif %}
+                              </td>
                         </tr>
             
             

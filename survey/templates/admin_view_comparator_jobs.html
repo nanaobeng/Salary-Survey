@@ -117,16 +117,12 @@
   .compensation-value{
     font-weight: 100;
   }
-  .badge-col{
-    flex: 0 0 auto;
-    width: auto;
-  }
   </style>
     <div class="row">
       <div class="col-12">
         <section id="hero" class="d-flex align-items-center justify-content-center">
             <div class="container position-relative">
-         <h2><b style="font-size: 40px;">Client Benchmark Jobs </b></h2>
+         <h2><b style="font-size: 40px;">Comparator Job Benchmarking Review </b></h2>
             
             </div>
           </section>
@@ -510,7 +506,7 @@ if(view == 'status'){
   var unique = ($('#status').val()).trim().replace(/\s/g,'')
 
   if($("#" + unique).length == 0 ){
- $('.filter_box').prepend( '<div id="'+unique+'"class="badge-col" ><span class="badge badge-pill badge-info" data-value="'+$('#status').val()+'">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+', '+ `'`+view+`'`+')"></i></span></span></div>')
+ $('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-info" data-value="'+$('#status').val()+'">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+', '+ `'`+view+`'`+')"></i></span></span></div>')
     selected_status.push(unique)
 }
 $('#status').val('')
@@ -535,7 +531,7 @@ if(optionFound){
 
 if($("#" + unique).length == 0 ){
 
-$('.filter_box').prepend( '<div id="'+unique+'"class="badge-col"><span class="badge badge-pill badge-warning" data-value="'+client_id+'">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+', '+ `'`+view+`'`+')"></i></span></span></div>')
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-warning" data-value="'+client_id+'">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+', '+ `'`+view+`'`+')"></i></span></span></div>')
 selected_client.push(client_id)
 }
 $('#client').val('')
