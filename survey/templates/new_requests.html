@@ -1,93 +1,93 @@
-<<<<<<< HEAD
-=======
 
-    {% extends "new_admin_layout.html" %}
+    {% extends "client_hub_layout.html" %}
 
 
    
     
     {% block content %}
     <style>
-            #hero {
-  width: 100%;
-  height: 15vh;
-  background: url("../static/img/home.jpg") top center;
-  background-size: cover;
-  position: relative;
-  }
-  
-  #hero:before {
-  content: "";
-  background: rgba(20, 44, 9, 0.7);
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  }
-  
-  #hero .container {
-  text-align: center;
-  padding-top: 50px;
-  }
-  
-  @media (max-width: 992px) {
-  #hero .container {
-    padding-top: 0;
-  }
-  }
-  
-  #hero h1 {
-  margin: 0;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 56px;
-  color: #fff;
-  }
-  
-  #hero h2 {
-  color: #eee;
-  margin: 15px 0 0 0;
-  font-size: 22px;
-  }
-  
-  #hero .btn-get-started {
-  font-family: "Raleway", sans-serif;
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: 1px;
-  display: inline-block;
-  padding: 9px 35px;
-  border-radius: 50px;
-  transition: 0.5s;
-  margin-top: 40px;
-  border: 2px solid #ffc107;
-  color: #fff;
-  }
-  
-  #hero .btn-get-started:hover {
-  background: #ffc107;
-  }
-  
-  @media (min-width: 1024px) {
-  #hero {
-    background-attachment: fixed;
-  }
-  }
-  
-  @media (max-width: 768px) {
-  #hero {
-    height: 100vh;
-  }
-  #hero h1 {
-    font-size: 28px;
-    line-height: 36px;
-  }
-  #hero h2 {
-    font-size: 18px;
-    line-height: 24px;
-  }
-  }
+   #hero {
+        width: 100%;
+        height: 3vh;
+        background: url("../static/img/home.jpg") top center;
+        background-size: cover;
+        position: relative;
+    }
+
+    #hero:before {
+        content: "";
+        background: rgba(20, 44, 9, 0.7);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    #hero .container {
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    @media (max-width: 992px) {
+        #hero .container {
+            padding-top: 0;
+        }
+    }
+
+    #hero h1 {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: #fff;
+    }
+
+    #hero h2 {
+        color: #eee;
+        margin: 15px 0 0 0;
+        font-size: 22px;
+    }
+
+    #hero .btn-get-started {
+        font-family: "Raleway", sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 9px 35px;
+        border-radius: 50px;
+        transition: 0.5s;
+        margin-top: 40px;
+        border: 2px solid #ffc107;
+        color: #fff;
+    }
+
+    #hero .btn-get-started:hover {
+        background: #ffc107;
+    }
+
+    @media (min-width: 1024px) {
+        #hero {
+            background-attachment: fixed;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #hero {
+            height: 100vh;
+        }
+
+        #hero h1 {
+            font-size: 28px;
+            line-height: 36px;
+        }
+
+        #hero h2 {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
  
 
   .card {
@@ -102,6 +102,7 @@
     margin-bottom: auto;
     margin-top: auto;
     height: 60px;
+    padding-bottom: 2%;
   }
 
   #search_input {
@@ -113,17 +114,21 @@
   }
 
   #search_icon {
-    color: white;
+    color: rgb(17, 8, 8);
     margin-left: 5px;
   }
 
-  .dropdowndown-menu {
+  .dropdowndown {
     padding: 10px;
+    display:block;
   }
 
   #filterbutton {
     color: white;
+    justify-content: center;
+    
   }
+  
 
   .addBtn {
   padding: 10px;
@@ -141,226 +146,349 @@
 .addBtn:hover {
   background-color: #bbb;
 }
+
+
+#requests_table {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 80%;
+  padding-left:10%;
+}
+
+#requests_table td, #requests_table th {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
+#requests_table tr:nth-child(even){
+  background-color: #f2f2f2;
+  }
+
+#requests_table tr:hover {
+  background-color: #ddd;
+  }
+
+#requests_table th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #4CAF50;
+  color: white;
+}
+
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+#viewbutton{
+  background-color: #1c31ec;
+  border: none;
+  color: white;
+  padding: 7px 9px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  margin: 4px 2px;
+  
+}
+#searchForm{
+  margin-left:50px;
+}
+
 </style>
->>>>>>> 6cd4e5db160f2e1dc398a67ba6478182e5d2ec4a
 
 
-{% block content %}
-
-<style>
- 
-  
-    .search_icon {
-      height: 40px;
-      width: 40px;
-      float: right;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 50%;
-      color: white;
-      /* background: white; */
-      background: grey;
-      /* color: black; */
-      text-decoration: none;
-    }
-  
-    .filterbar {
-      color: #353b48;
-    }
-  </style>
 <!--Header-->
+
 <div class="row">
   <div class="col-12">
-    <section id="hero" class="d-flex align-items-center justify-content-center">
-      <div class="container position-relative">
-        <h2><b style="font-size: 30px;">Service Requests</b></h2>
+      <section id="hero" class="d-flex align-items-center justify-content-center"></section>
+          <div class="container position-relative">
+          
 
-      </div>
-    </section>
-  </div>
-</div>
-<div class="row">
-  <div class="col-12 p-4">
-   {%  for i in indv  %}
-<div class="row p-4">
-  <div class="col-4 p-4" style="background-color: red;">
-    {{i.firstname}} : {{i.lastname}}
-  </div>
-</div>
-   
-
-   {% endfor %}
+          </div>
+      </section>
   </div>
 </div>
 
 <!--Body-->
+<div class="row">
+  <div class="col-12">
+      <section id="hero" class="d-flex align-items-center justify-content-center"></section>
+          <div class="container position-relative">
+          
 
-<div class="row p-5 justify-content-center">
-  <div class="col-8">
-    <table class="table table-hover">
-      <thead style="background-color: rgb(78, 110, 62);">
-        <th id="searchbar">
-          <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
-          <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
-        </th>
-        <th>
-          <button id="filterbutton" class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
-              class="icofont-settings"></i></span></button>
-          <form class="dropdown-menu p-2">
-            <div class="form-group">
-              <label for="status">Status:</label>
-              <select class="form-control" id="status" onchange="filter('status')">
-                <option value="opened">Pending</option>
-          <option value="close">Awaiting Client Information</option>
-          <option>First Pass</option>
-          <option>Conflict Check</option>
-          <option>Finish Completion</option>
-          <option>Submitted For Approval</option>
-              </select>
-            </div>
-          </form>
-        </th>
-      </thead>
-    </table>
+          </div>
+      </section>
   </div>
 </div>
 
-<!-- <div class="row p-5">
-  <div class="col-12">
-    <div class="table">
-      <table>
-        <thead style="background-color: rgb(51, 73, 41);">
-          <th id="searchbar">
-            <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">
-            <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
-          </th>
-          <th>
-            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">Filter <i
-                class="icofont-settings"></i></span></button>
-            <form class="dropdown-menu p-4">
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Status:</label>
-                <select class="form-control" id="status" onchange="filter('status')">
-                  <option value="opened">Pending</option>
-                  <option value="close">Awaiting Client Information</option>
-                  <option>First Pass</option>
-                  <option>Conflict Check</option>
-                  <option>Finish Completion</option>
-                  <option>Submitted For Approval</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Request Type:</label>
-                <select class="form-control" id="s_period" onchange="filter('s_period')">
-                  <option value="corporate">Corporate</option>
-                  <option value="individual">Individual</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label for="sel1" style="color:grey">Client:</label>
-                <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
-                <datalist id="clients">
-                  <option value="ABC">
-                  <option value="Modec">
-                  <option value="Villagio">
-                  <option value="Shell">
+<section  class="page-content">
+  <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+      <div class="navbar-brand-wrapper d-flex justify-content-center">
+  <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
+    <a class="navbar-brand brand-logo" href="client_hub_layout.html"><img style = "width:80%; height:80%"src="{{ url_for('static', filename='img/Deloitte-black.png')}}" alt="logo"/></a>
+   
+    <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+      <span class="mdi mdi-sort-variant"></span>
+    </button>
+  </div>  
+</div>
+<div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+  <ul class="navbar-nav mr-lg-4 w-100">
+    <li class="nav-item nav-search d-none d-lg-block w-100">
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="search">
+              <i class="fa fa-search" aria-hidden="true"></i>
+          </span>
+        </div>
+        <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+      </div>
+    </li>
+  </ul>
+  
+  <ul class="navbar-nav navbar-nav-right">
+    
+    <li class="nav-item dropdown mr-1">
+      <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+          <i class="fas fa-envelope"></i>
+        <span class="count"></span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+        <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+        <a class="dropdown-item">
+          <div class="item-thumbnail">
+              <img src="{{ url_for('static', filename='img/face4.jpg')}}" alt="image" class="profile-pic">
+          </div>
+          <div class="item-content flex-grow">
+            <h6 class="ellipsis font-weight-normal">John Doe
+            </h6>
+            <p class="font-weight-light small-text text-muted mb-0">
+              The meeting is cancelled
+            </p>
+          </div>
+        </a>
+        <a class="dropdown-item">
+          <div class="item-thumbnail">
+              <img src="{{ url_for('static', filename='img/face3.jpg')}}" alt="image" class="profile-pic">
+          </div>
+          <div class="item-content flex-grow">
+            <h6 class="ellipsis font-weight-normal">John Doe
+            </h6>
+            <p class="font-weight-light small-text text-muted mb-0">
+              New product launch
+            </p>
+          </div>
+        </a>
+        <a class="dropdown-item">
+          <div class="item-thumbnail">
+              <img src="{{ url_for('static', filename='img/face2.jpg')}}" alt="image" class="profile-pic">
+          </div>
+          <div class="item-content flex-grow">
+            <h6 class="ellipsis font-weight-normal"> John Doe
+            </h6>
+            <p class="font-weight-light small-text text-muted mb-0">
+              Upcoming board meeting
+            </p>
+          </div>
+        </a>
+      </div>
+    </li>
+    <li class="nav-item dropdown mr-4">
+      <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-toggle="dropdown">
+          <i class="fa fa-bell" aria-hidden="true"></i>
+        <span class="count"></span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
+        <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+        <a class="dropdown-item">
+          <div class="item-thumbnail">
+            <div class="item-icon bg-success">
+              <i class="mdi mdi-information mx-0"></i>
+            </div>
+          </div>
+          <div class="item-content">
+            <h6 class="font-weight-normal">Application Error</h6>
+            <p class="font-weight-light small-text mb-0 text-muted">
+              Just now
+            </p>
+          </div>
+        </a>
+        <a class="dropdown-item">
+          <div class="item-thumbnail">
+            <div class="item-icon bg-warning">
+              <i class="fa fa-gear mx-0"></i>
+            </div>
+          </div>
+          <div class="item-content">
+            <h6 class="font-weight-normal">Settings</h6>
+            <p class="font-weight-light small-text mb-0 text-muted">
+              Private message
+            </p>
+          </div>
+        </a>
+        <a class="dropdown-item">
+          <div class="item-thumbnail">
+            <div class="item-icon bg-info">
+              <i class="mdi mdi-account-box mx-0"></i>
+            </div>
+          </div>
+          <div class="item-content">
+            <h6 class="font-weight-normal">New user registration</h6>
+            <p class="font-weight-light small-text mb-0 text-muted">
+              2 days ago
+            </p>
+          </div>
+        </a>
+      </div>
+    </li>
+   
+    <li class="nav-item nav-profile dropdown">
+      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+        <img src="{{ url_for('static', filename='img/face5.jpg')}}" alt="profile"/>
+        <span class="nav-profile-name">
+          Welcome, {{ current_user.username }}! 
+        </span>
+      </a>
+      <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+        <a class="dropdown-item">
+          <i class="fa fa-user text-primary"></i>
+          My Profile
+        </a>
+        <a class="dropdown-item">
+          <i class="fa fa-poll text-primary"></i>
+          Activities
+        </a>
+        <a class="dropdown-item">
+          <i class="fa fa-cog text-primary"></i>
+          Settings
+        </a>
+        <a class="dropdown-item" href ="{{  url_for('users.logout')}}">
+          <i class="fa fa-power-off text-primary"></i>
+          Logout
+        </a>
+      </div>
+    </li>
+  </ul>
+  <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+    
+  </button>
+</div>
+</nav>
 
-                </datalist>
-              </div>
-            </form>
-          </th>
-        </thead>
-      </table>
-    </div>
-  </div>
-</div> -->
+  <section>
 
+      <div class="row">
+          <div class="col-md-12 grid-margin">
+            <div class="d-flex justify-content-between flex-wrap">
+              <div class="d-flex align-items-end flex-wrap">
+                  
+                <div class="mr-md-3 mr-xl-5">
+                  <h2>Service Requests </h2>
+                  <p class="mb-md-0">View service requests.</p>
+                </div>
+                <div class="d-flex">
+                  <p class="text-muted mb-0 hover-cursor">Dashboard&nbsp;/&nbsp;</p>
+                  <p class="text-primary mb-0 hover-cursor">Service Requests</p>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                  <form method = 'POST' id='searchForm' action = 'service_requests/search' class="dropdown p-2 ">
+                <p class="text-muted mb-0 hover-cursor">Filter By:</p>
+                  <div class ="form-grroup">
+                    {{searchform.selecttype}}
+              
+                  {{searchform.selectstatus}}
+                  <button type="submit"><i class="fas fa-search" id="search_icon"></i></button>
+                  </div>
+                  </form>
+               </div>
+              </div>
+              <div class="d-flex justify-content-between align-items-end flex-wrap">
+                
+          
+              </div>
+            </div>
+          </div>
+        </div>
+  </section>
 
 <div class="py-5">
   <div class="container">
-    <div class="row hidden-md-up">
-      <h4 style="text-align:left"><i>Individual Requests</i> </h4>
+  <table id="requests_table" class= "center table table-fixed">
+    <thead>
+      <tr >
+      <th >Client Name</th>
+      <th >E-mail</th>
+      <th >Request</th>
+      <th>Status</th>
+      <th>Action</th>
+      </tr>
+      </thead>
+    <div >
+      <tbody>
       {% if ind %}
       {% for i in ind %}
-        
-        <div class="col-md-3">
-          <div class="card border-primary mb-4 bg-light">
-            <!-- <img class="card-img-top"
-              src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-              alt="Card image" style="width:100%"> -->
-            <div class="card-body" onclick="viewRequests('{{i.id}}')" data-id="{{i.id}}" data-toggle="modal" href="#viewRequestModal">
-              <a class="stretched-link"  >
-                
-                <h4 class="card-title">
-                  {{i.firstname}} {{other}} {{i.lastname}}
-              </h4>
-              </a>
-              <p class="card-subtitle text-muted">{{i.email}} {{i.id}}</p>
-              <p class="card-text p-y-1">{{i.service}}.</p>
-              <span class="badge badge-success">{{i.status}}</span>
+        <div class="col-md-9">
+          <tr>
+          <div >
+                <td >{{i.firstname}} {{other}} {{i.lastname}}</td>
+            
+              <td >{{i.email}} {{i.id}}</td>
+              <td >{{i.service}}</td>
+              <td><span class="badge badge-success">{{i.status}}</span></td>
+              <td>
+                <input id="viewbutton" type="button" value="View" onclick="viewIndRequests('{{i.id}}',this);" data-id="{{i.id}}" data-toggle="modal" href="#viewIndividualRequestModal">
+              </td>
             </div>
-          </div>
+          </tr>
         </div>
       {% endfor %}
-      {% else %}
-      <p class="col-row"style="text-align:center;">
-        
-          <em> You have no individual requests to view.</em>
-       
-      </p>
+      
       {% endif %}
-    </div>
 
-
-    <div class="row hidden-md-up">
-      <h4 style="text-align:left"><i>Corporate Requests</i> </h4>
       {% if corp %}
       {% for i in corp %}
-        
-        <div class="col-md-3">
-          <div class="card" onclick="viewRequests('{{i.id}}', this)" data-id="{{i.id}}">
-            <!-- <img class="card-img-top"
-              src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
-              alt="Card image" style="width:100%"> -->
-            <div class="card-body">
-              <a class="stretched-link" data-toggle="modal" href="#viewRequestModal">
-                
-                <h4 class="card-title">
-                  {{i.company_name}}
-              </h4>
-              </a>
-              <h6 class="card-subtitle text-muted">{{i.company_email}} {{i.id}}</h6>
-              <p class="card-text p-y-1">{{i.service}}</p>
-              <span id='status' class="badge badge-success">{{i.status}}</span>
+      </tbody>
+        <tbody>
+        <div class="col-md-9">
+          <tr>
+          
+            <div>
+            
+              <td >{{i.company_name}}</td>
+              <td >{{i.company_email}} {{i.id}}</td>
+              <td >{{i.service}}</td>
+              <td><span class="badge badge-success">{{i.status}}</span></td>
+              <td><input id="viewbutton" type="button" value="View" onclick="viewCorpRequests('{{i.id}}',this)" data-id="{{i.id}}" data-toggle="modal" href="#viewCorporateRequestModal"></td>
             </div>
-            <script>
-              var s = document.getElementById("status").innerHTML;
-              document.write(s);
-           </script>
-          </div>
+          </tr>
         </div>
-      {% endfor %}
-      {% else %}
-      <p class="col-row"style="text-align:center;">
         
-          <em> You have no corporate requests to view.</em>
-       
-      </p>
+      {% endfor %}
+     
       {% endif %}
-    </div>
-  </div>
-</div>
+      
+    </tbody>
+      </div>
 
+
+
+  </table>
+</div>
+</div>
 
 <!-- Individual Request Modal -->
 
-<div class="modal fade" id="viewRequestModal" role="dialog">
+<div class="modal fade" id="viewIndividualRequestModal" role="dialog">
   <div class="modal-dialog modal-lg">
-
+ 
     <!-- Modal content-->
     <div class="modal-content">
-      <form action="" method="POST" id="updateForm" onsubmit="updateRequest()">
+      <form action="" method="POST" id="updateForm" onsubmit="updateIndRequest()">
       <div id="head" class="modal-header d-block" style="height: auto">    
       </div>
       <div id="body" class="modal-body">
@@ -369,7 +497,6 @@
       </div>
     
    <div class="modal-footer form-group">
-     {{ form.submit(class="btn btn-success btn-max") }}
    </div>
      
   </form>
@@ -377,12 +504,95 @@
     </div>
   </div>
 <!--End of modal content-->
-
-    </div>
-
-  </div>
-
+    
 <!--End of modal-->
+
+<script>
+  function viewIndRequests(modal, element){
+    localStorage.setItem('requestId', $(element).attr('data-id'))
+    var id =$(element).attr('data-id')
+
+    $.ajax({
+      url: '/view_request/'+id,
+      data: { 
+       
+      },
+      type: 'POST',
+      success: function(res){
+        console.log(res)
+        res1 = res[0]
+       
+        $('#head').html(
+          `<div class="d-flex">
+          <h4 class="modal-title"> ${res1.firstname} ${res1.lastname}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <h6 style="color: gray;" class="modal-title">${res1.email}</h5>
+          <p> <span style="color: gray;">${res1.address},  ${res1.city}, ${res1.country}
+            </span></p>`
+        )
+        $('#body').html(
+          `<div>
+            <p>Request Type: <span style="color: gray;">${res1.type_of_request}</span></p>
+            <p>Request Date: <span style="color: gray;">${res1.date_of_request}</span></p>
+          <p>Request Title: <span style="color: gray;">${res1.service}</span></p>
+          
+        </div>
+        <hr>
+        <!--Change Status / Add Comments-->
+        <div class="form-group">
+            <p>Comments:
+            <ol id="commentList" style="color: gray;">
+              <li>Check your mail</li>
+            </ol>
+            </p>
+                     
+          {{form.comment.label(class="comment-label")}}
+            {% if form.comment.errors %}
+              {{ form.comment(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.comment.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.comment(class="form-control form-control") }}
+              {% endif %}
+  
+         
+
+        </div>
+        <hr>
+        <!--Change Status-->
+        <div class="row">
+          
+       <div class="form-group">
+          
+           
+        {{ form.newstatus }}
+  
+      </div>
+      {{form.submit}} 
+        </div>
+      `
+        )
+        for (var i=0; i<res[1].comments.length; i++){
+          $('#commentList').append('<li>' + res[1].comments[i] + '</li>')
+        }
+      },
+      error: function(error){
+        console.log(error)
+      }
+    })
+  }
+
+  function updateIndRequest(){
+    var requestId = localStorage.getItem('requestId')
+    document.getElementById('updateForm').action = 'service_requests/update/' + requestId
+  }
+</script>
 
 <!-- Corporate Request Modal -->
 
@@ -392,14 +602,14 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="container" style="height: auto">
-        <form method="POST" action="./service_requests" id="updateForm" onsubmit="updateRequest()"  style="display: inline">
+        <form method="POST" action="./service_requests" id="updateCorpForm" onsubmit="updateCorpRequest()"  style="display: inline">
             <br/>
            
             <fieldset class="form-group">
-      <div class="modal-header d-block">
+      <div id="corphead" class="modal-header d-block">
         
       </div>
-      <div class="modal-body">
+      <div id="corpbody" class="modal-body">
         <!--Request Description-->
         
         <hr>
@@ -409,7 +619,7 @@
    <div class="modal-footer form-group">
       
       <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
-     {{ form.submit(class="btn btn-success btn-max") }}
+  
    
    </div>
      
@@ -426,41 +636,46 @@
 <!--End of modal-->
 
 <script>
-  function viewRequests(modal, element){
-    localStorage.setItem('requestId', $(element).attr('data-id'))
+  function viewCorpRequests(modal, element){
+    localStorage.setItem('corprequestId', $(element).attr('data-id'))
+    var corpid =$(element).attr('data-id')
+
     $.ajax({
-      url: '/view_request',
+      url: '/view_corprequest/'+corpid,
       data: { 
-        id: modal
+       
       },
       type: 'POST',
-      success: function(res){
-        console.log(res)
-        res1 = res[0]
+      success: function(result){
+        console.log(result)
+        res2 = result[0]
        
-        $('#head').html(
+        $('#corphead').html(
           `<div class="d-flex">
-          <h4 class="modal-title"> ${res1.firstname} ${res1.lastname}</h3>
+          <h4 class="modal-title"> ${res2.company_name}</h3>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
         </div>
-        <h6 style="color: gray;" class="modal-title">${res1.email}</h5>`
+        <h6 style="color: gray;" class="modal-title">${res2.company_email}</h5>
+        <p><span  style="color: gray;"> ${res2.postal_address}</span></p>`
         )
-        $('#body').html(
+        $('#corpbody').html(
           `<div>
-          <p>Request Title: <span style="color: gray;">${res1.service}</span></p>
-          <p>Address: <span style="color: gray;">${res1.address},  ${res1.city}, ${res1.country}.
-            </span></p>
+            <p>Request Type: <span style="color: gray;">${res2.type_of_request}</span></p>
+            <p>Request Date: <span style="color: gray;">${res2.date_of_request}</span></p>
+          <p>Request Title: <span style="color: gray;">${res2.service} </span></p>
+            
         </div>
         <hr>
         <!--Change Status / Add Comments-->
         <div class="form-group">
             <p>Comments:
             <ol id="commentList" style="color: gray;">
-              
+              <li>Check your mail</li>
             </ol>
             </p>
+                     
           {{form.comment.label(class="comment-label")}}
             {% if form.comment.errors %}
               {{ form.comment(class="form-control form-control is-invalid")}}
@@ -473,8 +688,8 @@
               {{ form.comment(class="form-control form-control") }}
               {% endif %}
   
-          <button class="btn btn-outline-danger btn-sm" type="reset">Clear Comment</button>
-          {{form.submit}}
+          
+          
 
         </div>
         <hr>
@@ -483,30 +698,16 @@
           
        <div class="form-group">
           
-          {{ form.newstatus.label(class="form-control-label") }}
+          {{ form.newstatus }}
   
-                  {% if form.newstatus.errors %}
-                  {{ form.newstatus(class="form-control form-control is-invalid")}}
-                  <div class="invalid-feedback">
-                      {% for error in form.status.errors %}
-                      <span> {{ error}}</span>
-                      {% endfor %}
-                  </div>
-                  {% else %}
-                  {{ form.newstatus(class=" form-control") }}
-                  {% endif %}
-             
           </div>
-          <div class="col-3 float-right">
-            <i class="far fa-envelope" style="margin-right: 5px;"></i><a
-              href="mailto:${res1.email}?subject=Thank You For Reaching Out To Us" style="color: inherit;">Send
-              Email</a>
-          </div>
+          {{form.submit}}
         </div>
+       
       `
         )
-        for (var i=0; i<res[1].comments.length; i++){
-          $('#commentList').append('<li>' + res[1].comments[i] + '</li>')
+        for (var i=0; i<result[1].comments.length; i++){
+          $('#commentList').append('<li>' + result[1].comments[i] + '</li>')
         }
       },
       error: function(error){
@@ -515,100 +716,13 @@
     })
   }
 
-  function updateRequest(){
-    var requestId = localStorage.getItem('requestId')
-    document.getElementById('updateForm').action = 'service_requests/update/' + requestId
+  function updateCorpRequest(){
+    var requestId = localStorage.getItem('corprequestId')
+    document.getElementById('updateCorpForm').action = 'service_requests/corpupdate/' + requestId
   }
 </script>
 
 
 
-<script>
-  function filter(view) {
-    if (view == 'status') {
-
-      var unique = ($('#status').val()).trim().replace(/\s/g, '')
-
-      if ($("#" + unique).length == 0) {
-        $('.filter_box').prepend('<div id="' + unique + '"class="col-1"><span class="badge badge-pill badge-info">' + $('#status').val() + ' <span><i class="icofont-close-line-circled" onclick="remove_filter(' + unique + ')"></i></span></span></div>')
-      }
-    }
-
-    if (view == 'client') {
-
-      var unique = ($('#client').val()).trim().replace(/\s/g, '')
-
-      if ($("#" + unique).length == 0) {
-        $('.filter_box').prepend('<div id="' + unique + '"class="col-1"><span class="badge badge-pill badge-warning">' + $('#client').val() + ' <span><i class="icofont-close-line-circled" onclick="remove_filter(' + unique + ')"></i></span></span></div>')
-      }
-    }
-
-
-    if (view == 'industry') {
-
-      var unique = ($('#industry').val()).trim().replace(/\s/g, '')
-
-      if ($("#" + unique).length == 0) {
-        $('.filter_box').prepend('<div id="' + unique + '"class="col-1"><span class="badge badge-pill badge-danger">' + $('#industry').val() + ' <span><i class="icofont-close-line-circled" onclick="remove_filter(' + unique + ')"></i></span></span></div>')
-      }
-    }
-
-    if (view == 's_period') {
-
-      var unique = ($('#s_period').val())
-      unique = unique.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-      unique = "a" + unique
-
-      if ($("#" + unique).length == 0) {
-        $('.filter_box').prepend('<div id="' + unique + '"class="col-1"><span class="badge badge-pill badge-success">' + $('#s_period').val() + ' <span><i class="icofont-close-line-circled" onclick="remove_filter(' + unique + ')"></i></span></span></div>')
-      }
-    }
-  }
-</script>
-
-<script>
-  function remove_filter(id) {
-
-    $(id).remove()
-  }
-</script>
-
-<script>
-  function clear_filter() {
-    $('.filter_box').empty()
-  }
-</script>
-
-
-<script>
-
-  
-  // Create a new list item when clicking on the "Add" button
-  function newElement() {
-    var li = document.createElement("li");
-    var inputValue = document.getElementById("myInput").value;
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
-    if (inputValue === '') {
-      alert("You must write something!");
-    } else {
-      document.getElementById("myUL").appendChild(li);
-    }
-    document.getElementById("myInput").value = "";
-  
-    var span = document.createElement("SPAN");
-    var txt = document.createTextNode("\u00D7");
-    span.className = "close";
-    span.appendChild(txt);
-    li.appendChild(span);
-  
-    for (i = 0; i < close.length; i++) {
-      close[i].onclick = function() {
-        var div = this.parentElement;
-        div.style.display = "none";
-      }
-    }
-  }
-  </script>
   
 {% endblock content %}

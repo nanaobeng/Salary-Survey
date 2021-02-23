@@ -95,13 +95,19 @@
 
 
     function drawChart() {
+        // var data1 = google.visualization.arrayToDataTable([
+        //     ['Request Type', 'Number of Requests'],
+        //     ['Completed', 11],
+        //     ['Approved', 2],
+        //     ['Rejected', 2],
+        //     ['Followed-Up', 2],
+        //     ['Signed-On', 7]
+        // ]);
+
         var data1 = google.visualization.arrayToDataTable([
             ['Request Type', 'Number of Requests'],
-            ['Completed', 11],
-            ['Approved', 2],
-            ['Rejected', 2],
-            ['Followed-Up', 2],
-            ['Signed-On', 7]
+            ['Pending', 11],
+            ['Submitted', 2],
         ]);
 
         var options1 = {
@@ -382,7 +388,7 @@
                 </div>
                 <div class="d-flex justify-content-between align-items-end flex-wrap">
                  
-                  <button class="btn btn-primary mt-2 mt-xl-0">Download report</button>
+                  <!-- <button class="btn btn-primary mt-2 mt-xl-0">Download report</button> -->
                 </div>
               </div>
             </div>

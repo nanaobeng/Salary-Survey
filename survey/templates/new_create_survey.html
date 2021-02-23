@@ -6,12 +6,7 @@
     
     {% block content %}
     <style>
-.ui-autocomplete
-{
-    position:absolute;
-    cursor:default;
-    z-index:1001 !important
-}
+
       .green_shade{
         color:rgba(66,99,50,1)
       }
@@ -184,7 +179,7 @@
       </div>
     </div>
     <div class="p-4" style="background-color:rgb(245, 243, 243)">
-      <form method="POST" autocomplete="on">
+      <form method="POST">
 
       {{ form.hidden_tag() }}
     <div class="row  " >
@@ -246,41 +241,37 @@
              
               <div class="form-group">
                 <label class="green_shade"><b>Survey Name</b></label>
-                <input type="text" id="survey_name" class="form-control" />
+                <input type="text" class="form-control" />
               </div>
             </div>
 
 
             <div class="col-6 ">
        
-              <div class="form-group" autocomplete="on">
+              <div class="form-group">
                 <label class="green_shade"><b>Client Name</b></label>
-                <input list="client_name" name="browser" id="browser" class="form-control">
-                <datalist id="client_name">
-                
-                  
-                </datalist>
+                <input type="text" class="form-control" />
               </div>
             </div>
             <div class="col-6 ">
            
               <div class="form-group">
                 <label class="green_shade"><b>Industry</b></label>
-                <input type="text" id="industry" class="form-control" disabled/>
+                <input type="text" class="form-control" disabled/>
               </div>
             </div>
             <div class="col-6 ">
 
               <div class="form-group">
                 <label class="green_shade"><b>Area of Operation</b></label>
-                <input type="text" id="area"class="form-control" disabled/>
+                <input type="text" class="form-control" disabled/>
               </div>
             </div>
             <div class="col-6 ">
            
               <div class="form-group">
                 <label class="green_shade"><b>Start Date</b></label>
-                <input type="date" id="start_date"class="form-control" />
+                <input type="date" class="form-control" />
               </div>
             </div>
           
@@ -330,18 +321,16 @@
           <br><br>
         </div>
       <div class="row">
-    
+        
           <div class="col-lg-12 col-md-12 pb-4">
             <div class="card" style="border-color: rgba(66,99,50,1);">
           
            <table class="table">
               <thead class="gb text-white">
                 <tr>
-                  <div class="input-group" autocomplete="off" >
-                
-                    
-                      {{searchform.country(class="form-control" ,autocomplete="off")}}
-                   
+                  <div class="input-group" >
+                    <input type="text" name="Job Title" 
+                    class="form-control" placeholder="Search Job">
                     <div class="input-group-append">
                       <button class="btn " style="background-color: rgba(66,99,50,1);" type="button">
                         <i style="color:white"class="fa fa-search"></i>
@@ -351,14 +340,26 @@
                 </tr>
                 <tr>
                   <td>Job Title</td>
-                  <td>Department</td>
-                  <td></td>
+                  <td>Industry</td>
                   <td></td>
                 </tr>
               </thead>
-              <tbody id="result">
-                
-               
+              <tbody>
+                <tr>
+                  <td>Procurement Manager</td>
+                  <td>Banking</td>
+                  <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
+                </tr>
+                <tr>
+                  <td>Sales Executive</td>
+                  <td>Manufacturing</td>
+                  <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
+                </tr>
+                <tr>
+                  <td>Marketing Officer</td>
+                  <td>Oil and Gas</td>
+                  <td><i class="fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
+                </tr>
               </tbody>
             </table>
             <br/>
@@ -373,10 +374,32 @@
               </span>
               <ul class="list-group" id="selected_benchmark">
                 <li class="list-group-item ">
-                  <div class="row" id="selectedBenchmarks">
-                    
-                   
-                
+                  <div class="row">
+                    <div class="col-3 pt-1 pb-1 text-center">
+                      <span class="badge badge-pill badge-success">HR Officer
+                         <i class="fas fa-trash benchmark-trash"></i></span>
+                      
+                    </div>
+                    <div class="col-3 pt-1 pb-1 text-center">
+                      <span class="badge badge-pill badge-success">HR Officer
+                         <i class="fas fa-trash benchmark-trash"></i></span>
+                      
+                    </div>
+                    <div class="col-3 pt-1 pb-1 text-center">
+                      <span class="badge badge-pill badge-success">HR Officer
+                         <i class="fas fa-trash benchmark-trash"></i></span>
+                      
+                    </div>
+                    <div class="col-3 pt-1 pb-1 text-center">
+                      <span class="badge badge-pill badge-success">HR Officer
+                         <i class="fas fa-trash benchmark-trash"></i></span>
+                      
+                    </div>
+                    <div class="col-3 pt-1 pb-1 text-center">
+                      <span class="badge badge-pill badge-success">HR Officer
+                         <i class="fas fa-trash benchmark-trash"></i></span>
+                      
+                    </div>
                     
                     
 
@@ -426,7 +449,7 @@
 
       <div class="col-12 pl-4 pr-4 pb-4">
         <div class="row">
-        
+
        
           <div class="col-lg-12 col-md-12 pb-4">
            <div class="card" style="border-color: rgba(66,99,50,1);">
@@ -434,28 +457,37 @@
             <table class="table">
               <thead class="gb text-white" >
                 <tr>
-                  <div class="input-group" autocomplete="off" >
-                
-                    
-                    {{compform.comp(class="form-control" ,autocomplete="off")}}
-                 
-                  <div class="input-group-append">
-                    <button class="btn " style="background-color: rgba(66,99,50,1);" type="button">
-                      <i style="color:white"class="fa fa-search"></i>
-                    </button>
+                  <div class="input-group" >
+                    <input type="text" name="Selected Comparator" class="form-control" placeholder="Search Comparator">
+                    <div class="input-group-append">
+                      <button class="btn btn-secondary" style="background-color: rgba(66,99,50,1);" type="button">
+                        <i style="color:white" class="fa fa-search"></i>
+                      </button>
+                    </div>
                   </div>
-                </div>
                 </tr>
                 <tr>
                   <td>Comparator Name</td>
-                  <td>Sector</td>
-                  <td></td>
+                  <td>Industry</td>
                   <td></td>
                 </tr>
               </thead>
-              <tbody id="result_comp">
-                
-               
+              <tbody>
+                <tr>
+                  <td>XYZ Bank</td>
+                  <td>Banking</td>
+                  <td><i class="fas fa-plus benchmark-eye" rel="tooltip" title="Add Comparator"></i></td>
+                </tr>
+                <tr>
+                  <td>JKL Textiles</td>
+                  <td>Manufacturing</td>
+                  <td><i class="fas fa-plus benchmark-eye" rel="tooltip" title="Add Comparator"></i></td>
+                </tr>
+                <tr>
+                  <td>MNO Energy</td>
+                  <td>Oil and Gas</td>
+                  <td><i class="fas fa-plus benchmark-eye"  rel="tooltip" title="Add Comparator"></i></td>
+                </tr>
               </tbody>
             </table>
           </div>
@@ -466,12 +498,16 @@
                 <span class="list-group-item list-group-item-action gb text-white">
                   Selected Comparators
                 </span>
-                <ul class="list-group" id="selected_comp">
+                <ul class="list-group" id="selected_benchmark">
                   <li class="list-group-item ">
-                    <div class="row" id="selectedComps">
-                      
+                    <div class="row">
+                      <div class="col-3 pt-1 pb-1 text-center">
+                        <span class="badge badge-pill badge-success">MNO Energy
+                           <i class="fas fa-trash benchmark-trash"></i></span>
+                        
+                      </div>
                      
-                  
+                      
                       
                       
   
@@ -576,7 +612,7 @@
         
               </div>
               <div class="col-6 text-right">
-                <span onclick="submit()" class="btn btn-success">Submit</span>
+                {{ form.submit(class="btn btn-success btn-max") }}
         
               </div>
           </div>
@@ -602,7 +638,6 @@
       
 
   </div>
-  
 
 <script>
 function switchnext(form){
@@ -656,339 +691,6 @@ function switchback(form){
 }
 </script>
 
-<script>
-  $("#country").on('input', function(){
-
-    
-
-//localStorage.setItem('editId',$(elm).attr('data-id'));
-
-
-
-$.ajax({
-
-  url: '/countries',
-
-  data: {
-
-     id: $(this).val()
-
-  },
-
-  type: 'POST',
-
-  success: function(res) {
-
-    
-$('#result').empty()
-     for(var loop =0 ; loop<res.length; loop++){
-    
-         $('#result').append(
-         `<tr>
-                  <td>${JSON.stringify(res[loop].job_title).split('"').join('')}</td>
-                  <td>${JSON.stringify(res[loop].main_department).split('"').join('')}</td>
-                  <td><i onclick="viewModal(${JSON.stringify(res[loop].id).split('"').join('')})"data-toggle="modal" data-target="#myModal1" class="green_shade fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
-                  <td><i onclick="addJob('${JSON.stringify(res[loop].id).split('"').join('')}','${JSON.stringify(res[loop].job_title).split('"').join('')}')" style="cursor:pointer" class="green_shade icofont-ui-add"></i></td>
-                </tr>`)
-
-
-     }
-
-  },
-
-  error: function(error) {
-
-      console.log(error);
-
-  }
-
-});
-
-  });
-</script>
-
-
-
-<script>
-  $("#comp").on('input', function(){
-
-    
-
-//localStorage.setItem('editId',$(elm).attr('data-id'));
-
-
-
-$.ajax({
-
-  url: '/compare',
-
-  data: {
-
-     id: $(this).val()
-
-  },
-
-  type: 'POST',
-
-  success: function(res) {
-
-    
-    $('#result_comp').empty()
-     for(var loop =0 ; loop<res.length; loop++){
-    
-         $('#result_comp').append(
-         `<tr>
-                  <td>${JSON.stringify(res[loop].company_name).split('"').join('')}</td>
-                  <td>${JSON.stringify(res[loop].sector).split('"').join('')}</td>
-                  <td><i onclick="viewComp(${JSON.stringify(res[loop].id).split('"').join('')})"data-toggle="modal" data-target="#myModal2" class="green_shade fas fa-eye benchmark-eye" data-toggle="modal" data-target="#job_detail" ></i></td>
-                  <td><i onclick="addComp('${JSON.stringify(res[loop].id).split('"').join('')}','${JSON.stringify(res[loop].company_name).split('"').join('')}')" style="cursor:pointer" class="green_shade icofont-ui-add"></i></td>
-                </tr>`)
-
-
-     }
-
-  },
-
-  error: function(error) {
-
-      console.log(error);
-
-  }
-
-});
-
-  });
-</script>
-
-
-<script>
-  function viewModal(id){
-
-    
-console.log('here' + id)
-//localStorage.setItem('editId',$(elm).attr('data-id'));
-
-
-
-$.ajax({
-
-  url: `/jobs`,
-
-  data: {
-
-     id: id
-
-  },
-
-  type: 'POST',
-
-  success: function(res) {
-    for(var loop =0 ; loop<res.length; loop++){
-   
-    $('#vm').html(`<div class="row">
-         <div class="col-12 p-4">
-
-<div class="row">
-  <div class="col-12" style="height:5px;background-color: rgba(66,99,50,1);">
-
-  </div>
-
-  <div class="col-2 p-4">
-    <i class="green_shade icofont-ui-office" style="font-size: 150px;"></i>
-  </div>
-
-
-  <div class="col-2 p-4">
-    <br/>
-    <b>Job Title</b><br/>
-    <br/>
-    <b>Grade</b><br/>
-    <br/>
-    <b>Department</b>
-  </div>
-
-  <div class="col-6 p-4">
-    <br/>
-    ${JSON.stringify(res[loop].job_title).split('"').join('')}<br/>
-    <br/>
-    ${JSON.stringify(res[loop].grade).split('"').join('')}<br/>
-    <br/>
-    ${JSON.stringify(res[loop].main_department).split('"').join('')}
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12 pl-4 pr-4">
-    <b>Job Description</b>
-    
-  </div>
-  
-
-  <div class="col-12 pl-4 pr-4 pt-2 pb-4" >
-
-    ${JSON.stringify(res[loop].job_description).split('"').join('')}
-  </div>
-</div>
-
-       </div>
-     </div>`)
-     }
-console.log(res)
-
-  },
-
-  error: function(error) {
-
-      console.log(error);
-
-  }
-
-});
-
-  }
-</script>
-
-<script>
-  function viewComp(id){
-
-    
-
-//localStorage.setItem('editId',$(elm).attr('data-id'));
-
-
-
-$.ajax({
-
-  url: `/comps`,
-
-  data: {
-
-     id: id
-
-  },
-
-  type: 'POST',
-
-  success: function(res) {
-    for(var loop =0 ; loop<res.length; loop++){
-   
-    $('#cm').html(`<div class="row">
-         <div class="col-12 p-4">
-
-<div class="row">
-  <div class="col-12" style="height:5px;background-color: rgba(66,99,50,1);">
-
-  </div>
-
-  <div class="col-2 p-4">
-    <i class="green_shade icofont-building-alt" style="font-size: 150px;"></i>
-  </div>
-
-
-  <div class="col-2 p-4">
-    <br/>
-    <b>Company Name</b><br/>
-    <br/>
-    <b>Sector</b><br/>
-    <br/>
-    <b>Industry</b>
-  </div>
-
-  <div class="col-6 p-4">
-    <br/>
-    ${JSON.stringify(res[loop].company_name).split('"').join('')}<br/>
-    <br/>
-    ${JSON.stringify(res[loop].sector).split('"').join('')}<br/>
-    <br/>
-    ${JSON.stringify(res[loop].industry).split('"').join('')}
-  </div>
-</div>
-
-<div class="row">
-  <div class="col-12 pl-4 pr-4">
-    <b>Company History</b>
-    
-  </div>
-  
-
-  <div class="col-12 pl-4 pr-4 pt-2 pb-4" >
-
-    ${JSON.stringify(res[loop].company_history).split('"').join('')}
-  </div>
-</div>
-
-       </div>
-     </div>`)
-     }
-console.log(res)
-
-  },
-
-  error: function(error) {
-
-      console.log(error);
-
-  }
-
-});
-
-  }
-</script>
-<script>
-  function addJob(id,job){
-    if($('#selectedBenchmarks').find("#benchmark_"+id).length < 1){
-
- 
-      $('#selectedBenchmarks').append(
-
-`<div class="col-3 pt-1 pb-1 text-center" id="benchmark_${id}">
-                      <span id="b${id}" class=" sb badge badge-pill badge-success">${job}
-                          <i onclick="removeJob('benchmark_${id}')"class="fas fa-trash benchmark-trash" style="cursor:pointer;"></i></span>
-                      
-                    </div>`
-
-
-    )
-
-    }
-   
-  }
-</script>
-<script>
-  function addComp(id,job){
-    if($('#selectedComps').find("#comp_"+id).length < 1){
-
- 
-      $('#selectedComps').append(
-
-`<div class="col-3 pt-1 pb-1 text-center" id="comp_${id}">
-                      <span id="c${id}" class="sb badge badge-pill badge-success">${job}
-                          <i onclick="removeComp('comp_${id}')"class="fas fa-trash benchmark-trash" style="cursor:pointer;"></i></span>
-                      
-                    </div>`
-
-
-    )
-
-    }
-   
-  }
-</script>
-
-<script>
-  function removeJob(id){
-
-  
-    $('#'+id).remove()
-  }
-</script>
-<script>
-function removeComp(id){
-
-  
-  $('#'+id).remove()
-}
-</script>
 <script>
 function surveyActive(){
   $('.survey_icon').css('color','rgba(66,99,50,1)')
@@ -1081,227 +783,5 @@ benchmarkNotActive()
 comparatorNotActive()
 reviewNotActive()
 </script>
-<div class="modal fade" id="myModal1">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-    
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Benchmark Summary</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      
-      <!-- Modal body -->
-      <div class="modal-body" id="vm">
-       
-      </div>
-      
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-<div class="modal fade" id="myModal2">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content">
-    
-      <!-- Modal Header -->
-      <div class="modal-header">
-        <h4 class="modal-title">Client Summary</h4>
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-      </div>
-      
-      <!-- Modal body -->
-      <div class="modal-body" id="cm">
-       
-      </div>
-      
-      <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      </div>
-      
-    </div>
-  </div>
-</div>
-
-
-
-<script>
-  function submit(){
-    
-var bench = []
-var comps = []
-    $("#selectedBenchmarks").find('.sb')
-        .each(function() {
-
-          bench.push($(this).attr("id") )
-   
-       
-       
-        });
-    
-        $("#selectedComps").find('.sb')
-        .each(function() {
-
-          comps.push($(this).attr("id") )
-   
-       
-       
-        });
-    
-
-
-
-$.ajax({
-
-  url: '/survey_create',
-
-  data: {
-
-     bench: bench.toString(),
-     comp: comps.toString(),
-     survey : $("#survey_name").val(),
-     client : $("#browser").val(),
- 
-     start_date : $("#start_date").val()
-
-  },
-
-  type: 'POST',
-
-  success: function(res) {
-
-    
-alert('success')
-window.location.href='/administration/surveys'
-
-  },
-
-  error: function(error) {
-
-      console.log(error);
-
-  }
-
-});
-
-
-
-}
-</script>
-
-
-
-
-
-<script>
-  $("#browser").on('input', function(){
-
-    
-
-//localStorage.setItem('editId',$(elm).attr('data-id'));
-
-
-
-$.ajax({
-
-  url: '/compare',
-
-  data: {
-
-     id: $(this).val()
-
-  },
-
-  type: 'POST',
-
-  success: function(res) {
-
-    
-console.log(res)
-
-
-for(i=0 ; i<res.length;i++){
- var temp= JSON.stringify(res[i].id).split('"').join('')
- var cmp= JSON.stringify(res[i].company_name).split('"').join('')
-
-
- if($('#client_name').find("#b"+temp).length < 1){
- $("#client_name").append(`<option id="b${temp}" value="${cmp}">`)
- }
- 
-}
-
-  },
-
-  error: function(error) {
-
-      console.log(error);
-
-  }
-
-});
-
-  });
-</script>
-
-
-<script>
-    $("#browser").change(function(){
-
-
-
-
-$.ajax({
-
-url: '/compss',
-
-data: {
-
-   id: $(this).val()
-
-},
-
-type: 'POST',
-
-success: function(res) {
-
-  
-console.log(res)
-
-
-for(i=0 ; i<res.length;i++){
-//var temp= JSON.stringify(res[i].area).split('"').join('')
-var ar= JSON.stringify(res[i].area).split('"').join('')
-var ind= JSON.stringify(res[i].industry).split('"').join('')
-
-
-$("#industry").val(ind)
-$("#area").val(ar)
-
-}
-
-},
-
-error: function(error) {
-
-    console.log(error);
-
-}
-
-});
-
-
-
-
-    });
-</script>
-
 
     {% endblock content %}

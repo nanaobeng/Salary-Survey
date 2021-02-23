@@ -1,18 +1,18 @@
 {
-    "python.pythonPath": "new_env/bin/python3.8",
+    "python.pythonPath": "/usr/local/bin/python3",
     "sqltools.connections": [
-        {
-            "database": "${workspaceFolder:Salary-Survey}/survey/site.db",
-            "driver": "SQLite",
-            "group": "Survey",
-            "name": "Survey",
-            "previewLimit": 10
-        },
         {
             "database": "${workspaceFolder:Salary-Survey}/survey/site.db",
             "driver": "SQLite",
             "name": "Pon",
             "previewLimit": 500
+        },
+        {
+            "database": "${workspaceFolder:Salary-Survey}/site.db",
+            "driver": "SQLite",
+            "group": "Survey",
+            "name": "Survey",
+            "previewLimit": 10
         }
     ],
     "sqltools.useNodeRuntime": true

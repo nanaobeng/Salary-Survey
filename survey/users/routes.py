@@ -1,12 +1,12 @@
-
-from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint ,jsonify
-from survey import db,bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,MyForm,ComparatorForm,ServiceRequestForm,MessageComment
-
+from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
+from survey import db , bcrypt
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, RequestSearchForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 from datetime import datetime
+from sqlalchemy import or_, desc
+
 users = Blueprint('users',__name__)
 
 
@@ -98,7 +98,7 @@ def reset_token(token):
 
 @users.route("/create_client",methods=['POST','GET'])
 def create_client():
-    
+    usn = current_user
     form = ClientForm()
     
     if form.validate_on_submit():
@@ -114,7 +114,7 @@ def create_client():
         client = Client(
         company_history = form.company_history.data,
         company_name = form.name.data,
-        user = form.user_account.data,
+        user = usn,
         sector = form.sector.data,
         industry = form.industry.data,
         area = form.area.data,
@@ -158,6 +158,54 @@ def create_client():
 def create_contact():
     return render_template("contact_person.html")
 
+# load messages from 'Contact' in database
+@users.route("/messages")
+def messages():
+    form = MessageComment()
+    messages = Contact.query.filter_by(status="Open").order_by(desc(Contact.timestamp)).all()
+    # messages = Contact.query.all()
+    return render_template("messages.html", messages=messages, form=form)
+
+# view message modal
+@users.route('/view_message', methods=['POST','GET'])
+def viewMessage():
+    id = request.form['id']
+
+    messages = Contact.query.filter_by(id=id)
+    comments = Comment.query.filter_by(contact_id=id)
+    comment_array = []
+    temp = []
+    for message in messages:
+        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
+        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
+        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
+        'address_2':message.address_2,'city':message.city,'country':message.country,
+        'status':message.status,'timestamp':message.timestamp})
+    
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+# 
+@users.route('/messages/update/<int:messageId>', methods=['POST'])
+def updateMessage(messageId):
+    message = Contact.query.get_or_404(messageId)
+    form = MessageComment()
+    if form.validate_on_submit:
+        comment = Comment(comment=form.comment.data, contact_id=messageId)
+        status = str(form.status.data)
+        if (status == "True"):
+            new_status = "Closed"
+        elif (status == "False"):
+            new_status = "Open" 
+        message.status = new_status
+        db.session.add(comment)
+        db.session.commit()
+        flash("Message Updated", "success")
+        return redirect(url_for('users.messages'))
 
 
 @users.route("/create_sector",methods=["POST","GET"])
@@ -357,8 +405,6 @@ def survey_home():
 
 @users.route("/create_survey")
 def create_survey():
-    searchform = MyForm()
-    compform = ComparatorForm()
     form = SurveyForm()
     if form.validate_on_submit():
         sur = Survey(name="test2",start_date=datetime(2012, 3, 3, 10, 10, 10),end_date=datetime(2012, 3, 3, 10, 10, 10),status="active",client_id=1)
@@ -366,7 +412,7 @@ def create_survey():
         db.session.commit()
         flash('Account Created','success')
         return redirect(url_for('users.login'))
-    return render_template("new_create_survey.html",form=form,searchform=searchform,compform=compform)
+    return render_template("new_create_survey.html",form=form)
 
 @users.route("/edit_survey")
 def edit_survey():
@@ -446,6 +492,7 @@ def my_benchmark_jobs_create():
 
 @users.route("/my_surveys")
 def my_surveys():
+<<<<<<< HEAD
     usn = current_user.id
     query = []
     surveys = Benchmark_job.query.all()
@@ -454,6 +501,9 @@ def my_surveys():
             query.append(survey)
 
     return render_template("quantitative_survey_overview.html",usn=usn,query=query)
+=======
+    return render_template("quantitative_survey_overview.html")
+>>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
 
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():
@@ -479,20 +529,7 @@ def admin_home():
 
 @users.route("/administration/surveys")
 def admin_surveys():
-    query = Survey.query.all()
-    
-    # if request.method == 'POST':
-    #     client = Client.query.get_or_404(request.form['client_id'])
-    #     client.status = request.form['c_status']
-    #     try:
-    #         db.session.commit()
-    #         flash('Client Updated','success')
-    #         return redirect(url_for('users.admin_clients'))
-    #     except:
-    #         flash('There was an issue updating the client','danger')
-    #         return redirect(url_for('users.admin_clients'))
-    
-    return render_template("new_view_survey.html",query=query)
+    return render_template("new_view_survey.html")
 
 @users.route("/administration/benchmark-jobs")
 def admin_benchmarl():
@@ -514,16 +551,6 @@ def admin_clients():
             return redirect(url_for('users.admin_clients'))
     else:
         return render_template("new_view_client.html",query=query)
-
-
-# @users.route("/administration/service_requests")
-# def admin_service_requests():
-#     #make a query to the db
-#     indv = Individual_request.query.all()
-#     cnt = Individual_request.query.filter_by(status="approved").count()
-#     #filter out what i want
-#     return render_template("new_requests.html",indv=indv)
-
 
 
 @users.route("/administration/reports")
@@ -876,6 +903,7 @@ def benchmark_home():
     return render_template("benchmark_dashboard.html",job=job)
 
 
+<<<<<<< HEAD
 
 
 @users.route('/form')
@@ -1060,8 +1088,42 @@ def survey_filter():
 
 
 
-    
+=======
+@users.route("/administration/service_requests", methods=["POST","GET"])
+def admin_service_requests():
+    form = ServiceRequestForm() 
+    searchform = RequestSearchForm()
+    ind = Individual_request.query.filter_by(status="pending").all()
+    corp= Corporate_request.query.filter_by(status="pending").all()
+#filter_by(status="pending").
+    return render_template("new_requests.html",form=form ,ind=ind, corp=corp, searchform=searchform)
 
+@users.route("/administration/service_requests/search", methods=["POST"])
+def search_requests():
+    searchform = RequestSearchForm()
+    form = ServiceRequestForm()
+    status = request.form['selectstatus']
+    requesttype = request.form['selecttype']
+    if request.method == 'POST':
+        if ((requesttype != "all") and (status !="all")):
+            ind = Individual_request.query.filter_by(status=status,type_of_request=requesttype).all()
+            corp = Corporate_request.query.filter_by(status=status,type_of_request=requesttype).all()
+        elif ((requesttype == "all") and (status !="all")):
+            ind = Individual_request.query.filter_by(status=status,type_of_request="individual").all()
+            corp= Corporate_request.query.filter_by(status=status,type_of_request="corporate").all()
+        elif ((requesttype != "all") and (status =="all")):
+            ind = Individual_request.query.filter_by(type_of_request=requesttype).all()
+            corp = Corporate_request.query.filter_by(type_of_request=requesttype).all()
+        else:
+            ind = Individual_request.query.all()
+            corp= Corporate_request.query.all()
+        return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
+    return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
+>>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
+    
+#,(or_(Individual_request.firstname.like(('%' + search + '%')),Individual_request.lastname.like(('%' + search + '%')),Individual_request.status.like(('%' + search + '%'))) )
+
+<<<<<<< HEAD
 
   
 
@@ -1089,53 +1151,19 @@ def viewRequest():
 
     requests = Individual_request.query.filter_by(id=id)
     comments = RequestComment.query.filter_by(contact_id=id)
+=======
+@users.route('/view_request/<int:id>', methods=['POST','GET'])
+def viewIndRequest(id):
+       
+    request = Individual_request.query.get_or_404(id)
+    comments = RequestComment.query.filter_by(service_id=id)
+>>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
     comment_array = []
     temp = []
-    for request in requests:
-        temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
-        'status':post.status,'firstname' :post.firstname,'lastname':post.lastname,'other':post.other,'email':post.email,'dob':post.dob,'phone':post.phone,'address':post.address,
-        'city':post.city,'country':post.country,'service':post.service})
-    for comment in comments:
-        comment_array.append(comment.comment)
-
-    temp.append({'comments': comment_array})
-
-    return jsonify(temp)
-
-# @users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
-# def updateRequest(requestId):
-#     request = Individual_request.query.get_or_404(requestId)
-#     form = ServiceRequestForm()
-#     if form.validate_on_submit:
-#         comment = RequestComment(comment=form.comment.data, contact_id=messageId)
-#         request.status = form.newstatus.data
-#         db.session.add(comment)
-#         db.session.commit()
-#         flash("Request Updated", "success")
-#         return redirect(url_for('users.admin_service_requests'))
-
-@users.route("/messages")
-
-def messages():
-    form= MessageComment()
-    messages = Contact.query.all()
-    return render_template("messages.html", form=form, messages=messages)
-
-
-@users.route('/view_message', methods=['POST','GET'])
-def viewMessage():
-    id = request.form['id']
-
-    messages = Contact.query.filter_by(id=id)
-    comments = Comment.query.filter_by(contact_id=id)
-    comment_array = []
-    temp = []
-    for message in messages:
-        temp.append({'id': message.id, 'title':message.title ,'firstname' :message.firstname,
-        'lastname':message.lastname,'email':message.email,'job_title':message.job_title,
-        'company_name':message.company_name,'phone':message.phone,'address_1':message.address_1,
-        'address_2':message.address_2,'city':message.city,'country':message.country,
-        'status':message.status,'timestamp':message.timestamp})
+  
+    temp.append({'id': request.id, 'date_of_request': request.date_of_request, 'type_of_request': request.type_of_request,
+    'status': request.status,'firstname' : request.firstname,'lastname': request.lastname,'email': request.email,'dob': request.dob,'phone': request.phone,
+    'address': request.address,'city': request.city,'country': request.country,'service': request.service})
     
     for comment in comments:
         comment_array.append(comment.comment)
@@ -1144,18 +1172,83 @@ def viewMessage():
 
     return jsonify(temp)
 
-@users.route('/messages/update/<int:messageId>', methods=['POST'])
-def updateMessage(messageId):
-    message = Contact.query.get_or_404(messageId)
-    form = MessageComment()
+
+@users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
+def updateRequest(requestId):
+    request = Individual_request.query.get_or_404(requestId)
+    form = ServiceRequestForm()
     if form.validate_on_submit:
-        comment = Comment(comment=form.comment.data, contact_id=messageId)
-        message.status = form.my_status.data
+        comment = RequestComment(comment=form.comment.data, service_id=requestId)
+        request.status = form.newstatus.data
         db.session.add(comment)
         db.session.commit()
-        flash("Message Updated", "success")
-        return redirect(url_for('users.messages'))
+        flash("Request Updated", "success")
+        return redirect(url_for('users.admin_service_requests'))
 
+@users.route('/view_corprequest/<int:id>', methods=['POST','GET'])
+def viewCorpRequest(id):
+    
+    post = Corporate_request.query.get_or_404(id)
+    comments = RequestComment.query.filter_by(service_id=id)
+    comment_array = []
+    temp = []
+  
+    temp.append({'id': post.id, 'date_of_request':post.date_of_request, 'type_of_request':post.type_of_request,
+    'status':post.status,'company_name' :post.company_name,'sector':post.sector,'industry':post.industry,'area':post.area,'financial_year_end':post.financial_year_end,'company_type':post.company_type,
+   'postal_address' : post.postal_address,'company_email':post.company_email,'postal_address':post.postal_address,'street_address':post.street_address,'reg_number':post.reg_number,'vat_number':post.vat_number,'tel':post.tel,
+    'website':post.website,'date_inc':post.date_inc,'country_inc':post.country_inc,'chair_firstname':post.chair_firstname,'chair_lastname':post.chair_lastname,
+   'chair_other':post.chair_other,'chair_nation':post.chair_nation,'chair_email':post.chair_email,'chair_phone':post.chair_phone,'ceo_firstname': post.ceo_firstname,
+   'ceo_lastname':post.ceo_lastname,'ceo_other':post.ceo_other,'ceo_nation':post.ceo_nation, 'ceo_email':post.ceo_email,'ceo_phone':post.ceo_phone,
+   'other_board_firstname':post.other_board_firstname,'other_board_lastname':post.other_board_lastname,'other_board_other':post.other_board_other,
+   'other_board_nation':post.other_board_nation,'other_board_email':post.other_board_email,'other_board_phone':post.other_board_phone,'key_firstname':post.key_firstname,
+   'key_lastname':post.key_lastname,'key_other':post.key_other,'key_nation':post.key_nation,'key_email':post.key_email,'key_phone':post.key_phone,
+    'prev_name':post.prev_name,'prev_address':post.prev_address,'prev_city':post.prev_city,'prev_country':post.prev_country,'current_name':post.current_name 
+    ,'current_address':post. current_address,'current_city':post.current_city  ,'current_country':post.current_country,'sec_name':post.sec_name,'sec_address':post.sec_address
+    ,'sec_city':post. sec_city,'sec_country':post.sec_country,'contact_firstname ':post.contact_firstname,'contact_lastname':post. contact_lastname 
+    ,'contact_other':post. contact_other,'contact_nation':post. contact_nation,'contact_email ':post.contact_email,'contact_dob ':post.contact_dob,'contact_phone':post.contact_phone,
+    'brief_history ':post.brief_history,'service':post.service,  })
+     
+    for comment in comments:
+        comment_array.append(comment.comment)
+
+    temp.append({'comments': comment_array})
+
+    return jsonify(temp)
+
+@users.route('/administration/service_requests/corpupdate/<int:corprequestId>', methods=['POST'])
+def updateCorpRequest(corprequestId):
+    request = Corporate_request.query.get_or_404(corprequestId)
+    form = ServiceRequestForm()
+    if form.validate_on_submit:
+        comment = RequestComment(comment=form.comment.data, service_id=corprequestId)
+        request.status = form.newstatus.data
+        db.session.add(comment)
+        db.session.commit()
+        flash("Request Updated", "success")
+        return redirect(url_for('users.admin_service_requests'))
+
+# search messages on messages.html 
+@users.route('/messages/search', methods = ['POST'])
+def searchMessages():
+    search = request.form['search_term']
+    if (len(search) == 0):
+        messages = Contact.query.filter_by(status="False")
+        new_messages = []
+        for message in messages:
+            new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
+            'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+
+        return jsonify(new_messages)
+    
+    messages = Contact.query.filter(or_(Contact.firstname.like(('%' + search + '%')),
+    Contact.lastname.like(('%' + search + '%')),
+    Contact.company_name.like(('%' + search + '%'))))
+    new_messages = []
+    for message in messages:
+        new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
+        'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+
+<<<<<<< HEAD
 
 @users.route('/benchmark_details', methods=['POST','GET'])
 def b_details():
@@ -1256,3 +1349,25 @@ def save_qualitative():
 
     return jsonify(pol_structure)
 
+=======
+    return jsonify(new_messages)
+
+
+@users.route("/administration/client_reports")
+def client_reports():
+    
+    return render_template("client_hub_reports.html")
+
+
+# @users.route('/messages/update/<int:messageId>', methods=['POST'])
+# def updateMessage(messageId):
+#     message = Contact.query.get_or_404(messageId)
+#     form = MessageComment()
+#     if form.validate_on_submit:
+#         comment = Comment(comment=form.comment.data, contact_id=messageId)
+#         message.status = form.my_status.data
+#         db.session.add(comment)
+#         db.session.commit()
+#         flash("Message Updated", "success")
+#         return redirect(url_for('users.messages'))
+>>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
