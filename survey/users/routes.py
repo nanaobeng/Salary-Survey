@@ -446,22 +446,32 @@ def my_benchmark_jobs_create():
 
 @users.route("/my_surveys")
 def my_surveys():
-    usn = 2
+    usn = current_user.id
     query = []
     surveys = Benchmark_job.query.all()
     for survey in surveys:
-        if survey.comp_benchmark.survey_client.user.id == usn:
+        if survey.benchmark.user.id == usn:
             query.append(survey)
 
     return render_template("quantitative_survey_overview.html",usn=usn,query=query)
 
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():
+    
     return render_template("quantitative_survey_overview.html")
 
 @users.route("/my_surveys/view_survey/qualitative")
 def qualitative_overview():
-    return render_template("qualitative_survey_overview.html")
+    cli = Client.query.all()
+    usn = current_user.id
+    qual = Qualitative_survey.query.all()
+    for i in qual:
+        if i.client_qual.user.id == current_user.id:
+            qual = i
+    for i in cli:
+        if i.user.id == current_user.id:
+            cli = i
+    return render_template("qualitative_survey_overview.html",cli=cli,qual=qual,usn=usn)
 
 @users.route("/administration")
 def admin_home():
@@ -563,12 +573,74 @@ def admin_benchmark_jobs():
 def create_benchmark_job():
     return render_template("create_benchmark_job.html")
 
-@users.route("/survey/quantitative")
-def quantitative_survey():
+@users.route("/survey/quantitative/<int:id>",methods=['POST','GET'])
+def quantitative_survey(id):
+    job = Benchmark_job.query.get_or_404(id)
     form = SurveyForm()
-    return render_template("quantitative_survey.html",form=form)
+    if form.validate_on_submit():
+        
 
+        job.comp_benchmark_base.monthly_base_salary=form.base_salary.data
+      
+        job.comp_benchmark_incentive.company_performance=form.company_bonus_performance.data
+        job.comp_benchmark_incentive.individual_performance=form.individual_bonus_performance.data
+        job.comp_benchmark_incentive.annual_incentive=form.annual_bonus.data
+        job.comp_benchmark_incentive.incentive=form.incentive_bonus.data
+        job.comp_benchmark_incentive.other_cash=form.other_bonus.data
+    
 
+        job.comp_benchmark_benefit.staff_bus=form.staff_bus.data
+        job.comp_benchmark_benefit.company_car=form.company_car.data
+        job.comp_benchmark_benefit.personal_travel=form.personal_travel.data
+        job.comp_benchmark_benefit.petrol=form.petrol.data
+        job.comp_benchmark_benefit.vehicle_maintenance=form.vehicle.data
+        job.comp_benchmark_benefit.driver=form.driver.data
+        job.comp_benchmark_benefit.health_insurance=form.health_insurance.data
+        job.comp_benchmark_benefit.medical_assistance=form.medical_assistance.data
+        job.comp_benchmark_benefit.funeral_assistance=form.funeral_assistance.data
+        job.comp_benchmark_benefit.life_insurance=form.life_insurance.data
+        job.comp_benchmark_benefit.group_accident=form.group_accident.data
+        job.comp_benchmark_benefit.club_membership=form.club_membership.data
+        job.comp_benchmark_benefit.school_fees=form.school_fees.data
+        job.comp_benchmark_benefit.vacation=form.vacation.data
+        job.comp_benchmark_benefit.housing=form.housing.data
+        job.comp_benchmark_benefit.telephone=form.telephone.data
+        job.comp_benchmark_benefit.security=form.security.data
+        job.comp_benchmark_benefit.other_benefits=form.other_benefits.data
+
+        job.comp_benchmark_allowance.vehicle_maintenance=form.vehicle_maintenance.data
+        job.comp_benchmark_allowance.vehicle=form.allowance_vehicle.data
+        job.comp_benchmark_allowance.transport=form.transport.data
+        job.comp_benchmark_allowance.fuel=form.fuel.data
+        job.comp_benchmark_allowance.car=form.car.data
+        job.comp_benchmark_allowance.driver=form.allowance_driver.data
+        job.comp_benchmark_allowance.domestic_safety=form.domestic.data
+        job.comp_benchmark_allowance.housing=form.allowance_housing.data
+        job.comp_benchmark_allowance.utilities=form.utilities.data
+        job.comp_benchmark_allowance.meal=form.meal.data
+        job.comp_benchmark_allowance.telephone=form.allowance_telephone.data
+        job.comp_benchmark_allowance.entertainment=form.entertainment.data
+        job.comp_benchmark_allowance.education_support=form.education.data
+        job.comp_benchmark_allowance.vacation=form.vacation_allowance.data
+        job.comp_benchmark_allowance.uniform=form.uniform.data
+        job.comp_benchmark_allowance.mobile_money=form.mobile_money.data
+        job.comp_benchmark_allowance.miscellaenous=form.misc.data
+        job.status = "Completed"
+        try:
+            db.session.commit()
+            flash('Survey Completed','success')
+            return redirect(url_for('users.my_surveys'))
+        except:
+            flash('There was an issue completing the survey','danger')
+            return redirect(url_for('users.my_surveys'))
+        
+    return render_template("quantitative_survey.html",form=form, job=job)
+
+@users.route("/survey/quantitative/view/<int:id>",methods=['POST','GET'])
+def quantitative_survey_view(id):
+    job = Benchmark_job.query.get_or_404(id)
+    form = SurveyForm()
+    return render_template("view_quant.html",form=form, job=job)
 
 @users.route("/user/profile")
 def update_profile():
@@ -942,7 +1014,7 @@ def created_survey_ajax():
             c_id = (int(c.replace("c", "")))
             cli = Client.query.filter_by(id=c_id).first()
             db.session.add(Survey_comparator(comparator=sur,client=cli,status="unprocessed"))
-            db.session.add(Benchmark_job(job_title=main.job_title,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=cli,comp_benchmark=sur,comp_benchmark_allowance=allowance,comp_benchmark_benefit=benefit,comp_benchmark_incentive=incentive,comp_benchmark_base=base))
+            db.session.add(Benchmark_job(job_title=main.job_title,department=main.main_department,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=cli,comp_benchmark=sur,comp_benchmark_allowance=allowance,comp_benchmark_benefit=benefit,comp_benchmark_incentive=incentive,comp_benchmark_base=base))
     
     db.session.commit()
     return jsonify('success')
@@ -1003,13 +1075,13 @@ def survey_filter():
 
     return jsonify(temp)
 
-# @users.route("/administration/service_requests", methods=["POST","GET"])
-# def admin_service_requests():
-#     form = ServiceRequestForm() 
-#     ind = Individual_request.query.all()
-#     corp= Corporate_request.query.filter_by(status="pending").all()
+@users.route("/administration/service_requests", methods=["POST","GET"])
+def admin_service_requests():
+    form = ServiceRequestForm() 
+    ind = Individual_request.query.all()
+    corp= Corporate_request.query.filter_by(status="pending").all()
 
-#     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+    return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
 
 @users.route('/view_request', methods=['POST','GET'])
 def viewRequest():
@@ -1083,4 +1155,104 @@ def updateMessage(messageId):
         db.session.commit()
         flash("Message Updated", "success")
         return redirect(url_for('users.messages'))
+
+
+@users.route('/benchmark_details', methods=['POST','GET'])
+def b_details():
+
+
+    tag = request.form['id']
+    
+
+  
+    post = Benchmark_job.query.get_or_404(tag)
+
+    temp = []
+   
+
+    temp.append({'id': post.id,'status':post.status, 'job_title':post.job_title , 'grade':post.grade ,'reporting_relationship':post.reporting_relationship,'job_description' :post.job_description,'duties_and_responsibility':post.duties_and_responsibility,'financial_responsibilities':post.financial_responsibilities,'technical_qualification':post.technical_qualification,'minimum_years_of_experience':post.minimum_years_of_experience})
+
+    return jsonify(temp)
+
+
+@users.route('/save_qualitative', methods=['POST','GET'])
+def save_qualitative():
+
+    main = Client.query.all()
+    for i in main:
+        if (i.user.id == current_user.id):
+            main = i
+    client = request.form['client']
+    num_emp = request.form['num_emp']
+    num_work_hours = request.form['num_work_hours']
+    pol_structure = request.form['policy_structure']
+    ovr_policy = request.form['ovr_policy']
+
+
+    formal_salary_structure_ovr = request.form['formal_salary_structure_ovr']
+    ss_adjusted = request.form['ss_adjusted']
+    last_adj_date = request.form['last_adj_date']
+    avg_inc = request.form['avg_inc']
+    adj_basis = request.form['adj_basis']
+    inflation = request.form['inflation']
+    business_conditions = request.form['business_conditions']
+    salary_levels = request.form['salary_levels']
+    other_indicators = request.form['other_indicators']
+    grade_ajs = request.form['grade_ajs']
+    how_adjs_made = request.form['how_adjs_made']
+    job_eval_sys = request.form['job_eval_sys']
+    auto_inflation_adjs = request.form['auto_inflation_adjs']
+    auto_inflation_adjs_exp = request.form['auto_inflation_adjs_exp']
+    num_grade_levels = request.form['num_grade_levels']
+    notch_diff = request.form['notch_diff']
+    sal_increments = request.form['sal_increments']
+    staff_progress = request.form['staff_progress']
+    staff_progress_exp = request.form['staff_progress_exp']
+    experience = request.form['experience']
+    previous_salary = request.form['previous_salary']
+    hiring_rate = request.form['hiring_rate']
+    max_salary = request.form['max_salary']
+    sal_exceeded = request.form['sal_exceeded']
+    sal_exceeded_exp = request.form['sal_exceeded_exp']
+    annual_cash_bonus = request.form['annual_cash_bonus']
+    annual_cash_bonus_exp = request.form['annual_cash_bonus_exp']
+    plans_eligibility = request.form['plans_eligibility']
+    plans_eligibility_exp = request.form['plans_eligibility_exp']
+    bonus_payout = request.form['bonus_payout']
+    bonus_payout_exp = request.form['bonus_payout_exp']
+    month_13 = request.form['month_13']
+    month_13_payout = request.form['month_13_payout']
+    month_13_payout_exp = request.form['month_13_payout_exp']
+    month_13_payout_restriction = request.form['month_13_payout_restriction']
+    direct_compensations = request.form['direct_compensations']
+    num_leave_days = request.form['num_leave_days']
+    sick_leave = request.form['sick_leave']
+    maternity_leave = request.form['maternity_leave']
+    paternity_leave = request.form['paternity_leave']
+    compassionate_leave = request.form['compassionate_leave']
+    other_leave = request.form['other_leave']
+    redundancy = request.form['redundancy']
+    
+
+
+
+    test = bool(Qualitative_survey.query.filter_by(client_name=client,status="In Progress").first())
+    if(test):
+
+        query = Qualitative_survey.query.filter_by(client_name=client,status="In Progress").first()
+        query.emp_number = num_emp
+        query.working_hours=num_work_hours
+        query.overtime_policy=ovr_policy
+    
+        db.session.commit()
+        return('code submitted')
+    
+    else:
+        qls = Qualitative_survey(client_name=client,status="In Progress",emp_number=num_emp,working_hours=num_work_hours,overtime_policy=ovr_policy,salary_structure=formal_salary_structure_ovr,salary_structure_adjustments=ss_adjusted,salary_adjustment_date=last_adj_date,avg_perc_review=avg_inc,adjusment_basis=adj_basis,inflation_indicator=inflation,business_conditions_indicator=business_conditions,salary_level_indicator=salary_levels,other_indicator=other_indicators,isGradesAdjustedBySamePerc=grade_ajs,detailed_adjustments=how_adjs_made,job_evaluation=job_eval_sys,cost_of_living_adjustments_periodically=auto_inflation_adjs,cost_of_living_adjustments_periodically_basis=auto_inflation_adjs_exp,grade_levels=num_grade_levels,perc_grade_difference=notch_diff,grade_bases=sal_increments,staff_progress=staff_progress,experience_scale=experience,previous_scale=previous_salary,hiring_rate=hiring_rate,max_salary_grade=max_salary,max_salary_exceeded=sal_exceeded,max_salary_exceeded_reason=sal_exceeded_exp,haveIncentivePlans=annual_cash_bonus,incentive_plans=annual_cash_bonus_exp,annual_cash_eligibility=plans_eligibility,client_qual=main)
+        db.session.add(qls)
+        db.session.commit()
+    
+    
+
+    return jsonify(pol_structure)
 

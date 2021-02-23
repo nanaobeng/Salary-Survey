@@ -184,10 +184,10 @@
 <div class="row ">
    
     <div class="col-12 ">
-<b>Finance Manager</b>
+<b>{{cli.company_name}}</b>
 <br/>
 
-<span class="pt-3"style="color:grey;font-size: 12px;">Created on 12/3/2019</span>
+<span class="pt-3"style="color:grey;font-size: 12px;"></span>
 
     </div>
 
@@ -222,7 +222,7 @@
       <div class="col-12 p-4">
      
         <label class="green_shade"><b>Name of Organisation</b></label>
-        <input type="text" class="form-control" />
+        <input type="text" class="form-control" value="{{cli.company_name}}" disabled/>
       </div>
 
 
@@ -237,57 +237,52 @@
           </div>
         </div>
           <div class="row">
-            <div class="col-2 p-4">
-     
-              <label class="green_shade"><b>Title</b></label>
-              <input type="text" class="form-control" />
-            </div>
+          
 
-
-            <div class="col-10 p-4">
-     
-              <label class="green_shade"><b>Name</b></label>
-              <input type="text" class="form-control" />
-            </div>
 
             <div class="col-12 p-4">
      
-              <label class="green_shade"><b>Address</b></label>
-              <textarea class="form-control" row="3" cols="3"></textarea>
+              <label class="green_shade"><b>Name</b></label>
+              <input type="text" class="form-control" value="{{cli.contact_person.first_name}} {{cli.contact_person.other_names}} {{cli.contact_person.last_name}}" disabled/>
             </div>
+
+        
 
 
             <div class="col-4 p-4">
      
               <label class="green_shade"><b>Phone Number</b></label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" value="{{cli.contact_person.mobile_number}}" disabled/>
             </div>
 
 
+           
+
             <div class="col-4 p-4">
      
-              <label class="green_shade"><b>Fax Number</b></label>
-              <input type="text" class="form-control" />
+              <label class="green_shade"><b>Job Title</b></label>
+              <input type="text" class="form-control" value="{{cli.contact_person.job}}" disabled/>
             </div>
 
             <div class="col-4 p-4">
      
               <label class="green_shade"><b>Email Address</b></label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" value="{{cli.contact_person.email}}" disabled/>
             </div>
 
             <div class="col-6 p-4">
      
-              <label class="green_shade"><b>Date Completed</b></label>
-              <input type="text" class="form-control" />
+              <label class="green_shade"><b>Date of Birth</b></label>
+              <input type="text" class="form-control" value="{{cli.contact_person.date_of_birth}}" disabled/>
             </div>
-
-
             <div class="col-6 p-4">
      
-              <label class="green_shade"><b>Signature</b></label>
-              <input type="text" class="form-control" />
+              <label class="green_shade"><b>Nationality</b></label>
+              <input type="text" class="form-control" value="{{cli.contact_person.nationality}}" disabled/>
             </div>
+
+
+           
         </div>
       </div>
    
@@ -305,73 +300,55 @@
         </div>
           <div class="row">
             <div class="col-12 pl-4 green_shade">
-             <b> Kindly Select a sector the organization belongs to</b>
+             <b> Sector the organization belongs to</b>
             </div>
             <div class="col-12 p-4">
               
-              <div class="form-check-inline">
-                <label class="form-check-label" for="check1">
-                  <input type="checkbox" class="form-check-input" id="check1" name="vehicle1" value="something" checked>Pu
-                </label>
-              </div>
-              <div class="form-check-inline">
-                <label class="form-check-label" for="check2">
-                  <input type="checkbox" class="form-check-input" id="check2" name="vehicle2" value="something">Option 2
-                </label>
-              </div>
-              <div class="form-check-inline">
-                <label class="form-check-label">
-                  <input type="checkbox" class="form-check-input" >Option 3
-                </label>
-              </div>
+             <input class="form-control" value="{{cli.sector.sector}}" disabled/>
             </div>
 
-            <div class="col-12 pl-4">
-
-              <label class="green_shade"><b>Other</b></label>
-              <input class="form-control" />
-            </div>
+         
 
 
             <div class="col-12 p-4">
 
               <label class="green_shade"><b>When was your organization established/incorporated in Ghana?</b></label>
-              <input class="form-control" />
+              <input class="form-control" type="text" value="{{cli.date_inc.strftime('%Y-%m-%d')}}" disabled />
             </div>
 
             <div class="col-4 p-4">
 
               <label class="green_shade"><b>Company Registration Number</b></label>
-              <input class="form-control" />
+              <input class="form-control" value="{{cli.reg_number}}" disabled/>
             </div>
 
             <div class="col-4 p-4">
 
               <label class="green_shade"><b>Area of Operation</b></label>
-              <input class="form-control" />
+              <input class="form-control" value="{{cli.area.area}}" disabled/>
             </div>
 
             <div class="col-4 p-4">
 
               <label class="green_shade"><b>Total Number of Employees</b></label>
-              <input class="form-control" />
+              <input class="form-control" id="num_emp" name="num_emp" 
+              
+              value ="{{qual.emp_number}}"
+              
+              />
             </div>
 
+     
             <div class="col-12 p-4">
 
               <label class="green_shade"><b>No. of working hours in a normal week </b></label>
-              <input class="form-control" />
-            </div>
-            <div class="col-12 p-4">
-
-              <label class="green_shade"><b>No. of working hours in a normal week </b></label>
-              <input class="form-control" />
+              <input class="form-control" type="number" id="num_work_hours" name="num_work_hours" value ="{{qual.working_hours}}"/>
             </div>
 
             <div class="col-12 p-4">
 
               <label class="green_shade"><b>Can you describe your overtime policy? Eligibility, Payments, Approvals? </b></label>
-              <textarea class="form-control" cols="5" rows="5"></textarea>
+              <textarea class="form-control" cols="5" rows="5" id="ovr_policy" name="ovr_policy" >{{qual.overtime_policy}}</textarea>
             </div>
 
 
@@ -418,7 +395,8 @@
 
 
 <div class="col-12 text-right pl-4 pr-4 pb-4">
- <span class="btn btn-outline-success" onclick="switchnext('company_details')"> Next </span>
+ 
+ <span class="btn btn-outline-success" onclick="switchnext('company_details','{{cli.company_name}}')"> Next </span>
 </div>
 
 
@@ -464,12 +442,12 @@
             <label class="green_shade"><b>Does your organisation have a formal salary structure for staff</b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio1">Yes
+                <input type="radio" class="form-check-input" name="formal_policy_structure" value="1">Yes
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio1">No
+                <input type="radio" class="form-check-input" name="formal_policy_structure" value="0">No
               </label>
             </div>
           
@@ -481,7 +459,7 @@
 
           <div class="form-group">
             <label class="green_shade"><b>If your organisation does not have a formal salary structure for staff, how are salary level(s) established?</b></label>
-           <textarea class="form-control" cols="5" rows="5"></textarea>
+           <textarea class="form-control" cols="5" rows="5" name="formal_salary_structure_ovr"></textarea>
           </div>
 
         </div>
@@ -509,7 +487,8 @@
         
       </div>
       <div class="col-6 text-right">
-        <span class="btn btn-outline-success" onclick="switchnext('chairman')"> Next </span>
+       
+        <span class="btn btn-outline-success" onclick="switchnext('chairman','{{cli.company_name}}')"> Next </span>
 
       </div>
      
@@ -549,11 +528,11 @@
     <div class="card p-4" style="border-color: green;">
  
         <div class="row ">
-          <div class="col-6 ">
+          <div class="col-12 ">
 
             <div class="form-group">
               <label class="green_shade"><b>How often is salary structure(s) adjusted?</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date">
+              <textarea class="form-control" cols="5" rows="5" name="ss_adjusted"></textarea>
             </div>
 
           </div>
@@ -562,7 +541,7 @@
 
             <div class="form-group">
               <label class="green_shade"><b>Date of last adjustment</b></label>
-              <input type="date" class="form-control" id="start_date" name="Start Date">
+              <input type="date" class="form-control" id="start_date" name="last_adj_date">
             </div>
 
           </div>
@@ -571,16 +550,16 @@
            
             <div class="form-group">
               <label class="green_shade"><b>Average percentage increase in last reviews</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date">
+              <input type="text" class="form-control" id="start_date" name="avg_inc">
             </div>
 
           </div>
 
-          <div class="col-6 ">
+          <div class="col-12 ">
            
             <div class="form-group">
               <label class="green_shade"><b>Basis of adjustment:</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date">
+              <textarea class="form-control" cols="5" rows="5" name="adj_basis"></textarea>
             </div>
 
           </div>
@@ -589,31 +568,31 @@
             <table class="table table-bordered">
               <thead>
                 <tr>
-                  <th>Indicator</th>
-                  <th>Percentage (%)</th>
+                  <th class="green_shade">Indicator</th>
+                  <th class="green_shade"> Percentage (%)</th>
        
                 </tr>
               </thead>
               <tbody>
                 <tr>
-                  <td>Cost of living changes/inflation</td>
-                  <td><input class="form-control" type="text"/></td>
+                  <td  style="font-weight: bold;">Cost of living changes/inflation</td>
+                  <td><input class="form-control" type="text" name="inflation"></td>
      
                 </tr>
                 <tr>
-                  <td>Business conditions</td>
-                  <td><input class="form-control" type="text"/></td>
+                  <td  style="font-weight: bold;">Business conditions</td>
+                  <td><input class="form-control" type="text" name="business_conditions"/></td>
      
                 </tr>
                 <tr>
-                  <td>Salary levels of other organisation/ market
+                  <td  style="font-weight: bold;">Salary levels of other organisation/ market
                     survey results</td>
-                  <td><input class="form-control" type="text"/></td>
+                  <td><input class="form-control" type="text" name="salary_levels"/></td>
      
                 </tr>
                 <tr>
-                  <td>Other (please specify)</td>
-                  <td><input class="form-control" type="text"/></td>
+                  <td  style="font-weight: bold;">Other (please specify)</td>
+                  <td><textarea class="form-control" rows="3" cols="3" name="other_indicators"></textarea></td>
      
                 </tr>
               
@@ -622,18 +601,18 @@
           </div>
 
 
-          <div class="col-6">
+          <div class="col-12">
            
             <div class="form-group">
-              <label class="green_shade"><b>Are all grades adjusted by the same %?</b></label><br/>
+              <label class="green_shade"><b>Are all grades adjusted by the same percentage?</b></label><br/>
               <div class="form-check-inline">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optradio">Yes
+                  <input type="radio" class="form-check-input" name="grade_ajs" value="1">Yes
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optradio">No
+                  <input type="radio" class="form-check-input" name="grade_ajs" value="0">No
                 </label>
               </div>
 
@@ -641,11 +620,11 @@
 
           </div>
 
-          <div class="col-6 ">
+          <div class="col-12 ">
            
             <div class="form-group">
               <label class="green_shade"><b>If NO, how are adjustments made?</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date">
+             <textarea class="form-control" cols="5" rows="5" name="how_adjs_made"></textarea>
             </div>
 
           </div>
@@ -669,7 +648,8 @@
         
       </div>
       <div class="col-6 text-right">
-        <span class="btn btn-outline-success" onclick="switchnext('ceo')"> Next </span>
+       
+        <span class="btn btn-outline-success" onclick="switchnext('ceo','{{cli.company_name}}')"> Next </span>
 
       </div>
      
@@ -684,7 +664,7 @@
 <div class="row">
 <div class="col-12 text-center">
 <b>When are allowance offerings reviewed? What is the typical effective date once reviewed i.e
-back to January 1 of that year or the first date of the month in which they are reviewed?l</b>
+back to January 1 of that year or the first date of the month in which they are reviewed?</b>
 </div>
 <div class="col-12 p-4">
     <div class="row justify-content-center">
@@ -712,7 +692,7 @@ back to January 1 of that year or the first date of the month in which they are 
           <div class="form-group">
             <label class="green_shade"><b>Please specify if your organisation uses a formal Job Evaluation System. What method of job
               evaluation is used? </b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+            <input type="text" class="form-control" id="start_date" name="job_eval_sys">
           </div>
 
         </div>
@@ -720,25 +700,25 @@ back to January 1 of that year or the first date of the month in which they are 
         <div class="col-12 ">
          
           <div class="form-group">
-            <label class="green_shade"><b>What types of periodic salary increases are granted?</b></label>
+            <label class="green_shade"><b>What types of periodic salary increases are granted?</b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="">Performance/Merit increases
+                <input type="checkbox" class="form-check-input" value="Performance/Merit increases">Performance/Merit increases
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="">General increases (across board)
+                <input type="checkbox" class="form-check-input" value="General increases">General increases (across board)
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="" >Cost of living increases
+                <input type="checkbox" class="form-check-input" value="Cost of living increases" >Cost of living increases
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="checkbox" class="form-check-input" value="" >Other
+                <input type="checkbox" class="form-check-input" value="Other" >Other
               </label>
             </div>
           </div>
@@ -751,12 +731,12 @@ back to January 1 of that year or the first date of the month in which they are 
             <label class="green_shade"><b>Do your staff receive automatic cost of living salary adjustments at periodic intervals?</b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">Yes
+                <input type="radio" class="form-check-input" name="auto_inflation_adjs" value="1">Yes
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">No
+                <input type="radio" class="form-check-input" name="auto_inflation_adjs" value="0">No
               </label>
             </div>
          
@@ -768,25 +748,25 @@ back to January 1 of that year or the first date of the month in which they are 
          
           <div class="form-group">
             <label class="green_shade"><b>If YES, on what basis are increments computed and what are the normal intervals? </b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+            <textarea cols="4" rows="4" class="form-control" id="start_date" name="auto_inflation_adjs_exp"></textarea>
           </div>
 
         </div>
 
-        <div class="col-6 ">
+        <div class="col-12 ">
           
           <div class="form-group">
             <label class="green_shade"><b>How many grade levels do you have?</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+            <input type="text" class="form-control" id="num_grade_levels" name="num_grade_levels">
           </div>
 
         </div>
 
-        <div class="col-6 ">
+        <div class="col-12 ">
 
           <div class="form-group">
             <label class="green_shade"><b>What is the percentage difference in salary between the notches within a grade?</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+            <input type="text" class="form-control" id="notch_diff" name="notch_diff">
           </div>
 
         </div>
@@ -798,12 +778,12 @@ back to January 1 of that year or the first date of the month in which they are 
             <label class="green_shade"><b>Are salary increments in the same grade based on </b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioxx">Notches
+                <input type="radio" class="form-check-input" name="sal_increments" value="Notches">Notches
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioxx">Percentages
+                <input type="radio" class="form-check-input" name="sal_increments" value="Percentages">Percentages
               </label>
             </div>
          
@@ -819,24 +799,36 @@ back to January 1 of that year or the first date of the month in which they are 
             <label class="green_shade"><b>How do your staff progress through the steps? </b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioxxx">Automatic annual salary increments
+                <input type="radio" class="form-check-input" name="staff_progress" value="Automatic annual salary increments">Automatic annual salary increments
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioxxx">Performance/ Merit 
+                <input type="radio" class="form-check-input" name="staff_progress" value="Performance/ Merit ">Performance/ Merit 
               </label>
             </div>
 
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioxxx">Other, please specify
+                <input type="radio" class="form-check-input" name="staff_progress" value="Other, please specify"> Other
               </label>
             </div>
          
           </div>
 
         </div> 
+
+
+        <div class="col-12">
+        
+          <div class="form-group">
+            <label class="green_shade"><b>If Other, Kindly specify </b></label><br/>
+           <textarea cols="3" rows="3" class="form-control" name="staff_progress_exp"></textarea>
+         
+          </div>
+
+        </div> 
+
 
 
        
@@ -856,7 +848,8 @@ back to January 1 of that year or the first date of the month in which they are 
         
       </div>
       <div class="col-6 text-right">
-        <span class="btn btn-outline-success" onclick="switchnext('key')"> Next </span>
+       
+        <span class="btn btn-outline-success" onclick="switchnext('key','{{cli.company_name}}')"> Next </span>
 
       </div>
      
@@ -907,13 +900,13 @@ back to January 1 of that year or the first date of the month in which they are 
       <td>Education</td>
       <td>Experience</td>
       <td>Previous Salary</td>
-      <td>Others (please specify) </td>
+   
     </tr>
     <tr>
-      <td><input class="form-control" type="text"/></td>
-      <td><input class="form-control" type="text"/></td>
-      <td><input class="form-control" type="text"/></td>
-      <td><input class="form-control" type="text"/></td>
+      <td><input class="form-control" type="number" name="education"/></td>
+      <td><input class="form-control" type="number" name="experience"/></td>
+      <td><input class="form-control" type="number" name="previous_salary"/></td>
+      
     </tr>
   
   </tbody>
@@ -925,9 +918,9 @@ back to January 1 of that year or the first date of the month in which they are 
         <div class="col-12 ">
 
           <div class="form-group">
-            <label class="green_shade"><b>Is there a hiring rate for each grade or job which differs from the minimum of the scale? Y/N
+            <label class="green_shade"><b>Is there a hiring rate for each grade or job which differs from the minimum of the scale? 
               Please explain.</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+           <textarea class="form-control" cols="5" rows="5" name="hiring_rate"></textarea>
           </div>
 
         </div>
@@ -938,12 +931,12 @@ back to January 1 of that year or the first date of the month in which they are 
             <label class="green_shade"><b>Is there a maximum salary for each grade which cannot be exceeded? </b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioaa">Yes
+                <input type="radio" class="form-check-input" name="max_salary" value="1">Yes
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioaa">No
+                <input type="radio" class="form-check-input" name="max_salary" value="0">No
               </label>
             </div>
           
@@ -958,12 +951,12 @@ back to January 1 of that year or the first date of the month in which they are 
             <label class="green_shade"><b>Are there instances where the maximum salary for a grade has been exceeded?  </b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioaad">Yes
+                <input type="radio" class="form-check-input" name="sal_exceeded" value="1">Yes
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradioaad">No
+                <input type="radio" class="form-check-input" name="sal_exceeded" value="0">No
               </label>
             </div>
           
@@ -975,7 +968,7 @@ back to January 1 of that year or the first date of the month in which they are 
 
           <div class="form-group">
             <label class="green_shade"><b>If YES, please explain</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+           <textarea class="form-control" cols="5" rows="5" name="sal_exceeded_exp"></textarea>
           </div>
 
         </div>
@@ -1000,7 +993,8 @@ back to January 1 of that year or the first date of the month in which they are 
         
       </div>
       <div class="col-6 text-right">
-        <span class="btn btn-outline-success" onclick="switchnext('previous_auditor')"> Next </span>
+       
+        <span class="btn btn-outline-success" onclick="switchnext('previous_auditor','{{cli.company_name}}')"> Next </span>
 
       </div>
      
@@ -1058,12 +1052,12 @@ back to January 1 of that year or the first date of the month in which they are 
               13th month pay) for employees?</b></label><br/>
               <div class="form-check-inline">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optradiods">Yes
+                  <input type="radio" class="form-check-input" name="annual_cash_bonus" value="1">Yes
                 </label>
               </div>
               <div class="form-check-inline">
                 <label class="form-check-label">
-                  <input type="radio" class="form-check-input" name="optradiods">No
+                  <input type="radio" class="form-check-input" name="annual_cash_bonus" value="0">No
                 </label>
               </div>
             
@@ -1074,8 +1068,8 @@ back to January 1 of that year or the first date of the month in which they are 
         <div class="col-12 ">
         
           <div class="form-group">
-            <label class="green_shade"><b>Please list and describe these plans (provide copy of the plan or policy)</b></label>
-            <textarea cols="3" rows="3" class="form-control"></textarea>
+            <label class="green_shade"><b>Please list and describe these plans </b></label>
+            <textarea cols="7" rows="7" class="form-control" name="annual_cash_bonus_exp"></textarea>
           </div>
 
         </div>
@@ -1083,15 +1077,15 @@ back to January 1 of that year or the first date of the month in which they are 
         <div class="col-12 ">
          
           <div class="form-group">
-            <label class="green_shade"><b>Are all staff including executives eligible for C1?</b></label><br/>
+            <label class="green_shade"><b>Are all staff including executives eligible for the plans stated above?</b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradiods">Yes
+                <input type="radio" class="form-check-input" name="plans_eligibility" value="1">Yes
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradiods">No
+                <input type="radio" class="form-check-input" name="plans_eligibility" value="0">No
               </label>
             </div>
           </div>
@@ -1102,7 +1096,7 @@ back to January 1 of that year or the first date of the month in which they are 
 
           <div class="form-group">
             <label class="green_shade"><b>If NO, explain: </b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+            <textarea class="form-control" cols="3" rows="3" name="plans_eligibility_exp"></textarea>
           </div>
 
         </div>
@@ -1113,26 +1107,31 @@ back to January 1 of that year or the first date of the month in which they are 
             <label class="green_shade"><b>When does your company pay bonuses? </b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">At the end of the year as a lump sum
+                <input type="radio" class="form-check-input" name="bonus_payout" value="At the end of the year as a lump sum">At the end of the year as a lump sum
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio">At completion of appraisal
+                <input type="radio" class="form-check-input" name="bonus_payout" value="At completion of appraisal">At completion of appraisal
               </label>
             </div>
             <div class="form-check-inline disabled">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio" >Monthly as part of the salary 
+                <input type="radio" class="form-check-input" name="bonus_payout" value="Monthly as part of the salary ">Monthly as part of the salary 
               </label>
             </div>
             <div class="form-check-inline disabled">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradio" >Other, please specify
+                <input type="radio" class="form-check-input" name="bonus_payout" value="Other">Other, please specify Below
               </label>
             </div>
           </div>
 
+        </div>
+
+        <div class="col-12">
+          <label class="green_shade"><b>If other, explain: </b></label>
+          <textarea class="form-control" cols="4" rows="4" name="bonus_payout_exp"></textarea>
         </div>
 
 
@@ -1142,12 +1141,12 @@ back to January 1 of that year or the first date of the month in which they are 
             <label class="green_shade"><b>Does your company pay 13th month bonus? </b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradiodd">Yes
+                <input type="radio" class="form-check-input" name="month_13" value="1">Yes
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradiodd">No
+                <input type="radio" class="form-check-input" name="month_13" value="0">No
               </label>
             </div>
           </div>
@@ -1159,24 +1158,34 @@ back to January 1 of that year or the first date of the month in which they are 
             <label class="green_shade"><b>When is the 13th month bonus paid? </b></label><br/>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradiof">At the end of the year as a lump sum
+                <input type="radio" class="form-check-input" name="month_13_payout" value="At the end of the year as a lump sum">At the end of the year as a lump sum
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradiof">At completion of appraisal
+                <input type="radio" class="form-check-input" name="month_13_payout" value= "At completion of appraisal">At completion of appraisal
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradiof">Monthly as part of the salary
+                <input type="radio" class="form-check-input" name="month_13_payout" value= "Monthly as part of the salary">Monthly as part of the salary
               </label>
             </div>
             <div class="form-check-inline">
               <label class="form-check-label">
-                <input type="radio" class="form-check-input" name="optradiof">Other, please specify 
+                <input type="radio" class="form-check-input" name="month_13_payout" value="Other">Other, please specify below
               </label>
             </div>
+          </div>
+
+        </div>
+
+
+        <div class="col-12 ">
+
+          <div class="form-group">
+            <label class="green_shade"><b>If Other, kindly explain  </b></label>
+           <textarea cols="3" rows="3" class="form-control" name="month_13_payout_exp"></textarea>
           </div>
 
         </div>
@@ -1185,7 +1194,7 @@ back to January 1 of that year or the first date of the month in which they are 
 
           <div class="form-group">
             <label class="green_shade"><b>Are there restrictions on paying out the 13th month?  </b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+            <textarea cols="3" rows="3" class="form-control" name="month_13_payout_restriction"></textarea>
           </div>
 
         </div>
@@ -1193,11 +1202,11 @@ back to January 1 of that year or the first date of the month in which they are 
         <div class="col-12 ">
 
           <div class="form-group">
-            <label class="green_shade"><b>Apart from the direct compensations above (sections B&C) (and excluding employee benefits,
+            <label class="green_shade"><b>Apart from the direct compensations (and excluding employee benefits,
               perquisites and in-kind allowances, which are reviewed in other sections of this
               questionnaire), what other forms of direct compensation are available to employees? (Please
               describe in detail)  </b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date">
+              <textarea cols="6" rows="6" class="form-control" name="direct_compensations"></textarea>
           </div>
 
         </div>
@@ -1224,8 +1233,8 @@ back to January 1 of that year or the first date of the month in which they are 
 
     </div>
     <div class="col-6 text-right">
- 
-      <span class="btn btn-outline-success" onclick="switchnext('mailing')"> Next </span>
+     
+      <span class="btn btn-outline-success" onclick="switchnext('mailing','{{cli.company_name}}')"> Next </span>
       
     </div>
   </div>
@@ -1285,7 +1294,7 @@ back to January 1 of that year or the first date of the month in which they are 
                 <div class="form-group">
                   <label class="green_shade"><b> What is the number of leave days granted to staff annually? does this
                     increase per employee tenure? </b></label>
-                  <input type="text" class="form-control" id="start_date" name="Start Date">
+                  <input type="text" class="form-control" id="start_date" name="num_leave_days">
                 </div>
 
               </div>
@@ -1301,20 +1310,20 @@ back to January 1 of that year or the first date of the month in which they are 
                         
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="staff_leave">
                       <tr>
-                        <td><input type="text" class="form-control" id="start_date" name="Start Date"></td>
-                        <td><input type="text" class="form-control" id="start_date" name="Start Date"></td>
+                        <td><input type="text" class="form-control" id="start_date" name="staff_category_1"></td>
+                        <td><input type="text" class="form-control" id="start_date" name="staff_days_1"></td>
                       
                       </tr>
                       <tr>
-                        <td><input type="text" class="form-control" id="start_date" name="Start Date"></td>
-                        <td><input type="text" class="form-control" id="start_date" name="Start Date"></td>
+                        <td><input type="text" class="form-control" id="start_date" name="staff_category_2"></td>
+                        <td><input type="text" class="form-control" id="start_date" name="staff_days_2"></td>
                       
                       </tr>
                       <tr>
-                        <td><input type="text" class="form-control" id="start_date" name="Start Date"></td>
-                        <td><input type="text" class="form-control" id="start_date" name="Start Date"></td>
+                        <td><input type="text" class="form-control" id="start_date" name="staff_category_3"></td>
+                        <td><input type="text" class="form-control" id="start_date" name="staff_days_3"></td>
                       
                       </tr>
                     
@@ -1326,7 +1335,7 @@ back to January 1 of that year or the first date of the month in which they are 
 
               <div class="col-12">
                 <label class="green_shade"><b> What is the number of paid holidays granted to staff?</b></label>
-                <input type="text" class="form-control" id="start_date" name="Start Date">
+                <input type="text" class="form-control" id="start_date" name="paid_holidays">
               
 
               </div>
@@ -1339,25 +1348,18 @@ back to January 1 of that year or the first date of the month in which they are 
                     Sickness
                   </div>
                   <div class="col-8">
-                    <input type="text" class="form-control" id="start_date" name="Start Date">
+                    <input type="text" class="form-control" id="start_date" name="sick_leave">
                   </div>
                 </div>
 
-                <div class="row">
-                  <div class="col-4">
-                    Accident
-                  </div>
-                  <div class="col-8">
-                    <input type="text" class="form-control" id="start_date" name="Start Date">
-                  </div>
-                </div>
+              
 
                 <div class="row">
                   <div class="col-4">
                     Maternity
                   </div>
                   <div class="col-8">
-                    <input type="text" class="form-control" id="start_date" name="Start Date">
+                    <input type="text" class="form-control" id="start_date" name="maternity_leave">
                   </div>
                 </div>
 
@@ -1366,7 +1368,7 @@ back to January 1 of that year or the first date of the month in which they are 
                     Paternity
                   </div>
                   <div class="col-8">
-                    <input type="text" class="form-control" id="start_date" name="Start Date">
+                    <input type="text" class="form-control" id="start_date" name="paternity_leave">
                   </div>
                 </div>
 
@@ -1376,7 +1378,7 @@ back to January 1 of that year or the first date of the month in which they are 
                     Emergency/Compassionate
                   </div>
                   <div class="col-8">
-                    <input type="text" class="form-control" id="start_date" name="Start Date">
+                    <input type="text" class="form-control" id="start_date" name="compassionate_leave">
                   </div>
                 </div>
 
@@ -1385,8 +1387,7 @@ back to January 1 of that year or the first date of the month in which they are 
                   <div class="col-4">
                     Other (please specify)
                   </div>
-                  <div class="col-8">
-                    <input type="text" class="form-control" id="start_date" name="Start Date">
+                 <textarea class="form-control" cols="3" rows="3" name="other_leave"></textarea>
                   </div>
                 </div>
               
@@ -1395,9 +1396,9 @@ back to January 1 of that year or the first date of the month in which they are 
               </div>
 
 
-              <div class="col-12">
+              <div class="col-12 pt-2">
                 <div class="form-group">
-                  <label class="green_shade">What is the over time entitlements/rates in the following instances?</label>
+                  <label class="green_shade"><b>What is the over time entitlements/rates in the following instances?</b></label>
                   <table class="table table-bordered">
                     <thead>
                       <tr>
@@ -1407,9 +1408,9 @@ back to January 1 of that year or the first date of the month in which they are 
                         <th>Any Explanation?</th>
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody name="entitlements">
                       <tr>
-                        <td><input type="text" class="form-control"/></td>
+                        <td><input type="text" class="form-control"  /></td>
                         <td><input type="text" class="form-control"/></td>
                         <td><input type="text" class="form-control"/></td>
                         <td><input type="text" class="form-control"/></td>
@@ -1463,13 +1464,13 @@ back to January 1 of that year or the first date of the month in which they are 
 
               <div class="col-12">
                 <div class="form-group">
-                  <label class="green_shade">What policy provisions do you have for staff with respect to the following and how much?
-                    (Please provide policy as attachment if different for various staff grades/categories)</label>
+                  <label class="green_shade"><b>What policy provisions do you have for staff with respect to the following and how much?
+                    (Please provide policy as attachment if different for various staff grades/categories)</b></label>
                     <table class="table table-bordered">
                       <thead>
                         <tr>
                           <th>Grade</th>
-                          <th>Policy description/th>
+                          <th>Policy description</th>
                           <th>Entitlement (Please include details if varied for
                             different tenures and/or staff categories)</th>
                         </tr>
@@ -1509,12 +1510,7 @@ back to January 1 of that year or the first date of the month in which they are 
                           <td><input type="text" class="form-control"/></td>
                         </tr>
 
-                        <tr>
-                          <td><input type="text" class="form-control"/></td>
-                          <td>Other (please specify)</td>
-                          <td><input type="text" class="form-control"/></td>
-                        </tr>
-
+                       
                         <tr>
                           <td><input type="text" class="form-control"/></td>
                           <td>Other (please specify)</td>
@@ -1527,12 +1523,12 @@ back to January 1 of that year or the first date of the month in which they are 
               </div>
 
 
-              <div class="col-12">
+              <div class="col-12 pt-1">
                 <div class="form-group">
-                  <label> 
-                    When was the last time you undertook redundancy exercises?
+                  <label class="green_shade"> 
+                   <b>When was the last time you undertook redundancy exercises?</b> 
                   </label>
-                  <input type="text" class="form-control"/>
+                  <input type="text" class="form-control" name="redundancy"/>
 
                 </div>
               </div>
@@ -1550,7 +1546,7 @@ back to January 1 of that year or the first date of the month in which they are 
                         
                       </tr>
                     </thead>
-                    <tbody>
+                    <tbody id="exiting_staff_payout">
                       <tr>
                         <td> <input type="text" class="form-control"/></td>
                         <td> <input type="text" class="form-control"/></td>
@@ -1586,8 +1582,8 @@ back to January 1 of that year or the first date of the month in which they are 
               <div class="col-12">
                 <div class="form-group">
                   <label class="green_shade">
-                    Does the organisation subsidise/provide transportation to and from work (includes vehicle
-type, fuel, personal driver)? YES/NO
+                    <b>Does the organisation subsidise/provide transportation to and from work (includes vehicle
+type, fuel, personal driver)? YES/NO</b>
                   </label>
                   <input type="text" class="form-control"/>
                 </div>
@@ -1596,7 +1592,7 @@ type, fuel, personal driver)? YES/NO
               <div class="col-12">
                 <div class="form-group">
                   <label class="green_shade">
-                    If YES, provide details below
+                    <b>If YES, provide details below</b>
                   </label>
 
                   <table class="table table-bordered">
@@ -1614,46 +1610,46 @@ type, fuel, personal driver)? YES/NO
                         <td>Fully maintained company car?
                           (indicate car type, engine
                           capacity)</td>
-                        <td><input type="text" class="form-control" /></td>
-                        <td><input type="text" class="form-control" /></td>
+                        <td><input type="text" class="form-control" name="comp_car_policy"/></td>
+                        <td><input type="text" class="form-control" name="comp_car_value"/></td>
                       </tr>
 
                       <tr>
                         <td>Car maintenance allowance per
                           what period </td>
-                        <td><input type="text" class="form-control" /></td>
-                        <td><input type="text" class="form-control" /></td>
+                          <td><input type="text" class="form-control" name="car_main_policy"/></td>
+                          <td><input type="text" class="form-control" name="car_main_value"/></td>
                       </tr>
 
                       <tr>
                         <td>Fuel allowance per what period</td>
-                        <td><input type="text" class="form-control" /></td>
-                        <td><input type="text" class="form-control" /></td>
+                        <td><input type="text" class="form-control" name="fuel_policy"/></td>
+                        <td><input type="text" class="form-control" name="fuel_value"/></td>
                       </tr>
 
                       <tr>
                         <td>Transport Allowance per what
                           period</td>
-                        <td><input type="text" class="form-control" /></td>
-                        <td><input type="text" class="form-control" /></td>
+                          <td><input type="text" class="form-control" name="transport_policy"/></td>
+                          <td><input type="text" class="form-control" name="transport_value"/></td>
                       </tr>
 
                       <tr>
                         <td>Kilometric </td>
-                        <td><input type="text" class="form-control" /></td>
-                        <td><input type="text" class="form-control" /></td>
+                        <td><input type="text" class="form-control" name="kilo_policy"/></td>
+                        <td><input type="text" class="form-control" name="kilo_value"/></td>
                       </tr>
 
                       <tr>
                         <td>Company paid driver (Yes/No)</td>
-                        <td><input type="text" class="form-control" /></td>
-                        <td><input type="text" class="form-control" /></td>
+                        <td><input type="text" class="form-control" name="paid_driver_policy"/></td>
+                        <td><input type="text" class="form-control" name="paid_driver_value"/></td>
                       </tr>
 
                       <tr>
                         <td>Others (please specify) </td>
-                        <td><input type="text" class="form-control" /></td>
-                        <td><input type="text" class="form-control" /></td>
+                        <td><input type="text" class="form-control" name="others_policy"/></td>
+                        <td><input type="text" class="form-control" name="others_value"/></td>
                       </tr>
                     
                     </tbody>
@@ -1664,17 +1660,17 @@ type, fuel, personal driver)? YES/NO
               <div class="col-12">
                 <div class="form-group">
                   <label class="green_shade">
-                    Do you have a car scheme in which an employee uses a company car and after some years,
-the car is sold to the employee at a discounted rate?
+                   <b>Do you have a car scheme in which an employee uses a company car and after some years,
+                    the car is sold to the employee at a discounted rate?</b> 
                   </label><br/>
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradido">Yes
+                      <input type="radio" class="form-check-input" name="car_scheme" value="1">Yes
                     </label>
                   </div>
                   <div class="form-check-inline">
                     <label class="form-check-label">
-                      <input type="radio" class="form-check-input" name="optradido">No
+                      <input type="radio" class="form-check-input" name="car_scheme" value="0">No
                     </label>
                   </div>
                  
@@ -1684,27 +1680,27 @@ the car is sold to the employee at a discounted rate?
               <div class="col-6">
                 <div class="form-group">
                   <label class="green_shade">
-                    If yes, after how many years of use is the car sold?
+                    <b>If yes, after how many years of use is the car sold?</b>
                   </label>
-                  <input type="text" class="form-control" /> Years
+                  <input type="text" class="form-control" name="cars_yrs_sold" /> Years
                 </div>
               </div>
 
               <div class="col-6">
                 <div class="form-group">
                   <label class="green_shade">
-                    At what percentage of market value is the car sold?
+                    <b>At what percentage of market value is the car sold?</b>
                   </label>
-                  <input type="text" class="form-control" /> %
+                  <input type="text" class="form-control" name="market_value_perc" /> %
                 </div>
               </div>
 
               <div class="col-12">
                 <div class="form-group">
                   <label class="green_shade">
-                    Based on the scheme you have described, how do you deal with tax issues?
-                  </label>
-                  <input type="text" class="form-control" /> %
+                    <b>Based on the scheme you have described, how do you deal with tax issues?
+                    </label></b>
+                  <input type="text" class="form-control" name="tax_issues" /> %
                 </div>
               </div>
 
@@ -1712,7 +1708,7 @@ the car is sold to the employee at a discounted rate?
 
            </div>
     
-    </div>
+    
 
 
 
@@ -1748,17 +1744,17 @@ the car is sold to the employee at a discounted rate?
            <div class="col-12">
              <div class="form-group">
                <label class="green_shade">
-                Does the organisation subsidise meal costs for senior management staff/executives (includes
-                meal allowance as cash benefit and cafeteria service as kind benefit)? Yes/No
+                <b>Does the organisation subsidise meal costs for senior management staff/executives (includes
+                  meal allowance as cash benefit and cafeteria service as kind benefit)? Yes/No</b>
                </label>
-               <input type="text" class="form-control" />
+               <input type="text" class="form-control" name="subsidise_meal"/>
 
              </div>
            </div>
            <div class="col-12">
              <div class="form-group">
                <label class="green_shade">
-                 If yes, 
+                <b>If yes, </b> 
 
                </label>
 
@@ -1771,7 +1767,7 @@ the car is sold to the employee at a discounted rate?
                       etc)</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="subside_meals">
                   <tr>
                     <td><input type="text" class="form-control" /></td>
                     <td><input type="text" class="form-control" /></td>
@@ -1799,17 +1795,17 @@ the car is sold to the employee at a discounted rate?
            <div class="col-12">
              <div class="form-group">
                <label class="green_shade">
-               How much does the organisation subsidise/provide clothing allowance for staff/? 
+               <b>How much does the organisation subsidise/provide clothing allowance for staff? </b>
                </label>
-               <input type="text" class="form-control" />
+               <input type="text" class="form-control" name="clothing_allowance"/>
              </div>
            </div>
            <div class="col-12">
             <div class="form-group">
               <label class="green_shade">
-                Which grades qualify for the clothing allowance? 
+                <b>Which grades qualify for the clothing allowance? </b>
               </label>
-              <input type="text" class="form-control" />
+              <input type="text" class="form-control" name="clothing_allowance_qual" />
             </div>
           </div>
 
@@ -1818,26 +1814,9 @@ the car is sold to the employee at a discounted rate?
 
           <div class="col-12">
             <div class="form-group">
-              <label class="green_shade">What is the travel policy (including per diem, lodging, meals, air tickets, excess baggage, etc)
-                for outside location?</label>
-                <table class="table table-bordered">
-                  <thead>
-                    <tr>
-                      <th>Overseas rates: (please specify separately if different for various grades)</th>
-                      <th>Overseas rates: (please specify separately if different for various grades)</th>
-                    
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td><input type="text" class="form-control" /></td>
-                      <td><input type="text" class="form-control" /></td>
-                     
-                    </tr>
-                  
-                  </tbody>
-                </table>
-
+              <label class="green_shade"> <b> What is the travel policy (including per diem, lodging, meals, air tickets, excess baggage, etc)
+                for outside location? </b></label>
+             <textarea cols="4" rows="4" name="travel_policy" class="form-control"></textarea>
             </div>
           </div>
 
@@ -1846,8 +1825,8 @@ the car is sold to the employee at a discounted rate?
           <div class="col-12">
             <div class="form-group">
               <label class="green_shade">
-                Does the organisation provide interest free or low interest bearing loans (including
-salary advances) to employees for personal effects? 
+              <b>Does the organisation provide interest free or low interest bearing loans (including
+                salary advances) to employees for personal effects? </b>  
               </label>
               <table class="table table-bordered">
                 <thead>
@@ -1859,7 +1838,7 @@ salary advances) to employees for personal effects?
                     <th>Limit of facility?</th>
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="loan_interest">
                   <tr>
                     <td><input type="text" class="form-control"/></td>
                     <td><input type="text" class="form-control"/></td>
@@ -1895,8 +1874,8 @@ salary advances) to employees for personal effects?
           <div class="col-12">
             <div class="form-group">
               <label class="green_shade">
-                Does the organisation provide housing benefits to staff (includes house allowance as cash
-                benefit and accommodation, furnishing, residence utilities, etc,)? 
+               <b>Does the organisation provide housing benefits to staff (includes house allowance as cash
+                benefit and accommodation, furnishing, residence utilities, etc)? </b> 
               </label>
               <table class="table table-bordered">
                 <thead>
@@ -1911,7 +1890,7 @@ salary advances) to employees for personal effects?
                    
                   </tr>
                 </thead>
-                <tbody>
+                <tbody id="housing_benefits">
                   <tr>
                     <td><input type="text" class="form-control"/></td>
                     <td><input type="text" class="form-control"/></td>
@@ -1944,8 +1923,8 @@ salary advances) to employees for personal effects?
 
           <div class="col-12">
             <div class="form-group">
-              <label class="green_shade">Household benefits (e.g. Security, Cook, House-help, etc) </label>
-              <input type="text" class="form-control" />
+              <label class="green_shade"><b>Other household benefits (e.g. Security, Cook, House-help, etc)</b> </label>
+              <textarea cols="5" rows="5" class="form-control" name="other_household"></textarea>
             </div>
           </div>
 
@@ -2627,8 +2606,8 @@ provide details below.
 
         </div>
         <div class="col-6 text-right">
-     
-          <span class="btn btn-outline-success" onclick="switchnext('d1')"> Next </span>
+         
+          <span class="btn btn-outline-success" onclick="switchnext('d1','{{cli.company_name}}')"> Next </span>
           
         </div>
       </div>
@@ -2640,8 +2619,8 @@ provide details below.
 
         </div>
         <div class="col-6 text-right">
-     
-          <span class="btn btn-outline-success" onclick="switchnext('d2')"> Next </span>
+         
+          <span class="btn btn-outline-success" onclick="switchnext('d2','{{cli.company_name}}')"> Next </span>
           
         </div>
       </div>
@@ -2654,20 +2633,21 @@ provide details below.
 
         </div>
         <div class="col-6 text-right">
-     
-          <span class="btn btn-outline-success" onclick="switchnext('d3')"> Next </span>
+         
+          <span class="btn btn-outline-success" onclick="switchnext('d3','{{cli.company_name}}')"> Next </span>
           
         </div>
       </div>
 
       <div class="row d4" style="display:none">
         <div class="col-6 text-left">
+
           <span class="btn btn-outline-success" onclick="switchback('d4')"> Back </span>
 
         </div>
         <div class="col-6 text-right">
-     
-          <span class="btn btn-outline-success" onclick="switchnext('d4')"> Next </span>
+         
+          <span class="btn btn-outline-success" onclick="switchnext('d4','{{cli.company_name}}')"> Next </span>
           
         </div>
       </div>
@@ -2752,8 +2732,8 @@ provide details below.
 
     </div>
     <div class="col-6 text-right">
- 
-      <span class="btn btn-outline-success" onclick="switchnext('registration')"> Next </span>
+     
+      <span class="btn btn-outline-success" onclick="switchnext('registration','{{cli.company_name}}')"> Next </span>
       
     </div>
   </div>
@@ -2859,8 +2839,8 @@ provide details below.
 
     </div>
     <div class="col-6 text-right">
- 
-      <span class="btn btn-outline-success" onclick="switchnext('contact')"> Next </span>
+     
+      <span class="btn btn-outline-success" onclick="switchnext('contact','{{cli.company_name}}')"> Next </span>
       
     </div>
   </div>
@@ -2941,6 +2921,7 @@ provide details below.
   
         </div>
         <div class="col-6 text-right">
+         
           <span class="btn  btn-success"  data-toggle="modal" data-target="#confirm_modal">Submit</span>
   
         </div>
@@ -2977,8 +2958,112 @@ provide details below.
 
 </div>
 
+
 <script>
-function switchnext(form){
+  function save(client){
+
+
+
+
+$.ajax({
+
+url: '/save_qualitative',
+
+data: {
+
+  client:client,
+  num_emp : $('#num_emp').val(),
+  num_work_hours : $('#num_work_hours').val(),
+  ovr_policy : $('#ovr_policy').val(),
+  policy_structure : $("input[name='formal_policy_structure']:checked").val() || 0,
+  formal_salary_structure_ovr : $("textarea[name='formal_salary_structure_ovr']").val(),
+  ss_adjusted : $("textarea[name='ss_adjusted']").val(),
+  last_adj_date : $("input[name='last_adj_date']").val(),
+  avg_inc : $("input[name='avg_inc']").val(),
+  adj_basis : $("textarea[name='adj_basis']").val(),
+  inflation : $("input[name='inflation']").val(),
+  business_conditions : $("input[name='business_conditions']").val(),
+  salary_levels : $("input[name='salary_levels']").val(),
+  other_indicators : $("textarea[name='other_indicators']").val(),
+  grade_ajs : $("input[name='grade_ajs']:checked").val() || 0,
+  how_adjs_made : $("textarea[name='how_adjs_made']").val(),
+  job_eval_sys : $("input[name='job_eval_sys']").val(),
+  auto_inflation_adjs : $("input[name='auto_inflation_adjs']:checked").val() || 0,
+  auto_inflation_adjs_exp : $("textarea[name='auto_inflation_adjs_exp']").val(),
+  num_grade_levels : $("input[name='num_grade_levels']").val(),
+  notch_diff : $("input[name='notch_diff']").val(),
+  sal_increments : $("input[name='sal_increments']:checked").val() || 0,
+  staff_progress : $("input[name='staff_progress']:checked").val() || 0,
+  staff_progress_exp : $("textarea[name='staff_progress_exp']").val(),
+  education : $("input[name='education']").val(),
+  experience : $("input[name='experience']").val(),
+  previous_salary : $("input[name='previous_salary']").val(),
+  hiring_rate : $("textarea[name='hiring_rate']").val(),
+  max_salary : $("input[name='max_salary']:checked").val() || 0,
+  sal_exceeded : $("input[name='sal_exceeded']:checked").val() || 0,
+  sal_exceeded_exp : $("textarea[name='sal_exceeded_exp']").val(),
+  annual_cash_bonus : $("input[name='annual_cash_bonus']:checked").val() || 0,
+  annual_cash_bonus_exp : $("textarea[name='annual_cash_bonus_exp']").val(),
+  plans_eligibility : $("input[name='plans_eligibility']:checked").val() || 0,
+  plans_eligibility_exp : $("textarea[name='plans_eligibility_exp']").val(),
+  bonus_payout : $("input[name='bonus_payout']:checked").val() || 0,
+  bonus_payout_exp : $("textarea[name='bonus_payout_exp']").val(),
+  month_13 : $("input[name='month_13']:checked").val() || 0,
+  month_13_payout : $("input[name='month_13_payout']:checked").val() || 0,
+  month_13_payout_exp : $("textarea[name='month_13_payout_exp']").val(),
+  month_13_payout_restriction : $("textarea[name='month_13_payout_restriction']").val(),
+  direct_compensations : $("textarea[name='direct_compensations']").val(),
+  num_leave_days : $("input[name='num_leave_days']").val(),
+  sick_leave : $("input[name='sick_leave']").val(),
+  maternity_leave : $("input[name='maternity_leave']").val(),
+  paternity_leave : $("input[name='paternity_leave']").val(),
+  compassionate_leave : $("input[name='compassionate_leave']").val(),
+  other_leave : $("textarea[name='other_leave']").val(),
+  redundancy : $("input[name='redundancy']").val(),
+  
+
+
+
+  
+},
+
+type: 'POST',
+
+success: function(res) {
+  console.log(res)
+  console.log('success')
+
+
+
+
+
+
+
+
+   
+  
+
+
+
+},
+
+error: function(error) {
+
+    console.log(error);
+
+}
+
+});
+
+
+
+}
+  
+</script>
+
+<script>
+function switchnext(form,client){
+save(client)
 $(window).scrollTop(0);
 if(form == 'company_details'){
 $('.company_details').css('display','none')

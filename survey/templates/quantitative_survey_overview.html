@@ -100,7 +100,23 @@
       </section>
   </div>
 </div>
+<div class="row pt-2">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {%if messages %}
+  {% for category, message in messages %}
+  <div class="container">
+    <div class="alert alert-{{ category}}">
+      {{message}}
+    </div>
+  </div>
 
+
+  {% endfor %}
+
+  {% endif %}
+
+  {% endwith %}
+</div>
 
 <div class="row p-4" style="height:60vh" >
   <div class="col-12 text-right">
@@ -122,10 +138,10 @@
           <div class="row">
             <div class="col-10">
               <h5><b>{{i.job_title}}</b></h5>
-              {{i.benchmark.company_name}}
+             <span style="font-size: 10px;color:grey">Requested by : {{i.comp_benchmark.survey_client.company_name}}</span> 
             </div>
             <div class="col-1">
-              <a data-toggle="modal" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
+              <a data-toggle="modal" onclick="submit('{{i.id}}')" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
             </div>
            
            
@@ -143,7 +159,16 @@
             <div class="child">
               <div class="row ">
                 <div class="col-12" >
-                <h4><span class="badge badge-success">Completed</span></h4>
+
+                  {% if i.status == 'Inactive' %}
+                  <h4><span class="badge badge-warning">{{i.status}}</span></h4>
+                
+                  {% endif %}
+                  {% if i.status == 'Completed' %}
+                  <h4><span class="badge badge-success">{{i.status}}</span></h4>
+                
+                  {% endif %}
+             
              
                 </div>
              
@@ -154,87 +179,9 @@
     </div>
 
     {% endfor %}
-  <div class="col-md-3 col-sm-12 ">
-  
-  <div class="card p-4 parent"  style="height:150px">
-      <div class="row ">
-         
-          <div class="col-12 ">
-        <div class="row">
-          <div class="col-10">
-            <h5><b>Finance Manager</b></h5>
-          </div>
-          <div class="col-1">
-            <a data-toggle="modal" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
-          </div>
-         
-         
-        </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
-       
-           
-            </div>
-  
-          </div>
-  
-          <div class="child">
-            <div class="row ">
-              <div class="col-12" >
-              <h4><span class="badge badge-success">Completed</span></h4>
-           
-              </div>
-           
-            
-            </div>
-          </div>
-      </div>
-  </div>
+ 
 
 
-  <div class="col-md-3 col-sm-12 ">
-  
-    <div class="card p-4 parent"  style="height:150px">
-        <div class="row ">
-           
-            <div class="col-12 ">
-          <div class="row">
-            <div class="col-10">
-              <h5><b>IT Controller</b></h5>
-            </div>
-            <div class="col-1">
-              <a data-toggle="modal" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
-            </div>
-           
-           
-          </div>
-            </div>
-            </div>
-            <div class="row">
-              <div class="col-12" style="color:grey;font-size:12px">
-         
-             
-              </div>
-    
-            </div>
-    
-            <div class="child">
-              <div class="row ">
-                <div class="col-12" >
-                <h4><span class="badge badge-warning">Outstanding</span></h4>
-             
-                </div>
-             
-              
-              </div>
-            </div>
-        </div>
-    </div>
-  
-  
-  
   
  
   
@@ -361,106 +308,17 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Finance Manager</h5>
+          <h5 class="modal-title" id="modal_title"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
-            <p>
-                <b>Job Title</b>
-                <br>
-                Finance Manager
-            </p>
-            <p>
-                <b>Job Grade</b>
-                <br>
-                 Manager
-            </p>
-            <p>
-                <b>Reporting Relationship</b>
-                <br>
-                Finance Director
-            </p>
-            <p>
-                <b>Generic Job Description</b>
-                <br>
-                To manage financial accounting and reporting systems for the company
-            </p>
-            <p>
-                <b>Key Duties & Responsibilities</b>
-                <br>
-                	<ul>
-                    
-                      <li>
-                        Ensure that staff capture all data onto Insurance Pro Software on a daily basis and generate report.
-                      </li>
-                      <li>
-                        Prepare annual departmental plan and budget for the company
-                      </li>
-                      
-                      <li>
-                        Build tactical business relationships with clients and maintain them
-                      </li>
-                      <li>
-                        Coordinate revenue collection by the credit team and submit reports
-                      </li>
-                      
-                      <li>
-                        Supervise payroll functions
-                      </li>
-                  </ul>
-
-            </p>
-            <p>
-                <b>Financial Responsibilities</b>
-                <br>
-                <ul>
-                  <li>
-                    Prepare financial management reports for management’s decision making
-                  </li>
-                  <li>
-                    Formulate financial strategies, policies, procedures and action plans to achieve maximum growth and profitability of the company
-                  </li>
-                  <li>
-                    Supervise preparation of statutory financial reports
-                  </li>
-                    <li>
-                      Supervise and implement financial policies and procedures
-                    </li>
-                </ul>
-            </p>
-            <p>
-                <b>Technical Qualifications</b>
-                <br>
-                <ul>
-                  <li>
-                    Knowledge in financial accounting
-                  </li>
-                  <li>
-                    Ability to prepare and interpret balance sheet, income statements, cash flow statements etc
-                  </li>
-                  <li>
-                    Knowledge in Computer
-                  </li>
-
-                </ul>
-            </p>
-            <p>
-                <b>Minimum Years of Experience</b>
-                <br>
-              N/A
-            </p>
-            <br>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="job_not_applicable">
-              <label class="custom-control-label" for="job_not_applicable">This job is not applicable to my organisation</label>
-            </div>
+        <div class="modal-body" id="modal_body">
+           
+            
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" id="modal_footer">
          
-          <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
-          <button class="btn btn-outline-secondary" id="proceed_btn" >Proceed</button>
         </div>
       </div>
     </div>
@@ -469,13 +327,155 @@
 
 <script>
 
-    $('#proceed_btn').click(function(){
-      window.location.href ='{{  url_for("users.quantitative_survey")}}'
-    });
+function proceed(id){
 
+  window.location.href =`/survey/quantitative/${id}`
+
+}
+
+
+function view(id){
+
+window.location.href =`/survey/quantitative/view/${id}`
+
+}
+      
+ 
     $('document').ready(function(){
       $('#instruction').modal('show');
     })
+</script>
+
+
+
+
+<script>
+  function submit(id){
+    
+
+
+
+
+$.ajax({
+
+  url: '/benchmark_details',
+
+  data: {
+
+    id:id
+  },
+
+  type: 'POST',
+
+  success: function(res) {
+    console.log(res)
+    res = res[0]
+
+if(res.status == 'Completed'){
+  $('#modal_footer').html(
+  `
+  
+  
+  <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
+          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="view('${res.id}')">View</button>
+  `
+)
+
+}
+
+else{
+
+  $('#modal_footer').html(
+  `
+  
+  
+  <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
+          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="proceed('${res.id}')">Proceed</button>
+  `
+)
+}
+
+
+    $('#modal_title').html(`
+  ${res.job_title}
+    
+    `)
+    $('#modal_body').html(
+
+    `
+
+
+    <p>
+                <b>Job Title</b>
+                <br>
+                ${res.job_title}
+            </p>
+            <p>
+                <b>Job Grade</b>
+                <br>
+                ${res.grade}
+            </p>
+            <p>
+                <b>Reporting Relationship</b>
+                <br>
+                ${res.reporting_relationship}
+            </p>
+            <p>
+                <b>Generic Job Description</b>
+                <br>
+                ${res.job_description}
+            </p>
+            <p>
+                <b>Key Duties & Responsibilities</b>
+                <br>
+                ${res.duties_and_responsibility}
+
+            </p>
+            <p>
+                <b>Financial Responsibilities</b>
+                <br>
+                ${res.financial_responsibilities}
+            </p>
+            <p>
+                <b>Technical Qualifications</b>
+                <br>
+                ${res.technical_qualification}
+            </p>
+            <p>
+                <b>Minimum Years of Experience</b>
+                <br>
+                ${res.minimum_years_of_experience}
+            </p>
+            <br>
+
+            <div class="custom-control custom-checkbox">
+              <input type="checkbox" class="custom-control-input" id="job_not_applicable">
+              <label class="custom-control-label" for="job_not_applicable">This job is not applicable to my organisation</label>
+            </div>
+    
+    
+    
+    
+    `
+    )
+     
+    
+
+
+
+  },
+
+  error: function(error) {
+
+      console.log(error);
+
+  }
+
+});
+
+
+
+}
 </script>
 
 
