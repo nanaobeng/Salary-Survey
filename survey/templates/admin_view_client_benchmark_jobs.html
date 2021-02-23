@@ -1,0 +1,823 @@
+
+    {% extends "new_admin_layout.html" %}
+
+
+   
+    
+    {% block content %}
+
+    <style>
+      #hero {
+  width: 100%;
+  height: 15vh;
+  background: url("../static/img/home.jpg") top center;
+  background-size: cover;
+  position: relative;
+  }
+  
+  #hero:before {
+  content: "";
+  background: rgba(20, 44, 9, 0.7);
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  }
+  
+  #hero .container {
+  text-align: center;
+  padding-top: 50px;
+  }
+  
+  @media (max-width: 992px) {
+  #hero .container {
+    padding-top: 0;
+  }
+  }
+  
+  #hero h1 {
+  margin: 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #fff;
+  }
+  
+  #hero h2 {
+  color: #eee;
+  margin: 15px 0 0 0;
+  font-size: 22px;
+  }
+  
+  #hero .btn-get-started {
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 9px 35px;
+  border-radius: 50px;
+  transition: 0.5s;
+  margin-top: 40px;
+  border: 2px solid #ffc107;
+  color: #fff;
+  }
+  
+  #hero .btn-get-started:hover {
+  background: #ffc107;
+  }
+  
+  @media (min-width: 1024px) {
+  #hero {
+    background-attachment: fixed;
+  }
+  }
+  
+  @media (max-width: 768px) {
+  #hero {
+    height: 100vh;
+  }
+  #hero h1 {
+    font-size: 28px;
+    line-height: 36px;
+  }
+  #hero h2 {
+    font-size: 18px;
+    line-height: 24px;
+  }
+  }
+  .job-card:hover{
+      box-shadow: 0 0 10px #9ecaed;
+      cursor: pointer;
+  }
+  .nav-tabs .nav-link{
+    border-top-right-radius: 1rem !important;
+    border-top-left-radius: 1rem !important;
+    color: black !important;
+    /* background-color: rgb(56, 55, 55) !important; */
+    border-bottom-style: none !important;
+  }
+  .nav-link.active{
+    background-color: rgb(235, 235, 223) !important;
+    color: rgb(30, 46, 30) !important;
+    border-color: green !important;
+    border-bottom-style: none !important;
+  
+  }
+  .category{
+    background-color: darkgrey !important;
+    color: white;
+    padding-top: 1px !important;
+    padding-bottom: 1px !important;
+  }
+  .compensation{
+    font-weight:500;
+  }
+  .compensation-value{
+    font-weight: 100;
+  }
+  .badge-col{
+    flex: 0 0 auto;
+    width: auto;
+  }
+  </style>
+    <div class="row">
+      <div class="col-12">
+        <section id="hero" class="d-flex align-items-center justify-content-center">
+            <div class="container position-relative">
+         <h2><b style="font-size: 40px;">Client Benchmark Jobs </b></h2>
+            
+            </div>
+          </section>
+      </div>
+  </div>
+  <div class="p-4" style="background-color:rgb(245, 243, 243)">
+    <div class="card">
+    <div class="row p-4 pb-0">
+      <div class="col-12 pb-4 " style="color:grey">
+        Custom Filters <i class="icofont-filter"></i>
+      </div>
+      <div class="col-3">
+        <div class="form-group">
+          <label for="sel1" style="color:grey">Status:</label>
+          <select class="form-control" id="status" onchange="filter('status')">
+            <option value="">---Select---</option>
+            <option value="Pending">Pending</option>
+            <option value="Approved">Approved</option>
+            <option value="Rejected">Rejected</option>
+           
+          </select>
+        </div>
+      </div>
+
+        <div class="col-3">
+          <div class="form-group">
+            <label for="sel1" style="color:grey">Client:</label>
+            <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+            <datalist id="clients">
+                
+            </datalist>
+          </div>
+      </div>
+
+
+    </div>
+    <div class="row pl-4 pr-4 ">
+      <div class="col-12 pb-2">
+        <div class="row filter_box">
+
+        </div>
+      </div>
+     
+      <div class="col-12" >
+       <a href="#" style="color:grey" onclick="clear_filter()" > Discard Filters</a>
+      </div>
+      
+    </div>
+  <div class="row p-4 pt-0" id="cards">
+      {% for benchmark_job in benchmark_jobs %}
+      <div class="col-lg-4 col-md-6 col-sm-12 p-4">
+
+        <div class="card p-4 parent job-card" id="{{benchmark_job.id}}" onclick="display_job(this)" style="height:160px">
+            <div class="row ">
+               
+                <div class="col-12 ">
+              <div class="row">
+                <div class="col-10" >
+                  <h5 style="overflow: hidden; white-space: nowrap;"><b>{{benchmark_job.job_title}}</b></h5>
+                </div>
+                <div class="col-2">
+                  <i class="icofont-ui-note" style="color:grey;cursor:pointer" data-toggle="modal" data-target="#JobModal"></i>
+                </div>
+               
+              </div>
+                </div>
+                </div>
+                <div class="row">
+                  <div class="col-12" style="color:grey;font-size:12px">
+                    <div class="row">
+                      <div class="col-5">
+                        Client
+                      </div>
+                      <div class="col-1">
+                        :
+                      </div>
+                      <div class="col-6">
+                        {{benchmark_job.user_account.client[0].company_name}}
+                      </div>
+                    </div>
+                 
+                  </div>
+                  <div class="col-12" style="color:grey;font-size:12px">
+                    <div class="row">
+                      <div class="col-5">
+                        Department 
+                      </div>
+                      <div class="col-1">
+                        :
+                      </div>
+                      <div class="col-6">
+                        {{benchmark_job.main_department.department}}
+                      </div>
+                    </div>
+          
+                  </div>
+                  <div class="col-12" style="color:grey;font-size:12px">
+                    <div class="row">
+                      <div class="col-5">
+                      Grade
+                      </div>
+                      <div class="col-1">
+                        :
+                      </div>
+                      <div class="col-6">
+                        {{benchmark_job.grade}}
+                      </div>
+                    </div>
+                      
+                  </div>
+                </div>
+        
+                <div class="">
+                  <div class="row mt-2">
+                    <div class="col-6" style="color:grey;font-size:12px">
+                        Submitted on :     {{benchmark_job.timestamp.strftime('%d-%m-%Y')}}
+                    </div>
+                    <div class="col-6" >
+                        
+                     
+                        {% if benchmark_job.status == 'Pending' %}
+                            {% set color = 'warning' %}
+                        {% else %}
+                            {% if benchmark_job.status == 'Rejected' %}
+                                {% set color = 'danger' %}
+                            {% else %}
+                                {% set color = 'success' %}
+                            {% endif %}
+                        {% endif %}
+                        <h6 class="float-right"><span class="badge badge-{{color}}">{{benchmark_job.status}}</span></h6>
+                    </div>
+                   
+                  </div>
+                </div>
+            </div>
+        </div>
+      {% endfor %}
+
+</div>
+  
+</div>
+  </div>
+</div>
+
+
+
+ 
+
+    
+
+</div>
+
+
+<!-- The Modal -->
+<div class="modal" id="JobModal">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+    
+      <!-- Modal Header -->
+      <div class="modal-header">
+        <h4 class="modal-title" id="job_title"></h4>&nbsp;&nbsp;
+        <span id="header_status" class=""></span>
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      
+      <div class="modal-body">
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+          <li class="nav-item">
+            <a class="nav-link active" id="job_details-tab" data-toggle="tab" href="#job_details" role="tab" aria-controls="job_details" aria-selected="true">Job Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="compensation-tab" data-toggle="tab" href="#compensation" role="tab" aria-controls="compensation" aria-selected="false">Compensation Details</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" id="review-tab" data-toggle="tab" href="#review" role="tab" aria-controls="review" aria-selected="false">Review</a>
+          </li>
+        </ul>
+        <div class="tab-content" id="myTabContent">
+          <hr>
+          <div class="tab-pane fade show active" id="job_details" role="tabpanel" aria-labelledby="job_details-tab">
+            <div class="row">
+              <div class="col-lg-6 col-md-12 mb-2">
+                <b>Job Grade:  </b> <span id="grade"></span>
+              </div>
+              <div class="col-lg-6 col-md-12 mb-2">
+                <b>Department: </b> <span id="department"></span>
+              </div>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="col-lg-6 col-md-12 mb-2">
+                <b>Reporting Relationship </b>
+                <br>
+                <span id="reporting_relationship"></span>
+              </div>
+             
+            </div>
+            <hr>
+            <div class="row">
+                <b>Generic Job Description:</b><br>
+                <span id="job_description"></span>
+            </div>
+            <hr>
+            <div class="row">
+                <b>Key Duties & Responsibilities:</b><br>
+                <span id="key_duties"></span>
+            </div>
+            <hr>
+            <div class="row">
+                <b>Financial Responsibilities:</b><br>
+                <span id="financial_responsibilities"></span>
+            </div>
+            <hr>
+            <div class="row">
+                <b>Technical Qualifications:</b><br>
+                <span id="technical_qualifications"></span>
+            </div>
+            <hr>
+            <div class="row">
+                <b>Years of Experience:</b><br>
+                <span id="years_of_experience"></span>
+            </div>
+            
+            
+            
+          </div>
+          <div class="tab-pane fade" id="compensation" role="tabpanel" aria-labelledby="compensation-tab">
+            <table class="table table-borderless">
+              <tr>
+                <td colspan="2" class="category">Salary (GHS)</td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Anual Base Salary:</span> &nbsp; <span class="compensation-value" id="base_salary"></span></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="category">Bonus (GHS)</td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Company Performance Bonus:</span> &nbsp; <span class="compensation-value" id="company_performance_bonus"></span></td>
+                <td><span class="compensation">Individual Performance Bonus:</span> &nbsp; <span class="compensation-value" id="individual_performance_bonus"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Annual Bonus:</span> &nbsp; <span class="compensation-value" id="annual_bonus"></span></td>
+                <td><span class="compensation">Incentive Bonus:</span> &nbsp; <span class="compensation-value" id="incentive_bonus"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Other Bonus:</span> &nbsp; <span class="compensation-value" id="other_bonus"></span></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="category">Benefit (GHS)</td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Staff Bus:</span> &nbsp; <span class="compensation-value" id="b_staff_bus"></span></td>
+                <td><span class="compensation">Company Car:</span> &nbsp; <span class="compensation-value" id="b_company_car"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Personal Travel:</span> &nbsp; <span class="compensation-value" id="b_personal_travel"></span></td>
+                <td><span class="compensation">Petrol:</span> &nbsp; <span class="compensation-value" id="b_petrol"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Vehicle:</span> &nbsp; <span class="compensation-value" id="b_vehicle"></span></td>
+                <td><span class="compensation">Driver:</span> &nbsp; <span class="compensation-value" id="b_driver"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Health Insurance:</span> &nbsp; <span class="compensation-value" id="b_health_insurance"></span></td>
+                <td><span class="compensation">Medical Assistance:</span> &nbsp; <span class="compensation-value" id="b_medical_assistance"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Funeral Assistance:</span> &nbsp; <span class="compensation-value" id="b_funeral_assistance"></span></td>
+                <td><span class="compensation">Life Insurance:</span> &nbsp; <span class="compensation-value" id="b_life_insurance"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Group Personnel Accident:</span> &nbsp; <span class="compensation-value" id="b_accident"></span></td>
+                <td><span class="compensation">Club Membership:</span> &nbsp; <span class="compensation-value" id="b_club_membership"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">School Fees (Paid by Employer):</span> &nbsp; <span class="compensation-value" id="b_school_fees"></span></td>
+                <td><span class="compensation">Vacation:</span> &nbsp; <span class="compensation-value" id="b_vacation"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Housing:</span> &nbsp; <span class="compensation-value" id="b_housing"></span></td>
+                <td><span class="compensation">Telephone:</span> &nbsp; <span class="compensation-value" id="b_telephone"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Security:</span> &nbsp; <span class="compensation-value" id="b_security"></span></td>
+                <td><span class="compensation">Other Benefits:</span> &nbsp; <span class="compensation-value" id="b_other"></span></td>
+              </tr>
+              <tr>
+                <td colspan="2" class="category">Allowance (GHS)</td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Vehicle Maintenance:</span> &nbsp; <span class="compensation-value" id="a_vehicle_maintenance"></span></td>
+                <td><span class="compensation">Vehicle:</span> &nbsp; <span class="compensation-value" id="a_vehicle"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Transport:</span> &nbsp; <span class="compensation-value" id="a_transport"></span></td>
+                <td><span class="compensation">Fuel:</span> &nbsp; <span class="compensation-value" id="a_fuel"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Car:</span> &nbsp; <span class="compensation-value" id="a_car"></span></td>
+                <td><span class="compensation">Driver:</span> &nbsp; <span class="compensation-value" id="a_driver"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Domestic Safety:</span> &nbsp; <span class="compensation-value" id="a_domestic_safety"></span></td>
+                <td><span class="compensation">Housing:</span> &nbsp; <span class="compensation-value" id="a_housing"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Utilities:</span> &nbsp; <span class="compensation-value" id="a_utilities"></span></td>
+                <td><span class="compensation">Meal:</span> &nbsp; <span class="compensation-value" id="a_meal"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Telephone:</span> &nbsp; <span class="compensation-value" id="a_telephone"></span></td>
+                <td><span class="compensation">Entertainment:</span> &nbsp; <span class="compensation-value" id="a_entertainment"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Education:</span> &nbsp; <span class="compensation-value" id="a_education"></span></td>
+                <td><span class="compensation">Vacation:</span> &nbsp; <span class="compensation-value" id="a_vacation"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Uniform:</span> &nbsp; <span class="compensation-value" id="a_uniform"></span></td>
+                <td><span class="compensation">Mobile Money:</span> &nbsp; <span class="compensation-value" id="a_mobile_money"></span></td>
+              </tr>
+              <tr>
+                <td><span class="compensation">Miscellaneous:</span> &nbsp; <span class="compensation-value" id="a_miscellaneous"></span></td>
+              </tr>
+            </table>
+          </div>
+          <div class="tab-pane fade" id="review" role="tabpanel" aria-labelledby="review-tab">
+            <form action="" method="POST" id="review_form">
+              {{ form.hidden_tag() }}
+              <div class="row">
+                <b>Comments:</b>
+                <ul id="comments" class="pr-4 ml-4"></ul>
+            </div>
+            <hr>
+            <div class="row">
+              <div class="gorm-group">
+                  {{ form.comment.label(class="form-control-label") }}
+                
+                      {% if form.comment.errors %}
+                      {{ form.comment(class="form-control form-control is-invalid")}}
+                      <div class="invalid-feedback">
+                          {% for error in form.comment.errors %}
+                          <span> {{ error}}</span>
+                          {% endfor %}
+                      </div>
+                      {% else %}
+                      {{ form.comment(class="form-control form-control") }}
+                  {% endif %}
+              </div>
+          </div>
+          <div class="row mt-4">
+            <div class="form-group text-right">
+              <button type="button" class="btn btn-success" onclick="approve_job()">Approve</button>
+              {{form.submit(class="btn btn-danger", onclick="rejectJob()")}}
+            </div>
+          </div>
+          </div>
+        </div>
+       
+        
+        
+
+      </div>
+      
+      <!-- Modal footer -->
+      <div class="modal-footer">
+        
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+<script>
+  var selected_status = []
+  var selected_client = []
+  function filter(view){
+if(view == 'status'){
+
+  var unique = ($('#status').val()).trim().replace(/\s/g,'')
+
+  if($("#" + unique).length == 0 ){
+ $('.filter_box').prepend( '<div id="'+unique+'"class="badge-col" ><span class="badge badge-pill badge-info" data-value="'+$('#status').val()+'">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+', '+ `'`+view+`'`+')"></i></span></span></div>')
+    selected_status.push(unique)
+}
+$('#status').val('')
+  }
+
+  if(view == 'client'){
+
+var unique = ($('#client').val()).trim().replace(/\s/g,'')
+var client_id
+datalist = document.getElementById('client').list
+optionFound = false
+for (let i = 0; i < datalist.options.length; i++) {
+    const element = datalist.options[i];
+    if ($('#client').val() == element.value) {
+      client_id = element.getAttribute('data-id')
+        optionFound = true
+        break
+    }
+
+}
+if(optionFound){
+
+if($("#" + unique).length == 0 ){
+
+$('.filter_box').prepend( '<div id="'+unique+'"class="badge-col"><span class="badge badge-pill badge-warning" data-value="'+client_id+'">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+', '+ `'`+view+`'`+')"></i></span></span></div>')
+selected_client.push(client_id)
+}
+$('#client').val('')
+}
+  }
+
+
+filter_job()
+  }
+</script>
+
+<script>
+  function remove_filter(id , _filter){
+
+   var item = $(id).children('span').attr('data-value')
+   if(_filter == 'status'){
+    for(let i =0; i<selected_status.length; i++){
+    if(selected_status[i] == item){
+      selected_status.splice(i, 1)
+      break
+    }
+   }
+   }
+
+   if(_filter == 'client'){
+    for(let i =0; i<selected_client.length; i++){
+    if(selected_client[i] == item){
+      selected_client.splice(i, 1)
+      break
+    }
+   }
+   }
+   
+    $(id).remove()
+    filter_job()
+
+  }
+</script>
+
+<script>
+  function clear_filter(){
+    $('.filter_box').empty()
+    selected_client = []
+    selected_status = []
+    filter_job()
+  }
+
+//Search for client
+  $('#client').keyup(function() {
+    
+    $.ajax({
+      url: '/client/search',
+      data: {
+          search: $(this).val()
+      },
+      type: 'POST',
+      success: function(res) {
+          res.forEach(element => {
+           
+            $('#clients').find('option').remove()
+            $('#clients').append('<option value="'+element.name+'" data-id="'+element.id+'"></option>')
+          });
+          
+        
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+  })
+
+  //display job_details in modal
+  function display_job(element){
+    var id =element.id
+    localStorage.setItem('item_id', id)
+    $.ajax({
+      url: '/client_benchmark_job/view',
+      data: {
+          id: id
+      },
+      type: 'POST',
+      success: function(res) {
+        $('#comments').html('')
+        for (const [key, value] of Object.entries(res)) {
+            const item = '#'+`${key}`
+            $('#'+`${key}`).text(`${value}`)
+            
+        }
+        
+        //loop through comments and display on list
+        res.comments_.forEach(element => {
+            $('#comments').append('<li>'+element+'</li>')
+        });
+        var badge = ''
+ 
+        switch (res.status_) {
+          case 'Approved':
+            badge = '<span class="badge badge-success">Approved</span'
+            break;
+          case 'Rejected':
+            badge = '<span class="badge badge-danger">Rejected</span'
+            break
+          case 'Pending':
+            badge = '<span class="badge badge-warning">Pending</span'
+          default:
+            break;
+        }
+        $('#header_status').html(badge)
+        $('#JobModal').modal('show')
+          
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+
+  }
+
+// Direct to route for approving client benchmark job
+  function approve_job(){
+    comment = $('#comment').val()
+
+    $.ajax({
+      url: '/client_benchmark_job/approve',
+      data: {
+          id: localStorage.getItem('item_id'),
+          comment: comment
+      },
+      type: 'POST',
+      success: function(res) {
+        
+          if(res == 'true'){
+            location.reload();
+          }
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+
+  }
+
+// Set action for review form
+function rejectJob(){
+  var id = localStorage.getItem('item_id')
+    document.getElementById('review_form').action = '/client_benchmark_job/reject/'+id
+}
+
+
+// filter jobs using selected filters
+
+function filter_job(){
+
+
+    $.ajax({
+      url: '/client_benchmark_job/filter',
+      data: {
+          client: selected_client,
+          status: selected_status
+      },
+      type: 'POST',
+      success: function(res) {
+        $('#cards').empty()
+        res.forEach(element => {
+          job_card(element.id, element.job_title, element.client, element.department, element.grade, element.timestamp, element.status)
+        });
+         console.log(res);
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+
+  }
+
+//this function contains the template for job cards.
+  function job_card(id, job_title, client, department, grade, timestamp, status){
+    var color
+//set the badge color based on status
+    switch (status) {
+      case 'Pending':
+        color = 'warning'
+        break;
+      case 'Approved':
+        color = 'success'
+        break;
+      case 'Rejected':
+        color = 'danger'
+        break;
+      default:
+        break;
+    }
+
+//convert date to standard format
+date = new Date(timestamp)
+day = date.getDate()
+month = date.getMonth()
+year = date.getFullYear()
+months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+timestamp = day+'-'+months[month]+'-'+year
+    var card = `
+    <div class="col-lg-4 col-md-6 col-sm-12 p-4">
+
+<div class="card p-4 parent job-card" id="`+id+`" onclick="display_job(this)" style="height:160px">
+    <div class="row ">
+       
+        <div class="col-12 ">
+      <div class="row">
+        <div class="col-10">
+          <h5 style="overflow: hidden; white-space: nowrap;"><b>`+job_title+`</b></h5>
+        </div>
+        <div class="col-2">
+          <i class="icofont-ui-note" style="color:grey;cursor:pointer" data-toggle="modal" data-target="#JobModal"></i>
+        </div>
+       
+      </div>
+        </div>
+        </div>
+        <div class="row">
+          <div class="col-12" style="color:grey;font-size:12px">
+            <div class="row">
+              <div class="col-5">
+                Client
+              </div>
+              <div class="col-1">
+                :
+              </div>
+              <div class="col-6">
+                `+client+`
+              </div>
+            </div>
+         
+          </div>
+          <div class="col-12" style="color:grey;font-size:12px">
+            <div class="row">
+              <div class="col-5">
+                Department 
+              </div>
+              <div class="col-1">
+                :
+              </div>
+              <div class="col-6">
+                `+department+`
+              </div>
+            </div>
+  
+          </div>
+          <div class="col-12" style="color:grey;font-size:12px">
+            <div class="row">
+              <div class="col-5">
+              Grade
+              </div>
+              <div class="col-1">
+                :
+              </div>
+              <div class="col-6">
+                `+grade+`
+              </div>
+            </div>
+              
+          </div>
+        </div>
+
+        <div class="">
+          <div class="row mt-2">
+            <div class="col-8" style="color:grey;font-size:12px">
+                Submitted on :     `+timestamp+`
+            </div>
+            <div class="col-4" >
+                
+             
+                <h6 class="float-right"><span class="badge badge-`+color+`">`+status+`</span></h6>
+            </div>
+           
+          </div>
+        </div>
+    </div>
+</div>
+    `
+    
+    $('#cards').append(card)
+  }
+</script>
+
+    {% endblock content %}

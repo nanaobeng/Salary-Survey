@@ -208,10 +208,10 @@
   <div class="row ">
      
       <div class="col-12 ">
-<b>Edit Benchmark</b>
+<b>Edit Benchmark Job</b>
 <br/>
 
-<span class="pt-3"style="color:grey;font-size: 12px;">Created on 12/3/2019</span>
+<span class="pt-3"style="color:grey;font-size: 12px;">Created on {{job.timestamp.strftime('%d-%m-%Y')}}</span>
 
       </div>
 
@@ -489,7 +489,7 @@
         <b class="green_shade"><b>
           {{ form.base_salary.label(class="form-control-label") }}
 
-            <input class="form-control" name="base_salary" value="{{base.monthly_base_salary}}"  />
+            <input class="form-control" name="base_salary" value="{{base.monthly_base_salary  or null}}"  />
 
             
         </div>
@@ -565,7 +565,7 @@
               {{ form.company_bonus_performance.label(class="form-control-label") }}
 
             </b>
-            <input class="form-control" name="cmp_bonus" value="{{incentive.company_performance}}"  />
+            <input class="form-control" name="cmp_bonus" value="{{incentive.company_performance or null}}"  />
           </div>
          </div>
            </div>
@@ -580,7 +580,7 @@
                      <b class="green_shade">
                         {{ form.individual_bonus_performance.label(class="form-control-label") }}
  </b>
- <input class="form-control" name="indv_bonus"value="{{incentive.individual_performance}}"  />
+ <input class="form-control" name="indv_bonus"value="{{incentive.individual_performance  or null}}"  />
                     </div>
                     </div>
            </div>
@@ -598,7 +598,7 @@
                   <b class="green_shade">
                     {{ form.annual_bonus.label(class="form-control-label") }}
         </b>
-        <input class="form-control" name="annual_bonus" value="{{incentive.annual_incentive}}"  />
+        <input class="form-control" name="annual_bonus" value="{{incentive.annual_incentive  or null}}"  />
                 
                 </div>
    </div>
@@ -615,7 +615,7 @@
                 {{ form.incentive_bonus.label(class="form-control-label") }}
     
              </b>
-             <input class="form-control" name="inv_bonus" value="{{incentive.incentive}}"  />
+             <input class="form-control" name="inv_bonus" value="{{incentive.incentive  or null}}"  />
             </div>
            
 </div>
@@ -632,7 +632,7 @@
           <span ><b class="green_shade">
             {{ form.other_bonus.label(class="form-control-label") }}
 </b>
-<input class="form-control" name="other_bonus" value="{{incentive.other_cash}}"  />
+<input class="form-control" name="other_bonus" value="{{incentive.other_cash  or null}}"  />
 
           
         </div>
@@ -712,7 +712,7 @@
          <b class="green_shade">
               {{ form.staff_bus.label(class="form-control-label") }}
                </b>
-               <input class="form-control" name="staff_bus" value="{{benefit.staff_bus}}"  />
+               <input class="form-control" name="staff_bus" value="{{benefit.staff_bus  or null}}"  />
           
           </div>
          
@@ -730,7 +730,7 @@
                   <b class="green_shade">
                     {{ form.company_car.label(class="form-control-label") }}
                     </b>
-                    <input class="form-control" name="cmp_car" value="{{benefit.company_car}}"  />
+                    <input class="form-control" name="cmp_car" value="{{benefit.company_car  or null}}"  />
                   
                 </div>
                
@@ -748,7 +748,7 @@
                           <b class="green_shade">
                             {{ form.personal_travel.label(class="form-control-label") }}
                              </b>
-                             <input class="form-control" name="personal_travel" value="{{benefit.personal_travel}}"  />
+                             <input class="form-control" name="personal_travel" value="{{benefit.personal_travel  or null}}"  />
                           
                         </div>
                        
@@ -767,7 +767,7 @@
                                   <b class="green_shade">
                                     {{ form.petrol.label(class="form-control-label") }}
                                    </b>
-                                   <input class="form-control" name="petrol" value="{{benefit.petrol}}"  />
+                                   <input class="form-control" name="petrol" value="{{benefit.petrol  or null}}"  />
                                   
                                 </div>
                                
@@ -786,7 +786,7 @@
                                         <b class="green_shade">
                                             {{ form.vehicle.label(class="form-control-label") }}
                                             </b>
-                                            <input class="form-control" name="vehicle" value="{{benefit.vehicle_maintenance}}"  />
+                                            <input class="form-control" name="vehicle" value="{{benefit.vehicle_maintenance  or null}}"  />
                                          
                                           
                                         </div>
@@ -806,7 +806,7 @@
                                                   <b class="green_shade">
                                                     {{ form.driver.label(class="form-control-label") }}
                                                      </b>
-                                                     <input class="form-control" name="driver"value="{{benefit.driver}}"  />  
+                                                     <input class="form-control" name="driver"value="{{benefit.driver  or null}}"  />  
                                                   
                                                 </div>
                                                
@@ -825,7 +825,7 @@
                                                           <b class="green_shade">
                                                             {{ form.health_insurance.label(class="form-control-label") }}
                                                             </b>
-                                                            <input class="form-control" name="htl_ins" value="{{benefit.health_insurance}}"  />
+                                                            <input class="form-control" name="htl_ins" value="{{benefit.health_insurance  or null}}"  />
                                                           
                                                         </div>
                                                        
@@ -844,7 +844,7 @@
                                                                   <b class="green_shade">
                                                                     {{ form.medical_assistance.label(class="form-control-label") }}
                                                                       </b>
-                                                                      <input class="form-control" name="medi_assis" value="{{benefit.medical_assistance}}"  />
+                                                                      <input class="form-control" name="medi_assis" value="{{benefit.medical_assistance  or null}}"  />
                                                                   
                                                                 </div>
                                                                
@@ -863,7 +863,7 @@
                                                                           <b class="green_shade">
                                                                             {{ form.funeral_assistance.label(class="form-control-label") }}
                                                                               </b>
-                                                                              <input class="form-control" name="funeral_assistance" value="{{benefit.funeral_assistance}}"  />
+                                                                              <input class="form-control" name="funeral_assistance" value="{{benefit.funeral_assistance  or null}}"  />
                                                           
                                                                         </div>
                                                                        
@@ -882,7 +882,7 @@
                                                                                  <b class="green_shade">
                                                                                     {{ form.life_insurance.label(class="form-control-label") }}
                                                                             </b>
-                                                                            <input class="form-control" name="life_insurance" value="{{benefit.life_insurance}}"  />
+                                                                            <input class="form-control" name="life_insurance" value="{{benefit.life_insurance  or null}}"  />
                                                                                 </div>
                                                                                
                                                                                  
@@ -900,7 +900,7 @@
                                                                                           <b class="green_shade">
                                                                                             {{ form.group_accident.label(class="form-control-label") }}
                                                                                               </b>
-                                                                                              <input class="form-control" name="group_accident" value="{{benefit.group_accident}}"  />
+                                                                                              <input class="form-control" name="group_accident" value="{{benefit.group_accident  or null}}"  />
                                                                                         </div>
                                                                                        
                                                                                          
@@ -919,7 +919,7 @@
                                                                                                     {{ form.club_membership.label(class="form-control-label") }}
                                                                                                     </b>
 
-                                                                                                    <input class="form-control" name="club_membership" value="{{benefit.club_membership}}"  />
+                                                                                                    <input class="form-control" name="club_membership" value="{{benefit.club_membership  or null}}"  />
                                                                                                    
                                                                                                  
                                                                                                 </div>
@@ -939,7 +939,7 @@
                                                                                                           <b class="green_shade">
                                                                                                             {{ form.school_fees.label(class="form-control-label") }}
                                                                                                               </b>
-                                                                                                              <input class="form-control" name="school_fees" value="{{benefit.school_fees}}"  />
+                                                                                                              <input class="form-control" name="school_fees" value="{{benefit.school_fees  or null}}"  />
                                                                                                        
                                                                                                         </div>
                                                                                                        
@@ -956,7 +956,7 @@
                                                                                                                  <b class="green_shade">
                                                                                                                     {{ form.vacation.label(class="form-control-label") }}
                                                                                                                     </b>
-                                                                                                                    <input class="form-control" name="vacation" value="{{benefit.vacation}}"  /> 
+                                                                                                                    <input class="form-control" name="vacation" value="{{benefit.vacation  or null}}"  /> 
                                                                                                                   
                                                                                                                 </div>
                                                                                                                
@@ -975,7 +975,7 @@
                                                                                                                       <b class="green_shade">
                                                                                                                         {{ form.housing.label(class="form-control-label") }}
                                                                                                                  </b>
-                                                                                                                 <input class="form-control" name="housing" value="{{benefit.housing}}"  />
+                                                                                                                 <input class="form-control" name="housing" value="{{benefit.housing  or null}}"  />
                                                                                                                     </div>
                                                                                                                    
                                                                                                                      
@@ -992,7 +992,7 @@
                                                                                                                               <b class="green_shade">
                                                                                                                                 {{ form.telephone.label(class="form-control-label") }}
                                                                                                                             </b>      
-                                                                                                                            <input class="form-control" name="telephone" value="{{benefit.telephone}}"  />
+                                                                                                                            <input class="form-control" name="telephone" value="{{benefit.telephone  or null}}"  />
                                                                                                                            
                                                                                                                             </div>
                                                                                                                            
@@ -1011,7 +1011,7 @@
                                                                                                                                         {{ form.security.label(class="form-control-label") }}
                                                                                                                                           
                                                                                                                                     </b>
-                                                                                                                                    <input class="form-control" name="security" value="{{benefit.security}}"  />
+                                                                                                                                    <input class="form-control" name="security" value="{{benefit.security  or null}}"  />
                                                                                                                                     </div>
                                                                                                                                    
                                                                                                                                      
@@ -1028,7 +1028,7 @@
                                                                                                                                               <b class="green_shade">
                                                                                                                                                 {{ form.other_benefits.label(class="form-control-label") }}
                                                                                                                                                   </b>
-                                                                                                                                                  <input class="form-control" name="other_benefits" value="{{benefit.other_benefits}}"  />
+                                                                                                                                                  <input class="form-control" name="other_benefits" value="{{benefit.other_benefits  or null}}"  />
                                                                                                                                              
                                                                                                                                           
                                                                                                                                             </div>
@@ -1099,7 +1099,7 @@
        <b class="green_shade">
           {{ form.vehicle_maintenance.label(class="form-control-label") }}
           </b>
-          <input class="form-control" name="vehicle_maintenance" value="{{allowance.vehicle_maintenance}}"  />
+          <input class="form-control" name="vehicle_maintenance" value="{{allowance.vehicle_maintenance  or null}}"  />
         
       </div>
      
@@ -1117,7 +1117,7 @@
               <b class="green_shade">
                 {{ form.allowance_vehicle.label(class="form-control-label") }}
                     </b>    
-                    <input class="form-control" name="allowance_vehicle" value="{{allowance.vehicle}}"  />
+                    <input class="form-control" name="allowance_vehicle" value="{{allowance.vehicle  or null}}"  />
            
              
       
@@ -1134,7 +1134,7 @@
                       <b class="green_shade">
                         {{ form.transport.label(class="form-control-label") }}
                          </b>
-                         <input class="form-control" name="transport" value="{{allowance.transport}}"  />
+                         <input class="form-control" name="transport" value="{{allowance.transport  or null}}"  />
                     </div>
                    
                      
@@ -1152,7 +1152,7 @@
                               <b class="green_shade">
                                 {{ form.fuel.label(class="form-control-label") }}
                                      </b>   
-                                     <input class="form-control" name="fuel" value="{{allowance.fuel}}"  />
+                                     <input class="form-control" name="fuel" value="{{allowance.fuel  or null}}"  />
                               
                             </div>
                            
@@ -1172,7 +1172,7 @@
                                         {{ form.car.label(class="form-control-label") }}
                                                       
                                           </b>
-                                          <input class="form-control" name="car" value="{{allowance.car}}"  />
+                                          <input class="form-control" name="car" value="{{allowance.car  or null}}"  />
                                    
                                     </div>
                                    
@@ -1193,7 +1193,7 @@
                                                       
                                         </b>
 
-                                        <input class="form-control" name="allowance_driver" value="{{allowance.driver}}"  />
+                                        <input class="form-control" name="allowance_driver" value="{{allowance.driver  or null}}"  />
                                      
                                     </div>
                                    
@@ -1211,7 +1211,7 @@
                                      <b class="green_shade">
                                         {{ form.domestic.label(class="form-control-label") }}
                                        </b>
-                                       <input class="form-control" name="domestic" value="{{allowance.domestic_safety}}"  />
+                                       <input class="form-control" name="domestic" value="{{allowance.domestic_safety  or null}}"  />
                                     </div>
                                    
                                      
@@ -1229,7 +1229,7 @@
                                       <b class="green_shade">
                                         {{ form.allowance_housing.label(class="form-control-label") }}
                                   </b>
-                                  <input class="form-control" name="allowance_housing" value="{{allowance.housing}}"  />
+                                  <input class="form-control" name="allowance_housing" value="{{allowance.housing  or null}}"  />
                                       
                                     </div>
                                    
@@ -1249,7 +1249,7 @@
                                    <b class="green_shade">
                                         {{ form.utilities.label(class="form-control-label") }}
                                   </b>
-                                  <input class="form-control" name="utilities" value="{{allowance.utilities}}"  />
+                                  <input class="form-control" name="utilities" value="{{allowance.utilities  or null}}"  />
                                    
                                     </div>
                                    
@@ -1267,7 +1267,7 @@
                                      <b class="green_shade">
                                         {{ form.meal.label(class="form-control-label") }}
                                   </b>
-                                  <input class="form-control" name="meal" value="{{allowance.meal}}"  />
+                                  <input class="form-control" name="meal" value="{{allowance.meal  or null}}"  />
                                       
                                     </div>
                                    
@@ -1287,7 +1287,7 @@
                                      <b class="green_shade">
                                         {{ form.allowance_telephone.label(class="form-control-label") }}
                                   </b>
-                                  <input class="form-control" name="allowance_telephone" value="{{allowance.telephone}}"  />
+                                  <input class="form-control" name="allowance_telephone" value="{{allowance.telephone  or null}}"  />
                                     </div>
                                    
                                      
@@ -1305,7 +1305,7 @@
                                       <b class="green_shade">
                                         {{ form.entertainment.label(class="form-control-label") }}
                                            </b>
-                                           <input class="form-control" name="entertainment" value="{{allowance.entertainment}}"  />
+                                           <input class="form-control" name="entertainment" value="{{allowance.entertainment  or null}}"  />
                                      
                                     </div>
                                    
@@ -1324,7 +1324,7 @@
                                       <b class="green_shade">
                                         {{ form.education.label(class="form-control-label") }}
                                         </b>
-                                        <input class="form-control" name="education" value="{{allowance.education_support}}"  />
+                                        <input class="form-control" name="education" value="{{allowance.education_support  or null}}"  />
                                     </div>
                                    
                                      
@@ -1342,7 +1342,7 @@
                                       <b class="green_shade">
                                         {{ form.vacation.label(class="form-control-label") }}
                                              </b>
-                                             <input class="form-control" name="allowance_vacation" value="{{allowance.vacation}}"  />
+                                             <input class="form-control" name="allowance_vacation" value="{{allowance.vacation  or null}}"  />
                                       
                                     </div>
                                    
@@ -1362,7 +1362,7 @@
                                       <b class="green_shade">
                                         {{ form.uniform.label(class="form-control-label") }}
                                            </b>
-                                           <input class="form-control" name="uniform" value="{{allowance.uniform}}"  />
+                                           <input class="form-control" name="uniform" value="{{allowance.uniform  or null}}"  />
                                      
                                     </div>
                                    
@@ -1381,7 +1381,7 @@
                                       <b class="green_shade">
                                         {{ form.mobile_money.label(class="form-control-label") }}
                                         </b>
-                                        <input class="form-control" name="momo" value="{{allowance.mobile_money}}"  />     
+                                        <input class="form-control" name="momo" value="{{allowance.mobile_money  or null}}"  />     
                                     </div>
                                    
                                      
@@ -1399,7 +1399,7 @@
                                       <b class="green_shade">
                                         {{ form.misc.label(class="form-control-label") }}
                                               </b>
-                                              <input class="form-control" name="misc" value="{{allowance.miscellaenous}}"  />
+                                              <input class="form-control" name="misc" value="{{allowance.miscellaenous  or null}}"  />
                                       
                                     </div>
                                    
