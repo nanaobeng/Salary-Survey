@@ -721,7 +721,7 @@ class SurveyForm(FlaskForm):
     
 
 class MessageComment(FlaskForm):
-    comment = TextAreaField('Add New Comment', validators=[DataRequired()])
+    comment = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
     status = BooleanField('Change Status', default=False)
     # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
@@ -741,11 +741,9 @@ class ServiceRequestForm(FlaskForm):
 
     
 class RequestSearchForm(FlaskForm):
-    choices = [('Request Date', 'Request Date'),
-               ('Name', 'Name'),
-               ('Status', 'Status')]
-    select = SelectField('Filter:', choices=choices)
+    selectstatus = SelectField('Status:',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
+    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
+    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval'),('all','All')])
+    selecttype = SelectField('Request Type:',choices = [('all','All'),('individual','Individual'),('corporate','Corporate')])
     search = StringField('')
-
-
-#     submit = SubmitField('Submit')
+    

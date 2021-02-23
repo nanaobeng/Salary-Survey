@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
 from survey import db , bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
+from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, RequestSearchForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -823,15 +823,39 @@ def benchmark_home():
 @users.route("/administration/service_requests", methods=["POST","GET"])
 def admin_service_requests():
     form = ServiceRequestForm() 
+    searchform = RequestSearchForm()
     ind = Individual_request.query.filter_by(status="pending").all()
     corp= Corporate_request.query.filter_by(status="pending").all()
+#filter_by(status="pending").
+    return render_template("new_requests.html",form=form ,ind=ind, corp=corp, searchform=searchform)
 
-    return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+@users.route("/administration/service_requests/search", methods=["POST"])
+def search_requests():
+    searchform = RequestSearchForm()
+    form = ServiceRequestForm()
+    status = request.form['selectstatus']
+    requesttype = request.form['selecttype']
+    if request.method == 'POST':
+        if ((requesttype != "all") and (status !="all")):
+            ind = Individual_request.query.filter_by(status=status,type_of_request=requesttype).all()
+            corp = Corporate_request.query.filter_by(status=status,type_of_request=requesttype).all()
+        elif ((requesttype == "all") and (status !="all")):
+            ind = Individual_request.query.filter_by(status=status,type_of_request="individual").all()
+            corp= Corporate_request.query.filter_by(status=status,type_of_request="corporate").all()
+        elif ((requesttype != "all") and (status =="all")):
+            ind = Individual_request.query.filter_by(type_of_request=requesttype).all()
+            corp = Corporate_request.query.filter_by(type_of_request=requesttype).all()
+        else:
+            ind = Individual_request.query.all()
+            corp= Corporate_request.query.all()
+        return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
+    return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
+    
+#,(or_(Individual_request.firstname.like(('%' + search + '%')),Individual_request.lastname.like(('%' + search + '%')),Individual_request.status.like(('%' + search + '%'))) )
 
 @users.route('/view_request/<int:id>', methods=['POST','GET'])
 def viewIndRequest(id):
-    
-    
+       
     request = Individual_request.query.get_or_404(id)
     comments = RequestComment.query.filter_by(service_id=id)
     comment_array = []
@@ -925,6 +949,13 @@ def searchMessages():
         'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
 
     return jsonify(new_messages)
+
+
+@users.route("/administration/client_reports")
+def client_reports():
+    
+    return render_template("client_hub_reports.html")
+
 
 # @users.route('/messages/update/<int:messageId>', methods=['POST'])
 # def updateMessage(messageId):
