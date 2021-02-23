@@ -492,7 +492,6 @@ def my_benchmark_jobs_create():
 
 @users.route("/my_surveys")
 def my_surveys():
-<<<<<<< HEAD
     usn = current_user.id
     query = []
     surveys = Benchmark_job.query.all()
@@ -501,9 +500,7 @@ def my_surveys():
             query.append(survey)
 
     return render_template("quantitative_survey_overview.html",usn=usn,query=query)
-=======
     return render_template("quantitative_survey_overview.html")
->>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
 
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():
@@ -903,7 +900,6 @@ def benchmark_home():
     return render_template("benchmark_dashboard.html",job=job)
 
 
-<<<<<<< HEAD
 
 
 @users.route('/form')
@@ -1088,7 +1084,6 @@ def survey_filter():
 
 
 
-=======
 @users.route("/administration/service_requests", methods=["POST","GET"])
 def admin_service_requests():
     form = ServiceRequestForm() 
@@ -1119,11 +1114,9 @@ def search_requests():
             corp= Corporate_request.query.all()
         return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
     return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
->>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
     
 #,(or_(Individual_request.firstname.like(('%' + search + '%')),Individual_request.lastname.like(('%' + search + '%')),Individual_request.status.like(('%' + search + '%'))) )
 
-<<<<<<< HEAD
 
   
 
@@ -1137,13 +1130,13 @@ def search_requests():
 
     return jsonify(temp)
 
-@users.route("/administration/service_requests", methods=["POST","GET"])
-def admin_service_requests():
-    form = ServiceRequestForm() 
-    ind = Individual_request.query.all()
-    corp= Corporate_request.query.filter_by(status="pending").all()
+# @users.route("/administration/service_requests", methods=["POST","GET"])
+# def admin_service_requests():
+#     form = ServiceRequestForm() 
+#     ind = Individual_request.query.all()
+#     corp= Corporate_request.query.filter_by(status="pending").all()
 
-    return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
+#     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
 
 @users.route('/view_request', methods=['POST','GET'])
 def viewRequest():
@@ -1151,13 +1144,11 @@ def viewRequest():
 
     requests = Individual_request.query.filter_by(id=id)
     comments = RequestComment.query.filter_by(contact_id=id)
-=======
 @users.route('/view_request/<int:id>', methods=['POST','GET'])
 def viewIndRequest(id):
        
     request = Individual_request.query.get_or_404(id)
     comments = RequestComment.query.filter_by(service_id=id)
->>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
     comment_array = []
     temp = []
   
@@ -1248,7 +1239,6 @@ def searchMessages():
         new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
         'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
 
-<<<<<<< HEAD
 
 @users.route('/benchmark_details', methods=['POST','GET'])
 def b_details():
@@ -1349,7 +1339,6 @@ def save_qualitative():
 
     return jsonify(pol_structure)
 
-=======
     return jsonify(new_messages)
 
 
@@ -1370,4 +1359,3 @@ def client_reports():
 #         db.session.commit()
 #         flash("Message Updated", "success")
 #         return redirect(url_for('users.messages'))
->>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
