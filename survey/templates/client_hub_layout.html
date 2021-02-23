@@ -54,9 +54,6 @@ defer
   
 <style>
 
- 
-
-
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700&display=swap");
 
 :root {
@@ -339,6 +336,7 @@ body {
    
   .page-header {
     padding: 10px;
+    padding-bottom:50px;
   }
 
   .page-header nav {
@@ -433,7 +431,7 @@ body {
 
 @media screen and (min-width: 768px) {
   .collapsed .page-header {
-    width: 40px;
+    width: 70px;
   }
 
   .collapsed .page-header .admin-menu li > * {
@@ -488,6 +486,15 @@ body {
           </a>
       </li>
      
+      <li>
+        <a href="{{  url_for('users.client_hub')}}">
+            <svg>
+              <use xlink:href="#trends"></use>
+            </svg>
+            <span>Dashboard</span>
+          </a>
+      </li>
+     
 
       
 
@@ -515,7 +522,7 @@ body {
     </li>
      
       <li>
-        <a href="#0">
+        <a href="{{  url_for('users.client_reports')}}">
           <svg>
             <use xlink:href="#comments"></use>
           </svg>
@@ -707,7 +714,6 @@ for (const link of menuLinks) {
     });
   }
 
-  
   </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>

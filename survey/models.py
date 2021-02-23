@@ -295,8 +295,6 @@ class Service_request(db.Model):
     status = db.Column(db.String(50))
     client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
-
-
     def __repr__(self):
         return '<Service_request %r>' % self.id
 
