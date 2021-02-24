@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, session
+from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, session, json
 from survey import db , bcrypt
 from survey.users.forms import *
 from survey.models import *
@@ -530,7 +530,8 @@ def client_hub():
     total_num_requests = db.session.query(Service_request).count()
     total_pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending').count()
     total_submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted').count()
-    return render_template("client_hub.html", total_num_requests=total_num_requests, total_pending_requests=total_pending_requests, total_submitted_requests=total_submitted_requests)
+    clients = Client.query.count()
+    return render_template("client_hub.html", data=json.dumps(clients), total_num_requests=total_num_requests, total_pending_requests=total_pending_requests, total_submitted_requests=total_submitted_requests)
 
     
 @app.route('/user/<username>')
@@ -1359,14 +1360,46 @@ def view_reports():
     }
 
     form = FilterReportForm()
-    form.report_status.choices = STATUS_BY_REPORT_TYPE.get(form.report_status.data)
+    # form.report_status.choices = STATUS_BY_REPORT_TYPE.get(form.report_status.data)
 
+    clients = db.session.query(Client)
     num_clients = db.session.query(Client).count()
-    num_active_clients = db.session.query(Client).filter(Client.status=='Active').count()
+    active_clients = db.session.query(Client).filter(Client.status=='active')
+    num_active_clients = db.session.query(Client).filter(Client.status=='active').count()
+    inactive_clients = db.session.query(Client).filter(Client.status=='Inactive')
     num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
 
-    return render_template("reports.html", form=form, num_clients=num_clients, num_active_clients=num_active_clients, num_inactive_clients=num_inactive_clients)
+    service_requests = db.session.query(Service_request)
+    num_requests = db.session.query(Service_request).count()
+    pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending')
+    num_pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending').count()
+    awaiting_requests = db.session.query(Service_request).filter(Service_request.status=='awaiting')
+    num_awaiting_requests = db.session.query(Service_request).filter(Service_request.status=='awaiting').count()
 
+    return render_template("reports.html", form=form, clients = clients, num_clients=num_clients, 
+    active_clients=active_clients, num_active_clients=num_active_clients, 
+    inactive_clients=inactive_clients, num_inactive_clients=num_inactive_clients,
+    service_requests=service_requests, num_requests=num_requests,
+    pending_request=pending_requests, num_pending_requests=num_pending_requests)
+
+
+@users.route('/view_reports/generate_report', methods=['POST'])
+def generate_report():
+    report_type = request.form['type']
+    report_status = request.form['status']
+    report_start_date = request.form['start_date']
+    report_end_date = request.form['end_date']
+
+    if (report_type == 'clients'):
+        clients = db.session.query(Client)
+        num_clients = db.session.query(Client).count()
+        active_clients = db.session.query(Client).filter(Client.status=='active')
+        num_active_clients = db.session.query(Client).filter(Client.status=='active').count()
+        inactive_clients = db.session.query(Client).filter(Client.status=='Inactive')
+        num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
+
+    report = report_type + report_status + report_start_date + report_end_date
+    return jsonify(report)
 
 @users.route('/benchmark_details', methods=['POST','GET'])
 def benchmark_details():
@@ -1389,3 +1422,27 @@ def client_view_benchmarked(id):
     
     form = SurveyForm()
     return render_template("new_view_benchmarked.html", job=job,form=form)
+
+
+# search messages on messages.html 
+@users.route('/messages/search', methods = ['POST'])
+def searchMessages():
+    search = request.form['search_term']
+    if (len(search) == 0):
+        messages = Contact.query.filter_by(status="False")
+        new_messages = []
+        for message in messages:
+            new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
+            'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+
+        return jsonify(new_messages)
+    
+    messages = Contact.query.filter(or_(Contact.firstname.like(('%' + search + '%')),
+    Contact.lastname.like(('%' + search + '%')),
+    Contact.company_name.like(('%' + search + '%'))))
+    new_messages = []
+    for message in messages:
+        new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
+        'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+
+    return jsonify(new_messages)
