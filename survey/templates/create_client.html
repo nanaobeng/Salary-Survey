@@ -1488,6 +1488,46 @@ Create Client
                     </div>
                     </div>
 
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        {{ form.contact_nationality.label(class="form-control-label") }}
+            
+                        {% if form.contact_nationality.errors %}
+                        {{ form.contact_nationality(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.contact_nationality.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.contact_nationality(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    </div>
+
+                    <div class="col-4">
+                    
+                      <div class="form-group">
+                        {{ form.contact_dob.label(class="form-control-label") }}
+            
+                        {% if form.contact_dob.errors %}
+                        {{ form.contact_dob(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.contact_dob.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.contact_dob(class="form-control form-control") }}
+                        {% endif %}
+            
+                        
+                    </div>
+                    </div>
+
 
 
                     <div class="col-4">
@@ -1514,17 +1554,17 @@ Create Client
                     <div class="col-4">
                     
                       <div class="form-group">
-                        {{ form.email.label(class="form-control-label") }}
+                        {{ form.c_email.label(class="form-control-label") }}
             
-                        {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control is-invalid")}}
+                        {% if form.c_email.errors %}
+                        {{ form.c_email(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
+                            {% for error in form.c_email.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.email(class="form-control form-control") }}
+                        {{ form.c_email(class="form-control form-control") }}
                         {% endif %}
             
                         
@@ -1535,17 +1575,17 @@ Create Client
                     <div class="col-4">
                     
                       <div class="form-group">
-                        {{ form.phone.label(class="form-control-label") }}
+                        {{ form.c_phone.label(class="form-control-label") }}
             
-                        {% if form.phone.errors %}
-                        {{ form.phone(class="form-control form-control is-invalid")}}
+                        {% if form.c_phone.errors %}
+                        {{ form.c_phone(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
-                            {% for error in form.phone.errors %}
+                            {% for error in form.c_phone.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.phone(class="form-control form-control") }}
+                        {{ form.c_phone(class="form-control form-control") }}
                         {% endif %}
             
                         

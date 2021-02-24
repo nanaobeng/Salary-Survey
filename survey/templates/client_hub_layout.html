@@ -5,18 +5,16 @@
 <!--Import Google Icon Font-->
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic' rel='stylesheet' type='text/css'>
-<link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
 <script src="https://use.fontawesome.com/releases/v5.13.0/js/all.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="{{ url_for('static', filename='css//icofont/icofont.min.css')}}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css//icofont/materialdesignicons.min.css')}}">
+<link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
+<!-- endinject -->
+<!-- plugin css for this page -->
+<link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+<!-- End plugin css for this page -->
+<!-- inject:css -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css//crmstyless.css')}}">
 <script
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBIwzALxUPNbatRBj3Xi1Uhp0fFzwWNBkE&callback=initMap&libraries=&v=weekly"
 defer
@@ -130,6 +128,7 @@ body {
   bottom: 0;
   overflow: auto;
   padding-top: 20px;
+  padding-bottom: 80px;
   width: var(--page-header-width);
   color: var(--page-header-txtColor);
   background: var(--page-header-bgColor);
@@ -249,7 +248,7 @@ body {
 }
 
 .search-and-user input[type="search"] {
-  width: 100%;
+  width: 60%;
   height: 50px;
   font-size: 1.5rem;
   padding-left: 15px;
@@ -461,25 +460,24 @@ body {
   }
 }
 
-
+.dropdown-container {
+  display: none;
+  background-color: #54945f;
+  padding-left: 8px;
+}
 
 </style>
 
 <header  class="page-header">
   <nav>
-    <a href="#0">
-    <img class="logo mr-auto" className="img-fluid" src="{{ url_for('static', filename='img/Deloitte-white.png')}}" alt="Deloitte logo">
-    </a>
+   
     <button class="toggle-mob-menu" aria-expanded="false" aria-label="open menu">
       <svg width="20" height="20" aria-hidden="true">
         <use xlink:href="#down"></use>
       </svg>
     </button>
     <ul class="admin-menu">
-      <li class="menu-heading">
-        <h3>Admin</h3>
-      </li>
-      
+     
       
       <li>
         <a href="{{  url_for('users.admin_home')}}">
@@ -489,44 +487,47 @@ body {
             <span>Home</span>
           </a>
       </li>
+     
+
+      
+
       <li>
-        <a href="{{  url_for('users.create_survey')}}">
-          <svg>
-            <use xlink:href="#pages"></use>
-          </svg>
-          <span>Create Survey</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{  url_for('users.admin_surveys')}}">
-          <svg>
-            <use xlink:href="#pages"></use>
-          </svg>
-          <span>View Surveys</span>
-        </a>
-      </li>
-      <li>
+      <button class="dropdown-btn"><svg>
+        <use xlink:href="#pages"></use>
+      </svg>
+      <span>Clients</span>
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-container">
         <a href="{{  url_for('users.create_client')}}">
           <svg>
             <use xlink:href="#collection"></use>
           </svg>
           <span>Create Client</span>
         </a>
-      </li>
+          <a href="{{  url_for('users.admin_clients')}}">
+            <svg>
+              <use xlink:href="#options"></use>
+            </svg>
+            <span>View Clients</span>
+          </a>
+      </div>
+    </li>
+     
       <li>
-        <a href="{{  url_for('users.admin_clients')}}">
-          <svg>
-            <use xlink:href="#options"></use>
-          </svg>
-          <span>View Clients</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{  url_for('users.admin_reports')}}">
+        <a href="{{ url_for('users.view_reports') }}">
           <svg>
             <use xlink:href="#comments"></use>
           </svg>
           <span>Reports</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url_for('users.messages') }}">
+          <svg>
+            <use xlink:href="#comments"></use>
+          </svg>
+          <span>Messages</span>
         </a>
       </li>
       <li>
@@ -535,34 +536,6 @@ body {
             <use xlink:href="#appearance"></use>
           </svg>
           <span>Service Requests</span>
-        </a>
-      </li>
-      <li class="menu-heading">
-        <h3>Settings</h3>
-      </li>
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#settings"></use>
-          </svg>
-          <span>Configuration</span>
-        </a>
-      </li>
-      
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#charts"></use>
-          </svg>
-          <span>Charts</span>
-        </a>
-      </li>
-      <li>
-        <a href="#0">
-          <svg>
-            <use xlink:href="#charts"></use>
-          </svg>
-          <span>Tables</span>
         </a>
       </li>
       <li>
@@ -634,34 +607,37 @@ body {
     </span>
   </div>
 
-  <!-- Footer-->
-  <footer class="bg-dark py-3 main-footer">
-    <div class="container">
-      <div class="row mb-4">
-        <div class="col-lg-2 col-md-3 col-sm-6">
-          <a href="#" class="footer-link">About Deloitte</a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6">
-          <a href="#" class="footer-link">Our Services</a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6">
-          <a href="#" class="footer-link">Contact Us</a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6">
-          <a href="#" class="footer-link">Terms of Use</a>
-        </div>
-        <div class="col-lg-2 col-md-3 col-sm-6">
-          <a href="#" class="footer-link">Privacy</a>
-        </div>
-      </div>
-    </div>
-    <div class="container"><div class="small text-white">Copyright © 2020 - Deloitte and Touche <br>
-      Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited, a UK private company limited by guarantee (“DTTL”), its network of member firms, and their related entities. DTTL and each of its member firms are legally separate and independent entities. DTTL (also referred to as “Deloitte Global”) does not provide services to clients. Please see www.deloitte.com/about for a detailed description of DTTL and its member firms.
-    </div></div>
-</footer>
+
 </section>
 
-
+  <!-- Footer-->
+  <section>
+    <footer class="bg-dark py-3 main-footer">
+      <div class="container">
+        <div class="row mb-4">
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <a href="#" class="footer-link">About Deloitte</a>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <a href="#" class="footer-link">Our Services</a>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <a href="#" class="footer-link">Contact Us</a>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <a href="#" class="footer-link">Terms of Use</a>
+          </div>
+          <div class="col-lg-2 col-md-3 col-sm-6">
+            <a href="#" class="footer-link">Privacy</a>
+          </div>
+        </div>
+      </div>
+      <div class="container"><div class="small text-white">Copyright © 2020 - Deloitte and Touche <br>
+        Deloitte refers to one or more of Deloitte Touche Tohmatsu Limited, a UK private company limited by guarantee (“DTTL”), its network of member firms, and their related entities. DTTL and each of its member firms are legally separate and independent entities. DTTL (also referred to as “Deloitte Global”) does not provide services to clients. Please see www.deloitte.com/about for a detailed description of DTTL and its member firms.
+      </div></div>
+  </footer>
+  </section>
+  
 <style>
   .footer-link{
     color: white;
@@ -670,6 +646,9 @@ body {
   }
   .footer-link:hover{
     color: greenyellow;
+  }
+  .main-footer{
+    padding-left:17%;
   }
   </style>
 
@@ -710,6 +689,26 @@ for (const link of menuLinks) {
 }
 
 </script>
+
+<script>
+  /* Loop through all dropdown buttons to toggle between hiding and showing its dropdown content - This allows the user to have multiple dropdowns without any conflict */
+  var dropdown = document.getElementsByClassName("dropdown-btn");
+  var i;
+  
+  for (i = 0; i < dropdown.length; i++) {
+    dropdown[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var dropdownContent = this.nextElementSibling;
+    if (dropdownContent.style.display === "block") {
+    dropdownContent.style.display = "none";
+    } else {
+    dropdownContent.style.display = "block";
+    }
+    });
+  }
+
+  
+  </script>
 
 <script type="text/javascript" src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
         <script type="text/javascript" src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>

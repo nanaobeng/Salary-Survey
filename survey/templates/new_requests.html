@@ -5,9 +5,8 @@
    
     
     {% block content %}
-
     <style>
-      #hero {
+            #hero {
   width: 100%;
   height: 15vh;
   background: url("../static/img/home.jpg") top center;
@@ -87,294 +86,431 @@
     line-height: 24px;
   }
   }
-  </style>
-    <div class="row">
-      <div class="col-12">
-        <section id="hero" class="d-flex align-items-center justify-content-center">
-            <div class="container position-relative">
-         <h2><b style="font-size: 40px;">Service Requests</b></h2>
-            
-            </div>
-          </section>
-      </div>
-  </div>
-  <div class="p-4" style="background-color:rgb(245, 243, 243)">
-    <div class="card">
-    <div class="row p-4">
-      <div class="col-12 pb-4 " style="color:grey">
-Custom Filter <i class="icofont-filter"></i>
-      </div>
-      <div class="col-3">
-        <div class="form-group">
-          <label for="sel1" style="color:grey">Status:</label>
-          <select class="form-control" id="status" onchange="filter('status')">
-            <option value="opened">Opened</option>
-            <option value="close">Closed</option>
-   
-           
-          </select>
-        </div>
-      </div>
-
-      <div class="col-3">
-        <div class="form-group">
-          <label for="sel1" style="color:grey">Request Type:</label>
-          <select class="form-control" id="s_period" onchange="filter('s_period')">
-            <option value="corporate">Corporate</option>
-            <option value="individual">Individual</option>
-   
-           
-          </select>
-        </div>
-      </div>
-
-        <div class="col-3">
-          <div class="form-group">
-            <label for="sel1" style="color:grey">Client:</label>
-            <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
-  <datalist id="clients">
-    <option value="ABC">
-    <option value="Modec">
-    <option value="Villagio">
-    <option value="Shell">
-    
-  </datalist>
-          </div>
-      </div>
-
-
-
-
-
-
-    </div>
-    <div class="row p-4 ">
-      <div class="col-12">
-        <div class="row filter_box">
-
-        </div>
-      </div>
-     
-      <div class="col-12 pt-4" >
-       <a href="#" style="color:grey" onclick="clear_filter()" > Discard Filters</a>
-      </div>
-      
-    </div>
-  <div class="row p-4" >
-<div class="col-4 p-4">
-
-<div class="card p-4 parent"  style="height:300px">
-    <div class="row ">
-       
-        <div class="col-12 ">
-      <div class="row">
-        <div class="col-10">
-          <h5><b>Roma Ventures</b></h5>
-        </div>
-        <div class="col-2">
-          <a href="/administration/corporate-request-review" style="color:grey"><i class="icofont-eye-alt" ></i></a>
-        </div>
-     
-       
-      </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-12" style="color:grey;font-size:12px">
-            <div class="row">
-              <div class="col-5">
-                Contact Person
-              </div>
-              <div class="col-1">
-                :
-              </div>
-              <div class="col-6">
-                Justin Kluvert
-              </div>
-            </div>
-         
-          </div>
-          <div class="col-12" style="color:grey;font-size:12px">
-            <div class="row">
-              <div class="col-5">
-                Organization Email
-              </div>
-              <div class="col-1">
-                :
-              </div>
-              <div class="col-6">
-               rmv@rmv.com
-              </div>
-            </div>
-  
-          </div>
-     
-        </div>
-
-        <div class="child">
-          <div class="row ">
-            <div class="col-12" >
-            <h4><span class="badge badge-success">Opened</span></h4>
-         
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-                 
-              Client Type :     Corporate
-          
-              
-          </div>
-          
-          </div>
-        </div>
-    </div>
-</div>
-
-
-
-<div class="col-4 p-4">
-
-  <div class="card p-4 parent"  style="height:300px">
-      <div class="row ">
-         
-          <div class="col-12 ">
-        <div class="row">
-          <div class="col-10">
-            <h5><b>ABC Company</b></h5>
-          </div>
-          <div class="col-2">
-            <a href="/administration/individual-request-review" style="color:grey"><i class="icofont-eye-alt" ></i></a>
-          </div>
-       
-         
-        </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Contact Person
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  Justin Kluvert
-                </div>
-              </div>
-           
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Organization Email
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                 rmv@rmv.com
-                </div>
-              </div>
-    
-            </div>
-       
-          </div>
-  
-          <div class="child">
-            <div class="row ">
-              <div class="col-12" >
-              <h4><span class="badge badge-danger">Closed</span></h4>
-           
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-                   
-                Client Type :    Individual
-            
-                
-            </div>
-            
-            </div>
-          </div>
-      </div>
-  </div>
-
-
-
-
-
-
-</div>
-  
-
-  </div>
-</div>
-</div>
-
-
-
  
 
-    
+  .card {
+    padding: 20px;
+  }
 
+  a {
+    color: inherit;
+  }
+  
+  #searchbar {
+    margin-bottom: auto;
+    margin-top: auto;
+    height: 60px;
+    padding-bottom: 2%;
+  }
+
+  #search_input {
+    border-radius: 10px;
+    outline: 0;
+    width: 450px;
+    line-height: 30px;
+    padding: 0 10px;
+  }
+
+  #search_icon {
+    color: white;
+    margin-left: 5px;
+  }
+
+  .dropdowndown {
+    padding: 10px;
+    display:block;
+  }
+
+  #filterbutton {
+    color: white;
+    justify-content: center;
+    
+  }
+  
+
+  .addBtn {
+  padding: 10px;
+  width: 25%;
+  background: #d9d9d9;
+  color: #555;
+  float: left;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  border-radius: 0;
+}
+
+.addBtn:hover {
+  background-color: #bbb;
+}
+</style>
+
+
+<!--Header-->
+<div class="row">
+  <div class="col-12">
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+      <div class="container position-relative">
+        <h2><b style="font-size: 30px;">Service Requests</b></h2>
+
+      </div>
+    </section>
+  </div>
+</div>
+
+
+<!--Body-->
+
+<div class="row p-5 justify-content-center">
+  <div class="col-10">
+    <form method = 'POST' class="dropdown p-2">
+    <table class="table table-hover">
+      <thead style="background-color: rgb(78, 110, 62);">
+        <th id="searchbar">
+          
+      <input type="text" id="search_input" onkeyup="myFunction()" placeholder="Search...">  
+        
+          <a href="#"><i class="fas fa-search" id="search_icon"></i></a>
+        </th>
+        
+          <th  id="filterbutton"> Filter by: </span></th>
+
+        <th>
+
+            <div class="form-group">
+            
+            <select class="form-select" id="status" >
+                <option selected>Pending</option>
+          <option >Awaiting Client Information</option>
+          <option>First Pass</option>
+          <option>Conflict Check</option>
+          <option>Finish Completion</option>
+          <option>Submitted For Approval</option>
+              </select> 
+            </div>
+         
+        </th>
+      </thead>
+    </table>
+  </form>
+  </div>
 </div>
 
 
 
+
+<div class="py-5">
+  <div class="container">
+    <div class="row hidden-md-up">
+      <h4 style="text-align:left"><i>Individual Requests</i> </h4>
+      {% if ind %}
+      {% for i in ind %}
+        
+        <div class="col-md-3">
+          <div class="card border-primary mb-4 bg-light">
+          
+            <div class="card-body" onclick="viewIndRequests('{{i.id}}',this)" data-id="{{i.id}}" data-toggle="modal" href="#viewIndividualRequestModal">
+              <a class="stretched-link"  >
+                
+                <h4 class="card-title">
+                  {{i.firstname}} {{other}} {{i.lastname}}
+              </h4>
+              </a>
+              <p class="card-subtitle text-muted">{{i.email}}</p>
+              <p class="card-text p-y-1">{{i.service}}.</p>
+              <span class="badge badge-success">{{i.status}}</span>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+      {% else %}
+      <p class="col-row"style="text-align:center;">
+        
+          <em> You have no pending requests to view.</em>
+       
+      </p>
+      {% endif %}
+    </div>
+
+
+    <div class="row hidden-md-up">
+      <h4 style="text-align:left"><i>Corporate Requests</i> </h4>
+      {% if corp %}
+      {% for i in corp %}
+        
+        <div class="col-md-3">
+          <div class="card" onclick="viewCorpRequests('{{i.id}}', this)" data-id="{{i.id}}">
+            <!-- <img class="card-img-top"
+              src="https://assets.weforum.org/article/image/h8zzPl7mwOEfDPhQGyspAOz2uIHhOZMQcW-pzm2Lc-A.jpg"
+              alt="Card image" style="width:100%"> -->
+            <div class="card-body">
+              <a class="stretched-link" data-toggle="modal" href="#viewCorporateRequestModal">
+                
+                <h4 class="card-title">
+                  {{i.company_name}}
+              </h4>
+              </a>
+              <h6 class="card-subtitle text-muted">{{i.company_email}} </h6>
+              <p class="card-text p-y-1">{{i.service}}</p>
+              <span id='status' class="badge badge-success">{{i.status}}</span>
+            </div>
+          
+          </div>
+        </div>
+      {% endfor %}
+      {% else %}
+      <p class="col-row"style="text-align:center;">
+        
+          <em> You have no pending requests to view.</em>
+       
+      </p>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+
+<!-- Individual Request Modal -->
+
+<div class="modal fade" id="viewIndividualRequestModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+ 
+    <!-- Modal content-->
+    <div class="modal-content">
+      <form action="" method="POST" id="updateForm" onsubmit="updateIndRequest()">
+      <div id="head" class="modal-header d-block" style="height: auto">    
+      </div>
+      <div id="body" class="modal-body">
+        <!--Request Description-->
+        
+      </div>
+    
+   <div class="modal-footer form-group">
+   </div>
+     
+  </form>
+    </div>
+    </div>
+  </div>
+<!--End of modal content-->
+
+    </div>
+
+  </div>
+
+<!--End of modal-->
+
 <script>
-  function filter(view){
-if(view == 'status'){
+  function viewIndRequests(modal, element){
+    localStorage.setItem('requestId', $(element).attr('data-id'))
+    var id =$(element).attr('data-id')
 
-  var unique = ($('#status').val()).trim().replace(/\s/g,'')
+    $.ajax({
+      url: '/view_request/'+id,
+      data: { 
+       
+      },
+      type: 'POST',
+      success: function(res){
+        console.log(res)
+        res1 = res[0]
+       
+        $('#head').html(
+          `<div class="d-flex">
+          <h4 class="modal-title"> ${res1.firstname} ${res1.lastname}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <h6 style="color: gray;" class="modal-title">${res1.email}</h5>`
+        )
+        $('#body').html(
+          `<div>
+          <p>Request Title: <span style="color: gray;">${res1.service}</span></p>
+          <p>Address: <span style="color: gray;">${res1.address},  ${res1.city}, ${res1.country}.
+            </span></p>
+        </div>
+        <hr>
+        <!--Change Status / Add Comments-->
+        <div class="form-group">
+            <p>Comments:
+            <ol id="commentList" style="color: gray;">
+              <li>Check your mail</li>
+            </ol>
+            </p>
+                     
+          {{form.comment.label(class="comment-label")}}
+            {% if form.comment.errors %}
+              {{ form.comment(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.comment.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.comment(class="form-control form-control") }}
+              {% endif %}
+  
+         
 
-  if($("#" + unique).length == 0 ){
- $('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-info">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
-}
+        </div>
+        <hr>
+        <!--Change Status-->
+        <div class="row">
+          
+       <div class="form-group">
+          
+           
+        {{ form.newstatus }}
+  
+      </div>
+      {{form.submit}} 
+        </div>
+      `
+        )
+        for (var i=0; i<res[1].comments.length; i++){
+          $('#commentList').append('<li>' + res[1].comments[i] + '</li>')
+        }
+      },
+      error: function(error){
+        console.log(error)
+      }
+    })
   }
 
-  if(view == 'client'){
-
-var unique = ($('#client').val()).trim().replace(/\s/g,'')
-
-if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-warning">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
-}
-}
-
-
-if(view == 'industry'){
-
-var unique = ($('#industry').val()).trim().replace(/\s/g,'')
-
-if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-danger">'+$('#industry').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
-}
-}
-
-if(view == 's_period'){
-
-var unique = ($('#s_period').val())
-unique = unique.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-unique = "a"+unique
-
-if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-success">'+$('#s_period').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
-}
-}
+  function updateIndRequest(){
+    var requestId = localStorage.getItem('requestId')
+    document.getElementById('updateForm').action = 'service_requests/update/' + requestId
   }
 </script>
 
-<script>
-  function remove_filter(id){
+<!-- Corporate Request Modal -->
+
+<div class="modal fade" id="viewCorporateRequestModal" role="dialog">
+  <div class="modal-dialog modal-lg">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="container" style="height: auto">
+        <form method="POST" action="./service_requests" id="updateCorpForm" onsubmit="updateCorpRequest()"  style="display: inline">
+            <br/>
+           
+            <fieldset class="form-group">
+      <div id="corphead" class="modal-header d-block">
+        
+      </div>
+      <div id="corpbody" class="modal-body">
+        <!--Request Description-->
+        
+        <hr>
    
-    $(id).remove()
-  }
-</script>
+      </div>
+    </fieldset>
+   <div class="modal-footer form-group">
+      
+      <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
+  
+   
+   </div>
+     
+    
+    </form>
+    </div>
+  </div>
+<!--End of modal content-->
+
+    </div>
+
+  </div>
+
+<!--End of modal-->
 
 <script>
-  function clear_filter(){
-    $('.filter_box').empty()
+  function viewCorpRequests(modal, element){
+    localStorage.setItem('corprequestId', $(element).attr('data-id'))
+    var corpid =$(element).attr('data-id')
+
+    $.ajax({
+      url: '/view_corprequest/'+corpid,
+      data: { 
+       
+      },
+      type: 'POST',
+      success: function(result){
+        console.log(result)
+        res2 = result[0]
+       
+        $('#corphead').html(
+          `<div class="d-flex">
+          <h4 class="modal-title"> ${res2.company_name}</h3>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <h6 style="color: gray;" class="modal-title">${res2.company_email}</h5>`
+        )
+        $('#corpbody').html(
+          `<div>
+          
+          <p>Request Title: <span style="color: gray;">${res2.service} </span></p>
+            <p>Address:<span  style="color: gray;"> ${res2.postal_address}</span></p>
+        </div>
+        <hr>
+        <!--Change Status / Add Comments-->
+        <div class="form-group">
+            <p>Comments:
+            <ol id="commentList" style="color: gray;">
+              <li>Check your mail</li>
+            </ol>
+            </p>
+                     
+          {{form.comment.label(class="comment-label")}}
+            {% if form.comment.errors %}
+              {{ form.comment(class="form-control form-control is-invalid")}}
+              <div class="invalid-feedback">
+                  {% for error in form.comment.errors %}
+                  <span> {{ error}}</span>
+                  {% endfor %}
+              </div>
+              {% else %}
+              {{ form.comment(class="form-control form-control") }}
+              {% endif %}
+  
+          
+          
+
+        </div>
+        <hr>
+        <!--Change Status-->
+        <div class="row">
+          
+       <div class="form-group">
+          
+          {{ form.newstatus }}
+  
+          </div>
+          {{form.submit}}
+        </div>
+       
+      `
+        )
+        for (var i=0; i<result[1].comments.length; i++){
+          $('#commentList').append('<li>' + result[1].comments[i] + '</li>')
+        }
+      },
+      error: function(error){
+        console.log(error)
+      }
+    })
+  }
+
+  function updateCorpRequest(){
+    var requestId = localStorage.getItem('corprequestId')
+    document.getElementById('updateCorpForm').action = 'service_requests/corpupdate/' + requestId
   }
 </script>
 
-    {% endblock content %}
+
+  
+{% endblock content %}

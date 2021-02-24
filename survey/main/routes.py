@@ -50,7 +50,7 @@ def individual_requests():
     form = IndividualRequestForm()
     if form.validate_on_submit():
         
-        indv = Individual_request(firstname=form.firstname.data,lastname=form.lastname.data,other=form.other.data,email=form.email.data,dob=form.dob.data,phone=form.phone.data,city=form.city.data,country=form.country.data,service=form.service.data,address=form.address.data)
+        indv = Individual_request(firstname=form.firstname.data,lastname=form.lastname.data,email=form.email.data,dob=form.dob.data,phone=form.phone.data,city=form.city.data,country=form.country.data,service=form.service.data,address=form.address.data)
         db.session.add(indv)
         db.session.commit()
         flash('Thank you for the request. You will be contacted by a Deloitte Professional','success')
@@ -62,7 +62,7 @@ def individual_requests():
 def corporate_requests():
     form = CorporateRequestForm()
     if form.validate_on_submit():
-       corp = Corporate_request(
+        corp = Corporate_request(
         company_name = form.company_name.data,
         sector = form.sector.data,
         industry = form.industry.data,
@@ -122,12 +122,11 @@ def corporate_requests():
         contact_dob=form.contact_dob.data,
         contact_phone=form.contact_phone.data,
         brief_history=form.brief_history.data,
-        service=form.service.data
-        )
-       db.session.add(corp)
-       db.session.commit()
-       flash('Thank you for the request. You will be contacted by a Deloitte Professional','success')
-       return redirect(url_for('main.corporate_requests'))
+        service=form.service.data)
+        db.session.add(corp)
+        db.session.commit()
+        flash('Thank you for the request. You will be contacted by a Deloitte Professional','success')
+        return redirect(url_for('main.corporate_requests'))
     return render_template("corporate_request.html",form=form)
 
 

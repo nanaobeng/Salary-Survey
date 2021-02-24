@@ -1,0 +1,298 @@
+{% extends "new_client_layout.html" %}
+
+
+   
+    
+{% block content %}
+
+<style>
+
+.green_shade{
+  color:rgba(66,99,50,1)
+}
+  #hero {
+width: 100%;
+height: 15vh;
+background: url("../static/img/home.jpg") top center;
+background-size: cover;
+position: relative;
+}
+
+#hero:before {
+content: "";
+background: rgba(20, 44, 9, 0.7);
+position: absolute;
+bottom: 0;
+top: 0;
+left: 0;
+right: 0;
+}
+
+#hero .container {
+text-align: center;
+padding-top: 50px;
+}
+
+@media (max-width: 992px) {
+#hero .container {
+padding-top: 0;
+}
+}
+
+#hero h1 {
+margin: 0;
+font-size: 48px;
+font-weight: 700;
+line-height: 56px;
+color: #fff;
+}
+
+#hero h2 {
+color: #eee;
+margin: 15px 0 0 0;
+font-size: 22px;
+}
+
+#hero .btn-get-started {
+font-family: "Raleway", sans-serif;
+font-weight: 500;
+font-size: 15px;
+letter-spacing: 1px;
+display: inline-block;
+padding: 9px 35px;
+border-radius: 50px;
+transition: 0.5s;
+margin-top: 40px;
+border: 2px solid #ffc107;
+color: #fff;
+}
+
+#hero .btn-get-started:hover {
+background: #ffc107;
+}
+
+@media (min-width: 1024px) {
+#hero {
+background-attachment: fixed;
+}
+}
+
+@media (max-width: 768px) {
+#hero {
+height: 100vh;
+}
+#hero h1 {
+font-size: 28px;
+line-height: 36px;
+}
+#hero h2 {
+font-size: 18px;
+line-height: 24px;
+}
+}
+</style>
+
+<div class="row">
+    <div class="col-12">
+      <section id="hero" class="d-flex align-items-center justify-content-center">
+          <div class="container position-relative">
+       <h2><b style="font-size: 40px;">Search Benchmark Jobs </b></h2>
+          
+          </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {%if messages %}
+  {% for category, message in messages %}
+  <div class="container">
+  <div class="alert alert-{{ category}}">
+      {{message}}
+  </div>
+</div>
+  {% endfor %}
+
+  {% endif %}
+
+{% endwith %}
+</div>
+
+<div class="p-4 " style="background-color:rgb(245, 243, 243)">
+    <div class="row p-4 ">
+        <div class="col-12 d-flex justify-content-center">
+            <div class="input-group col-6" style="max-width: 700px;">
+                <input type="text" class="form-control" placeholder="Search job" id="search_job" autocomplete="off">
+                <div class="input-group-append">
+                    <button class="btn btn-secondary" type="button" onclick="search_job()">
+                    <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="col d-flex justify-content-center">
+            <div class="col-lg-10 col-md-12 pt-4">
+                <table class="table table-striped" id="search_results" style="display: none;">
+                    <thead class="bg-success">
+                        <th>#</th>
+                        <th>Job Title</th>
+                        <th>Department</th>
+                        <th>Area of Operation</th>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</div>
+
+<div class="modal" id="JobModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="job_title"></h4>&nbsp;&nbsp;
+          <span id="header_status" class=""></span>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+
+              <div class="row">
+                <div class="col-lg-6 col-md-12 mb-2">
+                  <b>Job Grade:  </b> <span id="grade"></span>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-2">
+                  <b>Department: </b> <span id="department"></span>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-lg-6 col-md-12 mb-2">
+                  <b>Reporting Relationship </b>
+                  <br>
+                  <span id="reporting_relationship"></span>
+                </div>
+               
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Generic Job Description:</b><br>
+                      <span id="job_description"></span>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Key Duties & Responsibilities:</b><br>
+                      <span id="key_duties"></span>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Financial Responsibilities:</b><br>
+                      <span id="financial_responsibilities"></span>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Technical Qualifications:</b><br>
+                      <span id="technical_qualifications"></span>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Years of Experience:</b><br>
+                      <span id="years_of_experience"></span>
+                  </div>
+              </div>
+
+  
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+<script>
+    $('#search_job').keyup(function(){
+        $.ajax({
+            url: '/job_pool/search',
+            data: {
+                search: this.value,
+           
+            },
+            type: 'POST',
+            success: function(res) {
+                //empty table body
+                
+                console.log(res)
+                if(res.length > 0){
+                    res.forEach(element => {
+                        add_row(element.id, element.job_title, element.department, element.area)
+                      });
+                      document.getElementById('search_results').style.display = 'block'
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+      
+    })
+
+    function add_row(id, job_title, department, area){
+        var row = `<tr onclick='display_job(`+id+`)'>
+            <td>1</td>
+            <td>`+job_title+`</td>
+            <td>`+department+`</td>
+            <td>`+area+`</td>
+        </tr>`
+
+        $('#search_results').append(row)
+    }
+
+    //display job_details in modal
+  function display_job(element){
+    var id =element
+  
+    localStorage.setItem('item_id', id)
+    $.ajax({
+      url: '/job_pool/search/view',
+      data: {
+          id: id
+      },
+      type: 'POST',
+      success: function(res) {
+        $('#comments').html('')
+        for (const [key, value] of Object.entries(res)) {
+            const item = '#'+`${key}`
+            $('#'+`${key}`).text(`${value}`)
+            
+        }
+        
+        
+        $('#JobModal').modal('show')
+          
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+
+  }
+</script>
+{% endblock content %}

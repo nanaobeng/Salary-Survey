@@ -94,7 +94,7 @@ line-height: 24px;
   <div class="col-12">
     <section id="hero" class="d-flex align-items-center justify-content-center">
         <div class="container position-relative">
-     <h2><b style="font-size: 40px;"> ABC COMPANY </b></h2>
+     <h2><b style="font-size: 40px;"> {{client.company_name}} </b></h2>
         
         </div>
       </section>
@@ -189,49 +189,12 @@ line-height: 24px;
 
 
 <div class="row  " >
-<div class="col-3 pt-4 pl-4">
-  <span style="color:grey">Create Survey</span>
-</div>
-<div class="col-9 pt-4 pl-4">
-  <span style="color:grey">Questions</span>
-</div>
-
-<div class="col-md-3  col-sm-12 p-4">
-
-<div class="card p-4">
-<div class="row ">
-   
-    <div class="col-12 ">
-<b>Client Setup</b>
-<br/>
-
-<span class="pt-3"style="color:grey;font-size: 12px;">Created on 12/3/2019</span>
-
-    </div>
-
-    <div class="col-12 p-4">
-      <hr/>
-      <div class="row p-4">
-        <div class="col-6 text-center">
-          <h1><b class="green_shade">5</b></h1>
-          <span style="color:grey;font-size: 12px;">Questions</span>
-
-        </div>
-        <div class="col-6 text-center">
-          <h1><b class="green_shade">4</b></h1>
-          <span style="color:grey;font-size: 12px;">Sections</span>
-
-        </div>
-      </div>
-      <hr/>
-
-    </div>
-    </div>
-</div>
-</div>
 
 
-<div class="col-md-9 col-sm-12 p-4">
+
+
+
+<div class="col-md-12 col-sm-12 p-4">
 
 <div class="row  company_details">
 <div class="col-12 pl-4 pr-4 pb-4 ">
@@ -240,7 +203,7 @@ line-height: 24px;
       <div class="col-12 p-4">
      
         <label class="green_shade"><b>Registered Company Name</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="text" class="form-control" value="{{client.company_name}}" disabled/>
       </div>
    
 
@@ -249,12 +212,7 @@ line-height: 24px;
         <label class="green_shade"><b>Sector</b></label>
         <div class="form-group">
 
-          <select class="form-control" id="sel1" disabled>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
+          <input type="text" class="form-control" value="{{client.sector.sector}}" disabled/>
         </div>
       </div>
 
@@ -264,12 +222,7 @@ line-height: 24px;
         <label class="green_shade"><b>Industry</b></label>
         <div class="form-group">
 
-          <select class="form-control" id="sel1" disabled>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
+          <input type="text" class="form-control" value="{{client.industry.industry}}" disabled/>
         </div>
       </div>
 
@@ -279,12 +232,7 @@ line-height: 24px;
         <label class="green_shade"><b>Area of Operation</b></label>
         <div class="form-group">
 
-          <select class="form-control" id="sel1" disabled>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
+          <input type="text" class="form-control" value="{{client.area.area}}" disabled/>
         </div>
       </div>
    
@@ -292,60 +240,60 @@ line-height: 24px;
       <div class="col-4 p-4">
      
         <label class="green_shade"><b>Financial Year End</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="text" class="form-control" value="{{client.financial_year_end}}"  disabled/>
       </div>
 
 
       <div class="col-4 p-4">
      
         <label class="green_shade"><b>Company Type</b></label>
-        <input type="text" class="form-control"disabled />
+        <input type="text" class="form-control"  value="{{client.company_type}}"  disabled />
       </div>
 
 
       <div class="col-4 p-4">
      
         <label class="green_shade"><b>VAT Number</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="text" class="form-control"  value="{{client.vat_number}}"  disabled/>
       </div>
        
 
       <div class="col-4 p-4 ">
      
         <label class="green_shade"><b>Telephone</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="text" class="form-control" value="{{client.tel}}"  disabled/>
       </div>
 
 
       <div class="col-4 p-4">
      
         <label class="green_shade"><b>Fax Number</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="text" class="form-control" value="{{client.fax}}"  disabled/>
       </div>
 
       <div class="col-4 p-4">
      
         <label class="green_shade"><b>Email Address</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="text" class="form-control" value="{{client.company_email}}"  disabled/>
       </div>
 
       <div class="col-6 p-4">
      
         <label class="green_shade"><b>Website Address</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="text" class="form-control" value="{{client.website}}"  disabled/>
       </div>
 
 
       <div class="col-6 p-4 ">
      
         <label class="green_shade"><b>Date of Incorporation</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="date" class="form-control" value="{{client.date_inc.strftime('%Y-%m-%d')}}"  disabled/>
       </div>
 
       <div class="col-4 p-4">
      
         <label class="green_shade"><b>Country of Incorporation</b></label>
-        <input type="text" class="form-control" disabled/>
+        <input type="text" class="form-control"  value="{{client.country_inc}}" disabled/>
       </div>
 
         </div>
@@ -418,7 +366,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Firstname</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.board_chairman.first_name}}" disabled>
           </div>
 
         </div>
@@ -427,7 +375,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Lastname</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.board_chairman.last_name}}" disabled>
           </div>
 
         </div>
@@ -436,7 +384,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Other Name</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.board_chairman.other_names}}" disabled>
           </div>
 
         </div>
@@ -445,7 +393,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Email Address</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.board_chairman.email}}" disabled>
           </div>
 
         </div>
@@ -454,7 +402,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Nationality</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.board_chairman.nationality}}" disabled>
           </div>
 
         </div>
@@ -463,7 +411,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Phone Number</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.board_chairman.mobile_number}}" disabled>
           </div>
 
         </div>
@@ -534,7 +482,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Firstname</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+              <input type="text" class="form-control" value="{{client.ceo.first_name}}" disabled>
             </div>
 
           </div>
@@ -543,7 +491,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Lastname</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+              <input type="text" class="form-control" value="{{client.ceo.last_name}}" disabled>
             </div>
 
           </div>
@@ -552,7 +500,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Other Name</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+              <input type="text" class="form-control" value="{{client.ceo.other_names}}" disabled>
             </div>
 
           </div>
@@ -561,7 +509,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Email Address</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+              <input type="text" class="form-control" value="{{client.ceo.email}}" disabled>
             </div>
 
           </div>
@@ -570,7 +518,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Nationality</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+              <input type="text" class="form-control" value="{{client.ceo.nationality}}" disabled>
             </div>
 
           </div>
@@ -579,7 +527,7 @@ line-height: 24px;
             
             <div class="form-group">
               <label class="green_shade"><b>Phone Number</b></label>
-              <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+              <input type="text" class="form-control" value="{{client.ceo.mobile_number}}" disabled>
             </div>
 
           </div>
@@ -649,7 +597,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Firstname</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.key_management.first_name}}" disabled>
           </div>
 
         </div>
@@ -658,7 +606,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Lastname</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.key_management.last_name}}" disabled>
           </div>
 
         </div>
@@ -667,7 +615,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Other Name</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.key_management.other_names}}" disabled>
           </div>
 
         </div>
@@ -676,7 +624,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Email Address</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.key_management.email}}" disabled>
           </div>
 
         </div>
@@ -685,7 +633,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Nationality</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control"value="{{client.key_management.nationality}}" disabled>
           </div>
 
         </div>
@@ -694,7 +642,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Phone Number</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.key_management.mobile_number}}" disabled>
           </div>
 
         </div>
@@ -762,7 +710,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Name</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.previous_auditor.name}}" disabled>
           </div>
 
         </div>
@@ -771,7 +719,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Address</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.previous_auditor.address}}" disabled>
           </div>
 
         </div>
@@ -780,7 +728,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.previous_auditor.city}}" disabled>
           </div>
 
         </div>
@@ -789,7 +737,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.previous_auditor.country}}" disabled>
           </div>
 
         </div>
@@ -864,7 +812,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Name</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.current_auditor.name}}" disabled>
           </div>
 
         </div>
@@ -873,7 +821,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Address</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.current_auditor.address}}" disabled>
           </div>
 
         </div>
@@ -882,7 +830,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.current_auditor.city}}" disabled>
           </div>
 
         </div>
@@ -891,7 +839,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.current_auditor.country}}" disabled>
           </div>
 
         </div>
@@ -967,7 +915,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Name</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.company_secretary.name}}" disabled>
           </div>
 
         </div>
@@ -976,7 +924,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Address</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.company_secretary.address}}" disabled>
           </div>
 
         </div>
@@ -985,7 +933,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.company_secretary.city}}" disabled>
           </div>
 
         </div>
@@ -994,7 +942,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.company_secretary.country}}" disabled>
           </div>
 
         </div>
@@ -1065,8 +1013,8 @@ line-height: 24px;
         <div class="col-6 ">
           
           <div class="form-group">
-            <label class="green_shade"><b>Street line 1</b></label>
-            <textarea cols="3" rows="3" class="form-control" disabled></textarea>
+            <label class="green_shade"><b>Building</b></label>
+            <textarea cols="3" rows="3" class="form-control" disabled>{{client.postal_address.street_line1}}</textarea>
           </div>
 
         </div>
@@ -1074,8 +1022,8 @@ line-height: 24px;
         <div class="col-6 ">
           
           <div class="form-group">
-            <label class="green_shade"><b>Street line 2</b></label>
-            <textarea cols="3" rows="3" class="form-control" disabled></textarea>
+            <label class="green_shade"><b>Street </b></label>
+            <textarea cols="3" rows="3" class="form-control" disabled>{{client.postal_address.street_line2}}</textarea>
           </div>
 
         </div>
@@ -1084,7 +1032,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City/Town</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control"value="{{client.postal_address.city}}" disabled>
           </div>
 
         </div>
@@ -1093,7 +1041,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Region</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.postal_address.region}}" disabled>
           </div>
 
         </div>
@@ -1102,7 +1050,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.postal_address.country}}" disabled>
           </div>
 
         </div>
@@ -1164,7 +1112,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Building</b></label>
-            <textarea cols="2" rows="2" class="form-control" disabled></textarea>
+            <textarea cols="2" rows="2" class="form-control" disabled>{{client.street_address.street_line1}}}</textarea>
           </div>
 
         </div>
@@ -1173,7 +1121,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Street</b></label>
-            <textarea cols="2" rows="2" class="form-control" disabled></textarea>
+            <textarea cols="2" rows="2" class="form-control" disabled>{{client.street_address.street_line2}}</textarea>
           </div>
 
         </div>
@@ -1182,7 +1130,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>City/Town</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.street_address.city}}" disabled>
           </div>
 
         </div>
@@ -1193,7 +1141,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Country</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.street_address.country}}" disabled>
           </div>
 
         </div>
@@ -1258,7 +1206,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Registration Number</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.reg_number}}" disabled>
           </div>
 
         </div>
@@ -1267,7 +1215,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Tax ID</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.tax_id}}" disabled>
           </div>
 
         </div>
@@ -1331,7 +1279,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Firstname</b></label>
-          <input type="text" class="form-control" disabled/>
+          <input type="text" class="form-control" value="{{client.contact_person.first_name}}" disabled/>
           </div>
 
         </div>
@@ -1339,8 +1287,8 @@ line-height: 24px;
         <div class="col-4 ">
           
           <div class="form-group">
-            <label class="green_shade"><b>Middlename</b></label>
-            <input type="text" class="form-control"/>
+            <label class="green_shade"><b>Other Names</b></label>
+            <input type="text" class="form-control" value="{{client.contact_person.other_names}}" />
           </div>
 
         </div>
@@ -1349,7 +1297,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Lastname</b></label>
-            <input type="text" class="form-control" disabled/>
+            <input type="text" class="form-control" value="{{client.contact_person.last_name}}"  disabled/>
           </div>
 
         </div>
@@ -1358,7 +1306,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Job Title</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.contact_person.job}}"  disabled>
           </div>
 
         </div>
@@ -1367,7 +1315,7 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Email Address</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.contact_person.email}}"  disabled>
           </div>
 
         </div>
@@ -1376,7 +1324,25 @@ line-height: 24px;
           
           <div class="form-group">
             <label class="green_shade"><b>Phone</b></label>
-            <input type="text" class="form-control" id="start_date" name="Start Date" disabled>
+            <input type="text" class="form-control" value="{{client.contact_person.mobile_number}}"  disabled>
+          </div>
+
+        </div>
+
+        <div class="col-4 ">
+          
+          <div class="form-group">
+            <label class="green_shade"><b>Nationality</b></label>
+            <input type="text" class="form-control" value="{{client.contact_person.nationality}}"  disabled>
+          </div>
+
+        </div>
+
+        <div class="col-4 ">
+          
+          <div class="form-group">
+            <label class="green_shade"><b>Date of Birth</b></label>
+            <input type="date" class="form-control" value="{{client.contact_person.date_of_birth.strftime('%Y-%m-%d')}}"  disabled>
           </div>
 
         </div>

@@ -88,6 +88,21 @@
     line-height: 24px;
   }
   }
+
+  .job-card:hover{
+      box-shadow: 0 0 10px #9ecaed;
+      cursor: pointer;
+  }
+
+  .badge.badge-pill{
+    color: white !important;
+  }
+  
+  .badge-col{
+    flex: 0 0 auto;
+    width: auto;
+  }
+
   </style>
     <div class="row">
       <div class="col-12">
@@ -99,199 +114,153 @@
           </section>
       </div>
   </div>
+  <div class="row p-4">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {%if messages %}
+    {% for category, message in messages %}
+    <div class="container">
+    <div class="alert alert-{{ category}}">
+        {{message}}
+    </div>
+  </div>
+  
+  
+    {% endfor %}
+  
+    {% endif %}
+  
+  {% endwith %}
+  </div>
   <div class="p-4" style="background-color:rgb(245, 243, 243)">
     <div class="row p-4">
+       
         <div class="col-6">
-            <a class="btn btn-outline-success" data-toggle="modal" data-target="#upload_jobs">Upload Jobs</a>
-        </div>
-        <div class="col-6 text-right">
-            <a href="/my_benchmark_jobs/options" class="btn btn-outline-primary">Add Benchmark</a>
+          <button type="button"  class="btn btn-success  dropdown-toggle dropdown-toggle-split" data-toggle="dropdown">
+            New Benchmark Job
+          </button>
+          <div class="dropdown-menu">
+            <a class="dropdown-item" href="/my_benchmark_jobs/new">Create New Job</a>
+            <a class="dropdown-item" href="/my_benchmark_jobs/new">Select From Job Pool</a>
+            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#upload_jobs">Upload Job</a>
+          </div>
+            <!-- <a href="/my_benchmark_jobs/options" class="btn btn-outline-primary">New Benchmark Job</a> -->
         </div>
 
     </div>
-<div class="card">
-    <div class="row p-4">
-      <div class="col-12 pb-4 " style="color:grey">
-Custom Filters <i class="icofont-filter"></i>
-      </div>
-      <div class="col-3">
-        <div class="form-group">
-          <label for="sel1" style="color:grey">Status:</label>
-          <select class="form-control" id="status" onchange="filter('status')">
-            <option value="saved">Saved</option>
-            <option value="submitted">Submitted</option>
-            <option value="verified">Verified</option>
-   
-           
-          </select>
+    <div class="p-4" style="background-color:rgb(245, 243, 243)">
+      <div class="card">
+      <div class="row p-4 pb-0">
+        <div class="col-12 pb-4 " style="color:grey">
+          Custom Filters <i class="icofont-filter"></i>
         </div>
-      </div>
-
         <div class="col-3">
           <div class="form-group">
-            <label for="sel1" style="color:grey">Job Title:</label>
-            <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
-  <datalist id="clients">
-    <option value="Procurement Asistant">
-    <option value="Accountant">
-    <option value="HR Officer">
-    <option value="Internal Audit Manager">
-    
-  </datalist>
-          </div>
-      </div>
-
-
-      <div class="col-3">
-        <div class="form-group">
-          <label for="sel1" style="color:grey">Department:</label>
-          <select class="form-control" id="industry" onchange="filter('industry')">
-            <option value="finance">Finance</option>
-            <option value="Internal Audit">Internal Audit</option>
-           
-           
-          </select>
-        </div>
-    </div>
-
-
-
-
-    </div>
-    <div class="row p-4 ">
-      <div class="col-12">
-        <div class="row filter_box p-2 ">
-
-        </div>
-      </div>
-     
-      <div class="col-12 " >
-       <a href="#" style="color:grey" onclick="clear_filter()" > Discard Filters</a>
-      </div>
-      
-    </div>
-  <div class="row p-4" >
-<div class="col-4 p-4">
-
-<div class="card p-4 parent"  style="height:200px">
-    <div class="row ">
-       
-        <div class="col-12 ">
-      <div class="row">
-        <div class="col-10">
-          <h5><b>Procurement Asistant</b></h5>
-        </div>
-        <div class="col-1">
-          <a href="/user/view-benchmark" style="color:grey"><i class="icofont-eye-alt" ></i></a>
-        </div>
-      
-       
-      </div>
-        </div>
-        </div>
-        <div class="row">
-          <div class="col-12" style="color:grey;font-size:12px">
-            <div class="row">
-              <div class="col-5">
-                Department
-              </div>
-              <div class="col-1">
-                :
-              </div>
-              <div class="col-6">
-             Procurement
-              </div>
-            </div>
-         
-          </div>
- 
-   
-        </div>
-
-        <div class="child">
-          <div class="row ">
-            <div class="col-12" >
-            <h4><span class="badge badge-success">Verified</span></h4>
-         
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-                 
-              Date Created :     2/11/2020
-          
-              
-          </div>
-          
+            <label for="sel1" style="color:grey">Status:</label>
+            <select class="form-control" id="status" onchange="filter('status')">
+              <option value="">---Select---</option>
+              <option value="Pending">Pending</option>
+              <option value="Approved">Approved</option>
+              <option value="Rejected">Rejected</option>
+             
+            </select>
           </div>
         </div>
-    </div>
-</div>
-
-
-
-
-<div class="col-4 p-4">
-
-  <div class="card p-4 parent"  style="height:200px">
-      <div class="row ">
-         
-          <div class="col-12 ">
-        <div class="row">
-          <div class="col-10">
-            <h5><b>HR Officer</b></h5>
-          </div>
-          <div class="col-1">
-            <a href="/user/view-benchmark" style="color:grey"><i class="icofont-eye-alt" ></i></a>
-          </div>
-        
-         
-        </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Department
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                 Human Capital
-                </div>
-              </div>
-           
-            </div>
-       
-       
-          </div>
-
-          <div class="child">
-            <div class="row ">
-              <div class="col-12" >
-              <h4><span class="badge badge-warning">Submitted</span></h4>
-           
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-                 
-                Date Created :     11/05/1991
-            
-                
-            </div>
-            
-            </div>
-          </div>
-      </div>
-  </div>
-
-
-
-
-
   
-
-</div>
+  
+      </div>
+      <div class="row pl-4 pr-4 ">
+        <div class="col-12 pb-2">
+          <div class="row filter_box">
+  
+          </div>
+        </div>
+       
+        <div class="col-12" >
+         <a href="#" style="color:grey" onclick="clear_filter()" > Discard Filters</a>
+        </div>
+        
+      </div>
+    <div class="row p-4 pt-0" id="cards">
+        {% for benchmark_job in benchmark_jobs %}
+        <div class="col-lg-4 col-md-6 col-sm-12 p-4">
+  
+          <div class="card p-4 parent job-card" id="{{benchmark_job.id}}" onclick="display_job(this)" style="height:140px">
+              <div class="row ">
+                 
+                  <div class="col-12 ">
+                <div class="row">
+                  <div class="col-10" >
+                    <h5 style="overflow: hidden; white-space: nowrap;"><b>{{benchmark_job.job_title}}</b></h5>
+                  </div>
+                  <div class="col-2">
+                    <i class="icofont-ui-note" style="color:grey;cursor:pointer" data-toggle="modal" data-target="#JobModal"></i>
+                  </div>
+                 
+                </div>
+                  </div>
+                  </div>
+                  <div class="row">
+                    
+                    <div class="col-12" style="color:grey;font-size:12px">
+                      <div class="row">
+                        <div class="col-5">
+                          Department 
+                        </div>
+                        <div class="col-1">
+                          :
+                        </div>
+                        <div class="col-6">
+                          {{benchmark_job.main_department.department}}
+                        </div>
+                      </div>
+            
+                    </div>
+                    <div class="col-12" style="color:grey;font-size:12px">
+                      <div class="row">
+                        <div class="col-5">
+                        Grade
+                        </div>
+                        <div class="col-1">
+                          :
+                        </div>
+                        <div class="col-6">
+                          {{benchmark_job.grade}}
+                        </div>
+                      </div>
+                        
+                    </div>
+                  </div>
+          
+                  <div class="">
+                    <div class="row mt-2">
+                      <div class="col-6" style="color:grey;font-size:12px">
+                          Submitted on :     {{benchmark_job.timestamp.strftime('%d-%m-%Y')}}
+                      </div>
+                      <div class="col-6" >
+                          
+                       
+                          {% if benchmark_job.status == 'Pending' %}
+                              {% set color = 'warning' %}
+                          {% else %}
+                              {% if benchmark_job.status == 'Rejected' %}
+                                  {% set color = 'danger' %}
+                              {% else %}
+                                  {% set color = 'success' %}
+                              {% endif %}
+                          {% endif %}
+                          <h6 class="float-right"><span class="badge badge-{{color}}">{{benchmark_job.status}}</span></h6>
+                      </div>
+                     
+                    </div>
+                  </div>
+              </div>
+          </div>
+        {% endfor %}
+  
   </div>
+    
+  </div>
+    </div>
 
   </div>
 </div>
@@ -329,60 +298,185 @@ Custom Filters <i class="icofont-filter"></i>
     </div>
   </div>
 
-<script>
-  function filter(view){
-if(view == 'status'){
+  <script>
+    var selected_status = []
 
-  var unique = ($('#status').val()).trim().replace(/\s/g,'')
-
-  if($("#" + unique).length == 0 ){
- $('.filter_box').prepend( '<div id="'+unique+'"class="col-2"><span class="badge badge-pill badge-info">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
-}
+    function filter(view){
+  if(view == 'status'){
+  
+    var unique = ($('#status').val()).trim().replace(/\s/g,'')
+  
+    if($("#" + unique).length == 0 ){
+   $('.filter_box').prepend( '<div id="'+unique+'"class="badge-col" ><span class="badge badge-pill badge-info" data-value="'+$('#status').val()+'">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+', '+ `'`+view+`'`+')"></i></span></span></div>')
+      selected_status.push(unique)
   }
+  $('#status').val('')
+    }
+  
+  
+  filter_job()
+    }
+  </script>
+  
+  <script>
+    function remove_filter(id , _filter){
+  
+     var item = $(id).children('span').attr('data-value')
+     if(_filter == 'status'){
+      for(let i =0; i<selected_status.length; i++){
+      if(selected_status[i] == item){
+        selected_status.splice(i, 1)
+        break
+      }
+     }
+     }
 
-  if(view == 'client'){
+     
+      $(id).remove()
+      filter_job()
+  
+    }
+  </script>
+  
+  <script>
+    function clear_filter(){
+      $('.filter_box').empty()
+      selected_status = []
+      filter_job()
+    }
+  
+  
+    //Redirect to view job page
+    function display_job(element){
+      var id =element.id
+      window.location.assign('/user/view-benchmark/'+id)
+      
+    }
 
-var unique = ($('#client').val()).trim().replace(/\s/g,'')
-
-if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-2"><span class="badge badge-pill badge-warning">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
-}
-}
-
-
-if(view == 'industry'){
-
-var unique = ($('#industry').val()).trim().replace(/\s/g,'')
-
-if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-2"><span class="badge badge-pill badge-danger">'+$('#industry').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
-}
-}
-
-if(view == 's_period'){
-
-var unique = ($('#s_period').val())
-unique = unique.replace(/[&\/\\#,+()$~%.'":*?<>{}]/g, '')
-unique = "a"+unique
-
-if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-2"><span class="badge badge-pill badge-success">'+$('#s_period').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
-}
-}
-  }
-</script>
-
-<script>
-  function remove_filter(id){
-   
-    $(id).remove()
-  }
-</script>
-
-<script>
-  function clear_filter(){
-    $('.filter_box').empty()
-  }
-</script>
+  // filter jobs using selected filters
+  
+  function filter_job(){
+  
+  
+      $.ajax({
+        url: '/client_benchmark_job/filter',
+        data: {
+            status: selected_status,
+            is_client:'client'
+        },
+        type: 'POST',
+        success: function(res) {
+          console.log(res);
+          $('#cards').empty()
+          res.forEach(element => {
+            job_card(element.id, element.job_title, element.department, element.grade, element.timestamp, element.status)
+          });
+           
+        },
+        error: function(error) {
+            console.log(error);
+        }
+    });
+  
+    }
+  
+  //this function contains the template for job cards.
+    function job_card(id, job_title, department, grade, timestamp, status){
+      var color
+  //set the badge color based on status
+      switch (status) {
+        case 'Pending':
+          color = 'warning'
+          break;
+        case 'Approved':
+          color = 'success'
+          break;
+        case 'Rejected':
+          color = 'danger'
+          break;
+        default:
+          break;
+      }
+  
+  //convert date to standard format
+  date = new Date(timestamp)
+  day = date.getDate()
+  month = date.getMonth()
+  year = date.getFullYear()
+  months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
+  timestamp = day+'-'+months[month]+'-'+year
+      var card = `
+      <div class="col-lg-4 col-md-6 col-sm-12 p-4">
+  
+  <div class="card p-4 parent job-card" id="`+id+`" onclick="display_job(this)" style="height:140px">
+      <div class="row ">
+         
+          <div class="col-12 ">
+        <div class="row">
+          <div class="col-10">
+            <h5 style="overflow: hidden; white-space: nowrap;"><b>`+job_title+`</b></h5>
+          </div>
+          <div class="col-2">
+            <i class="icofont-ui-note" style="color:grey;cursor:pointer" data-toggle="modal" data-target="#JobModal"></i>
+          </div>
+         
+        </div>
+          </div>
+          </div>
+          <div class="row">
+            <div class="col-12" style="color:grey;font-size:12px">
+             
+           
+            </div>
+            <div class="col-12" style="color:grey;font-size:12px">
+              <div class="row">
+                <div class="col-5">
+                  Department 
+                </div>
+                <div class="col-1">
+                  :
+                </div>
+                <div class="col-6">
+                  `+department+`
+                </div>
+              </div>
+    
+            </div>
+            <div class="col-12" style="color:grey;font-size:12px">
+              <div class="row">
+                <div class="col-5">
+                Grade
+                </div>
+                <div class="col-1">
+                  :
+                </div>
+                <div class="col-6">
+                  `+grade+`
+                </div>
+              </div>
+                
+            </div>
+          </div>
+  
+          <div class="">
+            <div class="row mt-2">
+              <div class="col-8" style="color:grey;font-size:12px">
+                  Submitted on :     `+timestamp+`
+              </div>
+              <div class="col-4" >
+                  
+               
+                  <h6 class="float-right"><span class="badge badge-`+color+`">`+status+`</span></h6>
+              </div>
+             
+            </div>
+          </div>
+      </div>
+  </div>
+      `
+      
+      $('#cards').append(card)
+    }
+  </script>
 
     {% endblock content %}

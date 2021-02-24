@@ -7,18 +7,26 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, FieldList, PasswordField, SubmitField, BooleanField, SelectField,FloatField,TextAreaField, DateField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional, InputRequired
 from flask_login import current_user
-from survey.models import User,Sector,Industry,Area
+from survey.models import User,Sector,Industry,Area,Department
 
 def survey_query():
-    return Sector.query
+    return Sector.query.order_by(Sector.sector.asc())
 
 def industry_query():
-    return Industry.query
+    return Industry.query.all()
 
 def area_query():
     return Area.query
+
+def department_query():
+    return Department.query
+
+def usn_query():
+    return User.query
+
+# this is a custom validation for required fields 
 
 
 
@@ -43,91 +51,95 @@ class ContactForm(FlaskForm):
 
 
 
+class MyForm(FlaskForm):
+    country = StringField('Country', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "country"})
 
+class ComparatorForm(FlaskForm):
+    comp = StringField('Comp', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "comp"})
 
 class CorporateRequestForm(FlaskForm):
    
-    company_name = StringField('Registered Company Name', validators=[DataRequired()])
+    company_name = StringField('Registered Company Name')
     sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
     industry = QuerySelectField(query_factory=industry_query,allow_blank=True,get_label='industry')
     area = QuerySelectField(query_factory=area_query,allow_blank=True,get_label='area')
 
    
-    financial_year_end = StringField('Financial Year End', validators=[DataRequired()])
+    financial_year_end = StringField('Financial Year End')
     company_type =  SelectField(
         'Company Type',
-        choices=[('parent', 'Parent'), ('subsidiary', 'Subsidiary'),('branch','Branch')] , validators=[DataRequired()]
+        choices=[('parent', 'Parent'), ('subsidiary', 'Subsidiary'),('branch','Branch')] 
     )
-    postal_address = StringField('Street Address', validators=[DataRequired()])
-    street_address = StringField('Street Address', validators=[DataRequired()])
-    reg_number = StringField('Company Registration Number', validators=[DataRequired()])
-    vat_number = StringField('VAT Number', validators=[DataRequired()])
-    tel = StringField('Telephone Number', validators=[DataRequired()])
-    fax = StringField('Fax Number', validators=[DataRequired()])
-    company_email = StringField('Company Email', validators=[DataRequired()])
-    website = StringField('Website Address', validators=[DataRequired()])
-    date_inc = DateField('Date of Incorporation', validators=[DataRequired()])
-    country_inc = StringField('Country of Incorporation', validators=[DataRequired()])
+    postal_address = StringField('Street Address')
+    street_address = StringField('Street Address')
+    reg_number = StringField('Company Registration Number')
+    vat_number = StringField('VAT Number')
+    tel = StringField('Telephone Number')
+    fax = StringField('Fax Number')
+    company_email = StringField('Company Email')
+    website = StringField('Website Address')
+    date_inc = DateField('Date of Incorporation')
+    country_inc = StringField('Country of Incorporation')
 
-    chair_firstname = StringField('Firstname', validators=[DataRequired()])
-    chair_lastname = StringField('Lastname', validators=[DataRequired()])
-    chair_other = StringField('Other Name', validators=[DataRequired()])
-    chair_nation = StringField('Nationality', validators=[DataRequired()])
-    chair_email = StringField('Email', validators=[DataRequired()])
-    chair_phone = StringField('Phone Number', validators=[DataRequired()])
-
-
-    ceo_firstname = StringField('Firstname', validators=[DataRequired()])
-    ceo_lastname = StringField('Lastname', validators=[DataRequired()])
-    ceo_other = StringField('Other Name', validators=[DataRequired()])
-    ceo_nation = StringField('Nationality', validators=[DataRequired()])
-    ceo_email = StringField('Email', validators=[DataRequired()])
-    ceo_phone = StringField('Phone Number', validators=[DataRequired()])
-
-    other_board_firstname = StringField('Firstname', validators=[DataRequired()])
-    other_board_lastname = StringField('Lastname', validators=[DataRequired()])
-    other_board_other = StringField('Other Name', validators=[DataRequired()])
-    other_board_nation = StringField('Nationality', validators=[DataRequired()])
-    other_board_email = StringField('Email', validators=[DataRequired()])
-    other_board_phone = StringField('Phone Number', validators=[DataRequired()])
-
-    key_firstname = StringField('Firstname', validators=[DataRequired()])
-    key_lastname = StringField('Lastname', validators=[DataRequired()])
-    key_other = StringField('Other Name', validators=[DataRequired()])
-    key_nation = StringField('Nationality', validators=[DataRequired()])
-    key_email = StringField('Email', validators=[DataRequired()])
-    key_phone = StringField('Phone Number', validators=[DataRequired()])
+    chair_firstname = StringField('Firstname')
+    chair_lastname = StringField('Lastname')
+    chair_other = StringField('Other Name')
+    chair_nation = StringField('Nationality')
+    chair_email = StringField('Email')
+    chair_phone = StringField('Phone Number')
 
 
-    prev_name = StringField('Name', validators=[DataRequired()])
-    prev_address = StringField('Address', validators=[DataRequired()])
-    prev_city = StringField('City', validators=[DataRequired()])
-    prev_country = StringField('Country', validators=[DataRequired()])
+    ceo_firstname = StringField('Firstname')
+    ceo_lastname = StringField('Lastname')
+    ceo_other = StringField('Other Name')
+    ceo_nation = StringField('Nationality')
+    ceo_email = StringField('Email')
+    ceo_phone = StringField('Phone Number')
+
+    other_board_firstname = StringField('Firstname')
+    other_board_lastname = StringField('Lastname')
+    other_board_other = StringField('Other Name')
+    other_board_nation = StringField('Nationality')
+    other_board_email = StringField('Email')
+    other_board_phone = StringField('Phone Number')
+
+    key_firstname = StringField('Firstname')
+    key_lastname = StringField('Lastname')
+    key_other = StringField('Other Name')
+    key_nation = StringField('Nationality')
+    key_email = StringField('Email')
+    key_phone = StringField('Phone Number')
+
+
+    prev_name = StringField('Name')
+    prev_address = StringField('Address')
+    prev_city = StringField('City')
+    prev_country = StringField('Country')
     
-    current_name = StringField('Name', validators=[DataRequired()])
-    current_address = StringField('Address', validators=[DataRequired()])
-    current_city = StringField('City', validators=[DataRequired()])
-    current_country = StringField('Country', validators=[DataRequired()])
+    current_name = StringField('Name')
+    current_address = StringField('Address')
+    current_city = StringField('City')
+    current_country = StringField('Country')
     
 
-    sec_name = StringField('Name', validators=[DataRequired()])
-    sec_address = StringField('Address', validators=[DataRequired()])
-    sec_city = StringField('City', validators=[DataRequired()])
-    sec_country = StringField('Country', validators=[DataRequired()])
+    sec_name = StringField('Name')
+    sec_address = StringField('Address')
+    sec_city = StringField('City')
+    sec_country = StringField('Country')
 
 
-    contact_firstname = StringField('Firstname', validators=[DataRequired()])
-    contact_lastname = StringField('Lastname', validators=[DataRequired()])
-    contact_other = StringField('Other Name', validators=[DataRequired()])
-    contact_nation = StringField('Nationality', validators=[DataRequired()])
-    contact_email = StringField('Email', validators=[DataRequired()])
-    contact_dob = DateField('Date of Birth', validators=[DataRequired()])
-    contact_phone = StringField('Phone Number', validators=[DataRequired()])
+    contact_firstname = StringField('Firstname')
+    contact_lastname = StringField('Lastname')
+    contact_other = StringField('Other Name')
+    contact_nation = StringField('Nationality')
+    contact_email = StringField('Email')
+    contact_dob = DateField('Date of Birth')
+    contact_phone = StringField('Phone Number')
 
-    brief_history = TextAreaField('Brief History', validators=[DataRequired()])
+    brief_history = TextAreaField('Brief History')
     service =  SelectField(
         'Select Service',
-        choices=[('survey', 'Salary Survey')] , validators=[DataRequired()]
+        choices=[('survey', 'Salary Survey')] 
     )
    
     submit = SubmitField('Submit')
@@ -135,7 +147,7 @@ class CorporateRequestForm(FlaskForm):
 class IndividualRequestForm(FlaskForm):
     firstname = StringField('Firstname', validators=[DataRequired()])
     lastname = StringField('Lastname', validators=[DataRequired()])
-    other = StringField('Other Name', validators=[DataRequired()])
+    other = StringField('Other Name')
 
     email = StringField('Email', validators=[DataRequired()])
     dob = DateField('Date of Birth')
@@ -149,9 +161,6 @@ class IndividualRequestForm(FlaskForm):
         choices=[('industry_reports', 'Industry Reports'),('sub_industry_reports', 'Sub-Industry Reports'),('job_specific_reports', 'Job Specific Reports')] , validators=[DataRequired()]
     )
     submit = SubmitField('Submit')
-
-
-
 
 
 
@@ -390,16 +399,13 @@ class ResetPasswordForm(FlaskForm):
 class SectorForm(FlaskForm):
    
     name = StringField('Sector', validators=[DataRequired()])
-
+    update = SubmitField('Update')
     submit = SubmitField('Submit')
 
 class IndustryForm(FlaskForm):
-   
+    
     name = StringField('Industry Name', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
+    sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
 
     submit = SubmitField('Submit')
 
@@ -424,418 +430,335 @@ class JobForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class AreaForm(FlaskForm):
-   
-    name = StringField('Area of Operation', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-    industry =  SelectField(
-        'Industry',
-        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
-    )
-    
-   
-
+    name = StringField('Area of Operation')
+    sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
+    industry = QuerySelectField(query_factory=industry_query,allow_blank=True,get_label='industry')
     submit = SubmitField('Submit')
 
 
 
-class ClientForm(FlaskForm):
+
+
+
+
+# class RegistrationForm(FlaskForm):
+#     username = StringField('Username',
+#                                 validators=[DataRequired(), Length(min=2,max=20)])
+#     email = StringField('Email', validators=[DataRequired(), Email()])
+
+#     role =  SelectField(
+#         'Role',
+#         choices=[('admin', 'Admin'), ('client', 'Client'), ('associate', 'Associate'), ('manager', 'Manager'), ('director', 'Director')] , validators=[DataRequired()]
+#     )
+#     password = PasswordField('Password', validators=[DataRequired()])
+#     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
+
+#     submit = SubmitField('Save')
+
+#     def validate_username(self,username):
+#         user = User.query.filter_by(username = username.data).first()
+#         if user:
+#             raise ValidationError('Username is already taken')
+    
+#     def validate_email(self,email):
+#         user = User.query.filter_by(email= email.data).first()
+#         if user:
+#             raise ValidationError('Email is already in use')
+
+
+
+# class LoginForm(FlaskForm):
    
-    name = StringField('Client Name', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-    industry =  SelectField(
-        'Industry',
-        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
-    )
-    area =  SelectField(
-        'Area of Operation',
-        choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
-    )
-    mailing_building = StringField('Street Line 1', validators=[DataRequired()])
-    mailing_street = StringField('Street Line 2', validators=[DataRequired()])
-    mailing_city = StringField('City/Town', validators=[DataRequired()])
-    mailing_region = StringField('Region', validators=[DataRequired()])
-    mailing_country = StringField('Country', validators=[DataRequired()])
+#     email = StringField('Email', validators=[DataRequired(), Email()])
+
+#     password = PasswordField('Password', validators=[DataRequired()])
+    
+#     remember = BooleanField('Remember Me')
+#     submit = SubmitField('Login')
 
 
-    street_building = StringField('Building', validators=[DataRequired()])
-    street_street = StringField('Street', validators=[DataRequired()])
-    street_city = StringField('City/Town', validators=[DataRequired()])
-    street_country = StringField('Country', validators=[DataRequired()])
+
+# class RequestResetForm(FlaskForm):
+   
+#     email = StringField('Email', validators=[DataRequired(), Email()])
+#     submit = SubmitField('Request Password Reset')
+
+#     def validate_email(self,email):
+#         user = User.query.filter_by(email= email.data).first()
+#         if user is None:
+#             raise ValidationError('There is no account with this email')
 
 
-    contact_firstname = StringField('Firstname', validators=[DataRequired()])
-    contact_middlename = StringField('Middlename', validators=[DataRequired()])
-    contact_lastname = StringField('Lastname', validators=[DataRequired()])
-    job = StringField('Job Title', validators=[DataRequired()])
+# class ResetPasswordForm(FlaskForm):
+#     password = PasswordField('Password', validators=[DataRequired()])
+#     confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
+
+#     submit = SubmitField('Reset Password')
+
+
+# class SectorForm(FlaskForm):
+   
+#     name = StringField('Sector', validators=[DataRequired()])
+#     update = SubmitField('Update')
+#     submit = SubmitField('Submit')
+
+# class IndustryForm(FlaskForm):
+   
+#     name = StringField('Industry Name', validators=[DataRequired()])
+#     sector =  SelectField(
+#         'Sector',
+#         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
+#     )
+
+#     submit = SubmitField('Submit')
+
+
+# class JobForm(FlaskForm):
+   
+#     name = StringField('Job Title', validators=[DataRequired()])
+#     sector =  SelectField(
+#         'Sector',
+#         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
+#     )
+#     industry =  SelectField(
+#         'Industry',
+#         choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
+#     )
+#     area =  SelectField(
+#         'Area of Operation',
+#         choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
+#     )
+   
+
+#     submit = SubmitField('Submit')
+
+# class AreaForm(FlaskForm):
+   
+#     name = StringField('Area of Operation', validators=[DataRequired()])
+#     sector =  SelectField(
+#         'Sector',
+#         choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
+#     )
+#     industry =  SelectField(
+#         'Industry',
+#         choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
+#     )
+    
+   
+
+#     submit = SubmitField('Submit')
+
+
+
+class ClientForm(FlaskForm):
+    user_account = QuerySelectField(query_factory=usn_query,allow_blank=True,get_label='username')
+    name = StringField('Registered Company Name')
+    reg = StringField('Company Registration Number')
+    financial_year_end = StringField('Financial Year End')
+    company_type = StringField('Company Type')
+    vat = StringField('VAT Number')
+    telephone = StringField('Telephone Number')
+    fax = StringField('Fax Number')
+    email = StringField('Email Address')
+    website = StringField('Website Address')
+    date_of_incorporation = DateField('Date of Incorporation')
+    country_of_incorporation = StringField('Country of Incorporation')
+    chairman_firstname = StringField(" Firstname")
+    chairman_lastname = StringField(" Lastname")
+    chairman_other_names = StringField(" Other Name")
+    chairman_email = StringField(" Email Address")
+    chairman_nationality = StringField(" Nationality")
+    chairman_phone = StringField(" Phone ")
+    key_firstname = StringField("Firstname")
+    key_lastname = StringField("Lastname")
+    key_other_names = StringField(" Other Name")
+    key_email = StringField(" Email Address")
+    key_nationality = StringField(" Nationality")
+    key_phone = StringField(" Phone Number")
+    ceo_firstname = StringField("Firstname")
+    ceo_lastname = StringField("Lastname")
+    ceo_other_names = StringField(" Other Name")
+    ceo_email = StringField(" Email Address")
+    ceo_nationality = StringField(" Nationality")
+    ceo_phone = StringField(" Phone Number")
+
+    current_auditor_name = StringField("Name")
+    current_auditor_address = StringField("Address")
+    current_auditor_city = StringField(" City")
+    current_auditor_country = StringField(" Country")
+
+    previous_auditor_name = StringField("Name")
+    previous_auditor_address = StringField("Address")
+    previous_auditor_city = StringField(" City")
+    previous_auditor_country = StringField(" Country")
+
+
+    company_secretary_name = StringField("Name")
+    company_secretary_address = StringField("Address")
+    company_secretary_city = StringField(" City")
+    company_secretary_country = StringField(" Country")
+
+    
+    sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
+    industry = QuerySelectField(query_factory=industry_query,allow_blank=True,get_label='industry')
+    area = QuerySelectField(query_factory=area_query,allow_blank=True,get_label='area')
+
+    mailing_building = StringField('Street Line 1')
+    mailing_street = StringField('Street Line 2')
+    mailing_city = StringField('City/Town')
+    mailing_region = StringField('Region')
+    mailing_country = StringField('Country')
+
+
+    street_building = StringField('Building')
+    street_street = StringField('Street')
+    street_city = StringField('City/Town')
+    street_country = StringField('Country')
+
+
+    contact_firstname = StringField('Firstname')
+    contact_middlename = StringField('Other Name')
+    contact_lastname = StringField('Lastname')
+    c_email = StringField('Email')
+    c_phone = StringField('Phone')
+    job = StringField('Job Title')
+    contact_nationality = StringField('Nationality')
+    contact_dob = DateField('Date of Birth')
+
+    company_history = StringField('Company History')
      
     # job =  SelectField(
     #     'Job Title',
     #     choices=[('manager', 'Manager'), ('associate', 'Associate')] , validators=[DataRequired()]
     # )
-    email = StringField('Email Address', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
+    email = StringField('Email Address')
+    phone = StringField('Phone')
 
 
    
 
 
-    registration = StringField('Registration Number', validators=[DataRequired()])
+    registration = StringField('Registration Number')
 
-    tax_id = StringField('Tax ID', validators=[DataRequired()])
+    tax_id = StringField('Tax ID')
 
     submit = SubmitField('Submit')
 
 
-
+def validate_required(form, field):
+        if len(field.data) < 1:
+            raise ValidationError(str(field.label) +' is a required field')
 
 
 class SurveyForm(FlaskForm):
+    job_title = StringField('Job Title', [validate_required])
+    
+    grade = StringField('Grade', [validate_required])
+    reporting_relationship = TextField('Reporting Relationship', [validate_required])
+    job_desc = TextAreaField('Job Description', [validate_required])
+    key_duties = TextAreaField('Key Duties and Scope of Responsibility', [validate_required])
+    fin_res = TextAreaField('Financial Responsibilities', [validate_required])
+    tech_qual = TextAreaField('Technical/Professional Qualification', [validate_required])
+    exp_years = StringField('Minimum Years of Experience', [validate_required])
+
+    
+    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department', validators = [DataRequired()])
    
-    base_salary = FloatField('Annual Base Salary (GHS)', validators=[DataRequired()])
+    base_salary = FloatField('Annual Base Salary (GHS)',default=0)
     
-    company_bonus_performance = FloatField('Company Performance Bonus', validators=[DataRequired()])
-    individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[DataRequired()])
-    annual_bonus = FloatField('Annual Bonus', validators=[DataRequired()])
-    incentive_bonus = FloatField('Incentive Bonus', validators=[DataRequired()])
-    other_bonus = FloatField('Other bonus', validators=[DataRequired()])
+    company_bonus_performance = FloatField('Company Performance Bonus', validators=[Optional()])
+    individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[Optional()])
+    annual_bonus = FloatField('Annual Bonus', validators=[Optional()])
+    incentive_bonus = FloatField('Incentive Bonus', validators=[Optional()])
+    other_bonus = FloatField('Other bonus', validators=[Optional()])
 
 
-    staff_bus = FloatField('Staff Bus', validators=[DataRequired()])
-    company_car = FloatField('Company Car', validators=[DataRequired()])
-    personal_travel = FloatField('Personal Travel', validators=[DataRequired()])
-    petrol = FloatField('Petrol', validators=[DataRequired()])
-    vehicle = FloatField('Vehicle', validators=[DataRequired()])
-    driver = FloatField('Driver', validators=[DataRequired()])
+    staff_bus = FloatField('Staff Bus', validators=[Optional()])
+    company_car = FloatField('Company Car', validators=[Optional()])
+    personal_travel = FloatField('Personal Travel', validators=[Optional()])
+    petrol = FloatField('Petrol', validators=[Optional()])
+    vehicle = FloatField('Vehicle', validators=[Optional()])
+    driver = FloatField('Driver', validators=[Optional()])
 
-    health_insurance = FloatField('Health', validators=[DataRequired()])
-    medical_assistance = FloatField('Medical Assistance', validators=[DataRequired()])
-    funeral_assistance = FloatField('Funeral Assistance', validators=[DataRequired()])
-    life_insurance = FloatField('Life Insurance', validators=[DataRequired()])
-    group_accident = FloatField('Group Personnel Accident', validators=[DataRequired()])
-
-
-    club_membership = FloatField('Club Membership', validators=[DataRequired()])
-    school_fees = FloatField('School fees (Paid by employer)', validators=[DataRequired()])
-    vacation = FloatField('Vacation', validators=[DataRequired()])
-    housing = FloatField('Housing', validators=[DataRequired()])
-    telephone = FloatField('Telephone', validators=[DataRequired()])
-    security = FloatField('Security', validators=[DataRequired()])
-    other_benefits = FloatField('Other Benefits', validators=[DataRequired()])
-
-    
-    vehicle_maintenance = FloatField('Vehicle Maintenance', validators=[DataRequired()])
-    allowance_vehicle = FloatField('Vehicle', validators=[DataRequired()])
-    transport = FloatField('Transport', validators=[DataRequired()])
-    fuel = FloatField('Fuel', validators=[DataRequired()])
-    car = FloatField('Car', validators=[DataRequired()])
-    allowance_driver = FloatField('Driver', validators=[DataRequired()])
-    
-
-    domestic = FloatField('Domestic Safety and Security', validators=[DataRequired()])
-    allowance_housing = FloatField('Housing', validators=[DataRequired()])
-    utilities = FloatField('Utilities', validators=[DataRequired()])
-    meal = FloatField('Meal', validators=[DataRequired()])
-    allowance_telephone = FloatField('Telephone', validators=[DataRequired()])
+    health_insurance = FloatField('Health', validators=[Optional()])
+    medical_assistance = FloatField('Medical Assistance', validators=[Optional()])
+    funeral_assistance = FloatField('Funeral Assistance', validators=[Optional()])
+    life_insurance = FloatField('Life Insurance', validators=[Optional()])
+    group_accident = FloatField('Group Personnel Accident', validators=[Optional()])
 
 
-    entertainment = FloatField('Entertainment', validators=[DataRequired()])
-    education = FloatField('Education', validators=[DataRequired()])
-    vacation = FloatField('Vacation', validators=[DataRequired()])
-    uniform = FloatField('Uniform', validators=[DataRequired()])
-    mobile_money = FloatField('Mobile Money', validators=[DataRequired()])
-    misc = FloatField('Miscellaneous', validators=[DataRequired()])
-    
-
-   
-    
-    
-
+    club_membership = FloatField('Club Membership', validators=[Optional()])
+    school_fees = FloatField('School fees (Paid by employer)', validators=[Optional()])
+    vacation = FloatField('Vacation', validators=[Optional()])
+    housing = FloatField('Housing', validators=[Optional()])
+    telephone = FloatField('Telephone', validators=[Optional()])
+    security = FloatField('Security', validators=[Optional()])
+    other_benefits = FloatField('Other Benefits', validators=[Optional()])
 
     
+    vehicle_maintenance = FloatField('Vehicle Maintenance', validators=[Optional()])
+    allowance_vehicle = FloatField('Vehicle', validators=[Optional()])
+    transport = FloatField('Transport', validators=[Optional()])
+    fuel = FloatField('Fuel', validators=[Optional()])
+    car = FloatField('Car', validators=[Optional()])
+    allowance_driver = FloatField('Driver', validators=[Optional()])
+    
+
+    domestic = FloatField('Domestic Safety and Security', validators=[Optional()])
+    allowance_housing = FloatField('Housing', validators=[Optional()])
+    utilities = FloatField('Utilities', validators=[Optional()])
+    meal = FloatField('Meal', validators=[Optional()])
+    allowance_telephone = FloatField('Telephone', validators=[Optional()])
 
 
-
+    entertainment = FloatField('Entertainment', validators=[Optional()])
+    education = FloatField('Education', validators=[Optional()])
+    vacation_allowance = FloatField('Vacation', validators=[Optional()])
+    uniform = FloatField('Uniform', validators=[Optional()])
+    mobile_money = FloatField('Mobile Money', validators=[Optional()])
+    misc = FloatField('Miscellaneous', validators=[Optional()])
     submit = SubmitField('Submit')
 
-class RegistrationForm(FlaskForm):
-    username = StringField('Username',
-                                validators=[DataRequired(), Length(min=2,max=20)])
-    email = StringField('Email', validators=[DataRequired(), Email()])
-
-    role =  SelectField(
-        'Role',
-        choices=[('admin', 'Admin'), ('client', 'Client'), ('associate', 'Associate'), ('manager', 'Manager'), ('director', 'Director')] , validators=[DataRequired()]
-    )
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
-
-    submit = SubmitField('Save')
-
-    def validate_username(self,username):
-        user = User.query.filter_by(username = username.data).first()
-        if user:
-            raise ValidationError('Username is already taken')
+class BenchmarkJobComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Reject')
     
-    def validate_email(self,email):
-        user = User.query.filter_by(email= email.data).first()
-        if user:
-            raise ValidationError('Email is already in use')
+class ClientJobComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Reject')
 
-
-
-class LoginForm(FlaskForm):
-   
-    email = StringField('Email', validators=[DataRequired(), Email()])
-
-    password = PasswordField('Password', validators=[DataRequired()])
-    
-    remember = BooleanField('Remember Me')
-    submit = SubmitField('Login')
-
-
-
-class RequestResetForm(FlaskForm):
-   
-    email = StringField('Email', validators=[DataRequired(), Email()])
-    submit = SubmitField('Request Password Reset')
-
-    def validate_email(self,email):
-        user = User.query.filter_by(email= email.data).first()
-        if user is None:
-            raise ValidationError('There is no account with this email')
-
-
-class ResetPasswordForm(FlaskForm):
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm_password = PasswordField('Confirm Password', validators=[DataRequired(),EqualTo('password')])
-
-    submit = SubmitField('Reset Password')
-
-
-class SectorForm(FlaskForm):
-   
-    name = StringField('Sector', validators=[DataRequired()])
-
+class MessageComment(FlaskForm):
+    comment = TextAreaField('Add New Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
+    status = BooleanField('Change Status', default=False)
+    # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
 
-class IndustryForm(FlaskForm):
-   
-    name = StringField('Industry Name', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-
-    submit = SubmitField('Submit')
-
-
-class JobForm(FlaskForm):
-   
-    name = StringField('Job Title', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-    industry =  SelectField(
-        'Industry',
-        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
-    )
-    area =  SelectField(
-        'Area of Operation',
-        choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
-    )
-   
-
-    submit = SubmitField('Submit')
-
-class AreaForm(FlaskForm):
-   
-    name = StringField('Area of Operation', validators=[DataRequired()])
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-    industry =  SelectField(
-        'Industry',
-        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
-    )
-    
-   
-
-    submit = SubmitField('Submit')
-
-
-
-class ClientForm(FlaskForm):
-   
-    name = StringField('Registered Company Name', validators=[DataRequired()])
-    reg = StringField('Company Registration Number', validators=[DataRequired()])
-    financial_year_end = StringField('Financial Year End', validators=[DataRequired()])
-    company_type = StringField('Company Type', validators=[DataRequired()])
-    vat = StringField('VAT Number', validators=[DataRequired()])
-    telephone = StringField('Telephone Number', validators=[DataRequired()])
-    fax = StringField('Fax Number', validators=[DataRequired()])
-    email = StringField('Email Address', validators=[DataRequired()])
-    website = StringField('Website Address', validators=[DataRequired()])
-    date_of_incorporation = StringField('Date of Incorporation', validators=[DataRequired()])
-    country_of_incorporation = StringField('Country of Incorporation', validators=[DataRequired()])
-    chairman_firstname = StringField(" Firstname", validators=[DataRequired()])
-    chairman_lastname = StringField(" Lastname", validators=[DataRequired()])
-    chairman_other_names = StringField(" Other Name", validators=[DataRequired()])
-    chairman_email = StringField(" Email Address", validators=[DataRequired()])
-    chairman_nationality = StringField(" Nationality", validators=[DataRequired()])
-    chairman_phone = StringField(" Phone ", validators=[DataRequired()])
-    key_firstname = StringField("Firstname", validators=[DataRequired()])
-    key_lastname = StringField("Lastname", validators=[DataRequired()])
-    key_other_names = StringField(" Other Name", validators=[DataRequired()])
-    key_email = StringField(" Email Address", validators=[DataRequired()])
-    key_nationality = StringField(" Nationality", validators=[DataRequired()])
-    key_phone = StringField(" Phone Number", validators=[DataRequired()])
-    ceo_firstname = StringField("Firstname", validators=[DataRequired()])
-    ceo_lastname = StringField("Lastname", validators=[DataRequired()])
-    ceo_other_names = StringField(" Other Name", validators=[DataRequired()])
-    ceo_email = StringField(" Email Address", validators=[DataRequired()])
-    ceo_nationality = StringField(" Nationality", validators=[DataRequired()])
-    ceo_phone = StringField(" Phone Number", validators=[DataRequired()])
-
-    current_auditor_name = StringField("Name", validators=[DataRequired()])
-    current_auditor_address = StringField("Address", validators=[DataRequired()])
-    current_auditor_city = StringField(" City", validators=[DataRequired()])
-    current_auditor_country = StringField(" Country", validators=[DataRequired()])
-
-    previous_auditor_name = StringField("Name", validators=[DataRequired()])
-    previous_auditor_address = StringField("Address", validators=[DataRequired()])
-    previous_auditor_city = StringField(" City", validators=[DataRequired()])
-    previous_auditor_country = StringField(" Country", validators=[DataRequired()])
-
-
-    company_secretary_name = StringField("Name", validators=[DataRequired()])
-    company_secretary_address = StringField("Address", validators=[DataRequired()])
-    company_secretary_city = StringField(" City", validators=[DataRequired()])
-    company_secretary_country = StringField(" Country", validators=[DataRequired()])
-
-    
-    sector =  SelectField(
-        'Sector',
-        choices=[('public', 'Public'), ('private', 'Private')] , validators=[DataRequired()]
-    )
-    industry =  SelectField(
-        'Industry',
-        choices=[('banking', 'Banking'), ('mining', 'Mining')] , validators=[DataRequired()]
-    )
-    area =  SelectField(
-        'Area of Operation',
-        choices=[('public', 'Area 1'), ('private', 'Area 2')] , validators=[DataRequired()]
-    )
-    mailing_building = StringField('Street Line 1', validators=[DataRequired()])
-    mailing_street = StringField('Street Line 2', validators=[DataRequired()])
-    mailing_city = StringField('City/Town', validators=[DataRequired()])
-    mailing_region = StringField('Region', validators=[DataRequired()])
-    mailing_country = StringField('Country', validators=[DataRequired()])
-
-
-    street_building = StringField('Building', validators=[DataRequired()])
-    street_street = StringField('Street', validators=[DataRequired()])
-    street_city = StringField('City/Town', validators=[DataRequired()])
-    street_country = StringField('Country', validators=[DataRequired()])
-
-
-    contact_firstname = StringField('Firstname', validators=[DataRequired()])
-    contact_middlename = StringField('Middlename', validators=[DataRequired()])
-    contact_lastname = StringField('Lastname', validators=[DataRequired()])
-    job = StringField('Job Title', validators=[DataRequired()])
-     
-    # job =  SelectField(
-    #     'Job Title',
-    #     choices=[('manager', 'Manager'), ('associate', 'Associate')] , validators=[DataRequired()]
-    # )
-    email = StringField('Email Address', validators=[DataRequired()])
-    phone = StringField('Phone', validators=[DataRequired()])
-
-
-   
-
-
-    registration = StringField('Registration Number', validators=[DataRequired()])
-
-    tax_id = StringField('Tax ID', validators=[DataRequired()])
-
-    submit = SubmitField('Submit')
-
-
-
-
-
-class SurveyForm(FlaskForm):
-   
-    base_salary = FloatField('Annual Base Salary (GHS)', validators=[DataRequired()])
-    
-    company_bonus_performance = FloatField('Company Performance Bonus', validators=[DataRequired()])
-    individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[DataRequired()])
-    annual_bonus = FloatField('Annual Bonus', validators=[DataRequired()])
-    incentive_bonus = FloatField('Incentive Bonus', validators=[DataRequired()])
-    other_bonus = FloatField('Other bonus', validators=[DataRequired()])
-
-
-    staff_bus = FloatField('Staff Bus', validators=[DataRequired()])
-    company_car = FloatField('Company Car', validators=[DataRequired()])
-    personal_travel = FloatField('Personal Travel', validators=[DataRequired()])
-    petrol = FloatField('Petrol', validators=[DataRequired()])
-    vehicle = FloatField('Vehicle', validators=[DataRequired()])
-    driver = FloatField('Driver', validators=[DataRequired()])
-
-    health_insurance = FloatField('Health', validators=[DataRequired()])
-    medical_assistance = FloatField('Medical Assistance', validators=[DataRequired()])
-    funeral_assistance = FloatField('Funeral Assistance', validators=[DataRequired()])
-    life_insurance = FloatField('Life Insurance', validators=[DataRequired()])
-    group_accident = FloatField('Group Personnel Accident', validators=[DataRequired()])
-
-
-    club_membership = FloatField('Club Membership', validators=[DataRequired()])
-    school_fees = FloatField('School fees (Paid by employer)', validators=[DataRequired()])
-    vacation = FloatField('Vacation', validators=[DataRequired()])
-    housing = FloatField('Housing', validators=[DataRequired()])
-    telephone = FloatField('Telephone', validators=[DataRequired()])
-    security = FloatField('Security', validators=[DataRequired()])
-    other_benefits = FloatField('Other Benefits', validators=[DataRequired()])
-
-    
-    vehicle_maintenance = FloatField('Vehicle Maintenance', validators=[DataRequired()])
-    allowance_vehicle = FloatField('Vehicle', validators=[DataRequired()])
-    transport = FloatField('Transport', validators=[DataRequired()])
-    fuel = FloatField('Fuel', validators=[DataRequired()])
-    car = FloatField('Car', validators=[DataRequired()])
-    allowance_driver = FloatField('Driver', validators=[DataRequired()])
-    
-
-    domestic = FloatField('Domestic Safety and Security', validators=[DataRequired()])
-    allowance_housing = FloatField('Housing', validators=[DataRequired()])
-    utilities = FloatField('Utilities', validators=[DataRequired()])
-    meal = FloatField('Meal', validators=[DataRequired()])
-    allowance_telephone = FloatField('Telephone', validators=[DataRequired()])
-
-
-    entertainment = FloatField('Entertainment', validators=[DataRequired()])
-    education = FloatField('Education', validators=[DataRequired()])
-    vacation = FloatField('Vacation', validators=[DataRequired()])
-    uniform = FloatField('Uniform', validators=[DataRequired()])
-    mobile_money = FloatField('Mobile Money', validators=[DataRequired()])
-    misc = FloatField('Miscellaneous', validators=[DataRequired()])
-    
-
-   
-    
-    
-
+# class ChangeMessageStatus(FlaskForm):
 
     
 
+class ServiceRequestForm(FlaskForm):
+    
+    newstatus = RadioField(u'Update Request Status',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
+    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
+    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval')], 
+    validators=[DataRequired()])
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Save Changes')
 
+    
+class RequestSearchForm(FlaskForm):
+    choices = [('Request Date', 'Request Date'),
+               ('Name', 'Name'),
+               ('Status', 'Status')]
+    select = SelectField('Filter:', choices=choices)
+    search = StringField('')
 
-    submit = SubmitField('Submit')
+class FilterReportForm(FlaskForm):
+    report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
+    report_status = SelectField('Status', coerce=int)
+    report_start_date = DateField('Start Date', format='%d-%m-%Y')
+    report_end_date = DateField('End Date', format='%d-%m-%Y')
+    submit = SubmitField('View Report')
+
+#     submit = SubmitField('Submit')
