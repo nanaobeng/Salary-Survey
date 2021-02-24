@@ -7,7 +7,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, FieldList, PasswordField, SubmitField, BooleanField, SelectField,FloatField,TextAreaField, DateField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional, InputRequired
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_login import current_user
 from survey.models import User,Sector,Industry,Area,Department
 
@@ -25,8 +25,6 @@ def department_query():
 
 def usn_query():
     return User.query
-
-# this is a custom validation for required fields 
 
 
 
@@ -430,11 +428,17 @@ class JobForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class AreaForm(FlaskForm):
+    #iquery = Industry.query.all()
     name = StringField('Area of Operation')
     sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
-    industry = QuerySelectField(query_factory=industry_query,allow_blank=True,get_label='industry')
+    industry =  SelectField('Industry', coerce=str, choices = [])
+    # industry =  SelectField('Industry', choices = [(i.id, i.industry) for i in iquery])
     submit = SubmitField('Submit')
 
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+        
+    #     self.industry.choices = [(i.id, i.industry) for i in iquery]
 
 
 
@@ -645,90 +649,80 @@ class ClientForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-def validate_required(form, field):
-        if len(field.data) < 1:
-            raise ValidationError(str(field.label) +' is a required field')
+
 
 
 class SurveyForm(FlaskForm):
-    job_title = StringField('Job Title', [validate_required])
-    
-    grade = StringField('Grade', [validate_required])
-    reporting_relationship = TextField('Reporting Relationship', [validate_required])
-    job_desc = TextAreaField('Job Description', [validate_required])
-    key_duties = TextAreaField('Key Duties and Scope of Responsibility', [validate_required])
-    fin_res = TextAreaField('Financial Responsibilities', [validate_required])
-    tech_qual = TextAreaField('Technical/Professional Qualification', [validate_required])
-    exp_years = StringField('Minimum Years of Experience', [validate_required])
+    job_title = StringField('Job Title')
+    grade = StringField('Grade')
+    reporting_relationship = TextField('Reporting Relationship')
+    job_desc = TextField('Job Description')
+    key_duties = TextField('Key Duties and Scope of Responsibility')
+    fin_res = StringField('Financial Responsibilities')
+    tech_qual = TextField('Technical/Professional Qualification')
+    exp_years = StringField('Minimum Years of Experience')
 
     
-    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department', validators = [DataRequired()])
+    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department')
    
     base_salary = FloatField('Annual Base Salary (GHS)',default=0)
     
-    company_bonus_performance = FloatField('Company Performance Bonus', validators=[Optional()])
-    individual_bonus_performance = FloatField('Individual Performance Bonus', validators=[Optional()])
-    annual_bonus = FloatField('Annual Bonus', validators=[Optional()])
-    incentive_bonus = FloatField('Incentive Bonus', validators=[Optional()])
-    other_bonus = FloatField('Other bonus', validators=[Optional()])
+    company_bonus_performance = FloatField('Company Performance Bonus',default=0)
+    individual_bonus_performance = FloatField('Individual Performance Bonus',default=0)
+    annual_bonus = FloatField('Annual Bonus',default=0)
+    incentive_bonus = FloatField('Incentive Bonus',default=0)
+    other_bonus = FloatField('Other bonus',default=0)
 
 
-    staff_bus = FloatField('Staff Bus', validators=[Optional()])
-    company_car = FloatField('Company Car', validators=[Optional()])
-    personal_travel = FloatField('Personal Travel', validators=[Optional()])
-    petrol = FloatField('Petrol', validators=[Optional()])
-    vehicle = FloatField('Vehicle', validators=[Optional()])
-    driver = FloatField('Driver', validators=[Optional()])
+    staff_bus = FloatField('Staff Bus',default=0)
+    company_car = FloatField('Company Car',default=0)
+    personal_travel = FloatField('Personal Travel',default=0)
+    petrol = FloatField('Petrol',default=0)
+    vehicle = FloatField('Vehicle',default=0)
+    driver = FloatField('Driver',default=0)
 
-    health_insurance = FloatField('Health', validators=[Optional()])
-    medical_assistance = FloatField('Medical Assistance', validators=[Optional()])
-    funeral_assistance = FloatField('Funeral Assistance', validators=[Optional()])
-    life_insurance = FloatField('Life Insurance', validators=[Optional()])
-    group_accident = FloatField('Group Personnel Accident', validators=[Optional()])
+    health_insurance = FloatField('Health',default=0)
+    medical_assistance = FloatField('Medical Assistance',default=0)
+    funeral_assistance = FloatField('Funeral Assistance',default=0)
+    life_insurance = FloatField('Life Insurance',default=0)
+    group_accident = FloatField('Group Personnel Accident',default=0)
 
 
-    club_membership = FloatField('Club Membership', validators=[Optional()])
-    school_fees = FloatField('School fees (Paid by employer)', validators=[Optional()])
-    vacation = FloatField('Vacation', validators=[Optional()])
-    housing = FloatField('Housing', validators=[Optional()])
-    telephone = FloatField('Telephone', validators=[Optional()])
-    security = FloatField('Security', validators=[Optional()])
-    other_benefits = FloatField('Other Benefits', validators=[Optional()])
+    club_membership = FloatField('Club Membership',default=0)
+    school_fees = FloatField('School fees (Paid by employer)',default=0)
+    vacation = FloatField('Vacation',default=0)
+    housing = FloatField('Housing',default=0)
+    telephone = FloatField('Telephone',default=0)
+    security = FloatField('Security',default=0)
+    other_benefits = FloatField('Other Benefits',default=0)
 
     
-    vehicle_maintenance = FloatField('Vehicle Maintenance', validators=[Optional()])
-    allowance_vehicle = FloatField('Vehicle', validators=[Optional()])
-    transport = FloatField('Transport', validators=[Optional()])
-    fuel = FloatField('Fuel', validators=[Optional()])
-    car = FloatField('Car', validators=[Optional()])
-    allowance_driver = FloatField('Driver', validators=[Optional()])
+    vehicle_maintenance = FloatField('Vehicle Maintenance',default=0)
+    allowance_vehicle = FloatField('Vehicle',default=0)
+    transport = FloatField('Transport',default=0)
+    fuel = FloatField('Fuel',default=0)
+    car = FloatField('Car',default=0)
+    allowance_driver = FloatField('Driver',default=0)
     
 
-    domestic = FloatField('Domestic Safety and Security', validators=[Optional()])
-    allowance_housing = FloatField('Housing', validators=[Optional()])
-    utilities = FloatField('Utilities', validators=[Optional()])
-    meal = FloatField('Meal', validators=[Optional()])
-    allowance_telephone = FloatField('Telephone', validators=[Optional()])
+    domestic = FloatField('Domestic Safety and Security',default=0)
+    allowance_housing = FloatField('Housing',default=0)
+    utilities = FloatField('Utilities',default=0)
+    meal = FloatField('Meal',default=0)
+    allowance_telephone = FloatField('Telephone',default=0)
 
 
-    entertainment = FloatField('Entertainment', validators=[Optional()])
-    education = FloatField('Education', validators=[Optional()])
-    vacation_allowance = FloatField('Vacation', validators=[Optional()])
-    uniform = FloatField('Uniform', validators=[Optional()])
-    mobile_money = FloatField('Mobile Money', validators=[Optional()])
-    misc = FloatField('Miscellaneous', validators=[Optional()])
+    entertainment = FloatField('Entertainment',default=0)
+    education = FloatField('Education',default=0)
+    vacation_allowance = FloatField('Vacation',default=0)
+    uniform = FloatField('Uniform',default=0)
+    mobile_money = FloatField('Mobile Money',default=0)
+    misc = FloatField('Miscellaneous',default=0)
     submit = SubmitField('Submit')
-
-class BenchmarkJobComment(FlaskForm):
-    comment = TextAreaField('Comment', validators=[DataRequired()])
-    submit = SubmitField('Reject')
     
-class ClientJobComment(FlaskForm):
-    comment = TextAreaField('Comment', validators=[DataRequired()])
-    submit = SubmitField('Reject')
 
 class MessageComment(FlaskForm):
-    comment = TextAreaField('Add New Comment', validators=[DataRequired()])
+    comment = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
     status = BooleanField('Change Status', default=False)
     # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
@@ -748,17 +742,9 @@ class ServiceRequestForm(FlaskForm):
 
     
 class RequestSearchForm(FlaskForm):
-    choices = [('Request Date', 'Request Date'),
-               ('Name', 'Name'),
-               ('Status', 'Status')]
-    select = SelectField('Filter:', choices=choices)
+    selectstatus = SelectField('Status:',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
+    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
+    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval'),('all','All')])
+    selecttype = SelectField('Request Type:',choices = [('all','All'),('individual','Individual'),('corporate','Corporate')])
     search = StringField('')
-
-class FilterReportForm(FlaskForm):
-    report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
-    report_status = SelectField('Status', coerce=int)
-    report_start_date = DateField('Start Date', format='%d-%m-%Y')
-    report_end_date = DateField('End Date', format='%d-%m-%Y')
-    submit = SubmitField('View Report')
-
-#     submit = SubmitField('Submit')
+    
