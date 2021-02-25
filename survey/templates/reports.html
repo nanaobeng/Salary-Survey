@@ -106,10 +106,10 @@
     }
 
     #help {
-        column-span: 5;
         text-align: center;
         font-style: italic;
         font-weight: normal;
+        color: grey;
     }
 </style>
 
@@ -161,20 +161,20 @@
                     </th>
                     <th>
                         <label for="report_start_date">Start Date</label>
-                        <input type="date" class="form-control" id="report_start_date"/>
+                        <input type="date" class="form-control" id="report_start_date" />
                     </th>
                     <th>
                         <label for="report_end_date">End Date</label>
-                        <input type="date" class="form-control" id="report_end_date"/>
+                        <input type="date" class="form-control" id="report_end_date" />
                     </th>
                     <th>
-                        {{form.submit(class="btn btn-success")}}
+                        {{form.submit(class="btn btn-light")}}
                     </th>
                 </thead>
             </form>
 
             <thead>
-                <th id="help">Select filters and click 'View Report' to generate reports.</th>
+                <th id="help" colspan="5">Select filters and click 'View Report' to generate reports.</th>
             </thead>
 
             <thead>
@@ -187,54 +187,61 @@
                 <th colspan="5">Details</th>
             </thead>
             <tbody id="details">
-                <tr>
-                    <td colspan="2">Active Clients</td>
-                    <td colspan="3">
-                        <ol>
-                            {% for client in active_clients %}
-                            <li><span class="client-name">{{client.company_name}}</span>
-                                <p class="client-details">Company Type: {{client.company_type}}</p>
-                                <p class="client-details">Sector: {{client.sector_id}}</p>
-                                <p class="client-details">Industry: {{client.industry_id}}</p>
-                                <p class="client-details">Area of Operation: {{client.area_id}}</p>
-                            </li>
-                            {% endfor %}
-                        </ol>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">Inactive Clients</td>
-                    <td colspan="3">
-                        <ol>
-                            {% for client in inactive_clients %}
-                            <li><span class="client-name">{{client.company_name}}</span>
-                                <p class="client-details">Company Type: {{client.company_type}}</p>
-                                <p class="client-details">Sector: {{client.sector_id}}</p>
-                                <p class="client-details">Industry: {{client.industry_id}}</p>
-                                <p class="client-details">Area of Operation: {{client.area_id}}</p>
-                            </li>
-                            {% endfor %}
-                        </ol>
-                    </td>
-                </tr>
             </tbody>
         </table>
 
     </div>
 </div>
 
+<script>
+    //dynamically change status based on report type selection
+    $(document).ready(function(){
+        $('#report_type').change(function(){
+            var type = $(this).val()
+            if (type == 'clients') {
+                $('#report_status').html(
+                    `
+                    <option value="all">All</option>       
+                    <option value="active">Active</option>
+                    <option value="inactive">Inactive</option>   `
+                )
+            } else if (type == 'service_requests'){
+                $('#report_status').html(
+                    `
+                    <option value="all">All</option>       
+                    <option value="pending">Pending</option>
+                    <option value="awaiting">Awaiting Client Information</option>
+                    <option value="first_pass">First Pass</option>
+                    <option value="conflict_check">Conflict Check</option>
+                    <option value="finish_completion">Finish Completion</option>
+                    <option value="submitted">Submitted For Approval</option>   `
+                )
+            } else if (type == 'messages'){
+                console.log("type changed to messages")
+                $('#report_status').html(
+                    `   <option value="all">All</option>       
+                        <option value="open">Open</option>
+                        <option value="closed">Closed</option>
+                    `
+                )
+            }
+        })
+    })
+</script>
 
 <script>
+    //generate report based on filters selected
     $(document).ready(function () {
         $("#report-form").on("submit", function () {
             $('#help').empty()
+            $('#details').empty()
 
             var type = $('#report_type').val()
             var status = $('#report_status').val()
             var start_date = $('#report_start_date').val()
             var end_date = $('#report_end_date').val()
 
-            var statistics;
+            var statistics, details;
 
             $.ajax({
                 url: '/view_reports/generate_report',
@@ -263,13 +270,44 @@
                     <td colspan="3" class="sub-heading">Inactive Clients: </td>
                     <td colspan="2">{{num_inactive_clients}}</td>
                 </tr>`
+                            details =
+                                ` <tr>
+                    <td colspan="2">Active Clients</td>
+                    <td colspan="3">
+                        <ol>
+                            {% for client in active_clients %}
+                            <li><span class="client-name">{{client.company_name}}</span>
+                                <p class="client-details">Company Type: {{client.company_type}}</p>
+                                <p class="client-details">Sector: {{client.sector_id}}</p>
+                                <p class="client-details">Industry: {{client.industry_id}}</p>
+                                <p class="client-details">Area of Operation: {{client.area_id}}</p>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">Inactive Clients</td>
+                    <td colspan="3">
+                        <ol>
+                            {% for client in inactive_clients %}
+                            <li><span class="client-name">{{client.company_name}}</span>
+                                <p class="client-details">Company Type: {{client.company_type}}</p>
+                                <p class="client-details">Sector: {{client.sector_id}}</p>
+                                <p class="client-details">Industry: {{client.industry_id}}</p>
+                                <p class="client-details">Area of Operation: {{client.area_id}}</p>
+                            </li>
+                            {% endfor %}
+                        </ol>
+                    </td>
+                </tr>`
                         }
                         // For active clients
                         else if (status == 'active') {
                             console.log("type is clients and status is active")
                             statistics =
                                 `<tr>
-                    <td colspan="3" class="sub-heading">Total Active Clients: </td>
+                    <td colspan="3">Total Active Clients: </td>
                     <td colspan="2">{{num_active_clients}}</td>
                 </tr>`
                             // For inactive clients
@@ -277,7 +315,7 @@
                         else if (status == 'inactive') {
                             statistics =
                                 `<tr>
-                    <td colspan="3" class="sub-heading">Total Inactive Clients: </td>
+                    <td colspan="3">Total Inactive Clients: </td>
                     <td colspan="2">{{num_inactive_clients}}</td>
                 </tr>`
                         }
@@ -323,16 +361,60 @@
                         else if (status == 'pending') {
                             statistics =
                                 `<tr>
-                    <td colspan="3" class="sub-heading">Pending Requests: </td>
+                    <td colspan="3">Total Pending Requests: </td>
                     <td colspan="2">{{num_pending_requests}}</td>
                 </tr>`
                         }
+                        // For awaiting client info requests
+                        else if (status == 'awaiting') {
+                            statistics =
+                                ` <tr>
+                    <td colspan="3">Total Requests Awaiting Client Information: </td>
+                    <td colspan="2">{{num_awaiting_requests}}</td>
+                </tr>`
+                        }
+                        // For first pass requests
+                        else if (status == 'first_pass') {
+                            statistics =
+                                ` <tr>
+                    <td colspan="3">Total Requests Undergoing First Pass: </td>
+                    <td colspan="2">{{num_first_pass_requests}}</td>
+                </tr>`
+                        }
+                        // For conflict check requests
+                        else if (status == 'conflict_check') {
+                            statistics =
+                                ` <tr>
+                    <td colspan="3">Total Requests Undergoing Conflict Check: </td>
+                    <td colspan="2">{{num_conflict_check_requests}}</td>
+                </tr>`
+                        }
+                        // For finish completion requests
+                        else if (status == 'finish_completion') {
+                            statistics =
+                                ` <tr>
+                    <td colspan="3">Total Requests Undergoing Finish Completion: </td>
+                    <td colspan="2">{{num_finish_completion_requests}}</td>
+                </tr>`
+                        }
+                        // For submitted requests
+                        else if (status == 'submitted') {
+                            statistics =
+                                ` <tr>
+                    <td colspan="3">Total Submitted Requests: </td>
+                    <td colspan="2">{{num_submitted_requests}}</td>
+                </tr>`
+                        }
 
-                    } else if (type == 'messages') {
+                    } 
+
+                    // Case: Report type is 'messages'
+                    else if (type == 'messages') {
 
                     }
 
                     $('#statistics').html(statistics)
+                    $('#details').html(details)
                 },
                 error: function (error) {
                     console.log(error);

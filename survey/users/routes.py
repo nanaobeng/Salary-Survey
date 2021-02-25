@@ -163,7 +163,6 @@ def create_contact():
 def messages():
     form = MessageComment()
     messages = Contact.query.filter_by(status="Open").order_by(desc(Contact.timestamp)).all()
-    # messages = Contact.query.all()
     return render_template("messages.html", messages=messages, form=form)
 
 # view message modal
@@ -620,8 +619,8 @@ def client_hub():
     total_inactive_clients = json.dumps(Client.query.filter_by(status='Inactive').count())
 
     total_messages = json.dumps(Contact.query.count())
-    # total_open_messages = json.dumps(Contact.query.filter_by(status='Open').count())
-    # total_closed_messages = json.dumps(Contact.query.filter_by(status='Closed').count())
+    total_open_messages = json.dumps(Contact.query.filter_by(status='Open').count())
+    total_closed_messages = json.dumps(Contact.query.filter_by(status='Closed').count())
     
     return render_template("client_hub.html", total_num_requests=total_num_requests, 
     total_indv_requests=total_indv_requests, total_corp_requests=total_corp_requests,
@@ -1788,6 +1787,64 @@ def save_qualitative():
 def client_reports():
     
     return render_template("client_hub_reports.html")
+
+
+@users.route("/view_reports")
+def view_reports():
+    form = FilterReportForm()
+   
+    clients = db.session.query(Client)
+    num_clients = db.session.query(Client).count()
+    active_clients = db.session.query(Client).filter(Client.status=='active')
+    num_active_clients = db.session.query(Client).filter(Client.status=='active').count()
+    inactive_clients = db.session.query(Client).filter(Client.status=='Inactive')
+    num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
+ 
+    service_requests = db.session.query(Service_request)
+    num_requests = db.session.query(Service_request).count()
+    pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending')
+    num_pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending').count()
+    awaiting_requests = db.session.query(Service_request).filter(Service_request.status=='awaiting')
+    num_awaiting_requests = db.session.query(Service_request).filter(Service_request.status=='awaiting').count()
+    first_pass_requests = db.session.query(Service_request).filter(Service_request.status=='first_pass')
+    num_first_pass_requests = db.session.query(Service_request).filter(Service_request.status=='first_pass').count()
+    conflict_check_requests = db.session.query(Service_request).filter(Service_request.status=='conflict_check')
+    num_conflict_check_requests = db.session.query(Service_request).filter(Service_request.status=='conflict_check').count()
+    finish_completion_requests = db.session.query(Service_request).filter(Service_request.status=='finish_completion')
+    num_finish_completion_requests = db.session.query(Service_request).filter(Service_request.status=='finish_completion').count()
+    submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted')
+    num_submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted').count()
+ 
+    messages = db.session.query(Contact)
+    num_messages = db.session.query(Contact).count()
+    open_messages = db.session.query(Contact).filter(Contact.status=='open')
+    num_open_messages = db.session.query(Contact).filter(Contact.status=='open').count()
+    closed_messages = db.session.query(Contact).filter(Contact.status=='open')
+    num_closed_messages = db.session.query(Contact).filter(Contact.status=='open').count()
+ 
+    return render_template("reports.html", form=form, clients = clients, num_clients=num_clients, 
+    active_clients=active_clients, num_active_clients=num_active_clients, 
+    inactive_clients=inactive_clients, num_inactive_clients=num_inactive_clients,
+    service_requests=service_requests, num_requests=num_requests,
+    pending_requests=pending_requests, num_pending_requests=num_pending_requests,
+    awaiting_requests=awaiting_requests, num_awaiting_requests=num_awaiting_requests,
+    first_pass_requests=first_pass_requests, num_first_pass_requests=num_first_pass_requests,
+    conflict_check_requests=conflict_check_requests, num_conflict_check_requests=num_conflict_check_requests,
+    finish_completion_requests=finish_completion_requests, num_finish_completion_requests=num_finish_completion_requests,
+    submitted_requests=submitted_requests, num_submitted_requests=num_submitted_requests,
+    messages=messages, num_messages=num_messages, open_messages=open_messages, num_open_messages=num_open_messages,
+    closed_messages=closed_messages, num_closed_messages=num_closed_messages)
+ 
+
+@users.route('/view_reports/generate_report', methods=['POST'])
+def generate_report():
+    report_type = request.form['type']
+    report_status = request.form['status']
+    report_start_date = request.form['start_date']
+    report_end_date = request.form['end_date']
+ 
+    report = report_type + report_status + report_start_date + report_end_date
+    return jsonify(report)
 
 
 # @users.route('/messages/update/<int:messageId>', methods=['POST'])
