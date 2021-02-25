@@ -1356,11 +1356,12 @@ def view_reports():
     'service_requests': [('pending','Pending'), ('awaiting','Awaiting Client Information'), 
     ('first_pass','First Pass'), ('conflict_check','Conflict Check'), ('finish_completion','Finish Completion'), 
     ('submitted','Submitted For Approval')],
-    'messages': [('open', 'Open'), ('closed', 'Closed')]
+    'messages': [('1', 'Open'), ('2', 'Closed')]
     }
 
     form = FilterReportForm()
-    # form.report_status.choices = STATUS_BY_REPORT_TYPE.get(form.report_status.data)
+    return jsonify (form.report_type.data)
+    # form.report_status.choices = STATUS_BY_REPORT_TYPE.get(form.report_type.data)
 
     clients = db.session.query(Client)
     num_clients = db.session.query(Client).count()
@@ -1375,12 +1376,34 @@ def view_reports():
     num_pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending').count()
     awaiting_requests = db.session.query(Service_request).filter(Service_request.status=='awaiting')
     num_awaiting_requests = db.session.query(Service_request).filter(Service_request.status=='awaiting').count()
+    first_pass_requests = db.session.query(Service_request).filter(Service_request.status=='first_pass')
+    num_first_pass_requests = db.session.query(Service_request).filter(Service_request.status=='first_pass').count()
+    conflict_check_requests = db.session.query(Service_request).filter(Service_request.status=='conflict_check')
+    num_conflict_check_requests = db.session.query(Service_request).filter(Service_request.status=='conflict_check').count()
+    finish_completion_requests = db.session.query(Service_request).filter(Service_request.status=='finish_completion')
+    num_finish_completion_requests = db.session.query(Service_request).filter(Service_request.status=='finish_completion').count()
+    submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted')
+    num_submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted').count()
+
+    messages = db.session.query(Contact)
+    num_messages = db.session.query(Contact).count()
+    open_messages = db.session.query(Contact).filter(Contact.status=='open')
+    num_open_messages = db.session.query(Contact).filter(Contact.status=='open').count()
+    closed_messages = db.session.query(Contact).filter(Contact.status=='open')
+    num_closed_messages = db.session.query(Contact).filter(Contact.status=='open').count()
 
     return render_template("reports.html", form=form, clients = clients, num_clients=num_clients, 
     active_clients=active_clients, num_active_clients=num_active_clients, 
     inactive_clients=inactive_clients, num_inactive_clients=num_inactive_clients,
     service_requests=service_requests, num_requests=num_requests,
-    pending_request=pending_requests, num_pending_requests=num_pending_requests)
+    pending_requests=pending_requests, num_pending_requests=num_pending_requests,
+    awaiting_requests=awaiting_requests, num_awaiting_requests=num_awaiting_requests,
+    first_pass_requests=first_pass_requests, num_first_pass_requests=num_first_pass_requests,
+    conflict_check_requests=conflict_check_requests, num_conflict_check_requests=num_conflict_check_requests,
+    finish_completion_requests=finish_completion_requests, num_finish_completion_requests=num_finish_completion_requests,
+    submitted_requests=submitted_requests, num_submitted_requests=num_submitted_requests,
+    messages=messages, num_messages=num_messages, open_messages=open_messages, num_open_messages=num_open_messages,
+    closed_messages=closed_messages, num_closed_messages=num_closed_messages)
 
 
 @users.route('/view_reports/generate_report', methods=['POST'])
@@ -1389,14 +1412,6 @@ def generate_report():
     report_status = request.form['status']
     report_start_date = request.form['start_date']
     report_end_date = request.form['end_date']
-
-    if (report_type == 'clients'):
-        clients = db.session.query(Client)
-        num_clients = db.session.query(Client).count()
-        active_clients = db.session.query(Client).filter(Client.status=='active')
-        num_active_clients = db.session.query(Client).filter(Client.status=='active').count()
-        inactive_clients = db.session.query(Client).filter(Client.status=='Inactive')
-        num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
 
     report = report_type + report_status + report_start_date + report_end_date
     return jsonify(report)
