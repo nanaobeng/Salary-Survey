@@ -1540,24 +1540,25 @@ def survey_filter():
 
 
 
-@users.route("/administration/service_requests", methods=["POST","GET"])
+@users.route("/service_requests", methods=["POST","GET"])
 def admin_service_requests():
     form = ServiceRequestForm() 
     searchform = RequestSearchForm()
     ind = Individual_request.query.filter_by(status="pending").all()
     corp= Corporate_request.query.filter_by(status="pending").all()
-#filter_by(status="pending").
+
     return render_template("new_requests.html",form=form ,ind=ind, corp=corp, searchform=searchform)
 
-@users.route("/administration/service_requests/search", methods=["POST"])
+@users.route("/service_requests/search", methods=["POST"])
 def search_requests():
     searchform = RequestSearchForm()
     form = ServiceRequestForm()
+    
     status = request.form['selectstatus']
     requesttype = request.form['selecttype']
     if request.method == 'POST':
         if ((requesttype != "all") and (status !="all")):
-            ind = Individual_request.query.filter_by(status=status,type_of_request=requesttype).all()
+            ind = Individual_request.query.filter_by(status=status,type_of_request=requesttype).all() 
             corp = Corporate_request.query.filter_by(status=status,type_of_request=requesttype).all()
         elif ((requesttype == "all") and (status !="all")):
             ind = Individual_request.query.filter_by(status=status,type_of_request="individual").all()
@@ -1565,20 +1566,15 @@ def search_requests():
         elif ((requesttype != "all") and (status =="all")):
             ind = Individual_request.query.filter_by(type_of_request=requesttype).all()
             corp = Corporate_request.query.filter_by(type_of_request=requesttype).all()
+       
         else:
             ind = Individual_request.query.all()
             corp= Corporate_request.query.all()
-        return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
+        
     return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
     
-#,(or_(Individual_request.firstname.like(('%' + search + '%')),Individual_request.lastname.like(('%' + search + '%')),Individual_request.status.like(('%' + search + '%'))) )
-
-
-  
-
-  
     posts =  Survey.query.filter(Survey.status.in_(tag)).all()
-   
+    
     temp = []
     for post in posts:
 
@@ -1586,20 +1582,18 @@ def search_requests():
 
     return jsonify(temp)
 
-# @users.route("/administration/service_requests", methods=["POST","GET"])
-# def admin_service_requests():
-#     form = ServiceRequestForm() 
-#     ind = Individual_request.query.all()
-#     corp= Corporate_request.query.filter_by(status="pending").all()
+@users.route("/service_requests/searchrequest", methods=["POST"])
+def search():
+    # namesearch = SearchRequestForm()
+    form = ServiceRequestForm()
+    searchform = RequestSearchForm()
+    search_term = request.form.get("keyword"," ")
+    if request.method == 'POST':
+        if (search_term != " "):
+            ind =  Individual_request.query.filter(Individual_request.firstname.like('%' + search_term + '%')).all()
+            corp =  Corporate_request.query.filter(Corporate_request.company_name.like('%' + search_term + '%')).all()
+    return render_template("new_requests.html",form=form,ind=ind,searchform=searchform, corp=corp)
 
-#     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
-
-@users.route('/view_request', methods=['POST','GET'])
-def viewRequest():
-    id = request.form['id']
-
-    requests = Individual_request.query.filter_by(id=id)
-    comments = RequestComment.query.filter_by(contact_id=id)
 @users.route('/view_request/<int:id>', methods=['POST','GET'])
 def viewIndRequest(id):
        
@@ -1620,7 +1614,7 @@ def viewIndRequest(id):
     return jsonify(temp)
 
 
-@users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
+@users.route('/service_requests/update/<int:requestId>', methods=['POST'])
 def updateRequest(requestId):
     request = Individual_request.query.get_or_404(requestId)
     form = ServiceRequestForm()
@@ -1662,7 +1656,7 @@ def viewCorpRequest(id):
 
     return jsonify(temp)
 
-@users.route('/administration/service_requests/corpupdate/<int:corprequestId>', methods=['POST'])
+@users.route('/service_requests/corpupdate/<int:corprequestId>', methods=['POST'])
 def updateCorpRequest(corprequestId):
     request = Corporate_request.query.get_or_404(corprequestId)
     form = ServiceRequestForm()
@@ -1673,6 +1667,7 @@ def updateCorpRequest(corprequestId):
         db.session.commit()
         flash("Request Updated", "success")
         return redirect(url_for('users.admin_service_requests'))
+
 
 # search messages on messages.html 
 @users.route('/messages/search', methods = ['POST'])

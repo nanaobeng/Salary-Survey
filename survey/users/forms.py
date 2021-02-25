@@ -753,6 +753,10 @@ class RequestSearchForm(FlaskForm):
                ('Status', 'Status')]
     select = SelectField('Filter:', choices=choices)
     search = StringField('')
+    
+class SearchRequestForm(FlaskForm):
+    searchinput = StringField('')
+    
 
 class FilterReportForm(FlaskForm):
     report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
