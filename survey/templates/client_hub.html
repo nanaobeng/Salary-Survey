@@ -181,7 +181,7 @@
       </div>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-      <ul class="navbar-nav mr-lg-4 w-100">
+      <!--<ul class="navbar-nav mr-lg-4 w-100">
         <li class="nav-item nav-search d-none d-lg-block w-100">
           <div class="input-group">
             <div class="input-group-prepend">
@@ -193,7 +193,7 @@
               aria-describedby="search">
           </div>
         </li>
-      </ul>
+      </ul>-->
 
       <ul class="navbar-nav navbar-nav-right">
 
@@ -294,7 +294,7 @@
         </li>
 
         <li class="nav-item nav-profile dropdown">
-          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+          <a class="nav-link dropdown" href="#" data-toggle="dropdown" id="profileDropdown">
             <img src="{{ url_for('static', filename='img/face5.jpg')}}" alt="profile" />
             <span class="nav-profile-name">
               Welcome, {{ current_user.username }}!
