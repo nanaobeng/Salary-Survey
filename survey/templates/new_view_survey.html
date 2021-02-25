@@ -107,10 +107,12 @@ Custom Filters <i class="icofont-filter"></i>
       <div class="col-3">
         <div class="form-group">
           <label for="sel1" style="color:grey">Status:</label>
-          <select class="form-control" id="status" onchange="filter('status')">
-            <option value="completed">Completed</option>
+          <select class="form-control" class="filter" id="status" onchange="filter('status')">
+            <option ></option>
+            
             <option value="in Progress">In Progress</option>
-            <option value="cancelled">Cancelled</option>
+            <option value="unprocessed">Inactive</option>
+            <option value="Cancelled">Cancelled</option>
            
           </select>
         </div>
@@ -119,12 +121,15 @@ Custom Filters <i class="icofont-filter"></i>
         <div class="col-3">
           <div class="form-group">
             <label for="sel1" style="color:grey">Client:</label>
-            <input list="clients" name="browser" id="client" onchange="filter('client')" class="form-control">
+            <input list="clients" name="browser" id="client" onchange="filter('client')" autocomplete="off" class="form-control">
   <datalist id="clients">
-    <option value="ABC">
-    <option value="Modec">
-    <option value="Villagio">
-    <option value="Shell">
+    {% for i in query %}
+    <option value="{{i.survey_client.company_name}}">
+   
+
+    {% endfor %}
+    
+   
     
   </datalist>
           </div>
@@ -171,6 +176,8 @@ Custom Filters <i class="icofont-filter"></i>
       
     </div>
   <div class="row p-4" >
+
+    {% for item in query %}
 <div class="col-4 p-4">
 
 <div class="card p-4 parent"  style="height:300px">
@@ -179,10 +186,10 @@ Custom Filters <i class="icofont-filter"></i>
         <div class="col-12 ">
       <div class="row">
         <div class="col-10">
-          <h5><b>ABC Mining Company Survey</b></h5>
+          <h5><b>{{item.name}}</b></h5>
         </div>
         <div class="col-2">
-          <i class="icofont-ui-note" style="color:grey;cursor:pointer" data-toggle="modal" data-target="#myModal"></i>
+          <i class="icofont-ui-note" onclick="submit('{{item.id}}')"style="color:grey;cursor:pointer" data-toggle="modal" data-target="#myModal"></i>
         </div>
        
       </div>
@@ -191,42 +198,42 @@ Custom Filters <i class="icofont-filter"></i>
         <div class="row">
           <div class="col-12" style="color:grey;font-size:12px">
             <div class="row">
-              <div class="col-5">
+              <div class="col-4">
                 Client
               </div>
               <div class="col-1">
                 :
               </div>
-              <div class="col-6">
-                ABC Mining Company
+              <div class="col-7">
+                {{item.survey_client.company_name}}
               </div>
             </div>
          
           </div>
           <div class="col-12" style="color:grey;font-size:12px">
             <div class="row">
-              <div class="col-5">
+              <div class="col-4">
                 Industry 
               </div>
               <div class="col-1">
                 :
               </div>
-              <div class="col-6">
-                Metals and Mineral
+              <div class="col-7">
+                {{item.survey_client.industry.industry}}
               </div>
             </div>
   
           </div>
           <div class="col-12" style="color:grey;font-size:12px">
             <div class="row">
-              <div class="col-5">
+              <div class="col-4">
               Area of Operation
               </div>
               <div class="col-1">
                 :
               </div>
-              <div class="col-6">
-                Mining
+              <div class="col-7">
+                {{item.survey_client.area.area}}
               </div>
             </div>
               
@@ -236,12 +243,20 @@ Custom Filters <i class="icofont-filter"></i>
         <div class="child">
           <div class="row ">
             <div class="col-12" >
-            <h4><span class="badge badge-success">Completed</span></h4>
+
+              {% if item.status == 'unprocessed'  %}
+              <h4><span class="badge badge-warning">Inactive</span></h4>
+              {% elif item.status == 'active' %}
+              <h4><span class="badge badge-success">Active</span></h4>
+              {% else %}
+              <h4><span class="badge badge-danger">Closed</span></h4>
+              {% endif %}
+     
          
             </div>
             <div class="col-12" style="color:grey;font-size:12px">
              
-                Start Date :     2/11/2020
+                Date Created :     {{ item.start_date }}
             
                 
             </div>
@@ -250,170 +265,13 @@ Custom Filters <i class="icofont-filter"></i>
     </div>
 </div>
 
-
-
-
-<div class="col-4 p-4">
-
-  <div class="card p-4 parent"  style="height:300px">
-      <div class="row ">
-         
-          <div class="col-12 ">
-        <div class="row">
-          <div class="col-10">
-            <h5><b>ABC Mining Company Survey</b></h5>
-          </div>
-          <div class="col-2">
-            <i class="icofont-ui-note" data-toggle="modal" data-target="#myModal" style="color:grey;cursor:pointer"></i>
-          </div>
-         
-        </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Client
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  ABC Mining Company
-                </div>
-              </div>
-           
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                  Industry 
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  Metals and Mineral
-                </div>
-              </div>
-    
-            </div>
-            <div class="col-12" style="color:grey;font-size:12px">
-              <div class="row">
-                <div class="col-5">
-                Area of Operation
-                </div>
-                <div class="col-1">
-                  :
-                </div>
-                <div class="col-6">
-                  Mining
-                </div>
-              </div>
-                
-            </div>
-          </div>
-
-          <div class="child">
-            <div class="row ">
-              <div class="col-12" >
-              <h4><span class="badge badge-danger">Cancelled</span></h4>
-           
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-               
-                  Start Date :     2/11/2020
-              
-                  
-              </div>
-            </div>
-          </div>
-      </div>
-  </div>
+{% endfor %}
 
 
 
 
 
-  <div class="col-4 p-4">
 
-    <div class="card p-4 parent"  style="height:300px">
-        <div class="row ">
-           
-            <div class="col-12 ">
-          <div class="row">
-            <div class="col-10">
-              <h5><b>ABC Mining Company Survey</b></h5>
-            </div>
-            <div class="col-2">
-              <i class="icofont-ui-note" data-toggle="modal" data-target="#myModal" style="color:grey;cursor:pointer"></i>
-            </div>
-           
-          </div>
-            </div>
-            </div>
-            <div class="row">
-              <div class="col-12" style="color:grey;font-size:12px">
-                <div class="row">
-                  <div class="col-5">
-                    Client
-                  </div>
-                  <div class="col-1">
-                    :
-                  </div>
-                  <div class="col-6">
-                    ABC Mining Company
-                  </div>
-                </div>
-             
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-                <div class="row">
-                  <div class="col-5">
-                    Industry 
-                  </div>
-                  <div class="col-1">
-                    :
-                  </div>
-                  <div class="col-6">
-                    Metals and Mineral
-                  </div>
-                </div>
-      
-              </div>
-              <div class="col-12" style="color:grey;font-size:12px">
-                <div class="row">
-                  <div class="col-5">
-                  Area of Operation
-                  </div>
-                  <div class="col-1">
-                    :
-                  </div>
-                  <div class="col-6">
-                    Mining
-                  </div>
-                </div>
-                  
-              </div>
-            </div>
-
-            <div class="child">
-              <div class="row ">
-                <div class="col-12" >
-                <h4><span class="badge badge-warning">In Progress</span></h4>
-             
-                </div>
-                <div class="col-12" style="color:grey;font-size:12px">
-                 
-                    Start Date :     2/11/2020
-                
-                    
-                </div>
-              </div>
-            </div>
-        </div>
-    </div>
 
 </div>
   
@@ -441,58 +299,8 @@ Custom Filters <i class="icofont-filter"></i>
         <button type="button" class="close" data-dismiss="modal">&times;</button>
       </div>
       
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-lg-6 col-md-12 mb-2">
-            <b>Survey Name:  </b> <span id="review_survey_name">Galaxy Insurance Salary Survey</span>
-          </div> <hr>
-          <div class="col-lg-6 col-md-12 mb-2">
-            <b>Client: </b> <span id="review_client_name"> Galaxy Insurance</span>
-          </div>
-        </div>
-        <hr>
-        <div class="row mb-2">
-          <div class="col-lg-6 col-md-12 mb-2">
-            <b>Industry:  </b> <span id="review_industry">Financial</span>
-          </div>
-          <div class="col-lg-6 col-md-12 mb-2">
-            <b>Area of Operation: </b><span id="review_area_of_operation">Insurance </span>
-          </div>
-        </div>
-        <hr>
-        <div class="row">
-          <div class="col-lg-6 col-md-12 mb-2">
-            <b>Start Date: </b><span id="review_start_date">12/03/2020</span>
-          </div>
-         
-        </div>
-        <hr>
-        <div class="row mb-2">
-          <div class="col-lg-6 col-md-12">
-            <b>Benchmark Jobs:</b><br>
-            <ul id="review_benchmark_jobs">
-              <li>Front Desk Officer</li>
-              <li>Accounts Officer</li>
-              <li>Sales Eecutive</li>
-              <li>Marketing Officer</li>
-              <li>Procurement Manager</li>
-              <li>Internal Auditor</li>
-              <li>Compliance Manager</li>
-            </ul>
-            
-          </div>
-          <div class="col-lg-6 col-md-12">
-            <b>Comparators:</b><br>
-            <ul id="review_comparators">
-              <li>Peal Insurance Company</li>
-              <li>GTR Insurance</li>
-              <li>RZec Insurance Company Limited</li>
-              <li>Prock Insurance Company</li>
-            </ul>
-            
-          </div>
-         
-        </div>
+      <div class="modal-body" id="modal_body">
+        
 
       </div>
       
@@ -511,7 +319,7 @@ if(view == 'status'){
   var unique = ($('#status').val()).trim().replace(/\s/g,'')
 
   if($("#" + unique).length == 0 ){
- $('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-info">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+ $('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill status badge-info">'+$('#status').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
 }
   }
 
@@ -520,7 +328,7 @@ if(view == 'status'){
 var unique = ($('#client').val()).trim().replace(/\s/g,'')
 
 if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-warning">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill cli  badge-warning">'+$('#client').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
 }
 }
 
@@ -530,7 +338,7 @@ if(view == 'industry'){
 var unique = ($('#industry').val()).trim().replace(/\s/g,'')
 
 if($("#" + unique).length == 0 ){
-$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill badge-danger">'+$('#industry').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
+$('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge badge-pill industry badge-danger">'+$('#industry').val()+' <span><i class="icofont-close-line-circled" onclick="remove_filter('+unique+')"></i></span></span></div>')
 }
 }
 
@@ -558,6 +366,186 @@ $('.filter_box').prepend( '<div id="'+unique+'"class="col-1"><span class="badge 
   function clear_filter(){
     $('.filter_box').empty()
   }
+</script>
+
+
+
+
+
+
+<script>
+  function submit(id){
+    
+
+
+
+
+$.ajax({
+
+  url: '/survey_modal',
+
+  data: {
+
+    id:id
+  },
+
+  type: 'POST',
+
+  success: function(res) {
+    console.log(res)
+    res1 = res[0]
+    c = []
+    b= []
+
+    for(bench = 0; bench < (res1.benchmarks).length;bench++){
+      b.push((res1.benchmarks)[bench])
+    }
+
+    for(bench = 0; bench < (res1.comps).length;bench++){
+      c.push((res1.comps)[bench])
+    }
+     
+    
+$('#modal_body').html(
+
+
+`
+
+<div class="row">
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Survey Name:  </b> <span id="review_survey_name">${res1.name}</span>
+          </div> <hr>
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Client: </b> <span id="review_client_name"> ${res1.client}</span>
+          </div>
+        </div>
+        <hr>
+        <div class="row mb-2">
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Industry:  </b> <span id="review_industry">${res1.industry}</span>
+          </div>
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Area of Operation: </b><span id="review_area_of_operation">${res1.area}</span>
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-lg-6 col-md-12 mb-2">
+            <b>Start Date: </b><span id="review_start_date">${res1.start_date}</span>
+          </div>
+         
+        </div>
+        <hr>
+        <div class="row mb-2">
+          <div class="col-lg-6 col-md-12">
+            <b>Benchmark Jobs:</b><br>
+            <ul id="review_benchmark_jobs">
+        
+    
+     
+            </ul>
+            
+          </div>
+          <div class="col-lg-6 col-md-12">
+            <b>Comparators:</b><br>
+            <ul id="review_comparators">
+         </ul>
+            
+          </div>
+         
+        </div>
+
+
+
+
+`
+)
+for(bi = 0 ;bi < b.length; bi++){
+  $('#review_benchmark_jobs').append(`<li>${b[bi]}</li>`)
+}
+
+for(ci = 0 ;ci < c.length; ci++){
+
+  if(c[ci] != undefined || c[ci] != null){
+  $('#review_comparators').append(`<li>${c[ci]}</li>`)
+  }
+}
+
+  },
+
+  error: function(error) {
+
+      console.log(error);
+
+  }
+
+});
+
+
+
+}
+</script>
+
+
+
+<script>
+   $("#status").change(function(){
+    
+var stat = []
+var cli = []
+var industry = []
+
+
+
+$('.filter_box').find(".status").each(function(i, obj) {
+  stat.push($(this).text())
+});
+
+$('.filter_box').find(".cli").each(function(i, obj) {
+  cli.push($(this).text())
+});
+
+
+$('.filter_box').find(".industry").each(function(i, obj) {
+  industry.push($(this).text())
+});
+
+console.log(stat)
+console.log(cli)
+console.log(industry)
+
+
+
+$.ajax({
+
+  url: '/survey_filters',
+
+  data: {
+
+    stat: stat.toString(),
+    col : $(this).attr('id')
+
+  },
+
+  type: 'POST',
+
+  success: function(res) {
+
+    
+console.log(res)
+  },
+
+  error: function(error) {
+
+      console.log(error);
+
+  }
+
+});
+
+
+
+});
 </script>
 
     {% endblock content %}

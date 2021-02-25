@@ -28,6 +28,28 @@ Sectors
   <button class="btn btn-info" data-toggle="modal" data-target="#sector" onclick="newSector()">New Sector</button>
 </div>
 
+<script>
+  function editSector(elm){
+    //$('#delete').modal('show')
+    localStorage.setItem('editId',$(elm).attr('data-id'));
+    
+    $.ajax({
+      url: '/sector/view',
+      data: {
+          id: $(elm).attr('data-id')
+      },
+      type: 'POST',
+      success: function(res) {
+          $('#name').val(res[0].sector)
+          $('#update_sector').modal('show')
+          console.log(res);
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+  }
+</script>
 
 
 <!-- Modal for creating new Sector -->
@@ -152,9 +174,45 @@ Sectors
         </form>
         <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
       </div>
+      <div class="modal-body">
+          <div class="row">
+            <form method="POST" action="" class="col-12">
+              {{ form.hidden_tag() }}
+             
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="form-group">
+                          {{ form.name.label(class="form-control-label") }}
+              
+                          {% if form.name.errors %}
+                          {{ form.name(class="form-control form-control is-invalid")}}
+                          <div class="invalid-feedback">
+                              {% for error in form.name.errors %}
+                              <span> {{ error}}</span>
+                              {% endfor %}
+                          </div>
+                          {% else %}
+                          {{ form.name(class="form-control form-control") }}
+                          {% endif %}
+              
+                          
+                      </div>
+                    </div>
+                  </div>
+            
+                 
+              </div>
+          </div>
+      <div class="modal-footer">
+        <div class="form-group">
+          {{ form.submit(class="btn btn-outline-info") }}
+        </form>
+        </div>
     </div>
   </div>
 </div>
+</div>
+
 
 <script>
 

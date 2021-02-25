@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField,FloatField,IntegerField,RadioField,FileField,TextField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
 from flask_login import current_user
 from survey.models import User
 from wtforms_sqlalchemy.fields import QuerySelectField
@@ -47,13 +47,15 @@ class ContactForm(FlaskForm):
     submit = SubmitField('Submit')
     
 
-
+class BenchmarkJobComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Reject')
 
 class MyForm(FlaskForm):
-    country = StringField('Country', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "country"})
+    country = StringField('Benchmark', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "Search Benchmark"})
 
 class ComparatorForm(FlaskForm):
-    comp = StringField('Comp', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "comp"})
+    comp = StringField('Comparator', validators=[DataRequired(),Length(max=40)],render_kw={"placeholder": "Search Comparator"})
 
 class CorporateRequestForm(FlaskForm):
    
@@ -665,59 +667,59 @@ class SurveyForm(FlaskForm):
     
     department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department')
    
-    base_salary = FloatField('Annual Base Salary (GHS)',default=0)
+    base_salary = FloatField('Annual Base Salary (GHS)',validators=[Optional()])
     
-    company_bonus_performance = FloatField('Company Performance Bonus',default=0)
-    individual_bonus_performance = FloatField('Individual Performance Bonus',default=0)
-    annual_bonus = FloatField('Annual Bonus',default=0)
-    incentive_bonus = FloatField('Incentive Bonus',default=0)
-    other_bonus = FloatField('Other bonus',default=0)
+    company_bonus_performance = FloatField('Company Performance Bonus',validators=[Optional()])
+    individual_bonus_performance = FloatField('Individual Performance Bonus',validators=[Optional()])
+    annual_bonus = FloatField('Annual Bonus',validators=[Optional()])
+    incentive_bonus = FloatField('Incentive Bonus',validators=[Optional()])
+    other_bonus = FloatField('Other bonus',validators=[Optional()])
 
 
-    staff_bus = FloatField('Staff Bus',default=0)
-    company_car = FloatField('Company Car',default=0)
-    personal_travel = FloatField('Personal Travel',default=0)
-    petrol = FloatField('Petrol',default=0)
-    vehicle = FloatField('Vehicle',default=0)
-    driver = FloatField('Driver',default=0)
+    staff_bus = FloatField('Staff Bus',validators=[Optional()])
+    company_car = FloatField('Company Car',validators=[Optional()])
+    personal_travel = FloatField('Personal Travel',validators=[Optional()])
+    petrol = FloatField('Petrol',validators=[Optional()])
+    vehicle = FloatField('Vehicle',validators=[Optional()])
+    driver = FloatField('Driver',validators=[Optional()])
 
-    health_insurance = FloatField('Health',default=0)
-    medical_assistance = FloatField('Medical Assistance',default=0)
-    funeral_assistance = FloatField('Funeral Assistance',default=0)
-    life_insurance = FloatField('Life Insurance',default=0)
-    group_accident = FloatField('Group Personnel Accident',default=0)
+    health_insurance = FloatField('Health',validators=[Optional()])
+    medical_assistance = FloatField('Medical Assistance',validators=[Optional()])
+    funeral_assistance = FloatField('Funeral Assistance',validators=[Optional()])
+    life_insurance = FloatField('Life Insurance',validators=[Optional()])
+    group_accident = FloatField('Group Personnel Accident',validators=[Optional()])
 
 
-    club_membership = FloatField('Club Membership',default=0)
-    school_fees = FloatField('School fees (Paid by employer)',default=0)
-    vacation = FloatField('Vacation',default=0)
-    housing = FloatField('Housing',default=0)
-    telephone = FloatField('Telephone',default=0)
-    security = FloatField('Security',default=0)
-    other_benefits = FloatField('Other Benefits',default=0)
+    club_membership = FloatField('Club Membership',validators=[Optional()])
+    school_fees = FloatField('School fees (Paid by employer)',validators=[Optional()])
+    vacation = FloatField('Vacation',validators=[Optional()])
+    housing = FloatField('Housing',validators=[Optional()])
+    telephone = FloatField('Telephone',validators=[Optional()])
+    security = FloatField('Security',validators=[Optional()])
+    other_benefits = FloatField('Other Benefits',validators=[Optional()])
 
     
-    vehicle_maintenance = FloatField('Vehicle Maintenance',default=0)
-    allowance_vehicle = FloatField('Vehicle',default=0)
-    transport = FloatField('Transport',default=0)
-    fuel = FloatField('Fuel',default=0)
-    car = FloatField('Car',default=0)
-    allowance_driver = FloatField('Driver',default=0)
+    vehicle_maintenance = FloatField('Vehicle Maintenance',validators=[Optional()])
+    allowance_vehicle = FloatField('Vehicle',validators=[Optional()])
+    transport = FloatField('Transport',validators=[Optional()])
+    fuel = FloatField('Fuel',validators=[Optional()])
+    car = FloatField('Car',validators=[Optional()])
+    allowance_driver = FloatField('Driver',validators=[Optional()])
     
 
-    domestic = FloatField('Domestic Safety and Security',default=0)
-    allowance_housing = FloatField('Housing',default=0)
-    utilities = FloatField('Utilities',default=0)
-    meal = FloatField('Meal',default=0)
-    allowance_telephone = FloatField('Telephone',default=0)
+    domestic = FloatField('Domestic Safety and Security',validators=[Optional()])
+    allowance_housing = FloatField('Housing',validators=[Optional()])
+    utilities = FloatField('Utilities',validators=[Optional()])
+    meal = FloatField('Meal',validators=[Optional()])
+    allowance_telephone = FloatField('Telephone',validators=[Optional()])
 
 
-    entertainment = FloatField('Entertainment',default=0)
-    education = FloatField('Education',default=0)
-    vacation_allowance = FloatField('Vacation',default=0)
-    uniform = FloatField('Uniform',default=0)
-    mobile_money = FloatField('Mobile Money',default=0)
-    misc = FloatField('Miscellaneous',default=0)
+    entertainment = FloatField('Entertainment',validators=[Optional()])
+    education = FloatField('Education',validators=[Optional()])
+    vacation_allowance = FloatField('Vacation',validators=[Optional()])
+    uniform = FloatField('Uniform',validators=[Optional()])
+    mobile_money = FloatField('Mobile Money',validators=[Optional()])
+    misc = FloatField('Miscellaneous',validators=[Optional()])
     submit = SubmitField('Submit')
     
 

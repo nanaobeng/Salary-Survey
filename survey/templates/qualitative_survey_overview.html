@@ -222,11 +222,7 @@
       <div class="col-12 p-4">
      
         <label class="green_shade"><b>Name of Organisation</b></label>
-<<<<<<< HEAD
         <input type="text" class="form-control" value="{{cli.company_name}}" disabled/>
-=======
-        <input type="text" class="form-control" value="{{cli.company_name}}"  disabled/>
->>>>>>> 82fd41f2890e62ba37283135398e6dd53c6e2c46
       </div>
 
 
@@ -463,7 +459,7 @@
 
           <div class="form-group">
             <label class="green_shade"><b>If your organisation does not have a formal salary structure for staff, how are salary level(s) established?</b></label>
-           <textarea class="form-control" cols="5" rows="5" name="formal_salary_structure_ovr"></textarea>
+           <textarea class="form-control" cols="5" rows="5" name="formal_salary_structure_ovr">{{qual.salary_structure_adjustments}}</textarea>
           </div>
 
         </div>
@@ -536,7 +532,7 @@
 
             <div class="form-group">
               <label class="green_shade"><b>How often is salary structure(s) adjusted?</b></label>
-              <textarea class="form-control" cols="5" rows="5" name="ss_adjusted"></textarea>
+              <textarea class="form-control" cols="5" rows="5" name="ss_adjusted">{{qual.salary_structure_adjustments}}</textarea>
             </div>
 
           </div>
@@ -554,7 +550,7 @@
            
             <div class="form-group">
               <label class="green_shade"><b>Average percentage increase in last reviews</b></label>
-              <input type="text" class="form-control" id="start_date" name="avg_inc">
+              <input type="text" class="form-control" id="start_date" name="avg_inc" value="{{cli.avg_perc_review}}">
             </div>
 
           </div>
@@ -563,7 +559,7 @@
            
             <div class="form-group">
               <label class="green_shade"><b>Basis of adjustment:</b></label>
-              <textarea class="form-control" cols="5" rows="5" name="adj_basis"></textarea>
+              <textarea class="form-control" cols="5" rows="5" name="adj_basis">{{qual.adjusment_basis}}</textarea>
             </div>
 
           </div>
@@ -580,23 +576,23 @@
               <tbody>
                 <tr>
                   <td  style="font-weight: bold;">Cost of living changes/inflation</td>
-                  <td><input class="form-control" type="text" name="inflation"></td>
+                  <td><input class="form-control" type="text" name="inflation" value="{{qual.inflation_indicator}}"></td>
      
                 </tr>
                 <tr>
                   <td  style="font-weight: bold;">Business conditions</td>
-                  <td><input class="form-control" type="text" name="business_conditions"/></td>
+                  <td><input class="form-control" type="text" name="business_conditions" value="{{qual.business_conditions_indicator}}"/></td>
      
                 </tr>
                 <tr>
                   <td  style="font-weight: bold;">Salary levels of other organisation/ market
                     survey results</td>
-                  <td><input class="form-control" type="text" name="salary_levels"/></td>
+                  <td><input class="form-control" type="text" name="salary_levels" value="{{qual.salary_level_indicator}}"/></td>
      
                 </tr>
                 <tr>
                   <td  style="font-weight: bold;">Other (please specify)</td>
-                  <td><textarea class="form-control" rows="3" cols="3" name="other_indicators"></textarea></td>
+                  <td><textarea class="form-control" rows="3" cols="3" name="other_indicators">{{qual.other_indicator}}</textarea></td>
      
                 </tr>
               
@@ -628,7 +624,7 @@
            
             <div class="form-group">
               <label class="green_shade"><b>If NO, how are adjustments made?</b></label>
-             <textarea class="form-control" cols="5" rows="5" name="how_adjs_made"></textarea>
+             <textarea class="form-control" cols="5" rows="5" name="how_adjs_made">{{qual.detailed_adjustments}}</textarea>
             </div>
 
           </div>

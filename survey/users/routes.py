@@ -1,10 +1,11 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
 from survey import db , bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, RequestSearchForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
+from survey.users.forms import *
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 from datetime import datetime
+from dateutil import parser
 from sqlalchemy import or_, desc
 
 users = Blueprint('users',__name__)
@@ -142,7 +143,7 @@ def create_client():
         db.session.add(chair)
         db.session.add(ceo)
         db.session.add(key)
-        db.session.add(cur_aud)
+        db.session.add(cur_aud) 
         db.session.add(prev_aud)
         db.session.add(con)
         db.session.add(sec)
@@ -406,13 +407,15 @@ def survey_home():
 @users.route("/create_survey")
 def create_survey():
     form = SurveyForm()
+    searchform = MyForm()
+    compform = ComparatorForm()
     if form.validate_on_submit():
         sur = Survey(name="test2",start_date=datetime(2012, 3, 3, 10, 10, 10),end_date=datetime(2012, 3, 3, 10, 10, 10),status="active",client_id=1)
         db.session.add(sur)
         db.session.commit()
         flash('Account Created','success')
         return redirect(url_for('users.login'))
-    return render_template("new_create_survey.html",form=form)
+    return render_template("new_create_survey.html",form=form,searchform=searchform,compform=compform)
 
 @users.route("/edit_survey")
 def edit_survey():
@@ -456,19 +459,54 @@ def my_reports():
 
 @users.route("/my_benchmark_jobs")
 def my_benchmark_jobs():
-    query = Main_benchmark_job.query.all()
-    base = Base_salary.query.all()
+    benchmark_jobs = Main_benchmark_job.query.filter_by(user_account=current_user, status='Pending').all()
     
-    return render_template("new_view_client_benchmark.html",query=query,base=base)
+    return render_template("new_view_client_benchmark.html",benchmark_jobs=benchmark_jobs)
 
 
 
-@users.route("/my_benchmark_jobs/options")
-def my_benchmark_options():
-    usn = current_user
-    job = Main_benchmark_job.query.filter_by(user_account=usn).all()
+@users.route("/my_benchmark_jobs/search_pool")
+def client_search_job_pool():
+    # usn = current_user
+    # job = Main_benchmark_job.query.filter_by(user_account=usn).all()
 
-    return render_template("new_client_benchmark_options.html",job=job)
+    return render_template("client_search_job_pool.html")
+
+@users.route("/job_pool/search", methods=['POST'])
+def search_job_pool():
+    
+    search = request.form['search']
+    search_result = []
+    if search !='':
+        jobs = Benchmark_job_pool.query.filter(Benchmark_job_pool.job_title.like(('%'+search+'%')))
+        for job in jobs:
+            search_result.append({'id':job.id,
+            'job_title':job.job_title,
+            'grade':job.grade,
+            'department':job.department.department,
+            'area':job.area_id,
+             }) 
+    
+    return jsonify(search_result)
+
+# get details of selected pool job to be displayed in modal
+@users.route("/job_pool/search/view", methods = ['POST'])
+def search_job_pool_view():
+    id=request.form['id']
+    search_result =[]
+    job = Benchmark_job_pool.query.get_or_404(id)
+    search_result = ({
+        'job_title':job.job_title,
+        'grade':job.grade,
+        'department':job.department.department,
+        'reporting_relationship':job.reporting_relationship or '',
+        'job_description':job.job_description or '',
+        'key_duties':job.duties_and_responsibility or '',
+        'financial_responsibilies':job.financial_responsibilities or '',
+        'technical_qualifications':job.technical_qualification or '',
+        'years_of_experience':job.minimum_years_of_experience or '',
+        })
+    return jsonify(search_result)
 
 @users.route("/my_benchmark_jobs/new",methods=['POST','GET'])
 def my_benchmark_jobs_create():
@@ -526,7 +564,8 @@ def admin_home():
 
 @users.route("/administration/surveys")
 def admin_surveys():
-    return render_template("new_view_survey.html")
+    query = Survey.query.all()
+    return render_template("new_view_survey.html",query=query)
 
 @users.route("/administration/benchmark-jobs")
 def admin_benchmarl():
@@ -588,6 +627,388 @@ def admin_users():
         Users = User.query.paginate(page=page, per_page=rows_per_page)
     
     return render_template("admin_users.html", Users=Users)
+
+
+
+### Begining of block working on admin viewing comparator jobs and approving
+
+# Route for admin to view all jobs from comparators
+@users.route("/view_comparator_jobs", methods=['POST', 'GET'])
+def admin_view_comparator_jobs():
+    benchmark_jobs = Benchmark_job.query.filter_by(status='Pending')
+    form = BenchmarkJobComment()
+    if form.validate_on_submit():
+        benchmark_job = Benchmark_job.query.get_or_404(id)
+        comment = form.comment.data
+        new_comment = Comparator_job_comment(comment=comment, main_benchmark_job_id=1)
+        db.session.add(new_comment)
+        benchmark_job.status = 'Rejected'
+        db.session.commit()
+        flash('Job Updated', 'Success')
+        return redirect(url_for('users.admin_view_client_benchmark_jobs'))
+
+    return render_template("admin_view_client_benchmark_jobs.html", benchmark_jobs = benchmark_jobs, form=form)
+
+
+# Filter benchmark jobs
+# @users.route("/client_benchmark_job/filter", methods = ['POST'])
+# def filter_client_jobs():
+#     status = request.form.getlist('status[]')
+#     client = request.form.getlist('client[]')
+#     filtered_jobs = []
+#     # filter if status and client are both selected
+#     if len(status) >0 and len(client)>0:
+#         for status_ in status:
+#             for client_ in client:
+#                 user_id = Client.query.get_or_404(client_).user_id
+                
+#                 # return jsonify(client_object)
+#                 benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_, user = user_id)
+#                 for benchmark_job in benchmark_jobs:
+#                     filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+#         return jsonify(filtered_jobs)
+
+#     # filter if status is selected and no client selected
+#     if len(status) >0 and len(client)==0:
+#         for status_ in status:
+            
+#             benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_)
+#             for benchmark_job in benchmark_jobs:
+#                 filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+#         return jsonify(filtered_jobs)
+
+#     # filter if client is selected and no status selected
+#     if len(status) ==0 and len(client)>0:
+#         for client_ in client:
+#             user_id = Client.query.get_or_404(client_).user_id
+#             benchmark_jobs = Main_benchmark_job.query.filter_by(user=user_id)
+#             for benchmark_job in benchmark_jobs:
+#                 filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+#         return jsonify(filtered_jobs)
+
+
+#     # query if no filter is selected
+#     if len(status) ==0 and len(client)==0:
+#         benchmark_jobs = Main_benchmark_job.query.filter_by(status='Pending')
+#         for benchmark_job in benchmark_jobs:
+#             filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+#         return jsonify(filtered_jobs)
+
+
+#Reject benchmark_job
+@users.route("/comparator_job/reject/<int:id>", methods=['POST'])
+def reject_comparator_job(id):
+    form = BenchmarkJobComment()
+    if form.validate_on_submit():
+        benchmark_job = Benchmark_job.query.get_or_404(id)
+        comment = form.comment.data
+        new_comment = Comparator_job_comment(comment=comment, comparator_job_id=id)
+        db.session.add(new_comment)
+        benchmark_job.status = 'Rejected'
+        db.session.commit()
+        flash('Job Updated', 'Success')
+        return redirect(url_for('users.admin_view_client_benchmark_jobs'))
+
+# Approve client benchmark Job
+@users.route("/comparator_job/approve", methods = ['POST'])
+def approve_comparator_job():
+    
+    id = request.form['id']
+   
+    benchmark_job = Benchmark_job.query.get_or_404(id)
+    benchmark_job.status = 'Approved'
+
+    # Check if comment is not blank and add to comment table
+    comment = request.form['comment']
+    if comment != '':
+        new_comment = Comparator_job_comment(comment=comment, comparator_job_id=id)
+        db.session.add(new_comment)
+    db.session.commit()
+    flash('Job Updated', 'Success')
+    return 'true'
+
+# Route to search for comparator based of search input and return to input fielf
+# @users.route("/client/search", methods =['POST'])
+# def search_client():
+#     search = request.form['search']
+#     clients = Client.query.filter(Client.company_name.like(('%'+search+'%')))
+#     new_clients =[]
+#     for client in clients:
+#         new_clients.append({'id':client.id,'name':client.company_name})
+#     return jsonify(new_clients)
+
+# Route to get job details and send back to ajax function to be displayed in modal
+@users.route("/comparator_job/view", methods=['POST'])
+def view_comparator_job():
+    id = request.form['id']
+    benchmark_job = Comparator_job.query.get_or_404(id)
+
+    comments = []
+    for comment in benchmark_job.comment:
+        comments.append(comment.comment)
+    new_benchmark_job = {
+        'id':benchmark_job.id, 
+        'job_title':benchmark_job.job_title,
+        'grade':benchmark_job.grade,
+        'department':benchmark_job.main_department.department,
+        'reporting_relationship':benchmark_job.reporting_relationship,
+        'job_description':benchmark_job.job_description,
+        'key_duties':benchmark_job.duties_and_responsibility,
+        'financial_responsibilies':benchmark_job.financial_responsibilities,
+        'technical_qualifications':benchmark_job.technical_qualification,
+        'years_of_experience':benchmark_job.minimum_years_of_experience,
+        'status_':benchmark_job.status,
+        'base_salary': "{:,.2f}".format(benchmark_job.base[0].monthly_base_salary or 0),
+        'company_performance_bonus': "{:,.2f}".format(benchmark_job.incentive[0].company_performance or 0) ,
+        'individual_performance_bonus': "{:,.2f}".format(benchmark_job.incentive[0].individual_performance or 0),
+        'annual_bonus': "{:,.2f}".format(benchmark_job.incentive[0].annual_incentive or 0),
+        'incentive_bonus': "{:,.2f}".format(benchmark_job.incentive[0].incentive or 0),
+        'other_bonus': "{:,.2f}".format(benchmark_job.incentive[0].other_cash or 0),
+        'b_staff_bus': "{:,.2f}".format(benchmark_job.benefit[0].staff_bus or 0),
+        'b_company_car': "{:,.2f}".format(benchmark_job.benefit[0].company_car or 0),
+        'b_personal_travel': "{:,.2f}".format(benchmark_job.benefit[0].personal_travel or 0),
+        'b_petrol': "{:,.2f}".format(benchmark_job.benefit[0].petrol or 0),
+        'b_vehicle': "{:,.2f}".format(benchmark_job.benefit[0].vehicle_maintenance or 0),
+        'b_driver': "{:,.2f}".format(benchmark_job.benefit[0].driver or 0),
+        'b_health_insurance': "{:,.2f}".format(benchmark_job.benefit[0].health_insurance or 0),
+        'b_medical_assistance': "{:,.2f}".format(benchmark_job.benefit[0].medical_assistance or 0),
+        'b_funeral_assistance': "{:,.2f}".format(benchmark_job.benefit[0].funeral_assistance or 0),
+        'b_life_insurance': "{:,.2f}".format(benchmark_job.benefit[0].life_insurance or 0),
+        'b_accident': "{:,.2f}".format(benchmark_job.benefit[0].group_accident or 0),
+        'b_club_membership': "{:,.2f}".format(benchmark_job.benefit[0].club_membership or 0),
+        'b_school_fees': "{:,.2f}".format(benchmark_job.benefit[0].school_fees or 0),
+        'b_vacation': "{:,.2f}".format(benchmark_job.benefit[0].vacation or 0),
+        'b_housing': "{:,.2f}".format(benchmark_job.benefit[0].housing or 0),
+        'b_telephone': "{:,.2f}".format(benchmark_job.benefit[0].telephone or 0),
+        'b_security': "{:,.2f}".format(benchmark_job.benefit[0].security or 0),
+        'b_other': "{:,.2f}".format(benchmark_job.benefit[0].other_benefits or 0),
+        
+        'a_vehicle_maintenance': "{:,.2f}".format(benchmark_job.allowance[0].vehicle_maintenance or 0),
+        'a_vehicle': "{:,.2f}".format(benchmark_job.allowance[0].vehicle or 0),
+        'a_transport': "{:,.2f}".format(benchmark_job.allowance[0].transport or 0),
+        'a_fuel': "{:,.2f}".format(benchmark_job.allowance[0].fuel or 0),
+        'a_car': "{:,.2f}".format(benchmark_job.allowance[0].car or 0),
+        'a_driver': "{:,.2f}".format(benchmark_job.allowance[0].driver or 0),
+        'a_domestic_safety': "{:,.2f}".format(benchmark_job.allowance[0].domestic_safety or 0),
+        'a_housing': "{:,.2f}".format(benchmark_job.allowance[0].housing or 0),
+        'a_utilities': "{:,.2f}".format(benchmark_job.allowance[0].utilities or 0),
+        'a_meal': "{:,.2f}".format(benchmark_job.allowance[0].meal or 0),
+        'a_telephone': "{:,.2f}".format(benchmark_job.allowance[0].telephone or 0),
+        'a_entertainment': "{:,.2f}".format(benchmark_job.allowance[0].entertainment or 0),
+        'a_education': "{:,.2f}".format(benchmark_job.allowance[0].education_support or 0),
+        'a_vacation': "{:,.2f}".format(benchmark_job.allowance[0].vacation or 0),
+        'a_uniform': "{:,.2f}".format(benchmark_job.allowance[0].uniform or 0),
+        'a_mobile_money': "{:,.2f}".format(benchmark_job.allowance[0].mobile_money or 0),
+        'a_miscellaneous': "{:,.2f}".format(benchmark_job.allowance[0].miscellaenous or 0),
+       
+
+        'comments_': comments
+        }
+    return jsonify(new_benchmark_job)
+
+
+
+### End of block working on admin viewing client benchmark jobs and approving
+
+
+
+
+
+### Begining of block working on admin viewing client benchmark jobs and approving
+
+# Route for admin to view all benchmark jobs from clients
+@users.route("/view_client_benchmark_jobs", methods=['POST', 'GET'])
+def admin_view_client_benchmark_jobs():
+    benchmark_jobs = Main_benchmark_job.query.filter_by(status='Pending')
+    form = BenchmarkJobComment()
+    if form.validate_on_submit():
+        benchmark_job = Main_benchmark_job.query.get_or_404(id)
+        comment = form.comment.data
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=id)
+        db.session.add(new_comment)
+        benchmark_job.status = 'Rejected'
+        db.session.commit()
+        flash('Job Updated', 'Success')
+        return redirect(url_for('users.admin_view_client_benchmark_jobs'))
+
+    return render_template("admin_view_client_benchmark_jobs.html", benchmark_jobs = benchmark_jobs, form=form)
+
+
+# Filter benchmark jobs
+@users.route("/client_benchmark_job/filter", methods = ['POST'])
+def filter_jobs():
+    status = request.form.getlist('status[]')
+    
+    filtered_jobs = []
+    # A separate condition to differentiate filters for client from filter for admin
+    is_client = request.form['is_client']
+    if is_client == 'client':
+        
+        for status_ in status:
+            benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_, user_account = current_user)
+           
+            for benchmark_job in benchmark_jobs:
+                filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+    client = request.form.getlist('client[]')
+    # filter if status and client are both selected
+    if len(status) >0 and len(client)>0:
+        for status_ in status:
+            for client_ in client:
+                user_id = Client.query.get_or_404(client_).user_id
+                
+                # return jsonify(client_object)
+                benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_, user = user_id)
+                for benchmark_job in benchmark_jobs:
+                    filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+    # filter if status is selected and no client selected
+    if len(status) >0 and len(client)==0:
+        for status_ in status:
+            
+            benchmark_jobs = Main_benchmark_job.query.filter_by(status=status_)
+            for benchmark_job in benchmark_jobs:
+                filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+    # filter if client is selected and no status selected
+    if len(status) ==0 and len(client)>0:
+        for client_ in client:
+            user_id = Client.query.get_or_404(client_).user_id
+            benchmark_jobs = Main_benchmark_job.query.filter_by(user=user_id)
+            for benchmark_job in benchmark_jobs:
+                filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+
+    # query if no filter is selected
+    if len(status) ==0 and len(client)==0:
+        benchmark_jobs = Main_benchmark_job.query.filter_by(status='Pending')
+        for benchmark_job in benchmark_jobs:
+            filtered_jobs.append({'id':benchmark_job.id, 'job_title':benchmark_job.job_title, 'client':benchmark_job.user_account.client[0].company_name, 'department':benchmark_job.main_department.department, 'grade':benchmark_job.grade, 'timestamp':benchmark_job.timestamp, 'status':benchmark_job.status})
+        return jsonify(filtered_jobs)
+
+
+#Reject benchmark_job
+@users.route("/client_benchmark_job/reject/<int:id>", methods=['POST'])
+def reject_client_benchmark_job(id):
+    form = BenchmarkJobComment()
+    if form.validate_on_submit():
+        benchmark_job = Main_benchmark_job.query.get_or_404(id)
+        comment = form.comment.data
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=id)
+        db.session.add(new_comment)
+        benchmark_job.status = 'Rejected'
+        db.session.commit()
+        flash('Job Updated', 'Success')
+        return redirect(url_for('users.admin_view_client_benchmark_jobs'))
+
+# Approve client benchmark Job
+@users.route("/client_benchmark_job/approve", methods = ['POST'])
+def approve_client_benchmark_job():
+    
+    id = request.form['id']
+   
+    benchmark_job = Main_benchmark_job.query.get_or_404(id)
+    benchmark_job.status = 'Approved'
+
+    # Check if comment is not blank and add to comment table
+    comment = request.form['comment']
+    if comment != '':
+        new_comment = Main_benchmark_job_comment(comment=comment, main_benchmark_job_id=id)
+        db.session.add(new_comment)
+    db.session.commit()
+    flash('Job Updated', 'Success')
+    return 'true'
+
+# Route to search for client based of search input and return to input fielf
+@users.route("/client/search", methods =['POST'])
+def search_client():
+    search = request.form['search']
+    clients = Client.query.filter(Client.company_name.like(('%'+search+'%')))
+    new_clients =[]
+    for client in clients:
+        new_clients.append({'id':client.id,'name':client.company_name})
+    return jsonify(new_clients)
+
+# Route to get job details and send back to ajax function to be displayed in modal
+@users.route("/client_benchmark_job/view", methods=['POST'])
+def view_client_benchmark_job():
+    id = request.form['id']
+    benchmark_job = Main_benchmark_job.query.get_or_404(id)
+
+    comments = []
+    for comment in benchmark_job.comment:
+        comments.append(comment.comment)
+    new_benchmark_job = {
+        'id':benchmark_job.id, 
+        'job_title':benchmark_job.job_title,
+        'grade':benchmark_job.grade,
+        'department':benchmark_job.main_department.department,
+        'reporting_relationship':benchmark_job.reporting_relationship,
+        'job_description':benchmark_job.job_description,
+        'key_duties':benchmark_job.duties_and_responsibility,
+        'financial_responsibilies':benchmark_job.financial_responsibilities,
+        'technical_qualifications':benchmark_job.technical_qualification,
+        'years_of_experience':benchmark_job.minimum_years_of_experience,
+        'status_':benchmark_job.status,
+        'base_salary': "{:,.2f}".format(benchmark_job.base[0].monthly_base_salary or 0),
+        'company_performance_bonus': "{:,.2f}".format(benchmark_job.incentive[0].company_performance or 0) ,
+        'individual_performance_bonus': "{:,.2f}".format(benchmark_job.incentive[0].individual_performance or 0),
+        'annual_bonus': "{:,.2f}".format(benchmark_job.incentive[0].annual_incentive or 0),
+        'incentive_bonus': "{:,.2f}".format(benchmark_job.incentive[0].incentive or 0),
+        'other_bonus': "{:,.2f}".format(benchmark_job.incentive[0].other_cash or 0),
+        'b_staff_bus': "{:,.2f}".format(benchmark_job.benefit[0].staff_bus or 0),
+        'b_company_car': "{:,.2f}".format(benchmark_job.benefit[0].company_car or 0),
+        'b_personal_travel': "{:,.2f}".format(benchmark_job.benefit[0].personal_travel or 0),
+        'b_petrol': "{:,.2f}".format(benchmark_job.benefit[0].petrol or 0),
+        'b_vehicle': "{:,.2f}".format(benchmark_job.benefit[0].vehicle_maintenance or 0),
+        'b_driver': "{:,.2f}".format(benchmark_job.benefit[0].driver or 0),
+        'b_health_insurance': "{:,.2f}".format(benchmark_job.benefit[0].health_insurance or 0),
+        'b_medical_assistance': "{:,.2f}".format(benchmark_job.benefit[0].medical_assistance or 0),
+        'b_funeral_assistance': "{:,.2f}".format(benchmark_job.benefit[0].funeral_assistance or 0),
+        'b_life_insurance': "{:,.2f}".format(benchmark_job.benefit[0].life_insurance or 0),
+        'b_accident': "{:,.2f}".format(benchmark_job.benefit[0].group_accident or 0),
+        'b_club_membership': "{:,.2f}".format(benchmark_job.benefit[0].club_membership or 0),
+        'b_school_fees': "{:,.2f}".format(benchmark_job.benefit[0].school_fees or 0),
+        'b_vacation': "{:,.2f}".format(benchmark_job.benefit[0].vacation or 0),
+        'b_housing': "{:,.2f}".format(benchmark_job.benefit[0].housing or 0),
+        'b_telephone': "{:,.2f}".format(benchmark_job.benefit[0].telephone or 0),
+        'b_security': "{:,.2f}".format(benchmark_job.benefit[0].security or 0),
+        'b_other': "{:,.2f}".format(benchmark_job.benefit[0].other_benefits or 0),
+        
+        'a_vehicle_maintenance': "{:,.2f}".format(benchmark_job.allowance[0].vehicle_maintenance or 0),
+        'a_vehicle': "{:,.2f}".format(benchmark_job.allowance[0].vehicle or 0),
+        'a_transport': "{:,.2f}".format(benchmark_job.allowance[0].transport or 0),
+        'a_fuel': "{:,.2f}".format(benchmark_job.allowance[0].fuel or 0),
+        'a_car': "{:,.2f}".format(benchmark_job.allowance[0].car or 0),
+        'a_driver': "{:,.2f}".format(benchmark_job.allowance[0].driver or 0),
+        'a_domestic_safety': "{:,.2f}".format(benchmark_job.allowance[0].domestic_safety or 0),
+        'a_housing': "{:,.2f}".format(benchmark_job.allowance[0].housing or 0),
+        'a_utilities': "{:,.2f}".format(benchmark_job.allowance[0].utilities or 0),
+        'a_meal': "{:,.2f}".format(benchmark_job.allowance[0].meal or 0),
+        'a_telephone': "{:,.2f}".format(benchmark_job.allowance[0].telephone or 0),
+        'a_entertainment': "{:,.2f}".format(benchmark_job.allowance[0].entertainment or 0),
+        'a_education': "{:,.2f}".format(benchmark_job.allowance[0].education_support or 0),
+        'a_vacation': "{:,.2f}".format(benchmark_job.allowance[0].vacation or 0),
+        'a_uniform': "{:,.2f}".format(benchmark_job.allowance[0].uniform or 0),
+        'a_mobile_money': "{:,.2f}".format(benchmark_job.allowance[0].mobile_money or 0),
+        'a_miscellaneous': "{:,.2f}".format(benchmark_job.allowance[0].miscellaenous or 0),
+       
+
+        'comments_': comments
+        }
+    return jsonify(new_benchmark_job)
+
+
+    
+### End of block working on admin viewing comparator jobs and approving
+
+
+
+
 
 @users.route("/administration/config/benchmark_jobs")
 def admin_benchmark_jobs():
@@ -916,8 +1337,11 @@ def indexx():
 
 @users.route('/countries', methods=['POST'])
 def countrydic():
+    empty_arr = []
     tag = request.form["id"]
     search = "%{}%".format(tag)
+    if(len(tag) == 0):
+        return jsonify(empty_arr)
 
     vajx2 = request.form['id']
     posts = Main_benchmark_job.query.filter(Main_benchmark_job.job_title.like(search)).all()
@@ -944,8 +1368,11 @@ def process():
 
 @users.route('/jobs', methods=['POST','GET'])
 def jobdic():
+    empty_arr = []
     tag = request.form['id']
     search = "%{}%".format(tag)
+    if(len(tag) == 0):
+        return jsonify(empty_arr)
 
   
     posts = Main_benchmark_job.query.filter_by(id=tag)
@@ -965,8 +1392,12 @@ def jobdic():
 
 @users.route('/compare', methods=['POST'])
 def comparedic():
+    empty_arr = []
     tag = request.form["id"]
     search = "%{}%".format(tag)
+    
+    if(len(tag) == 0):
+        return jsonify(empty_arr)
 
     vajx2 = request.form['id']
     posts = Client.query.filter(Client.company_name.like(search)).all()
@@ -1014,6 +1445,7 @@ def created_survey_ajax():
     survey = request.form['survey']
     start_date = request.form['start_date']
     client = request.form['client']
+    start_date = parser.parse(start_date)
     #search = "%{}%".format(tag)
 
     bench_split = bench.split(',')
@@ -1022,7 +1454,7 @@ def created_survey_ajax():
     b_id = "f"
 
     #client_id = temp[0].id
-    sur = Survey(name=survey,status="unprocessed",survey_client=posts)
+    sur = Survey(name=survey,status="unprocessed",survey_client=posts,start_date=start_date)
     db.session.add(sur)
    
     
@@ -1041,7 +1473,7 @@ def created_survey_ajax():
             db.session.add(Benchmark_job(job_title=main.job_title,department=main.main_department,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=cli,comp_benchmark=sur,comp_benchmark_allowance=allowance,comp_benchmark_benefit=benefit,comp_benchmark_incentive=incentive,comp_benchmark_base=base))
     
     db.session.commit()
-    return jsonify('success')
+    return jsonify(start_date)
 
 
 
@@ -1057,14 +1489,16 @@ def smodaldict():
     post = posts[0]
     b_marks = Benchmark_job.query.all()
     comps = Survey_comparator.query.all()
+
+
     temp_b = []
     temp_c = []
     for b in b_marks:
         if(b.comp_benchmark.id == post.id):
             temp_b.append(b.job_title)
-    for c in comps:
-        if(c.comparator.id == post.id):
-            temp_c.append(c.comparator.survey_client.company_name)
+    for c in b_marks:
+        if(c.comp_benchmark.id == post.id):
+            temp_c.append(c.benchmark.company_name)
 
     temp_b = list(dict.fromkeys(temp_b))
     temp_c = list(dict.fromkeys(temp_c))
@@ -1326,6 +1760,32 @@ def save_qualitative():
         query.emp_number = num_emp
         query.working_hours=num_work_hours
         query.overtime_policy=ovr_policy
+        query.salary_structure=formal_salary_structure_ovr
+        query.salary_structure_adjustments=ss_adjusted
+        query.avg_perc_review=avg_inc
+        query.adjusment_basis=adj_basis
+        query.inflation_indicator=inflation
+        query.business_conditions_indicator=business_conditions
+        query.salary_level_indicator=salary_levels
+        query.other_indicator=other_indicators
+        query.isGradesAdjustedBySamePerc=grade_ajs
+        query.detailed_adjustments=how_adjs_made
+        query.job_evaluation=job_eval_sys
+        query.cost_of_living_adjustments_periodically=auto_inflation_adjs
+        query.cost_of_living_adjustments_periodically_basis=auto_inflation_adjs_exp
+        query.grade_levels=num_grade_levels
+        query.perc_grade_difference=notch_diff
+        query.grade_bases=sal_increments
+        query.staff_progress=staff_progress
+        query.experience_scale=experience
+        query.previous_scale=previous_salary
+        query.hiring_rate=hiring_rate
+        query.max_salary_grade=max_salary
+        query.max_salary_exceeded=sal_exceeded
+        query.max_salary_exceeded_reason=sal_exceeded_exp
+        query.haveIncentivePlans=annual_cash_bonus
+        query.incentive_plans=annual_cash_bonus_exp
+        query.annual_cash_eligibility=plans_eligibility
     
         db.session.commit()
         return('code submitted')
@@ -1337,9 +1797,9 @@ def save_qualitative():
     
     
 
-    return jsonify(pol_structure)
+    return jsonify(salary_structure_adjustments)
 
-    return jsonify(new_messages)
+    
 
 
 @users.route("/administration/client_reports")

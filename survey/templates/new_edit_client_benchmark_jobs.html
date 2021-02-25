@@ -200,6 +200,7 @@
   </div>
   <div class="col-md-9 col-sm-12 pt-4 pl-4">
     <span style="color:grey">Questions</span>
+    <span class="btn btn-danger btn-sm mr-4" onclick="close_()" style="float: right;">Close</span>
   </div>
 
 <div class="col-md-3 col-sm-12 p-4">
@@ -243,6 +244,7 @@
 
   <div class="row  benchmark_details">
       <div class="col-sm-12 pl-4 pr-4 pb-4 ">
+        
         <div class="card p-4" style="border-color: green;">
           <div class="row">
 
@@ -250,7 +252,7 @@
               <b>Benchmark Details</b>
 <hr/>
             </div>
-          <div class="col-6 pb-4">
+          <div class="col-6 ">
           <div class="row ">
             <div class="col-12 ">
               
@@ -272,7 +274,7 @@
               </div>
 
 
-              <div class="col-6 pb-4">
+              <div class="col-6 ">
                   <div class="row ">
                     <div class="col-12 ">
                       
@@ -308,7 +310,7 @@
                       </div>
 
 
-                      <div class="col-6 pb-4">
+                      <div class="col-6 ">
                           <div class="row ">
                             <div class="col-12 ">
                               
@@ -329,7 +331,7 @@
                               </div>
                               </div>
 
-                              <div class="col-6 pb-4">
+                              <div class="col-6 ">
                                   <div class="row ">
                                     <div class="col-12 ">
                                       
@@ -350,7 +352,7 @@
                                       </div>
                                       </div>
 
-                                      <div class="col-12 pb-4">
+                                      <div class="col-12 ">
                                           <div class="row ">
                                             <div class="col-12 ">
                                               
@@ -372,7 +374,7 @@
                                               </div>
 
 
-                                              <div class="col-12 pb-4">
+                                              <div class="col-12 ">
                                                   <div class="row ">
                                                     <div class="col-12 ">
                                                       
@@ -394,7 +396,7 @@
                                                       </div>
 
 
-                                                      <div class="col-12 pb-4">
+                                                      <div class="col-12 ">
                                                           <div class="row ">
                                                             <div class="col-12 ">
                                                               
@@ -416,7 +418,7 @@
                                                               </div>
 
 
-                                                              <div class="col-12 pb-4">
+                                                              <div class="col-12 ">
                                                                   <div class="row ">
                                                                     <div class="col-12 ">
                                                                       
@@ -437,7 +439,7 @@
                                                                       </div>
                                                                       </div>
 
-                                                                      <div class="col-12 pb-4">
+                                                                      <div class="col-12 ">
                                                                           <div class="row ">
                                                                             <div class="col-12 ">
                                                                               
@@ -485,7 +487,7 @@
         <b>Base Salary</b>
 <hr/>
       </div>
-      <div class="col-12 pt-4 ">
+      <div class="col-3 pt-4 ">
         <b class="green_shade"><b>
           {{ form.base_salary.label(class="form-control-label") }}
 
@@ -1661,6 +1663,11 @@ surveyNotActive()
 benchmarkNotActive()
 comparatorNotActive()
 reviewNotActive()
+
+function close_(){
+  window.location.assign('/my_benchmark_jobs')
+}
+
 </script>
 
 {% endblock content %}

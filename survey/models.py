@@ -206,8 +206,6 @@ class Industry(db.Model):
     client = db.relationship('Client', backref='industry' , lazy=True)
     
 
-   
-
     def __repr__(self):
         return '<Industry %r>' % self.id
 
@@ -217,12 +215,8 @@ class Area(db.Model):
     area = db.Column(db.String(100))
     sector_id = db.Column(db.Integer, db.ForeignKey('sector.id'))
     industry_id = db.Column(db.Integer, db.ForeignKey('industry.id'))
-
-    
+    Benchmark_jobs = db.relationship('Benchmark_job_pool', backref='area' , lazy=True)
     client = db.relationship('Client', backref='area' , lazy=True)
-    
-
-   
 
     def __repr__(self):
         return '<Area %r>' % self.id
@@ -237,15 +231,9 @@ class Key_management(db.Model):
     email = db.Column(db.String(100))
     mobile_number = db.Column(db.String(20))
     nationality = db.Column(db.String(100))
-   
-    # client_id = db.Column(db.Integer, db.ForeignKey('client.id'))
 
     client = db.relationship('Client', backref='key_management' , lazy=True)
 
-
-
-
-   
 
     def __repr__(self):
         return '<Key_management %r>' % self.id
@@ -517,12 +505,30 @@ class Department(db.Model):
     benchmark = db.relationship('Benchmark_job', backref='department' , lazy=True)
     main_benchmark = db.relationship('Main_benchmark_job', backref='main_department' , lazy=True)
     job = db.relationship('Comparator_job', backref='department' , lazy=True)
-
+    bechmark_pool = db.relationship('Benchmark_job_pool', backref='department' , lazy=True)
 
 
     def __repr__(self):
         return '<Department %r>' % self.id
 
+class Benchmark_job_pool(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    job_title = db.Column(db.String(100))
+    grade = db.Column(db.String(50))
+    department_id = db.Column(db.Integer, db.ForeignKey('department.id'))
+    area_id = db.Column(db.Integer, db.ForeignKey('area.id'))
+    reporting_relationship = db.Column(db.String(100))
+    job_description = db.Column(db.String(1000))
+    duties_and_responsibility = db.Column(db.String(1000))
+    financial_responsibilities = db.Column(db.String(1000))
+    technical_qualification = db.Column(db.String(1000))
+    minimum_years_of_experience = db.Column(db.String(1000))
+    status = db.Column(db.String(100))
+    timestamp = db.Column(db.DateTime , default=datetime.utcnow)
+    
+
+    def __repr__(self):
+        return '<Benchmark_job_pool %r>' % self.id
 
 
 class Main_benchmark_job(db.Model):

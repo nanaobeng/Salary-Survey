@@ -694,7 +694,8 @@ function filter_job(){
       url: '/client_benchmark_job/filter',
       data: {
           client: selected_client,
-          status: selected_status
+          status: selected_status,
+          is_client: 'admin'
       },
       type: 'POST',
       success: function(res) {
