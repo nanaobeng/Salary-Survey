@@ -1,6 +1,6 @@
 from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
 from survey import db , bcrypt
-from survey.users.forms import RegistrationForm, LoginForm, RequestResetForm, RequestSearchForm, ResetPasswordForm, SectorForm, IndustryForm , MessageComment, ClientForm, JobForm, SurveyForm, AreaForm,QualForm,IndividualRequestForm,CorporateRequestForm,ContactForm,ServiceRequestForm
+from survey.users.forms import *
 from survey.models import *
 from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
@@ -267,7 +267,7 @@ def create_area():
     Areas = Area.query.all()
     
     if form.validate_on_submit():
-        area = Area(area = form.name.data, industry_id = form.industry.data)
+        area = Area(area = form.name.data, industry_id = form.industry.data.id)
         
         db.session.add(area)
         db.session.commit()
@@ -481,7 +481,7 @@ def search_job_pool():
             'job_title':job.job_title,
             'grade':job.grade,
             'department':job.department.department,
-            'area':job.area_id,
+            'area':job.area.area,
              }) 
     
     return jsonify(search_result)
@@ -496,6 +496,7 @@ def search_job_pool_view():
         'job_title':job.job_title,
         'grade':job.grade,
         'department':job.department.department,
+
         'reporting_relationship':job.reporting_relationship or '',
         'job_description':job.job_description or '',
         'key_duties':job.duties_and_responsibility or '',
@@ -505,12 +506,23 @@ def search_job_pool_view():
         })
     return jsonify(search_result)
 
+# Route to new benchmark job when adding from pool
 @users.route("/my_benchmark_jobs/new",methods=['POST','GET'])
 def my_benchmark_jobs_create():
+    job = {}
+    try:
+        if request.args.get('pool'):
+            id = request.args.get('pool')
+            job = Benchmark_job_pool.query.get_or_404(id)
+            # job = {
+            #     'job_title':job_.job_title
+            # }
+    except:
+        pass
     form = SurveyForm()
     user = current_user
     if form.validate_on_submit():
-        b_job = Main_benchmark_job(job_title=form.job_title.data,grade=form.grade.data,main_department=form.department.data,reporting_relationship=form.reporting_relationship.data,job_description=form.job_desc.data,duties_and_responsibility=form.key_duties.data,financial_responsibilities=form.fin_res.data,technical_qualification=form.tech_qual.data,minimum_years_of_experience=form.exp_years.data,user_account=user)
+        b_job = Main_benchmark_job(job_title=form.job_title.data,grade=form.grade.data,main_department=form.department.data,reporting_relationship=form.reporting_relationship.data,job_description=form.job_desc.data,duties_and_responsibility=form.key_duties.data,financial_responsibilities=form.fin_res.data,technical_qualification=form.tech_qual.data,minimum_years_of_experience=form.exp_years.data,user_account=user, status='Pending')
         base = Base_salary(monthly_base_salary=form.base_salary.data,main_benchmark_base=b_job)
         inc  = Incentive(company_performance=form.company_bonus_performance.data,individual_performance=form.individual_bonus_performance.data,annual_incentive=form.annual_bonus.data,incentive=form.incentive_bonus.data,other_cash=form.other_bonus.data,main_benchmark_incentive=b_job)
         benefits = Benefit(staff_bus=form.staff_bus.data,company_car=form.company_car.data,personal_travel=form.personal_travel.data,petrol=form.petrol.data,vehicle_maintenance=form.vehicle.data,driver=form.driver.data,health_insurance=form.health_insurance.data,medical_assistance=form.medical_assistance.data,funeral_assistance=form.funeral_assistance.data,life_insurance=form.life_insurance.data,group_accident=form.group_accident.data,club_membership=form.club_membership.data,school_fees=form.school_fees.data,vacation=form.vacation.data,housing=form.housing.data,telephone=form.telephone.data,security=form.security.data,other_benefits=form.other_benefits.data,main_benchmark_benefit=b_job)
@@ -522,8 +534,8 @@ def my_benchmark_jobs_create():
         db.session.add(allowance)
         db.session.commit()
         flash('Job Position Created','success')
-        return redirect(url_for('users.my_benchmark_jobs_create')) 
-    return render_template("new_client_create_benchmark.html",form=form)
+        return redirect(url_for('users.my_benchmark_jobs')) 
+    return render_template("new_client_create_benchmark.html",form=form, job=job)
 
 @users.route("/my_surveys")
 def my_surveys():
@@ -1010,8 +1022,11 @@ def view_client_benchmark_job():
 def admin_benchmark_jobs():
     return render_template("admin_benchmark_jobs.html")
 
-@users.route("/administration/config/create_benchmark_job")
+@users.route("/administration/config/create_benchmark_job", methods=['POST', 'GET'])
 def create_benchmark_job():
+    if request.method == 'POST':
+        
+        return 'success'
     return render_template("create_benchmark_job.html")
 
 @users.route("/survey/quantitative/<int:id>",methods=['POST','GET'])
@@ -1245,54 +1260,54 @@ def edit_benchmark(id):
         job.financial_responsibilities = request.form['financial_responsibilities']
         job.technical_qualification = request.form['tech_qual']
         job.minimum_years_of_experience = request.form['exp_years']
+        job.status = 'Pending'
+
+        base.monthly_base_salary= request.form['base_salary'] or None
+
+        incentive.company_performance = request.form['cmp_bonus'] or None
+        incentive.individual_performance = request.form['indv_bonus'] or None
+        incentive.annual_incentive = request.form['annual_bonus'] or None
+        incentive.incentive = request.form['inv_bonus'] or None
+        incentive.other_cash = request.form['other_bonus'] or None
 
 
-        base.monthly_base_salary= request.form['base_salary']
-
-        incentive.company_performance = request.form['cmp_bonus']
-        incentive.individual_performance = request.form['indv_bonus']
-        incentive.annual_incentive = request.form['annual_bonus']
-        incentive.incentive = request.form['inv_bonus']
-        incentive.other_cash = request.form['other_bonus']
-
-
-        benefit.staff_bus = request.form['staff_bus']
-        benefit.company_car = request.form['cmp_car']
-        benefit.personal_travel = request.form['personal_travel']
-        benefit.petrol = request.form['petrol']
-        benefit.vehicle_maintenance = request.form['vehicle']
-        benefit.driver = request.form['driver']
-        benefit.health_insurance= request.form['htl_ins']
-        benefit.medical_assistance = request.form['medi_assis']
-        benefit.funeral_assistance = request.form['funeral_assistance']
-        benefit.life_insurance = request.form['life_insurance']
-        benefit.group_accident = request.form['group_accident']
-        benefit.club_membership  = request.form['club_membership']
-        benefit.school_fees = request.form['school_fees']
-        benefit.vacation= request.form['vacation']
-        benefit.housing = request.form['housing']
-        benefit.telephone = request.form['telephone']
-        benefit.security = request.form['security']
-        benefit.other_benefits = request.form['other_benefits']
+        benefit.staff_bus = request.form['staff_bus'] or None
+        benefit.company_car = request.form['cmp_car'] or None
+        benefit.personal_travel = request.form['personal_travel'] or None
+        benefit.petrol = request.form['petrol'] or None
+        benefit.vehicle_maintenance = request.form['vehicle'] or None
+        benefit.driver = request.form['driver'] or None
+        benefit.health_insurance= request.form['htl_ins'] or None
+        benefit.medical_assistance = request.form['medi_assis'] or None
+        benefit.funeral_assistance = request.form['funeral_assistance'] or None
+        benefit.life_insurance = request.form['life_insurance'] or None
+        benefit.group_accident = request.form['group_accident'] or None
+        benefit.club_membership  = request.form['club_membership'] or None
+        benefit.school_fees = request.form['school_fees'] or None
+        benefit.vacation= request.form['vacation'] or None
+        benefit.housing = request.form['housing'] or None
+        benefit.telephone = request.form['telephone'] or None
+        benefit.security = request.form['security'] or None
+        benefit.other_benefits = request.form['other_benefits'] or None
 
 
-        allowance.vehicle_maintenance = request.form['vehicle_maintenance']
-        allowance.vehicle = request.form['allowance_vehicle']
-        allowance.transport = request.form['transport']
-        allowance.fuel = request.form['fuel']
-        allowance.car = request.form['car']
-        allowance.driver = request.form['allowance_driver']
-        allowance.domestic_safety = request.form['domestic']
-        allowance.housing = request.form['allowance_housing']
-        allowance.utilities = request.form['utilities']
-        allowance.meal = request.form['meal']
-        allowance.telephone = request.form['allowance_telephone']
-        allowance.entertainment = request.form['entertainment']
-        allowance.education_support = request.form['education']
-        allowance.vacation = request.form['allowance_vacation']
-        allowance.uniform = request.form['uniform']
-        allowance.mobile_money = request.form['momo']
-        allowance.miscellaenous = request.form['misc']
+        allowance.vehicle_maintenance = request.form['vehicle_maintenance'] or None
+        allowance.vehicle = request.form['allowance_vehicle'] or None
+        allowance.transport = request.form['transport'] or None
+        allowance.fuel = request.form['fuel'] or None
+        allowance.car = request.form['car'] or None
+        allowance.driver = request.form['allowance_driver'] or None
+        allowance.domestic_safety = request.form['domestic'] or None
+        allowance.housing = request.form['allowance_housing'] or None
+        allowance.utilities = request.form['utilities'] or None
+        allowance.meal = request.form['meal'] or None
+        allowance.telephone = request.form['allowance_telephone'] or None
+        allowance.entertainment = request.form['entertainment'] or None
+        allowance.education_support = request.form['education'] or None
+        allowance.vacation = request.form['allowance_vacation'] or None
+        allowance.uniform = request.form['uniform'] or None
+        allowance.mobile_money = request.form['momo'] or None
+        allowance.miscellaenous = request.form['misc'] or None
         try:
             db.session.commit()
             flash('Job Updated','success')
