@@ -604,11 +604,32 @@ def admin_reports():
 
 @users.route("/administration/client_hub")
 def client_hub():
-    total_num_requests = db.session.query(Service_request).count()
-    total_pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending').count()
-    total_submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted').count()
-    clients = Client.query.count()
-    return render_template("client_hub.html", data=json.dumps(clients), total_num_requests=total_num_requests, total_pending_requests=total_pending_requests, total_submitted_requests=total_submitted_requests)
+    total_num_requests = json.dumps(Individual_request.query.count() + Corporate_request.query.count())
+    total_indv_requests = json.dumps(Individual_request.query.count())
+    total_corp_requests = json.dumps(Corporate_request.query.count())
+
+    total_pending_requests = json.dumps(Individual_request.query.filter_by(status='pending').count() + Corporate_request.query.filter_by(status='pending').count())
+    total_awaiting_requests = json.dumps(Individual_request.query.filter_by(status='requesting_client_information').count() + Corporate_request.query.filter_by(status='requesting_client_information').count())
+    total_fpass_requests = json.dumps(Individual_request.query.filter_by(status='first_pass').count() + Corporate_request.query.filter_by(status='first_pass').count())
+    total_ccheck_requests = json.dumps(Individual_request.query.filter_by(status='conflict_check').count() + Corporate_request.query.filter_by(status='conflict_check').count())
+    total_fcomp_requests = json.dumps(Individual_request.query.filter_by(status='finish_completion').count() + Corporate_request.query.filter_by(status='finish_completion').count())
+    total_submitted_requests = json.dumps(Individual_request.query.filter_by(status='submitted').count() + Corporate_request.query.filter_by(status='submitted').count())
+    
+    total_clients = json.dumps(Client.query.count())
+    total_active_clients = json.dumps(Client.query.filter_by(status='active').count())
+    total_inactive_clients = json.dumps(Client.query.filter_by(status='Inactive').count())
+
+    total_messages = json.dumps(Contact.query.count())
+    # total_open_messages = json.dumps(Contact.query.filter_by(status='Open').count())
+    # total_closed_messages = json.dumps(Contact.query.filter_by(status='Closed').count())
+    
+    return render_template("client_hub.html", total_num_requests=total_num_requests, 
+    total_indv_requests=total_indv_requests, total_corp_requests=total_corp_requests,
+    total_pending_requests=total_pending_requests, total_awaiting_requests=total_awaiting_requests,
+    total_fpass_requests=total_fpass_requests, total_ccheck_requests=total_ccheck_requests,
+    total_fcomp_requests=total_fcomp_requests, total_submitted_requests=total_submitted_requests,
+    total_clients=total_clients, total_active_clients=total_active_clients, total_inactive_clients=total_inactive_clients,
+    total_messages=total_messages, total_open_messages=total_open_messages, total_closed_messages=total_closed_messages)
 
     
 @app.route('/user/<username>')
@@ -1659,7 +1680,7 @@ def updateCorpRequest(corprequestId):
 def searchMessages():
     search = request.form['search_term']
     if (len(search) == 0):
-        messages = Contact.query.filter_by(status="False")
+        messages = Contact.query.filter_by(status="Open")
         new_messages = []
         for message in messages:
             new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
@@ -1678,19 +1699,10 @@ def searchMessages():
 
 @users.route('/benchmark_details', methods=['POST','GET'])
 def b_details():
-
-
     tag = request.form['id']
-    
-
-  
     post = Benchmark_job.query.get_or_404(tag)
-
     temp = []
-   
-
     temp.append({'id': post.id,'status':post.status, 'job_title':post.job_title , 'grade':post.grade ,'reporting_relationship':post.reporting_relationship,'job_description' :post.job_description,'duties_and_responsibility':post.duties_and_responsibility,'financial_responsibilities':post.financial_responsibilities,'technical_qualification':post.technical_qualification,'minimum_years_of_experience':post.minimum_years_of_experience})
-
     return jsonify(temp)
 
 
@@ -1762,46 +1774,14 @@ def save_qualitative():
         query.emp_number = num_emp
         query.working_hours=num_work_hours
         query.overtime_policy=ovr_policy
-    
-    form = SurveyForm()
-    return render_template("new_view_benchmarked.html", job=job,form=form)
-
-
-# search messages on messages.html 
-@users.route('/messages/search', methods = ['POST'])
-def searchMessages():
-    search = request.form['search_term']
-    if (len(search) == 0):
-        messages = Contact.query.filter_by(status="False")
-        new_messages = []
-        for message in messages:
-            new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
-            'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
-
-        return jsonify(new_messages)
-    
-    messages = Contact.query.filter(or_(Contact.firstname.like(('%' + search + '%')),
-    Contact.lastname.like(('%' + search + '%')),
-    Contact.company_name.like(('%' + search + '%'))))
-    new_messages = []
-    for message in messages:
-        new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
-        'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
-
-    return jsonify(new_messages)
-        db.session.commit()
-        return('code submitted')
-    
+        form = SurveyForm()
+        return render_template("new_view_benchmarked.html", job=job,form=form)
     else:
         qls = Qualitative_survey(client_name=client,status="In Progress",emp_number=num_emp,working_hours=num_work_hours,overtime_policy=ovr_policy,salary_structure=formal_salary_structure_ovr,salary_structure_adjustments=ss_adjusted,salary_adjustment_date=last_adj_date,avg_perc_review=avg_inc,adjusment_basis=adj_basis,inflation_indicator=inflation,business_conditions_indicator=business_conditions,salary_level_indicator=salary_levels,other_indicator=other_indicators,isGradesAdjustedBySamePerc=grade_ajs,detailed_adjustments=how_adjs_made,job_evaluation=job_eval_sys,cost_of_living_adjustments_periodically=auto_inflation_adjs,cost_of_living_adjustments_periodically_basis=auto_inflation_adjs_exp,grade_levels=num_grade_levels,perc_grade_difference=notch_diff,grade_bases=sal_increments,staff_progress=staff_progress,experience_scale=experience,previous_scale=previous_salary,hiring_rate=hiring_rate,max_salary_grade=max_salary,max_salary_exceeded=sal_exceeded,max_salary_exceeded_reason=sal_exceeded_exp,haveIncentivePlans=annual_cash_bonus,incentive_plans=annual_cash_bonus_exp,annual_cash_eligibility=plans_eligibility,client_qual=main)
         db.session.add(qls)
         db.session.commit()
     
-    
-
     return jsonify(pol_structure)
-
-    return jsonify(new_messages)
 
 
 @users.route("/administration/client_reports")
