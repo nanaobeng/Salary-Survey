@@ -1,0 +1,409 @@
+{% extends "new_client_layout.html" %}
+
+
+   
+    
+{% block content %}
+
+<style>
+
+.green_shade{
+  color:rgba(66,99,50,1)
+}
+  #hero {
+width: 100%;
+height: 15vh;
+background: url("../static/img/home.jpg") top center;
+background-size: cover;
+position: relative;
+}
+
+#hero:before {
+content: "";
+background: rgba(20, 44, 9, 0.7);
+position: absolute;
+bottom: 0;
+top: 0;
+left: 0;
+right: 0;
+}
+
+#hero .container {
+text-align: center;
+padding-top: 50px;
+}
+
+@media (max-width: 992px) {
+#hero .container {
+padding-top: 0;
+}
+}
+
+#hero h1 {
+margin: 0;
+font-size: 48px;
+font-weight: 700;
+line-height: 56px;
+color: #fff;
+}
+
+#hero h2 {
+color: #eee;
+margin: 15px 0 0 0;
+font-size: 22px;
+}
+
+#hero .btn-get-started {
+font-family: "Raleway", sans-serif;
+font-weight: 500;
+font-size: 15px;
+letter-spacing: 1px;
+display: inline-block;
+padding: 9px 35px;
+border-radius: 50px;
+transition: 0.5s;
+margin-top: 40px;
+border: 2px solid #ffc107;
+color: #fff;
+}
+
+#hero .btn-get-started:hover {
+background: #ffc107;
+}
+
+@media (min-width: 1024px) {
+#hero {
+background-attachment: fixed;
+}
+}
+
+@media (max-width: 768px) {
+#hero {
+height: 100vh;
+}
+#hero h1 {
+font-size: 28px;
+line-height: 36px;
+}
+#hero h2 {
+font-size: 18px;
+line-height: 24px;
+}
+}
+
+.search-head{
+  background-color: rgba(66,99,50,1);
+  color: #fff;
+}
+
+.search-row:hover{
+  cursor: pointer;
+  background-color: #eee;
+}
+.job-card:hover{
+      box-shadow: 0 0 10px #9ecaed;
+      cursor: pointer;
+  }
+  .message{
+    font-size: large; 
+    padding-top: 40px; 
+    color: darkgray; 
+    text-align: center;
+  }
+</style>
+
+<div class="row">
+    <div class="col-12">
+      <section id="hero" class="d-flex align-items-center justify-content-center">
+          <div class="container position-relative">
+       <h2><b style="font-size: 40px;">Search Benchmark Jobs </b></h2>
+          
+          </div>
+        </section>
+    </div>
+</div>
+<div class="row">
+  {% with messages = get_flashed_messages(with_categories=true) %}
+  {%if messages %}
+  {% for category, message in messages %}
+  <div class="container">
+  <div class="alert alert-{{ category}}">
+      {{message}}
+  </div>
+</div>
+  {% endfor %}
+
+  {% endif %}
+
+{% endwith %}
+</div>
+
+<div class="p-4 " style="background-color:rgb(245, 243, 243); min-height: 63vh;">
+    <div class="card" style="min-height: 60vh;">
+      <div class="row p-4 ">
+          <div class="col-12 d-flex justify-content-center">
+              <div class="input-group col-lg-4 col-md-12" style="max-width: 700px;">
+                  <input type="text" class="form-control" placeholder="Search job" id="search_job" autocomplete="off">
+                  <div class="input-group-append">
+                      <button class="btn btn-secondary" type="button" onclick="">
+                      <i class="fa fa-search"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <div class="col d-flex justify-content-center">
+              <div class="col-12 pt-4">
+                <div id="search_results" >
+                
+                    <p class="message">Search result will be displayed here</p>
+                </div>
+                  <!-- <table class="table table-sm" id="search_results" style="display: none;">
+                      <thead class="search-head">
+                          <th>#</th>
+                          <th>Job Title</th>
+                          <th>Department</th>
+                          <th>Area of Operation</th>
+                      </thead>
+                      <tbody>
+                        <tr></tr>
+                      </tbody>
+                  </table> -->
+              </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+
+</div>
+
+
+
+
+
+
+<div class="modal" id="JobModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title" id="job_title"></h4>&nbsp;&nbsp;
+          <span id="header_status" class=""></span>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <div class="modal-body">
+
+              <div class="row">
+                <div class="col-lg-6 col-md-12 mb-2">
+                  <b>Job Grade:  </b> <span id="grade"></span>
+                </div>
+                <div class="col-lg-6 col-md-12 mb-2">
+                  <b>Department: </b> <span id="department"></span>
+                </div>
+              </div>
+              <hr>
+              <div class="row">
+                <div class="col-lg-6 col-md-12 mb-2">
+                  <b>Reporting Relationship </b>
+                  <br>
+                  <span id="reporting_relationship"></span>
+                </div>
+               
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Generic Job Description:</b><br>
+                      <span id="job_description"></span>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Key Duties & Responsibilities:</b><br>
+                      <span id="key_duties"></span>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Financial Responsibilities:</b><br>
+                      <span id="financial_responsibilities"></span>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Technical Qualifications:</b><br>
+                      <span id="technical_qualifications"></span>
+                  </div>
+              </div>
+              <hr>
+              <div class="row">
+                  <div class="col">
+                      <b>Years of Experience:</b><br>
+                      <span id="years_of_experience"></span>
+                  </div>
+              </div>
+
+  
+        </div>
+        
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <span class="btn btn-info" onclick="addJob()">Add Job</span>
+        </div>
+      
+      </div>
+    </div>
+  </div>
+
+
+<script>
+    $('#search_job').keyup(function(){
+        $.ajax({
+            url: '/job_pool/search',
+            data: {
+                search: this.value,
+           
+            },
+            type: 'POST',
+            success: function(res) {
+                //empty table body
+                $('#search_results').html('')
+                console.log(res)
+                if(res.length > 0){
+                    res.forEach(function (element, i) {
+                        add_row(i+1, element.id, element.job_title, element.department, element.area)
+                      });
+                      document.getElementById('search_results').style.display = ''
+                }
+                else{
+               
+                  var card = `<p class='message'>No job found</p>`
+        
+                  $('#search_results').append(card)
+                }
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+      
+    })
+
+    function add_row(counter, id, job_title, department, area){
+      var card = `
+      <div class="col-lg-4 col-md-6 col-sm-12 p-4">
+
+      <div class="card p-4 parent job-card" id="`+id+`" onclick='display_job(`+id+`)' style="height:120px">
+          <div class="row ">
+            
+              <div class="col-12 ">
+            <div class="row">
+              <div class="col-10">
+                <h5 style="overflow: hidden; white-space: nowrap;"><b>`+job_title+`</b></h5>
+              </div>
+              <div class="col-2">
+                <i class="icofont-ui-note" style="color:grey;cursor:pointer"></i>
+              </div>
+            
+            </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-12" style="color:grey;font-size:12px">
+                  <div class="row">
+                    <div class="col-5">
+                      Department
+                    </div>
+                    <div class="col-1">
+                      :
+                    </div>
+                    <div class="col-6">
+                      `+department+`
+                    </div>
+                  </div>
+              
+                </div>
+                <div class="col-12" style="color:grey;font-size:12px">
+                  <div class="row">
+                    <div class="col-5">
+                      Area of Operation 
+                    </div>
+                    <div class="col-1">
+                      :
+                    </div>
+                    <div class="col-6">
+                      `+area+`
+                    </div>
+                  </div>
+
+                
+                </div>
+              </div>
+          </div>
+      </div>
+      `
+
+        if (id == ''){
+          card = `<p class='message'>No job found</p>`
+        }
+        $('#search_results').append(card)
+    }
+
+    //display job_details in modal
+  function display_job(element){
+    var id =element
+  
+    localStorage.setItem('item_id', id)
+    $.ajax({
+      url: '/job_pool/search/view',
+      data: {
+          id: id
+      },
+      type: 'POST',
+      success: function(res) {
+        $('#comments').html('')
+        for (const [key, value] of Object.entries(res)) {
+            const item = '#'+`${key}`
+            $('#'+`${key}`).text(`${value}`)
+            
+        }
+        
+        
+        $('#JobModal').modal('show')
+          
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+
+  }
+
+
+  function addJob(element){
+    var id =localStorage.getItem('item_id')
+    window.location.assign("{{url_for('users.my_benchmark_jobs_create',pool=1)}}")
+    $.ajax({
+      url: '/my_benchmark_jobs/new',
+      data: {
+          id: id
+      },
+      type: 'POST',
+      success: function(res) {
+        console.log(res)
+          
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+
+  }
+
+</script>
+{% endblock content %}

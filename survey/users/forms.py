@@ -723,7 +723,9 @@ class BenchmarkJobComment(FlaskForm):
     comment = TextAreaField('Comment', validators=[DataRequired()])
     submit = SubmitField('Reject')
     
-
+class ClientJobComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Reject')
 
 class MessageComment(FlaskForm):
     comment = TextAreaField('Add New Comment', validators=[DataRequired()])

@@ -5,7 +5,88 @@
     
 {% block content %}
 
- 
+ <style>
+  #hero {
+    width: 100%;
+    height: 15vh;
+    background: url("../static/img/home.jpg") top center;
+    background-size: cover;
+    position: relative;
+    }
+    
+    #hero:before {
+    content: "";
+    background: rgba(20, 44, 9, 0.7);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    }
+    
+    #hero .container {
+    text-align: center;
+    padding-top: 50px;
+    }
+    
+    @media (max-width: 992px) {
+    #hero .container {
+      padding-top: 0;
+    }
+    }
+    
+    #hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #fff;
+    }
+    
+    #hero h2 {
+    color: #eee;
+    margin: 15px 0 0 0;
+    font-size: 22px;
+    }
+    
+    #hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 9px 35px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin-top: 40px;
+    border: 2px solid #ffc107;
+    color: #fff;
+    }
+    
+    #hero .btn-get-started:hover {
+    background: #ffc107;
+    }
+    
+    @media (min-width: 1024px) {
+    #hero {
+      background-attachment: fixed;
+    }
+    }
+    
+    @media (max-width: 768px) {
+    #hero {
+      height: 100vh;
+    }
+    #hero h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+    #hero h2 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+    }
+ </style>
 
 <div class="row">
     <div class="col-12">
@@ -34,7 +115,7 @@
 
 {% endwith %}
   <div class="col-12" style="background-color: rgb(226, 223, 223);height:auto">
-    <div class="row p-4 justify-content-center">
+    <div class="row pl-4 pr-4 justify-content-center">
 
 
         <div class="col-md-2 col-sm-6 p-4">
@@ -105,7 +186,8 @@
 
   </div>
 </div>
-<div class="p-4" style="background-color:rgb(245, 243, 243)">
+<div class="pl-4 pr-4 pb-4" style="background-color:rgb(245, 243, 243)">
+  
   <form method="POST">
 
 
@@ -120,6 +202,14 @@
 
     <div class="row  benchmark_details">
         <div class="col-sm-12 pl-4 pr-4 pb-4 ">
+          <div class=" text-right pb-2">
+            <span class="btn btn-danger btn-sm" onclick="close_()">Close</span>
+            {% if job.status == "Pending" %}
+            &nbsp;
+            <span class="btn btn-info btn-sm" onclick="edit('{{job.id}}')">Edit</span>
+            {% endif %}
+            
+          </div>
           <div class="card p-4" style="border-color: green;">
             <div class="row">
 
@@ -127,7 +217,7 @@
                 <b>Benchmark Details</b>
 <hr/>
               </div>
-            <div class="col-6 pb-4">
+            <div class="col-6 ">
             <div class="row ">
               <div class="col-12 ">
                 
@@ -149,7 +239,7 @@
                 </div>
 
 
-                <div class="col-6 pb-4">
+                <div class="col-6 ">
                     <div class="row ">
                       <div class="col-12 ">
                         
@@ -171,7 +261,7 @@
                         </div>
 
 
-                        <div class="col-6 pb-4">
+                        <div class="col-6 ">
                             <div class="row ">
                               <div class="col-12 ">
                                 
@@ -192,7 +282,7 @@
                                 </div>
                                 </div>
 
-                                <div class="col-6 pb-4">
+                                <div class="col-6 ">
                                     <div class="row ">
                                       <div class="col-12 ">
                                         
@@ -213,7 +303,7 @@
                                         </div>
                                         </div>
 
-                                        <div class="col-12 pb-4">
+                                        <div class="col-12 ">
                                             <div class="row ">
                                               <div class="col-12 ">
                                                 
@@ -235,7 +325,7 @@
                                                 </div>
 
 
-                                                <div class="col-12 pb-4">
+                                                <div class="col-12 ">
                                                     <div class="row ">
                                                       <div class="col-12 ">
                                                         
@@ -257,7 +347,7 @@
                                                         </div>
 
 
-                                                        <div class="col-12 pb-4">
+                                                        <div class="col-12 ">
                                                             <div class="row ">
                                                               <div class="col-12 ">
                                                                 
@@ -279,7 +369,7 @@
                                                                 </div>
 
 
-                                                                <div class="col-12 pb-4">
+                                                                <div class="col-12 ">
                                                                     <div class="row ">
                                                                       <div class="col-12 ">
                                                                         
@@ -300,7 +390,7 @@
                                                                         </div>
                                                                         </div>
 
-                                                                        <div class="col-12 pb-4">
+                                                                        <div class="col-12 ">
                                                                             <div class="row ">
                                                                               <div class="col-12 ">
                                                                                 
@@ -348,11 +438,11 @@
           <b>Base Salary</b>
 <hr/>
         </div>
-        <div class="col-12 pt-4 ">
+        <div class="col-3  ">
           <b class="green_shade"><b>
             {{ form.base_salary.label(class="form-control-label") }}
   
-              <input class="form-control" value="{{base.monthly_base_salary}}" disabled />
+              <input class="form-control" value="{{base.monthly_base_salary or ''}}" disabled />
   
               
           </div>
@@ -428,7 +518,7 @@
                 {{ form.company_bonus_performance.label(class="form-control-label") }}
   
               </b>
-              <input class="form-control" value="{{incentive.company_performance}}" disabled />
+              <input class="form-control" value="{{incentive.company_performance or ''}}" disabled />
             </div>
            </div>
              </div>
@@ -443,7 +533,7 @@
                        <b class="green_shade">
                           {{ form.individual_bonus_performance.label(class="form-control-label") }}
    </b>
-   <input class="form-control" value="{{incentive.individual_performance}}" disabled />
+   <input class="form-control" value="{{incentive.individual_performance or ''}}" disabled />
                       </div>
                       </div>
              </div>
@@ -461,7 +551,7 @@
                     <b class="green_shade">
                       {{ form.annual_bonus.label(class="form-control-label") }}
           </b>
-          <input class="form-control" value="{{incentive.annual_incentive}}" disabled />
+          <input class="form-control" value="{{incentive.annual_incentive or ''}}" disabled />
                   
                   </div>
      </div>
@@ -478,7 +568,7 @@
                   {{ form.incentive_bonus.label(class="form-control-label") }}
       
                </b>
-               <input class="form-control" value="{{incentive.incentive}}" disabled />
+               <input class="form-control" value="{{incentive.incentive or ''}}" disabled />
               </div>
              
  </div>
@@ -495,7 +585,7 @@
             <span ><b class="green_shade">
               {{ form.other_bonus.label(class="form-control-label") }}
   </b>
-  <input class="form-control" value="{{incentive.other_cash}}" disabled />
+  <input class="form-control" value="{{incentive.other_cash or ''}}" disabled />
 
             
           </div>
@@ -575,7 +665,7 @@
            <b class="green_shade">
                 {{ form.staff_bus.label(class="form-control-label") }}
                  </b>
-                 <input class="form-control" value="{{benefit.staff_bus}}" disabled />
+                 <input class="form-control" value="{{benefit.staff_bus or ''}}" disabled />
             
             </div>
            
@@ -593,7 +683,7 @@
                     <b class="green_shade">
                       {{ form.company_car.label(class="form-control-label") }}
                       </b>
-                      <input class="form-control" value="{{benefit.company_car}}" disabled />
+                      <input class="form-control" value="{{benefit.company_car or ''}}" disabled />
                     
                   </div>
                  
@@ -611,7 +701,7 @@
                             <b class="green_shade">
                               {{ form.personal_travel.label(class="form-control-label") }}
                                </b>
-                               <input class="form-control" value="{{benefit.personal_travel}}" disabled />
+                               <input class="form-control" value="{{benefit.personal_travel or ''}}" disabled />
                             
                           </div>
                          
@@ -630,7 +720,7 @@
                                     <b class="green_shade">
                                       {{ form.petrol.label(class="form-control-label") }}
                                      </b>
-                                     <input class="form-control" value="{{benefit.petrol}}" disabled />
+                                     <input class="form-control" value="{{benefit.petrol or ''}}" disabled />
                                     
                                   </div>
                                  
@@ -649,7 +739,7 @@
                                           <b class="green_shade">
                                               {{ form.vehicle.label(class="form-control-label") }}
                                               </b>
-                                              <input class="form-control" value="{{benefit.vehicle_maintenance}}" disabled />
+                                              <input class="form-control" value="{{benefit.vehicle_maintenance or ''}}" disabled />
                                            
                                             
                                           </div>
@@ -669,7 +759,7 @@
                                                     <b class="green_shade">
                                                       {{ form.driver.label(class="form-control-label") }}
                                                        </b>
-                                                       <input class="form-control" value="{{benefit.driver}}" disabled />  
+                                                       <input class="form-control" value="{{benefit.driver or ''}}" disabled />  
                                                     
                                                   </div>
                                                  
@@ -688,7 +778,7 @@
                                                             <b class="green_shade">
                                                               {{ form.health_insurance.label(class="form-control-label") }}
                                                               </b>
-                                                              <input class="form-control" value="{{benefit.health_insurance}}" disabled />
+                                                              <input class="form-control" value="{{benefit.health_insurance or ''}}" disabled />
                                                             
                                                           </div>
                                                          
@@ -707,7 +797,7 @@
                                                                     <b class="green_shade">
                                                                       {{ form.medical_assistance.label(class="form-control-label") }}
                                                                         </b>
-                                                                        <input class="form-control" value="{{benefit.medical_assistance}}" disabled />
+                                                                        <input class="form-control" value="{{benefit.medical_assistance or ''}}" disabled />
                                                                     
                                                                   </div>
                                                                  
@@ -726,7 +816,7 @@
                                                                             <b class="green_shade">
                                                                               {{ form.funeral_assistance.label(class="form-control-label") }}
                                                                                 </b>
-                                                                                <input class="form-control" value="{{benefit.funeral_assistance}}" disabled />
+                                                                                <input class="form-control" value="{{benefit.funeral_assistance or ''}}" disabled />
                                                             
                                                                           </div>
                                                                          
@@ -745,7 +835,7 @@
                                                                                    <b class="green_shade">
                                                                                       {{ form.life_insurance.label(class="form-control-label") }}
                                                                               </b>
-                                                                              <input class="form-control" value="{{benefit.life_insurance}}" disabled />
+                                                                              <input class="form-control" value="{{benefit.life_insurance or ''}}" disabled />
                                                                                   </div>
                                                                                  
                                                                                    
@@ -763,7 +853,7 @@
                                                                                             <b class="green_shade">
                                                                                               {{ form.group_accident.label(class="form-control-label") }}
                                                                                                 </b>
-                                                                                                <input class="form-control" value="{{benefit.group_accident}}" disabled />
+                                                                                                <input class="form-control" value="{{benefit.group_accident or ''}}" disabled />
                                                                                           </div>
                                                                                          
                                                                                            
@@ -782,7 +872,7 @@
                                                                                                       {{ form.club_membership.label(class="form-control-label") }}
                                                                                                       </b>
 
-                                                                                                      <input class="form-control" value="{{benefit.club_membership}}" disabled />
+                                                                                                      <input class="form-control" value="{{benefit.club_membership or ''}}" disabled />
                                                                                                      
                                                                                                    
                                                                                                   </div>
@@ -802,7 +892,7 @@
                                                                                                             <b class="green_shade">
                                                                                                               {{ form.school_fees.label(class="form-control-label") }}
                                                                                                                 </b>
-                                                                                                                <input class="form-control" value="{{benefit.school_fees}}" disabled />
+                                                                                                                <input class="form-control" value="{{benefit.school_fees or ''}}" disabled />
                                                                                                          
                                                                                                           </div>
                                                                                                          
@@ -819,7 +909,7 @@
                                                                                                                    <b class="green_shade">
                                                                                                                       {{ form.vacation.label(class="form-control-label") }}
                                                                                                                       </b>
-                                                                                                                      <input class="form-control" value="{{benefit.vacation}}" disabled /> 
+                                                                                                                      <input class="form-control" value="{{benefit.vacation or ''}}" disabled /> 
                                                                                                                     
                                                                                                                   </div>
                                                                                                                  
@@ -838,7 +928,7 @@
                                                                                                                         <b class="green_shade">
                                                                                                                           {{ form.housing.label(class="form-control-label") }}
                                                                                                                    </b>
-                                                                                                                   <input class="form-control" value="{{benefit.housing}}" disabled />
+                                                                                                                   <input class="form-control" value="{{benefit.housing or ''}}" disabled />
                                                                                                                       </div>
                                                                                                                      
                                                                                                                        
@@ -855,7 +945,7 @@
                                                                                                                                 <b class="green_shade">
                                                                                                                                   {{ form.telephone.label(class="form-control-label") }}
                                                                                                                               </b>      
-                                                                                                                              <input class="form-control" value="{{benefit.telephone}}" disabled />
+                                                                                                                              <input class="form-control" value="{{benefit.telephone or ''}}" disabled />
                                                                                                                              
                                                                                                                               </div>
                                                                                                                              
@@ -874,7 +964,7 @@
                                                                                                                                           {{ form.security.label(class="form-control-label") }}
                                                                                                                                             
                                                                                                                                       </b>
-                                                                                                                                      <input class="form-control" value="{{benefit.security}}" disabled />
+                                                                                                                                      <input class="form-control" value="{{benefit.security or ''}}" disabled />
                                                                                                                                       </div>
                                                                                                                                      
                                                                                                                                        
@@ -891,7 +981,7 @@
                                                                                                                                                 <b class="green_shade">
                                                                                                                                                   {{ form.other_benefits.label(class="form-control-label") }}
                                                                                                                                                     </b>
-                                                                                                                                                    <input class="form-control" value="{{benefit.other_benefits}}" disabled />
+                                                                                                                                                    <input class="form-control" value="{{benefit.other_benefits or ''}}" disabled />
                                                                                                                                                
                                                                                                                                             
                                                                                                                                               </div>
@@ -962,7 +1052,7 @@
          <b class="green_shade">
             {{ form.vehicle_maintenance.label(class="form-control-label") }}
             </b>
-            <input class="form-control" value="{{allowance.vehicle_maintenance}}" disabled />
+            <input class="form-control" value="{{allowance.vehicle_maintenance or ''}}" disabled />
           
         </div>
        
@@ -980,7 +1070,7 @@
                 <b class="green_shade">
                   {{ form.allowance_vehicle.label(class="form-control-label") }}
                       </b>    
-                      <input class="form-control" value="{{allowance.vehicle}}" disabled />
+                      <input class="form-control" value="{{allowance.vehicle or ''}}" disabled />
              
                
         
@@ -997,7 +1087,7 @@
                         <b class="green_shade">
                           {{ form.transport.label(class="form-control-label") }}
                            </b>
-                           <input class="form-control" value="{{allowance.transport}}" disabled />
+                           <input class="form-control" value="{{allowance.transport or ''}}" disabled />
                       </div>
                      
                        
@@ -1015,7 +1105,7 @@
                                 <b class="green_shade">
                                   {{ form.fuel.label(class="form-control-label") }}
                                        </b>   
-                                       <input class="form-control" value="{{allowance.fuel}}" disabled />
+                                       <input class="form-control" value="{{allowance.fuel or ''}}" disabled />
                                 
                               </div>
                              
@@ -1035,7 +1125,7 @@
                                           {{ form.car.label(class="form-control-label") }}
                                                         
                                             </b>
-                                            <input class="form-control" value="{{allowance.car}}" disabled />
+                                            <input class="form-control" value="{{allowance.car or ''}}" disabled />
                                      
                                       </div>
                                      
@@ -1056,7 +1146,7 @@
                                                         
                                           </b>
 
-                                          <input class="form-control" value="{{allowance.driver}}" disabled />
+                                          <input class="form-control" value="{{allowance.driver or ''}}" disabled />
                                        
                                       </div>
                                      
@@ -1074,7 +1164,7 @@
                                        <b class="green_shade">
                                           {{ form.domestic.label(class="form-control-label") }}
                                          </b>
-                                         <input class="form-control" value="{{allowance.domestic_safety}}" disabled />
+                                         <input class="form-control" value="{{allowance.domestic_safety or ''}}" disabled />
                                       </div>
                                      
                                        
@@ -1092,7 +1182,7 @@
                                         <b class="green_shade">
                                           {{ form.allowance_housing.label(class="form-control-label") }}
                                     </b>
-                                    <input class="form-control" value="{{allowance.housing}}" disabled />
+                                    <input class="form-control" value="{{allowance.housing or ''}}" disabled />
                                         
                                       </div>
                                      
@@ -1112,7 +1202,7 @@
                                      <b class="green_shade">
                                           {{ form.utilities.label(class="form-control-label") }}
                                     </b>
-                                    <input class="form-control" value="{{allowance.utilities}}" disabled />
+                                    <input class="form-control" value="{{allowance.utilities or ''}}" disabled />
                                      
                                       </div>
                                      
@@ -1130,7 +1220,7 @@
                                        <b class="green_shade">
                                           {{ form.meal.label(class="form-control-label") }}
                                     </b>
-                                    <input class="form-control" value="{{allowance.meal}}" disabled />
+                                    <input class="form-control" value="{{allowance.meal or ''}}" disabled />
                                         
                                       </div>
                                      
@@ -1150,7 +1240,7 @@
                                        <b class="green_shade">
                                           {{ form.allowance_telephone.label(class="form-control-label") }}
                                     </b>
-                                    <input class="form-control" value="{{allowance.telephone}}" disabled />
+                                    <input class="form-control" value="{{allowance.telephone or ''}}" disabled />
                                       </div>
                                      
                                        
@@ -1168,7 +1258,7 @@
                                         <b class="green_shade">
                                           {{ form.entertainment.label(class="form-control-label") }}
                                              </b>
-                                             <input class="form-control" value="{{allowance.entertainment}}" disabled />
+                                             <input class="form-control" value="{{allowance.entertainment or ''}}" disabled />
                                        
                                       </div>
                                      
@@ -1187,7 +1277,7 @@
                                         <b class="green_shade">
                                           {{ form.education.label(class="form-control-label") }}
                                           </b>
-                                          <input class="form-control" value="{{allowance.education_support}}" disabled />
+                                          <input class="form-control" value="{{allowance.education_support or ''}}" disabled />
                                       </div>
                                      
                                        
@@ -1205,7 +1295,7 @@
                                         <b class="green_shade">
                                           {{ form.vacation.label(class="form-control-label") }}
                                                </b>
-                                               <input class="form-control" value="{{allowance.vacation}}" disabled />
+                                               <input class="form-control" value="{{allowance.vacation or ''}}" disabled />
                                         
                                       </div>
                                      
@@ -1225,7 +1315,7 @@
                                         <b class="green_shade">
                                           {{ form.uniform.label(class="form-control-label") }}
                                              </b>
-                                             <input class="form-control" value="{{allowance.uniform}}" disabled />
+                                             <input class="form-control" value="{{allowance.uniform or ''}}" disabled />
                                        
                                       </div>
                                      
@@ -1244,7 +1334,7 @@
                                         <b class="green_shade">
                                           {{ form.mobile_money.label(class="form-control-label") }}
                                           </b>
-                                          <input class="form-control" value="{{allowance.mobile_money}}" disabled />     
+                                          <input class="form-control" value="{{allowance.mobile_money or ''}}" disabled />     
                                       </div>
                                      
                                        
@@ -1262,7 +1352,7 @@
                                         <b class="green_shade">
                                           {{ form.misc.label(class="form-control-label") }}
                                                 </b>
-                                                <input class="form-control" value="{{allowance.miscellaenous}}" disabled />
+                                                <input class="form-control" value="{{allowance.miscellaenous or ''}}" disabled />
                                         
                                       </div>
                                      
@@ -1517,6 +1607,14 @@ surveyNotActive()
 benchmarkNotActive()
 comparatorNotActive()
 reviewNotActive()
+
+function close_(){
+  window.location.assign('/my_benchmark_jobs')
+}
+
+function edit(id){
+  window.location.assign('/my_benchmark_jobs/edit/'+id)
+}
 </script>
 
 {% endblock content %}

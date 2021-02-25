@@ -1,0 +1,311 @@
+{% extends "client_hub_layout.html" %}
+
+
+{% block content %}
+
+<style>
+    #hero {
+        width: 100%;
+        height: 5vh;
+        background: url("../static/img/home.jpg") top center;
+        background-size: cover;
+        position: relative;
+    }
+
+    #hero:before {
+        content: "";
+        background: rgba(20, 44, 9, 0.7);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    #hero .container {
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    @media (max-width: 992px) {
+        #hero .container {
+            padding-top: 0;
+        }
+    }
+
+    #hero h1 {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: #fff;
+    }
+
+    #hero h2 {
+        color: #eee;
+        margin: 15px 0 0 0;
+        font-size: 22px;
+    }
+
+    #hero .btn-get-started {
+        font-family: "Raleway", sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 9px 35px;
+        border-radius: 50px;
+        transition: 0.5s;
+        margin-top: 40px;
+        border: 2px solid #ffc107;
+        color: #fff;
+    }
+
+    #hero .btn-get-started:hover {
+        background: #ffc107;
+    }
+
+    @media (min-width: 1024px) {
+        #hero {
+            background-attachment: fixed;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #hero {
+            height: 100vh;
+        }
+
+        #hero h1 {
+            font-size: 28px;
+            line-height: 36px;
+        }
+
+        #hero h2 {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+</style>
+
+
+<!---->
+<div class="row">
+    <div class="col-12">
+        <section id="hero" class="d-flex align-items-center justify-content-center"></section>
+            <div class="container position-relative">
+            
+
+            </div>
+        </section>
+    </div>
+</div>
+
+<section  class="page-content">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="navbar-brand-wrapper d-flex justify-content-center">
+    <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
+      <a class="navbar-brand brand-logo" href="client_hub_layout.html"><img style = "width:80%; height:80%"src="{{ url_for('static', filename='img/Deloitte-black.png')}}" alt="logo"/></a>
+     
+      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+        <span class="mdi mdi-sort-variant"></span>
+      </button>
+    </div>  
+  </div>
+  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+    <ul class="navbar-nav mr-lg-4 w-100">
+      <li class="nav-item nav-search d-none d-lg-block w-100">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="search">
+                <i class="fa fa-search" aria-hidden="true"></i>
+            </span>
+          </div>
+          <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+        </div>
+      </li>
+    </ul>
+    
+    <ul class="navbar-nav navbar-nav-right">
+      
+      <li class="nav-item dropdown mr-1">
+        <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+            <i class="fas fa-envelope"></i>
+          <span class="count"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+          <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+          <a class="dropdown-item">
+            <div class="item-thumbnail">
+                <img src="{{ url_for('static', filename='img/face4.jpg')}}" alt="image" class="profile-pic">
+            </div>
+            <div class="item-content flex-grow">
+              <h6 class="ellipsis font-weight-normal">John Doe
+              </h6>
+              <p class="font-weight-light small-text text-muted mb-0">
+                The meeting is cancelled
+              </p>
+            </div>
+          </a>
+          <a class="dropdown-item">
+            <div class="item-thumbnail">
+                <img src="{{ url_for('static', filename='img/face3.jpg')}}" alt="image" class="profile-pic">
+            </div>
+            <div class="item-content flex-grow">
+              <h6 class="ellipsis font-weight-normal">John Doe
+              </h6>
+              <p class="font-weight-light small-text text-muted mb-0">
+                New product launch
+              </p>
+            </div>
+          </a>
+          <a class="dropdown-item">
+            <div class="item-thumbnail">
+                <img src="{{ url_for('static', filename='img/face2.jpg')}}" alt="image" class="profile-pic">
+            </div>
+            <div class="item-content flex-grow">
+              <h6 class="ellipsis font-weight-normal"> John Doe
+              </h6>
+              <p class="font-weight-light small-text text-muted mb-0">
+                Upcoming board meeting
+              </p>
+            </div>
+          </a>
+        </div>
+      </li>
+      <li class="nav-item dropdown mr-4">
+        <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-toggle="dropdown">
+            <i class="fa fa-bell" aria-hidden="true"></i>
+          <span class="count"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
+          <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+          <a class="dropdown-item">
+            <div class="item-thumbnail">
+              <div class="item-icon bg-success">
+                <i class="mdi mdi-information mx-0"></i>
+              </div>
+            </div>
+            <div class="item-content">
+              <h6 class="font-weight-normal">Application Error</h6>
+              <p class="font-weight-light small-text mb-0 text-muted">
+                Just now
+              </p>
+            </div>
+          </a>
+          <a class="dropdown-item">
+            <div class="item-thumbnail">
+              <div class="item-icon bg-warning">
+                <i class="fa fa-gear mx-0"></i>
+              </div>
+            </div>
+            <div class="item-content">
+              <h6 class="font-weight-normal">Settings</h6>
+              <p class="font-weight-light small-text mb-0 text-muted">
+                Private message
+              </p>
+            </div>
+          </a>
+          <a class="dropdown-item">
+            <div class="item-thumbnail">
+              <div class="item-icon bg-info">
+                <i class="mdi mdi-account-box mx-0"></i>
+              </div>
+            </div>
+            <div class="item-content">
+              <h6 class="font-weight-normal">New user registration</h6>
+              <p class="font-weight-light small-text mb-0 text-muted">
+                2 days ago
+              </p>
+            </div>
+          </a>
+        </div>
+      </li>
+     
+      <li class="nav-item nav-profile dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+          <img src="{{ url_for('static', filename='img/face5.jpg')}}" alt="profile"/>
+          <span class="nav-profile-name">
+            Welcome, {{ current_user.username }}! 
+          </span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+          <a class="dropdown-item">
+            <i class="fa fa-user text-primary"></i>
+            My Profile
+          </a>
+          <a class="dropdown-item">
+            <i class="fa fa-poll text-primary"></i>
+            Activities
+          </a>
+          <a class="dropdown-item">
+            <i class="fa fa-cog text-primary"></i>
+            Settings
+          </a>
+          <a class="dropdown-item" href ="{{  url_for('users.logout')}}">
+            <i class="fa fa-power-off text-primary"></i>
+            Logout
+          </a>
+        </div>
+      </li>
+    </ul>
+    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+      
+    </button>
+  </div>
+</nav>
+
+    <section>
+
+        <div class="row">
+            <div class="col-md-12 grid-margin">
+              <div class="d-flex justify-content-between flex-wrap">
+                <div class="d-flex align-items-end flex-wrap">
+                    
+                  <div class="mr-md-3 mr-xl-5">
+                    <h2>Reports </h2>
+                    <p class="mb-md-0">Reports on client data.</p>
+                  </div>
+                  <div class="d-flex">
+                    <p class="text-muted mb-0 hover-cursor">Dashboard&nbsp;/&nbsp;</p>
+                    <p class="text-primary mb-0 hover-cursor">Reports</p>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-between align-items-end flex-wrap">
+                 
+                  <!-- <button class="btn btn-primary mt-2 mt-xl-0">Download report</button> -->
+                </div>
+              </div>
+            </div>
+          </div>
+    </section>
+
+    <!--Section for graphs-->
+    <section class="grid">
+        <article>
+            <div id="curve_chart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="piechart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="bubble_chart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="area_chart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="combo_chart" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="bubble_chart2" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="piechart2" style="width: 100%;"></div>
+        </article>
+        <article>
+            <div id="curve_chart2" style="width: 100%;"></div>
+        </article>
+    </section>
+
+    {% endblock content %}

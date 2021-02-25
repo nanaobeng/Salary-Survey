@@ -94,13 +94,13 @@
   <div class="col-12">
     <section id="hero" class="d-flex align-items-center justify-content-center">
         <div class="container position-relative">
-     <h2><b style="font-size: 40px;">Complete Survey</b></h2>
+     <h2><b style="font-size: 40px;">Complete Survey </b></h2>
         
         </div>
       </section>
   </div>
 </div>
-<div class="row p-2">
+<div class="row pt-2">
   {% with messages = get_flashed_messages(with_categories=true) %}
   {%if messages %}
   {% for category, message in messages %}
@@ -127,10 +127,9 @@
     <b class="green_shade">Select a job from the options below to begin benchmarking</b>
 
   </div>
-<<<<<<< HEAD
 
 {%  for i in query %}
-  <div class="col-md-3 col-sm-12 p-4 ">
+  <div class="col-md-3 col-sm-12 ">
   
     <div class="card p-4 parent"  style="height:150px">
         <div class="row ">
@@ -139,10 +138,10 @@
           <div class="row">
             <div class="col-10">
               <h5><b>{{i.job_title}}</b></h5>
-
+             <span style="font-size: 10px;color:grey">Requested by : {{i.comp_benchmark.survey_client.company_name}}</span> 
             </div>
             <div class="col-1">
-              <a data-toggle="modal" onclick="submit('{{i.id}}')"data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
+              <a data-toggle="modal" onclick="submit('{{i.id}}')" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
             </div>
            
            
@@ -160,7 +159,16 @@
             <div class="child">
               <div class="row ">
                 <div class="col-12" >
-                <h4><span class="badge badge-success">{{i.status}}</span></h4>
+
+                  {% if i.status == 'Inactive' %}
+                  <h4><span class="badge badge-warning">{{i.status}}</span></h4>
+                
+                  {% endif %}
+                  {% if i.status == 'Completed' %}
+                  <h4><span class="badge badge-success">{{i.status}}</span></h4>
+                
+                  {% endif %}
+             
              
                 </div>
              
@@ -171,50 +179,9 @@
     </div>
 
     {% endfor %}
-=======
-  <div class="col-md-3 col-sm-12 ">
-  
-  <div class="card p-4 parent"  style="height:150px">
-      <div class="row ">
-         
-          <div class="col-12 ">
-        <div class="row">
-          <div class="col-10">
-            <h5><b>Finance Manager</b></h5>
-          </div>
-          <div class="col-1">
-            <a data-toggle="modal" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
-          </div>
-         
-         
-        </div>
-          </div>
-          </div>
-          <div class="row">
-            <div class="col-12" style="color:grey;font-size:12px">
-       
-           
-            </div>
-  
-          </div>
-  
-          <div class="child">
-            <div class="row ">
-              <div class="col-12" >
-              <h4><span class="badge badge-success">Completed</span></h4>
-           
-              </div>
-           
-            
-            </div>
-          </div>
-      </div>
-  </div>
->>>>>>> fc116fc3c96b271381f2bedbe607259184ef7c24
+ 
 
 
-
-  
   
  
   
@@ -313,7 +280,7 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body" >
+      <div class="modal-body">
           <p>
               <b>Welcome to the Deloitte Salary Survey </b><br>
               This survey is tailored at helping organizations gain an understand of compensations paid to employees.
@@ -341,18 +308,17 @@
     <div class="modal-dialog modal-lg" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title" id="model_title"></h5>
+          <h5 class="modal-title" id="modal_title"></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body" id="modal_body">
-     
+           
+            
         </div>
-        <div class="modal-footer" id="m_footer">
+        <div class="modal-footer" id="modal_footer">
          
-          <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
-     
         </div>
       </div>
     </div>
@@ -361,22 +327,26 @@
 
 <script>
 
-  function proceed(id){
-    window.location.href =`/survey/quantitative/${id}`
+function proceed(id){
 
-  }
+  window.location.href =`/survey/quantitative/${id}`
 
-  function view(id){
-    window.location.href =`/user/view-benchmarked_job/${id}`
+}
 
-  }
+
+function view(id){
+
+window.location.href =`/survey/quantitative/view/${id}`
+
+}
       
-
-
+ 
     $('document').ready(function(){
       $('#instruction').modal('show');
     })
 </script>
+
+
 
 
 <script>
@@ -398,19 +368,47 @@ $.ajax({
   type: 'POST',
 
   success: function(res) {
+    console.log(res)
+    res = res[0]
 
-   res= res[0]
+if(res.status == 'Completed'){
+  $('#modal_footer').html(
+  `
+  
+  
+  <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
+          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="view('${res.id}')">View</button>
+  `
+)
 
-      
-    $("#model_title").html(
-        `${res.job_title}`
-      )
-    $("#modal_body").html(
-      `
-      <p>
+}
+
+else{
+
+  $('#modal_footer').html(
+  `
+  
+  
+  <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
+          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="proceed('${res.id}')">Proceed</button>
+  `
+)
+}
+
+
+    $('#modal_title').html(`
+  ${res.job_title}
+    
+    `)
+    $('#modal_body').html(
+
+    `
+
+
+    <p>
                 <b>Job Title</b>
                 <br>
-               ${res.job_title}
+                ${res.job_title}
             </p>
             <p>
                 <b>Job Grade</b>
@@ -425,62 +423,44 @@ $.ajax({
             <p>
                 <b>Generic Job Description</b>
                 <br>
-                ${res.job_desc}
+                ${res.job_description}
             </p>
             <p>
                 <b>Key Duties & Responsibilities</b>
                 <br>
-                ${res.key_duties}
+                ${res.duties_and_responsibility}
 
             </p>
             <p>
                 <b>Financial Responsibilities</b>
                 <br>
-                ${res.financial}
+                ${res.financial_responsibilities}
             </p>
             <p>
                 <b>Technical Qualifications</b>
                 <br>
-                ${res.technical}
+                ${res.technical_qualification}
             </p>
             <p>
                 <b>Minimum Years of Experience</b>
                 <br>
-                ${res.yrs_exp}
+                ${res.minimum_years_of_experience}
             </p>
             <br>
+
             <div class="custom-control custom-checkbox">
               <input type="checkbox" class="custom-control-input" id="job_not_applicable">
               <label class="custom-control-label" for="job_not_applicable">This job is not applicable to my organisation</label>
             </div>
-
-
-      `
+    
+    
+    
+    
+    `
     )
-//     if(res.status = "completed"){
-
-//       $("#m_footer").append(
-
-      
-// `
-
-// <button class="btn btn-outline-secondary" id="view_btn" onclick="view('${res.id}')" >View</button>
-// `)
-        
-//       }
-//       else{
-        $("#m_footer").append(
-
-      
-      `
-      
-      <button class="btn btn-outline-secondary" id="proceed_btn" onclick="proceed('${res.id}')" >Proceed</button>
-      `
-        )
-      // }
-
+     
     
-    
+
 
 
   },
@@ -488,7 +468,6 @@ $.ajax({
   error: function(error) {
 
       console.log(error);
-
 
   }
 
@@ -498,8 +477,6 @@ $.ajax({
 
 }
 </script>
-
-
 
 
 {% endblock content %}
