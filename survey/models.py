@@ -27,12 +27,6 @@ class User(db.Model,UserMixin):
     audit_log = db.relationship('Audit_log', backref='log' , lazy=True)
     benchmark = db.relationship('Main_benchmark_job', backref='user_account' , lazy=True)
     
-
-
-    
-
-
-
     def get_reset_token(self,expires_sec=1800):
         s = Serializer(app.config['SECRET_KEY'], expires_sec)
         return s.dumps({'user_id': self.id}).decode('utf-8')
