@@ -105,6 +105,11 @@
         font-size: smaller;
     }
 
+    .t-row {
+        text-indent: 0px;
+        font-size: smaller;
+    }
+
     #help {
         text-align: center;
         font-style: italic;
@@ -195,8 +200,8 @@
 
 <script>
     //dynamically change status based on report type selection
-    $(document).ready(function(){
-        $('#report_type').change(function(){
+    $(document).ready(function () {
+        $('#report_type').change(function () {
             var type = $(this).val()
             if (type == 'clients') {
                 $('#report_status').html(
@@ -205,7 +210,7 @@
                     <option value="active">Active</option>
                     <option value="inactive">Inactive</option>   `
                 )
-            } else if (type == 'service_requests'){
+            } else if (type == 'service_requests') {
                 $('#report_status').html(
                     `
                     <option value="all">All</option>       
@@ -216,7 +221,7 @@
                     <option value="finish_completion">Finish Completion</option>
                     <option value="submitted">Submitted For Approval</option>   `
                 )
-            } else if (type == 'messages'){
+            } else if (type == 'messages') {
                 console.log("type changed to messages")
                 $('#report_status').html(
                     `   <option value="all">All</option>       
@@ -238,8 +243,8 @@
 
             var type = $('#report_type').val()
             var status = $('#report_status').val()
-            var start_date = $('#report_start_date').val()
-            var end_date = $('#report_end_date').val()
+            var start_date = new Date($('#report_start_date').val())
+            var end_date = new Date($('#report_end_date').val())
 
             var statistics, details;
 
@@ -271,36 +276,26 @@
                     <td colspan="2">{{num_inactive_clients}}</td>
                 </tr>`
                             details =
-                                ` <tr>
-                    <td colspan="2">Active Clients</td>
-                    <td colspan="3">
-                        <ol>
-                            {% for client in active_clients %}
-                            <li><span class="client-name">{{client.company_name}}</span>
-                                <p class="client-details">Company Type: {{client.company_type}}</p>
-                                <p class="client-details">Sector: {{client.sector_id}}</p>
-                                <p class="client-details">Industry: {{client.industry_id}}</p>
-                                <p class="client-details">Area of Operation: {{client.area_id}}</p>
-                            </li>
+                                `<table class="table">
+                        <thead>
+                            <th>Client Name</th>
+                            <th>Company Type</th>
+                            <th>Sector</th>
+                            <th>Industry</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>
+                            {% for client in clients %}
+                            <tr>
+                                <td class="sub-heading t-row">{{client.company_name}}</td>
+                                <td class="sub-heading t-row">{{client.company_type}}</td>
+                                <td class="sub-heading t-row">{{client.sector.id}}</td>
+                                <td class="sub-heading t-row">{{client.industry.id}}</td>
+                                <td class="sub-heading t-row">{{client.status}}</td>
+                            </tr>
                             {% endfor %}
-                        </ol>
-                    </td>
-                </tr>
-                <tr>
-                    <td colspan="2">Inactive Clients</td>
-                    <td colspan="3">
-                        <ol>
-                            {% for client in inactive_clients %}
-                            <li><span class="client-name">{{client.company_name}}</span>
-                                <p class="client-details">Company Type: {{client.company_type}}</p>
-                                <p class="client-details">Sector: {{client.sector_id}}</p>
-                                <p class="client-details">Industry: {{client.industry_id}}</p>
-                                <p class="client-details">Area of Operation: {{client.area_id}}</p>
-                            </li>
-                            {% endfor %}
-                        </ol>
-                    </td>
-                </tr>`
+                        </tbody>
+                    </table>`
                         }
                         // For active clients
                         else if (status == 'active') {
@@ -310,6 +305,25 @@
                     <td colspan="3">Total Active Clients: </td>
                     <td colspan="2">{{num_active_clients}}</td>
                 </tr>`
+                            details =
+                                `<table class="table">
+                        <thead>
+                            <th colspan="2">Client Name</th>
+                            <th>Company Type</th>
+                            <th>Sector</th>
+                            <th>Industry</th>
+                        </thead>
+                        <tbody>
+                            {% for client in active_clients %}
+                            <tr>
+                                <td colspan="2" class="sub-heading t-row">{{client.company_name}}</td>
+                                <td class="sub-heading t-row">{{client.company_type}}</td>
+                                <td class="sub-heading t-row">{{client.sector.id}}</td>
+                                <td class="sub-heading t-row">{{client.industry.id}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>`
                             // For inactive clients
                         }
                         else if (status == 'inactive') {
@@ -318,6 +332,25 @@
                     <td colspan="3">Total Inactive Clients: </td>
                     <td colspan="2">{{num_inactive_clients}}</td>
                 </tr>`
+                            details =
+                                `<table class="table">
+                        <thead>
+                            <th colspan="2">Client Name</th>
+                            <th>Company Type</th>
+                            <th>Sector</th>
+                            <th>Industry</th>
+                        </thead>
+                        <tbody>
+                            {% for client in inactive_clients %}
+                            <tr>
+                                <td colspan="2" class="sub-heading t-row">{{client.company_name}}</td>
+                                <td class="sub-heading t-row">{{client.company_type}}</td>
+                                <td class="sub-heading t-row">{{client.sector.id}}</td>
+                                <td class="sub-heading t-row">{{client.industry.id}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>`
                         }
 
                     }
@@ -326,51 +359,104 @@
                     else if (type == 'service_requests') {
                         // For all service requests
                         if (status == 'all') {
-                            console.log("type is service requests and status is all")
                             statistics =
                                 `<tr>
-                    <td colspan="3">Total Service Requests: </td>
-                    <td colspan="2">{{num_requests}}</td>
+                    <td colspan="3">Total Individual Service Requests: </td>
+                    <td colspan="2">{{num_indv_requests}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="sub-heading">Pending Requests: </td>
-                    <td colspan="2">{{num_pending_requests}}</td>
+                    <td colspan="2">{{num_indv_pend}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="sub-heading">Requests Awaiting Client Information: </td>
-                    <td colspan="2">{{num_awaiting_requests}}</td>
+                    <td colspan="2">{{num_indv_await}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="sub-heading">Requests Undergoing First Pass: </td>
-                    <td colspan="2">{{num_first_pass_requests}}</td>
+                    <td colspan="2">{{num_indv_fp}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="sub-heading">Requests Undergoing Conflict Check: </td>
-                    <td colspan="2">{{num_conflict_check_requests}}</td>
+                    <td colspan="2">{{num_indv_cc}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="sub-heading">Requests Undergoing Finish Completion: </td>
-                    <td colspan="2">{{num_finish_completion_requests}}</td>
+                    <td colspan="2">{{num_indv_fc}}</td>
                 </tr>
                 <tr>
                     <td colspan="3" class="sub-heading">Submitted Requests: </td>
-                    <td colspan="2">{{num_submitted_requests}}</td>
+                    <td colspan="2">{{num_indv_sub}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Total Corporate Service Requests: </td>
+                    <td colspan="2">{{num_corp_requests}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sub-heading">Pending Requests: </td>
+                    <td colspan="2">{{num_corp_pend}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sub-heading">Requests Awaiting Client Information: </td>
+                    <td colspan="2">{{num_corp_await}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sub-heading">Requests Undergoing First Pass: </td>
+                    <td colspan="2">{{num_corp_fp}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sub-heading">Requests Undergoing Conflict Check: </td>
+                    <td colspan="2">{{num_corp_cc}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sub-heading">Requests Undergoing Finish Completion: </td>
+                    <td colspan="2">{{num_corp_fc}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sub-heading">Submitted Requests: </td>
+                    <td colspan="2">{{num_corp_sub}}</td>
                 </tr>`
+
+                            details =
+                                `<table class="table">
+                        <thead>
+                            <th colspan="2">Client Name</th>
+                            <th>Email</th>
+                            <th>Request</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2" class="sub-heading t-row"></td>
+                                <td class="sub-heading t-row"></td>
+                                <td class="sub-heading t-row"></td>
+                                <td class="sub-heading t-row"></td>
+                            </tr>
+                        </tbody>
+                    </table>`
                         }
                         // For pending requests
                         else if (status == 'pending') {
                             statistics =
                                 `<tr>
-                    <td colspan="3">Total Pending Requests: </td>
-                    <td colspan="2">{{num_pending_requests}}</td>
+                    <td colspan="3">Total Pending Individual Requests: </td>
+                    <td colspan="2">{{num_indv_pend}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Total Pending Corporate Requests: </td>
+                    <td colspan="2">{{num_corp_pend}}</td>
                 </tr>`
                         }
                         // For awaiting client info requests
                         else if (status == 'awaiting') {
                             statistics =
                                 ` <tr>
-                    <td colspan="3">Total Requests Awaiting Client Information: </td>
-                    <td colspan="2">{{num_awaiting_requests}}</td>
+                    <td colspan="3">Total Individual Requests Awaiting Client Information: </td>
+                    <td colspan="2">{{num_indv_await}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3">Total Corporate Requests Awaiting Client Information: </td>
+                    <td colspan="2">{{num_corp_await}}</td>
                 </tr>`
                         }
                         // For first pass requests
@@ -406,11 +492,97 @@
                 </tr>`
                         }
 
-                    } 
+                    }
 
                     // Case: Report type is 'messages'
                     else if (type == 'messages') {
-
+                        //For all messages
+                        if (status == 'all') {
+                            statistics =
+                                `<tr>
+                    <td colspan="3">Total Messages: </td>
+                    <td colspan="2">{{num_messages}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sub-heading">Open Messages: </td>
+                    <td colspan="2">{{num_open_messages}}</td>
+                </tr>
+                <tr>
+                    <td colspan="3" class="sub-heading">Closed Messages: </td>
+                    <td colspan="2">{{num_closed_messages}}</td>
+                </tr>`
+                            details =
+                                `<table class="table">
+                        <thead>
+                            <th>Sender</th>
+                            <th>Company Name</th>
+                            <th>Email</th>
+                            <th>Job Title</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>
+                            {% for message in messages %}
+                            <tr>
+                                <td class="sub-heading t-row">{{message.firstname}} {{message.lastname}}</td>
+                                <td class="sub-heading t-row">{{message.company_name}}</td>
+                                <td class="sub-heading t-row">{{message.email}}</td>
+                                <td class="sub-heading t-row">{{message.job_title}}</td>
+                                <td class="sub-heading t-row">{{message.status}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>`
+                        } else if (status == 'open') {
+                            statistics =
+                                `<tr>
+                    <td colspan="3">Total Open Messages: </td>
+                    <td colspan="2">{{num_open_messages}}</td>
+                </tr>`
+                            details =
+                                `<table class="table">
+                        <thead>
+                            <th colspan="2">Sender</th>
+                            <th>Company Name</th>
+                            <th>Email</th>
+                            <th>Job Title</th>
+                        </thead>
+                        <tbody>
+                            {% for message in open_messages %}
+                            <tr>
+                                <td colspan="2" class="sub-heading">{{message.firstname}} {{message.lastname}}</td>
+                                <td class="sub-heading">{{message.company_name}}</td>
+                                <td class="sub-heading">{{message.email}}</td>
+                                <td class="sub-heading">{{message.job_title}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>`
+                        } else if (status == 'closed') {
+                            statistics =
+                                `<tr>
+                    <td colspan="3">Total Closed Messages: </td>
+                    <td colspan="2">{{num_closed_messages}}</td>
+                </tr>`
+                            details =
+                                `<table class="table">
+                        <thead>
+                            <th colspan="2">Sender</th>
+                            <th>Company Name</th>
+                            <th>Email</th>
+                            <th>Job Title</th>
+                        </thead>
+                        <tbody>
+                            {% for message in closed_messages %}
+                            <tr>
+                                <td colspan="2" class="sub-heading">{{message.firstname}} {{message.lastname}}</td>
+                                <td class="sub-heading">{{message.company_name}}</td>
+                                <td class="sub-heading">{{message.email}}</td>
+                                <td class="sub-heading">{{message.job_title}}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>`
+                        }
                     }
 
                     $('#statistics').html(statistics)

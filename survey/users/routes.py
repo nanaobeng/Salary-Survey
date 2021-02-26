@@ -1795,38 +1795,61 @@ def view_reports():
     inactive_clients = db.session.query(Client).filter(Client.status=='Inactive')
     num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
  
-    service_requests = db.session.query(Service_request)
-    num_requests = db.session.query(Service_request).count()
-    pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending')
-    num_pending_requests = db.session.query(Service_request).filter(Service_request.status=='pending').count()
-    awaiting_requests = db.session.query(Service_request).filter(Service_request.status=='awaiting')
-    num_awaiting_requests = db.session.query(Service_request).filter(Service_request.status=='awaiting').count()
-    first_pass_requests = db.session.query(Service_request).filter(Service_request.status=='first_pass')
-    num_first_pass_requests = db.session.query(Service_request).filter(Service_request.status=='first_pass').count()
-    conflict_check_requests = db.session.query(Service_request).filter(Service_request.status=='conflict_check')
-    num_conflict_check_requests = db.session.query(Service_request).filter(Service_request.status=='conflict_check').count()
-    finish_completion_requests = db.session.query(Service_request).filter(Service_request.status=='finish_completion')
-    num_finish_completion_requests = db.session.query(Service_request).filter(Service_request.status=='finish_completion').count()
-    submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted')
-    num_submitted_requests = db.session.query(Service_request).filter(Service_request.status=='submitted').count()
+    indv_requests = Individual_request.query.all()
+    num_indv_requests = Individual_request.query.count()
+    corp_requests = Corporate_request.query.all()
+    num_corp_requests = Corporate_request.query.count()
+    
+    indv_pending_requests = Individual_request.query.filter_by(status='pending')
+    num_indv_pending_requests = indv_pending_requests.count()
+    indv_awaiting_requests = Individual_request.query.filter_by(status='awaiting')
+    num_indv_awaiting_requests = indv_awaiting_requests.count()
+    indv_first_pass_requests = Individual_request.query.filter_by(status='first_pass')
+    num_indv_first_pass_requests = indv_first_pass_requests.count()
+    indv_conflict_check_requests = Individual_request.query.filter_by(status='conflict_check')
+    num_indv_conflict_check_requests = indv_conflict_check_requests.count()
+    indv_finish_completion_requests = Individual_request.query.filter_by(status='finish_completion')
+    num_indv_finish_completion_requests = indv_finish_completion_requests.count()
+    indv_submitted_requests = Individual_request.query.filter_by(status='submitted')
+    num_indv_submitted_requests = indv_submitted_requests.count()
+
+    corp_pending_requests = Corporate_request.query.filter_by(status='pending')
+    num_corp_pending_requests = corp_pending_requests.count()
+    corp_awaiting_requests = Corporate_request.query.filter_by(status='awaiting')
+    num_corp_awaiting_requests = corp_awaiting_requests.count()
+    corp_first_pass_requests = Corporate_request.query.filter_by(status='first_pass')
+    num_corp_first_pass_requests = corp_first_pass_requests.count()
+    corp_conflict_check_requests = Corporate_request.query.filter_by(status='conflict_check')
+    num_corp_conflict_check_requests = corp_conflict_check_requests.count()
+    corp_finish_completion_requests = Corporate_request.query.filter_by(status='finish_completion')
+    num_corp_finish_completion_requests = corp_finish_completion_requests.count()
+    corp_submitted_requests = Corporate_request.query.filter_by(status='submitted')
+    num_corp_submitted_requests = corp_submitted_requests.count()
  
     messages = db.session.query(Contact)
     num_messages = db.session.query(Contact).count()
-    open_messages = db.session.query(Contact).filter(Contact.status=='open')
-    num_open_messages = db.session.query(Contact).filter(Contact.status=='open').count()
-    closed_messages = db.session.query(Contact).filter(Contact.status=='open')
-    num_closed_messages = db.session.query(Contact).filter(Contact.status=='open').count()
+    open_messages = db.session.query(Contact).filter(Contact.status=='Open')
+    num_open_messages = db.session.query(Contact).filter(Contact.status=='Open').count()
+    closed_messages = db.session.query(Contact).filter(Contact.status=='Closed')
+    num_closed_messages = db.session.query(Contact).filter(Contact.status=='Closed').count()
  
     return render_template("reports.html", form=form, clients = clients, num_clients=num_clients, 
     active_clients=active_clients, num_active_clients=num_active_clients, 
-    inactive_clients=inactive_clients, num_inactive_clients=num_inactive_clients,
-    service_requests=service_requests, num_requests=num_requests,
-    pending_requests=pending_requests, num_pending_requests=num_pending_requests,
-    awaiting_requests=awaiting_requests, num_awaiting_requests=num_awaiting_requests,
-    first_pass_requests=first_pass_requests, num_first_pass_requests=num_first_pass_requests,
-    conflict_check_requests=conflict_check_requests, num_conflict_check_requests=num_conflict_check_requests,
-    finish_completion_requests=finish_completion_requests, num_finish_completion_requests=num_finish_completion_requests,
-    submitted_requests=submitted_requests, num_submitted_requests=num_submitted_requests,
+    inactive_clients=inactive_clients, num_inactive_clients=num_inactive_clients, 
+    indv_requests=indv_requests, num_indv_requests=num_indv_requests,
+    corp_requests=corp_requests, num_corp_requests=num_corp_requests,
+    indv_pend=indv_pending_requests, num_indv_pend=num_indv_pending_requests,
+    indv_await=indv_awaiting_requests, num_indv_await=num_indv_awaiting_requests,
+    indv_fp=indv_first_pass_requests, num_indv_fp=num_indv_first_pass_requests,
+    indv_cc=indv_conflict_check_requests, num_indv_cc=num_indv_conflict_check_requests,
+    indv_fc=indv_finish_completion_requests, num_indv_fc=num_indv_finish_completion_requests,
+    indv_sub=indv_submitted_requests, num_indv_sub=num_indv_submitted_requests,
+    corp_pend=corp_pending_requests, num_corp_pend=num_corp_pending_requests,
+    corp_await=corp_awaiting_requests, num_corp_await=num_corp_awaiting_requests,
+    corp_fp=corp_first_pass_requests, num_corp_fp=num_corp_first_pass_requests,
+    corp_cc=corp_conflict_check_requests, num_corp_cc=num_corp_conflict_check_requests,
+    corp_fc=corp_finish_completion_requests, num_corp_fc=num_corp_finish_completion_requests,
+    corp_sub=corp_submitted_requests, num_corp_sub=num_corp_submitted_requests,
     messages=messages, num_messages=num_messages, open_messages=open_messages, num_open_messages=num_open_messages,
     closed_messages=closed_messages, num_closed_messages=num_closed_messages)
  
