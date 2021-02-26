@@ -7,7 +7,7 @@ from wtforms_sqlalchemy.fields import QuerySelectField
 
 from flask_wtf import FlaskForm
 from wtforms import StringField, FieldList, PasswordField, SubmitField, BooleanField, SelectField,FloatField,TextAreaField, DateField
-from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional, InputRequired
 from flask_login import current_user
 from survey.models import User,Sector,Industry,Area,Department
 
@@ -25,6 +25,8 @@ def department_query():
 
 def usn_query():
     return User.query
+
+# this is a custom validation for required fields 
 
 
 
@@ -430,17 +432,11 @@ class JobForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class AreaForm(FlaskForm):
-    #iquery = Industry.query.all()
     name = StringField('Area of Operation')
     sector = QuerySelectField(query_factory=survey_query,allow_blank=True,get_label='sector')
-    industry =  SelectField('Industry', coerce=str, choices = [])
-    # industry =  SelectField('Industry', choices = [(i.id, i.industry) for i in iquery])
+    industry = QuerySelectField(query_factory=industry_query,allow_blank=True,get_label='industry')
     submit = SubmitField('Submit')
 
-    # def __init__(self, *args, **kwargs):
-    #     super().__init__(*args, **kwargs)
-        
-    #     self.industry.choices = [(i.id, i.industry) for i in iquery]
 
 
 
@@ -651,21 +647,24 @@ class ClientForm(FlaskForm):
     submit = SubmitField('Submit')
 
 
-
+def validate_required(form, field):
+        if len(field.data) < 1:
+            raise ValidationError(str(field.label) +' is a required field')
 
 
 class SurveyForm(FlaskForm):
-    job_title = StringField('Job Title')
-    grade = StringField('Grade')
-    reporting_relationship = TextField('Reporting Relationship')
-    job_desc = TextField('Job Description')
-    key_duties = TextField('Key Duties and Scope of Responsibility')
-    fin_res = StringField('Financial Responsibilities')
-    tech_qual = TextField('Technical/Professional Qualification')
-    exp_years = StringField('Minimum Years of Experience')
+    job_title = StringField('Job Title', [validate_required])
+    
+    grade = StringField('Grade', [validate_required])
+    reporting_relationship = TextField('Reporting Relationship', [validate_required])
+    job_desc = TextAreaField('Job Description', [validate_required])
+    key_duties = TextAreaField('Key Duties and Scope of Responsibility', [validate_required])
+    fin_res = TextAreaField('Financial Responsibilities', [validate_required])
+    tech_qual = TextAreaField('Technical/Professional Qualification', [validate_required])
+    exp_years = StringField('Minimum Years of Experience', [validate_required])
 
     
-    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department')
+    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department', validators = [DataRequired()])
    
     base_salary = FloatField('Annual Base Salary (GHS)',validators=[Optional()])
     
@@ -721,10 +720,17 @@ class SurveyForm(FlaskForm):
     mobile_money = FloatField('Mobile Money',validators=[Optional()])
     misc = FloatField('Miscellaneous',validators=[Optional()])
     submit = SubmitField('Submit')
+
+class BenchmarkJobComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Reject')
     
+class ClientJobComment(FlaskForm):
+    comment = TextAreaField('Comment', validators=[DataRequired()])
+    submit = SubmitField('Reject')
 
 class MessageComment(FlaskForm):
-    comment = TextAreaField('Comment', validators=[DataRequired()])
+    comment = TextAreaField('Add New Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
     status = BooleanField('Change Status', default=False)
     # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
@@ -744,9 +750,17 @@ class ServiceRequestForm(FlaskForm):
 
     
 class RequestSearchForm(FlaskForm):
-    selectstatus = SelectField('Status:',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
-    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
-    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval'),('all','All')])
-    selecttype = SelectField('Request Type:',choices = [('all','All'),('individual','Individual'),('corporate','Corporate')])
+    choices = [('Request Date', 'Request Date'),
+               ('Name', 'Name'),
+               ('Status', 'Status')]
+    select = SelectField('Filter:', choices=choices)
     search = StringField('')
-    
+
+class FilterReportForm(FlaskForm):
+    report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
+    report_status = SelectField('Status', coerce=int)
+    report_start_date = DateField('Start Date', format='%d-%m-%Y')
+    report_end_date = DateField('End Date', format='%d-%m-%Y')
+    submit = SubmitField('View Report')
+
+#     submit = SubmitField('Submit')

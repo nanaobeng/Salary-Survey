@@ -2214,5 +2214,16 @@ allowanceNotActive()
     $('.benefits').css('display','none')
     $('.allowance').css('display','')
   })
+  $(document).ready(function(){
+    $('#job_title').val("{{job.job_title}}")
+    $('#department').val("{{job.department_id}}")
+    $('#grade').val("{{job.grade or ''}}")
+    $('#reporting_relationship').val("{{job.reporting_relationship or ''}}")
+    $('#job_desc').val("{{job.job_description or ''}}")
+    $('#key_duties').val("{{job.duties_and_responsibility or ''}}")
+    $('#fin_res').val("{{job.financial_responsibilities or ''}}")
+    $('#tech_qual').val("{{job.technical_qualification or ''}}")
+    $('#exp_years').val("{{job.minimum_years_of_experience or ''}}")
+  })
 </script>
 {% endblock content %}

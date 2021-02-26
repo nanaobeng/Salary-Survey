@@ -131,7 +131,7 @@
   
   {% endwith %}
   </div>
-  <div class="p-4" style="background-color:rgb(245, 243, 243)">
+  <div class="p-4" style="background-color:rgb(245, 243, 243); min-height: 61vh;">
     <div class="row p-4">
        
         <div class="col-6">
@@ -140,10 +140,9 @@
           </button>
           <div class="dropdown-menu">
             <a class="dropdown-item" href="/my_benchmark_jobs/new">Create New Job</a>
-            <a class="dropdown-item" href="/my_benchmark_jobs/new">Select From Job Pool</a>
+            <a class="dropdown-item" href="/my_benchmark_jobs/search_pool">Select From Job Pool</a>
             <a class="dropdown-item" href="#" data-toggle="modal" data-target="#upload_jobs">Upload Job</a>
           </div>
-            <!-- <a href="/my_benchmark_jobs/options" class="btn btn-outline-primary">New Benchmark Job</a> -->
         </div>
 
     </div>
@@ -184,7 +183,7 @@
         {% for benchmark_job in benchmark_jobs %}
         <div class="col-lg-4 col-md-6 col-sm-12 p-4">
   
-          <div class="card p-4 parent job-card" id="{{benchmark_job.id}}" onclick="display_job(this)" style="height:140px">
+          <div class="card p-4 parent job-card" id="{{benchmark_job.id}}" onclick="display_job(this)" style="height:190px">
               <div class="row ">
                  
                   <div class="col-12 ">
@@ -203,7 +202,7 @@
                     
                     <div class="col-12" style="color:grey;font-size:12px">
                       <div class="row">
-                        <div class="col-5">
+                        <div class="col-4">
                           Department 
                         </div>
                         <div class="col-1">
@@ -217,7 +216,7 @@
                     </div>
                     <div class="col-12" style="color:grey;font-size:12px">
                       <div class="row">
-                        <div class="col-5">
+                        <div class="col-4">
                         Grade
                         </div>
                         <div class="col-1">

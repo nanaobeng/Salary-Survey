@@ -90,6 +90,26 @@ font-size: 18px;
 line-height: 24px;
 }
 }
+
+.search-head{
+  background-color: rgba(66,99,50,1);
+  color: #fff;
+}
+
+.search-row:hover{
+  cursor: pointer;
+  background-color: #eee;
+}
+.job-card:hover{
+      box-shadow: 0 0 10px #9ecaed;
+      cursor: pointer;
+  }
+  .message{
+    font-size: large; 
+    padding-top: 40px; 
+    color: darkgray; 
+    text-align: center;
+  }
 </style>
 
 <div class="row">
@@ -118,35 +138,49 @@ line-height: 24px;
 {% endwith %}
 </div>
 
-<div class="p-4 " style="background-color:rgb(245, 243, 243)">
-    <div class="row p-4 ">
-        <div class="col-12 d-flex justify-content-center">
-            <div class="input-group col-6" style="max-width: 700px;">
-                <input type="text" class="form-control" placeholder="Search job" id="search_job" autocomplete="off">
-                <div class="input-group-append">
-                    <button class="btn btn-secondary" type="button" onclick="search_job()">
-                    <i class="fa fa-search"></i>
-                    </button>
+<div class="p-4 " style="background-color:rgb(245, 243, 243); min-height: 63vh;">
+    <div class="card" style="min-height: 60vh;">
+      <div class="row p-4 ">
+          <div class="col-12 d-flex justify-content-center">
+              <div class="input-group col-lg-4 col-md-12" style="max-width: 700px;">
+                  <input type="text" class="form-control" placeholder="Search job" id="search_job" autocomplete="off">
+                  <div class="input-group-append">
+                      <button class="btn btn-secondary" type="button" onclick="">
+                      <i class="fa fa-search"></i>
+                      </button>
+                  </div>
+              </div>
+          </div>
+          <div class="col d-flex justify-content-center">
+              <div class="col-12 pt-4">
+                <div id="search_results" >
+                
+                    <p class="message">Search result will be displayed here</p>
                 </div>
-            </div>
-        </div>
-        <div class="col d-flex justify-content-center">
-            <div class="col-lg-10 col-md-12 pt-4">
-                <table class="table table-striped" id="search_results" style="display: none;">
-                    <thead class="bg-success">
-                        <th>#</th>
-                        <th>Job Title</th>
-                        <th>Department</th>
-                        <th>Area of Operation</th>
-                    </thead>
-                </table>
-            </div>
-        </div>
+                  <!-- <table class="table table-sm" id="search_results" style="display: none;">
+                      <thead class="search-head">
+                          <th>#</th>
+                          <th>Job Title</th>
+                          <th>Department</th>
+                          <th>Area of Operation</th>
+                      </thead>
+                      <tbody>
+                        <tr></tr>
+                      </tbody>
+                  </table> -->
+              </div>
+          </div>
+      </div>
     </div>
 </div>
 
 
 </div>
+
+
+
+
+
 
 <div class="modal" id="JobModal">
     <div class="modal-dialog modal-lg">
@@ -219,7 +253,7 @@ line-height: 24px;
         
         <!-- Modal footer -->
         <div class="modal-footer">
-          
+          <span class="btn btn-info" onclick="addJob()">Add Job</span>
         </div>
       
       </div>
@@ -238,13 +272,19 @@ line-height: 24px;
             type: 'POST',
             success: function(res) {
                 //empty table body
-                
+                $('#search_results').html('')
                 console.log(res)
                 if(res.length > 0){
-                    res.forEach(element => {
-                        add_row(element.id, element.job_title, element.department, element.area)
+                    res.forEach(function (element, i) {
+                        add_row(i+1, element.id, element.job_title, element.department, element.area)
                       });
-                      document.getElementById('search_results').style.display = 'block'
+                      document.getElementById('search_results').style.display = ''
+                }
+                else{
+               
+                  var card = `<p class='message'>No job found</p>`
+        
+                  $('#search_results').append(card)
                 }
             },
             error: function(error) {
@@ -254,15 +294,64 @@ line-height: 24px;
       
     })
 
-    function add_row(id, job_title, department, area){
-        var row = `<tr onclick='display_job(`+id+`)'>
-            <td>1</td>
-            <td>`+job_title+`</td>
-            <td>`+department+`</td>
-            <td>`+area+`</td>
-        </tr>`
+    function add_row(counter, id, job_title, department, area){
+      var card = `
+      <div class="col-lg-4 col-md-6 col-sm-12 p-4">
 
-        $('#search_results').append(row)
+      <div class="card p-4 parent job-card" id="`+id+`" onclick='display_job(`+id+`)' style="height:120px">
+          <div class="row ">
+            
+              <div class="col-12 ">
+            <div class="row">
+              <div class="col-10">
+                <h5 style="overflow: hidden; white-space: nowrap;"><b>`+job_title+`</b></h5>
+              </div>
+              <div class="col-2">
+                <i class="icofont-ui-note" style="color:grey;cursor:pointer"></i>
+              </div>
+            
+            </div>
+              </div>
+              </div>
+              <div class="row">
+                <div class="col-12" style="color:grey;font-size:12px">
+                  <div class="row">
+                    <div class="col-5">
+                      Department
+                    </div>
+                    <div class="col-1">
+                      :
+                    </div>
+                    <div class="col-6">
+                      `+department+`
+                    </div>
+                  </div>
+              
+                </div>
+                <div class="col-12" style="color:grey;font-size:12px">
+                  <div class="row">
+                    <div class="col-5">
+                      Area of Operation 
+                    </div>
+                    <div class="col-1">
+                      :
+                    </div>
+                    <div class="col-6">
+                      `+area+`
+                    </div>
+                  </div>
+
+                
+                </div>
+              </div>
+          </div>
+      </div>
+      `
+
+        if (id == ''){
+          card = `<p class='message'>No job found</p>`
+        }
+        $('#search_results').append(card)
     }
 
     //display job_details in modal
@@ -294,5 +383,27 @@ line-height: 24px;
   });
 
   }
+
+
+  function addJob(element){
+    var id =localStorage.getItem('item_id')
+    window.location.assign("{{url_for('users.my_benchmark_jobs_create',pool=1)}}")
+    $.ajax({
+      url: '/my_benchmark_jobs/new',
+      data: {
+          id: id
+      },
+      type: 'POST',
+      success: function(res) {
+        console.log(res)
+          
+      },
+      error: function(error) {
+          console.log(error);
+      }
+  });
+
+  }
+
 </script>
 {% endblock content %}
