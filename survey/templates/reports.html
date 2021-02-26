@@ -122,6 +122,10 @@
         font-weight: normal;
         color: grey;
     }
+
+    .btn-light {
+        color: green;
+    }
 </style>
 
 <!--Header-->
@@ -228,7 +232,6 @@
                     <option value="submitted">Submitted For Approval</option>   `
                 )
             } else if (type == 'messages') {
-                console.log("type changed to messages")
                 $('#report_status').html(
                     `   <option value="all">All</option>       
                         <option value="open">Open</option>
@@ -305,7 +308,6 @@
                         }
                         // For active clients
                         else if (status == 'active') {
-                            console.log("type is clients and status is active")
                             statistics =
                                 `<tr>
                     <td colspan="3">Total Active Clients: </td>
@@ -764,8 +766,9 @@
                     else if (type == 'messages') {
                         //For all messages
                         if (status == 'all') {
-                            statistics =
-                                `<tr>
+                            if (!start_date | !end_date) {
+                                statistics =
+                                    `<tr>
                     <td colspan="3">Total Messages: </td>
                     <td colspan="2">{{num_messages}}</td>
                 </tr>
@@ -777,8 +780,8 @@
                     <td colspan="3" class="sub-heading">Closed Messages: </td>
                     <td colspan="2">{{num_closed_messages}}</td>
                 </tr>`
-                            details =
-                                `<table class="table">
+                                details =
+                                    `<table class="table">
                         <thead>
                             <th>Sender</th>
                             <th>Company Name</th>
@@ -797,7 +800,7 @@
                             </tr>
                             {% endfor %}
                         </tbody>
-                    </table>`
+                    </table>`}
                         } else if (status == 'open') {
                             statistics =
                                 `<tr>
