@@ -1865,15 +1865,3 @@ def generate_report():
     report = report_type + report_status + report_start_date + report_end_date
     return jsonify(report)
 
-
-# @users.route('/messages/update/<int:messageId>', methods=['POST'])
-# def updateMessage(messageId):
-#     message = Contact.query.get_or_404(messageId)
-#     form = MessageComment()
-#     if form.validate_on_submit:
-#         comment = Comment(comment=form.comment.data, contact_id=messageId)
-#         message.status = form.my_status.data
-#         db.session.add(comment)
-#         db.session.commit()
-#         flash("Message Updated", "success")
-#         return redirect(url_for('users.messages'))
