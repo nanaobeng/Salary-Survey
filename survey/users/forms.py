@@ -746,12 +746,14 @@ class ServiceRequestForm(FlaskForm):
     submit = SubmitField('Save Changes')
 
     
+    
 class RequestSearchForm(FlaskForm):
-    choices = [('Request Date', 'Request Date'),
-               ('Name', 'Name'),
-               ('Status', 'Status')]
-    select = SelectField('Filter:', choices=choices)
-    search = StringField('')
+    selectstatus = SelectField('Status:',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
+    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
+    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval'),('all','All')])
+    selecttype = SelectField('Request Type:',choices = [('all','All'),('individual','Individual'),('corporate','Corporate')])
+    
+
     
 class SearchRequestForm(FlaskForm):
     searchinput = StringField('')
