@@ -766,7 +766,6 @@
                     else if (type == 'messages') {
                         //For all messages
                         if (status == 'all') {
-                            if (!start_date | !end_date) {
                                 statistics =
                                     `<tr>
                     <td colspan="3">Total Messages: </td>
@@ -800,7 +799,7 @@
                             </tr>
                             {% endfor %}
                         </tbody>
-                    </table>`}
+                    </table>`
                         } else if (status == 'open') {
                             statistics =
                                 `<tr>
