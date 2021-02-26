@@ -1,426 +1,367 @@
 {% extends "client_hub_layout.html" %}
 
-
 {% block content %}
 
 <style>
-    #hero {
-        width: 100%;
-        height: 5vh;
-        background: url("../static/img/home.jpg") top center;
-        background-size: cover;
-        position: relative;
-    }
+  #hero {
+    width: 100%;
+    height: 5vh;
+    background: url("../static/img/home.jpg") top center;
+    background-size: cover;
+    position: relative;
+  }
 
-    #hero:before {
-        content: "";
-        background: rgba(20, 44, 9, 0.7);
-        position: absolute;
-        bottom: 0;
-        top: 0;
-        left: 0;
-        right: 0;
-    }
+  #hero:before {
+    content: "";
+    background: rgba(20, 44, 9, 0.7);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 
+  #hero .container {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  @media (max-width: 992px) {
     #hero .container {
-        text-align: center;
-        padding-top: 50px;
+      padding-top: 0;
     }
+  }
 
-    @media (max-width: 992px) {
-        #hero .container {
-            padding-top: 0;
-        }
+  #hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #fff;
+  }
+
+  #hero h2 {
+    color: #eee;
+    margin: 15px 0 0 0;
+    font-size: 22px;
+  }
+
+  #hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 9px 35px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin-top: 40px;
+    border: 2px solid #ffc107;
+    color: #fff;
+  }
+
+  #hero .btn-get-started:hover {
+    background: #ffc107;
+  }
+
+  @media (min-width: 1024px) {
+    #hero {
+      background-attachment: fixed;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #hero {
+      height: 100vh;
     }
 
     #hero h1 {
-        margin: 0;
-        font-size: 48px;
-        font-weight: 700;
-        line-height: 56px;
-        color: #fff;
+      font-size: 28px;
+      line-height: 36px;
     }
 
     #hero h2 {
-        color: #eee;
-        margin: 15px 0 0 0;
-        font-size: 22px;
+      font-size: 18px;
+      line-height: 24px;
     }
-
-    #hero .btn-get-started {
-        font-family: "Raleway", sans-serif;
-        font-weight: 500;
-        font-size: 15px;
-        letter-spacing: 1px;
-        display: inline-block;
-        padding: 9px 35px;
-        border-radius: 50px;
-        transition: 0.5s;
-        margin-top: 40px;
-        border: 2px solid #ffc107;
-        color: #fff;
-    }
-
-    #hero .btn-get-started:hover {
-        background: #ffc107;
-    }
-
-    @media (min-width: 1024px) {
-        #hero {
-            background-attachment: fixed;
-        }
-    }
-
-    @media (max-width: 768px) {
-        #hero {
-            height: 100vh;
-        }
-
-        #hero h1 {
-            font-size: 28px;
-            line-height: 36px;
-        }
-
-        #hero h2 {
-            font-size: 18px;
-            line-height: 24px;
-        }
-    }
+  }
 </style>
 
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 <script type="text/javascript">
-    google.charts.load('current', { 'packages': ['corechart'] });
-    google.charts.setOnLoadCallback(drawChart);
+  google.charts.load('current', { 'packages': ['corechart'] });
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+
+    var data1 = google.visualization.arrayToDataTable([
+      ['Request Type', 'Number of Requests'],
+      ['Individual Requests', {{ total_indv_requests|safe}}],
+      ['Corporate Requests', {{ total_corp_requests|safe}}],
+    ]);
+
+    var options1 = {
+      title: "Service Requests"
+    };
 
 
-    function drawChart() {
-        // var data1 = google.visualization.arrayToDataTable([
-        //     ['Request Type', 'Number of Requests'],
-        //     ['Completed', 11],
-        //     ['Approved', 2],
-        //     ['Rejected', 2],
-        //     ['Followed-Up', 2],
-        //     ['Signed-On', 7]
-        // ]);
+  var data2 = google.visualization.arrayToDataTable([
+    ['Service Request Status', 'Number of Requests'],
+    ['Pending', {{ total_pending_requests|safe}}],
+    ['Awaiting Client Information', {{ total_awaiting_requests|safe}}],
+    ['First Pass', {{ total_fpass_requests|safe}}],
+    ['Conflict Check', {{ total_ccheck_requests|safe}}],
+    ['Finish Completion', {{ total_fcomp_requests|safe}}],
+    ['Submitted', {{ total_submitted_requests|safe}}]
+  ]);
 
-        var data1 = google.visualization.arrayToDataTable([
-            ['Request Type', 'Number of Requests'],
-            ['Pending', 11],
-            ['Submitted', 2],
-        ]);
+  var options2 = {
+    title: 'Service Requests By Status'
+  };
 
-        var options1 = {
-            title: "Today's Requests"
-        };
+  var data3 = google.visualization.arrayToDataTable([
+    ['Client Status', 'Number of Clients'],
+    ['Active', {{ total_active_clients|safe}}],
+    ['Inactive', {{ total_inactive_clients|safe}}]
+  ]);
 
-        var chart1 = new google.visualization.PieChart(document.getElementById('piechart'));
+  var options3 = {
+    title: 'Clients'
+  };
 
-        chart1.draw(data1, options1);
+  var data4 = google.visualization.arrayToDataTable([
+    ['Message Status', 'Number of Messages'],
+    ['Open', {{ total_open_messages|safe}}],
+    ['Closed', {{ total_closed_messages|safe}}]
+  ]);
 
-
-        var data2 = google.visualization.arrayToDataTable([
-            ['Date', 'Total Number of Requests', 'Completed Requests', 'Rejected Requests'],
-            ['2021-01-21', 1000, 400, 600],
-            ['2021-01-22', 1170, 460, 710],
-            ['2021-01-23', 1120, 660, 460],
-            ['2021-01-24', 1030, 540, 490]
-        ]);
-
-        var options2 = {
-            title: 'Client Requests',
-            curveType: 'function',
-            legend: { position: 'bottom' }
-        };
-
-        var chart2 = new google.visualization.LineChart(document.getElementById('curve_chart'));
-
-        chart2.draw(data2, options2);
+  var options4 = {
+    title: 'Messages'
+  };
 
 
-        var data3 = google.visualization.arrayToDataTable([
-            ['ID', 'X', 'Y', 'Temperature'],
-            ['', 80, 167, 120],
-            ['', 79, 136, 130],
-            ['', 78, 184, 50],
-            ['', 72, 278, 230],
-            ['', 81, 200, 210],
-            ['', 72, 170, 100],
-            ['', 68, 477, 80]
-        ]);
+  var chart1 = new google.visualization.PieChart(document.getElementById('service_requests_type_chart'));
+  chart1.draw(data1, options1);
 
-        var options3 = {
-            colorAxis: { colors: ['yellow', 'red'] }
-        };
+  var chart2 = new google.visualization.PieChart(document.getElementById('service_requests_status_chart'));
+  chart2.draw(data2, options2);
 
-        var chart3 = new google.visualization.BubbleChart(document.getElementById('bubble_chart'));
-        chart3.draw(data3, options3);
+  var chart3 = new google.visualization.PieChart(document.getElementById('clients_chart'));
+  chart3.draw(data3, options3);
 
-        var data4 = google.visualization.arrayToDataTable([
-            ['Year', 'Sales', 'Expenses'],
-            ['2013', 1000, 400],
-            ['2014', 1170, 460],
-            ['2015', 660, 1120],
-            ['2016', 1030, 540]
-        ]);
+  var chart4 = new google.visualization.PieChart(document.getElementById('messages_chart'));
+  chart4.draw(data4, options4);
 
-        var options4 = {
-            title: 'Company Performance',
-            hAxis: { title: 'Year', titleTextStyle: { color: '#333' } },
-            vAxis: { minValue: 0 }
-        };
+}
 
-        var chart4 = new google.visualization.AreaChart(document.getElementById('area_chart'));
-        chart4.draw(data4, options4);
-
-        var data5 = google.visualization.arrayToDataTable([
-            ['Month', 'Bolivia', 'Ecuador', 'Madagascar', 'Papua New Guinea', 'Rwanda', 'Average'],
-            ['2004/05', 165, 938, 522, 998, 450, 614.6],
-            ['2005/06', 135, 1120, 599, 1268, 288, 682],
-            ['2006/07', 157, 1167, 587, 807, 397, 623],
-            ['2007/08', 139, 1110, 615, 968, 215, 609.4],
-            ['2008/09', 136, 691, 629, 1026, 366, 569.6]
-        ]);
-
-        var options5 = {
-            title: 'Monthly Coffee Production by Country',
-            vAxis: { title: 'Cups' },
-            hAxis: { title: 'Month' },
-            seriesType: 'bars',
-            series: { 5: { type: 'line' } }
-        };
-
-        var chart5 = new google.visualization.ComboChart(document.getElementById('combo_chart'));
-        chart5.draw(data5, options5);
-
-        var chart6 = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart6.draw(data1, options1);
-
-        var chart7 = new google.visualization.BubbleChart(document.getElementById('bubble_chart2'));
-        chart7.draw(data3, options3);
-
-        var chart8 = new google.visualization.LineChart(document.getElementById('curve_chart2'));
-        chart8.draw(data2, options2);
-
-    }
 </script>
+
 <!---->
 <div class="row">
-    <div class="col-12">
-        <section id="hero" class="d-flex align-items-center justify-content-center"></section>
-            <div class="container position-relative">
-            
+  <div class="col-12">
+    <section id="hero" class="d-flex align-items-center justify-content-center"></section>
+    <div class="container position-relative">
 
-            </div>
-        </section>
     </div>
+    </section>
+  </div>
 </div>
 
-<section  class="page-content">
-    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="navbar-brand-wrapper d-flex justify-content-center">
-    <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">  
-      <a class="navbar-brand brand-logo" href="client_hub_layout.html"><img style = "width:80%; height:80%"src="{{ url_for('static', filename='img/Deloitte-black.png')}}" alt="logo"/></a>
-     
-      <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-        <span class="mdi mdi-sort-variant"></span>
-      </button>
-    </div>  
-  </div>
-  <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-    <ul class="navbar-nav mr-lg-4 w-100">
-      <li class="nav-item nav-search d-none d-lg-block w-100">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <span class="input-group-text" id="search">
+<section class="page-content">
+  <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+    <div class="navbar-brand-wrapper d-flex justify-content-center">
+      <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
+        <a class="navbar-brand brand-logo" href="client_hub_layout.html"><img style="width:80%; height:80%"
+            src="{{ url_for('static', filename='img/Deloitte-black.png')}}" alt="logo" /></a>
+
+        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+          <span class="mdi mdi-sort-variant"></span>
+        </button>
+      </div>
+    </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+      <!--<ul class="navbar-nav mr-lg-4 w-100">
+        <li class="nav-item nav-search d-none d-lg-block w-100">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="search">
                 <i class="fa fa-search" aria-hidden="true"></i>
-            </span>
+              </span>
+            </div>
+            <input type="text" class="form-control" placeholder="Search now" aria-label="search"
+              aria-describedby="search">
           </div>
-          <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
-        </div>
-      </li>
-    </ul>
-    
-    <ul class="navbar-nav navbar-nav-right">
-      
-      <li class="nav-item dropdown mr-1">
-        <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center" id="messageDropdown" href="#" data-toggle="dropdown">
+        </li>
+      </ul>-->
+
+      <ul class="navbar-nav navbar-nav-right">
+
+        <li class="nav-item dropdown mr-1">
+          <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
+            id="messageDropdown" href="#" data-toggle="dropdown">
             <i class="fas fa-envelope"></i>
-          <span class="count"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
-          <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
-          <a class="dropdown-item">
-            <div class="item-thumbnail">
+            <span class="count"></span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="messageDropdown">
+            <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+            <a class="dropdown-item">
+              <div class="item-thumbnail">
                 <img src="{{ url_for('static', filename='img/face4.jpg')}}" alt="image" class="profile-pic">
-            </div>
-            <div class="item-content flex-grow">
-              <h6 class="ellipsis font-weight-normal">John Doe
-              </h6>
-              <p class="font-weight-light small-text text-muted mb-0">
-                The meeting is cancelled
-              </p>
-            </div>
-          </a>
-          <a class="dropdown-item">
-            <div class="item-thumbnail">
+              </div>
+              <div class="item-content flex-grow">
+                <h6 class="ellipsis font-weight-normal">John Doe
+                </h6>
+                <p class="font-weight-light small-text text-muted mb-0">
+                  The meeting is cancelled
+                </p>
+              </div>
+            </a>
+            <a class="dropdown-item">
+              <div class="item-thumbnail">
                 <img src="{{ url_for('static', filename='img/face3.jpg')}}" alt="image" class="profile-pic">
-            </div>
-            <div class="item-content flex-grow">
-              <h6 class="ellipsis font-weight-normal">John Doe
-              </h6>
-              <p class="font-weight-light small-text text-muted mb-0">
-                New product launch
-              </p>
-            </div>
-          </a>
-          <a class="dropdown-item">
-            <div class="item-thumbnail">
+              </div>
+              <div class="item-content flex-grow">
+                <h6 class="ellipsis font-weight-normal">John Doe
+                </h6>
+                <p class="font-weight-light small-text text-muted mb-0">
+                  New product launch
+                </p>
+              </div>
+            </a>
+            <a class="dropdown-item">
+              <div class="item-thumbnail">
                 <img src="{{ url_for('static', filename='img/face2.jpg')}}" alt="image" class="profile-pic">
-            </div>
-            <div class="item-content flex-grow">
-              <h6 class="ellipsis font-weight-normal"> John Doe
-              </h6>
-              <p class="font-weight-light small-text text-muted mb-0">
-                Upcoming board meeting
-              </p>
-            </div>
-          </a>
-        </div>
-      </li>
-      <li class="nav-item dropdown mr-4">
-        <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown" id="notificationDropdown" href="#" data-toggle="dropdown">
+              </div>
+              <div class="item-content flex-grow">
+                <h6 class="ellipsis font-weight-normal"> John Doe
+                </h6>
+                <p class="font-weight-light small-text text-muted mb-0">
+                  Upcoming board meeting
+                </p>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li class="nav-item dropdown mr-4">
+          <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center notification-dropdown"
+            id="notificationDropdown" href="#" data-toggle="dropdown">
             <i class="fa fa-bell" aria-hidden="true"></i>
-          <span class="count"></span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
-          <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-          <a class="dropdown-item">
-            <div class="item-thumbnail">
-              <div class="item-icon bg-success">
-                <i class="mdi mdi-information mx-0"></i>
-              </div>
-            </div>
-            <div class="item-content">
-              <h6 class="font-weight-normal">Application Error</h6>
-              <p class="font-weight-light small-text mb-0 text-muted">
-                Just now
-              </p>
-            </div>
+            <span class="count"></span>
           </a>
-          <a class="dropdown-item">
-            <div class="item-thumbnail">
-              <div class="item-icon bg-warning">
-                <i class="fa fa-gear mx-0"></i>
-              </div>
-            </div>
-            <div class="item-content">
-              <h6 class="font-weight-normal">Settings</h6>
-              <p class="font-weight-light small-text mb-0 text-muted">
-                Private message
-              </p>
-            </div>
-          </a>
-          <a class="dropdown-item">
-            <div class="item-thumbnail">
-              <div class="item-icon bg-info">
-                <i class="mdi mdi-account-box mx-0"></i>
-              </div>
-            </div>
-            <div class="item-content">
-              <h6 class="font-weight-normal">New user registration</h6>
-              <p class="font-weight-light small-text mb-0 text-muted">
-                2 days ago
-              </p>
-            </div>
-          </a>
-        </div>
-      </li>
-     
-      <li class="nav-item nav-profile dropdown">
-        <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-          <img src="{{ url_for('static', filename='img/face5.jpg')}}" alt="profile"/>
-          <span class="nav-profile-name">
-            Welcome, {{ current_user.username }}! 
-          </span>
-        </a>
-        <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-          <a class="dropdown-item">
-            <i class="fa fa-user text-primary"></i>
-            My Profile
-          </a>
-          <a class="dropdown-item">
-            <i class="fa fa-poll text-primary"></i>
-            Activities
-          </a>
-          <a class="dropdown-item">
-            <i class="fa fa-cog text-primary"></i>
-            Settings
-          </a>
-          <a class="dropdown-item" href ="{{  url_for('users.logout')}}">
-            <i class="fa fa-power-off text-primary"></i>
-            Logout
-          </a>
-        </div>
-      </li>
-    </ul>
-    <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-      
-    </button>
-  </div>
-</nav>
-
-    <section>
-
-        <div class="row">
-            <div class="col-md-12 grid-margin">
-              <div class="d-flex justify-content-between flex-wrap">
-                <div class="d-flex align-items-end flex-wrap">
-                    
-                  <div class="mr-md-3 mr-xl-5">
-                    <h2>Client Hub </h2>
-                    <p class="mb-md-0">Your analytics dashboard.</p>
-                  </div>
-                  <div class="d-flex">
-                    <p class="text-muted mb-0 hover-cursor">Dashboard&nbsp;/&nbsp;</p>
-                    <p class="text-primary mb-0 hover-cursor">Analytics</p>
-                  </div>
-                </div>
-                <div class="d-flex justify-content-between align-items-end flex-wrap">
-                 
-                  <!-- <button class="btn btn-primary mt-2 mt-xl-0">Download report</button> -->
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="notificationDropdown">
+            <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+            <a class="dropdown-item">
+              <div class="item-thumbnail">
+                <div class="item-icon bg-success">
+                  <i class="mdi mdi-information mx-0"></i>
                 </div>
               </div>
+              <div class="item-content">
+                <h6 class="font-weight-normal">Application Error</h6>
+                <p class="font-weight-light small-text mb-0 text-muted">
+                  Just now
+                </p>
+              </div>
+            </a>
+            <a class="dropdown-item">
+              <div class="item-thumbnail">
+                <div class="item-icon bg-warning">
+                  <i class="fa fa-gear mx-0"></i>
+                </div>
+              </div>
+              <div class="item-content">
+                <h6 class="font-weight-normal">Settings</h6>
+                <p class="font-weight-light small-text mb-0 text-muted">
+                  Private message
+                </p>
+              </div>
+            </a>
+            <a class="dropdown-item">
+              <div class="item-thumbnail">
+                <div class="item-icon bg-info">
+                  <i class="mdi mdi-account-box mx-0"></i>
+                </div>
+              </div>
+              <div class="item-content">
+                <h6 class="font-weight-normal">New user registration</h6>
+                <p class="font-weight-light small-text mb-0 text-muted">
+                  2 days ago
+                </p>
+              </div>
+            </a>
+          </div>
+        </li>
+
+        <li class="nav-item nav-profile dropdown">
+          <a class="nav-link dropdown" href="#" data-toggle="dropdown" id="profileDropdown">
+            <img src="{{ url_for('static', filename='img/face5.jpg')}}" alt="profile" />
+            <span class="nav-profile-name">
+              Welcome, {{ current_user.username }}!
+            </span>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+            <a class="dropdown-item">
+              <i class="fa fa-user text-primary"></i>
+              My Profile
+            </a>
+            <a class="dropdown-item">
+              <i class="fa fa-poll text-primary"></i>
+              Activities
+            </a>
+            <a class="dropdown-item">
+              <i class="fa fa-cog text-primary"></i>
+              Settings
+            </a>
+            <a class="dropdown-item" href="{{  url_for('users.logout')}}">
+              <i class="fa fa-power-off text-primary"></i>
+              Logout
+            </a>
+          </div>
+        </li>
+      </ul>
+      <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button"
+        data-toggle="offcanvas">
+
+      </button>
+    </div>
+  </nav>
+
+  <section>
+
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+
+            <div class="mr-md-3 mr-xl-5">
+              <h2>Client Hub </h2>
+              <p class="mb-md-0">Your analytics dashboard.</p>
+            </div>
+            <div class="d-flex">
+              <p class="text-muted mb-0 hover-cursor">Dashboard&nbsp;/&nbsp;</p>
+              <p class="text-primary mb-0 hover-cursor">Analytics</p>
             </div>
           </div>
-    </section>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <!--Section for graphs-->
-    <section class="grid">
-        <article>
-            <div id="curve_chart" style="width: 100%;"></div>
-        </article>
-        <article>
-            <div id="piechart" style="width: 100%;"></div>
-        </article>
-        <article>
-            <div id="bubble_chart" style="width: 100%;"></div>
-        </article>
-        <article>
-            <div id="area_chart" style="width: 100%;"></div>
-        </article>
-        <article>
-            <div id="combo_chart" style="width: 100%;"></div>
-        </article>
-        <article>
-            <div id="bubble_chart2" style="width: 100%;"></div>
-        </article>
-        <article>
-            <div id="piechart2" style="width: 100%;"></div>
-        </article>
-        <article>
-            <div id="curve_chart2" style="width: 100%;"></div>
-        </article>
-    </section>
+  <!--Section for graphs-->
+  <section class="grid">
+    <article>
+      <div id="service_requests_status_chart" style="width: 100%;"></div>
+    </article>
+    <article>
+      <div id="service_requests_type_chart" style="width: 100%;"></div>
+    </article>
+    <article>
+      <div id="clients_chart" style="width: 100%;"></div>
+    </article>
+    <article>
+      <div id="messages_chart" style="width: 100%;"></div>
+    </article>
+  </section>
 
-    {% endblock content %}
+  {% endblock content %}

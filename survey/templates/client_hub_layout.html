@@ -128,7 +128,8 @@ body {
   padding-bottom: 80px;
   width: var(--page-header-width);
   color: var(--page-header-txtColor);
-  background: var(--page-header-bgColor);
+  background: var(--page-header-bgColor); 
+  height: 100%;
 }
 
 
@@ -136,6 +137,7 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100%;
+  max-height: 200%
 }
 
 .page-header .logo {
@@ -522,11 +524,11 @@ body {
     </li>
      
       <li>
-        <a href="{{  url_for('users.client_reports')}}">
+        <a href="{{  url_for('users.view_reports')}}">
           <svg>
             <use xlink:href="#comments"></use>
           </svg>
-          <span>View Reports</span>
+          <span>Reports</span>
         </a>
       </li>
       <li>

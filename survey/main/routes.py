@@ -64,9 +64,9 @@ def corporate_requests():
     if form.validate_on_submit():
         corp = Corporate_request(
         company_name = form.company_name.data,
-        sector = form.sector.data,
-        industry = form.industry.data,
-        area = form.area.data,
+        sector = form.sector.data.id,
+        industry = form.industry.data.id,
+        area = form.area.data.id,
         financial_year_end = form.financial_year_end.data,
         company_type = form.company_type.data,
         postal_address = form.postal_address.data,

@@ -653,18 +653,18 @@ def validate_required(form, field):
 
 
 class SurveyForm(FlaskForm):
-    job_title = StringField('Job Title', [validate_required])
+    job_title = StringField('Job Title')
     
-    grade = StringField('Grade', [validate_required])
-    reporting_relationship = TextField('Reporting Relationship', [validate_required])
-    job_desc = TextAreaField('Job Description', [validate_required])
-    key_duties = TextAreaField('Key Duties and Scope of Responsibility', [validate_required])
-    fin_res = TextAreaField('Financial Responsibilities', [validate_required])
-    tech_qual = TextAreaField('Technical/Professional Qualification', [validate_required])
-    exp_years = StringField('Minimum Years of Experience', [validate_required])
+    grade = StringField('Grade')
+    reporting_relationship = TextField('Reporting Relationship')
+    job_desc = TextAreaField('Job Description')
+    key_duties = TextAreaField('Key Duties and Scope of Responsibility')
+    fin_res = TextAreaField('Financial Responsibilities')
+    tech_qual = TextAreaField('Technical/Professional Qualification')
+    exp_years = StringField('Minimum Years of Experience')
 
     
-    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department', validators = [DataRequired()])
+    department = QuerySelectField(query_factory=department_query,allow_blank=True,get_label='department')
    
     base_salary = FloatField('Annual Base Salary (GHS)',validators=[Optional()])
     
@@ -733,7 +733,6 @@ class MessageComment(FlaskForm):
     comment = TextAreaField('Add New Comment', validators=[DataRequired()])
     submit = SubmitField('Submit')
     status = BooleanField('Change Status', default=False)
-    # my_status = SelectField('Status', choices=[('Open','Open'), ('Closed','Closed')], validators=[DataRequired()])
 
 # class ChangeMessageStatus(FlaskForm):
 
@@ -749,16 +748,22 @@ class ServiceRequestForm(FlaskForm):
     submit = SubmitField('Save Changes')
 
     
+    
 class RequestSearchForm(FlaskForm):
-    choices = [('Request Date', 'Request Date'),
-               ('Name', 'Name'),
-               ('Status', 'Status')]
-    select = SelectField('Filter:', choices=choices)
-    search = StringField('')
+    selectstatus = SelectField('Status:',choices = [('pending','Pending'),('requesting_client_information','Requesting Client Information'),
+    ('first_pass','Undergoing Risk Processes: First Pass'), ('conflict_check','Undergoing Risk Processes: Conflict Check'),
+    ('finish_completion','Undergoing Risk Processes: Finish Completion'),('submitted','Submitted For Approval'),('all','All')])
+    selecttype = SelectField('Request Type:',choices = [('all','All'),('individual','Individual'),('corporate','Corporate')])
+    
+
+    
+class SearchRequestForm(FlaskForm):
+    searchinput = StringField('')
+    
 
 class FilterReportForm(FlaskForm):
     report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
-    report_status = SelectField('Status', coerce=int)
+    report_status = SelectField('Status', choices = [('all', 'All'), ('active', 'Active'), ('inactive', 'Inactive')])
     report_start_date = DateField('Start Date', format='%d-%m-%Y')
     report_end_date = DateField('End Date', format='%d-%m-%Y')
     submit = SubmitField('View Report')

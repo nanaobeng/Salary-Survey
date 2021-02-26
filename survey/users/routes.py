@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, json, session
+from flask import Flask, render_template, url_for , flash, redirect, request , Blueprint, jsonify, session, json
 from survey import db , bcrypt
 from survey.users.forms import *
 from survey.models import *
@@ -115,7 +115,7 @@ def create_client():
         client = Client(
         company_history = form.company_history.data,
         company_name = form.name.data,
-        user = usn,
+        user = form.user_account.data,
         sector = form.sector.data,
         industry = form.industry.data,
         area = form.area.data,
@@ -164,7 +164,6 @@ def create_contact():
 def messages():
     form = MessageComment()
     messages = Contact.query.filter_by(status="Open").order_by(desc(Contact.timestamp)).all()
-    # messages = Contact.query.all()
     return render_template("messages.html", messages=messages, form=form)
 
 # view message modal
@@ -550,7 +549,7 @@ def my_surveys():
             query.append(survey)
 
     return render_template("quantitative_survey_overview.html",usn=usn,query=query)
-    return render_template("quantitative_survey_overview.html")
+    
 
 @users.route("/my_surveys/view_survey/quantitative")
 def quantitative_overview():
@@ -608,8 +607,33 @@ def admin_reports():
 
 @users.route("/administration/client_hub")
 def client_hub():
+    total_num_requests = json.dumps(Individual_request.query.count() + Corporate_request.query.count())
+    total_indv_requests = json.dumps(Individual_request.query.count())
+    total_corp_requests = json.dumps(Corporate_request.query.count())
+
+    total_pending_requests = json.dumps(Individual_request.query.filter_by(status='pending').count() + Corporate_request.query.filter_by(status='pending').count())
+    total_awaiting_requests = json.dumps(Individual_request.query.filter_by(status='requesting_client_information').count() + Corporate_request.query.filter_by(status='requesting_client_information').count())
+    total_fpass_requests = json.dumps(Individual_request.query.filter_by(status='first_pass').count() + Corporate_request.query.filter_by(status='first_pass').count())
+    total_ccheck_requests = json.dumps(Individual_request.query.filter_by(status='conflict_check').count() + Corporate_request.query.filter_by(status='conflict_check').count())
+    total_fcomp_requests = json.dumps(Individual_request.query.filter_by(status='finish_completion').count() + Corporate_request.query.filter_by(status='finish_completion').count())
+    total_submitted_requests = json.dumps(Individual_request.query.filter_by(status='submitted').count() + Corporate_request.query.filter_by(status='submitted').count())
     
-    return render_template("client_hub.html")
+    total_clients = json.dumps(Client.query.count())
+    total_active_clients = json.dumps(Client.query.filter_by(status='active').count())
+    total_inactive_clients = json.dumps(Client.query.filter_by(status='Inactive').count())
+
+    total_messages = json.dumps(Contact.query.count())
+    total_open_messages = json.dumps(Contact.query.filter_by(status='Open').count())
+    total_closed_messages = json.dumps(Contact.query.filter_by(status='Closed').count())
+    
+    return render_template("client_hub.html", total_num_requests=total_num_requests, 
+    total_indv_requests=total_indv_requests, total_corp_requests=total_corp_requests,
+    total_pending_requests=total_pending_requests, total_awaiting_requests=total_awaiting_requests,
+    total_fpass_requests=total_fpass_requests, total_ccheck_requests=total_ccheck_requests,
+    total_fcomp_requests=total_fcomp_requests, total_submitted_requests=total_submitted_requests,
+    total_clients=total_clients, total_active_clients=total_active_clients, total_inactive_clients=total_inactive_clients,
+    total_messages=total_messages, total_open_messages=total_open_messages, total_closed_messages=total_closed_messages)
+
     
 @app.route('/user/<username>')
 @login_required
@@ -1533,24 +1557,25 @@ def survey_filter():
 
 
 
-@users.route("/administration/service_requests", methods=["POST","GET"])
+@users.route("/service_requests", methods=["POST","GET"])
 def admin_service_requests():
     form = ServiceRequestForm() 
     searchform = RequestSearchForm()
     ind = Individual_request.query.filter_by(status="pending").all()
     corp= Corporate_request.query.filter_by(status="pending").all()
-#filter_by(status="pending").
+
     return render_template("new_requests.html",form=form ,ind=ind, corp=corp, searchform=searchform)
 
-@users.route("/administration/service_requests/search", methods=["POST"])
+@users.route("/service_requests/search", methods=["POST"])
 def search_requests():
     searchform = RequestSearchForm()
     form = ServiceRequestForm()
+    
     status = request.form['selectstatus']
     requesttype = request.form['selecttype']
     if request.method == 'POST':
         if ((requesttype != "all") and (status !="all")):
-            ind = Individual_request.query.filter_by(status=status,type_of_request=requesttype).all()
+            ind = Individual_request.query.filter_by(status=status,type_of_request=requesttype).all() 
             corp = Corporate_request.query.filter_by(status=status,type_of_request=requesttype).all()
         elif ((requesttype == "all") and (status !="all")):
             ind = Individual_request.query.filter_by(status=status,type_of_request="individual").all()
@@ -1558,20 +1583,15 @@ def search_requests():
         elif ((requesttype != "all") and (status =="all")):
             ind = Individual_request.query.filter_by(type_of_request=requesttype).all()
             corp = Corporate_request.query.filter_by(type_of_request=requesttype).all()
+       
         else:
             ind = Individual_request.query.all()
             corp= Corporate_request.query.all()
-        return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
+        
     return render_template("new_requests.html",searchform=searchform,form=form,ind=ind, corp=corp)
     
-#,(or_(Individual_request.firstname.like(('%' + search + '%')),Individual_request.lastname.like(('%' + search + '%')),Individual_request.status.like(('%' + search + '%'))) )
-
-
-  
-
-  
     posts =  Survey.query.filter(Survey.status.in_(tag)).all()
-   
+    
     temp = []
     for post in posts:
 
@@ -1579,20 +1599,18 @@ def search_requests():
 
     return jsonify(temp)
 
-# @users.route("/administration/service_requests", methods=["POST","GET"])
-# def admin_service_requests():
-#     form = ServiceRequestForm() 
-#     ind = Individual_request.query.all()
-#     corp= Corporate_request.query.filter_by(status="pending").all()
+@users.route("/service_requests/searchrequest", methods=["POST"])
+def search():
+    # namesearch = SearchRequestForm()
+    form = ServiceRequestForm()
+    searchform = RequestSearchForm()
+    search_term = request.form.get("keyword"," ")
+    if request.method == 'POST':
+        if (search_term != " "):
+            ind =  Individual_request.query.filter(Individual_request.firstname.like('%' + search_term + '%')).all()
+            corp =  Corporate_request.query.filter(Corporate_request.company_name.like('%' + search_term + '%')).all()
+    return render_template("new_requests.html",form=form,ind=ind,searchform=searchform, corp=corp)
 
-#     return render_template("new_requests.html",form=form ,ind=ind, corp=corp )
-
-@users.route('/view_request', methods=['POST','GET'])
-def viewRequest():
-    id = request.form['id']
-
-    requests = Individual_request.query.filter_by(id=id)
-    comments = RequestComment.query.filter_by(contact_id=id)
 @users.route('/view_request/<int:id>', methods=['POST','GET'])
 def viewIndRequest(id):
        
@@ -1613,7 +1631,7 @@ def viewIndRequest(id):
     return jsonify(temp)
 
 
-@users.route('/administration/service_requests/update/<int:requestId>', methods=['POST'])
+@users.route('/service_requests/update/<int:requestId>', methods=['POST'])
 def updateRequest(requestId):
     request = Individual_request.query.get_or_404(requestId)
     form = ServiceRequestForm()
@@ -1655,7 +1673,7 @@ def viewCorpRequest(id):
 
     return jsonify(temp)
 
-@users.route('/administration/service_requests/corpupdate/<int:corprequestId>', methods=['POST'])
+@users.route('/service_requests/corpupdate/<int:corprequestId>', methods=['POST'])
 def updateCorpRequest(corprequestId):
     request = Corporate_request.query.get_or_404(corprequestId)
     form = ServiceRequestForm()
@@ -1667,12 +1685,13 @@ def updateCorpRequest(corprequestId):
         flash("Request Updated", "success")
         return redirect(url_for('users.admin_service_requests'))
 
+
 # search messages on messages.html 
 @users.route('/messages/search', methods = ['POST'])
 def searchMessages():
     search = request.form['search_term']
     if (len(search) == 0):
-        messages = Contact.query.filter_by(status="False")
+        messages = Contact.query.filter_by(status="Open")
         new_messages = []
         for message in messages:
             new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
@@ -1687,23 +1706,15 @@ def searchMessages():
     for message in messages:
         new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
         'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+    return jsonify(new_messages)
 
 
 @users.route('/benchmark_details', methods=['POST','GET'])
 def b_details():
-
-
     tag = request.form['id']
-    
-
-  
     post = Benchmark_job.query.get_or_404(tag)
-
     temp = []
-   
-
     temp.append({'id': post.id,'status':post.status, 'job_title':post.job_title , 'grade':post.grade ,'reporting_relationship':post.reporting_relationship,'job_description' :post.job_description,'duties_and_responsibility':post.duties_and_responsibility,'financial_responsibilities':post.financial_responsibilities,'technical_qualification':post.technical_qualification,'minimum_years_of_experience':post.minimum_years_of_experience})
-
     return jsonify(temp)
 
 
@@ -1821,6 +1832,87 @@ def save_qualitative():
 def client_reports():
     
     return render_template("client_hub_reports.html")
+
+
+@users.route("/view_reports")
+def view_reports():
+    form = FilterReportForm()
+   
+    clients = db.session.query(Client)
+    num_clients = db.session.query(Client).count()
+    active_clients = db.session.query(Client).filter(Client.status=='active')
+    num_active_clients = db.session.query(Client).filter(Client.status=='active').count()
+    inactive_clients = db.session.query(Client).filter(Client.status=='Inactive')
+    num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
+ 
+    indv_requests = Individual_request.query.all()
+    num_indv_requests = Individual_request.query.count()
+    corp_requests = Corporate_request.query.all()
+    num_corp_requests = Corporate_request.query.count()
+    
+    indv_pending_requests = Individual_request.query.filter_by(status='pending')
+    num_indv_pending_requests = indv_pending_requests.count()
+    indv_awaiting_requests = Individual_request.query.filter_by(status='awaiting')
+    num_indv_awaiting_requests = indv_awaiting_requests.count()
+    indv_first_pass_requests = Individual_request.query.filter_by(status='first_pass')
+    num_indv_first_pass_requests = indv_first_pass_requests.count()
+    indv_conflict_check_requests = Individual_request.query.filter_by(status='conflict_check')
+    num_indv_conflict_check_requests = indv_conflict_check_requests.count()
+    indv_finish_completion_requests = Individual_request.query.filter_by(status='finish_completion')
+    num_indv_finish_completion_requests = indv_finish_completion_requests.count()
+    indv_submitted_requests = Individual_request.query.filter_by(status='submitted')
+    num_indv_submitted_requests = indv_submitted_requests.count()
+
+    corp_pending_requests = Corporate_request.query.filter_by(status='pending')
+    num_corp_pending_requests = corp_pending_requests.count()
+    corp_awaiting_requests = Corporate_request.query.filter_by(status='awaiting')
+    num_corp_awaiting_requests = corp_awaiting_requests.count()
+    corp_first_pass_requests = Corporate_request.query.filter_by(status='first_pass')
+    num_corp_first_pass_requests = corp_first_pass_requests.count()
+    corp_conflict_check_requests = Corporate_request.query.filter_by(status='conflict_check')
+    num_corp_conflict_check_requests = corp_conflict_check_requests.count()
+    corp_finish_completion_requests = Corporate_request.query.filter_by(status='finish_completion')
+    num_corp_finish_completion_requests = corp_finish_completion_requests.count()
+    corp_submitted_requests = Corporate_request.query.filter_by(status='submitted')
+    num_corp_submitted_requests = corp_submitted_requests.count()
+ 
+    messages = db.session.query(Contact)
+    num_messages = db.session.query(Contact).count()
+    open_messages = db.session.query(Contact).filter(Contact.status=='Open')
+    num_open_messages = db.session.query(Contact).filter(Contact.status=='Open').count()
+    closed_messages = db.session.query(Contact).filter(Contact.status=='Closed')
+    num_closed_messages = db.session.query(Contact).filter(Contact.status=='Closed').count()
+ 
+    return render_template("reports.html", form=form, clients = clients, num_clients=num_clients, 
+    active_clients=active_clients, num_active_clients=num_active_clients, 
+    inactive_clients=inactive_clients, num_inactive_clients=num_inactive_clients, 
+    indv_requests=indv_requests, num_indv_requests=num_indv_requests,
+    corp_requests=corp_requests, num_corp_requests=num_corp_requests,
+    indv_pend=indv_pending_requests, num_indv_pend=num_indv_pending_requests,
+    indv_await=indv_awaiting_requests, num_indv_await=num_indv_awaiting_requests,
+    indv_fp=indv_first_pass_requests, num_indv_fp=num_indv_first_pass_requests,
+    indv_cc=indv_conflict_check_requests, num_indv_cc=num_indv_conflict_check_requests,
+    indv_fc=indv_finish_completion_requests, num_indv_fc=num_indv_finish_completion_requests,
+    indv_sub=indv_submitted_requests, num_indv_sub=num_indv_submitted_requests,
+    corp_pend=corp_pending_requests, num_corp_pend=num_corp_pending_requests,
+    corp_await=corp_awaiting_requests, num_corp_await=num_corp_awaiting_requests,
+    corp_fp=corp_first_pass_requests, num_corp_fp=num_corp_first_pass_requests,
+    corp_cc=corp_conflict_check_requests, num_corp_cc=num_corp_conflict_check_requests,
+    corp_fc=corp_finish_completion_requests, num_corp_fc=num_corp_finish_completion_requests,
+    corp_sub=corp_submitted_requests, num_corp_sub=num_corp_submitted_requests,
+    messages=messages, num_messages=num_messages, open_messages=open_messages, num_open_messages=num_open_messages,
+    closed_messages=closed_messages, num_closed_messages=num_closed_messages)
+ 
+
+@users.route('/view_reports/generate_report', methods=['POST'])
+def generate_report():
+    report_type = request.form['type']
+    report_status = request.form['status']
+    report_start_date = request.form['start_date']
+    report_end_date = request.form['end_date']
+ 
+    report = report_type + report_status + report_start_date + report_end_date
+    return jsonify(report)
 
 
 # @users.route('/messages/update/<int:messageId>', methods=['POST'])

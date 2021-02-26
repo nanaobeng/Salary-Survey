@@ -128,25 +128,7 @@
     justify-content: center;
     
   }
-  
-
-  .addBtn {
-  padding: 10px;
-  width: 25%;
-  background: #d9d9d9;
-  color: #555;
-  float: left;
-  text-align: center;
-  font-size: 16px;
-  cursor: pointer;
-  transition: 0.3s;
-  border-radius: 0;
-}
-
-.addBtn:hover {
-  background-color: #bbb;
-}
-
+ 
 
 #requests_table {
   font-family: Arial, Helvetica, sans-serif;
@@ -239,14 +221,18 @@
 <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
   <ul class="navbar-nav mr-lg-4 w-100">
     <li class="nav-item nav-search d-none d-lg-block w-100">
+      <form method = 'POST' id='search' action = 'service_requests/searchrequest' class="dropdown p-2 ">
       <div class="input-group">
         <div class="input-group-prepend">
           <span class="input-group-text" id="search">
               <i class="fa fa-search" aria-hidden="true"></i>
           </span>
         </div>
-        <input type="text" class="form-control" placeholder="Search now" aria-label="search" aria-describedby="search">
+          <input name="keyword" id ="search_input" type="text" class="form-control" placeholder="Search by name" aria-label="search" aria-describedby="search">
+        
+       
       </div>
+    </form>
     </li>
   </ul>
   
@@ -347,7 +333,7 @@
     </li>
    
     <li class="nav-item nav-profile dropdown">
-      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+      <a class="nav-link dropdown" href="#" data-toggle="dropdown" id="profileDropdown">
         <img src="{{ url_for('static', filename='img/face5.jpg')}}" alt="profile"/>
         <span class="nav-profile-name">
           Welcome, {{ current_user.username }}! 
@@ -395,18 +381,30 @@
                   <p class="text-primary mb-0 hover-cursor">Service Requests</p>
                 </div>
 
-                <div class="d-flex justify-content-between align-items-end flex-wrap">
-                  <form method = 'POST' id='searchForm' action = 'service_requests/search' class="dropdown p-2 ">
-                <p class="text-muted mb-0 hover-cursor">Filter By:</p>
-                  <div class ="form-grroup">
-                    {{searchform.selecttype}}
               
-                  {{searchform.selectstatus}}
-                  <button type="submit"><i class="fas fa-search" id="search_icon"></i></button>
+                  <form method = 'POST' id='searchForm' action = 'service_requests/search' class="dropdown p-2 ">
+                
+                  <p class="text-muted mb-0 hover-cursor">Filter By:</p>
+                  
+                  <div class="input-group col-lg-4 col-md-12 form-control" style="max-width: 700px; padding: 0;">
+
+                      {{searchform.selecttype}} 
+                    
+                    &nbsp;
+                    
+                      {{searchform.selectstatus}} 
+                
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary" type="submit" onclick="">
+                        <i class="fa fa-search"></i>
+                        </button>
+                    </div>
+
                   </div>
                   </form>
-               </div>
+               
               </div>
+              
               <div class="d-flex justify-content-between align-items-end flex-wrap">
                 
           
@@ -435,13 +433,13 @@
         <div class="col-md-9">
           <tr>
           <div >
-                <td >{{i.firstname}} {{other}} {{i.lastname}}</td>
-            
-              <td >{{i.email}} {{i.id}}</td>
+              <td >{{i.firstname}} {{other}} {{i.lastname}}</td>
+              <td >{{i.email}} </td>
               <td >{{i.service}}</td>
-              <td><span class="badge badge-success">{{i.status}}</span></td>
+              <td><span>{{i.status}}</span></td>
               <td>
-                <input id="viewbutton" type="button" value="View" onclick="viewIndRequests('{{i.id}}',this);" data-id="{{i.id}}" data-toggle="modal" href="#viewIndividualRequestModal">
+                <button  type="button" value="View" onclick="viewIndRequests('{{i.id}}',this);" data-id="{{i.id}}" data-toggle="modal" href="#viewIndividualRequestModal">
+                  <i   class="fas fa-eye"></i></button>          
               </td>
             </div>
           </tr>
@@ -460,10 +458,13 @@
             <div>
             
               <td >{{i.company_name}}</td>
-              <td >{{i.company_email}} {{i.id}}</td>
+              <td >{{i.company_email}}</td>
               <td >{{i.service}}</td>
-              <td><span class="badge badge-success">{{i.status}}</span></td>
-              <td><input id="viewbutton" type="button" value="View" onclick="viewCorpRequests('{{i.id}}',this)" data-id="{{i.id}}" data-toggle="modal" href="#viewCorporateRequestModal"></td>
+              <td><span >{{i.status}}</span></td>
+              <td>
+                <button  type="button" onclick="viewCorpRequests('{{i.id}}',this)" data-id="{{i.id}}" data-toggle="modal" href="#viewCorporateRequestModal">
+                  <i   class="fas fa-eye"></i></button>          
+              </td>
             </div>
           </tr>
         </div>
@@ -496,8 +497,10 @@
         
       </div>
     
-   <div class="modal-footer form-group">
-   </div>
+      <div class="modal-footer">
+        {{form.submit(class="btn btn-outline-success")}}
+        <button type="reset" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+      </div>
      
   </form>
     </div>
@@ -506,7 +509,14 @@
 <!--End of modal content-->
     
 <!--End of modal-->
-
+<script>
+  $(document).ready(function() {
+    $('#requests_table').DataTable();
+} );
+</script>
+<script src="//code.jquery.com/jquery-3.5.1.js"></script>
+<script src ="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+<script src ="https://cdn.datatables.net/1.10.23/js/dataTables.bootstrap4.min.js"></script>
 <script>
   function viewIndRequests(modal, element){
     localStorage.setItem('requestId', $(element).attr('data-id'))
@@ -573,9 +583,7 @@
            
         {{ form.newstatus }}
   
-      </div>
-      {{form.submit}} 
-        </div>
+      
       `
         )
         for (var i=0; i<res[1].comments.length; i++){
@@ -590,7 +598,7 @@
 
   function updateIndRequest(){
     var requestId = localStorage.getItem('requestId')
-    document.getElementById('updateForm').action = 'service_requests/update/' + requestId
+    document.getElementById('updateForm').action = 'update/' + requestId
   }
 </script>
 
@@ -602,7 +610,7 @@
     <!-- Modal content-->
     <div class="modal-content">
       <div class="container" style="height: auto">
-        <form method="POST" action="./service_requests" id="updateCorpForm" onsubmit="updateCorpRequest()"  style="display: inline">
+        <form method="POST" action=" " id="updateCorpForm" onsubmit="updateCorpRequest()"  style="display: inline">
             <br/>
            
             <fieldset class="form-group">
@@ -616,12 +624,10 @@
    
       </div>
     </fieldset>
-   <div class="modal-footer form-group">
-      
-      <!-- <button type="button" class="btn btn-primary">Save changes</button>-->
-  
-   
-   </div>
+    <div class="modal-footer">
+      {{form.submit(class="btn btn-outline-success")}}
+      <button type="reset" class="btn btn-outline-danger" data-dismiss="modal">Cancel</button>
+    </div>
      
     
     </form>
@@ -700,10 +706,7 @@
           
           {{ form.newstatus }}
   
-          </div>
-          {{form.submit}}
-        </div>
-       
+         
       `
         )
         for (var i=0; i<result[1].comments.length; i++){
@@ -718,7 +721,7 @@
 
   function updateCorpRequest(){
     var requestId = localStorage.getItem('corprequestId')
-    document.getElementById('updateCorpForm').action = 'service_requests/corpupdate/' + requestId
+    document.getElementById('updateCorpForm').action = 'corpupdate/' + requestId
   }
 </script>
 
