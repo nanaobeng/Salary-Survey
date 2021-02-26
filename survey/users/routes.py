@@ -1689,6 +1689,7 @@ def searchMessages():
     for message in messages:
         new_messages.append({'id': message.id, 'firstname': message.firstname, 'lastname': message.lastname, 
         'company': message.company_name, 'timestamp': message.timestamp, 'status': message.status})
+    return jsonify(new_messages)
 
 
 @users.route('/benchmark_details', methods=['POST','GET'])
