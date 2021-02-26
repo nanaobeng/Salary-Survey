@@ -110,9 +110,10 @@
         font-size: smaller;
     }
 
-    .request-caption {
+    .reqcaption {
         font-variant: small-caps;
-        text-align: center;
+        /* text-align: center; */
+        text-indent: 40px;
     }
 
     #help {
@@ -120,6 +121,10 @@
         font-style: italic;
         font-weight: normal;
         color: grey;
+    }
+
+    .btn-light {
+        color: green;
     }
 </style>
 
@@ -227,7 +232,6 @@
                     <option value="submitted">Submitted For Approval</option>   `
                 )
             } else if (type == 'messages') {
-                console.log("type changed to messages")
                 $('#report_status').html(
                     `   <option value="all">All</option>       
                         <option value="open">Open</option>
@@ -304,7 +308,6 @@
                         }
                         // For active clients
                         else if (status == 'active') {
-                            console.log("type is clients and status is active")
                             statistics =
                                 `<tr>
                     <td colspan="3">Total Active Clients: </td>
@@ -424,7 +427,7 @@
 
                             details =
                                 `<table class="table">
-                                    <caption class="request-caption">Individual Requests</caption>
+                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
                             <th>Email</th>
@@ -443,7 +446,7 @@
                         </tbody>
                     </table>
                     <table class="table">
-                                    <caption class="request-caption">Corporate Requests</caption>
+                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Company Name</th>
                             <th>Email</th>
@@ -475,7 +478,7 @@
                 </tr>`
                             details =
                                 `<table class="table">
-                                    <caption class="request-caption">Individual Requests</caption>
+                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
                             <th>Email</th>
@@ -494,7 +497,7 @@
                         </tbody>
                     </table>
                     <table class="table">
-                                    <caption class="request-caption">Corporate Requests</caption>
+                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Company Name</th>
                             <th colspan="2">Email</th>
@@ -524,7 +527,7 @@
                 </tr>`
                             details =
                                 `<table class="table">
-                                    <caption class="request-caption">Individual Requests</caption>
+                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
                             <th>Email</th>
@@ -543,7 +546,7 @@
                         </tbody>
                     </table>
                     <table class="table">
-                                    <caption class="request-caption">Corporate Requests</caption>
+                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Company Name</th>
                             <th colspan="2">Email</th>
@@ -573,7 +576,7 @@
                 </tr>`
                             details =
                                 `<table class="table">
-                                    <caption class="request-caption">Individual Requests</caption>
+                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
                             <th>Email</th>
@@ -592,7 +595,7 @@
                         </tbody>
                     </table>
                     <table class="table">
-                                    <caption class="request-caption">Corporate Requests</caption>
+                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Company Name</th>
                             <th colspan="2">Email</th>
@@ -622,7 +625,7 @@
                 </tr>`
                             details =
                                 `<table class="table">
-                                    <caption class="request-caption">Individual Requests</caption>
+                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
                             <th>Email</th>
@@ -641,7 +644,7 @@
                         </tbody>
                     </table>
                     <table class="table">
-                                    <caption class="request-caption">Corporate Requests</caption>
+                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Company Name</th>
                             <th colspan="2">Email</th>
@@ -671,7 +674,7 @@
                 </tr>`
                             details =
                                 `<table class="table">
-                                    <caption class="request-caption">Individual Requests</caption>
+                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
                             <th>Email</th>
@@ -690,7 +693,7 @@
                         </tbody>
                     </table>
                     <table class="table">
-                                    <caption class="request-caption">Corporate Requests</caption>
+                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Company Name</th>
                             <th colspan="2">Email</th>
@@ -720,7 +723,7 @@
                 </tr>`
                             details =
                                 `<table class="table">
-                                    <caption class="request-caption">Individual Requests</caption>
+                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
                             <th>Email</th>
@@ -739,7 +742,7 @@
                         </tbody>
                     </table>
                     <table class="table">
-                                    <caption class="request-caption">Corporate Requests</caption>
+                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Company Name</th>
                             <th colspan="2">Email</th>
@@ -763,8 +766,8 @@
                     else if (type == 'messages') {
                         //For all messages
                         if (status == 'all') {
-                            statistics =
-                                `<tr>
+                                statistics =
+                                    `<tr>
                     <td colspan="3">Total Messages: </td>
                     <td colspan="2">{{num_messages}}</td>
                 </tr>
@@ -776,8 +779,8 @@
                     <td colspan="3" class="sub-heading">Closed Messages: </td>
                     <td colspan="2">{{num_closed_messages}}</td>
                 </tr>`
-                            details =
-                                `<table class="table">
+                                details =
+                                    `<table class="table">
                         <thead>
                             <th>Sender</th>
                             <th>Company Name</th>
