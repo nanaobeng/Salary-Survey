@@ -218,6 +218,7 @@ def create_sector():
        db.session.commit()
        flash('Sector Created','success')
        return redirect(url_for('users.create_sector'))
+
     return render_template("create_sector.html",form=form,title="Create Sector", Sectors=sectors)
 
 
