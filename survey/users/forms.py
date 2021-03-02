@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, BooleanField, SelectField,FloatField,IntegerField,RadioField,FileField,TextField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError, Optional
+# from wtforms.fields.html5 import DateField
 from flask_login import current_user
 from survey.models import User
 from wtforms_sqlalchemy.fields import QuerySelectField
@@ -765,6 +766,7 @@ class FilterReportForm(FlaskForm):
     report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
     report_status = SelectField('Status', choices = [('all', 'All'), ('active', 'Active'), ('inactive', 'Inactive')])
     report_start_date = DateField('Start Date', format='%d-%m-%Y')
+    # report_start_date = DateField('Start Date')
     report_end_date = DateField('End Date', format='%d-%m-%Y')
     submit = SubmitField('View Report')
 
