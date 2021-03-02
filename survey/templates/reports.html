@@ -149,8 +149,7 @@
                     <th id="report-type">
                         {{form.report_type.label(class="report_type-label new-report_type-label")}}
                         {% if form.report_type.errors %}
-                        {{ form.report_type(class="form-control form-control is-invalid", cols="100", rows="1",
-                        onfocus="this.rows=5;")}}
+                        {{ form.report_type(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.report_type.errors %}
                             <span> {{ error}}</span>
@@ -163,8 +162,7 @@
                     <th id="report-status">
                         {{form.report_status.label(class="report_status-label new-report_status-label")}}
                         {% if form.report_status.errors %}
-                        {{ form.report_status(class="form-control form-control is-invalid", cols="100", rows="1",
-                        onfocus="this.rows=5;")}}
+                        {{ form.report_status(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.report_status.errors %}
                             <span> {{ error}}</span>
