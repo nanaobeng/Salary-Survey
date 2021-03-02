@@ -144,7 +144,7 @@
         <thead>
           <th colspan="5">Sector</th>
         </thead>
-        <tbody id="users_list">
+        <tbody id="sectors_list">
           {% for sector in Sectors %}
           <tr>
             <td>{{sector.sector}}</td>
@@ -162,7 +162,7 @@
   </div>
 </div>
 
-<!--New User Button-->
+<!--New Sector Button-->
 <div class="row justify-content-center" id="new-user-button">
   <div class="col">
     <button class="btn btn-outline-success" data-toggle="modal" data-target="#sector" onclick="newSector()">New
