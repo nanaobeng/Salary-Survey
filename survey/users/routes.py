@@ -665,6 +665,15 @@ def admin_users():
     return render_template("admin_users.html", Users=Users)
 
 
+@users.route("/administration/config/grades")
+def admin_grades():
+    return render_template("admin_grades.html")
+
+
+@users.route("/administration/config/permissions")
+def admin_permissions():
+    return render_template("admin_permissions.html")
+
 
 ### Begining of block working on admin viewing comparator jobs and approving
 
