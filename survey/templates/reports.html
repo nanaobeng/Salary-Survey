@@ -752,10 +752,16 @@
 
                     // Case: Report type is 'messages'
                     else if (type == 'messages') {
+                        if (start_date) {
+                            console.log(start_date)
+                        }
+                        else {
+                            console.log("No start date selected")
+                        }
                         //For all messages
                         if (status == 'all') {
-                                statistics =
-                                    `<tr>
+                            statistics =
+                                `<tr>
                     <td colspan="3">Total Messages: </td>
                     <td colspan="2">{{num_messages}}</td>
                 </tr>
@@ -767,8 +773,8 @@
                     <td colspan="3" class="sub-heading">Closed Messages: </td>
                     <td colspan="2">{{num_closed_messages}}</td>
                 </tr>`
-                                details =
-                                    `<table class="table">
+                            details =
+                                `<table class="table">
                         <thead>
                             <th>Sender</th>
                             <th>Company Name</th>
