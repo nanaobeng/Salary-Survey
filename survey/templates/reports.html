@@ -750,12 +750,6 @@
 
                     // Case: Report type is 'messages'
                     else if (type == 'messages') {
-                        if (start_date) {
-                            console.log(start_date)
-                        }
-                        else {
-                            console.log("No start date selected")
-                        }
                         //For all messages
                         if (status == 'all') {
                             statistics =
@@ -809,10 +803,10 @@
                         <tbody>
                             {% for message in open_messages %}
                             <tr>
-                                <td colspan="2" class="sub-heading">{{message.firstname}} {{message.lastname}}</td>
-                                <td class="sub-heading">{{message.company_name}}</td>
-                                <td class="sub-heading">{{message.email}}</td>
-                                <td class="sub-heading">{{message.job_title}}</td>
+                                <td colspan="2" class="sub-heading t-row">{{message.firstname}} {{message.lastname}}</td>
+                                <td class="sub-heading t-row">{{message.company_name}}</td>
+                                <td class="sub-heading t-row">{{message.email}}</td>
+                                <td class="sub-heading t-row">{{message.job_title}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -834,10 +828,10 @@
                         <tbody>
                             {% for message in closed_messages %}
                             <tr>
-                                <td colspan="2" class="sub-heading">{{message.firstname}} {{message.lastname}}</td>
-                                <td class="sub-heading">{{message.company_name}}</td>
-                                <td class="sub-heading">{{message.email}}</td>
-                                <td class="sub-heading">{{message.job_title}}</td>
+                                <td colspan="2" class="sub-heading t-row">{{message.firstname}} {{message.lastname}}</td>
+                                <td class="sub-heading t-row">{{message.company_name}}</td>
+                                <td class="sub-heading t-row">{{message.email}}</td>
+                                <td class="sub-heading t-row">{{message.job_title}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
