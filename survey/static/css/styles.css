@@ -10462,9 +10462,11 @@ transform: translateY(0px);
     /* background-color: rgba(217, 240, 163, 0.404) ; */
     vertical-align: middle;
     /* border-radius: 80px; */
+    border-radius: 20px;
     color: rgba(97, 102, 92, 0.87);
     font-size: 80px;
-    border: 2px solid rgba(131, 218, 49, 0.637);
+    /* border: 2px solid rgba(131, 218, 49, 0.637); */
+    border: 2px solid rgb(78, 110, 62);
     margin-top: 40px;
 }
 
