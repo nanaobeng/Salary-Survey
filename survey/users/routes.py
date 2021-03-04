@@ -620,14 +620,14 @@ def client_hub():
     total_submitted_requests = json.dumps(Individual_request.query.filter_by(status='submitted').count() + Corporate_request.query.filter_by(status='submitted').count())
     
     num_indv_pending_requests = Individual_request.query.filter_by(status='pending').count()
-    num_indv_awaiting_requests = Individual_request.query.filter_by(status='awaiting').count()
+    num_indv_awaiting_requests = Individual_request.query.filter_by(status='requesting_client_information').count()
     num_indv_first_pass_requests = Individual_request.query.filter_by(status='first_pass').count()
     num_indv_conflict_check_requests = Individual_request.query.filter_by(status='conflict_check').count()
     num_indv_finish_completion_requests = Individual_request.query.filter_by(status='finish_completion').count()
     num_indv_submitted_requests = Individual_request.query.filter_by(status='submitted').count()
 
     num_corp_pending_requests = Corporate_request.query.filter_by(status='pending').count()
-    num_corp_awaiting_requests = Corporate_request.query.filter_by(status='awaiting').count()
+    num_corp_awaiting_requests = Corporate_request.query.filter_by(status='requesting_client_information').count()
     num_corp_first_pass_requests = Corporate_request.query.filter_by(status='first_pass').count()
     num_corp_conflict_check_requests = Corporate_request.query.filter_by(status='conflict_check').count()
     num_corp_finish_completion_requests = Corporate_request.query.filter_by(status='finish_completion').count()
