@@ -85,6 +85,11 @@
       line-height: 24px;
     }
   }
+
+  .card-text {
+    text-align: center;
+  }
+
 </style>
 
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
@@ -348,20 +353,82 @@
     </div>
   </section>
 
+  <!--Summary Tiles-->
+  <section>
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Clients</h5>
+            <p class="card-text">{{total_clients}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Service Requests</h5>
+            <p class="card-text">{{total_num_requests}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">Messages</h5>
+            <p class="card-text">{{total_messages}}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!--Section for graphs-->
-  <section class="grid">
-    <article>
-      <div id="service_requests_status_chart" style="width: 100%;"></div>
-    </article>
-    <article>
-      <div id="service_requests_type_chart" style="width: 100%;"></div>
-    </article>
-    <article>
-      <div id="clients_chart" style="width: 100%;"></div>
-    </article>
-    <article>
-      <div id="messages_chart" style="width: 100%;"></div>
-    </article>
+  <section>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card mb-4" id="service_requests_status_chart">
+
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card mb-4" id="service_requests_type_chart">
+          
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card mb-4" id="clients_chart">
+
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card" id="messages_chart">
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!--Section for Requests/Messages-->
+  <section>
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">New Service Requests</h5>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="card mb-4">
+          <div class="card-body">
+            <h5 class="card-title">New Messages</h5>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   {% endblock content %}

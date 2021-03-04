@@ -1,121 +1,233 @@
-{% extends "admin_layout.html" %}
-{% block header %} 
-Create User
-{% endblock header %}
+{% extends "new_admin_layout.html" %}
+
 {% block content %}
+<style>
+    #hero {
+        width: 100%;
+        height: 15vh;
+        background: url("../static/img/home.jpg") top center;
+        background-size: cover;
+        position: relative;
+    }
+
+    #hero:before {
+        content: "";
+        background: rgba(20, 44, 9, 0.7);
+        position: absolute;
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+    }
+
+    #hero .container {
+        text-align: center;
+        padding-top: 50px;
+    }
+
+    @media (max-width: 992px) {
+        #hero .container {
+            padding-top: 0;
+        }
+    }
+
+    #hero h1 {
+        margin: 0;
+        font-size: 48px;
+        font-weight: 700;
+        line-height: 56px;
+        color: #fff;
+    }
+
+    #hero h2 {
+        color: #eee;
+        margin: 15px 0 0 0;
+        font-size: 22px;
+    }
+
+    #hero .btn-get-started {
+        font-family: "Raleway", sans-serif;
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 9px 35px;
+        border-radius: 50px;
+        transition: 0.5s;
+        margin-top: 40px;
+        border: 2px solid #ffc107;
+        color: #fff;
+    }
+
+    #hero .btn-get-started:hover {
+        background: #ffc107;
+    }
+
+    @media (min-width: 1024px) {
+        #hero {
+            background-attachment: fixed;
+        }
+    }
+
+    @media (max-width: 768px) {
+        #hero {
+            height: 100vh;
+        }
+
+        #hero h1 {
+            font-size: 28px;
+            line-height: 36px;
+        }
+
+        #hero h2 {
+            font-size: 18px;
+            line-height: 24px;
+        }
+    }
+
+    fieldset {
+        border: 2px solid rgb(78, 110, 62);
+        padding: 20px;
+        border-radius: 20px;
+        margin: 30px;
+        background-color: rgb(78, 110, 62);
+    }
+
+    .form-control-label {
+        font-weight: bolder;
+    }
+
+    #submit-button {
+        text-align: center;
+        margin-top: 40px;
+    }
+</style>
+
+<!--Header-->
+<div class="row">
+    <div class="col-12">
+        <section id="hero" class="d-flex align-items-center justify-content-center">
+            <div class="container position-relative">
+                <h2><b style="font-size: 40px;">Create User</b></h2>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!--Body-->
 <div class="container">
-<form method="POST" action="">
-    <br/>
-    {{ form.hidden_tag() }}
-    <fieldset class="form-group">
-        <div class="form-group">
-            <div class="row">
-                <div class="col-lg-4 md-12">
-                    {{ form.username.label(class="form-control-label") }}
-        
-                    {% if form.username.errors %}
-                    {{ form.username(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.username.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.username(class="form-control form-control") }}
-                    {% endif %}
-                </div>
-                <div class="col-lg-4 col-sm-12">
-                    <div class="form-group">
-                        {{ form.email.label(class="form-control-label") }}
-                        
-                        {% if form.email.errors %}
-                        {{ form.email(class="form-control form-control is-invalid")}}
+    <form method="POST" action="">
+        <br />
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <div class="form-group">
+                <div class="row">
+                    <div class="col-lg-4 md-12">
+                        {{ form.username.label(class="form-control-label") }}
+
+                        {% if form.username.errors %}
+                        {{ form.username(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
-                            {% for error in form.email.errors %}
+                            {% for error in form.username.errors %}
                             <span> {{ error}}</span>
                             {% endfor %}
                         </div>
                         {% else %}
-                        {{ form.email(class="form-control form-control") }}
+                        {{ form.username(class="form-control form-control") }}
+                        {% endif %}
+                    </div>
+                    <div class="col-lg-4 col-sm-12">
+                        <div class="form-group">
+                            {{ form.email.label(class="form-control-label") }}
+
+                            {% if form.email.errors %}
+                            {{ form.email(class="form-control form-control is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                <span> {{ error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.email(class="form-control form-control") }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-12">
+                        <div class="form-group">
+                            {{ form.role.label(class="form-control-label") }}
+
+                            {% if form.role.errors %}
+                            {{ form.role(class="form-control form-control is-invalid")}}
+                            <div class="invalid-feedback">
+                                {% for error in form.role.errors %}
+                                <span> {{ error}}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.role(class="form-control form-control") }}
+                            {% endif %}
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                        {{ form.password.label(class="form-control-label") }}
+
+
+                        {% if form.password.errors %}
+                        {{ form.password(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.password.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.password(class="form-control form-control") }}
                         {% endif %}
                     </div>
                 </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="form-group">
-                    {{ form.role.label(class="form-control-label") }}
-        
-                    {% if form.role.errors %}
-                    {{ form.role(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.role.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
+                <div class="col-lg-4 col-md-12">
+                    <div class="form-group">
+                        {{ form.confirm_password.label(class="form-control-label") }}
+
+
+                        {% if form.confirm_password.errors %}
+                        {{ form.confirm_password(class="form-control form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.confirm_password.errors %}
+                            <span> {{ error}}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.confirm_password(class="form-control form-control") }}
+                        {% endif %}
                     </div>
-                    {% else %}
-                    {{ form.role(class="form-control form-control") }}
-                    {% endif %}
-        
-                    
+                </div>
+                <div class="col-lg-4 md-12">
+                    <div class="form-group">
+                        <label for="status" class="form-control-label">Status</label>
+                        <select name="status" id="status" class="form-control">
+                            <option value="Inactive">Inactive</option>
+                            <option value="Active">Active</option>
+                        </select>
+                    </div>
                 </div>
             </div>
-            </div>
+
+
+        </fieldset>
+        <div class="form-group" id="submit-button">
+            {{ form.submit(class="btn btn-outline-success") }}
         </div>
-        
-        
-        <div class="row">
-            <div class="col-lg-4 col-md-12">
-                <div class="form-group">
-                    {{ form.password.label(class="form-control-label") }}
-                   
-        
-                    {% if form.password.errors %}
-                    {{ form.password(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.password.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.password(class="form-control form-control") }}
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-12">
-                <div class="form-group">
-                    {{ form.confirm_password.label(class="form-control-label") }}
-                   
-        
-                    {% if form.confirm_password.errors %}
-                    {{ form.confirm_password(class="form-control form-control is-invalid")}}
-                    <div class="invalid-feedback">
-                        {% for error in form.confirm_password.errors %}
-                        <span> {{ error}}</span>
-                        {% endfor %}
-                    </div>
-                    {% else %}
-                    {{ form.confirm_password(class="form-control form-control") }}
-                    {% endif %}
-                </div>
-            </div>
-            <div class="col-lg-4 md-12">
-                <div class="form-group">
-                    <label for="status">Status</label>
-                    <select name="status" id="status" class="form-control">
-                        <option value="Inactive">Inactive</option>
-                        <option value="Active">Active</option>
-                    </select>
-                </div>
-            </div>
-        </div>
-        
-
-    </fieldset>
-    <div class="form-group">
-        {{ form.submit(class="btn btn-outline-success") }}
-    </div>
 
 
-</form>
+    </form>
 
 </div>
 {% endblock content %}
