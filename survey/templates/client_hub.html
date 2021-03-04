@@ -86,6 +86,15 @@
     }
   }
 
+  #page-title {
+    font-size: xx-large;
+    color: rgba(66,99,50,1);
+  }
+
+  #page-subtitle {
+    font-size: x-large;
+  }
+
   .card-text {
     text-align: center;
   }
@@ -116,7 +125,7 @@
     ])
 
   var options1 = {
-    title: "Service Requests",
+    // title: "Service Requests",
     vAxis: { title: 'Number of Requests' },
     hAxis: { title: 'Request Type' },
     seriesType: 'bars',
@@ -135,7 +144,7 @@
   ]);
 
   var options2 = {
-    title: 'Service Requests By Status'
+    // title: 'Service Requests By Status'
   };
 
   var data3 = google.visualization.arrayToDataTable([
@@ -145,7 +154,7 @@
   ]);
 
   var options3 = {
-    title: 'Clients'
+    // title: 'Clients'
   };
 
   var data4 = google.visualization.arrayToDataTable([
@@ -155,7 +164,7 @@
   ]);
 
   var options4 = {
-    title: 'Messages'
+    // title: 'Messages'
   };
 
 
@@ -185,7 +194,7 @@
 
 <section class="page-content">
   <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-    <div class="navbar-brand-wrapper d-flex justify-content-center">
+    <div class="navbar-brand-wrapper d-flex justify-content-center" style="width: 220px;">
       <div class="navbar-brand-inner-wrapper d-flex justify-content-between align-items-center w-100">
         <a class="navbar-brand brand-logo" href="client_hub_layout.html"><img style="width:80%; height:80%"
             src="{{ url_for('static', filename='img/Deloitte-black.png')}}" alt="logo" /></a>
@@ -195,20 +204,13 @@
         </button>
       </div>
     </div>
-    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-      <!--<ul class="navbar-nav mr-lg-4 w-100">
-        <li class="nav-item nav-search d-none d-lg-block w-100">
-          <div class="input-group">
-            <div class="input-group-prepend">
-              <span class="input-group-text" id="search">
-                <i class="fa fa-search" aria-hidden="true"></i>
-              </span>
-            </div>
-            <input type="text" class="form-control" placeholder="Search now" aria-label="search"
-              aria-describedby="search">
-          </div>
+    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end" style="width: calc(100% - 220px);">
+      <ul class="navbar-nav mr-lg-4 w-100">
+        <li class="nav-item d-none d-lg-block w-100">
+          <span id="page-title">Client Hub</span>
+          <span id="page-subtitle"> | Dashboard</span>
         </li>
-      </ul>-->
+      </ul>
 
       <ul class="navbar-nav navbar-nav-right">
 
@@ -342,7 +344,7 @@
     </div>
   </nav>
 
-  <section>
+  <!-- <section>
 
     <div class="row">
       <div class="col-md-12 grid-margin">
@@ -353,7 +355,7 @@
               <h2>Client Hub </h2>
               <p class="mb-md-0">Your analytics dashboard.</p>
             </div>
-            <div class="d-flex">
+            <div class="d-flex ">
               <p class="text-muted mb-0 hover-cursor">Dashboard&nbsp;/&nbsp;</p>
               <p class="text-primary mb-0 hover-cursor">Analytics</p>
             </div>
@@ -361,12 +363,12 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
   <!--Summary Tiles-->
   <section>
     <div class="row">
-      <div class="col-sm-4">
+      <div class="col-sm-4 mt-4">
         <div class="card mb-4">
           <div class="card-body">
             <h5 class="card-title">Clients</h5>
@@ -374,7 +376,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4 mt-4">
         <div class="card mb-4">
           <div class="card-body">
             <h5 class="card-title">Service Requests</h5>
@@ -382,7 +384,7 @@
           </div>
         </div>
       </div>
-      <div class="col-sm-4">
+      <div class="col-sm-4 mt-4">
         <div class="card mb-4">
           <div class="card-body">
             <h5 class="card-title">Messages</h5>
@@ -397,20 +399,29 @@
   <section>
     <div class="row">
       <div class="col-sm-12">
-        <div class="card mb-4" style="width: 100%; height: 500px;" id="service_requests_chart">
-
+        <div class="card mb-4" style="width: 100%; height: 500px;">
+          <div class="card-header card-title">
+            Service Requests
+          </div>
+          <div class="card-body" id="service_requests_chart"></div>
         </div>
       </div>
     </div>
     <div class="row">
       <div class="col-sm-6">
-        <div class="card mb-4" id="clients_chart">
-
+        <div class="card mb-4">
+          <div class="card-header card-title">
+            Clients
+          </div>
+          <div class="card-body" id="clients_chart"></div>
         </div>
       </div>
       <div class="col-sm-6">
-        <div class="card" id="messages_chart">
-
+        <div class="card mb-4">
+          <div class="card-header card-title">
+            Messages
+          </div>
+          <div class="card-body" id="messages_chart"></div>
         </div>
       </div>
     </div>
