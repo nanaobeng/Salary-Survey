@@ -764,7 +764,7 @@ class SearchRequestForm(FlaskForm):
 
 class FilterReportForm(FlaskForm):
     report_type = SelectField('Report Type', choices = [('clients', 'Clients'), ('service_requests', 'Service Requests'), ('messages', 'Messages')])
-    report_status = SelectField('Status', choices = [('all', 'All'), ('active', 'Active'), ('inactive', 'Inactive')])
+    report_status = SelectField('Status', choices = [('all', 'All'), ('active', 'Active'), ('Inactive', 'Inactive')])
     report_start_date = DateField('Start Date', format='%d-%m-%Y')
     # report_start_date = DateField('Start Date')
     report_end_date = DateField('End Date', format='%d-%m-%Y')
