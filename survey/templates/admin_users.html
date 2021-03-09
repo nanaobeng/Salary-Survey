@@ -1,86 +1,215 @@
-{% extends "admin_layout.html" %}
+{% extends "new_admin_layout.html" %}
 
-{% block header %} 
-Users
-{% endblock header %}
 {% block content %}
-<div class="col d-flex justify-content-center">
-    <div class="input-group" style="max-width: 400px;">
-        <input type="text" class="form-control" placeholder="Search user" id="search_user">
-        <div class="input-group-append">
-          <button class="btn btn-secondary" type="button" onclick="search_user()">
-            <i class="fa fa-search"></i>
-          </button>
-        </div>
-      </div>
-</div>
-<br>
-<script>
-    function search_user(){
-        var search_value = $('#search_user').val()
-        console.log(search_value)
-        var url = "/administration/config/users?search="+search_value
-        console.log(url)
-        window.location.replace(url)
+<style>
+   #hero {
+    width: 100%;
+    height: 15vh;
+    background: url("../static/img/home.jpg") top center;
+    background-size: cover;
+    position: relative;
+  }
+
+  #hero:before {
+    content: "";
+    background: rgba(20, 44, 9, 0.7);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
+
+  #hero .container {
+    text-align: center;
+    padding-top: 50px;
+  }
+
+  @media (max-width: 992px) {
+    #hero .container {
+      padding-top: 0;
     }
-</script>
-<table class="table table-hover">
-    <thead class="bg-secondary text-white">
-        <td>Name</td>
-        <td>Email</td>
-        <td>Role</td>
-        <td>Status</td>
-        <td></td>
-    </thead>
-    <tbody>
-        {% for User in Users.items %}
-        <tr>
-            <td>{{User.username}}</td>
-            <td>{{User.email}}</td>
-            <td>{{User.role}}</td>
-            <td>ff</td>
-            <td><i class="fas fa-eye"></i></td>
-        </tr>
-        {% endfor %}
-        
-    </tbody>
-</table>
+  }
+
+  #hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #fff;
+  }
+
+  #hero h2 {
+    color: #eee;
+    margin: 15px 0 0 0;
+    font-size: 22px;
+  }
+
+  #hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 9px 35px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin-top: 40px;
+    border: 2px solid #ffc107;
+    color: #fff;
+  }
+
+  #hero .btn-get-started:hover {
+    background: #ffc107;
+  }
+
+  @media (min-width: 1024px) {
+    #hero {
+      background-attachment: fixed;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #hero {
+      height: 100vh;
+    }
+
+    #hero h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    #hero h2 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+    #searchbar {
+        height: 60px;
+        text-align: right;
+        padding-right: 80px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    #search_user {
+        border-radius: 10px;
+        outline: 0;
+        width: 450px;
+        line-height: 30px;
+        padding: 0 10px;
+    }
+
+    #search_icon {
+        color: white;
+        margin-left: 5px;
+    }
+
+    #new-user-button {
+        text-align: center;
+        padding-bottom: 40px;
+        padding-top: 20px;
+    }
+
+    #page-number-info {
+        font-size: smaller;
+        font-style: italic;
+    }
+</style>
+
+<!--Header-->
+<div class="row">
+    <div class="col-12">
+        <section id="hero" class="d-flex align-items-center justify-content-center">
+            <div class="container position-relative">
+                <h2><b style="font-size: 40px;">Users</b></h2>
+            </div>
+        </section>
+    </div>
+</div>
+
+<!--Body-->
+<div class="row p-5 justify-content-center">
+    <div class="col-12">
+        <table class="table">
+            <thead style="background-color: rgb(78, 110, 62);" id="main-header">
+                <th colspan="5" id="searchbar">
+                    <input type="search" id="search_user" placeholder="Search Users...">
+                    <a href="#"><i class="fas fa-search" id="search_icon" onclick="search_user()"></i></a>
+                </th>
+            </thead>
+
+            <table class="table table-hover">
+                <thead>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th></th>
+                </thead>
+                <tbody id="users_list">
+                    {% for User in Users.items %}
+                    <tr>
+                        <td>{{User.username}}</td>
+                        <td>{{User.email}}</td>
+                        <td>{{User.role}}</td>
+                        <td>ff</td>
+                        <td><i class="fas fa-eye"></i></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </table>
+    </div>
+</div>
+
 <!-- Pagination Links-->
-<div class="text-right">
-    <a href="{{ url_for('users.admin_users', page=Users.prev_num) }}"
-       class="btn btn-outline-dark 
+<div class="text-center">
+    <a href="{{ url_for('users.admin_users', page=Users.prev_num) }}" class="btn btn-outline-dark 
        {% if Users.page == 1 %}disabled{% endif %}">
         &laquo;
     </a>
-<!-- Loop through the number of pages to display a link for each-->
+    <!-- Loop through the number of pages to display a link for each-->
     {% for page_num in Users.iter_pages(left_edge=1, right_edge=1, left_current=1, right_current=2) %}
-{% if page_num %}
-<!-- Check for the active page and set the link to "Active"-->
-            {% if Users.page == page_num %}
-            <a href="{{ url_for('users.admin_users', page=page_num) }}"
-               class="btn btn-dark">
-                {{ page_num }}
-            </a>
-            {% else %}
-            <a href="{{ url_for('users.admin_users', page=page_num) }}"
-               class="btn btn-outline-dark">
-                {{ page_num }}
-            </a>
-            {% endif %}
-        {% else %}
-            ...
-        {% endif %}
+    {% if page_num %}
+    <!-- Check for the active page and set the link to "Active"-->
+    {% if Users.page == page_num %}
+    <a href="{{ url_for('users.admin_users', page=page_num) }}" class="btn btn-dark">
+        {{ page_num }}
+    </a>
+    {% else %}
+    <a href="{{ url_for('users.admin_users', page=page_num) }}" class="btn btn-outline-dark">
+        {{ page_num }}
+    </a>
+    {% endif %}
+    {% else %}
+    ...
+    {% endif %}
     {% endfor %}
-    <a href="{{ url_for('users.admin_users', page=Users.next_num) }}"
-       class="btn btn-outline-dark 
+    <a href="{{ url_for('users.admin_users', page=Users.next_num) }}" class="btn btn-outline-dark 
        {% if Users.page == Users.pages %}disabled{% endif %}">
         &raquo;
     </a>
 </div>
-<p class="text-right mt-3">
-   Showing page {{ Users.page }} of {{ Users.pages }}
+<p class="text-center mt-3" id="page-number-info">
+    Showing page {{ Users.page }} of {{ Users.pages }}
 </p>
-<div class="row justify-content-center">
-    <a href="{{ url_for('users.register')}}"><button class="btn btn-info">New User</button></a>
+
+<!--New User Button-->
+<div class="row justify-content-center" id="new-user-button">
+    <div class="col">
+        <a href="{{ url_for('users.register')}}"><button class="btn btn-outline-success">New User</button></a>
+    </div>
 </div>
+
+<script>
+    function search_user() {
+        var search_value = $('#search_user').val()
+        console.log(search_value)
+        var url = "/administration/config/users?search=" + search_value
+        console.log(url)
+        window.location.replace(url)
+    }
+</script>
 {% endblock content %}

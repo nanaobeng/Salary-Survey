@@ -149,8 +149,7 @@
                     <th id="report-type">
                         {{form.report_type.label(class="report_type-label new-report_type-label")}}
                         {% if form.report_type.errors %}
-                        {{ form.report_type(class="form-control form-control is-invalid", cols="100", rows="1",
-                        onfocus="this.rows=5;")}}
+                        {{ form.report_type(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.report_type.errors %}
                             <span> {{ error}}</span>
@@ -163,8 +162,7 @@
                     <th id="report-status">
                         {{form.report_status.label(class="report_status-label new-report_status-label")}}
                         {% if form.report_status.errors %}
-                        {{ form.report_status(class="form-control form-control is-invalid", cols="100", rows="1",
-                        onfocus="this.rows=5;")}}
+                        {{ form.report_status(class="form-control form-control is-invalid")}}
                         <div class="invalid-feedback">
                             {% for error in form.report_status.errors %}
                             <span> {{ error}}</span>
@@ -481,9 +479,8 @@
                                     <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
-                            <th>Email</th>
+                            <th colspan="2">Email</th>
                             <th>Request</th>
-                            <th>Status</th>
                         </thead>
                         <tbody>
                             {% for request in indv_pend %}
@@ -491,7 +488,6 @@
                                 <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
                                 <td class="sub-heading t-row">{{request.email}}</td>
                                 <td class="sub-heading t-row">{{request.service}}</td>
-                                <td class="sub-heading t-row">{{request.status}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -530,9 +526,8 @@
                                     <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
-                            <th>Email</th>
+                            <th colspan="2">Email</th>
                             <th>Request</th>
-                            <th>Status</th>
                         </thead>
                         <tbody>
                             {% for request in indv_await %}
@@ -540,7 +535,6 @@
                                 <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
                                 <td class="sub-heading t-row">{{request.email}}</td>
                                 <td class="sub-heading t-row">{{request.service}}</td>
-                                <td class="sub-heading t-row">{{request.status}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -579,9 +573,8 @@
                                     <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
-                            <th>Email</th>
+                            <th colspan="2">Email</th>
                             <th>Request</th>
-                            <th>Status</th>
                         </thead>
                         <tbody>
                             {% for request in indv_fp %}
@@ -589,7 +582,6 @@
                                 <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
                                 <td class="sub-heading t-row">{{request.email}}</td>
                                 <td class="sub-heading t-row">{{request.service}}</td>
-                                <td class="sub-heading t-row">{{request.status}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -628,9 +620,8 @@
                                     <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
-                            <th>Email</th>
+                            <th colspan="2">Email</th>
                             <th>Request</th>
-                            <th>Status</th>
                         </thead>
                         <tbody>
                             {% for request in indv_cc %}
@@ -638,7 +629,6 @@
                                 <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
                                 <td class="sub-heading t-row">{{request.email}}</td>
                                 <td class="sub-heading t-row">{{request.service}}</td>
-                                <td class="sub-heading t-row">{{request.status}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -677,9 +667,8 @@
                                     <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
-                            <th>Email</th>
+                            <th colspan="2">Email</th>
                             <th>Request</th>
-                            <th>Status</th>
                         </thead>
                         <tbody>
                             {% for request in indv_fc %}
@@ -687,7 +676,6 @@
                                 <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
                                 <td class="sub-heading t-row">{{request.email}}</td>
                                 <td class="sub-heading t-row">{{request.service}}</td>
-                                <td class="sub-heading t-row">{{request.status}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -726,9 +714,8 @@
                                     <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
                         <thead>
                             <th colspan="2">Client Name</th>
-                            <th>Email</th>
+                            <th colspan="2">Email</th>
                             <th>Request</th>
-                            <th>Status</th>
                         </thead>
                         <tbody>
                             {% for request in indv_sub %}
@@ -736,7 +723,6 @@
                                 <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
                                 <td class="sub-heading t-row">{{request.email}}</td>
                                 <td class="sub-heading t-row">{{request.service}}</td>
-                                <td class="sub-heading t-row">{{request.status}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -766,8 +752,8 @@
                     else if (type == 'messages') {
                         //For all messages
                         if (status == 'all') {
-                                statistics =
-                                    `<tr>
+                            statistics =
+                                `<tr>
                     <td colspan="3">Total Messages: </td>
                     <td colspan="2">{{num_messages}}</td>
                 </tr>
@@ -779,8 +765,8 @@
                     <td colspan="3" class="sub-heading">Closed Messages: </td>
                     <td colspan="2">{{num_closed_messages}}</td>
                 </tr>`
-                                details =
-                                    `<table class="table">
+                            details =
+                                `<table class="table">
                         <thead>
                             <th>Sender</th>
                             <th>Company Name</th>
@@ -817,10 +803,10 @@
                         <tbody>
                             {% for message in open_messages %}
                             <tr>
-                                <td colspan="2" class="sub-heading">{{message.firstname}} {{message.lastname}}</td>
-                                <td class="sub-heading">{{message.company_name}}</td>
-                                <td class="sub-heading">{{message.email}}</td>
-                                <td class="sub-heading">{{message.job_title}}</td>
+                                <td colspan="2" class="sub-heading t-row">{{message.firstname}} {{message.lastname}}</td>
+                                <td class="sub-heading t-row">{{message.company_name}}</td>
+                                <td class="sub-heading t-row">{{message.email}}</td>
+                                <td class="sub-heading t-row">{{message.job_title}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>
@@ -842,10 +828,10 @@
                         <tbody>
                             {% for message in closed_messages %}
                             <tr>
-                                <td colspan="2" class="sub-heading">{{message.firstname}} {{message.lastname}}</td>
-                                <td class="sub-heading">{{message.company_name}}</td>
-                                <td class="sub-heading">{{message.email}}</td>
-                                <td class="sub-heading">{{message.job_title}}</td>
+                                <td colspan="2" class="sub-heading t-row">{{message.firstname}} {{message.lastname}}</td>
+                                <td class="sub-heading t-row">{{message.company_name}}</td>
+                                <td class="sub-heading t-row">{{message.email}}</td>
+                                <td class="sub-heading t-row">{{message.job_title}}</td>
                             </tr>
                             {% endfor %}
                         </tbody>

@@ -218,6 +218,7 @@ def create_sector():
        db.session.commit()
        flash('Sector Created','success')
        return redirect(url_for('users.create_sector'))
+
     return render_template("create_sector.html",form=form,title="Create Sector", Sectors=sectors)
 
 
@@ -628,6 +629,20 @@ def client_hub():
     total_fcomp_requests = json.dumps(Individual_request.query.filter_by(status='finish_completion').count() + Corporate_request.query.filter_by(status='finish_completion').count())
     total_submitted_requests = json.dumps(Individual_request.query.filter_by(status='submitted').count() + Corporate_request.query.filter_by(status='submitted').count())
     
+    num_indv_pending_requests = Individual_request.query.filter_by(status='pending').count()
+    num_indv_awaiting_requests = Individual_request.query.filter_by(status='requesting_client_information').count()
+    num_indv_first_pass_requests = Individual_request.query.filter_by(status='first_pass').count()
+    num_indv_conflict_check_requests = Individual_request.query.filter_by(status='conflict_check').count()
+    num_indv_finish_completion_requests = Individual_request.query.filter_by(status='finish_completion').count()
+    num_indv_submitted_requests = Individual_request.query.filter_by(status='submitted').count()
+
+    num_corp_pending_requests = Corporate_request.query.filter_by(status='pending').count()
+    num_corp_awaiting_requests = Corporate_request.query.filter_by(status='requesting_client_information').count()
+    num_corp_first_pass_requests = Corporate_request.query.filter_by(status='first_pass').count()
+    num_corp_conflict_check_requests = Corporate_request.query.filter_by(status='conflict_check').count()
+    num_corp_finish_completion_requests = Corporate_request.query.filter_by(status='finish_completion').count()
+    num_corp_submitted_requests = Corporate_request.query.filter_by(status='submitted').count()
+
     total_clients = json.dumps(Client.query.count())
     total_active_clients = json.dumps(Client.query.filter_by(status='active').count())
     total_inactive_clients = json.dumps(Client.query.filter_by(status='Inactive').count())
@@ -636,13 +651,24 @@ def client_hub():
     total_open_messages = json.dumps(Contact.query.filter_by(status='Open').count())
     total_closed_messages = json.dumps(Contact.query.filter_by(status='Closed').count())
     
+    new_indv_requests = Individual_request.query.filter_by(status='pending')
+    new_corp_requests = Corporate_request.query.filter_by(status='pending')
+    new_messages = Contact.query.filter_by(status='Open')
+
     return render_template("client_hub.html", total_num_requests=total_num_requests, 
     total_indv_requests=total_indv_requests, total_corp_requests=total_corp_requests,
     total_pending_requests=total_pending_requests, total_awaiting_requests=total_awaiting_requests,
     total_fpass_requests=total_fpass_requests, total_ccheck_requests=total_ccheck_requests,
     total_fcomp_requests=total_fcomp_requests, total_submitted_requests=total_submitted_requests,
+    num_indv_pend=num_indv_pending_requests, num_indv_await=num_indv_awaiting_requests,
+    num_indv_fp=num_indv_first_pass_requests, num_indv_cc=num_indv_conflict_check_requests,
+    num_indv_fc=num_indv_finish_completion_requests, num_indv_sub=num_indv_submitted_requests, 
+    num_corp_pend=num_corp_pending_requests, num_corp_await=num_corp_awaiting_requests,
+    num_corp_fp=num_corp_first_pass_requests, num_corp_cc=num_corp_conflict_check_requests,
+    num_corp_fc=num_corp_finish_completion_requests, num_corp_sub=num_corp_submitted_requests,
     total_clients=total_clients, total_active_clients=total_active_clients, total_inactive_clients=total_inactive_clients,
-    total_messages=total_messages, total_open_messages=total_open_messages, total_closed_messages=total_closed_messages)
+    total_messages=total_messages, total_open_messages=total_open_messages, total_closed_messages=total_closed_messages,
+    new_indv_requests=new_indv_requests, new_corp_requests=new_corp_requests, new_messages=new_messages)
 
     
 @app.route('/user/<username>')
@@ -674,6 +700,15 @@ def admin_users():
     
     return render_template("admin_users.html", Users=Users)
 
+
+@users.route("/administration/config/grades")
+def admin_grades():
+    return render_template("admin_grades.html")
+
+
+@users.route("/administration/config/permissions")
+def admin_permissions():
+    return render_template("admin_permissions.html")
 
 
 ### Begining of block working on admin viewing comparator jobs and approving

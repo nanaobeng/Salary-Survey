@@ -1,56 +1,174 @@
-{% extends "admin_layout.html" %}
+{% extends "new_admin_layout.html" %}
 
-{% block header %} 
-Sectors
-{% endblock header %}
 {% block content %}
+<style>
+  #hero {
+    width: 100%;
+    height: 15vh;
+    background: url("../static/img/home.jpg") top center;
+    background-size: cover;
+    position: relative;
+  }
 
-<table class="table table-hover">
-  <thead class="bg-secondary text-white">
-      <td>Sector</td>
-      <td></td>
-  </thead>
-  <tbody>
-    {% for sector in Sectors %}
-    <tr>
-      <td>{{sector.sector}}</td>
-      <td>
+  #hero:before {
+    content: "";
+    background: rgba(20, 44, 9, 0.7);
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+  }
 
-        <span type="" data-id="{{sector.id}}" onclick="editSector(this)"><i class="fas fa-edit"></i></span>
-          <span type="" data-id="{{sector.id}}" onclick="deleteSector(this)"><i class="fas fa-trash"></i></span>
+  #hero .container {
+    text-align: center;
+    padding-top: 50px;
+  }
 
-         </td>
-  </tr>
-    {% endfor %}
-  </tbody>
-</table>
-<div class="row justify-content-center">
-  <button class="btn btn-info" data-toggle="modal" data-target="#sector" onclick="newSector()">New Sector</button>
+  @media (max-width: 992px) {
+    #hero .container {
+      padding-top: 0;
+    }
+  }
+
+  #hero h1 {
+    margin: 0;
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    color: #fff;
+  }
+
+  #hero h2 {
+    color: #eee;
+    margin: 15px 0 0 0;
+    font-size: 22px;
+  }
+
+  #hero .btn-get-started {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 9px 35px;
+    border-radius: 50px;
+    transition: 0.5s;
+    margin-top: 40px;
+    border: 2px solid #ffc107;
+    color: #fff;
+  }
+
+  #hero .btn-get-started:hover {
+    background: #ffc107;
+  }
+
+  @media (min-width: 1024px) {
+    #hero {
+      background-attachment: fixed;
+    }
+  }
+
+  @media (max-width: 768px) {
+    #hero {
+      height: 100vh;
+    }
+
+    #hero h1 {
+      font-size: 28px;
+      line-height: 36px;
+    }
+
+    #hero h2 {
+      font-size: 18px;
+      line-height: 24px;
+    }
+  }
+
+  #searchbar {
+    height: 60px;
+    text-align: right;
+    padding-right: 80px;
+    padding-bottom: 10px;
+    padding-top: 10px;
+  }
+
+  #search_user {
+    border-radius: 10px;
+    outline: 0;
+    width: 450px;
+    line-height: 30px;
+    padding: 0 10px;
+  }
+
+  #search_icon {
+    color: white;
+    margin-left: 5px;
+  }
+
+  #new-user-button {
+    text-align: center;
+    padding-bottom: 40px;
+    padding-top: 20px;
+  }
+
+  #page-number-info {
+    font-size: smaller;
+    font-style: italic;
+  }
+</style>
+
+<!--Header-->
+<div class="row">
+  <div class="col-12">
+    <section id="hero" class="d-flex align-items-center justify-content-center">
+      <div class="container position-relative">
+        <h2><b style="font-size: 40px;">Sectors</b></h2>
+      </div>
+    </section>
+  </div>
 </div>
 
-<script>
-  function editSector(elm){
-    //$('#delete').modal('show')
-    localStorage.setItem('editId',$(elm).attr('data-id'));
-    
-    $.ajax({
-      url: '/sector/view',
-      data: {
-          id: $(elm).attr('data-id')
-      },
-      type: 'POST',
-      success: function(res) {
-          $('#name').val(res[0].sector)
-          $('#update_sector').modal('show')
-          console.log(res);
-      },
-      error: function(error) {
-          console.log(error);
-      }
-  });
-  }
-</script>
+<!--Body-->
+<div class="row p-5 justify-content-center">
+  <div class="col-12">
+    <table class="table">
+      <thead style="background-color: rgb(78, 110, 62);" id="main-header">
+        <th colspan="5" id="searchbar">
+          <input type="search" id="search_user" placeholder="Search Sectors...">
+          <a href="#"><i class="fas fa-search" id="search_icon" onclick="search_sector()"></i></a>
+        </th>
+      </thead>
 
+      <table class="table table-hover">
+        <thead>
+          <th colspan="5">Sector</th>
+        </thead>
+        <tbody id="sectors_list">
+          {% for sector in Sectors %}
+          <tr>
+            <td>{{sector.sector}}</td>
+            <td>
+
+              <span type="" data-id="{{sector.id}}" onclick="editSector(this)"><i class="fas fa-edit"></i></span>
+
+            </td>
+            <td><span type="" data-id="{{sector.id}}" onclick="deleteSector(this)"><i class="fas fa-trash"></i></span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </table>
+  </div>
+</div>
+
+<!--New Sector Button-->
+<div class="row justify-content-center" id="new-user-button">
+  <div class="col">
+    <button class="btn btn-outline-success" data-toggle="modal" data-target="#sector" onclick="newSector()">New
+      Sector</button>
+  </div>
+</div>
 
 <!-- Modal for creating new Sector -->
 <div class="modal fade " id="sector" tabindex="-1" role="dialog">
@@ -63,43 +181,43 @@ Sectors
         </button>
       </div>
       <div class="modal-body">
-          <div class="row">
-            <form method="POST" action="" class="col-12">
-              {{ form.hidden_tag() }}
-             
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="form-group">
-                          {{ form.name.label(class="form-control-label") }}
-              
-                          {% if form.name.errors %}
-                          {{ form.name(class="form-control form-control is-invalid")}}
-                          <div class="invalid-feedback">
-                              {% for error in form.name.errors %}
-                              <span> {{ error}}</span>
-                              {% endfor %}
-                          </div>
-                          {% else %}
-                          {{ form.name(class="form-control form-control") }}
-                          {% endif %}
-              
-                          
-                      </div>
-                    </div>
+        <div class="row">
+          <form method="POST" action="" class="col-12">
+            {{ form.hidden_tag() }}
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  {{ form.name.label(class="form-control-label") }}
+
+                  {% if form.name.errors %}
+                  {{ form.name(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                   </div>
-            
-                 
+                  {% else %}
+                  {{ form.name(class="form-control form-control") }}
+                  {% endif %}
+
+
+                </div>
               </div>
-          </div>
+            </div>
+
+
+        </div>
+      </div>
       <div class="modal-footer">
         <div class="form-group">
           {{ form.submit(class="btn btn-outline-info") }}
-         
-        </form>
+
+          </form>
         </div>
+      </div>
     </div>
   </div>
-</div>
 </div>
 
 
@@ -114,46 +232,46 @@ Sectors
         </button>
       </div>
       <div class="modal-body">
-          <div class="row">
-            <form method="POST" action="" class="col-12" onsubmit="updateSector()" id="updateForm">
-              {{ form.hidden_tag() }}
-             
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="form-group">
-                          {{ form.name.label(class="form-control-label") }}
-              
-                          {% if form.name.errors %}
-                          {{ form.name(class="form-control form-control is-invalid")}}
-                          <div class="invalid-feedback">
-                              {% for error in form.name.errors %}
-                              <span> {{ error}}</span>
-                              {% endfor %}
-                          </div>
-                          {% else %}
-                          {{ form.name(class="form-control form-control") }}
-                          {% endif %}
-              
-                          
-                      </div>
-                    </div>
+        <div class="row">
+          <form method="POST" action="" class="col-12" onsubmit="updateSector()" id="updateForm">
+            {{ form.hidden_tag() }}
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  {{ form.name.label(class="form-control-label") }}
+
+                  {% if form.name.errors %}
+                  {{ form.name(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                   </div>
-            
-                 
+                  {% else %}
+                  {{ form.name(class="form-control form-control") }}
+                  {% endif %}
+
+
+                </div>
               </div>
-          </div>
+            </div>
+
+
+        </div>
+      </div>
       <div class="modal-footer">
         <div class="form-group">
-          {{ form.update(class="btn btn-outline-secondary") }}
-        </form>
+          {{ form.update(class="btn btn-outline-success") }}
+          </form>
         </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
 
 
-<!-- confirmation modal -->
+<!-- Confirmation modal -->
 <div class="modal" tabindex="-1" role="dialog" id="delete_sector">
   <div class="modal-dialog modal-sm" role="document">
     <div class="modal-content modal-sm">
@@ -168,104 +286,125 @@ Sectors
       </div>
       <div class="modal-footer">
 
-       
+
         <form action="" method="POST" id="deleteForm" onsubmit="confirmDelete()">
           <button type="submit" class="btn btn-sm btn-success">Yes</button>
         </form>
         <button type="button" class="btn btn-sm btn-danger" data-dismiss="modal">No</button>
       </div>
       <div class="modal-body">
-          <div class="row">
-            <form method="POST" action="" class="col-12">
-              {{ form.hidden_tag() }}
-             
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="form-group">
-                          {{ form.name.label(class="form-control-label") }}
-              
-                          {% if form.name.errors %}
-                          {{ form.name(class="form-control form-control is-invalid")}}
-                          <div class="invalid-feedback">
-                              {% for error in form.name.errors %}
-                              <span> {{ error}}</span>
-                              {% endfor %}
-                          </div>
-                          {% else %}
-                          {{ form.name(class="form-control form-control") }}
-                          {% endif %}
-              
-                          
-                      </div>
-                    </div>
+        <div class="row">
+          <form method="POST" action="" class="col-12">
+            {{ form.hidden_tag() }}
+
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  {{ form.name.label(class="form-control-label") }}
+
+                  {% if form.name.errors %}
+                  {{ form.name(class="form-control form-control is-invalid")}}
+                  <div class="invalid-feedback">
+                    {% for error in form.name.errors %}
+                    <span> {{ error}}</span>
+                    {% endfor %}
                   </div>
-            
-                 
+                  {% else %}
+                  {{ form.name(class="form-control form-control") }}
+                  {% endif %}
+
+
+                </div>
               </div>
-          </div>
+            </div>
+
+
+        </div>
+      </div>
       <div class="modal-footer">
         <div class="form-group">
           {{ form.submit(class="btn btn-outline-info") }}
-        </form>
+          </form>
         </div>
+      </div>
     </div>
   </div>
 </div>
-</div>
 
+<!--Scripts-->
+<script>
+  function editSector(elm) {
+    localStorage.setItem('editId', $(elm).attr('data-id'));
+
+    $.ajax({
+      url: '/sector/view',
+      data: {
+        id: $(elm).attr('data-id')
+      },
+      type: 'POST',
+      success: function (res) {
+        $('#name').val(res[0].sector)
+        $('#update_sector').modal('show')
+        console.log(res);
+      },
+      error: function (error) {
+        console.log(error);
+      }
+    });
+  }
+</script>
 
 <script>
 
-  function deleteSector(elm){
-    localStorage.setItem('editId',$(elm).attr('data-id'));
+  function deleteSector(elm) {
+    localStorage.setItem('editId', $(elm).attr('data-id'));
 
     $.ajax({
       url: '/sector/view',
       data: {
-          id: $(elm).attr('data-id')
+        id: $(elm).attr('data-id')
       },
       type: 'POST',
-      success: function(res) {
-          $('#delete_sector').modal('show')
-          console.log(res);
+      success: function (res) {
+        $('#delete_sector').modal('show')
+        console.log(res);
       },
-      error: function(error) {
-          console.log(error);
+      error: function (error) {
+        console.log(error);
       }
-  });
+    });
   }
 
-  function confirmDelete(){
-    document.getElementById('deleteForm').action = '/sector/'+localStorage.getItem('editId')+'/delete'
+  function confirmDelete() {
+    document.getElementById('deleteForm').action = '/sector/' + localStorage.getItem('editId') + '/delete'
   }
-  function editSector(elm){
-    
-    localStorage.setItem('editId',$(elm).attr('data-id'));
-    
+  function editSector(elm) {
+
+    localStorage.setItem('editId', $(elm).attr('data-id'));
+
     $.ajax({
       url: '/sector/view',
       data: {
-          id: $(elm).attr('data-id')
+        id: $(elm).attr('data-id')
       },
       type: 'POST',
-      success: function(res) {
-          $("input[name='name'").val(res[0].sector)
-          $('#update_sector').modal('show')
-          console.log(res);
+      success: function (res) {
+        $("input[name='name'").val(res[0].sector)
+        $('#update_sector').modal('show')
+        console.log(res);
       },
-      error: function(error) {
-          console.log(error);
+      error: function (error) {
+        console.log(error);
       }
-  });
+    });
   }
 
-  function updateSector(){
+  function updateSector() {
     var id = localStorage.getItem('editId')
-    document.getElementById('updateForm').action = '/sector/update/'+id
+    document.getElementById('updateForm').action = '/sector/update/' + id
   }
   function newSector() {
     $("input[name='name'").val('')
   }
 </script>
-
 {% endblock content %}

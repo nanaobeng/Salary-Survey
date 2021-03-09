@@ -6,6 +6,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css')}}">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -298,7 +299,7 @@ section {
                   
                     <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_reports')}}">Reports</a></li>
                     <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger" href="{{  url_for('users.client_hub')}}"> Client Hub </a></li>
-                          
+                    <li class="nav-item"><a style="color:white" class="nav-link js-scroll-trigger" href="{{  url_for('users.admin_configuration')}}"> Configuration </a></li>
                          
                      
                   

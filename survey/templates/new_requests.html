@@ -196,16 +196,6 @@
 </div>
 
 <!--Body-->
-<div class="row">
-  <div class="col-12">
-      <section id="hero" class="d-flex align-items-center justify-content-center"></section>
-          <div class="container position-relative">
-          
-
-          </div>
-      </section>
-  </div>
-</div>
 
 <section  class="page-content">
   <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
@@ -580,7 +570,7 @@
           
        <div class="form-group">
           
-           
+        {{form.newstatus.label}}   
         {{ form.newstatus }}
   
       
@@ -598,7 +588,7 @@
 
   function updateIndRequest(){
     var requestId = localStorage.getItem('requestId')
-    document.getElementById('updateForm').action = 'update/' + requestId
+    document.getElementById('updateForm').action = 'service_requests/update/' + requestId
   }
 </script>
 
@@ -703,7 +693,7 @@
         <div class="row">
           
        <div class="form-group">
-          
+        {{form.newstatus.label}} 
           {{ form.newstatus }}
   
          
@@ -721,7 +711,7 @@
 
   function updateCorpRequest(){
     var requestId = localStorage.getItem('corprequestId')
-    document.getElementById('updateCorpForm').action = 'corpupdate/' + requestId
+    document.getElementById('updateCorpForm').action = 'service_requests/corpupdate/' + requestId
   }
 </script>
 
@@ -729,3 +719,5 @@
 
   
 {% endblock content %}
+
+
