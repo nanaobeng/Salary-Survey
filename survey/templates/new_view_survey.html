@@ -305,8 +305,8 @@ Custom Filters <i class="icofont-filter"></i>
       </div>
       
       <!-- Modal footer -->
-      <div class="modal-footer">
-        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+      <div class="modal-footer" id="m_footer">
+        
       </div>
       
     </div>
@@ -405,6 +405,10 @@ $.ajax({
       c.push((res1.comps)[bench])
     }
      
+    $('#m_footer').html(
+
+    `<button type="button" class="btn btn-primary" onclick="editSurvey(${res1.id})">Edit</button> <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>`
+    )
     
 $('#modal_body').html(
 
@@ -533,6 +537,24 @@ $.ajax({
 
     
 console.log(res)
+
+
+
+    
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
   },
 
   error: function(error) {
@@ -547,5 +569,114 @@ console.log(res)
 
 });
 </script>
+
+
+
+
+<script>
+  function editSurvey(id){
+    
+
+console.log(id)
+
+
+$.ajax({
+
+  url: '/edit_survey',
+
+  data: {
+
+    id:id
+  },
+
+  type: 'POST',
+
+  success: function(res) {
+    console.log(res)
+
+
+   
+    $('#modal_body').empty()
+    $('#modal_body').append(`<div class="col-12 text-center"> <b>Edit Comparators</b></div>`)
+    res.forEach(function (sandwich, index) {
+
+$('#modal_body').append(`
+
+<div class="col-12">
+${sandwich.split('_')[0]} <span  onclick="deleteComp('${sandwich.split('_')[0]}','${sandwich.split('_')[1]}')"><i class="icofont-ui-delete" style="color:red;cursor:pointer"></i></span>
+</div>
+
+
+`)
+
+
+
+})
+     
+    
+
+
+
+  },
+
+  error: function(error) {
+
+      console.log(error);
+
+  }
+
+});
+
+
+
+}
+</script>
+
+
+
+<script>
+  function deleteComp(id,sur_id){
+    
+
+console.log(id)
+
+
+$.ajax({
+
+  url: '/delete_comp',
+
+  data: {
+
+    id:id,
+    sur_id:sur_id
+  },
+
+  type: 'POST',
+
+  success: function(res) {
+    console.log(res)
+
+
+   
+ 
+    
+
+
+
+  },
+
+  error: function(error) {
+
+      console.log(error);
+
+  }
+
+});
+
+
+
+}
+</script>
+
 
     {% endblock content %}

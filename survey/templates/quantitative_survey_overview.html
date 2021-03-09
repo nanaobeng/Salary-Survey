@@ -137,8 +137,8 @@
             <div class="col-12 ">
           <div class="row">
             <div class="col-10">
-              <h5><b>{{i.job_title}}</b></h5>
-             <!-- <span style="font-size: 10px;color:grey">Requested by : {{i.comp_benchmark.survey_client.company_name}}</span>  -->
+              <h5><b> {{i.job_title}}</b></h5>
+           {{i.comp_benchmark.id}}
             </div>
             <div class="col-1">
               <a data-toggle="modal" onclick="submit('{{i.id}}')" data-target="#job_detail" style="color:grey;cursor:pointer"><i class="icofont-eye-alt" ></i></a>
@@ -327,16 +327,16 @@
 
 <script>
 
-function proceed(id){
+function proceed(id,usn,sid){
 
-  window.location.href =`/survey/quantitative/${id}`
+  window.location.href =`/survey/quantitative/${id}/${usn}/${sid}`
 
 }
 
 
-function view(id){
+function view(id,usn,sid){
 
-window.location.href =`/survey/quantitative/view/${id}`
+window.location.href =`/survey/quantitative/view/${id}/${usn}/${sid}`
 
 }
       
@@ -377,7 +377,7 @@ if(res.status == 'Completed'){
   
   
   <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
-          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="view('${res.id}')">View</button>
+          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="view('${res.id}','{{usn}}','${res.survey}')">View</button>
   `
 )
 
@@ -390,7 +390,7 @@ else{
   
   
   <button class="btn btn-outline-success" id="save_btn" style="display: none;">Save</button>
-          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="proceed('${res.id}')">Proceed</button>
+          <button class="btn btn-outline-secondary" id="proceed_btn" onclick="proceed('${res.id}','{{usn}}','${res.survey}')">Proceed</button>
   `
 )
 }

@@ -543,12 +543,21 @@ def my_benchmark_jobs_create():
 def my_surveys():
     usn = current_user.id
     query = []
-    surveys = Benchmark_job.query.all()
+    final_list = []
+    surveys = Survey_comparator.query.all()
+    bench = Benchmark_job.query.all()
     for survey in surveys:
-        if survey.benchmark.user.id == usn:
+        if survey.client.user.id == usn:
             query.append(survey)
 
-    return render_template("quantitative_survey_overview.html",usn=usn,query=query)
+    for i in query:
+        for j in bench:
+            if i.comparator.id == j.comp_benchmark.id and j not in final_list:
+                final_list.append(j)
+            
+               
+
+    return render_template("quantitative_survey_overview.html",usn=usn,query=final_list)
     
 
 @users.route("/my_surveys/view_survey/quantitative")
@@ -575,8 +584,9 @@ def admin_home():
 
 @users.route("/administration/surveys")
 def admin_surveys():
+    compform = ComparatorForm()
     query = Survey.query.all()
-    return render_template("new_view_survey.html",query=query)
+    return render_template("new_view_survey.html",query=query,compform=compform)
 
 @users.route("/administration/benchmark-jobs")
 def admin_benchmarl():
@@ -1057,74 +1067,149 @@ def create_benchmark_job():
         return 'success'
     return render_template("create_benchmark_job.html")
 
-@users.route("/survey/quantitative/<int:id>",methods=['POST','GET'])
-def quantitative_survey(id):
+
+@users.route("/survey/quantitative/<int:id>/<int:usn>/<int:sid>",methods=['POST','GET'])
+def quantitative_survey(id,usn,sid):
     job = Benchmark_job.query.get_or_404(id)
     form = SurveyForm()
+
+    dept = Department.query.all()
+
+    s_comp = Survey_comparator.query.all()
+    
+    s_compp = Survey_comparator.query.all()          
+        
+    
+    status = False
+    comp = Comparator_job.query.all()
+
+
+    for sur in s_comp:
+                if(sur.client.user.id == usn and sur.comparator.id == sid and job.comp_benchmark.id == sid ):
+                    s_comp = sur
+
+    for sur in comp:
+                if(id == sur.benchmark.id and usn == sur.comparator.client.user.id):
+                    s_compp = sur
+    for c in comp:
+        if(c.benchmark.id == id ):
+            status = True
     if form.validate_on_submit():
+        if(status == False):
+            
+                        
+            benifit = Benefit(staff_bus = 2)
+            allowance = Allowance(housing = 33)
+            incentive = Incentive(other_cash = 4)
+            base = Base_salary(monthly_base_salary=4)
+            new_comparator = Comparator_job(job_title=request.form['j_t'],department=form.department.data,grade="test grade",reporting_relationship="sample",job_match=20,comparator=s_comp,benchmark=job,comp_benchmark_base=base,comp_benchmark_incentive=incentive,comp_benchmark_allowance=allowance,comp_benchmark_benefit=benifit) 
+            db.session.add(benifit)
+            db.session.add(allowance)
+            db.session.add(incentive)
+            db.session.add(base)
+            db.session.add(new_comparator)
+            try:
+                db.session.commit()
+                flash('Survey Completed','success')
+                return redirect(url_for('users.my_surveys'))
+            except:
+                flash('There was an issue completing the survey','danger')
+                return redirect(url_for('users.my_surveys'))
+
+        else:
+            s_comp.job_title = form.job_title.data
+            s_comp.grade = form.grade.data
+            s_comp.job_title = form.department.data
+            s_comp.jreporting_relationship = form.reporting_relationship.data
+            #s_comp.job_title = form.job_match.data
+          
+
+            s_comp.comp_benchmark_base.monthly_base_salary=form.base_salary.data
+        
+            s_comp.comp_benchmark_incentive.company_performance=form.company_bonus_performance.data
+            s_comp.comp_benchmark_incentive.individual_performance=form.individual_bonus_performance.data
+            s_comp.comp_benchmark_incentive.annual_incentive=form.annual_bonus.data
+            s_comp.comp_benchmark_incentive.incentive=form.incentive_bonus.data
+            s_comp.comp_benchmark_incentive.other_cash=form.other_bonus.data
         
 
-        job.comp_benchmark_base.monthly_base_salary=form.base_salary.data
-      
-        job.comp_benchmark_incentive.company_performance=form.company_bonus_performance.data
-        job.comp_benchmark_incentive.individual_performance=form.individual_bonus_performance.data
-        job.comp_benchmark_incentive.annual_incentive=form.annual_bonus.data
-        job.comp_benchmark_incentive.incentive=form.incentive_bonus.data
-        job.comp_benchmark_incentive.other_cash=form.other_bonus.data
+            s_comp.comp_benchmark_benefit.staff_bus=form.staff_bus.data
+            s_comp.comp_benchmark_benefit.company_car=form.company_car.data
+            s_comp.comp_benchmark_benefit.personal_travel=form.personal_travel.data
+            s_comp.comp_benchmark_benefit.petrol=form.petrol.data
+            s_comp.comp_benchmark_benefit.vehicle_maintenance=form.vehicle.data
+            s_comp.comp_benchmark_benefit.driver=form.driver.data
+            s_comp.comp_benchmark_benefit.health_insurance=form.health_insurance.data
+            s_comp.comp_benchmark_benefit.medical_assistance=form.medical_assistance.data
+            s_comp.comp_benchmark_benefit.funeral_assistance=form.funeral_assistance.data
+            s_comp.comp_benchmark_benefit.life_insurance=form.life_insurance.data
+            s_comp.comp_benchmark_benefit.group_accident=form.group_accident.data
+            s_comp.comp_benchmark_benefit.club_membership=form.club_membership.data
+            s_comp.comp_benchmark_benefit.school_fees=form.school_fees.data
+            s_comp.comp_benchmark_benefit.vacation=form.vacation.data
+            s_comp.comp_benchmark_benefit.housing=form.housing.data
+            s_comp.comp_benchmark_benefit.telephone=form.telephone.data
+            s_comp.comp_benchmark_benefit.security=form.security.data
+            s_comp.comp_benchmark_benefit.other_benefits=form.other_benefits.data
+
+            s_comp.comp_benchmark_allowance.vehicle_maintenance=form.vehicle_maintenance.data
+            s_comp.comp_benchmark_allowance.vehicle=form.allowance_vehicle.data
+            s_comp.comp_benchmark_allowance.transport=form.transport.data
+            s_comp.comp_benchmark_allowance.fuel=form.fuel.data
+            s_comp.comp_benchmark_allowance.car=form.car.data
+            s_comp.comp_benchmark_allowance.driver=form.allowance_driver.data
+            s_comp.comp_benchmark_allowance.domestic_safety=form.domestic.data
+            s_comp.comp_benchmark_allowance.housing=form.allowance_housing.data
+            s_comp.comp_benchmark_allowance.utilities=form.utilities.data
+            s_comp.comp_benchmark_allowance.meal=form.meal.data
+            s_comp.comp_benchmark_allowance.telephone=form.allowance_telephone.data
+            s_comp.comp_benchmark_allowance.entertainment=form.entertainment.data
+            s_comp.comp_benchmark_allowance.education_support=form.education.data
+            s_comp.comp_benchmark_allowance.vacation=form.vacation_allowance.data
+            s_comp.comp_benchmark_allowance.uniform=form.uniform.data
+            s_comp.comp_benchmark_allowance.mobile_money=form.mobile_money.data
+            s_comp.comp_benchmark_allowance.miscellaenous=form.misc.data
+            s_comp.status = "Completed"
+            try:
+                db.session.commit()
+                flash('Survey Completed','success')
+                return redirect(url_for('users.my_surveys'))
+            except:
+                flash('There was an issue completing the survey','danger')
+                return redirect(url_for('users.my_surveys'))
+
+       
+
+        
+
+
+
+    if(status == True):
+        return render_template("quantitative_survey.html",form=form, job=s_compp,state="saved",dept=dept)
+    else:
+        return render_template("quantitative_survey.html",form=form, job=Benchmark_job.query.get_or_404(id),state="unsaved",dept=dept)
+
+    
     
 
-        job.comp_benchmark_benefit.staff_bus=form.staff_bus.data
-        job.comp_benchmark_benefit.company_car=form.company_car.data
-        job.comp_benchmark_benefit.personal_travel=form.personal_travel.data
-        job.comp_benchmark_benefit.petrol=form.petrol.data
-        job.comp_benchmark_benefit.vehicle_maintenance=form.vehicle.data
-        job.comp_benchmark_benefit.driver=form.driver.data
-        job.comp_benchmark_benefit.health_insurance=form.health_insurance.data
-        job.comp_benchmark_benefit.medical_assistance=form.medical_assistance.data
-        job.comp_benchmark_benefit.funeral_assistance=form.funeral_assistance.data
-        job.comp_benchmark_benefit.life_insurance=form.life_insurance.data
-        job.comp_benchmark_benefit.group_accident=form.group_accident.data
-        job.comp_benchmark_benefit.club_membership=form.club_membership.data
-        job.comp_benchmark_benefit.school_fees=form.school_fees.data
-        job.comp_benchmark_benefit.vacation=form.vacation.data
-        job.comp_benchmark_benefit.housing=form.housing.data
-        job.comp_benchmark_benefit.telephone=form.telephone.data
-        job.comp_benchmark_benefit.security=form.security.data
-        job.comp_benchmark_benefit.other_benefits=form.other_benefits.data
-
-        job.comp_benchmark_allowance.vehicle_maintenance=form.vehicle_maintenance.data
-        job.comp_benchmark_allowance.vehicle=form.allowance_vehicle.data
-        job.comp_benchmark_allowance.transport=form.transport.data
-        job.comp_benchmark_allowance.fuel=form.fuel.data
-        job.comp_benchmark_allowance.car=form.car.data
-        job.comp_benchmark_allowance.driver=form.allowance_driver.data
-        job.comp_benchmark_allowance.domestic_safety=form.domestic.data
-        job.comp_benchmark_allowance.housing=form.allowance_housing.data
-        job.comp_benchmark_allowance.utilities=form.utilities.data
-        job.comp_benchmark_allowance.meal=form.meal.data
-        job.comp_benchmark_allowance.telephone=form.allowance_telephone.data
-        job.comp_benchmark_allowance.entertainment=form.entertainment.data
-        job.comp_benchmark_allowance.education_support=form.education.data
-        job.comp_benchmark_allowance.vacation=form.vacation_allowance.data
-        job.comp_benchmark_allowance.uniform=form.uniform.data
-        job.comp_benchmark_allowance.mobile_money=form.mobile_money.data
-        job.comp_benchmark_allowance.miscellaenous=form.misc.data
-        job.status = "Completed"
-        try:
-            db.session.commit()
-            flash('Survey Completed','success')
-            return redirect(url_for('users.my_surveys'))
-        except:
-            flash('There was an issue completing the survey','danger')
-            return redirect(url_for('users.my_surveys'))
-        
-    return render_template("quantitative_survey.html",form=form, job=job)
-
-@users.route("/survey/quantitative/view/<int:id>",methods=['POST','GET'])
-def quantitative_survey_view(id):
+@users.route("/survey/quantitative/view/<int:id>/<int:usn>/<int:sid>",methods=['POST','GET'])
+def quantitative_survey_view(id,usn,sid):
     job = Benchmark_job.query.get_or_404(id)
     form = SurveyForm()
-    return render_template("view_quant.html",form=form, job=job)
+    s_comp = Survey_comparator.query.all()
+    
+    s_compp = Survey_comparator.query.all()          
+        
+    
+    status = False
+    comp = Comparator_job.query.all()
+
+
+    for sur in comp:
+                if(id == sur.benchmark.id and usn == sur.comparator.client.user.id):
+                    s_comp = sur
+
+    return render_template("view_quant.html",form=form, job=s_comp)
 
 @users.route("/user/profile")
 def update_profile():
@@ -1493,7 +1578,7 @@ def created_survey_ajax():
     b_id = "f"
 
     #client_id = temp[0].id
-    sur = Survey(name=survey,status="unprocessed",survey_client=posts,start_date=start_date)
+    sur = Survey(name=survey,status="Inactive",survey_client=posts,start_date=start_date)
     db.session.add(sur)
    
     
@@ -1505,11 +1590,12 @@ def created_survey_ajax():
         incentive = Incentive.query.filter_by(id=main.id).first()
         allowance = Allowance.query.filter_by(id=main.id).first()
         benefit = Benefit.query.filter_by(id=main.id).first()
+        db.session.add(Benchmark_job(job_title=main.job_title,department=main.main_department,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=posts,comp_benchmark=sur,comp_benchmark_allowance=allowance,comp_benchmark_benefit=benefit,comp_benchmark_incentive=incentive,comp_benchmark_base=base))
         for c in comp_split :
             c_id = (int(c.replace("c", "")))
             cli = Client.query.filter_by(id=c_id).first()
-            db.session.add(Survey_comparator(comparator=sur,client=cli,status="unprocessed"))
-            db.session.add(Benchmark_job(job_title=main.job_title,department=main.main_department,grade=main.grade,reporting_relationship=main.reporting_relationship,job_description=main.job_description,duties_and_responsibility=main.duties_and_responsibility,financial_responsibilities= main.financial_responsibilities,technical_qualification=main.technical_qualification,minimum_years_of_experience=main.minimum_years_of_experience,benchmark=cli,comp_benchmark=sur,comp_benchmark_allowance=allowance,comp_benchmark_benefit=benefit,comp_benchmark_incentive=incentive,comp_benchmark_base=base))
+            db.session.add(Survey_comparator(comparator=sur,client=cli,status="Inactive"))
+            
     
     db.session.commit()
     return jsonify(start_date)
@@ -1530,14 +1616,15 @@ def smodaldict():
     comps = Survey_comparator.query.all()
 
 
+
     temp_b = []
     temp_c = []
     for b in b_marks:
         if(b.comp_benchmark.id == post.id):
             temp_b.append(b.job_title)
-    for c in b_marks:
-        if(c.comp_benchmark.id == post.id):
-            temp_c.append(c.benchmark.company_name)
+    for c in comps:
+        if(c.comparator.id == post.id):
+            temp_c.append(c.client.company_name)
 
     temp_b = list(dict.fromkeys(temp_b))
     temp_c = list(dict.fromkeys(temp_c))
@@ -1714,7 +1801,7 @@ def b_details():
     tag = request.form['id']
     post = Benchmark_job.query.get_or_404(tag)
     temp = []
-    temp.append({'id': post.id,'status':post.status, 'job_title':post.job_title , 'grade':post.grade ,'reporting_relationship':post.reporting_relationship,'job_description' :post.job_description,'duties_and_responsibility':post.duties_and_responsibility,'financial_responsibilities':post.financial_responsibilities,'technical_qualification':post.technical_qualification,'minimum_years_of_experience':post.minimum_years_of_experience})
+    temp.append({'id': post.id,'status':post.status, 'job_title':post.job_title , 'grade':post.grade ,'reporting_relationship':post.reporting_relationship,'job_description' :post.job_description,'duties_and_responsibility':post.duties_and_responsibility,'financial_responsibilities':post.financial_responsibilities,'technical_qualification':post.technical_qualification,'minimum_years_of_experience':post.minimum_years_of_experience,'survey':post.comp_benchmark.id})
     return jsonify(temp)
 
 
@@ -1914,3 +2001,40 @@ def generate_report():
     report = report_type + report_status + report_start_date + report_end_date
     return jsonify(report)
 
+
+@users.route('/edit_survey', methods=['POST','GET'])
+def edit_survey_list():
+    tag = request.form['id']
+    post = Survey.query.get_or_404(tag)
+    comps = Survey_comparator.query.all()
+    comp_list = []
+    for i in comps:
+        if(i.comparator.id == post.id):
+                if (i.client.company_name +'_'+tag) not in comp_list :
+                    x = i.client.company_name + '_' +tag
+                 
+                    comp_list.append(x)
+
+    # temp = []
+    # temp.append({'id': post.id,'status':post.status, 'job_title':post.job_title , 'grade':post.grade ,'reporting_relationship':post.reporting_relationship,'job_description' :post.job_description,'duties_and_responsibility':post.duties_and_responsibility,'financial_responsibilities':post.financial_responsibilities,'technical_qualification':post.technical_qualification,'minimum_years_of_experience':post.minimum_years_of_experience,'survey':post.comp_benchmark.id})
+    return jsonify(comp_list)
+
+
+@users.route('/delete_comp', methods=['POST','GET'])
+def delete_comp():
+    tag = request.form['id']
+    sur_id = request.form['sur_id']
+    comp = Survey_comparator.query.all()
+    query_change = []
+    for i in comp:
+        if i.client.company_name == tag and i.comparator.id == sur_id:
+            query_change.append([i.id])
+    
+    for c in query_change:
+        col = Survey_comparator.query.filter_by(id=c).first()
+        col.status = "Deleted"
+        db.session.commit()
+
+    # temp = []
+    # temp.append({'id': post.id,'status':post.status, 'job_title':post.job_title , 'grade':post.grade ,'reporting_relationship':post.reporting_relationship,'job_description' :post.job_description,'duties_and_responsibility':post.duties_and_responsibility,'financial_responsibilities':post.financial_responsibilities,'technical_qualification':post.technical_qualification,'minimum_years_of_experience':post.minimum_years_of_experience,'survey':post.comp_benchmark.id})
+    return jsonify(tag)

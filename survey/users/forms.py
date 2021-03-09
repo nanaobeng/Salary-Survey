@@ -654,7 +654,7 @@ def validate_required(form, field):
 
 class SurveyForm(FlaskForm):
     job_title = StringField('Job Title')
-    
+    s_comp = IntegerField('s_comp')
     grade = StringField('Grade')
     reporting_relationship = TextField('Reporting Relationship')
     job_desc = TextAreaField('Job Description')
