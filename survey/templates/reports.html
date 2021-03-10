@@ -223,17 +223,17 @@
                     `
                     <option value="all">All</option>       
                     <option value="pending">Pending</option>
-                    <option value="awaiting">Awaiting Client Information</option>
+                    <option value="requesting_client_information">Awaiting Client Information</option>
                     <option value="first_pass">First Pass</option>
                     <option value="conflict_check">Conflict Check</option>
-                    <option value="finish_completion">Finish Completion</option>
+                    <option value="phoenix_completion">Phoenix Completion</option>
                     <option value="submitted">Submitted For Approval</option>   `
                 )
             } else if (type == 'messages') {
                 $('#report_status').html(
                     `   <option value="all">All</option>       
-                        <option value="open">Open</option>
-                        <option value="closed">Closed</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
                     `
                 )
             }
@@ -250,8 +250,8 @@
 
             var type = $('#report_type').val()
             var status = $('#report_status').val()
-            var start_date = new Date($('#report_start_date').val())
-            var end_date = new Date($('#report_end_date').val())
+            var start_date = $('#report_start_date').val()
+            var end_date = $('#report_end_date').val()
 
             var statistics, details;
 
@@ -351,8 +351,8 @@
                 </tr>`
                         var total_indv_fc =
                             `<tr>
-                    <td colspan="3" class="sub-heading">Requests Undergoing Finish Completion: </td>
-                    <td colspan="2">${res[0].num_indv_fc}</td>
+                    <td colspan="3" class="sub-heading">Requests Undergoing Phoenix Completion: </td>
+                    <td colspan="2">${res[0].num_indv_pc}</td>
                 </tr>`
                         var total_indv_sub =
                             `<tr>
@@ -385,8 +385,8 @@
                 </tr>`
                         var total_corp_fc =
                             `<tr>
-                    <td colspan="3" class="sub-heading">Requests Undergoing Finish Completion: </td>
-                    <td colspan="2">${res[0].num_corp_fc}</td>
+                    <td colspan="3" class="sub-heading">Requests Undergoing Phoenix Completion: </td>
+                    <td colspan="2">${res[0].num_corp_pc}</td>
                 </tr>`
                         var total_corp_sub =
                             `<tr>
@@ -403,7 +403,7 @@
                         else if (status == 'pending') {
                             $('#statistics').html(total_indv_pend + total_corp_pend)
                         }
-                        else if (status == 'awaiting') {
+                        else if (status == 'requesting_client_information') {
                             $('#statistics').html(total_indv_await + total_corp_await)
                         }
                         else if (status == 'first_pass') {
@@ -412,7 +412,7 @@
                         else if (status == 'conflict_check') {
                             $('#statistics').html(total_indv_cc + total_corp_cc)
                         }
-                        else if (status == 'finish_completion') {
+                        else if (status == 'phoenix_completion') {
                             $('#statistics').html(total_indv_fc + total_corp_fc)
                         }
                         else if (status == 'submitted') {
@@ -484,15 +484,15 @@
                     <td colspan="3" class="sub-heading">Closed Messages: </td>
                     <td colspan="2">${res[0].num_closed_messages}</td>
                 </tr>`
-                
-                //display summary statistics
-                if (status == 'all') {
+
+                        //display summary statistics
+                        if (status == 'all') {
                             $('#statistics').html(total_messages + total_open_messages + total_closed_messages)
                         }
-                        else if (status == 'open') {
+                        else if (status == 'Open') {
                             $('#statistics').html(total_open_messages)
                         }
-                        else if (status == 'closed') {
+                        else if (status == 'Closed') {
                             $('#statistics').html(total_closed_messages)
                         }
 

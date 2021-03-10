@@ -125,9 +125,9 @@
   function drawChart() {
 
     var data1 = google.visualization.arrayToDataTable([
-      ['Request Type', 'Pending', 'Awaiting Client Information', 'First Pass', 'Conflict Check', 'Finish Completion', 'Submitted'],
-      ['Individual Requests', {{num_indv_pend|safe}}, {{num_indv_await|safe}}, {{num_indv_fp|safe}}, {{num_indv_cc|safe}}, {{num_indv_fc|safe}}, {{num_indv_sub|safe}}],
-      ['Corporate Requests', {{num_corp_pend|safe}}, {{num_corp_await|safe}}, {{num_corp_fp|safe}}, {{num_corp_cc|safe}}, {{num_corp_fc|safe}}, {{num_corp_sub|safe}},]
+      ['Request Type', 'Pending', 'Awaiting Client Information', 'First Pass', 'Conflict Check', 'Phoenix Completion', 'Submitted'],
+      ['Individual Requests', {{num_indv_pend|safe}}, {{num_indv_await|safe}}, {{num_indv_fp|safe}}, {{num_indv_cc|safe}}, {{num_indv_pc|safe}}, {{num_indv_sub|safe}}],
+      ['Corporate Requests', {{num_corp_pend|safe}}, {{num_corp_await|safe}}, {{num_corp_fp|safe}}, {{num_corp_cc|safe}}, {{num_corp_pc|safe}}, {{num_corp_sub|safe}},]
     ])
 
   var options1 = {
@@ -145,7 +145,7 @@
   ['Awaiting Client Information', {{ total_awaiting_requests| safe}}],
     ['First Pass', {{ total_fpass_requests| safe}}],
     ['Conflict Check', {{ total_ccheck_requests| safe}}],
-    ['Finish Completion', {{ total_fcomp_requests| safe}}],
+    ['Phoenix Completion', {{ total_pcomp_requests| safe}}],
     ['Submitted', {{ total_submitted_requests| safe}}]
   ]);
 
