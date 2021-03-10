@@ -240,13 +240,15 @@
               <div class="row">
                 <div class="col-6 pb-4">
                   <div class="row ">
+                   
+                    
                     <div class="col-12 pt-2 ">
                       <div class="form-group">
                         <label class="green_shade">
                         
                           <b>Job Title </b>
                         </label>
-                        <input type="text" class="form-control" id="j_title"value="{{job.job_title}}" disabled />
+                        <input type="text" class="form-control" name="j_t"id="j_t"value="{{job.job_title}}"  />
                       </div>
 
 
@@ -274,7 +276,21 @@
                 
                           <b>Department</b>
                         </label>
-                        <input type="text" id="dpt" class="form-control" value={{job.department.department}}} readonly/>
+                        <select class="form-control"id="dpt">
+                         
+                        
+                     
+                        {% for i in dept %}
+
+                        {% if i.department == job.department.department%}
+                        <option value="{{i.id}}" selected>{{i.department}}</option>
+
+                        {% else %}
+                        <option value="{{i.id}}" >{{i.department}}</option>
+                        {% endif %}
+
+                        {% endfor %}
+                      </select>
                       </div>
 
 
@@ -293,7 +309,7 @@
                         
                           <b>Grade</b>
                         </label>
-                        <input type="text" class="form-control" id="grade"value="{{job.grade}}" disabled />
+                        <input type="text" class="form-control" id="grade"value="{{job.grade}}"  />
                       </div>
 
 
@@ -311,7 +327,7 @@
          
                           <b>Reporting Relationship</b>
                         </label>
-                        <input type="text" class="form-control" id="report_rel" value="{{job.reporting_relationship}}" disabled/>
+                        <input type="text" class="form-control" id="report_rel" value="{{job.reporting_relationship}}" />
                       </div>
 
 
@@ -329,7 +345,7 @@
                   
                           <b>Job Description</b>
                         </label>
-                        <textarea cols="3" rows="3" class="form-control" id="job_desc" disabled>{{job.job_description}}</textarea>
+                        <textarea cols="3" rows="3" class="form-control" id="job_desc" >{{job.job_description}}</textarea>
                       </div>
 
 
@@ -348,7 +364,7 @@
        
                           <b>Key Duties and Scope of Responsibility</b>
                         </label>
-                        <textarea cols="3" rows="3" class="form-control" id="duties" disabled>{{job.duties_and_responsibility}}</textarea>
+                        <textarea cols="3" rows="3" class="form-control" id="duties" >{{job.duties_and_responsibility}}</textarea>
                       </div>
 
 
@@ -367,7 +383,7 @@
     
                           <b>Financial Responsibilities</b>
                         </label>
-                        <textarea cols="3" rows="3" class="form-control" id="fin_res" disabled>{{job.financial_responsibilities}}</textarea>
+                        <textarea cols="3" rows="3" class="form-control" id="fin_res" >{{job.financial_responsibilities}}</textarea>
                       </div>
 
 
@@ -386,7 +402,7 @@
         
                           <b>Technical/Professional Qualification</b>
                         </label>
-                        <textarea cols="3" rows="3" class="form-control" id="tech"disabled>{{job.technical_qualification}}</textarea>
+                        <textarea cols="3" rows="3" class="form-control" id="tech">{{job.technical_qualification}}</textarea>
                       </div>
 
 
@@ -404,7 +420,7 @@
        
                           <b>Minimum Years of Experience</b>
                         </label>
-                        <input type="text" class="form-control" id="yrs_exp" value="{{job.minimum_years_of_experience}}" disabled/>
+                        <input type="text" class="form-control" id="yrs_exp" value="{{job.minimum_years_of_experience}}" />
                       </div>
 
 
