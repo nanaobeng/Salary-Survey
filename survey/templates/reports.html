@@ -223,17 +223,17 @@
                     `
                     <option value="all">All</option>       
                     <option value="pending">Pending</option>
-                    <option value="awaiting">Awaiting Client Information</option>
+                    <option value="requesting_client_information">Awaiting Client Information</option>
                     <option value="first_pass">First Pass</option>
                     <option value="conflict_check">Conflict Check</option>
-                    <option value="finish_completion">Finish Completion</option>
+                    <option value="phoenix_completion">Phoenix Completion</option>
                     <option value="submitted">Submitted For Approval</option>   `
                 )
             } else if (type == 'messages') {
                 $('#report_status').html(
                     `   <option value="all">All</option>       
-                        <option value="open">Open</option>
-                        <option value="closed">Closed</option>
+                        <option value="Open">Open</option>
+                        <option value="Closed">Closed</option>
                     `
                 )
             }
@@ -250,8 +250,8 @@
 
             var type = $('#report_type').val()
             var status = $('#report_status').val()
-            var start_date = new Date($('#report_start_date').val())
-            var end_date = new Date($('#report_end_date').val())
+            var start_date = $('#report_start_date').val()
+            var end_date = $('#report_end_date').val()
 
             var statistics, details;
 
@@ -265,508 +265,239 @@
                 },
                 type: 'POST',
                 success: function (res) {
-                    // Case: Report type is 'clients'
+                    console.log(res)
+                    var details;
+
+                    //case: report type is clients
                     if (type == 'clients') {
-                        // For all clients
-                        if (status == 'all') {
-                            statistics =
-                                `<tr>
+                        var total_clients =
+                            `<tr>
                     <td colspan="3">Total Clients: </td>
-                    <td colspan="2">{{num_clients}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="sub-heading">Active Clients: </td>
-                    <td colspan="2">{{num_active_clients}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="sub-heading">Inactive Clients: </td>
-                    <td colspan="2">{{num_inactive_clients}}</td>
+                    <td colspan="2">${res[0].num_clients}</td>
                 </tr>`
-                            details =
-                                `<table class="table">
+                        var total_active_clients =
+                            `<tr>
+                    <td colspan="3" class="sub-heading">Active Clients: </td>
+                    <td colspan="2">${res[0].num_active_clients}</td>
+                </tr>`
+                        var total_inactive_clients =
+                            `<tr>
+                    <td colspan="3" class="sub-heading">Inactive Clients: </td>
+                    <td colspan="2">${res[0].num_inactive_clients}</td>
+                </tr>`
+
+                        //display summary statistics
+                        if (status == 'all') {
+                            $('#statistics').html(total_clients + total_active_clients + total_inactive_clients)
+                        }
+                        else if (status == 'active') {
+                            $('#statistics').html(total_active_clients)
+                        }
+                        else if (status == 'Inactive') {
+                            $('#statistics').html(total_inactive_clients)
+                        }
+
+                        //display details
+                        details = `<table class="table">
                         <thead>
                             <th>Client Name</th>
                             <th>Company Type</th>
-                            <th>Sector</th>
+                            <th>Area of Operation</th>
                             <th>Industry</th>
                             <th>Status</th>
                         </thead>
-                        <tbody>
-                            {% for client in clients %}
-                            <tr>
-                                <td class="sub-heading t-row">{{client.company_name}}</td>
-                                <td class="sub-heading t-row">{{client.company_type}}</td>
-                                <td class="sub-heading t-row">{{client.sector.id}}</td>
-                                <td class="sub-heading t-row">{{client.industry.id}}</td>
-                                <td class="sub-heading t-row">{{client.status}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
-                        }
-                        // For active clients
-                        else if (status == 'active') {
-                            statistics =
-                                `<tr>
-                    <td colspan="3">Total Active Clients: </td>
-                    <td colspan="2">{{num_active_clients}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th>Company Type</th>
-                            <th>Sector</th>
-                            <th>Industry</th>
-                        </thead>
-                        <tbody>
-                            {% for client in active_clients %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{client.company_name}}</td>
-                                <td class="sub-heading t-row">{{client.company_type}}</td>
-                                <td class="sub-heading t-row">{{client.sector.id}}</td>
-                                <td class="sub-heading t-row">{{client.industry.id}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
-                            // For inactive clients
-                        }
-                        else if (status == 'inactive') {
-                            statistics =
-                                `<tr>
-                    <td colspan="3">Total Inactive Clients: </td>
-                    <td colspan="2">{{num_inactive_clients}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th>Company Type</th>
-                            <th>Sector</th>
-                            <th>Industry</th>
-                        </thead>
-                        <tbody>
-                            {% for client in inactive_clients %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{client.company_name}}</td>
-                                <td class="sub-heading t-row">{{client.company_type}}</td>
-                                <td class="sub-heading t-row">{{client.sector.id}}</td>
-                                <td class="sub-heading t-row">{{client.industry.id}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
-                        }
+                        <tbody>`
 
+                        res[0].client_data.forEach(client => {
+                            details +=
+                                `<tr>
+                                <td class="sub-heading t-row">${client.name}</td>
+                                <td class="sub-heading t-row">${client.company_type}</td>
+                                <td class="sub-heading t-row">${client.area}</td>
+                                <td class="sub-heading t-row">${client.industry}</td>
+                                <td class="sub-heading t-row">${client.status}</td>
+                            </tr>` });
+
+                        details +=
+                            `</tbody>
+                    </table>`
                     }
 
-                    // Case: Report type is 'service requests'
+                    //case: report type is service requests
                     else if (type == 'service_requests') {
-                        // For all service requests
-                        if (status == 'all') {
-                            statistics =
-                                `<tr>
+                        var total_indv = `<tr>
                     <td colspan="3">Total Individual Service Requests: </td>
-                    <td colspan="2">{{num_indv_requests}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_indv_requests}</td>
+                </tr>`
+                        var total_indv_pend =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Pending Requests: </td>
-                    <td colspan="2">{{num_indv_pend}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_indv_pend}</td>
+                </tr>`
+                        var total_indv_await =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Requests Awaiting Client Information: </td>
-                    <td colspan="2">{{num_indv_await}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_indv_await}</td>
+                </tr>`
+                        var total_indv_fp =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Requests Undergoing First Pass: </td>
-                    <td colspan="2">{{num_indv_fp}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_indv_fp}</td>
+                </tr>`
+                        var total_indv_cc =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Requests Undergoing Conflict Check: </td>
-                    <td colspan="2">{{num_indv_cc}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="sub-heading">Requests Undergoing Finish Completion: </td>
-                    <td colspan="2">{{num_indv_fc}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_indv_cc}</td>
+                </tr>`
+                        var total_indv_fc =
+                            `<tr>
+                    <td colspan="3" class="sub-heading">Requests Undergoing Phoenix Completion: </td>
+                    <td colspan="2">${res[0].num_indv_pc}</td>
+                </tr>`
+                        var total_indv_sub =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Submitted Requests: </td>
-                    <td colspan="2">{{num_indv_sub}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_indv_sub}</td>
+                </tr>`
+                        var total_corp =
+                            `<tr>
                     <td colspan="3">Total Corporate Service Requests: </td>
-                    <td colspan="2">{{num_corp_requests}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_corp_requests}</td>
+                </tr>`
+                        var total_corp_pend = `<tr>
                     <td colspan="3" class="sub-heading">Pending Requests: </td>
-                    <td colspan="2">{{num_corp_pend}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_corp_pend}</td>
+                </tr>`
+                        var total_corp_await =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Requests Awaiting Client Information: </td>
-                    <td colspan="2">{{num_corp_await}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_corp_await}</td>
+                </tr>`
+                        var total_corp_fp =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Requests Undergoing First Pass: </td>
-                    <td colspan="2">{{num_corp_fp}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_corp_fp}</td>
+                </tr>`
+                        var total_corp_cc =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Requests Undergoing Conflict Check: </td>
-                    <td colspan="2">{{num_corp_cc}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="sub-heading">Requests Undergoing Finish Completion: </td>
-                    <td colspan="2">{{num_corp_fc}}</td>
-                </tr>
-                <tr>
+                    <td colspan="2">${res[0].num_corp_cc}</td>
+                </tr>`
+                        var total_corp_fc =
+                            `<tr>
+                    <td colspan="3" class="sub-heading">Requests Undergoing Phoenix Completion: </td>
+                    <td colspan="2">${res[0].num_corp_pc}</td>
+                </tr>`
+                        var total_corp_sub =
+                            `<tr>
                     <td colspan="3" class="sub-heading">Submitted Requests: </td>
-                    <td colspan="2">{{num_corp_sub}}</td>
+                    <td colspan="2">${res[0].num_corp_sub}</td>
                 </tr>`
 
-                            details =
-                                `<table class="table">
-                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th>Email</th>
-                            <th>Request</th>
-                            <th>Status</th>
-                        </thead>
-                        <tbody>
-                            {% for request in indv_requests %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
-                                <td class="sub-heading t-row">{{request.email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                                <td class="sub-heading t-row">{{request.status}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Company Name</th>
-                            <th>Email</th>
-                            <th>Request</th>
-                            <th>Status</th>
-                        </thead>
-                        <tbody>
-                            {% for request in corp_requests %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_name}}</td>
-                                <td class="sub-heading t-row">{{request.company_email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                                <td class="sub-heading t-row">{{request.status}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
+                        //display summary statistics
+                        if (status == 'all') {
+                            $('#statistics').html(total_indv + total_indv_pend + total_indv_await + total_indv_fp
+                                + total_indv_cc + total_indv_fc + total_indv_sub + total_corp + total_corp_pend + total_corp_await + total_corp_fp
+                                + total_corp_cc + total_corp_fc + total_corp_sub)
                         }
-                        // For pending requests
                         else if (status == 'pending') {
-                            statistics =
-                                `<tr>
-                    <td colspan="3">Total Pending Individual Requests: </td>
-                    <td colspan="2">{{num_indv_pend}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Total Pending Corporate Requests: </td>
-                    <td colspan="2">{{num_corp_pend}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in indv_pend %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
-                                <td class="sub-heading t-row">{{request.email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Company Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in corp_pend %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_name}}</td>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
+                            $('#statistics').html(total_indv_pend + total_corp_pend)
                         }
-                        // For awaiting client info requests
-                        else if (status == 'awaiting') {
-                            statistics =
-                                ` <tr>
-                    <td colspan="3">Total Individual Requests Awaiting Client Information: </td>
-                    <td colspan="2">{{num_indv_await}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Total Corporate Requests Awaiting Client Information: </td>
-                    <td colspan="2">{{num_corp_await}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in indv_await %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
-                                <td class="sub-heading t-row">{{request.email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Company Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in corp_await %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_name}}</td>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
+                        else if (status == 'requesting_client_information') {
+                            $('#statistics').html(total_indv_await + total_corp_await)
                         }
-                        // For first pass requests
                         else if (status == 'first_pass') {
-                            statistics =
-                                ` <tr>
-                    <td colspan="3">Total Individual Requests Undergoing First Pass: </td>
-                    <td colspan="2">{{num_indv_fp}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Total Corporate Requests Undergoing First Pass: </td>
-                    <td colspan="2">{{num_corp_fp}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in indv_fp %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
-                                <td class="sub-heading t-row">{{request.email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Company Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in corp_fp %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_name}}</td>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
+                            $('#statistics').html(total_indv_fp + total_corp_fp)
                         }
-                        // For conflict check requests
                         else if (status == 'conflict_check') {
-                            statistics =
-                                ` <tr>
-                    <td colspan="3">Total Individual Requests Undergoing Conflict Check: </td>
-                    <td colspan="2">{{num_indv_cc}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Total Corporate Requests Undergoing Conflict Check: </td>
-                    <td colspan="2">{{num_corp_cc}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in indv_cc %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
-                                <td class="sub-heading t-row">{{request.email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Company Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in corp_cc %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_name}}</td>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
+                            $('#statistics').html(total_indv_cc + total_corp_cc)
                         }
-                        // For finish completion requests
-                        else if (status == 'finish_completion') {
-                            statistics =
-                                ` <tr>
-                    <td colspan="3">Total Individual Requests Undergoing Finish Completion: </td>
-                    <td colspan="2">{{num_indv_fc}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Total Corporate Requests Undergoing Finish Completion: </td>
-                    <td colspan="2">{{num_corp_fc}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in indv_fc %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
-                                <td class="sub-heading t-row">{{request.email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Company Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in corp_fc %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_name}}</td>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
+                        else if (status == 'phoenix_completion') {
+                            $('#statistics').html(total_indv_fc + total_corp_fc)
                         }
-                        // For submitted requests
                         else if (status == 'submitted') {
-                            statistics =
-                                ` <tr>
-                    <td colspan="3">Total Submitted Individual Requests: </td>
-                    <td colspan="2">{{num_submitted_requests}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3">Total Submitted Corporate Requests: </td>
-                    <td colspan="2">{{num_submitted_requests}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                                    <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Client Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in indv_sub %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.firstname}} {{request.lastname}}</td>
-                                <td class="sub-heading t-row">{{request.email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                    <table class="table">
-                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
-                        <thead>
-                            <th colspan="2">Company Name</th>
-                            <th colspan="2">Email</th>
-                            <th>Request</th>
-                        </thead>
-                        <tbody>
-                            {% for request in corp_sub %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_name}}</td>
-                                <td colspan="2" class="sub-heading t-row">{{request.company_email}}</td>
-                                <td class="sub-heading t-row">{{request.service}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
+                            $('#statistics').html(total_indv_sub + total_corp_sub)
                         }
 
+                        //display details
+                        details =
+                            `<table class="table">
+                        <td colspan="5" class="reqcaption">Individual Requests</td colspan="5">
+                        <thead>
+                            <th colspan="2">Client Name</th>
+                            <th>Email</th>
+                            <th>Request</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>`
+
+                        res[0].indv_request_data.forEach(request => {
+                            details +=
+                                `<tr>
+                                <td colspan="2" class="sub-heading t-row">${request.firstname} ${request.lastname}</td>
+                                <td class="sub-heading t-row">${request.email}</td>
+                                <td class="sub-heading t-row">${request.service}</td>
+                                <td class="sub-heading t-row">${request.status}</td>
+                            </tr>` });
+
+                        details +=
+                            `</tbody>
+                    </table>
+                    <table class="table">
+                                    <td colspan="5" class="reqcaption">Corporate Requests</td colspan="5">
+                        <thead>
+                            <th colspan="2">Company Name</th>
+                            <th>Email</th>
+                            <th>Request</th>
+                            <th>Status</th>
+                        </thead>
+                        <tbody>`
+
+                        res[0].corp_request_data.forEach(request => {
+                            details +=
+                                `<tr>
+                                <td colspan="2" class="sub-heading t-row">${request.company_name}</td>
+                                <td class="sub-heading t-row">${request.company_email}</td>
+                                <td class="sub-heading t-row">${request.service}</td>
+                                <td class="sub-heading t-row">${request.status}</td>
+                            </tr>` });
+
+                        details +=
+                            `</tbody>
+                    </table>`
                     }
 
-                    // Case: Report type is 'messages'
+                    //case: report type is messages
                     else if (type == 'messages') {
-                        //For all messages
-                        if (status == 'all') {
-                            statistics =
-                                `<tr>
+                        var total_messages =
+                            `<tr>
                     <td colspan="3">Total Messages: </td>
-                    <td colspan="2">{{num_messages}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="sub-heading">Open Messages: </td>
-                    <td colspan="2">{{num_open_messages}}</td>
-                </tr>
-                <tr>
-                    <td colspan="3" class="sub-heading">Closed Messages: </td>
-                    <td colspan="2">{{num_closed_messages}}</td>
+                    <td colspan="2">${res[0].num_messages}</td>
                 </tr>`
-                            details =
-                                `<table class="table">
+                        var total_open_messages =
+                            `<tr>
+                    <td colspan="3" class="sub-heading">Open Messages: </td>
+                    <td colspan="2">${res[0].num_open_messages}</td>
+                </tr>`
+                        var total_closed_messages =
+                            `<tr>
+                    <td colspan="3" class="sub-heading">Closed Messages: </td>
+                    <td colspan="2">${res[0].num_closed_messages}</td>
+                </tr>`
+
+                        //display summary statistics
+                        if (status == 'all') {
+                            $('#statistics').html(total_messages + total_open_messages + total_closed_messages)
+                        }
+                        else if (status == 'Open') {
+                            $('#statistics').html(total_open_messages)
+                        }
+                        else if (status == 'Closed') {
+                            $('#statistics').html(total_closed_messages)
+                        }
+
+                        //display details
+                        details = `<table class="table">
                         <thead>
                             <th>Sender</th>
                             <th>Company Name</th>
@@ -774,72 +505,24 @@
                             <th>Job Title</th>
                             <th>Status</th>
                         </thead>
-                        <tbody>
-                            {% for message in messages %}
-                            <tr>
-                                <td class="sub-heading t-row">{{message.firstname}} {{message.lastname}}</td>
-                                <td class="sub-heading t-row">{{message.company_name}}</td>
-                                <td class="sub-heading t-row">{{message.email}}</td>
-                                <td class="sub-heading t-row">{{message.job_title}}</td>
-                                <td class="sub-heading t-row">{{message.status}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
-                        } else if (status == 'open') {
-                            statistics =
+                        <tbody>`
+
+                        res[0].message_data.forEach(message => {
+                            details +=
                                 `<tr>
-                    <td colspan="3">Total Open Messages: </td>
-                    <td colspan="2">{{num_open_messages}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                        <thead>
-                            <th colspan="2">Sender</th>
-                            <th>Company Name</th>
-                            <th>Email</th>
-                            <th>Job Title</th>
-                        </thead>
-                        <tbody>
-                            {% for message in open_messages %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{message.firstname}} {{message.lastname}}</td>
-                                <td class="sub-heading t-row">{{message.company_name}}</td>
-                                <td class="sub-heading t-row">{{message.email}}</td>
-                                <td class="sub-heading t-row">{{message.job_title}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
+                                <td class="sub-heading t-row">${message.firstname} ${message.lastname}</td>
+                                <td class="sub-heading t-row">${message.company_name}</td>
+                                <td class="sub-heading t-row">${message.email}</td>
+                                <td class="sub-heading t-row">${message.job_title}</td>
+                                <td class="sub-heading t-row">${message.status}</td>
+                            </tr>` });
+
+                        details +=
+                            `</tbody>
                     </table>`
-                        } else if (status == 'closed') {
-                            statistics =
-                                `<tr>
-                    <td colspan="3">Total Closed Messages: </td>
-                    <td colspan="2">{{num_closed_messages}}</td>
-                </tr>`
-                            details =
-                                `<table class="table">
-                        <thead>
-                            <th colspan="2">Sender</th>
-                            <th>Company Name</th>
-                            <th>Email</th>
-                            <th>Job Title</th>
-                        </thead>
-                        <tbody>
-                            {% for message in closed_messages %}
-                            <tr>
-                                <td colspan="2" class="sub-heading t-row">{{message.firstname}} {{message.lastname}}</td>
-                                <td class="sub-heading t-row">{{message.company_name}}</td>
-                                <td class="sub-heading t-row">{{message.email}}</td>
-                                <td class="sub-heading t-row">{{message.job_title}}</td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>`
-                        }
                     }
 
-                    $('#statistics').html(statistics)
+                    //append details to report table
                     $('#details').html(details)
                 },
                 error: function (error) {

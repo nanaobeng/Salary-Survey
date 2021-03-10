@@ -85,12 +85,8 @@
         }
     }
 
-    fieldset {
-        border: 2px solid rgb(78, 110, 62);
-        padding: 20px;
-        border-radius: 20px;
-        margin: 30px;
-        background-color: rgb(78, 110, 62);
+    body {
+        background-color: #edf0f3;
     }
 
     .form-control-label {
@@ -116,102 +112,104 @@
 
 <!--Body-->
 <div class="container">
-    <form action="" method="POST">
-        <fieldset class="form-group">
-            <div class="form-group">
-                <div class="row">
-                    <div class="col-lg-6 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="job_title">Job Title</label>
-                            <input type="text" name="job_title" id="" class="form-control">
+    <div class="card m-5 p-4">
+        <div class="card-body">
+            <form action="" method="POST">
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-lg-6 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="job_title">Job Title</label>
+                                <input type="text" name="job_title" id="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-6 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="job_grade">Job Grade</label>
+                                <input type="text" name="job_grade" id="" class="form-control">
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-6 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="job_grade">Job Grade</label>
-                            <input type="text" name="job_grade" id="" class="form-control">
+                    <div class="row">
+                        <div class="col-lg-4 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="sector">Sector</label>
+                                <input type="text" name="sector" id="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="industry">Industry</label>
+                                <input type="text" name="industry" id="" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-4 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="area_of_operation">Area of Operation</label>
+                                <input type="text" name="area_of_operation" id="" class="form-control">
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-4 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="sector">Sector</label>
-                            <input type="text" name="sector" id="" class="form-control">
+                    <div class="row">
+                        <div class="col-lg-12 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="reporting_relationship">Reporting
+                                    Relationship</label>
+                                <input type="text" name="reporting_relationship" id="" class="form-control">
+                            </div>
                         </div>
                     </div>
-
-                    <div class="col-lg-4 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="industry">Industry</label>
-                            <input type="text" name="industry" id="" class="form-control">
+                    <div class="row">
+                        <div class="col-lg-12 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="description">Generic Job Description</label>
+                                <textarea name="description" id="" cols="" rows="4" class="form-control"></textarea>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="area_of_operation">Area of Operation</label>
-                            <input type="text" name="area_of_operation" id="" class="form-control">
+                    <div class="row">
+                        <div class="col-lg-12 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="responsibility">Key Duties &
+                                    Responsibilities</label>
+                                <textarea name="responsibility" id="" cols="" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="Financial">Financial Responsibilities</label>
+                                <textarea name="Financial" id="" cols="" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="technical">Technical Qualifications</label>
+                                <textarea name="technical" id="" cols="" rows="4" class="form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-12 md-12">
+                            <div class="form-group">
+                                <label class="form-control-label" for="years_of_experience">Years of Experience</label>
+                                <input type="text" name="years_of_experience" id="" class="form-control">
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-12 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="reporting_relationship">Reporting
-                                Relationship</label>
-                            <input type="text" name="reporting_relationship" id="" class="form-control">
+                        <div class="form-group" id="submit-button">
+                            <button class="btn btn-outline-success">Save</button>
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-lg-12 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="description">Generic Job Description</label>
-                            <textarea name="description" id="" cols="" rows="4" class="form-control"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="responsibility">Key Duties & Responsibilities</label>
-                            <textarea name="responsibility" id="" cols="" rows="4" class="form-control"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="Financial">Financial Responsibilities</label>
-                            <textarea name="Financial" id="" cols="" rows="4" class="form-control"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="technical">Technical Qualifications</label>
-                            <textarea name="technical" id="" cols="" rows="4" class="form-control"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-12 md-12">
-                        <div class="form-group">
-                            <label class="form-control-label" for="years_of_experience">Years of Experience</label>
-                            <input type="text" name="years_of_experience" id="" class="form-control">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </fieldset>
-        <div class="row">
-            <div class="col-lg-12 md-12">
-                <div class="form-group" id="submit-button">
-                   <button class="btn btn-outline-success">Save</button>
-                </div>
-            </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
 {% endblock content %}

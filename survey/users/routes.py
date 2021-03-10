@@ -6,7 +6,7 @@ from flask_login import login_user, current_user, logout_user , login_required
 from survey.users.utils import send_reset_email
 from datetime import datetime
 from dateutil import parser
-from sqlalchemy import or_, desc
+from sqlalchemy import or_, and_, desc
 
 users = Blueprint('users',__name__)
 
@@ -626,21 +626,21 @@ def client_hub():
     total_awaiting_requests = json.dumps(Individual_request.query.filter_by(status='requesting_client_information').count() + Corporate_request.query.filter_by(status='requesting_client_information').count())
     total_fpass_requests = json.dumps(Individual_request.query.filter_by(status='first_pass').count() + Corporate_request.query.filter_by(status='first_pass').count())
     total_ccheck_requests = json.dumps(Individual_request.query.filter_by(status='conflict_check').count() + Corporate_request.query.filter_by(status='conflict_check').count())
-    total_fcomp_requests = json.dumps(Individual_request.query.filter_by(status='finish_completion').count() + Corporate_request.query.filter_by(status='finish_completion').count())
+    total_pcomp_requests = json.dumps(Individual_request.query.filter_by(status='phoenix_completion').count() + Corporate_request.query.filter_by(status='phoenix_completion').count())
     total_submitted_requests = json.dumps(Individual_request.query.filter_by(status='submitted').count() + Corporate_request.query.filter_by(status='submitted').count())
     
     num_indv_pending_requests = Individual_request.query.filter_by(status='pending').count()
     num_indv_awaiting_requests = Individual_request.query.filter_by(status='requesting_client_information').count()
     num_indv_first_pass_requests = Individual_request.query.filter_by(status='first_pass').count()
     num_indv_conflict_check_requests = Individual_request.query.filter_by(status='conflict_check').count()
-    num_indv_finish_completion_requests = Individual_request.query.filter_by(status='finish_completion').count()
+    num_indv_phoenix_completion_requests = Individual_request.query.filter_by(status='phoenix_completion').count()
     num_indv_submitted_requests = Individual_request.query.filter_by(status='submitted').count()
 
     num_corp_pending_requests = Corporate_request.query.filter_by(status='pending').count()
     num_corp_awaiting_requests = Corporate_request.query.filter_by(status='requesting_client_information').count()
     num_corp_first_pass_requests = Corporate_request.query.filter_by(status='first_pass').count()
     num_corp_conflict_check_requests = Corporate_request.query.filter_by(status='conflict_check').count()
-    num_corp_finish_completion_requests = Corporate_request.query.filter_by(status='finish_completion').count()
+    num_corp_phoenix_completion_requests = Corporate_request.query.filter_by(status='phoenix_completion').count()
     num_corp_submitted_requests = Corporate_request.query.filter_by(status='submitted').count()
 
     total_clients = json.dumps(Client.query.count())
@@ -659,13 +659,13 @@ def client_hub():
     total_indv_requests=total_indv_requests, total_corp_requests=total_corp_requests,
     total_pending_requests=total_pending_requests, total_awaiting_requests=total_awaiting_requests,
     total_fpass_requests=total_fpass_requests, total_ccheck_requests=total_ccheck_requests,
-    total_fcomp_requests=total_fcomp_requests, total_submitted_requests=total_submitted_requests,
+    total_pcomp_requests=total_pcomp_requests, total_submitted_requests=total_submitted_requests,
     num_indv_pend=num_indv_pending_requests, num_indv_await=num_indv_awaiting_requests,
     num_indv_fp=num_indv_first_pass_requests, num_indv_cc=num_indv_conflict_check_requests,
-    num_indv_fc=num_indv_finish_completion_requests, num_indv_sub=num_indv_submitted_requests, 
+    num_indv_pc=num_indv_phoenix_completion_requests, num_indv_sub=num_indv_submitted_requests, 
     num_corp_pend=num_corp_pending_requests, num_corp_await=num_corp_awaiting_requests,
     num_corp_fp=num_corp_first_pass_requests, num_corp_cc=num_corp_conflict_check_requests,
-    num_corp_fc=num_corp_finish_completion_requests, num_corp_sub=num_corp_submitted_requests,
+    num_corp_pc=num_corp_phoenix_completion_requests, num_corp_sub=num_corp_submitted_requests,
     total_clients=total_clients, total_active_clients=total_active_clients, total_inactive_clients=total_inactive_clients,
     total_messages=total_messages, total_open_messages=total_open_messages, total_closed_messages=total_closed_messages,
     new_indv_requests=new_indv_requests, new_corp_requests=new_corp_requests, new_messages=new_messages)
@@ -1959,71 +1959,7 @@ def client_reports():
 @users.route("/view_reports")
 def view_reports():
     form = FilterReportForm()
-   
-    clients = db.session.query(Client)
-    num_clients = db.session.query(Client).count()
-    active_clients = db.session.query(Client).filter(Client.status=='active')
-    num_active_clients = db.session.query(Client).filter(Client.status=='active').count()
-    inactive_clients = db.session.query(Client).filter(Client.status=='Inactive')
-    num_inactive_clients = db.session.query(Client).filter(Client.status=='Inactive').count()
- 
-    indv_requests = Individual_request.query.all()
-    num_indv_requests = Individual_request.query.count()
-    corp_requests = Corporate_request.query.all()
-    num_corp_requests = Corporate_request.query.count()
-    
-    indv_pending_requests = Individual_request.query.filter_by(status='pending')
-    num_indv_pending_requests = indv_pending_requests.count()
-    indv_awaiting_requests = Individual_request.query.filter_by(status='awaiting')
-    num_indv_awaiting_requests = indv_awaiting_requests.count()
-    indv_first_pass_requests = Individual_request.query.filter_by(status='first_pass')
-    num_indv_first_pass_requests = indv_first_pass_requests.count()
-    indv_conflict_check_requests = Individual_request.query.filter_by(status='conflict_check')
-    num_indv_conflict_check_requests = indv_conflict_check_requests.count()
-    indv_finish_completion_requests = Individual_request.query.filter_by(status='finish_completion')
-    num_indv_finish_completion_requests = indv_finish_completion_requests.count()
-    indv_submitted_requests = Individual_request.query.filter_by(status='submitted')
-    num_indv_submitted_requests = indv_submitted_requests.count()
-
-    corp_pending_requests = Corporate_request.query.filter_by(status='pending')
-    num_corp_pending_requests = corp_pending_requests.count()
-    corp_awaiting_requests = Corporate_request.query.filter_by(status='awaiting')
-    num_corp_awaiting_requests = corp_awaiting_requests.count()
-    corp_first_pass_requests = Corporate_request.query.filter_by(status='first_pass')
-    num_corp_first_pass_requests = corp_first_pass_requests.count()
-    corp_conflict_check_requests = Corporate_request.query.filter_by(status='conflict_check')
-    num_corp_conflict_check_requests = corp_conflict_check_requests.count()
-    corp_finish_completion_requests = Corporate_request.query.filter_by(status='finish_completion')
-    num_corp_finish_completion_requests = corp_finish_completion_requests.count()
-    corp_submitted_requests = Corporate_request.query.filter_by(status='submitted')
-    num_corp_submitted_requests = corp_submitted_requests.count()
- 
-    messages = db.session.query(Contact)
-    num_messages = db.session.query(Contact).count()
-    open_messages = db.session.query(Contact).filter(Contact.status=='Open')
-    num_open_messages = db.session.query(Contact).filter(Contact.status=='Open').count()
-    closed_messages = db.session.query(Contact).filter(Contact.status=='Closed')
-    num_closed_messages = db.session.query(Contact).filter(Contact.status=='Closed').count()
- 
-    return render_template("reports.html", form=form, clients = clients, num_clients=num_clients, 
-    active_clients=active_clients, num_active_clients=num_active_clients, 
-    inactive_clients=inactive_clients, num_inactive_clients=num_inactive_clients, 
-    indv_requests=indv_requests, num_indv_requests=num_indv_requests,
-    corp_requests=corp_requests, num_corp_requests=num_corp_requests,
-    indv_pend=indv_pending_requests, num_indv_pend=num_indv_pending_requests,
-    indv_await=indv_awaiting_requests, num_indv_await=num_indv_awaiting_requests,
-    indv_fp=indv_first_pass_requests, num_indv_fp=num_indv_first_pass_requests,
-    indv_cc=indv_conflict_check_requests, num_indv_cc=num_indv_conflict_check_requests,
-    indv_fc=indv_finish_completion_requests, num_indv_fc=num_indv_finish_completion_requests,
-    indv_sub=indv_submitted_requests, num_indv_sub=num_indv_submitted_requests,
-    corp_pend=corp_pending_requests, num_corp_pend=num_corp_pending_requests,
-    corp_await=corp_awaiting_requests, num_corp_await=num_corp_awaiting_requests,
-    corp_fp=corp_first_pass_requests, num_corp_fp=num_corp_first_pass_requests,
-    corp_cc=corp_conflict_check_requests, num_corp_cc=num_corp_conflict_check_requests,
-    corp_fc=corp_finish_completion_requests, num_corp_fc=num_corp_finish_completion_requests,
-    corp_sub=corp_submitted_requests, num_corp_sub=num_corp_submitted_requests,
-    messages=messages, num_messages=num_messages, open_messages=open_messages, num_open_messages=num_open_messages,
-    closed_messages=closed_messages, num_closed_messages=num_closed_messages)
+    return render_template("reports.html", form=form)
  
 
 @users.route('/view_reports/generate_report', methods=['POST'])
@@ -2031,10 +1967,98 @@ def generate_report():
     report_type = request.form['type']
     report_status = request.form['status']
     report_start_date = request.form['start_date']
+    # set default start date if start date is empty
+    if (report_start_date == ''):
+        report_start_date = datetime.strptime('1900-01-01', '%Y-%m-%d')
+    else:
+        report_start_date = datetime.strptime(report_start_date, '%Y-%m-%d')
     report_end_date = request.form['end_date']
+    # set default end date to current date if end date is empty
+    if (report_end_date == ''):
+        report_end_date = datetime.now()
+    else:
+        report_end_date = datetime.strptime(report_end_date, '%Y-%m-%d')
+
+
+    data = []
+
+
+    if (report_type == 'clients'):
+        data = []
+        client_data = []
+
+        num_clients = Client.query.count()
+        num_active_clients = Client.query.filter_by(status='active').count()
+        num_inactive_clients = Client.query.filter_by(status='Inactive').count()
+
+        if (report_status == 'all'):
+            clients = Client.query.all()
+        else:
+            clients = Client.query.filter_by(status=report_status)
+        for client in clients:
+            temp = {'name': client.company_name, 'company_type': client.company_type, 'area': client.area.area, 'industry': client.industry.industry, 'status': client.status}
+            client_data.append(temp)
+        
+        data.append({'client_data': client_data, 'num_clients': num_clients, 'num_active_clients': num_active_clients, 'num_inactive_clients': num_inactive_clients})
+    
+
+    elif (report_type == 'service_requests'):
+        num_indv_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date)).count()
+        num_indv_pending_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='pending').count()
+        num_indv_awaiting_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='requesting_client_information').count()
+        num_indv_first_pass_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='first_pass').count()
+        num_indv_conflict_check_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='conflict_check').count()
+        num_indv_phoenix_completion_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='phoenix_completion').count()
+        num_indv_submitted_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='submitted').count()
+
+        num_corp_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date)).count()
+        num_corp_pending_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='pending').count()
+        num_corp_awaiting_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='requesting_client_information').count()
+        num_corp_first_pass_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='first_pass').count()
+        num_corp_conflict_check_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='conflict_check').count()
+        num_corp_phoenix_completion_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='phoenix_completion').count()
+        num_corp_submitted_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status='submitted').count()
+
+        data = []
+        indv_request_data = []
+        corp_request_data = []
+
+        if (report_status == 'all'):
+            indv_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date))
+            corp_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date))
+        else:
+            indv_requests = Individual_request.query.filter(Individual_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status=report_status)
+            corp_requests = Corporate_request.query.filter(Corporate_request.date_of_request.between(report_start_date, report_end_date)).filter_by(status=report_status)
+        for i_request in indv_requests:
+            temp = {'firstname': i_request.firstname, 'lastname': i_request.lastname, 'email': i_request.email, 'service': i_request.service, 'status': i_request.status}
+            indv_request_data.append(temp)
+        for c_request in corp_requests:
+            temp = {'company_name': c_request.company_name, 'company_email': c_request.company_email, 'service': c_request.service, 'status': c_request.status}
+            corp_request_data.append(temp)
+        data.append({'indv_request_data': indv_request_data, 'corp_request_data': corp_request_data, 'num_indv_requests': num_indv_requests, 'num_corp_requests': num_corp_requests, 'num_indv_pend': num_indv_pending_requests,'num_indv_await': num_indv_awaiting_requests,'num_indv_fp': num_indv_first_pass_requests,'num_indv_cc': num_indv_conflict_check_requests,'num_indv_pc': num_indv_phoenix_completion_requests,'num_indv_sub': num_indv_submitted_requests,'num_corp_pend': num_corp_pending_requests,'num_corp_await': num_corp_awaiting_requests,'num_corp_fp': num_corp_first_pass_requests, 'num_corp_cc': num_corp_conflict_check_requests,'num_corp_pc': num_corp_phoenix_completion_requests, 'num_corp_sub': num_corp_submitted_requests})
+
+    elif (report_type == 'messages'):
+        data = []
+        message_data = []
+
+        num_messages = Contact.query.filter(Contact.timestamp.between(report_start_date, report_end_date)).count()
+        num_open_messages = Contact.query.filter(Contact.timestamp.between(report_start_date, report_end_date)).filter_by(status='Open').count()
+        num_closed_messages = Contact.query.filter(Contact.timestamp.between(report_start_date, report_end_date)).filter_by(status='Closed').count()
+
+        if (report_status == 'all'):
+            messages = Contact.query.filter(Contact.timestamp.between(report_start_date, report_end_date))
+        else:
+            messages = Contact.query.filter(Contact.timestamp.between(report_start_date, report_end_date)).filter_by(status=report_status)
+        for message in messages:
+            temp = {'firstname': message.firstname, 'lastname': message.lastname, 'company_name': message.company_name, 'email': message.email, 'job_title': message.job_title, 'status': message.status}
+            message_data.append(temp)
+           
+        
+        data.append({'message_data': message_data, 'num_messages': num_messages, 'num_open_messages': num_open_messages, 'num_closed_messages': num_closed_messages})
+    
+    return jsonify(data)
  
-    report = report_type + report_status + report_start_date + report_end_date
-    return jsonify(report)
+    
 
 
 @users.route('/edit_survey', methods=['POST','GET'])
