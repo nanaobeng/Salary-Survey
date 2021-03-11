@@ -8,7 +8,7 @@
 <style>
   #hero {
     width: 100%;
-    height: 30vh;
+    height: 20vh;
     background: url("../static/img/home.jpg") top center;
     background-size: cover;
     position: relative;
@@ -88,7 +88,103 @@
       line-height: 24px;
     }
   }
+
+  body {
+    background-color: #edf0f3;
+  }
+
+  .summary-card {
+    /* background: inherit;
+    border: 0px; */
+  }
+
+  .card-text {
+    text-align: center;
+  }
+
+  .card-title {
+    font-variant: small-caps;
+  }
+
+  .total-number {
+    font-size: xx-large;
+  }
+
+  .summary-title {
+    text-align: center;
+    color: rgba(66, 99, 50, 1);
+    font-variant: small-caps;
+  }
+
+  .chart {
+    width: 100%;
+    height: 300px;
+  }
 </style>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+<script type="text/javascript">
+  google.charts.load("current", { packages: ["corechart"] });
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    var data1 = google.visualization.arrayToDataTable([
+      ['Survey Status', 'Number'],
+      ['Active', 11],
+      ['Inactive', 2],
+      ['Completed', 2]
+    ]);
+
+    var options1 = {
+      title: 'Surveys By Status',
+      pieHole: 0.5,
+      'legend': 'bottom',
+      'chartArea': { 'width': '80%'},
+    };
+
+    var chart1 = new google.visualization.PieChart(document.getElementById('surveys-status'));
+    chart1.draw(data1, options1);
+
+    var data2 = google.visualization.arrayToDataTable([
+      ['Sector', 'Number of Surveys'],
+      ['Energy, Resources and Industries', 11],
+      ['Financial Services', 2],
+      ['Life Sciences and Health Care', 20],
+      ['Government and Public Services', 5],
+      ['Technology, Media and Telecom', 19]
+    ]);
+
+    var options2 = {
+      title: 'Surveys By Sector',
+      seriesType: 'bars',
+      'legend': 'none',
+    }
+
+    var chart2 = new google.visualization.ColumnChart(document.getElementById('surveys-sector'));
+    chart2.draw(data2, options2);
+
+    var data3 = google.visualization.arrayToDataTable([
+      ['Client Type', 'Number'],
+      ['Administrators', 11],
+      ['Clients', 2]
+    ]);
+
+    var options3 = {
+      title: 'Users',
+      pieHole: 0.5,
+      'legend': 'bottom',
+      'chartArea': { 'width': '80%'},
+    };
+
+    var chart3 = new google.visualization.PieChart(document.getElementById('users-status'));
+    chart3.draw(data3, options3);
+
+
+  }
+</script>
+
+<!--Header-->
 <div class="row">
   <div class="col-12">
     <section id="hero" class="d-flex align-items-center justify-content-center">
@@ -100,9 +196,83 @@
   </div>
 </div>
 
+<!--Body-->
 
-<div class="row">
-  <div class="col-12" style="height:50vh">
+<!--Summary-->
+<div class="row m-4">
+  <div class="col-sm-6 mt-4">
+    <div class="card mb-2 summary-card">
+      <div class="card-body">
+        <h5 class="card-title summary-title">Total Surveys</h5>
+        <p class="card-text total-number">0</p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6 mt-4">
+    <div class="card mb-2 summary-card">
+      <div class="card-body">
+        <h5 class="card-title summary-title">Total Users</h5>
+        <p class="card-text total-number">0</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Charts-->
+<div class="row m-4">
+  <div class="col-4">
+    <div class="card chart">
+      <!-- <div class="card-header card-title">
+        Surveys by Status
+      </div> -->
+      <div class="card-body" id="surveys-status"></div>
+    </div>
+  </div>
+  <div class="col-8">
+    <div class="card chart">
+      <!-- <div class="card-header card-title">
+        Surveys By Sector
+      </div> -->
+      <div class="card-body" id="surveys-sector"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row m-4">
+  <div class="col-8">
+    <div class="card chart">
+      <div class="card-body" id="revenue"></div>
+    </div>
+  </div>
+  <div class="col-4">
+    <div class="card chart">
+      <div class="card-body" id="users-status"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row m-4">
+  <div class="col-8">
+    <div class="card">
+      <div class="card-body">
+        <table class="table hover">
+          <thead>
+            <th>Recent Activities</th>
+          </thead>
+          <tbody>
+            <tr class="table-row">
+              <td>Some Activity</td>
+            </tr>
+            <tr class="table-row">
+              <td>Some Activity</td>
+            </tr>
+            <tr class="table-row">
+              <td>Some Activity</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
 </div>
 
